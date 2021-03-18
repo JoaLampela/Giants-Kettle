@@ -22,6 +22,8 @@ public class MapGeneration : MonoBehaviour
         map = new int[width, height];
         List<Coord> roomACoords = new List<Coord>();
         List<Coord> roomBCoords = new List<Coord>();
+        List<Coord> roomCCoords = new List<Coord>();
+        List<Coord> roomDCoords = new List<Coord>();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -36,6 +38,16 @@ public class MapGeneration : MonoBehaviour
                     roomBCoords.Add(new Coord(x, y));
                     map[x, y] = 0;
                 }
+                else if ((35 < x && x < 45) && (5 < y && y < 19))
+                {
+                    roomCCoords.Add(new Coord(x, y));
+                    map[x, y] = 0;
+                }
+                else if ((30 < x && x < 45) && (20 < y && y < 35))
+                {
+                    roomDCoords.Add(new Coord(x, y));
+                    map[x, y] = 0;
+                }
                 else
                     map[x, y] = 1;
 
@@ -43,10 +55,14 @@ public class MapGeneration : MonoBehaviour
         }
         Room roomA = new Room(roomACoords, map);
         Room roomB = new Room(roomBCoords, map);
+        Room roomC = new Room(roomCCoords, map);
+        Room roomD = new Room(roomDCoords, map);
 
         List<Room> allRooms = new List<Room>();
         allRooms.Add(roomA);
         allRooms.Add(roomB);
+        allRooms.Add(roomC);
+        allRooms.Add(roomD);
         ConnectClosingRooms(allRooms);
     }
 
@@ -74,6 +90,9 @@ public class MapGeneration : MonoBehaviour
         bool possibleConnectionFound = false;
 
         foreach (Room roomA in AllRooms)
+        {
+
+
             foreach (Room roomB in AllRooms)
             {
 
@@ -104,9 +123,10 @@ public class MapGeneration : MonoBehaviour
                         }
                     }
             }
-        if (possibleConnectionFound)
-        {
-            CreatePassage(bestRoomA, bestRoomB, bestTileA, bestTileB);
+            if (possibleConnectionFound)
+            {
+                CreatePassage(bestRoomA, bestRoomB, bestTileA, bestTileB);
+            }
         }
     }
 
