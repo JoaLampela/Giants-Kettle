@@ -238,6 +238,8 @@ MonoBehaviour:
   width: 100
   height: 100
   randomFillPrecent: 50
+  tunnelWidth: 1
+  enemyRoom1: {fileID: 0}
 --- !u!4 &1189093992
 Transform:
   m_ObjectHideFlags: 0

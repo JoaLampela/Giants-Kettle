@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room
+public class EnemyRoom1 : Room
 {
-
-    public List<Coord> tiles;
-    public List<Coord> edgeTiles;
-    public List<Room> connectedRooms;
-    public int roomSize;
-    public float spaceRequirement;
-    public Room() { }
-    public Room(List<Coord> roomTiles, int[,] map)
+    public EnemyRoom1(Coord centre, int[,] map)
     {
-        tiles = roomTiles;
+        Debug.Log("creating enemy room");
+        tiles = new List<Coord>();
+        for (int x = -5 + centre.tileX; x < 5 + centre.tileX; x++)
+        {
+            for (int y = -5 + centre.tileY; y < 5 + centre.tileY; y++)
+            {
+                map[x, y] = 0;
+                tiles.Add(new Coord(x, y));
+            }
+        }
+        Debug.Log(tiles.Count);
         roomSize = tiles.Count;
         connectedRooms = new List<Room>();
         edgeTiles = new List<Coord>();
@@ -31,14 +34,5 @@ public class Room
             }
         }
         Debug.Log(edgeTiles.Count);
-    }
-    public static void ConnectRooms(Room roomA, Room roomB)
-    {
-        roomA.connectedRooms.Add(roomB);
-        roomB.connectedRooms.Add(roomA);
-    }
-    public bool IsConnected(Room otherRoom)
-    {
-        return connectedRooms.Contains(otherRoom);
     }
 }

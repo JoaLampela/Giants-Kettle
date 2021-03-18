@@ -7,9 +7,17 @@ public class MapGeneration : MonoBehaviour
     public int width = 30;
     public int height = 30;
 
+
     [Range(0, 100)]
     public int randomFillPrecent;
 
+    [Range(1, 5)]
+    public int tunnelWidth;
+
+    public GameObject enemyRoom1;
+
+    private int enemyRoom1SpaceRequired = 6;
+    private int spawnRoomAmount = 10;
     int[,] map;
 
     private void Start()
@@ -17,84 +25,46 @@ public class MapGeneration : MonoBehaviour
         GenerateMap();
     }
 
+
     private void GenerateMap()
     {
         map = new int[width, height];
-        List<Coord> roomACoords = new List<Coord>();
-        List<Coord> roomBCoords = new List<Coord>();
-        List<Coord> roomCCoords = new List<Coord>();
-        List<Coord> roomDCoords = new List<Coord>();
-        List<Coord> roomECoords = new List<Coord>();
-        List<Coord> roomFCoords = new List<Coord>();
-        List<Coord> roomGCoords = new List<Coord>();
-        List<Coord> roomHCoords = new List<Coord>();
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                if ((10 < x && x < 30) && (30 < y && y < 40))
-                {
-                    roomACoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else if ((2 < x && x < 10) && (10 < y && y < 20))
-                {
-                    roomBCoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else if ((35 < x && x < 45) && (5 < y && y < 19))
-                {
-                    roomCCoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else if ((30 < x && x < 45) && (20 < y && y < 35))
-                {
-                    roomDCoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else if ((50 < x && x < 60) && (45 < y && y < 55))
-                {
-                    roomECoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else if ((61 < x && x < 70) && (45 < y && y < 55))
-                {
-                    roomFCoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else if ((50 < x && x < 60) && (56 < y && y < 66))
-                {
-                    roomGCoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else if ((61 < x && x < 70) && (55 < y && y < 66))
-                {
-                    roomHCoords.Add(new Coord(x, y));
-                    map[x, y] = 0;
-                }
-                else
-                    map[x, y] = 1;
-
-            }
-        }
-        Room roomA = new Room(roomACoords, map);
-        Room roomB = new Room(roomBCoords, map);
-        Room roomC = new Room(roomCCoords, map);
-        Room roomD = new Room(roomDCoords, map);
-        Room roomE = new Room(roomECoords, map);
-        Room roomF = new Room(roomFCoords, map);
-        Room roomG = new Room(roomGCoords, map);
-        Room roomH = new Room(roomHCoords, map);
-
         List<Room> allRooms = new List<Room>();
-        allRooms.Add(roomA);
-        allRooms.Add(roomB);
-        allRooms.Add(roomC);
-        allRooms.Add(roomD);
-        allRooms.Add(roomE);
-        allRooms.Add(roomF);
-        allRooms.Add(roomG);
-        allRooms.Add(roomH);
+        bool mapGenerated = false;
+        while (!mapGenerated)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    map[x, y] = 1;
+                }
+            }
+            allRooms.Clear();
+            for (int i = 0; i < spawnRoomAmount; i++)
+            {
+                bool roomSpawned = false;
+                int cannotSpawnRoomCounter = 0;
+                while (!roomSpawned && cannotSpawnRoomCounter < 30)
+                {
+                    int x = Random.Range(enemyRoom1SpaceRequired, width - enemyRoom1SpaceRequired);
+                    int y = Random.Range(enemyRoom1SpaceRequired, height - enemyRoom1SpaceRequired);
+                    if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
+                    {
+                        Debug.Log(cannotSpawnRoomCounter);
+                        Room room = new EnemyRoom1(new Coord(x, y), map);
+                        allRooms.Add(room);
+                        roomSpawned = true;
+                    }
+                    cannotSpawnRoomCounter++;
+                }
+                if (!roomSpawned)
+                    break;
+            }
+            if (allRooms.Count == spawnRoomAmount)
+                mapGenerated = true;
+
+        }
         ConnectClosingRooms(allRooms);
     }
 
@@ -107,7 +77,7 @@ public class MapGeneration : MonoBehaviour
                 {
                     Gizmos.color = (map[x, y] == 1) ? Color.black : Color.white;
                     Vector2 pos = new Vector2(-width / 2 + x + 0.5f, -height / 2 + y + 0.5f);
-                    Gizmos.DrawCube(pos, Vector3.one * 0.9f);
+                    Gizmos.DrawCube(pos, Vector3.one);
                 }
             }
     }
@@ -167,11 +137,95 @@ public class MapGeneration : MonoBehaviour
         Debug.Log("connecting" + roomA + "" + roomB);
         Room.ConnectRooms(roomA, roomB);
         Debug.DrawLine(CoordToWorldPoint(tileA), CoordToWorldPoint(tileB), Color.green, 100);
+        List<Coord> line = GetLine(tileA, tileB);
+
+        foreach (Coord point in line)
+        {
+            DrawCircle(point, tunnelWidth);
+        }
     }
 
+    void DrawCircle(Coord c, int r)
+    {
+        for (int x = -r; x <= r; x++)
+            for (int y = -r; y <= r; y++)
+            {
+                if (x * x + y * y <= r * r)
+                {
+                    int drawX = c.tileX + x;
+                    int drawY = c.tileY + y;
+                    map[drawX, drawY] = 0;
+                }
+            }
+    }
+    bool isCircleEmptyWalls(Coord c, int r)
+    {
+        for (int x = -r; x <= r; x++)
+            for (int y = -r; y <= r; y++)
+            {
+                if (x * x + y * y <= r * r)
+                {
+                    int checkingX = c.tileX + x;
+                    int checkingY = c.tileY + y;
+                    if (map[checkingX, checkingY] == 0)
+                    {
+                        Debug.Log("we did it mom");
+                        return false;
+                    }
+
+                }
+            }
+        return true;
+    }
+
+    List<Coord> GetLine(Coord from, Coord to)
+    {
+        List<Coord> line = new List<Coord>();
+        int x = from.tileX;
+        int y = from.tileY;
+
+        int dx = to.tileX - from.tileX;
+        int dy = to.tileY - from.tileY;
+        bool inverted = false;
+        int step = System.Math.Sign(dx);
+        int gradientStep = System.Math.Sign(dy);
+
+        int longest = Mathf.Abs(dx);
+        int shortest = Mathf.Abs(dy);
+
+        if (longest < shortest)
+        {
+            inverted = true;
+            longest = Mathf.Abs(dy);
+            shortest = Mathf.Abs(dx);
+
+            step = System.Math.Sign(dy);
+            gradientStep = System.Math.Sign(dx);
+        }
+        int gradientAccumulation = longest / 2;
+        for (int i = 0; i < longest; i++)
+        {
+            line.Add(new Coord(x, y));
+
+            if (inverted)
+                y += step;
+            else
+                x += step;
+
+            gradientAccumulation += shortest;
+            if (gradientAccumulation >= longest)
+            {
+                if (inverted)
+                    x += gradientStep;
+                else
+                    y += gradientStep;
+                gradientAccumulation -= longest;
+            }
+        }
+        return line;
+    }
     Vector2 CoordToWorldPoint(Coord tile)
     {
         return new Vector2(-width / 2 + .5f + tile.tileX, -height / 2 + .5f + tile.tileY);
     }
-
 }
