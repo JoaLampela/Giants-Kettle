@@ -24,6 +24,10 @@ public class MapGeneration : MonoBehaviour
         List<Coord> roomBCoords = new List<Coord>();
         List<Coord> roomCCoords = new List<Coord>();
         List<Coord> roomDCoords = new List<Coord>();
+        List<Coord> roomECoords = new List<Coord>();
+        List<Coord> roomFCoords = new List<Coord>();
+        List<Coord> roomGCoords = new List<Coord>();
+        List<Coord> roomHCoords = new List<Coord>();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -48,6 +52,26 @@ public class MapGeneration : MonoBehaviour
                     roomDCoords.Add(new Coord(x, y));
                     map[x, y] = 0;
                 }
+                else if ((50 < x && x < 60) && (45 < y && y < 55))
+                {
+                    roomECoords.Add(new Coord(x, y));
+                    map[x, y] = 0;
+                }
+                else if ((61 < x && x < 70) && (45 < y && y < 55))
+                {
+                    roomFCoords.Add(new Coord(x, y));
+                    map[x, y] = 0;
+                }
+                else if ((50 < x && x < 60) && (56 < y && y < 66))
+                {
+                    roomGCoords.Add(new Coord(x, y));
+                    map[x, y] = 0;
+                }
+                else if ((61 < x && x < 70) && (55 < y && y < 66))
+                {
+                    roomHCoords.Add(new Coord(x, y));
+                    map[x, y] = 0;
+                }
                 else
                     map[x, y] = 1;
 
@@ -57,12 +81,20 @@ public class MapGeneration : MonoBehaviour
         Room roomB = new Room(roomBCoords, map);
         Room roomC = new Room(roomCCoords, map);
         Room roomD = new Room(roomDCoords, map);
+        Room roomE = new Room(roomECoords, map);
+        Room roomF = new Room(roomFCoords, map);
+        Room roomG = new Room(roomGCoords, map);
+        Room roomH = new Room(roomHCoords, map);
 
         List<Room> allRooms = new List<Room>();
         allRooms.Add(roomA);
         allRooms.Add(roomB);
         allRooms.Add(roomC);
         allRooms.Add(roomD);
+        allRooms.Add(roomE);
+        allRooms.Add(roomF);
+        allRooms.Add(roomG);
+        allRooms.Add(roomH);
         ConnectClosingRooms(allRooms);
     }
 
@@ -75,7 +107,7 @@ public class MapGeneration : MonoBehaviour
                 {
                     Gizmos.color = (map[x, y] == 1) ? Color.black : Color.white;
                     Vector2 pos = new Vector2(-width / 2 + x + 0.5f, -height / 2 + y + 0.5f);
-                    Gizmos.DrawCube(pos, Vector3.one);
+                    Gizmos.DrawCube(pos, Vector3.one * 0.9f);
                 }
             }
     }
@@ -87,11 +119,11 @@ public class MapGeneration : MonoBehaviour
         Coord bestTileB = new Coord();
         Room bestRoomA = new Room();
         Room bestRoomB = new Room();
-        bool possibleConnectionFound = false;
+
 
         foreach (Room roomA in AllRooms)
         {
-
+            bool possibleConnectionFound = false;
 
             foreach (Room roomB in AllRooms)
             {
@@ -103,7 +135,7 @@ public class MapGeneration : MonoBehaviour
                 if (roomA.IsConnected(roomB))
                 {
                     possibleConnectionFound = false;
-                    break;
+                    continue;
                 }
 
                 for (int tileIndexA = 0; tileIndexA < roomA.edgeTiles.Count; tileIndexA++)
@@ -142,59 +174,4 @@ public class MapGeneration : MonoBehaviour
         return new Vector2(-width / 2 + .5f + tile.tileX, -height / 2 + .5f + tile.tileY);
     }
 
-    struct Coord
-    {
-        public int tileX;
-        public int tileY;
-
-        public Coord(int x, int y)
-        {
-            tileX = x;
-            tileY = y;
-        }
-    }
-
-    class Room
-    {
-        public List<Coord> tiles;
-        public List<Coord> edgeTiles;
-        public List<Room> connectedRooms;
-        public int roomSize;
-
-        public Room()
-        {
-
-        }
-
-        public Room(List<Coord> roomTiles, int[,] map)
-        {
-            tiles = roomTiles;
-            roomSize = tiles.Count;
-            connectedRooms = new List<Room>();
-            edgeTiles = new List<Coord>();
-            foreach (Coord tile in tiles)
-            {
-                for (int x = tile.tileX - 1; x <= tile.tileX + 1; x++)
-                {
-                    for (int y = tile.tileY - 1; y <= tile.tileY + 1; y++)
-                    {
-                        if (map[x, y] == 1)
-                        {
-                            edgeTiles.Add(tile);
-                        }
-                    }
-                }
-            }
-            Debug.Log(edgeTiles.Count);
-        }
-        public static void ConnectRooms(Room roomA, Room roomB)
-        {
-            roomA.connectedRooms.Add(roomB);
-            roomB.connectedRooms.Add(roomA);
-        }
-        public bool IsConnected(Room otherRoom)
-        {
-            return connectedRooms.Contains(otherRoom);
-        }
-    }
 }

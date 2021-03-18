@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100925f51b2ed6a44a7fbd8a98b44043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
+  width: 100
+  height: 100
   randomFillPrecent: 50
 --- !u!4 &1189093992
 Transform:
