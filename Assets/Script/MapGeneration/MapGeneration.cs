@@ -8,7 +8,6 @@ public class MapGeneration : MonoBehaviour
     public int width = 200;
     public int height = 200;
 
-
     [Header("Room spawn settings")]
     public int[] roomArray;
     [Range(1, 5)]
@@ -28,8 +27,11 @@ public class MapGeneration : MonoBehaviour
 
     int[,] map;
 
+    private MeshGenerator meshGenerator;
+
     private void Start()
     {
+        meshGenerator = GetComponent<MeshGenerator>();
         GenerateMap();
     }
 
@@ -95,10 +97,15 @@ public class MapGeneration : MonoBehaviour
         }
         ConnectClosingRooms(allRooms);
         InstansiateRooms(allRooms);
+
+        //syyt‰ kerttuu jos t‰‰ kaatuu t‰h‰n:
+        meshGenerator.GenerateMesh(map, 1);
+
     }
 
     private void OnDrawGizmos()
     {
+        /*made changes here
         if (map != null)
             for (int x = 0; x < width; x++)
             {
@@ -108,7 +115,8 @@ public class MapGeneration : MonoBehaviour
                     Vector2 pos = new Vector2(-width / 2 + x + 0.5f, -height / 2 + y + 0.5f);
                     Gizmos.DrawCube(pos, Vector3.one);
                 }
-            }
+            } 
+        */
     }
 
     void ConnectClosingRooms(List<Room> AllRooms)
