@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRoom1 : Room
+public class SpawnRoom : Room
 {
-    public EnemyRoom1(Coord centre, int[,] map)
+    public SpawnRoom(Coord centre, int[,] map)
     {
         CentreTile = centre;
-        roomType = 2;
+        roomType = 0;
         Debug.Log("creating enemy room");
         tiles = new List<Coord>();
-        for (int x = -5 + centre.tileX; x < 5 + centre.tileX; x++)
-        {
-            for (int y = -5 + centre.tileY; y < 5 + centre.tileY; y++)
+        int r = 6;
+        for (int x = -r; x <= r; x++)
+            for (int y = -r; y <= r; y++)
             {
-                map[x, y] = 0;
-                tiles.Add(new Coord(x, y));
+                if (x * x + y * y <= r * r)
+                {
+                    int tileCoordX = centre.tileX + x;
+                    int tileCoordY = centre.tileY + y;
+                    map[tileCoordX, tileCoordY] = 0;
+                    tiles.Add(new Coord(tileCoordX, tileCoordY));
+                }
             }
-        }
         Debug.Log(tiles.Count);
         roomSize = tiles.Count;
         connectedRooms = new List<Room>();
@@ -37,5 +41,4 @@ public class EnemyRoom1 : Room
         }
         Debug.Log(edgeTiles.Count);
     }
-
 }

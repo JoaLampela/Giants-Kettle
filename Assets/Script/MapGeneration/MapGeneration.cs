@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
 {
-    public int width = 30;
-    public int height = 30;
+    [Header("Room spawn amount settings")]
+    public int width = 200;
+    public int height = 200;
 
 
-    [Range(0, 100)]
-    public int randomFillPrecent;
-
+    [Header("Room spawn settings")]
+    public int[] roomArray;
     [Range(1, 5)]
     public int tunnelWidth;
-
+    [Header("Room prefabs")]
+    public GameObject spawnRoom;
+    public GameObject exitRoom;
     public GameObject enemyRoom1;
 
-    private int enemyRoom1SpaceRequired = 6;
-    private int spawnRoomAmount = 10;
+    [Header("Room space requirements")]
+    [Range(5, 20)]
+    public int enemyRoom1SpaceRequired = 6;
+    [Range(4, 30)]
+    public int spawnRoomSpaceRequired;
+    [Range(6, 30)]
+    public int exitRoomSpaceRequired;
+
     int[,] map;
 
     private void Start()
@@ -41,31 +49,52 @@ public class MapGeneration : MonoBehaviour
                 }
             }
             allRooms.Clear();
-            for (int i = 0; i < spawnRoomAmount; i++)
+            for (int i = 0; i < roomArray.Length; i++)
             {
                 bool roomSpawned = false;
                 int cannotSpawnRoomCounter = 0;
                 while (!roomSpawned && cannotSpawnRoomCounter < 30)
                 {
-                    int x = Random.Range(enemyRoom1SpaceRequired, width - enemyRoom1SpaceRequired);
-                    int y = Random.Range(enemyRoom1SpaceRequired, height - enemyRoom1SpaceRequired);
-                    if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
+                    int x = Random.Range(50, width - 50);
+                    int y = Random.Range(50, height - 50);
+                    if (roomArray[i] == 0)
                     {
-                        Debug.Log(cannotSpawnRoomCounter);
-                        Room room = new EnemyRoom1(new Coord(x, y), map);
-                        allRooms.Add(room);
-                        roomSpawned = true;
+                        if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
+                        {
+                            Room room = new SpawnRoom(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
+                    }
+                    else if (roomArray[i] == 1)
+                    {
+                        if (isCircleEmptyWalls(new Coord(x, y), spawnRoomSpaceRequired))
+                        {
+                            Room room = new ExitRoom(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
+                    }
+                    else if (roomArray[i] == 2)
+                    {
+                        if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
+                        {
+                            Room room = new EnemyRoom1(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
                     }
                     cannotSpawnRoomCounter++;
                 }
                 if (!roomSpawned)
                     break;
             }
-            if (allRooms.Count == spawnRoomAmount)
+            if (allRooms.Count == roomArray.Length)
                 mapGenerated = true;
 
         }
         ConnectClosingRooms(allRooms);
+        InstansiateRooms(allRooms);
     }
 
     private void OnDrawGizmos()
@@ -227,5 +256,31 @@ public class MapGeneration : MonoBehaviour
     Vector2 CoordToWorldPoint(Coord tile)
     {
         return new Vector2(-width / 2 + .5f + tile.tileX, -height / 2 + .5f + tile.tileY);
+    }
+
+    public void InstansiateRooms(List<Room> allRooms)
+    {
+        foreach (Room room in allRooms)
+        {
+
+            switch (room.roomType)
+            {
+                case 0:
+                    {
+                        Instantiate(spawnRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                    }
+                    break;
+                case 1:
+                    {
+                        Instantiate(exitRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                    }
+                    break;
+                case 2:
+                    {
+                        Instantiate(enemyRoom1, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                    }
+                    break;
+            }
+        }
     }
 }

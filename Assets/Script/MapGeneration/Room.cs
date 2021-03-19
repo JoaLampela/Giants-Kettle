@@ -10,9 +10,12 @@ public class Room
     public List<Room> connectedRooms;
     public int roomSize;
     public float spaceRequirement;
+    public int roomType;
+    public Coord CentreTile;
     public Room() { }
     public Room(List<Coord> roomTiles, int[,] map)
     {
+        roomType = -1;
         tiles = roomTiles;
         roomSize = tiles.Count;
         connectedRooms = new List<Room>();
