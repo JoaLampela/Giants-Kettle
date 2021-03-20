@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room
+public class Room : IComparable<Room>
 {
-
+    public bool isMainRoom;
+    public bool isAccessibleFromMainRoom;
     public List<Coord> tiles;
     public List<Coord> edgeTiles;
     public List<Room> connectedRooms;
@@ -15,6 +17,8 @@ public class Room
     public Room() { }
     public Room(List<Coord> roomTiles, int[,] map)
     {
+        isMainRoom = false;
+        isAccessibleFromMainRoom = false;
         roomType = -1;
         tiles = roomTiles;
         roomSize = tiles.Count;
@@ -35,11 +39,39 @@ public class Room
         }
         Debug.Log(edgeTiles.Count);
     }
+
+    public void SetAccessibleFromMainRoom()
+    {
+        if (!isAccessibleFromMainRoom)
+        {
+            isAccessibleFromMainRoom = true;
+            foreach (Room connectedRoom in connectedRooms)
+            {
+                connectedRoom.SetAccessibleFromMainRoom();
+
+            }
+        }
+    }
+
     public static void ConnectRooms(Room roomA, Room roomB)
     {
+        if (roomA.isAccessibleFromMainRoom)
+        {
+            roomB.SetAccessibleFromMainRoom();
+        }
+        else if (roomB.isAccessibleFromMainRoom)
+        {
+            roomA.SetAccessibleFromMainRoom();
+        }
         roomA.connectedRooms.Add(roomB);
         roomB.connectedRooms.Add(roomA);
     }
+
+    public int CompareTo(Room otherRoom)
+    {
+        return otherRoom.roomSize.CompareTo(roomSize);
+    }
+
     public bool IsConnected(Room otherRoom)
     {
         return connectedRooms.Contains(otherRoom);
