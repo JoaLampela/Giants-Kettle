@@ -7,6 +7,7 @@ public class MapGeneration : MonoBehaviour
     [Header("Room spawn amount settings")]
     public int width = 200;
     public int height = 200;
+    public int generationAreaOuterBorder;
 
     [Header("Room spawn settings")]
     public int[] roomArray;
@@ -17,12 +18,12 @@ public class MapGeneration : MonoBehaviour
     public GameObject exitRoom;
     public GameObject enemyRoom1;
 
-    [Header("Room space requirements")]
+    [Header("Room space requirements (max amount should not go over generation area outer border)")]
     [Range(5, 20)]
     public int enemyRoom1SpaceRequired = 6;
-    [Range(4, 30)]
+    [Range(4, 100)]
     public int spawnRoomSpaceRequired;
-    [Range(6, 30)]
+    [Range(6, 100)]
     public int exitRoomSpaceRequired;
 
     int[,] map;
@@ -57,8 +58,8 @@ public class MapGeneration : MonoBehaviour
                 int cannotSpawnRoomCounter = 0;
                 while (!roomSpawned && cannotSpawnRoomCounter < 30)
                 {
-                    int x = Random.Range(50, width - 50);
-                    int y = Random.Range(50, height - 50);
+                    int x = Random.Range(generationAreaOuterBorder, width - generationAreaOuterBorder);
+                    int y = Random.Range(generationAreaOuterBorder, height - generationAreaOuterBorder);
                     if (roomArray[i] == 0)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
@@ -95,17 +96,28 @@ public class MapGeneration : MonoBehaviour
                 mapGenerated = true;
 
         }
-        ConnectClosingRooms(allRooms);
+
+        foreach (Room room in allRooms)
+        {
+            if (room.roomType == 0)
+            {
+                Debug.Log("Found a spawnroom and made it into a main room");
+                room.isMainRoom = true;
+                room.SetAccessibleFromMainRoom();
+                break;
+            }
+        }
+        ConnectClosestRooms(allRooms);
         InstansiateRooms(allRooms);
 
         //syytä kerttuu jos tää kaatuu tähän:
-        meshGenerator.GenerateMesh(map, 1);
+        //meshGenerator.GenerateMesh(map, 1);
 
     }
 
     private void OnDrawGizmos()
     {
-        /*made changes here
+        /*made changes here*/
         if (map != null)
             for (int x = 0; x < width; x++)
             {
@@ -115,37 +127,60 @@ public class MapGeneration : MonoBehaviour
                     Vector2 pos = new Vector2(-width / 2 + x + 0.5f, -height / 2 + y + 0.5f);
                     Gizmos.DrawCube(pos, Vector3.one);
                 }
-            } 
-        */
+            }
+
     }
 
-    void ConnectClosingRooms(List<Room> AllRooms)
+    void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
+        List<Room> roomListA = new List<Room>();
+        List<Room> roomListB = new List<Room>();
+
+        if (forceAccessibilityFromMainRoom)
+        {
+            Debug.Log("forcing accessability");
+            foreach (Room room in allRooms)
+            {
+                if (room.isAccessibleFromMainRoom)
+                    roomListB.Add(room);
+                else
+                {
+                    roomListA.Add(room);
+                }
+            }
+        }
+        else
+        {
+            roomListA = allRooms;
+            roomListB = allRooms;
+        }
+
         int bestDistance = 0;
         Coord bestTileA = new Coord();
         Coord bestTileB = new Coord();
         Room bestRoomA = new Room();
         Room bestRoomB = new Room();
-
-
-        foreach (Room roomA in AllRooms)
+        bool possibleConnectionFound = false;
+        foreach (Room roomA in roomListA)
         {
-            bool possibleConnectionFound = false;
-
-            foreach (Room roomB in AllRooms)
+            if (!forceAccessibilityFromMainRoom)
+            {
+                possibleConnectionFound = false;
+                if (roomA.connectedRooms.Count > 0)
+                    continue;
+            }
+            foreach (Room roomB in roomListB)
             {
 
-                if (roomA == roomB)
+                if (roomA == roomB || roomA.IsConnected(roomB))
                 {
-                    continue;
-                }
-                if (roomA.IsConnected(roomB))
-                {
-                    possibleConnectionFound = false;
                     continue;
                 }
 
                 for (int tileIndexA = 0; tileIndexA < roomA.edgeTiles.Count; tileIndexA++)
+                {
+
+
                     for (int tileIndexB = 0; tileIndexB < roomB.edgeTiles.Count; tileIndexB++)
                     {
                         Coord tileA = roomA.edgeTiles[tileIndexA];
@@ -161,11 +196,23 @@ public class MapGeneration : MonoBehaviour
                             bestRoomB = roomB;
                         }
                     }
+                }
             }
-            if (possibleConnectionFound)
+            if (possibleConnectionFound && !forceAccessibilityFromMainRoom)
             {
                 CreatePassage(bestRoomA, bestRoomB, bestTileA, bestTileB);
             }
+        }
+        if (possibleConnectionFound && forceAccessibilityFromMainRoom)
+        {
+            CreatePassage(bestRoomA, bestRoomB, bestTileA, bestTileB);
+            ConnectClosestRooms(allRooms, true);
+        }
+
+
+        if (!forceAccessibilityFromMainRoom)
+        {
+            ConnectClosestRooms(allRooms, true);
         }
     }
 
