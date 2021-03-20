@@ -35,6 +35,12 @@ public class MapGeneration : MonoBehaviour
         GenerateMap();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) {
+            GenerateMap();
+        }
+    }
 
     private void GenerateMap()
     {
@@ -99,13 +105,14 @@ public class MapGeneration : MonoBehaviour
         InstansiateRooms(allRooms);
 
         //syyt‰ kerttuu jos t‰‰ kaatuu t‰h‰n:
+        //generate mesh of the map
         meshGenerator.GenerateMesh(map, 1);
 
     }
 
     private void OnDrawGizmos()
     {
-        /*made changes here
+        /*made changes here t.kerttu
         if (map != null)
             for (int x = 0; x < width; x++)
             {
@@ -116,7 +123,7 @@ public class MapGeneration : MonoBehaviour
                     Gizmos.DrawCube(pos, Vector3.one);
                 }
             } 
-        */
+       */
     }
 
     void ConnectClosingRooms(List<Room> AllRooms)
@@ -173,7 +180,7 @@ public class MapGeneration : MonoBehaviour
     {
         Debug.Log("connecting" + roomA + "" + roomB);
         Room.ConnectRooms(roomA, roomB);
-        Debug.DrawLine(CoordToWorldPoint(tileA), CoordToWorldPoint(tileB), Color.green, 100);
+        Debug.DrawLine(CoordToWorldPoint(tileA), CoordToWorldPoint(tileB), Color.green, 5);
         List<Coord> line = GetLine(tileA, tileB);
 
         foreach (Coord point in line)
