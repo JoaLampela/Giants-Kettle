@@ -238,17 +238,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100925f51b2ed6a44a7fbd8a98b44043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 300
-  height: 300
-  generationAreaOuterBorder: 100
+  width: 200
+  height: 200
+  generationAreaOuterBorder: 50
   roomArray: 0000000001000000020000000200000002000000020000000200000002000000
   tunnelWidth: 2
   spawnRoom: {fileID: 9012813900297514595, guid: 4ec9f1d143bc0084099be4145f55f546, type: 3}
   exitRoom: {fileID: 1311955666255823563, guid: 30bcc437adb56a0458c2185fb4e70460, type: 3}
   enemyRoom1: {fileID: 454587712681634677, guid: ff8041b986322fd45aa7d533f349eb98, type: 3}
   enemyRoom1SpaceRequired: 6
-  spawnRoomSpaceRequired: 83
-  exitRoomSpaceRequired: 82
+  spawnRoomSpaceRequired: 48
+  exitRoomSpaceRequired: 49
 --- !u!4 &1189093992
 Transform:
   m_ObjectHideFlags: 0
