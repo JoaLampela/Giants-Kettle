@@ -43,13 +43,13 @@ public class MeshGenerator : MonoBehaviour
                 break;
             //only 1 controlNodes is active
             case 1:
-                MeshFromPoints(square._centerBottom, square._bottomLeft, square._centerLeft);
+                MeshFromPoints(square._centerLeft, square._centerBottom, square._bottomLeft);
                 break;
             case 2:
-                MeshFromPoints(square._centerRight, square._bottomRight, square._centerBottom);
+                MeshFromPoints(square._bottomRight, square._centerBottom, square._centerRight);
                 break;
             case 4:
-                MeshFromPoints(square._centerTop, square._topRight, square._centerRight);
+                MeshFromPoints(square._topRight, square._centerRight, square._centerTop);
                 break;
             case 8:
                 MeshFromPoints(square._topLeft, square._centerTop, square._centerLeft);
