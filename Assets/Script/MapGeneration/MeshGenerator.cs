@@ -16,8 +16,10 @@ public class MeshGenerator : MonoBehaviour
         triangles = new List<int>();
 
 
-        for (int x = 0; x < squareGrid.squares.GetLength(0); x++) {
-            for (int y = 0; y < squareGrid.squares.GetLength(1); y++) {
+        for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
+        {
+            for (int y = 0; y < squareGrid.squares.GetLength(1); y++)
+            {
                 TriangulateSquare(squareGrid.squares[x, y]);
             }
         }
@@ -38,7 +40,8 @@ public class MeshGenerator : MonoBehaviour
     //translate the square configuration to mesh points
     void TriangulateSquare(Square square)
     {
-        switch(square._configuration) {
+        switch (square._configuration)
+        {
             case 0:
                 break;
             //only 1 controlNodes is active
@@ -104,27 +107,33 @@ public class MeshGenerator : MonoBehaviour
         AssignVerticies(points);
 
         //create a triangle if the points list has 3 veticies
-        if (points.Length >= 3) {
+        if (points.Length >= 3)
+        {
             CreateTriangle(points[0], points[1], points[2]);
         }
         //two triangles ()
-        if (points.Length >= 4) {
+        if (points.Length >= 4)
+        {
             CreateTriangle(points[0], points[2], points[3]);
         }
         //three triangles
-        if (points.Length >= 5) {
+        if (points.Length >= 5)
+        {
             CreateTriangle(points[0], points[3], points[4]);
         }
         //four triangles, (two control nodes diagonally)
-        if (points.Length >= 6) {
+        if (points.Length >= 6)
+        {
             CreateTriangle(points[0], points[4], points[5]);
         }
     }
 
     private void AssignVerticies(Node[] points)
     {
-        for (int i = 0; i < points.Length; i++) {
-            if (points[i]._vertexIndex == -1) {
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (points[i]._vertexIndex == -1)
+            {
                 //set an index for a point using the amount of vertecies
                 points[i]._vertexIndex = vertices.Count;
                 //this is different than in the tutorial? added the _position for it to work
@@ -139,21 +148,24 @@ public class MeshGenerator : MonoBehaviour
         triangles.Add(cornerB._vertexIndex);
         triangles.Add(cornerC._vertexIndex);
     }
-
+    /*
     void OnDrawGizmos()
     {
-        /*
-        if (squareGrid != null) {
-            for (int x = 0; x < squareGrid.squares.GetLength(0); x++) {
-                for (int y = 0; y < squareGrid.squares.GetLength(1); y++) {
-                  
+
+        if (squareGrid != null)
+        {
+            for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
+            {
+                for (int y = 0; y < squareGrid.squares.GetLength(1); y++)
+                {
+
                     Gizmos.color = squareGrid.squares[x, y]._topLeft._active ? Color.black : Color.white;
                     Gizmos.DrawCube(squareGrid.squares[x, y]._topLeft._position, Vector2.one * 0.4f);
 
                     Gizmos.color = squareGrid.squares[x, y]._topRight._active ? Color.black : Color.white;
                     Gizmos.DrawCube(squareGrid.squares[x, y]._topRight._position, Vector2.one * 0.4f);
 
-                    Gizmos.color = squareGrid.squares[x, y]._bottomLeft._active ? Color.black: Color.white;
+                    Gizmos.color = squareGrid.squares[x, y]._bottomLeft._active ? Color.black : Color.white;
                     Gizmos.DrawCube(squareGrid.squares[x, y]._bottomLeft._position, Vector2.one * 0.4f);
 
                     Gizmos.color = squareGrid.squares[x, y]._bottomRight._active ? Color.black : Color.white;
@@ -168,13 +180,13 @@ public class MeshGenerator : MonoBehaviour
                 }
             }
         }
-        */
-    }
+
+    }*/
 
     //the grid of squares, which copies the values from the map
-    public class SquareGrid 
+    public class SquareGrid
     {
-        public Square[,] squares; 
+        public Square[,] squares;
 
         public SquareGrid(int[,] map, float squareSize)
         {
@@ -186,8 +198,10 @@ public class MeshGenerator : MonoBehaviour
             ControlNode[,] controlNodes = new ControlNode[nodeCountX, nodeCountY];
 
             //fill the controlnodes array
-            for (int x = 0; x < nodeCountX; x++) {
-                for (int y = 0; y < nodeCountY; y++) {
+            for (int x = 0; x < nodeCountX; x++)
+            {
+                for (int y = 0; y < nodeCountY; y++)
+                {
                     //count the new square position
                     Vector2 position = new Vector2(-mapWidth / 2 + x * squareSize + squareSize / 2, -mapHeight / 2 + y * squareSize + squareSize / 2);
                     controlNodes[x, y] = new ControlNode(position, map[x, y] != 0, squareSize);
@@ -195,17 +209,19 @@ public class MeshGenerator : MonoBehaviour
             }
 
             squares = new Square[nodeCountX - 1, nodeCountY - 1];
-            
+
             //fill the squares array
-            for (int x = 0; x < nodeCountX - 1; x++) {
-                for (int y = 0; y < nodeCountY - 1; y++) {
+            for (int x = 0; x < nodeCountX - 1; x++)
+            {
+                for (int y = 0; y < nodeCountY - 1; y++)
+                {
                     squares[x, y] = new Square(controlNodes[x, y + 1], controlNodes[x + 1, y + 1], controlNodes[x + 1, y], controlNodes[x, y]);
                 }
             }
         }
     }
 
-    
+
     public class Square
     {
         public ControlNode _topLeft;
@@ -231,23 +247,27 @@ public class MeshGenerator : MonoBehaviour
             _centerLeft = _bottomLeft.aboveNode;
             _configuration = 0;
 
-            if (_topLeft._active) {
+            if (_topLeft._active)
+            {
                 _configuration += 8;
             }
-            if (_topRight._active) {
+            if (_topRight._active)
+            {
                 _configuration += 4;
             }
-            if (_bottomRight._active) {
+            if (_bottomRight._active)
+            {
                 _configuration += 2;
             }
-            if (_bottomLeft._active) {
+            if (_bottomLeft._active)
+            {
                 _configuration += 1;
             }
-        }    
+        }
     }
 
     //the node on the sides of the "cube"
-    public class Node  
+    public class Node
     {
         public Vector2 _position;
         public int _vertexIndex = -1;
@@ -266,7 +286,7 @@ public class MeshGenerator : MonoBehaviour
         public Node rightNode;
 
         //base means that the position will be assigned through the base constructor
-        public ControlNode(Vector2 pos, bool active, float squareSize) : base(pos) 
+        public ControlNode(Vector2 pos, bool active, float squareSize) : base(pos)
         {
             _active = active;
             //declare the nodes which the controlnode owns
