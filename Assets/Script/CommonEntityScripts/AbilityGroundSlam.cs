@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AbilityGroundSlam : MonoBehaviour, IAbility
 {
+    [SerializeField] private GameObject ability;
     EntityEvents events;
     [SerializeField] int spellSlot;
     [SerializeField] private int abilityCostEnergy = 30;
@@ -30,6 +31,7 @@ public class AbilityGroundSlam : MonoBehaviour, IAbility
     {
         events.TryCastAbilityCostEnergy(spellSlot, abilityCostEnergy);
     }
+
     public void Cast(int slot)
     {
         if (slot == spellSlot)
@@ -37,6 +39,8 @@ public class AbilityGroundSlam : MonoBehaviour, IAbility
             events.DeteriorateEnergy(abilityCostEnergy);
             events.CastAbility();
             Debug.Log("Casted Ground Slam!");
+            GameObject temp = Instantiate(ability, transform.position, transform.rotation);
+            temp.GetComponent<AbilityEvents>().SetSource(gameObject);
         }
     }
 
