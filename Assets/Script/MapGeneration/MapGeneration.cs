@@ -13,10 +13,15 @@ public class MapGeneration : MonoBehaviour
     public int[] roomArray;
     [Range(1, 5)]
     public int tunnelWidth;
+    [Header("Game settings")]
+    [Range(0, 100)]
+    public int spawnPointCreationPrecentagePerTile;
     [Header("Room prefabs")]
     public GameObject spawnRoom;
     public GameObject exitRoom;
     public GameObject enemyRoom1;
+    [Header("Object prefabs")]
+    public GameObject spawnPoint;
 
     [Header("Room space requirements (max amount should not go over generation area outer border)")]
     [Range(5, 20)]
@@ -25,7 +30,7 @@ public class MapGeneration : MonoBehaviour
     public int spawnRoomSpaceRequired;
     [Range(6, 100)]
     public int exitRoomSpaceRequired;
-
+    private Room mainRoom;
     int[,] map;
 
     private MeshGenerator meshGenerator;
@@ -108,6 +113,7 @@ public class MapGeneration : MonoBehaviour
         {
             if (room.roomType == 0)
             {
+                mainRoom = room;
                 Debug.Log("Found a spawnroom and made it into a main room");
                 room.isMainRoom = true;
                 room.SetAccessibleFromMainRoom();
@@ -116,7 +122,7 @@ public class MapGeneration : MonoBehaviour
         }
         ConnectClosestRooms(allRooms);
         InstansiateRooms(allRooms);
-
+        CreateSpawnPoints(mainRoom);
         //syyt‰ kerttuu jos t‰‰ kaatuu t‰h‰n:
         //generate mesh of the map
         meshGenerator.GenerateMesh(map, 1);
@@ -349,6 +355,23 @@ public class MapGeneration : MonoBehaviour
                         Instantiate(enemyRoom1, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
                     }
                     break;
+            }
+        }
+    }
+
+    public void CreateSpawnPoints(Room spawnRoom)
+    {
+        for (int x = generationAreaOuterBorder; x < width - generationAreaOuterBorder; x++)
+        {
+            for (int y = generationAreaOuterBorder; y < width - generationAreaOuterBorder; y++)
+            {
+                if (map[x, y] == 0 && !spawnRoom.tiles.Contains(new Coord(x, y)))
+                {
+                    if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
+                    {
+                        GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+                    }
+                }
             }
         }
     }
