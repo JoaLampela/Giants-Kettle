@@ -10,6 +10,7 @@ public class GameEventManager : MonoBehaviour
     public GameObject player;
     public float time;
     public float combatDuration;
+    public List<GameObject> allEntities = new List<GameObject>();
     public List<GameObject> allies = new List<GameObject>();
     public List<GameObject> neutrals = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>();
@@ -18,6 +19,9 @@ public class GameEventManager : MonoBehaviour
 
     public event Action OnCombatStart;
     public event Action OnCombatEnd;
+    public event Action<GameObject> OnAllEntitiesRemove;
+    public event Action<GameObject> OnAllEntitiesAdd;
+    public event Action<GameObject, int> OnSetAggro;
 
     private void Update()
     {
@@ -44,8 +48,19 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public void AllEntitiesRemove(GameObject entity)
+    {
+        OnAllEntitiesRemove?.Invoke(entity);
+    }
+    public void AllEntitiesAdd(GameObject entity)
+    {
+        OnAllEntitiesAdd?.Invoke(entity);
+    }
+
     public void RemoveFromTeam(int team, GameObject entity)
     {
+        AllEntitiesRemove(entity);
+        if (allEntities.Contains(entity)) allEntities.Remove(entity);
         switch (team)
         {
             case 0:
@@ -61,6 +76,8 @@ public class GameEventManager : MonoBehaviour
     }
     public void AddToTeam(int team, GameObject entity)
     {
+        AllEntitiesAdd(entity);
+        if (!allEntities.Contains(entity)) allEntities.Add(entity);
         switch (team)
         {
             case 0:
@@ -73,5 +90,9 @@ public class GameEventManager : MonoBehaviour
                 allies.Add(entity);
                 break;
         }
+    }
+    public void SetAggro(GameObject entity, int amount)
+    {
+        OnSetAggro?.Invoke(entity, amount);
     }
 }

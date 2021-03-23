@@ -59,7 +59,6 @@ public class EntityEnergy : MonoBehaviour
 
     private void LoseEnergy(int amount)
     {
-        Debug.Log("asasda");
         if ((energy - amount) < 0)
         {
             events.LoseEnergy(energy);
