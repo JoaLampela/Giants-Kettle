@@ -39,6 +39,9 @@ public class MapGeneration : MonoBehaviour
     {
         meshGenerator = GetComponent<MeshGenerator>();
         GenerateMap();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
+        player.transform.position = playerSpawnPoint.transform.position;
     }
 
     private void Update()
@@ -342,17 +345,20 @@ public class MapGeneration : MonoBehaviour
             {
                 case 0:
                     {
-                        Instantiate(spawnRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(spawnRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
                 case 1:
                     {
-                        Instantiate(exitRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(exitRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
                 case 2:
                     {
-                        Instantiate(enemyRoom1, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(enemyRoom1, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
             }
@@ -369,10 +375,28 @@ public class MapGeneration : MonoBehaviour
                 {
                     if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
                     {
-                        GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+
+                        GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+                        spawn.transform.parent = gameObject.transform;
                     }
                 }
             }
         }
     }
+
+    public void ExitLevel()
+    {
+        //Do it anakin
+        foreach (Transform child in gameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GenerateMap();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] playerSpawnPoint = GameObject.FindGameObjectsWithTag("PlayerSpawnPoint");
+        player.transform.position = playerSpawnPoint[1].transform.position;
+        Debug.Log(playerSpawnPoint[1].transform.position);
+    }
+
 }
