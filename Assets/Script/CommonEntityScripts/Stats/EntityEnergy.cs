@@ -22,23 +22,25 @@ public class EntityEnergy : MonoBehaviour
     {
         RegenEnergy();
     }
-    private void SetStartEnergy()
-    {
-        energy = stats.currentMaxEnergy;
-    }
+  
     private void Subscribe()
     {
+        events.OnSetEnergy += SetEnergy;
         events.OnTryCastAbilityCostEnergy += CheckIfEnoughToCast;
         events.OnDeteriorateEnergy += LoseEnergy;
-        events.OnStartStatsSet += SetStartEnergy;
         events.OnRecoverEnergy += GainEnergy;
     }
     private void Unsubscribe()
     {
+        events.OnSetEnergy -= SetEnergy;
         events.OnTryCastAbilityCostEnergy -= CheckIfEnoughToCast;
         events.OnDeteriorateEnergy -= LoseEnergy;
-        events.OnStartStatsSet -= SetStartEnergy;
         events.OnRecoverEnergy -= GainEnergy;
+    }
+
+    private void SetEnergy(int value)
+    {
+        energy = value;
     }
 
     private void GainEnergy(int amount)
@@ -57,6 +59,7 @@ public class EntityEnergy : MonoBehaviour
 
     private void LoseEnergy(int amount)
     {
+        Debug.Log("asasda");
         if ((energy - amount) < 0)
         {
             events.LoseEnergy(energy);

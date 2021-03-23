@@ -5,24 +5,36 @@ using System;
 
 public class EntityEvents : MonoBehaviour
 {
-
-    public event Action OnStartStatsSet;
-
     //OnHitGameObject
     public event Action<Damage> OnHitThis;
 
+    //Called to add hp to player
     public event Action<int> OnRecoverHealth;
+
+    //Called to add energy to player
     public event Action<int> OnRecoverEnergy;
 
+    //Called to add spirit to player
     public event Action<int> OnRecoverSpirit;
 
+    //Called to add rage to player
     public event Action<int> OnRecoverRage;
 
+    //called to lose health as a cost of ability
     public event Action<int> OnDeteriorateHealth;
+
+    //called to lose energy as a cost of ability
     public event Action<int> OnDeteriorateEnergy;
+
+    //called to lose spirit as a cost of ability
     public event Action<int> OnDeteriorateSpirit;
+
+    //called to lose health as a cost of ability
     public event Action<int> OnDeteriorateRage;
 
+    public event Action<int> OnSetHealth;
+    public event Action<int> OnSetSpirit;
+    public event Action<int> OnSetEnergy;
 
 
     //OnHitEnemyGameObject
@@ -31,57 +43,39 @@ public class EntityEvents : MonoBehaviour
     //OnKillEnemy
     public event Action OnKillEnemy;
 
-    //OnLoseSpirit
+    //These events are called when entity loses these resources. DO NOT CALL THEM TO REDUCE OR ADD THESE STATS!
     public event Action<int> OnLoseSpirit;
-
-    //OnGainSpirit
     public event Action<int> OnGainSpirit;
-
-    //OnLoseEnergy
     public event Action<int> OnLoseEnergy;
-
-    //OnGainEnergy
     public event Action<int> OnGainEnergy;
-
-    //OnGainRage
     public event Action<int> OnGainRage;
-
-    //OnLoseRage
     public event Action<int> OnLoseRage;
-
-    //OnGainHealth
     public event Action<int> OnGainHealth;
-
-    //OnLoseHealth
     public event Action<int> OnLoseHealth;
-
-    //OnGetCCd
     public event Action<float> OnGetCCd;
-
-    //OnCastAbility
     public event Action OnCastAbility;
-
-    //OnNormalAttack
     public event Action OnNormalAttack;
 
-    //OnNewBuff
+    //Add new Buff for entity
     public event Action<string, string, int, float> OnNewBuff;
 
-    //OnRemoveBuff
+    //OnRemoveBuff input is buff source name
     public event Action<string> OnRemoveBuff;
 
-    //OnUpdateBuff
+    //OnUpdateBuff called when entity buffs that effect stats change
     public event Action<string> OnUpdateBuff;
 
-
-
+    //Called when entity takes damage as a result of enemy attack. DO NOT CALL THEM TO REDUCE OR ADD THESE STATS!
     public event Action<int> OnPhysicalDamageTaken;
     public event Action<int> OnSpiritDamageTaken;
 
+
+    //Called when game objects health reaches 0
     public event Action OnDie;
 
 
-
+    //TryCast is listened by corresponding resource scripts. if entity has enough
+    //OnCallBackAbility is called so that Ability Manager knows that entity can cast that ability
     public event Action<int, int> OnTryCastAbilityCostHealth;
     public event Action<int, int> OnTryCastAbilityCostSpirit;
     public event Action<int, int> OnTryCastAbilityCostEnergy;
@@ -90,6 +84,21 @@ public class EntityEvents : MonoBehaviour
     public event Action<int> OnCanNotAffordAbility;
 
 
+    public event Action<int> OnChangeTeam;
+    public event Action OnRemoveFromTeams;
+
+    public void SetHealth(int value)
+    {
+        OnSetHealth?.Invoke(value);
+    }
+    public void SetSpirit(int value)
+    {
+        OnSetSpirit?.Invoke(value);
+    }
+    public void SetEnergy(int value)
+    {
+        OnSetEnergy?.Invoke(value);
+    }
     public void TryCastAbilityCostHealth(int spellSlot, int cost)
     {
         OnTryCastAbilityCostHealth?.Invoke(spellSlot, cost);
@@ -112,13 +121,6 @@ public class EntityEvents : MonoBehaviour
     public void CanNotAffordAbility(int spellSlot)
     {
         OnCanNotAffordAbility?.Invoke(spellSlot);
-    }
-
-
-
-    public void StartStatsSet()
-    {
-        OnStartStatsSet?.Invoke();
     }
     public void HitThis(Damage damage)
     {
@@ -220,7 +222,6 @@ public class EntityEvents : MonoBehaviour
     {
         OnUpdateBuff?.Invoke(sourceId);
     }
-
     public void PhysicalDamageTaken(int value)
     {
         OnPhysicalDamageTaken?.Invoke(value);
@@ -229,8 +230,18 @@ public class EntityEvents : MonoBehaviour
     {
         OnSpiritDamageTaken?.Invoke(value);
     }
+    public void ChangeTeam(int team)
+    {
+        OnChangeTeam?.Invoke(team);
+    }
+
+    public void RemoveFromTeam()
+    {
+        OnRemoveFromTeams?.Invoke();
+    }
     public void Die()
     {
+        Debug.Log(gameObject.name + " Died");
         OnDie?.Invoke();
     }
 }

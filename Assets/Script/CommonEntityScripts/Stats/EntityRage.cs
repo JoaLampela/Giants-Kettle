@@ -17,27 +17,23 @@ public class EntityRage : MonoBehaviour
     private void Start()
     {
         Subscribe();
+        rage = 0;
     }
     private void Update()
     {
         DepleateRage();
     }
-    private void SetStartRage()
-    {
-        rage = 0;
-    }
+    
     private void Subscribe()
     {
         events.OnTryCastAbilityCostRage += CheckIfEnoughToCast;
         events.OnDeteriorateRage += LoseRage;
-        events.OnStartStatsSet += SetStartRage;
         events.OnRecoverRage += GainRage;
     }
     private void Unsubscribe()
     {
         events.OnTryCastAbilityCostRage -= CheckIfEnoughToCast;
         events.OnDeteriorateRage -= LoseRage;
-        events.OnStartStatsSet -= SetStartRage;
         events.OnRecoverRage -= GainRage;
     }
 

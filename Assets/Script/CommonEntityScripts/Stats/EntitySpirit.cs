@@ -22,23 +22,25 @@ public class EntitySpirit : MonoBehaviour
     {
         RegenSpirit();
     }
-    private void SetStartSpirit()
-    {
-        spirit = stats.currentMaxSpirit;
-    }
+   
     private void Subscribe()
     {
+        events.OnSetSpirit += SetSpirit;
         events.OnTryCastAbilityCostSpirit += CheckIfEnoughToCast;
         events.OnDeteriorateSpirit += LoseSpirit;
-        events.OnStartStatsSet += SetStartSpirit;
         events.OnRecoverSpirit += GainSpirit;
     }
     private void Unsubscribe()
     {
+        events.OnSetSpirit -= SetSpirit;
         events.OnTryCastAbilityCostSpirit -= CheckIfEnoughToCast;
         events.OnDeteriorateSpirit -= LoseSpirit;
-        events.OnStartStatsSet -= SetStartSpirit;
         events.OnRecoverSpirit -= GainSpirit;
+    }
+
+    private void SetSpirit(int value)
+    {
+        spirit = value;
     }
 
     private void GainSpirit(int amount)

@@ -6,6 +6,8 @@ public class EntityStats : MonoBehaviour
 {
     EntityEvents events;
 
+    [Header("0 = neutral, 1 = AI, 2 = Player")]
+    public int team = 0;
 
     [Header("base resourses")]
     public int baseHealth;
@@ -172,7 +174,12 @@ public class EntityStats : MonoBehaviour
         UpdateAttackSpeed();
         UpdateSpellHaste();
         UpdateArmor();
-        events.StartStatsSet();
+
+
+        events.SetHealth(currentMaxHealth);
+        events.SetSpirit(currentMaxSpirit);
+        events.SetEnergy(currentMaxEnergy);
+
     }
 
 

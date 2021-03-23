@@ -20,25 +20,27 @@ public class EntityHealth : MonoBehaviour
     {
         RegenHealth();
     }
-    private void SetStartHealth()
-    {
-        health = stats.currentMaxHealth;
-    }
+  
     private void Subscribe()
     {
+        events.OnSetHealth += SetHealth;
         events.OnTryCastAbilityCostHealth += CheckIfEnoughToCast;
         events.OnDeteriorateHealth += TakeDamage;
         events.OnHitThis += DamageCalculation;
-        events.OnStartStatsSet += SetStartHealth;
         events.OnRecoverHealth += GainHealth;
     }
     private void Unsubscribe()
     {
+        events.OnSetHealth -= SetHealth;
         events.OnTryCastAbilityCostHealth -= CheckIfEnoughToCast;
         events.OnDeteriorateHealth -= TakeDamage;
         events.OnHitThis -= DamageCalculation;
-        events.OnStartStatsSet -= SetStartHealth;
         events.OnRecoverHealth -= GainHealth;
+    }
+
+    private void SetHealth(int value)
+    {
+        health = value;
     }
 
     private void DamageCalculation(Damage damage)
