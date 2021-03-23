@@ -44,13 +44,6 @@ public class MapGeneration : MonoBehaviour
         player.transform.position = playerSpawnPoint.transform.position;
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            GenerateMap();
-        }
-    }
 
     private void GenerateMap()
     {
