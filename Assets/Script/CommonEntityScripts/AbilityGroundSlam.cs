@@ -39,8 +39,8 @@ public class AbilityGroundSlam : MonoBehaviour, IAbility
             events.DeteriorateEnergy(abilityCostEnergy);
             events.CastAbility();
             Debug.Log("Casted Ground Slam!");
+            ability.GetComponent<AbilityEvents>().SetSource(gameObject);
             GameObject temp = Instantiate(ability, transform.position, transform.rotation);
-            temp.GetComponent<AbilityEvents>().SetSource(gameObject);
         }
     }
 

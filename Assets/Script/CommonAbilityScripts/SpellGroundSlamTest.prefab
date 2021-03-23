@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 7869766663712347435}
   - component: {fileID: 8131266288868950879}
   - component: {fileID: 4151308441930062963}
+  - component: {fileID: -531689833918260718}
+  - component: {fileID: 3743517044595702118}
   m_Layer: 0
   m_Name: SpellGroundSlamTest
   m_TagString: Untagged
@@ -66,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetPositionUpdating: 1
-  _targetVectorUpdating: 0
+  _targetVectorUpdating: 1
 --- !u!114 &1774288225316807749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678275fdb6d0a4640bdde3e75828f98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 0
+  _delay: 1
 --- !u!114 &7869766663712347435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,10 +120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocityStart: 2
-  _velocityMax: 30
-  _acceleration: 0
-  _exponentialAcceleration: 2
-  _travelType: 2
+  _velocityMax: 20
+  _acceleration: 2
+  _exponentialAcceleration: 0
+  _travelType: 0
 --- !u!50 &4151308441930062963
 Rigidbody2D:
   serializedVersion: 4
@@ -143,3 +145,66 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-531689833918260718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678929465797662023}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16389eb6406e8443b5bf4245263e06f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3743517044595702118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678929465797662023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dae74ba4bd1e8943bb949eeea795d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellDamageLevel: 1
+  maxDamageScale: 10
+  levelUpSpeed: 0.1
+  physicalHealthScaling: 10
+  physicalSpiritScaling: 0
+  physicalEnergyScaling: 0
+  physicalRageScaling: 0
+  physicalHealthRegenScaling: 0
+  physicalRageDepletionScaling: 0
+  physicalSpiritRegenScaling: 0
+  physicalEnergyRegenScaling: 0
+  physicalRageGainScaling: 0
+  physicalSpeedScaling: 0
+  physicalSlowScaling: 0
+  physicalTenacityScaling: 0
+  physicalPhysicalDamageScaling: 0
+  physicalSpiritDamageScaling: 0
+  physicalCriticalStrikeChanceScaling: 0
+  physicalSpellHasteScaling: 0
+  physicalArmorScaling: 0
+  physicalAttackSpeedScaling: 0
+  spiritHealthScaling: 0
+  spiritSpiritScaling: 0
+  spiritEnergyScaling: 0
+  spiritRageScaling: 0
+  spiritHealthRegenScaling: 0
+  spiritRageDepletionScaling: 0
+  spiritSpiritRegenScaling: 0
+  spiritEnergyRegenScaling: 0
+  spiritRageGainScaling: 0
+  spiritSpeedScaling: 0
+  spiritSlowScaling: 0
+  spiritTenacityScaling: 0
+  spiritPhysicalDamageScaling: 0
+  spiritSpiritDamageScaling: 0
+  spiritCriticalStrikeChanceScaling: 0
+  spiritSpellHasteScaling: 0
+  spiritArmorScaling: 0
+  spiritAttackSpeedScaling: 0

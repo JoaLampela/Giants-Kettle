@@ -8,7 +8,7 @@ public class Damage
     public int physicalDamage;
     public int spiritDamage;
 
-    public Damage(GameObject newSource, int newPhysicalDamage, int newSpiritDamage)
+    public Damage(GameObject newSource, int newPhysicalDamage = 0, int newSpiritDamage = 0)
     {
         source = newSource;
         physicalDamage = newPhysicalDamage;

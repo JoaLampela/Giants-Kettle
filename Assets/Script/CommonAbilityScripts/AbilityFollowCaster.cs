@@ -5,6 +5,12 @@ using UnityEngine;
 public class AbilityFollowCaster : MonoBehaviour
 {
     private AbilityEvents _events;
+    private bool following = true;
+
+    private void Start()
+    {
+        Subscribe();
+    }
 
     private void Awake()
     {
@@ -13,6 +19,29 @@ public class AbilityFollowCaster : MonoBehaviour
 
     private void Update()
     {
-        gameObject.transform.position = _events._abilityCastSource.transform.position;
+        if(following)
+        {
+            gameObject.transform.position = _events._abilityCastSource.transform.position;
+        }
+    }
+
+    private void OnDisable()
+    {
+        Unsubscribe();
+    }
+
+    private void Subscribe()
+    {
+        _events._onActivate += Activate;
+    }
+
+    private void Unsubscribe()
+    {
+        _events._onActivate -= Activate;
+    }
+
+    private void Activate()
+    {
+        following = false;
     }
 }
