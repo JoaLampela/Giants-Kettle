@@ -27,21 +27,28 @@ public class TestDie : MonoBehaviour
     {
         events.OnDie -= Die;
     }
-    
+
 
     private void Die()
     {
-        Destroy(gameObject);
+        StartCoroutine(DieLater());
+        gameObject.transform.localScale = new Vector3(1.7f, 0.3f, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnDisable()
     {
         Unsubscribe();
+    }
+
+    IEnumerator DieLater()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 }

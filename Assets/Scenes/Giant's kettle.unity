@@ -174,6 +174,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 527930612976928679, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2461759
+      objectReference: {fileID: 0}
+    - target: {fileID: 527930612976928679, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.981651
+      objectReference: {fileID: 0}
+    - target: {fileID: 527930612976928679, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3336
+      objectReference: {fileID: 0}
+    - target: {fileID: 527930612976928679, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.261
+      objectReference: {fileID: 0}
     - target: {fileID: 3749014712958288761, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: m_Constraints
       value: 120
@@ -184,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7318350428513855945, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: speed
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7318350428513855945, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: playerCamera
@@ -613,7 +629,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!1 &1816891431
 GameObject:
