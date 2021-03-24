@@ -9,12 +9,16 @@ public class MovementScript : MonoBehaviour
     public Camera playerCamera;
     private Vector2 movement;
     Rigidbody playerRB;
+    private bool walkingBackWards;
+    private bool attacking = false;
+    private Animator animator;
+
     //Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
     }
 
