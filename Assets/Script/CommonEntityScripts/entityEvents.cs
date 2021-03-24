@@ -87,6 +87,10 @@ public class EntityEvents : MonoBehaviour
     public event Action<int> OnChangeTeam;
     public event Action OnRemoveFromTeams;
 
+    public event Action<GameObject, int> OnDecreaseAggro;
+    public event Action<GameObject, int> OnIncreaseAggro;
+    public event Action<GameObject, int> OnSetAggro;
+
     public void SetHealth(int value)
     {
         OnSetHealth?.Invoke(value);
@@ -233,6 +237,18 @@ public class EntityEvents : MonoBehaviour
     public void ChangeTeam(int team)
     {
         OnChangeTeam?.Invoke(team);
+    }
+    public void DecreaseAggro(GameObject entity, int amount)
+    {
+        OnDecreaseAggro?.Invoke(entity, amount);
+    }
+    public void IncreaseAggro(GameObject entity, int amount)
+    {
+        OnIncreaseAggro?.Invoke(entity, amount);
+    }
+    public void SetAggro(GameObject entity, int amount)
+    {
+        OnSetAggro?.Invoke(entity, amount);
     }
 
     public void RemoveFromTeam()

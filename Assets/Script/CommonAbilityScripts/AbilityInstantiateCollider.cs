@@ -35,5 +35,7 @@ public class AbilityInstantiateCollider : MonoBehaviour
     private void Activate()
     {
         GameObject tempGameObject = Instantiate(_hitBox, gameObject.transform);
+        tempGameObject.GetComponent<AbilityEvents>().SetSource(_events._abilityCastSource);
+        tempGameObject.GetComponent<AbilityEvents>().Activate();
     }
 }

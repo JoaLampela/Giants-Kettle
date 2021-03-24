@@ -7,6 +7,7 @@ public class AbilityEvents : MonoBehaviour
     [HideInInspector] public GameObject _abilityCastSource; //Source of the ability
     public Vector2 _targetPosition = new Vector2(0, 0);
     public Vector2 _targetVector = new Vector2(0, 0);
+    public Damage _damage;
 
     //All different event types for Abilities:
     public event Action _onUseAbility;
