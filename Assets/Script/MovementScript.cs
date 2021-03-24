@@ -8,15 +8,13 @@ public class MovementScript : MonoBehaviour
     public GameObject rightArm;
     public Camera playerCamera;
     private Vector2 movement;
-    Rigidbody2D playerRB;
-    Animator animator;
-    private bool walkingBackWards;
-    private bool attacking;
+    Rigidbody playerRB;
+    //Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        playerRB = GetComponent<Rigidbody>();
+        //animator = GetComponent<Animator>();
 
     }
 
