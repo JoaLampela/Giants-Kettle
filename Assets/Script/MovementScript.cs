@@ -62,7 +62,7 @@ public class MovementScript : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        //.normalized caps the vector length to 1, so that diagonal movement works properly
+       
         if (moveX == 1 || moveX == -1 || moveY == 1 || moveY == -1)
         {
             animator.SetBool("Walking", true);
@@ -78,6 +78,7 @@ public class MovementScript : MonoBehaviour
             animator.SetBool("Walking", false);
         }
 
+        //.normalized caps the vector length to 1, so that diagonal movement works properly
         movement = new Vector2(moveX, moveY).normalized;
     }
 
