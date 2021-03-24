@@ -12,6 +12,7 @@ public class MovementScript : MonoBehaviour
     private bool walkingBackWards;
     private bool attacking = false;
     private Animator animator;
+    public BoxCollider2D swordCollider;
 
     //Animator animator;
     // Start is called before the first frame update
@@ -43,9 +44,10 @@ public class MovementScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !attacking)
         {
             animator.SetTrigger("Player_Swing");
-            Debug.Log("Swing sword pog");
+            //Debug.Log("Swing sword pog");
             attacking = true;
-            StartCoroutine(swingAnimatonCoolDown(0.4f));
+            StartCoroutine(swingAnimationCoolDown(0.5f));
+            swordCollider.enabled = true;
         }
         else if (!attacking)
         {
@@ -53,7 +55,7 @@ public class MovementScript : MonoBehaviour
             Vector2 difference = playerCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, playerCamera.transform.position.z)) - rightArm.transform.position;
             difference.Normalize();
             float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
-            Debug.Log(rotationZ);
+            //Debug.Log(rotationZ);
             if (rotationZ < 0 && rotationZ > -180)
                 gameObject.transform.localScale = new Vector3(-1, 1, 1);
             else
@@ -86,9 +88,10 @@ public class MovementScript : MonoBehaviour
         movement = new Vector2(moveX, moveY).normalized;
     }
 
-    IEnumerator swingAnimatonCoolDown(float CoolDown)
+    IEnumerator swingAnimationCoolDown(float CoolDown)
     {
         yield return new WaitForSeconds(CoolDown);
         attacking = false;
+        swordCollider.enabled = false;
     }
 }

@@ -8,5 +8,6 @@ public class ExitPrefab : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<MapGeneration>().ExitLevel();
+        GameObject.Find("Game Manager").GetComponent<GameEventManager>().ExitLevel();
     }
 }

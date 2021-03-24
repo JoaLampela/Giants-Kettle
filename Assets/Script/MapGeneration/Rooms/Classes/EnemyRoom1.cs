@@ -35,7 +35,7 @@ public class EnemyRoom1 : Room
                 }
             }
         }
-        Debug.Log(edgeTiles.Count);
+        //Debug.Log(edgeTiles.Count);
     }
 
 }

@@ -15,13 +15,14 @@ public class GameEventManager : MonoBehaviour
     public List<GameObject> neutrals = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>();
     public bool combatOn = false;
-    public bool gamePaused = false; 
+    public bool gamePaused = false;
 
     public event Action OnCombatStart;
     public event Action OnCombatEnd;
     public event Action<GameObject> OnAllEntitiesRemove;
     public event Action<GameObject> OnAllEntitiesAdd;
     public event Action<GameObject, int> OnSetAggro;
+    public event Action OnExitLevel;
 
     private void Update()
     {
@@ -31,7 +32,7 @@ public class GameEventManager : MonoBehaviour
 
     public void CombatStart()
     {
-        if(!combatOn)
+        if (!combatOn)
         {
             OnCombatStart?.Invoke();
             combatOn = true;
@@ -41,7 +42,7 @@ public class GameEventManager : MonoBehaviour
 
     public void CombatEnd()
     {
-        if(combatOn)
+        if (combatOn)
         {
             OnCombatEnd();
             combatOn = false;
@@ -94,5 +95,15 @@ public class GameEventManager : MonoBehaviour
     public void SetAggro(GameObject entity, int amount)
     {
         OnSetAggro?.Invoke(entity, amount);
+    }
+    public void ExitLevel()
+    {
+        OnExitLevel?.Invoke();
+
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        enemies.Clear();
     }
 }
