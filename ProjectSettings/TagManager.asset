@@ -7,6 +7,7 @@ TagManager:
   - EnemySpawn
   - MapGenerator
   - PlayerSpawnPoint
+  - Ground
   layers:
   - Default
   - TransparentFX
