@@ -49,10 +49,12 @@ public class MovementScript : MonoBehaviour
         }
         else if (!attacking)
         {
-            Vector2 difference = playerCamera.ScreenToWorldPoint(Input.mousePosition) - rightArm.transform.position;
+
+            Vector2 difference = playerCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, playerCamera.transform.position.z)) - rightArm.transform.position;
             difference.Normalize();
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + 90f;
-            if (rotationZ < 0 || rotationZ > 180)
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
+            Debug.Log(rotationZ);
+            if (rotationZ < 0 && rotationZ > -180)
                 gameObject.transform.localScale = new Vector3(-1, 1, 1);
             else
             {
@@ -64,7 +66,7 @@ public class MovementScript : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-       
+
         if (moveX == 1 || moveX == -1 || moveY == 1 || moveY == -1)
         {
             animator.SetBool("Walking", true);
