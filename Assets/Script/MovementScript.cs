@@ -6,12 +6,12 @@ public class MovementScript : MonoBehaviour
 {
     public float speed = 10;
     private Vector2 movement;
-    Rigidbody2D playerRB;
+    Rigidbody playerRB;
     //Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody2D>();
+        playerRB = GetComponent<Rigidbody>();
         //animator = GetComponent<Animator>();
 
     }

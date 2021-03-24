@@ -22,7 +22,7 @@ public class MapGeneration : MonoBehaviour
     public GameObject enemyRoom1;
     [Header("Object prefabs")]
     public GameObject spawnPoint;
-    //public GameObject walls;
+    public GameObject item;
 
     [Header("Room space requirements (max amount should not go over generation area outer border)")]
     [Range(5, 20)]
@@ -43,6 +43,7 @@ public class MapGeneration : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
         player.transform.position = playerSpawnPoint.transform.position;
+        //Instantiate(item, playerSpawnPoint.transform.position + Vector2.left);
     }
 
 
@@ -120,12 +121,9 @@ public class MapGeneration : MonoBehaviour
         ConnectClosestRooms(allRooms);
         InstansiateRooms(allRooms);
         CreateSpawnPoints(mainRoom);
-        //Instantiate(walls, gameObject.transform);
 
         //generate mesh of the map
         meshGenerator.GenerateMesh(map, 1);
-
-
     }
  
     void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
@@ -176,7 +174,6 @@ public class MapGeneration : MonoBehaviour
 
                 for (int tileIndexA = 0; tileIndexA < roomA.edgeTiles.Count; tileIndexA++)
                 {
-
 
                     for (int tileIndexB = 0; tileIndexB < roomB.edgeTiles.Count; tileIndexB++)
                     {
