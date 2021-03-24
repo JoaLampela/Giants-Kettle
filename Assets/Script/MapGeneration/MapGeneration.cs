@@ -22,6 +22,7 @@ public class MapGeneration : MonoBehaviour
     public GameObject enemyRoom1;
     [Header("Object prefabs")]
     public GameObject spawnPoint;
+    //public GameObject walls;
 
     [Header("Room space requirements (max amount should not go over generation area outer border)")]
     [Range(5, 20)]
@@ -119,34 +120,14 @@ public class MapGeneration : MonoBehaviour
         ConnectClosestRooms(allRooms);
         InstansiateRooms(allRooms);
         CreateSpawnPoints(mainRoom);
-        //syyt‰ kerttuu jos t‰‰ kaatuu t‰h‰n:
+        //Instantiate(walls, gameObject.transform);
+
         //generate mesh of the map
         meshGenerator.GenerateMesh(map, 1);
 
 
     }
-    /*
-    private void OnDrawGizmos()
-    {
-        //made changes here 
-
-
-        if (map != null)
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    Gizmos.color = (map[x, y] == 1) ? Color.black : Color.white;
-                    Vector2 pos = new Vector2(-width / 2 + x + 0.5f, -height / 2 + y + 0.5f);
-                    Gizmos.DrawCube(pos, Vector3.one);
-                }
-
-            }
-    }
-    */
-
-
-
+ 
     void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
         List<Room> roomListA = new List<Room>();
@@ -382,10 +363,14 @@ public class MapGeneration : MonoBehaviour
         //Do it anakin
         foreach (Transform child in gameObject.transform)
         {
-            Destroy(child.gameObject);
+            //this doesn't destroy the Walls gameobject
+            if(!child.GetComponent<MeshFilter>()) {
+                Destroy(child.gameObject);
+            } 
         }
 
         GenerateMap();
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject[] playerSpawnPoint = GameObject.FindGameObjectsWithTag("PlayerSpawnPoint");
         player.transform.position = playerSpawnPoint[1].transform.position;

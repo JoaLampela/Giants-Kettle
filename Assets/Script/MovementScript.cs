@@ -6,12 +6,12 @@ public class MovementScript : MonoBehaviour
 {
     public float speed = 10;
     private Vector2 movement;
-    Rigidbody2D playerRB;
+    Rigidbody playerRB;
     Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody2D>();
+        playerRB = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
     }
@@ -36,7 +36,7 @@ public class MovementScript : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        //.normalized caps the vector length to 1, so that diagonal movement works properly
+       
         if (moveX == 1 || moveX == -1 || moveY == 1 || moveY == -1)
         {
             animator.SetBool("Walking", true);
@@ -48,6 +48,7 @@ public class MovementScript : MonoBehaviour
             animator.SetBool("Walking", false);
         }
 
+        //.normalized caps the vector length to 1, so that diagonal movement works properly
         movement = new Vector2(moveX, moveY).normalized;
     }
 }
