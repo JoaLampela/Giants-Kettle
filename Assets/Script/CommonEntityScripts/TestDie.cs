@@ -6,6 +6,9 @@ public class TestDie : MonoBehaviour
 {
     EntityEvents events;
     GameEventManager gameManager;
+    float counterX = 0;
+    float counterY = 0;
+    bool squishing = false;
 
     private void Awake()
     {
@@ -32,12 +35,19 @@ public class TestDie : MonoBehaviour
     private void Die()
     {
         StartCoroutine(DieLater());
-        gameObject.transform.localScale = new Vector3(1.7f, 0.3f, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (squishing)
+        {
+            counterX += Time.deltaTime * 10;
+            counterY += Time.deltaTime * 10;
+            float scaleX = Mathf.Lerp(1, 2, counterX);
+            float scaleY = Mathf.Lerp(1, 0.3f, counterY);
+            gameObject.transform.localScale = new Vector3(scaleX, scaleY, 1);
+        }
 
     }
 
@@ -48,6 +58,7 @@ public class TestDie : MonoBehaviour
 
     IEnumerator DieLater()
     {
+        squishing = true;
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
