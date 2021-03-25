@@ -5,10 +5,10 @@ using UnityEngine;
 public class EntityTargetingSystem : MonoBehaviour
 {
     [SerializeField] float aggroRange = 10; 
-    private GameObject target;
+    [SerializeField] private GameObject target;
     private EntityEvents events;
     private GameEventManager gameEventManager;
-    private Dictionary<GameObject, int> aggroTable;
+    private Dictionary<GameObject, int> aggroTable = new Dictionary<GameObject, int>();
     private EntityStats stats;
 
     private void Awake()
@@ -30,9 +30,14 @@ public class EntityTargetingSystem : MonoBehaviour
         {
             foreach (GameObject entity in gameEventManager.allies)
             {
+                
                 if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !stats.isInvisible)
                 {
-                    if (aggroTable[entity] < 1) aggroTable[entity] = 1;
+                    if (aggroTable[entity] < 1)
+                    {
+                        aggroTable[entity] = 1;
+                        NewTarget();
+                    }
                 }
             }
         }
@@ -42,7 +47,11 @@ public class EntityTargetingSystem : MonoBehaviour
             {
                 if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !stats.isInvisible)
                 {
-                    if (aggroTable[entity] < 1) aggroTable[entity] = 1;
+                    if (aggroTable[entity] < 1)
+                    {
+                        aggroTable[entity] = 1;
+                        NewTarget();
+                    }
                 }
             }
         }
