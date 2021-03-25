@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityOnHitDealDamage : MonoBehaviour
+public class AbilityActivateOnHit : MonoBehaviour
 {
     private AbilityEvents _events;
 
@@ -23,14 +23,9 @@ public class AbilityOnHitDealDamage : MonoBehaviour
 
     private void Activate(Collider2D collider)
     {
-        GameObject castSource = _events._abilityCastSource;
-
-        if (collider.gameObject.GetComponent<EntityStats>())
+        if(collider.gameObject.GetComponent<EntityStats>().team != _events._abilityCastSource.GetComponent<EntityStats>().team)
         {
-            if(collider.gameObject.GetComponent<EntityStats>().team != castSource.GetComponent<EntityStats>().team)
-            {
-                collider.gameObject.GetComponent<EntityEvents>().HitThis(_events._damage);
-            }
+            _events.Activate();
         }
     }
 

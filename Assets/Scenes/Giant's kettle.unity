@@ -237,6 +237,45 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8861480014740104712, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
   m_PrefabInstance: {fileID: 372647082}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &819263230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819263229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a0fe8ebe0c8f04ca5e81d98160d89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: {fileID: 802590109431119555, guid: 4b198e167fcd56648a5b6a518f4486d5, type: 3}
+  spellSlot: 0
+  abilityCostEnergy: 10
+--- !u!114 &819263231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819263229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b375f3e06133e4eac4afb0d30763fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &819263232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819263229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a12b8f20d8f0364fa15e71810739353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1189093990
 GameObject:
   m_ObjectHideFlags: 0
