@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityOnActivateInstantiateHitbox : MonoBehaviour
+public class AbilityOnActivateInstantiateEffect : MonoBehaviour
 {
     private AbilityEvents _events;
-    [SerializeField] private GameObject _hitBox;
+    [SerializeField] private GameObject _effect;
 
     private void Start()
     {
@@ -24,9 +24,7 @@ public class AbilityOnActivateInstantiateHitbox : MonoBehaviour
 
     private void Activate()
     {
-        GameObject temp = Instantiate(_hitBox, transform);
-        temp.GetComponent<AbilityEvents>()._damage = _events._damage;
-        temp.GetComponent<AbilityEvents>().SetSource(_events._abilityCastSource);
+        GameObject temp = Instantiate(_effect, transform.position, transform.rotation);
     }
 
     private void Subscribe()

@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityInstantiateCollider : MonoBehaviour
+public class AbilityOnActivateDestroy : MonoBehaviour
 {
     private AbilityEvents _events;
-    [SerializeField] private GameObject _hitBox;
 
     private void Start()
     {
@@ -22,6 +21,11 @@ public class AbilityInstantiateCollider : MonoBehaviour
         Unsubscribe();
     }
 
+    private void Activate()
+    {
+        Destroy(gameObject);
+    }
+
     private void Subscribe()
     {
         _events._onActivate += Activate;
@@ -30,12 +34,5 @@ public class AbilityInstantiateCollider : MonoBehaviour
     private void Unsubscribe()
     {
         _events._onActivate -= Activate;
-    }
-
-    private void Activate()
-    {
-        GameObject tempGameObject = Instantiate(_hitBox, gameObject.transform);
-        tempGameObject.GetComponent<AbilityEvents>().SetSource(_events._abilityCastSource);
-        tempGameObject.GetComponent<AbilityEvents>().Activate();
     }
 }

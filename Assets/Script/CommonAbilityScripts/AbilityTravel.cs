@@ -43,13 +43,20 @@ public class AbilityTravel : MonoBehaviour
         }
         else if(isExponential)
         {
-            if (_velocity > _velocityMax)
+            if (_velocity < _velocityMax)
             {
-                _velocity = _velocityMax;
+                if(_velocity + Mathf.Pow(_velocity, _exponentialAcceleration) * Time.deltaTime > _velocityMax)
+                {
+                    _velocity = _velocityMax;
+                }
+                else
+                {
+                    _velocity += Mathf.Pow(_velocity, _exponentialAcceleration) * Time.deltaTime;
+                }
             }
             else
             {
-                _velocity += Mathf.Pow(_velocity, _exponentialAcceleration) * Time.deltaTime;
+                _velocity = _velocityMax;
             }
         }
         gameObject.GetComponent<Rigidbody2D>().velocity = _velocity * _abilitySetTargetVector.GetTargetVector();
