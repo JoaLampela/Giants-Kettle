@@ -40,7 +40,7 @@ public class AbilityRotate : MonoBehaviour
 
     public void CalculateRotation(Vector2 targetVector)
     {
-        if(rotating)
+        if (rotating)
         {
             _targetVector = targetVector;
             float angle = Mathf.Atan2(_targetVector.y, _targetVector.x) * Mathf.Rad2Deg;

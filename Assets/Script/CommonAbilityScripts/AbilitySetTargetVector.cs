@@ -16,7 +16,8 @@ public class AbilitySetTargetVector : MonoBehaviour
     {
         _iTargetPosition = _events._abilityCastSource.GetComponent<IAbilityTargetPosition>();
         _targetPosition = _iTargetPosition.GetTargetPosition();
-        _targetVector = (_targetPosition - (Vector2)transform.position).normalized;
+        _targetVector = ((Vector2)transform.position - _targetPosition).normalized;
+
     }
 
     private void Awake()
@@ -27,13 +28,13 @@ public class AbilitySetTargetVector : MonoBehaviour
 
     private void Update()
     {
-        if(_targetVectorUpdating)
+        if (_targetVectorUpdating)
         {
-            if(_targetPositionUpdating)
+            if (_targetPositionUpdating)
             {
                 _targetPosition = _iTargetPosition.GetTargetPosition();
             }
-            _targetVector = (_targetPosition - (Vector2)transform.position).normalized;
+            _targetVector = ((Vector2)transform.position - _targetPosition).normalized;
         }
         SetAbilityRotation(_iTargetPosition.GetTargetPosition());
     }
