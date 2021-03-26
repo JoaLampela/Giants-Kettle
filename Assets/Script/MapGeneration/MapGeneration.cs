@@ -10,7 +10,7 @@ public class MapGeneration : MonoBehaviour
     public int generationAreaOuterBorder;
 
     [Header("Room spawn settings")]
-    public int[] roomArray;
+    public Level[] levels;
     [Range(1, 5)]
     public int tunnelWidth;
     [Header("Game settings")]
@@ -62,7 +62,7 @@ public class MapGeneration : MonoBehaviour
                 }
             }
             allRooms.Clear();
-            for (int i = 0; i < roomArray.Length; i++)
+            for (int i = 0; i < levels[0].roomList.Length; i++)
             {
                 bool roomSpawned = false;
                 int cannotSpawnRoomCounter = 0;
@@ -70,7 +70,7 @@ public class MapGeneration : MonoBehaviour
                 {
                     int x = Random.Range(generationAreaOuterBorder, width - generationAreaOuterBorder);
                     int y = Random.Range(generationAreaOuterBorder, height - generationAreaOuterBorder);
-                    if (roomArray[i] == 0)
+                    if (levels[0].roomList[i] == 0)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
                         {
@@ -79,7 +79,7 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
-                    else if (roomArray[i] == 1)
+                    else if (levels[0].roomList[i] == 1)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), spawnRoomSpaceRequired))
                         {
@@ -88,7 +88,7 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
-                    else if (roomArray[i] == 2)
+                    else if (levels[0].roomList[i] == 2)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
                         {
@@ -102,7 +102,7 @@ public class MapGeneration : MonoBehaviour
                 if (!roomSpawned)
                     break;
             }
-            if (allRooms.Count == roomArray.Length)
+            if (allRooms.Count == levels[0].roomList.Length)
                 mapGenerated = true;
 
         }
@@ -125,7 +125,7 @@ public class MapGeneration : MonoBehaviour
         //generate mesh of the map
         meshGenerator.GenerateMesh(map, 1);
     }
- 
+
     void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
         List<Room> roomListA = new List<Room>();
@@ -355,15 +355,17 @@ public class MapGeneration : MonoBehaviour
         }
     }
 
+
     public void ExitLevel()
     {
         //Do it anakin
         foreach (Transform child in gameObject.transform)
         {
             //this doesn't destroy the Walls gameobject
-            if(!child.GetComponent<MeshFilter>()) {
+            if (!child.GetComponent<MeshFilter>())
+            {
                 Destroy(child.gameObject);
-            } 
+            }
         }
 
         GenerateMap();
@@ -372,6 +374,11 @@ public class MapGeneration : MonoBehaviour
         GameObject[] playerSpawnPoint = GameObject.FindGameObjectsWithTag("PlayerSpawnPoint");
         player.transform.position = playerSpawnPoint[1].transform.position;
         Debug.Log(playerSpawnPoint[1].transform.position);
+    }
+    [System.Serializable]
+    public class Level
+    {
+        public int[] roomList;
     }
 
 }
