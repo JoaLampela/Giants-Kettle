@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using System;
 
 public class MeshGenerator : MonoBehaviour
 {
+    public bool wallsOn = false;
+    public bool caveOn = false;
+
     public SquareGrid squareGrid;
     public MeshFilter wallMeshFilter;
+    public Tilemap tilemap;
+    public Tile testTile;
+    public List<Tile> tileList;
+
+    public Tile upsideWall;
+    public Tile downSideWall;
+    public Transform playerTransform;
+
 
     private List<Vector3> vertices;
     private List<int> triangles;
@@ -16,12 +28,21 @@ public class MeshGenerator : MonoBehaviour
     private HashSet<int> checkedVertices;
 
 
+
     private void Awake()
     {
         triangleDictionary = new Dictionary<int, List<Triangle>>();
         outlines = new List<List<int>>();
         checkedVertices = new HashSet<int>();
         
+    }
+    //this update is purely for debug services, delete later?
+    private void Update()
+    {
+        MeshRenderer caveMF = GetComponent<MeshRenderer>();
+        caveMF.enabled = caveOn;
+        MeshRenderer wallsMF = transform.GetChild(0).GetComponent<MeshRenderer>();
+        wallsMF.enabled = wallsOn;
     }
 
     public void GenerateMesh(int[,] map, float squareSize)
@@ -52,8 +73,110 @@ public class MeshGenerator : MonoBehaviour
         mesh.RecalculateNormals();
 
         CreateWallMesh();
+        CreateTiles();
+      
+    }
+
+   
+
+    void CreateTiles()
+    {
+        tilemap.ClearAllTiles();
+
+
+        for(int x = 0; x < squareGrid.squares.GetLength(0); x++)
+        {
+            for(int y = 0; y < squareGrid.squares.GetLength(1); y++)
+            {
+                int configuration = squareGrid.squares[x, y]._configuration;
+               
+                Vector3Int cellVector = tilemap.WorldToCell(squareGrid.squares[x, y]._centerBottom._position + new Vector2(0, 0.5f));
+                switch (configuration)
+                {
+                    case 0:
+                        break;
+                    //only 1 controlNodes is active
+                    case 1:
+                        //bottomleft square
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 2:
+                        //bottom right square
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 4:
+                        //top right squre
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 8:
+                        //top left square
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+
+                    //two nodes
+                    case 3:
+                        //downside wall
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 6:
+                        //right side wall
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 9:
+                        //left side wall
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 12:
+                        //upside wall
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    //diagonal two nodes
+                    case 5:
+                        //diagonal left ro right
+ 
+                        break;
+                    case 10:
+                        //diagonal right to left
+
+                        break;
+
+                    //three nodes
+                    case 7:
+                        //missing top left square
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 11:
+                        //missing top right square
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 13:
+                        //missing bottom right square
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                    case 14:
+                        //missing bottom left square
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                    //four nodes
+                    case 15:
+                        //full
+                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        break;
+                }
+                
+            }
+            
+        }
+        /*
+        Vector3Int cellVector = tilemap.WorldToCell(squareGrid.squares[30, 30]._topLeft._position);
+         tilemap.SetTile(cellVector, testTile);
+        int configuration = squareGrid.squares[1, 2]._configuration;
+       
+        */
 
     }
+
 
     void CreateWallMesh()
     {
@@ -90,8 +213,6 @@ public class MeshGenerator : MonoBehaviour
 
 
         wallMeshFilter.mesh = wallMesh;
-
-        
         GetComponent<MeshCollider>().sharedMesh = wallMesh;
     }
 
@@ -103,55 +224,70 @@ public class MeshGenerator : MonoBehaviour
                 break;
             //only 1 controlNodes is active
             case 1:
+                //bottomleft square
                 MeshFromPoints(square._centerLeft, square._centerBottom, square._bottomLeft);
                 break;
             case 2:
+                //bottom right square
                 MeshFromPoints(square._bottomRight, square._centerBottom, square._centerRight);
                 break;
             case 4:
+                //top right squre
                 MeshFromPoints(square._topRight, square._centerRight, square._centerTop);
                 break;
             case 8:
+                //top left square
                 MeshFromPoints(square._topLeft, square._centerTop, square._centerLeft);
                 break;
 
             //two nodes
             case 3:
+                //downside wall
                 MeshFromPoints(square._centerRight, square._bottomRight, square._bottomLeft, square._centerLeft);
                 break;
             case 6:
+                //right side wall
                 MeshFromPoints(square._centerTop, square._topRight, square._bottomRight, square._centerBottom);
                 break;
             case 9:
+                //left side wall
                 MeshFromPoints(square._topLeft, square._centerTop, square._centerBottom, square._bottomLeft);
                 break;
             case 12:
+                //upside wall
                 MeshFromPoints(square._topLeft, square._topRight, square._centerRight, square._centerLeft);
                 break;
             //diagonal two nodes
             case 5:
+                //diagonal left ro right
                 MeshFromPoints(square._centerTop, square._topRight, square._centerRight, square._centerBottom, square._bottomLeft, square._centerLeft);
                 break;
             case 10:
+                //diagonal right to left
                 MeshFromPoints(square._topLeft, square._centerTop, square._centerRight, square._bottomRight, square._centerBottom, square._centerLeft);
                 break;
 
             //three nodes
             case 7:
+                //missing top left square
                 MeshFromPoints(square._centerTop, square._topRight, square._bottomRight, square._bottomLeft, square._centerLeft);
                 break;
             case 11:
+                //missing top right square
                 MeshFromPoints(square._topLeft, square._centerTop, square._centerRight, square._bottomRight, square._bottomLeft);
                 break;
             case 13:
+                //missing bottom right square
                 MeshFromPoints(square._topLeft, square._topRight, square._centerRight, square._centerBottom, square._bottomLeft);
                 break;
             case 14:
+                //missing bottom left square
                 MeshFromPoints(square._topLeft, square._topRight, square._bottomRight, square._centerBottom, square._centerLeft);
                 break;
 
             //four nodes
             case 15:
+                //full
                 MeshFromPoints(square._topLeft, square._topRight, square._bottomRight, square._bottomLeft);
                 /*
                  *  because this case means that none of the triangles adjacent are
@@ -212,7 +348,7 @@ public class MeshGenerator : MonoBehaviour
          * add the triangle to the dictionary by it's vertex index, so that we can later compare 
          * if there is more triangles that share the same edge
          */
-                AddTriangleToDictionary(triangle.vertexIndexA, triangle);
+        AddTriangleToDictionary(triangle.vertexIndexA, triangle);
         AddTriangleToDictionary(triangle.vertexIndexB, triangle);
         AddTriangleToDictionary(triangle.vertexIndexC, triangle);
 
