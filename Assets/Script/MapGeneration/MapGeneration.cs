@@ -20,17 +20,25 @@ public class MapGeneration : MonoBehaviour
     public GameObject spawnRoom;
     public GameObject exitRoom;
     public GameObject enemyRoom1;
+    public GameObject enemyRoom2;
+    public GameObject caveRoom;
     [Header("Object prefabs")]
     public GameObject spawnPoint;
     public GameObject item;
 
     [Header("Room space requirements (max amount should not go over generation area outer border)")]
-    [Range(5, 20)]
-    public int enemyRoom1SpaceRequired = 6;
     [Range(4, 100)]
     public int spawnRoomSpaceRequired;
     [Range(6, 100)]
     public int exitRoomSpaceRequired;
+    [Range(5, 20)]
+    public int enemyRoom1SpaceRequired = 6;
+    [Range(15, 30)]
+    public int enemyRoom2SpaceRequired = 16;
+    [Range(15, 30)]
+    public int caveRoomSpaceRequired = 16;
+
+
     private Room mainRoom;
     int[,] map;
 
@@ -93,6 +101,24 @@ public class MapGeneration : MonoBehaviour
                         if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
                         {
                             Room room = new EnemyRoom1(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
+                    }
+                    else if (levels[0].roomList[i] == 3)
+                    {
+                        if (isCircleEmptyWalls(new Coord(x, y), enemyRoom2SpaceRequired))
+                        {
+                            Room room = new EnemyRoom2(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
+                    }
+                    else if (levels[0].roomList[i] == 4)
+                    {
+                        if (isCircleEmptyWalls(new Coord(x, y), caveRoomSpaceRequired))
+                        {
+                            Room room = new CaveRoom(new Coord(x, y), map);
                             allRooms.Add(room);
                             roomSpawned = true;
                         }
@@ -329,6 +355,18 @@ public class MapGeneration : MonoBehaviour
                 case 2:
                     {
                         GameObject currentRoom = Instantiate(enemyRoom1, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
+                    }
+                    break;
+                case 3:
+                    {
+                        GameObject currentRoom = Instantiate(enemyRoom2, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
+                    }
+                    break;
+                case 4:
+                    {
+                        GameObject currentRoom = Instantiate(caveRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;

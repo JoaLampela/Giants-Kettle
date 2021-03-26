@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  baseHealth: 20
+  baseHealth: 5
   baseSpirit: 0
   baseEnergy: 0
   baseRage: 0

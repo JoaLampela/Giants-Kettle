@@ -474,17 +474,21 @@ MonoBehaviour:
   height: 200
   generationAreaOuterBorder: 50
   levels:
-  - roomList: 00000000010000000200000002000000020000000200000002000000020000000200000002000000
+  - roomList: 00000000010000000400000004000000040000000400000003000000030000000300000002000000020000000200000002000000
   tunnelWidth: 2
   spawnPointCreationPrecentagePerTile: 1
   spawnRoom: {fileID: 9012813900297514595, guid: 4ec9f1d143bc0084099be4145f55f546, type: 3}
   exitRoom: {fileID: 1311955666255823563, guid: 30bcc437adb56a0458c2185fb4e70460, type: 3}
   enemyRoom1: {fileID: 454587712681634677, guid: ff8041b986322fd45aa7d533f349eb98, type: 3}
+  enemyRoom2: {fileID: 8695126513699810331, guid: b7a850a5d3d98a948b7235242d560dee, type: 3}
+  caveRoom: {fileID: 2959399002507620579, guid: c865575b3ed43084b872ddc8535e620d, type: 3}
   spawnPoint: {fileID: 3569287552395293196, guid: 81a9d2ad7e74528459bf070f4362ec7d, type: 3}
   item: {fileID: 0}
-  enemyRoom1SpaceRequired: 6
   spawnRoomSpaceRequired: 48
   exitRoomSpaceRequired: 49
+  enemyRoom1SpaceRequired: 6
+  enemyRoom2SpaceRequired: 16
+  caveRoomSpaceRequired: 17
 --- !u!4 &1189093992
 Transform:
   m_ObjectHideFlags: 0
