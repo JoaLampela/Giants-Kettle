@@ -3,7 +3,6 @@ using System;
 
 public class AbilityEvents : MonoBehaviour
 {
-    [HideInInspector] public float _timeActive = 0; //How long the Ability has existed for
     [HideInInspector] public GameObject _abilityCastSource; //Source of the ability
     public Vector2 _targetPosition = new Vector2(0, 0);
     public Vector2 _targetVector = new Vector2(0, 0);
@@ -18,12 +17,6 @@ public class AbilityEvents : MonoBehaviour
     private void Start()
     {
         UseAbility();
-    }
-
-    //Here to increment _timeActive
-    private void Update()
-    {
-        _timeActive += Time.deltaTime;
     }
 
     //Called when using an ability

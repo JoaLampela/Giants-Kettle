@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EntityStats : MonoBehaviour
 {
+    GameEventManager gameEventManager;
     EntityEvents events;
 
     [Header("0 = neutral, 1 = AI, 2 = Player")]
@@ -155,6 +156,7 @@ public class EntityStats : MonoBehaviour
     private void Awake()
     {
         events = GetComponent<EntityEvents>();
+        gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
     }
     private void Start()
     {
@@ -258,7 +260,9 @@ public class EntityStats : MonoBehaviour
                 temp = currentMaxHealth;
                 bonusHealth += value;
                 UpdateMaxHealth();
-                if(value > 0) events.GainHealth(currentMaxHealth - temp);
+                Debug.Log("CurrentMaxHealth: " + currentMaxHealth);
+                Debug.Log("StatsTemp: " + temp);
+                if (value > 0) events.RecoverHealth(currentMaxHealth - temp);
                 break;
             case "bonusSpirit":
                 temp = currentMaxSpirit;
@@ -541,6 +545,20 @@ public class EntityStats : MonoBehaviour
             case "baseAttackSpeed":
                 baseAttackSpeed += value;
                 UpdateAttackSpeed();
+                break;
+
+
+            case "invisibility":
+                if (value == 1)
+                {
+                    isInvisible = true;
+                    gameEventManager.UpdateAggro();
+                }
+                else
+                {
+                    isInvisible = false;
+                    gameEventManager.UpdateAggro();
+                }
                 break;
         }
     }

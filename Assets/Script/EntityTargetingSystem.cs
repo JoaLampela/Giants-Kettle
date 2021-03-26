@@ -5,7 +5,7 @@ using UnityEngine;
 public class EntityTargetingSystem : MonoBehaviour
 {
     [SerializeField] float aggroRange = 10; 
-    [SerializeField] private GameObject target;
+    public GameObject target;
     private EntityEvents events;
     private GameEventManager gameEventManager;
     private Dictionary<GameObject, int> aggroTable = new Dictionary<GameObject, int>();
@@ -31,7 +31,7 @@ public class EntityTargetingSystem : MonoBehaviour
             foreach (GameObject entity in gameEventManager.allies)
             {
                 
-                if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !stats.isInvisible)
+                if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !entity.GetComponent<EntityStats>().isInvisible)
                 {
                     if (aggroTable[entity] < 1)
                     {
@@ -45,7 +45,7 @@ public class EntityTargetingSystem : MonoBehaviour
         {
             foreach (GameObject entity in gameEventManager.enemies)
             {
-                if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !stats.isInvisible)
+                if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !entity.GetComponent<EntityStats>().isInvisible)
                 {
                     if (aggroTable[entity] < 1)
                     {
@@ -59,6 +59,7 @@ public class EntityTargetingSystem : MonoBehaviour
 
     private void Subscribe()
     {
+        gameEventManager.OnUpdateAggro += NewTarget;
         events.OnHitThis += TakeDamage;
         events.OnIncreaseAggro += IncreaseAggro;
         events.OnDecreaseAggro += DecreaseAggro;
@@ -68,6 +69,7 @@ public class EntityTargetingSystem : MonoBehaviour
     }
     private void Unsubscribe()
     {
+        gameEventManager.OnUpdateAggro -= NewTarget;
         events.OnHitThis -= TakeDamage;
         events.OnIncreaseAggro -= IncreaseAggro;
         events.OnDecreaseAggro -= DecreaseAggro;
@@ -133,6 +135,7 @@ public class EntityTargetingSystem : MonoBehaviour
 
     private void NewTarget()
     {
+        float tempDistance = 1000f;
         target = null;
         int tempTopScore = 0;
         if(stats.team == 0) 
@@ -147,8 +150,16 @@ public class EntityTargetingSystem : MonoBehaviour
                 {
                     if(aggroTable[entity] > tempTopScore)
                     {
-                        tempTopScore = aggroTable[entity];
-                        target = entity;
+                        float distance = Vector2.Distance(entity.transform.position, transform.position);
+                        if (!entity.GetComponent<EntityStats>().isInvisible && aggroRange >= distance)
+                        {
+                            if(distance < tempDistance)
+                            {
+                                tempTopScore = aggroTable[entity];
+                                target = entity;
+                                tempDistance = distance;
+                            }
+                        }
                     }
                 }
             }
@@ -157,12 +168,14 @@ public class EntityTargetingSystem : MonoBehaviour
         {
             foreach (GameObject entity in gameEventManager.enemies)
             {
+                float distance = Vector2.Distance(entity.transform.position, transform.position);
                 if (aggroTable.ContainsKey(entity))
                 {
-                    if (aggroTable[entity] > tempTopScore)
+                    if (distance < tempDistance)
                     {
                         tempTopScore = aggroTable[entity];
                         target = entity;
+                        tempDistance = distance;
                     }
                 }
             }

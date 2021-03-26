@@ -130,7 +130,7 @@ public class EntityEvents : MonoBehaviour
     {
         OnHitThis?.Invoke(damage);
     }
-    public void Heal(int amount)
+    public void RecoverHealth(int amount)
     {
         OnRecoverHealth?.Invoke(amount);
     }

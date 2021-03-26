@@ -23,6 +23,7 @@ public class GameEventManager : MonoBehaviour
     public event Action<GameObject> OnAllEntitiesAdd;
     public event Action<GameObject, int> OnSetAggro;
     public event Action OnExitLevel;
+    public event Action OnUpdateAggro;
 
     private void Update()
     {
@@ -95,6 +96,11 @@ public class GameEventManager : MonoBehaviour
     public void SetAggro(GameObject entity, int amount)
     {
         OnSetAggro?.Invoke(entity, amount);
+    }
+
+    public void UpdateAggro()
+    {
+        OnUpdateAggro?.Invoke();
     }
     public void ExitLevel()
     {
