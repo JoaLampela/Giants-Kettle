@@ -260,7 +260,9 @@ public class EntityStats : MonoBehaviour
                 temp = currentMaxHealth;
                 bonusHealth += value;
                 UpdateMaxHealth();
-                if(value > 0) events.GainHealth(currentMaxHealth - temp);
+                Debug.Log("CurrentMaxHealth: " + currentMaxHealth);
+                Debug.Log("StatsTemp: " + temp);
+                if (value > 0) events.RecoverHealth(currentMaxHealth - temp);
                 break;
             case "bonusSpirit":
                 temp = currentMaxSpirit;
