@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     public float smoothSpeed = 5f;
+    public int offset = 10;
     private Transform playerTransform;
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,7 @@ public class CameraScript : MonoBehaviour
         Vector3 position = transform.position;
         
         position.x = playerTransform.position.x;
-        position.y = playerTransform.position.y;
+        position.y = playerTransform.position.y-offset;
         //smoothly transforms from the cameras position to the players position
         position = Vector3.Lerp(transform.position, position, smoothSpeed * Time.fixedDeltaTime);
 
