@@ -5,11 +5,11 @@ using UnityEngine;
 public class ItemOnGround : MonoBehaviour
 {
     public Item item;
-    private inventory playerInventory;
+    private Inventory playerInventory;
 
     private void Awake()
     {
-        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<inventory>();
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
     private void OnMouseOver()

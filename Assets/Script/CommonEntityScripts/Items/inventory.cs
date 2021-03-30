@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class inventory : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
     private EntityEvents events;
 
@@ -22,7 +22,7 @@ public class inventory : MonoBehaviour
 
     public bool InventoryHasRoom()
     {
-        foreach(UiButtonClick inventorySlot in inventorySlots)
+        foreach (UiButtonClick inventorySlot in inventorySlots)
         {
             if (inventorySlot._item == null)
             {
@@ -50,7 +50,7 @@ public class inventory : MonoBehaviour
 
     public void UseItem(Item item)
     {
-        if(item.inventorySlot == -1)
+        if (item.inventorySlot == -1)
         {
             UseConsumable(item);
         }
@@ -161,7 +161,7 @@ public class inventory : MonoBehaviour
         {
             events.RemoveBuff(buff.sourceID);
         }
-        if(item.scriptName != "") Destroy(GetComponent(Type.GetType(item.scriptName)));
+        if (item.scriptName != "") Destroy(GetComponent(Type.GetType(item.scriptName)));
     }
     public void Equip(Item item)
     {
@@ -182,7 +182,7 @@ public class inventory : MonoBehaviour
         {
             events.NewBuff(buff.sourceID, buff.effectID, buff.effectiveness, buff.duration);
         }
-        if(item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
+        if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
     }
 
     public void DropItem(Item item)

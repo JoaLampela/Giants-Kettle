@@ -12,12 +12,12 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     private UiButtonClick grabbedItemSlot = null;
     public event Action<Item, int> OnDropItem;
     public GameObject flyingIcon;
-    private inventory playerInventory;
+    private Inventory playerInventory;
 
     private void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerInventory = player.GetComponent<inventory>();
+        playerInventory = player.GetComponent<Inventory>();
     }
 
 

@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 {
-    private inventory playerInventory;
+    private Inventory playerInventory;
     private PlayerHoverUi playerHoverUi;
     
     public int _slot;
@@ -18,7 +18,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     {
         playerHoverUi = GameObject.Find("Canvas").GetComponentInChildren<PlayerHoverUi>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerInventory = player.GetComponent<inventory>();
+        playerInventory = player.GetComponent<Inventory>();
     }
     private void Start()
     {
