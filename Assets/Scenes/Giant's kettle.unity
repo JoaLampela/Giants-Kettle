@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377997280308590637, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 431506323409159573, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -189,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 527930612976928679, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.261
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406663098849994135, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3749014712958288761, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: m_Constraints
@@ -519,6 +527,7 @@ MonoBehaviour:
   wallsOn: 1
   caveOn: 1
   wallMeshFilter: {fileID: 753648095}
+  tilemapGO: {fileID: 1830433910}
   tilemap: {fileID: 1830433913}
   testTile: {fileID: 11400000, guid: eeebaa9558b482e4faa4ea8edac83bb9, type: 2}
   tileList:

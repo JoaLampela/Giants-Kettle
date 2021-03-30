@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3717025296301306606}
   - component: {fileID: 4306752869050877272}
   - component: {fileID: 840007833519862171}
-  - component: {fileID: 1004511978856143662}
+  - component: {fileID: 3993530903300029506}
   m_Layer: 0
   m_Name: ExitLadder
   m_TagString: Untagged
@@ -96,16 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7adeb0ce7435ba148aeb510a8dcf2bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1004511978856143662
-BoxCollider:
+--- !u!70 &3993530903300029506
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4237648477203617912}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.5, y: 3.25, z: 0.2}
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  m_Size: {x: 7.82, y: 3.23}
+  m_Direction: 1

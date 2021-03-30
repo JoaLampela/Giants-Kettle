@@ -11,6 +11,7 @@ public class MeshGenerator : MonoBehaviour
 
     public SquareGrid squareGrid;
     public MeshFilter wallMeshFilter;
+    public GameObject tilemapGO;
     public Tilemap tilemap;
     public Tile testTile;
     public List<Tile> tileList;
@@ -62,6 +63,8 @@ public class MeshGenerator : MonoBehaviour
             }
         }
 
+        /*
+         * rip mesh code :(
         //create mesh
         Mesh mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -71,8 +74,9 @@ public class MeshGenerator : MonoBehaviour
         Debug.Log("MADE THE MESH");
         //just to be safe:
         mesh.RecalculateNormals();
-
         CreateWallMesh();
+        */
+
         CreateTiles();
       
     }
@@ -174,6 +178,9 @@ public class MeshGenerator : MonoBehaviour
         int configuration = squareGrid.squares[1, 2]._configuration;
        
         */
+
+        tilemapGO.AddComponent<TilemapCollider2D>();
+
 
     }
 
