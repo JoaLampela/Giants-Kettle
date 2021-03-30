@@ -350,7 +350,7 @@ MonoBehaviour:
   rightHand: {fileID: 1434827244}
   leftHand: {fileID: 2115349217}
   testEquipmentCount: 0
-  itemOnGround: {fileID: 0}
+  itemOnGround: {fileID: 1598165947520860255, guid: 996ffc1cb127e254d90e72c747436162, type: 3}
 --- !u!1 &972327734 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1351393970563421039, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
