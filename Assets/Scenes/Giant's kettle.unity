@@ -190,13 +190,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.261
       objectReference: {fileID: 0}
-    - target: {fileID: 3749014712958288761, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
-      propertyPath: m_Constraints
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 3749014712958288761, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
+    - target: {fileID: 745976077632762914, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7318350428513855945, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: speed
@@ -475,7 +471,7 @@ MonoBehaviour:
   generationAreaOuterBorder: 50
   levels:
   - roomList: 00000000010000000400000004000000040000000400000003000000030000000300000002000000020000000200000002000000
-  tunnelWidth: 2
+  tunnelWidth: 3
   spawnPointCreationPrecentagePerTile: 1
   spawnRoom: {fileID: 9012813900297514595, guid: 4ec9f1d143bc0084099be4145f55f546, type: 3}
   exitRoom: {fileID: 1311955666255823563, guid: 30bcc437adb56a0458c2185fb4e70460, type: 3}
@@ -488,7 +484,7 @@ MonoBehaviour:
   exitRoomSpaceRequired: 49
   enemyRoom1SpaceRequired: 6
   enemyRoom2SpaceRequired: 16
-  caveRoomSpaceRequired: 17
+  caveRoomSpaceRequired: 18
 --- !u!4 &1189093992
 Transform:
   m_ObjectHideFlags: 0
@@ -927,8 +923,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 45
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 8.44
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
