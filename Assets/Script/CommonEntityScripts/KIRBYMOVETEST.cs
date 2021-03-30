@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class KIRBYMOVETEST : MonoBehaviour
 {
@@ -8,11 +9,28 @@ public class KIRBYMOVETEST : MonoBehaviour
     //Each variable name represents a compass point
     List<VectorNode> vectorNodes;
     VectorNode debugBestVectorNode;
-    float maxObstacleVectorDistance = 1.5f;
+    float maxObstacleVectorDistance = 0.5f;
+    CircleCollider2D objectCollider;
+    Path path;
+    float nextWayPointDistance = 0.5f;
+    int currentWaypoint = 0;
+    public bool reachedEndOfPath = false;
+    Seeker seeker;
+    Rigidbody2D rb;
+    Vector2 AstarDirection;
 
     // Start is called before the first frame update
     void Start()
     {
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
+        targetingSystem = GetComponent<EntityTargetingSystem>();
+
+        InvokeRepeating("UpdatePath", 0, 0.1f);
+
+
+
+        objectCollider = GetComponent<CircleCollider2D>();
         vectorNodes = new List<VectorNode>();
         //Instansiate dir vector to point north;
         Vector2 dir = new Vector2(0, 1);
@@ -32,12 +50,36 @@ public class KIRBYMOVETEST : MonoBehaviour
         vectorNodes[vectorNodes.Count - 1].rightVector = vectorNodes[0];
         vectorNodes[0].leftVector = vectorNodes[vectorNodes.Count - 1];
 
-        targetingSystem = GetComponent<EntityTargetingSystem>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        foreach (VectorNode vn in vectorNodes)
+        {
+            vn.weight = 0;
+        }
+
+        if (path == null)
+        {
+            return;
+        }
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+
+        }
+        else
+            reachedEndOfPath = false;
+        AstarDirection = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        if (distance < nextWayPointDistance)
+            currentWaypoint++;
+        Debug.DrawRay(gameObject.transform.position, AstarDirection, Color.red, Time.deltaTime);
+
+
         if (targetingSystem.target != null)
         {
             AddWeightsByTarget(2);
@@ -46,7 +88,23 @@ public class KIRBYMOVETEST : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = FindBestMovementOption();
         }
     }
-
+    void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+    void UpdatePath()
+    {
+        Debug.Log(seeker);
+        Debug.Log(rb);
+        Debug.Log(targetingSystem.target);
+        if (targetingSystem.target != null)
+            if (seeker.IsDone())
+                seeker.StartPath(rb.position, targetingSystem.target.transform.position, OnPathComplete);
+    }
     Vector2 FindBestMovementOption()
     {
 
@@ -61,14 +119,14 @@ public class KIRBYMOVETEST : MonoBehaviour
                 currentWeight = vectorNode.weight;
             }
         }
-        Vector2 bestMovementOption = bestVectorNode.direction * 10f;
+        Vector2 bestMovementOption = bestVectorNode.direction * 10;
         return bestMovementOption;
     }
     private void RemoveWeightsByObstacle()
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
-            float obstacleRange = vectorNode.ObstacleCheck(gameObject, maxObstacleVectorDistance);
+            float obstacleRange = vectorNode.ObstacleCheck(gameObject, maxObstacleVectorDistance, objectCollider);
             if (obstacleRange == 0)
                 continue;
             Debug.Log("obstacle range: " + obstacleRange);
@@ -97,7 +155,7 @@ public class KIRBYMOVETEST : MonoBehaviour
 
     private void AddWeightsByTarget(float desiredDistance)
     {
-        VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(targetingSystem.target.transform.position);
+        VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
         if (Vector2.Distance(gameObject.transform.position, targetingSystem.target.transform.position) >= desiredDistance)
         {
             float tempWeight = 1;
@@ -105,7 +163,7 @@ public class KIRBYMOVETEST : MonoBehaviour
             VectorNode leftNode = closestVectorNode;
             for (int i = 1; i < 8; i++)
             {
-                tempWeight -= 0.115f;
+                tempWeight -= 0.10f;
                 leftNode.weight = tempWeight;
                 leftNode = leftNode.leftVector;
             }
@@ -161,10 +219,9 @@ public class KIRBYMOVETEST : MonoBehaviour
         {
             return direction * weight;
         }
-        public float ObstacleCheck(GameObject gameObject, float maxObstacleVectorDistance)
+        public float ObstacleCheck(GameObject gameObject, float maxObstacleVectorDistance, CircleCollider2D gameObjectCollider)
         {
-
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)gameObject.transform.position, direction, maxObstacleVectorDistance);
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(direction.x * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.x, direction.y * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.y), direction, maxObstacleVectorDistance);
             //Debug.DrawLine(gameObject.transform.position, direction * maxObstacleVectorDistance + (Vector2)gameObject.transform.position, Color.green, Time.deltaTime);
             //Debug.Log("raycasting");
             if (hit && (!hit.transform.CompareTag("Player") || !hit.transform.CompareTag("Enemy")))

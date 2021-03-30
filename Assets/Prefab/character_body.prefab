@@ -174,7 +174,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745976077632762914}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b15e00fd3767d245aa94733523e8278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15.2
+  speed: 8
   rightArm: {fileID: 377997280308590637}
   playerCamera: {fileID: 0}
   swordCollider: {fileID: 820856628544997672}
