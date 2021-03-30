@@ -245,14 +245,15 @@ public class EntityStats : MonoBehaviour
     {
         currentMaxSpellHaste = (int)((baseSpellHaste * baseSpellHasteMultiplayer / 100f + bonusSpellHaste) * totalSpellHasteMultiplayer / 100f);
     }
-    public int UpdateArmor()
+    public void UpdateArmor()
     {
-        return (int)((baseArmor * baseArmorMultiplier / 100f + bonusArmor) * totalArmorMultiplier / 100f);
+        currentArmor = (int)((baseArmor * baseArmorMultiplier / 100f + bonusArmor) * totalArmorMultiplier / 100f);
     }
 
 
     public void UpdateBuff(string id, int value)
     {
+        Debug.Log(id + " " + value);
         int temp;
         switch (id)
         {
@@ -325,6 +326,7 @@ public class EntityStats : MonoBehaviour
                 UpdateSpellHaste();
                 break;
             case "bonusArmor":
+                Debug.Log("new armor buff");
                 bonusArmor += value;
                 UpdateArmor();
                 break;
