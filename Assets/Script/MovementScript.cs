@@ -9,7 +9,7 @@ public class MovementScript : MonoBehaviour
     public GameObject rightArm;
     public Camera playerCamera;
     private Vector2 movement;
-    Rigidbody playerRB;
+    Rigidbody2D playerRB;
     private bool walkingBackWards;
     private bool attacking = false;
     private Animator animator;
@@ -23,7 +23,7 @@ public class MovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody>();
+        playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         lastHorizontalAxisRaw = 0;
         originalMovmentSpeed = speed;
@@ -69,10 +69,10 @@ public class MovementScript : MonoBehaviour
 
             Vector2 difference = playerCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, playerCamera.transform.position.z)) - rightArm.transform.position;
             difference.Normalize();
-            lookDirection = -difference;
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
+            lookDirection = difference;
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + 90f;
             //Debug.Log(rotationZ);
-            if (rotationZ < 0 && rotationZ > -180)
+            if (rotationZ >= 180 || rotationZ <= 0)
             {
                 gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }

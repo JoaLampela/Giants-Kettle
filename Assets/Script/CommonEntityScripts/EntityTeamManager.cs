@@ -19,7 +19,7 @@ public class EntityTeamManager : MonoBehaviour
     void Start()
     {
         Subscribe();
-        Debug.Log(stats.team);
+        //Debug.Log(stats.team);
         SetTeam(stats.team);
     }
 
