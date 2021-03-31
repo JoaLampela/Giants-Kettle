@@ -11,7 +11,7 @@ public class MovementScript : MonoBehaviour
     private Vector2 movement;
     Rigidbody2D playerRB;
     private bool walkingBackWards;
-    private bool attacking = false;
+    public bool attacking { private set; get; }
     private Animator animator;
     private Vector2 lookDirection;
     public BoxCollider2D swordCollider;

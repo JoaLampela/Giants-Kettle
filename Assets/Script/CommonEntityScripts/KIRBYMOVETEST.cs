@@ -10,6 +10,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     List<VectorNode> vectorNodes;
     VectorNode debugBestVectorNode;
     float maxObstacleVectorDistance = 0.5f;
+    float maxMeleeEnemyRange = 2;
     CircleCollider2D objectCollider;
     Path path;
     float nextWayPointDistance = 0.5f;
@@ -18,6 +19,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
     Vector2 AstarDirection;
+    public float entitySpeed = 15;
 
     // Start is called before the first frame update
     void Start()
@@ -56,10 +58,6 @@ public class KIRBYMOVETEST : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (VectorNode vn in vectorNodes)
-        {
-            vn.weight = 0;
-        }
 
         if (path == null)
         {
@@ -73,6 +71,7 @@ public class KIRBYMOVETEST : MonoBehaviour
         }
         else
             reachedEndOfPath = false;
+
         AstarDirection = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWayPointDistance)
@@ -80,12 +79,21 @@ public class KIRBYMOVETEST : MonoBehaviour
         Debug.DrawRay(gameObject.transform.position, AstarDirection, Color.red, Time.deltaTime);
 
 
+        if (path.vectorPath.Count - currentWaypoint >= 4)
+            foreach (VectorNode vn in vectorNodes)
+            {
+                vn.weight = 0;
+            }
         if (targetingSystem.target != null)
         {
-            AddWeightsByTarget(2);
+            if (path.vectorPath.Count - currentWaypoint >= 4)
+                AddWeightsByTarget(2);
+            else
+                DodgeCheck();
             RemoveWeightsByObstacle();
-
+            ChangeWeightByAlly();
             GetComponent<Rigidbody2D>().velocity = FindBestMovementOption();
+
         }
     }
     void OnPathComplete(Path p)
@@ -119,10 +127,38 @@ public class KIRBYMOVETEST : MonoBehaviour
                 currentWeight = vectorNode.weight;
             }
         }
-        Vector2 bestMovementOption = bestVectorNode.direction * 10;
+        Vector2 bestMovementOption = bestVectorNode.direction * entitySpeed;
         return bestMovementOption;
     }
     private void RemoveWeightsByObstacle()
+    {
+        foreach (VectorNode vectorNode in vectorNodes)
+        {
+            float allyRange = vectorNode.EnemyCheck(gameObject, maxMeleeEnemyRange, objectCollider);
+            if (allyRange == 0)
+                continue;
+            Debug.Log("obstacle range: " + allyRange);
+            vectorNode.weight = vectorNode.weight * 1 / (maxMeleeEnemyRange / allyRange);
+            VectorNode leftNode = vectorNode;
+            float counter = 2;
+            for (int i = 1; i < 4; i++)
+            {
+                leftNode.weight = vectorNode.weight * 1 / (maxMeleeEnemyRange / allyRange);
+                leftNode = leftNode.leftVector;
+                counter += 2;
+            }
+            VectorNode rightNode = vectorNode;
+            counter = 2;
+            for (int i = 1; i < 4; i++)
+            {
+
+                rightNode.weight = vectorNode.weight * 1 / (maxMeleeEnemyRange / allyRange);
+                rightNode = rightNode.rightVector;
+                counter += 2;
+            }
+        }
+    }
+    private void ChangeWeightByAlly()
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
@@ -133,7 +169,7 @@ public class KIRBYMOVETEST : MonoBehaviour
             vectorNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
             VectorNode leftNode = vectorNode;
             float counter = 2;
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < 5; i++)
             {
                 leftNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
                 leftNode = leftNode.leftVector;
@@ -141,26 +177,54 @@ public class KIRBYMOVETEST : MonoBehaviour
             }
             VectorNode rightNode = vectorNode;
             counter = 2;
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < 5; i++)
             {
-
                 rightNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
                 rightNode = rightNode.rightVector;
                 counter += 2;
             }
-
-
         }
     }
 
     private void AddWeightsByTarget(float desiredDistance)
     {
         VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
-        if (Vector2.Distance(gameObject.transform.position, targetingSystem.target.transform.position) >= desiredDistance)
+
+        float tempWeight = 1;
+        closestVectorNode.weight = tempWeight;
+        VectorNode leftNode = closestVectorNode;
+        for (int i = 1; i < 8; i++)
         {
+            tempWeight -= 0.10f;
+            leftNode.weight = tempWeight;
+            leftNode = leftNode.leftVector;
+        }
+        tempWeight = 1;
+        VectorNode rightNode = closestVectorNode;
+        for (int i = 1; i < 8; i++)
+        {
+            tempWeight -= 0.115f;
+            rightNode.weight = tempWeight;
+            rightNode = rightNode.rightVector;
+        }
+
+    }
+    private void DodgeCheck()
+    {
+        if (targetingSystem.target.GetComponent<MovementScript>() && targetingSystem.target.GetComponent<MovementScript>().attacking)
+        {
+
+
+            VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
+            VectorNode oppositeNode = closestVectorNode;
+            for (int i = 1; i < vectorNodes.Count / 2; i++)
+            {
+                oppositeNode = oppositeNode.leftVector;
+            }
+
             float tempWeight = 1;
-            closestVectorNode.weight = tempWeight;
-            VectorNode leftNode = closestVectorNode;
+            oppositeNode.weight = tempWeight;
+            VectorNode leftNode = oppositeNode;
             for (int i = 1; i < 8; i++)
             {
                 tempWeight -= 0.10f;
@@ -168,7 +232,7 @@ public class KIRBYMOVETEST : MonoBehaviour
                 leftNode = leftNode.leftVector;
             }
             tempWeight = 1;
-            VectorNode rightNode = closestVectorNode;
+            VectorNode rightNode = oppositeNode;
             for (int i = 1; i < 8; i++)
             {
                 tempWeight -= 0.115f;
@@ -224,9 +288,26 @@ public class KIRBYMOVETEST : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(direction.x * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.x, direction.y * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.y), direction, maxObstacleVectorDistance);
             //Debug.DrawLine(gameObject.transform.position, direction * maxObstacleVectorDistance + (Vector2)gameObject.transform.position, Color.green, Time.deltaTime);
             //Debug.Log("raycasting");
-            if (hit && (!hit.transform.CompareTag("Player") || !hit.transform.CompareTag("Enemy")))
+            if (hit)
             {
-                return hit.distance;
+                if (!hit.transform.CompareTag("Player") || !hit.transform.CompareTag("Enemy"))
+                {
+                    return hit.distance;
+                }
+            }
+            return 0;
+        }
+        public float EnemyCheck(GameObject gameObject, float maxObstacleVectorDistance, CircleCollider2D gameObjectCollider)
+        {
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(direction.x * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.x, direction.y * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.y), direction, maxObstacleVectorDistance);
+            //Debug.DrawLine(gameObject.transform.position, direction * maxObstacleVectorDistance + (Vector2)gameObject.transform.position, Color.green, Time.deltaTime);
+            //Debug.Log("raycasting");
+            if (hit)
+            {
+                if (hit.transform.CompareTag("Enemy"))
+                {
+                    return hit.distance;
+                }
             }
             return 0;
         }
