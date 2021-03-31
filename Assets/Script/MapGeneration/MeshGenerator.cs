@@ -12,8 +12,9 @@ public class MeshGenerator : MonoBehaviour
 
     public SquareGrid squareGrid;
     public MeshFilter wallMeshFilter;
-    public GameObject tilemapGO;
-    public Tilemap tilemap;
+    public GameObject TilemapGO;
+    public Tilemap caveTilemap;
+    public Tilemap wallTilemap;
     public Tile testTile;
     public List<Tile> tileList;
 
@@ -67,7 +68,6 @@ public class MeshGenerator : MonoBehaviour
         }
 
         /*
-         * rip mesh code :(
         //create mesh
         Mesh mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -94,7 +94,8 @@ public class MeshGenerator : MonoBehaviour
 
     void CreateTiles()
     {
-        tilemap.ClearAllTiles();
+        caveTilemap.ClearAllTiles();
+        wallTilemap.ClearAllTiles();
 
 
         for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
@@ -103,7 +104,7 @@ public class MeshGenerator : MonoBehaviour
             {
                 int configuration = squareGrid.squares[x, y]._configuration;
 
-                Vector3Int cellVector = tilemap.WorldToCell(squareGrid.squares[x, y]._centerBottom._position + new Vector2(0, 0.5f));
+                Vector3Int cellVector = caveTilemap.WorldToCell(squareGrid.squares[x, y]._centerBottom._position + new Vector2(0, 0.5f));
                 switch (configuration)
                 {
                     case 0:
@@ -111,39 +112,39 @@ public class MeshGenerator : MonoBehaviour
                     //only 1 controlNodes is active
                     case 1:
                         //bottomleft square
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 2:
                         //bottom right square
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 4:
                         //top right squre
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 8:
                         //top left square
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
 
                     //two nodes
                     case 3:
                         //downside wall
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 6:
                         //right side wall
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 9:
                         //left side wall
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 12:
                         //upside wall
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
-                    //diagonal two nodes
+                        //diagonal two nodes
                     case 5:
                         //diagonal left ro right
 
@@ -156,25 +157,26 @@ public class MeshGenerator : MonoBehaviour
                     //three nodes
                     case 7:
                         //missing top left square
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 11:
                         //missing top right square
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 13:
                         //missing bottom right square
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        //wallTilemap.SetTile(cellVector, tileList[17]);
                         break;
                     case 14:
                         //missing bottom left square
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        //wallTilemap.SetTile(cellVector, tileList[16]);
                         break;
-                        tilemap.SetTile(cellVector, tileList[configuration]);
                     //four nodes
                     case 15:
                         //full
-                        tilemap.SetTile(cellVector, tileList[configuration]);
+                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                 }
 
@@ -182,13 +184,13 @@ public class MeshGenerator : MonoBehaviour
 
         }
         /*
-        Vector3Int cellVector = tilemap.WorldToCell(squareGrid.squares[30, 30]._topLeft._position);
-         tilemap.SetTile(cellVector, testTile);
+        Vector3Int cellVector = caveTilemap.WorldToCell(squareGrid.squares[30, 30]._topLeft._position);
+         caveTilemap.SetTile(cellVector, testTile);
         int configuration = squareGrid.squares[1, 2]._configuration;
        
         */
 
-        tilemapGO.AddComponent<TilemapCollider2D>();
+        TilemapGO.AddComponent<TilemapCollider2D>();
 
 
     }
