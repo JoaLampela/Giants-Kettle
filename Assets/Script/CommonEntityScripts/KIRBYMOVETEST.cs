@@ -13,7 +13,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     float maxAllyRange = 1;
     CircleCollider2D objectCollider;
     Path path;
-    float nextWayPointDistance = 0.5f;
+    float nextWayPointDistance = 1f;
     int currentWaypoint = 0;
     public bool reachedEndOfPath = false;
     Seeker seeker;
@@ -72,10 +72,15 @@ public class KIRBYMOVETEST : MonoBehaviour
         else
             reachedEndOfPath = false;
 
-        AstarDirection = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWayPointDistance)
+        {
             currentWaypoint++;
+            Debug.Log("New waypoint");
+        }
+        AstarDirection = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Debug.Log(AstarDirection + " " + (Vector2)path.vectorPath[currentWaypoint] + " " + rb.position + " Distance: " + Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]));
         Debug.DrawRay(gameObject.transform.position, AstarDirection, Color.red, Time.deltaTime);
 
 
