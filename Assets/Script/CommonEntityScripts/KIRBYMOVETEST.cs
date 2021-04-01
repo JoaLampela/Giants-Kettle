@@ -106,9 +106,9 @@ public class KIRBYMOVETEST : MonoBehaviour
     }
     void UpdatePath()
     {
-        Debug.Log(seeker);
-        Debug.Log(rb);
-        Debug.Log(targetingSystem.target);
+        //Debug.Log(seeker);
+        //Debug.Log(rb);
+        //Debug.Log(targetingSystem.target);
         if (targetingSystem.target != null)
             if (seeker.IsDone())
                 seeker.StartPath(rb.position, targetingSystem.target.transform.position, OnPathComplete);

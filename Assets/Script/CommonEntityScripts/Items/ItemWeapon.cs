@@ -5,10 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemWeapon : Item
 {
-    [Header("1 = 1handedSword, 3 = staff, 4 = bow")]
+    [Header("1 = 1handedSword, 2 = 2handedSword, 3 = shield, 4 = bow, 5 = staff")]
     public int weaponType;
     public int physicalDamage;
     public int spiritDamage;
-    public string perk;
 }
-

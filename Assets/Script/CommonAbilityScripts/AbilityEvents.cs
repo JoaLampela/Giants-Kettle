@@ -4,8 +4,8 @@ using System;
 public class AbilityEvents : MonoBehaviour
 {
     [HideInInspector] public GameObject _abilityCastSource; //Source of the ability
-    public Vector2 _targetPosition = new Vector2(0, 0);
-    public Vector2 _targetVector = new Vector2(0, 0);
+    [HideInInspector] public Vector2 _targetPosition = new Vector2(0, 0);
+    [HideInInspector] public Vector2 _targetVector = new Vector2(0, 0);
     public Damage _damage;
 
     //All different event types for Abilities:
@@ -13,6 +13,7 @@ public class AbilityEvents : MonoBehaviour
     public event Action _onWhiff;
     public event Action<Collider2D> _onHit;
     public event Action _onActivate;
+    public event Action _onInstantiated;
 
     private void Start()
     {
@@ -23,6 +24,11 @@ public class AbilityEvents : MonoBehaviour
     public void UseAbility()
     {
         _onUseAbility?.Invoke();
+    }
+
+    public void Instantiated()
+    {
+        _onInstantiated?.Invoke();
     }
 
     //Called when activating the ability's effect
@@ -42,7 +48,6 @@ public class AbilityEvents : MonoBehaviour
     {
         _onHit?.Invoke(collision);
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -34,7 +34,7 @@ public class AbilitySetTargetVector : MonoBehaviour
             {
                 _targetPosition = _iTargetPosition.GetTargetPosition();
             }
-            _targetVector = ((Vector2)transform.position - _targetPosition).normalized;
+            SetTargetVector();
         }
         SetAbilityRotation(_iTargetPosition.GetTargetPosition());
     }
@@ -42,6 +42,11 @@ public class AbilitySetTargetVector : MonoBehaviour
     public void SetAbilityRotation(Vector2 targetPosition)
     {
         _abilityRotate.CalculateRotation(_targetVector);
+    }
+
+    public void SetTargetVector()
+    {
+        _targetVector = ((Vector2)transform.position - _targetPosition).normalized;
     }
 
     public Vector2 GetTargetVector()

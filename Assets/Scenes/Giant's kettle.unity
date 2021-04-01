@@ -1152,6 +1152,10 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 1434827244}
+    - target: {fileID: 5856488643409741595, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: sting
+      value: 
+      objectReference: {fileID: 8025816061667156796, guid: 75fed09d59f62c6458b50e09095c0220, type: 3}
     - target: {fileID: 7318350428513855945, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: playerCamera
       value: 
@@ -1438,5 +1442,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8525123744895885365, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: _item
+      value: 
+      objectReference: {fileID: 11400000, guid: e0a054940f81be544b3897450a5dd57b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}

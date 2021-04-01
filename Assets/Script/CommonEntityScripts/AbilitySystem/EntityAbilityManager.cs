@@ -13,6 +13,7 @@ public class EntityAbilityManager : MonoBehaviour
     public IAbility ability4;
     public IAbility ability5;
     public IAbility ability6;
+    public GameObject sting;
 
     public void CastAbility(int slot)
     {
@@ -23,10 +24,16 @@ public class EntityAbilityManager : MonoBehaviour
             switch (slot)
             {
                 case 1:
-                    ability1.TryCast();
+                    if(ability1 != null)
+                    {
+                        ability1.TryCast();
+                    }
                     break;
                 case 2:
-                    ability2.TryCast();
+                    if (ability2 != null)
+                    {
+                        ability2.TryCast();
+                    }
                     break;
                 case 3:
                     ability3.TryCast();
@@ -77,6 +84,31 @@ public class EntityAbilityManager : MonoBehaviour
             case 6:
                 ability6 = ability;
                 ability6.SetSlot(6);
+                break;
+        }
+    }
+
+    public void RemoveAbility(int slot)
+    {
+        switch (slot)
+        {
+            case 1:
+                ability1 = null;
+                break;
+            case 2:
+                ability2 = null;
+                break;
+            case 3:
+                ability3 = null;
+                break;
+            case 4:
+                ability4 = null;
+                break;
+            case 5:
+                ability5 = null;
+                break;
+            case 6:
+                ability6 = null;
                 break;
         }
     }

@@ -11,8 +11,10 @@ public class Item : ScriptableObject
     public bool isTwoHander;
     public List<ItemBuff> buffs;
     public string scriptName;
+    public int runeSlots;
+    public List<GameObject> runeList;
+    public string type;
 }
-
 
 [System.Serializable]
 public class ItemBuff

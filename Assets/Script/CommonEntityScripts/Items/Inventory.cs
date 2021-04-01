@@ -13,10 +13,12 @@ public class Inventory : MonoBehaviour
     public UiButtonClick leftHand;
     public int testEquipmentCount = 0;
     public GameObject itemOnGround;
+    public EntityAbilityManager abilityManager;
 
     private void Awake()
     {
         events = GetComponent<EntityEvents>();
+        abilityManager = GetComponent<EntityAbilityManager>();
     }
 
 
@@ -70,7 +72,7 @@ public class Inventory : MonoBehaviour
                                 leftHand._item = null;
                                 leftHand.icon.sprite = null;
                             }
-                            Unequip(rightHand._item);
+                            Unequip(rightHand._item, inventorySlot);
                             NewItem(rightHand._item);
                             rightHand._item = null;
                             rightHand.icon.sprite = null;
@@ -82,12 +84,12 @@ public class Inventory : MonoBehaviour
                                 rightHand._item = null;
                                 rightHand.icon.sprite = null;
                             }
-                            Unequip(leftHand._item);
+                            Unequip(leftHand._item, inventorySlot);
                             NewItem(leftHand._item);
                             leftHand._item = null;
                             leftHand.icon.sprite = null;
                         }
-                        Equip(item);
+                        Equip(item, inventorySlot);
                         rightHand._item = item;
                         leftHand._item = item;
                         rightHand.icon.sprite = item.sprite;
@@ -97,14 +99,14 @@ public class Inventory : MonoBehaviour
                     {
                         if (inventorySlot._item.isTwoHander)
                         {
-                            Equip(item);
+                            Equip(item, inventorySlot);
                             rightHand._item = item;
                             rightHand.icon.sprite = item.sprite;
 
                             Item temp = leftHand._item;
                             leftHand._item = null;
                             leftHand.icon.sprite = null;
-                            Unequip(temp);
+                            Unequip(temp, inventorySlot);
                             NewItem(temp);
                         }
 
@@ -112,7 +114,7 @@ public class Inventory : MonoBehaviour
                         else if (inventorySlot == rightHand)
                         {
                             Item temp = rightHand._item;
-                            Equip(item);
+                            Equip(item, inventorySlot);
                             rightHand._item = item;
                             rightHand.icon.sprite = item.sprite;
                             item = temp;
@@ -121,7 +123,7 @@ public class Inventory : MonoBehaviour
                                 temp = leftHand._item;
                                 leftHand._item = item;
                                 leftHand.icon.sprite = item.sprite;
-                                Unequip(temp);
+                                Unequip(temp, inventorySlot);
                                 NewItem(temp);
                             }
                             else
@@ -141,7 +143,7 @@ public class Inventory : MonoBehaviour
                     }
                     else
                     {
-                        Equip(item);
+                        Equip(item, inventorySlot);
                         inventorySlot._item = item;
                         inventorySlot.icon.sprite = item.sprite;
                     }
@@ -151,8 +153,41 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Unequip(Item item)
+    public void Unequip(Item item, UiButtonClick slot)
     {
+        if(slot == rightHand || slot == leftHand)
+        {
+            ItemWeapon weapon = (ItemWeapon)item;
+
+            switch (weapon.weaponType)
+            {
+                case (1):
+                    if (slot == rightHand)
+                    {
+                        abilityManager.RemoveAbility(2);
+                        Destroy(GetComponent<StingRight>());
+                    }
+                    if (slot == leftHand)
+                    {
+                        abilityManager.RemoveAbility(1);
+                        Destroy(GetComponent<StingLeft>());
+                    }
+                    break;
+                case (2):
+
+                    break;
+                case (3):
+
+                    break;
+                case (4):
+
+                    break;
+                case (5):
+
+                    break;
+            }
+        }
+
         Debug.Log("Unequipped " + item.name);
         testEquipmentCount--;
 
@@ -163,8 +198,42 @@ public class Inventory : MonoBehaviour
         }
         if (item.scriptName != "") Destroy(GetComponent(Type.GetType(item.scriptName)));
     }
-    public void Equip(Item item)
+
+    public void Equip(Item item, UiButtonClick slot)
     {
+        if(slot == rightHand || slot == leftHand)
+        {
+            ItemWeapon weapon = (ItemWeapon)item;
+
+            switch (weapon.weaponType)
+            {
+                case (1):
+                    if (slot == rightHand)
+                    {
+                        StingRight stingRight = gameObject.AddComponent<StingRight>();
+                        abilityManager.SetAbility(2, stingRight);
+                    }
+                    if (slot == leftHand)
+                    {
+                        StingLeft stingLeft = gameObject.AddComponent<StingLeft>();
+                        abilityManager.SetAbility(1, stingLeft);
+                    }
+                    break;
+                case (2):
+
+                    break;
+                case (3):
+
+                    break;
+                case (4):
+
+                    break;
+                case (5):
+
+                    break;
+            }
+        }
+
         Debug.Log("Equipped " + item.name);
         testEquipmentCount++;
 

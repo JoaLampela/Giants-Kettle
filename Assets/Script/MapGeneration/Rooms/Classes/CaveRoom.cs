@@ -91,11 +91,11 @@ public class CaveRoom : Room
 
     void ProcessMap(Coord centre, int[,] map)
     {
-        Debug.Log("Process map");
+        //Debug.Log("Process map");
         List<List<Coord>> wallregions = GetRegions(0, centre, map);
         int largestListSize = 0;
         int largestListIndex = 0;
-        Debug.Log("Wallregion count" + wallregions.Count);
+        //Debug.Log("Wallregion count" + wallregions.Count);
         for (int i = 0; i < wallregions.Count; i++)
         {
             if (wallregions[i].Count > largestListSize)
@@ -105,7 +105,7 @@ public class CaveRoom : Room
                 Debug.Log("so far found index of largest list: " + i);
             }
         }
-        Debug.Log("Largest list size: " + largestListSize + " Largest list: " + largestListIndex);
+        //Debug.Log("Largest list size: " + largestListSize + " Largest list: " + largestListIndex);
         List<Coord> tileList = new List<Coord>();
 
         foreach (List<Coord> coordList in wallregions)
@@ -153,7 +153,7 @@ public class CaveRoom : Room
 
     List<Coord> GetRegionTiles(int startX, int startY, Coord centre, int[,] map)
     {
-        Debug.Log("Fetching region tiles");
+        //Debug.Log("Fetching region tiles");
         List<Coord> tiles = new List<Coord>();
         int[,] mapFlags = new int[30, 30];
         int tileType = map[startX + centre.tileX - 15, startY + centre.tileY - 15];
@@ -176,7 +176,7 @@ public class CaveRoom : Room
                             {
                                 mapFlags[x - centre.tileX + 15, y - centre.tileY + 15] = 1;
                                 queue.Enqueue(new Coord(x, y));
-                                Debug.Log("Queueboi");
+                                //Debug.Log("Queueboi");
                             }
                         }
                 }

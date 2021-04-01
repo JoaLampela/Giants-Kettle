@@ -1002,6 +1002,7 @@ MonoBehaviour:
   leftHand: {fileID: 0}
   testEquipmentCount: 0
   itemOnGround: {fileID: 1598165947520860255, guid: 996ffc1cb127e254d90e72c747436162, type: 3}
+  abilityManager: {fileID: 0}
 --- !u!50 &648083809014275549
 Rigidbody2D:
   serializedVersion: 4

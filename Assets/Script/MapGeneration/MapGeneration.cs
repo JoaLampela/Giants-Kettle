@@ -138,7 +138,7 @@ public class MapGeneration : MonoBehaviour
             if (room.roomType == 0)
             {
                 mainRoom = room;
-                Debug.Log("Found a spawnroom and made it into a main room");
+                //Debug.Log("Found a spawnroom and made it into a main room");
                 room.isMainRoom = true;
                 room.SetAccessibleFromMainRoom();
                 break;
@@ -158,7 +158,7 @@ public class MapGeneration : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                Gizmos.color = map[x, y] == 1 ? Color.black : Color.white;
+                //Gizmos.color = map[x, y] == 1 ? Color.black : Color.white;
                 Gizmos.DrawCube(new Vector3(x - width / 2 + 0.5f, y - height / 2 + 0.5f, 0), Vector3.one);
             }
         }
@@ -170,7 +170,7 @@ public class MapGeneration : MonoBehaviour
 
         if (forceAccessibilityFromMainRoom)
         {
-            Debug.Log("forcing accessability");
+            //Debug.Log("forcing accessability");
             foreach (Room room in allRooms)
             {
                 if (room.isAccessibleFromMainRoom)
@@ -249,9 +249,9 @@ public class MapGeneration : MonoBehaviour
 
     void CreatePassage(Room roomA, Room roomB, Coord tileA, Coord tileB)
     {
-        Debug.Log("connecting" + roomA + "" + roomB);
+        //Debug.Log("connecting" + roomA + "" + roomB);
         Room.ConnectRooms(roomA, roomB);
-        Debug.DrawLine(CoordToWorldPoint(tileA), CoordToWorldPoint(tileB), Color.green, 5);
+        //Debug.DrawLine(CoordToWorldPoint(tileA), CoordToWorldPoint(tileB), Color.green, 5);
         List<Coord> line = GetLine(tileA, tileB);
 
         foreach (Coord point in line)
@@ -284,7 +284,7 @@ public class MapGeneration : MonoBehaviour
                     int checkingY = c.tileY + y;
                     if (map[checkingX, checkingY] == 0)
                     {
-                        Debug.Log("we did it mom");
+                        //Debug.Log("we did it mom");
                         return false;
                     }
 
@@ -422,7 +422,7 @@ public class MapGeneration : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject[] playerSpawnPoint = GameObject.FindGameObjectsWithTag("PlayerSpawnPoint");
         player.transform.position = playerSpawnPoint[1].transform.position;
-        Debug.Log(playerSpawnPoint[1].transform.position);
+        //Debug.Log(playerSpawnPoint[1].transform.position);
     }
     [System.Serializable]
     public class Level

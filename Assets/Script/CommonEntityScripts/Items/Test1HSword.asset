@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2924b11a31825464387b1860570e57a2, type: 3}
+  m_Name: Test1HSword
+  m_EditorClassIdentifier: 
+  inventorySlot: 6
+  Itemname: ShortSword
+  description: pog
+  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  isTwoHander: 0
+  buffs: []
+  scriptName: 
+  runeSlots: 2
+  runeList:
+  - {fileID: 8872533423126406925, guid: 5f76935c508191e44b76656a92713ddd, type: 3}
+  type: 
+  weaponType: 1
+  physicalDamage: 0
+  spiritDamage: 0

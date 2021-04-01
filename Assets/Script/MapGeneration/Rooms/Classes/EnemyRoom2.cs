@@ -8,7 +8,7 @@ public class EnemyRoom2 : Room
     {
         CentreTile = centre;
         roomType = 3;
-        Debug.Log("creating enemy room");
+        //Debug.Log("creating enemy room");
         tiles = new List<Coord>();
         for (int x = -10 + centre.tileX; x < 10 + centre.tileX; x++)
         {
@@ -26,7 +26,7 @@ public class EnemyRoom2 : Room
                 tiles.Add(new Coord(x, y));
             }
         }
-        Debug.Log(tiles.Count);
+        //Debug.Log(tiles.Count);
         roomSize = tiles.Count;
         connectedRooms = new List<Room>();
         edgeTiles = new List<Coord>();
