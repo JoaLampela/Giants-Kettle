@@ -6,7 +6,7 @@ public class StingLeft : MonoBehaviour, IAbility
 {
     EntityEvents _entityEvents;
     [SerializeField] private int _spellSlot;
-    [SerializeField] private int _abilityCost = 0;
+    [SerializeField] private int _abilityCost = 10;
     ItemWeapon _weapon;
 
     private void Start()
@@ -29,6 +29,8 @@ public class StingLeft : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
+            Debug.Log("cast left");
+            _entityEvents.DeteriorateHealth(_abilityCost);
             GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting2, gameObject.transform.position, gameObject.transform.rotation);
             sting.GetComponent<AbilityEvents>().SetSource(gameObject);
             
@@ -61,7 +63,7 @@ public class StingLeft : MonoBehaviour, IAbility
 
     public void TryCast()
     {
-        _entityEvents.TryCastAbilityCostRage(_spellSlot, _abilityCost);
+        _entityEvents.TryCastAbilityCostHealth(_spellSlot, _abilityCost);
     }
 
     private void Subscribe()
@@ -70,7 +72,7 @@ public class StingLeft : MonoBehaviour, IAbility
         _entityEvents.OnCanNotAffordAbility += CannotAffordCast;
     }
 
-    private void Unsubscribe()
+    public void Unsubscribe()
     {
         _entityEvents.OnCallBackCastAbility -= Cast;
         _entityEvents.OnCanNotAffordAbility -= CannotAffordCast;

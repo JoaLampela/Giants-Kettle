@@ -21,7 +21,7 @@ public class AbilityFireBall : MonoBehaviour, IAbility
     {
         events.OnCallBackCastAbility += Cast;
     }
-    private void Unsubscribe()
+    public void Unsubscribe()
     {
         events.OnCallBackCastAbility -= Cast;
     }

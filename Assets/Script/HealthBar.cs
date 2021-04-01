@@ -16,13 +16,13 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         Subscribe();
     }
 
     private void Awake()
     {
-        _events = GetComponent<EntityEvents>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        _events = player.GetComponent<EntityEvents>();
     }
 
     private void Update()

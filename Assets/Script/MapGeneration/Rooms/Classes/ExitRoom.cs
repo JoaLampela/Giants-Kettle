@@ -39,6 +39,6 @@ public class ExitRoom : Room
                 }
             }
         }
-        Debug.Log(edgeTiles.Count);
+        //Debug.Log(edgeTiles.Count);
     }
 }
