@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class StingLeft : MonoBehaviour, IAbility
 {
-    [SerializeField] private GameObject _ability;
     EntityEvents _entityEvents;
-    AbilityEvents _abilityEvents;
     [SerializeField] private int _spellSlot;
-    [SerializeField] private int _abilityCost = 30;
+    [SerializeField] private int _abilityCost = 0;
     ItemWeapon _weapon;
 
     private void Start()
     {
         Subscribe();
-        _weapon = (ItemWeapon)GetComponent<Inventory>().rightHand._item;
+        _weapon = (ItemWeapon)GetComponent<Inventory>().leftHand._item;
     }
 
     private void Awake()
     {
         _entityEvents = GetComponent<EntityEvents>();
-        _abilityEvents = GetComponent<AbilityEvents>();
     }
 
     private void OnDisable()
@@ -32,15 +29,15 @@ public class StingLeft : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("STING");
-            GameObject sting = Instantiate(_ability, gameObject.transform.position, gameObject.transform.rotation);
-
+            GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting2, gameObject.transform.position, gameObject.transform.rotation);
+            sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+            
             foreach (GameObject rune in _weapon.runeList)
             {
-                IRune temp = (IRune)sting.AddComponent(typeof(IRune));
-                temp = rune.GetComponent<IRune>();
+                //MonoBehaviour temp = sting.AddComponent(typeof(MonoBehaviour)) as MonoBehaviour;
+                //temp = rune.GetComponent<MonoBehaviour>();
             }
-            _abilityEvents.Instantiated();
+            sting.GetComponent<AbilityEvents>().UseAbility();
         }
     }
 

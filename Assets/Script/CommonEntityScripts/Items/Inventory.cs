@@ -114,6 +114,7 @@ public class Inventory : MonoBehaviour
                         else if (inventorySlot == rightHand)
                         {
                             Item temp = rightHand._item;
+                            Unequip(temp, rightHand);
                             Equip(item, inventorySlot);
                             rightHand._item = item;
                             rightHand.icon.sprite = item.sprite;
@@ -122,13 +123,15 @@ public class Inventory : MonoBehaviour
                             {
                                 temp = leftHand._item;
                                 leftHand._item = item;
-                                leftHand.icon.sprite = item.sprite;
                                 Unequip(temp, inventorySlot);
+                                Equip(item, leftHand);
+                                leftHand.icon.sprite = item.sprite;
                                 NewItem(temp);
                             }
                             else
                             {
                                 leftHand._item = item;
+                                Equip(item, leftHand);
                                 leftHand.icon.sprite = item.sprite;
                             }
                         }
@@ -164,11 +167,13 @@ public class Inventory : MonoBehaviour
                 case (1):
                     if (slot == rightHand)
                     {
+                        Debug.Log("Unequipped Right");
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<StingRight>());
                     }
                     if (slot == leftHand)
                     {
+                        Debug.Log("Unequipped Left");
                         abilityManager.RemoveAbility(1);
                         Destroy(GetComponent<StingLeft>());
                     }
@@ -210,11 +215,13 @@ public class Inventory : MonoBehaviour
                 case (1):
                     if (slot == rightHand)
                     {
+                        Debug.Log("Equipped Right");
                         StingRight stingRight = gameObject.AddComponent<StingRight>();
                         abilityManager.SetAbility(2, stingRight);
                     }
                     if (slot == leftHand)
                     {
+                        Debug.Log("Equipped Left");
                         StingLeft stingLeft = gameObject.AddComponent<StingLeft>();
                         abilityManager.SetAbility(1, stingLeft);
                     }

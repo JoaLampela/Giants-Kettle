@@ -14,6 +14,7 @@ public class EntityAbilityManager : MonoBehaviour
     public IAbility ability5;
     public IAbility ability6;
     public GameObject sting;
+    public GameObject sting2;
 
     public void CastAbility(int slot)
     {
@@ -59,6 +60,8 @@ public class EntityAbilityManager : MonoBehaviour
 
     public void SetAbility(int slot, IAbility ability)
     {
+        Debug.Log("Ability Set: " + slot);
+
         switch (slot) 
         {
             case 1:
@@ -90,6 +93,8 @@ public class EntityAbilityManager : MonoBehaviour
 
     public void RemoveAbility(int slot)
     {
+        Debug.Log("Ability Removed: " + slot);
+
         switch (slot)
         {
             case 1:

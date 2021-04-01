@@ -854,6 +854,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1497391970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8861480014740104712, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+  m_PrefabInstance: {fileID: 1940388709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1497391971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497391970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a12b8f20d8f0364fa15e71810739353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816891431
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,13 +897,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816891431}
-  m_LocalRotation: {x: -0.0035881144, y: -0, z: -0, w: 0.99999356}
-  m_LocalPosition: {x: 0, y: 0, z: -23.7}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -0.411, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &1816891433
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1156,6 +1173,10 @@ PrefabInstance:
       propertyPath: sting
       value: 
       objectReference: {fileID: 8025816061667156796, guid: 75fed09d59f62c6458b50e09095c0220, type: 3}
+    - target: {fileID: 5856488643409741595, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
+      propertyPath: sting2
+      value: 
+      objectReference: {fileID: 8025816061667156796, guid: e21851256793a9242afc9f9896abefd4, type: 3}
     - target: {fileID: 7318350428513855945, guid: e877b0fe559ff7d458b46fe20052f76b, type: 3}
       propertyPath: playerCamera
       value: 
@@ -1443,6 +1464,10 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 8525123744895885365, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: _item
+      value: 
+      objectReference: {fileID: 11400000, guid: e0a054940f81be544b3897450a5dd57b, type: 2}
+    - target: {fileID: 8525123745161658601, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
       propertyPath: _item
       value: 
       objectReference: {fileID: 11400000, guid: e0a054940f81be544b3897450a5dd57b, type: 2}

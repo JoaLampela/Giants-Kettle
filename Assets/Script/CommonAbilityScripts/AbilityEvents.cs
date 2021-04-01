@@ -26,11 +26,6 @@ public class AbilityEvents : MonoBehaviour
         _onUseAbility?.Invoke();
     }
 
-    public void Instantiated()
-    {
-        _onInstantiated?.Invoke();
-    }
-
     //Called when activating the ability's effect
     public void Activate()
     {

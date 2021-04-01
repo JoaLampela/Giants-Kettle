@@ -6,7 +6,7 @@ public class AbilityTargetPositionMouse : MonoBehaviour, IAbilityTargetPosition
 {
     public Vector2 GetTargetPosition()
     {
-        Vector2 targetVC2 = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+        Vector2 targetVC2 = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         return targetVC2;
     }
 }

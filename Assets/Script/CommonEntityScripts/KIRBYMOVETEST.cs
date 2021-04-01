@@ -165,7 +165,7 @@ public class KIRBYMOVETEST : MonoBehaviour
             float obstacleRange = vectorNode.ObstacleCheck(gameObject, maxObstacleVectorDistance, objectCollider);
             if (obstacleRange == 0)
                 continue;
-            Debug.Log("obstacle range: " + obstacleRange);
+            //Debug.Log("obstacle range: " + obstacleRange);
             vectorNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
             VectorNode leftNode = vectorNode;
             float counter = 2;

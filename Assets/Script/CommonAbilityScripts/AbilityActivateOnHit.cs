@@ -23,7 +23,7 @@ public class AbilityActivateOnHit : MonoBehaviour
 
     private void Activate(Collider2D collider)
     {
-        if(collider.gameObject.GetComponent<EntityStats>().team != _events._abilityCastSource.GetComponent<EntityStats>().team)
+        if(collider.gameObject.tag != "Player")
         {
             _events.Activate();
         }

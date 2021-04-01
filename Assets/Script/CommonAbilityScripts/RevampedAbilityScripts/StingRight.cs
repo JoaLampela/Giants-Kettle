@@ -5,7 +5,6 @@ using UnityEngine;
 public class StingRight : MonoBehaviour, IAbility
 {
     EntityEvents _entityEvents;
-    AbilityEvents _abilityEvents;
     [SerializeField] private int _spellSlot;
     [SerializeField] private int _abilityCost = 0;
     ItemWeapon _weapon;
@@ -28,21 +27,17 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if(_spellSlot == slot)
+        if (_spellSlot == slot)
         {
-            Debug.Log("STING");
             GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, gameObject.transform.position, gameObject.transform.rotation);
-
-            Debug.Log("Loop before");
-            foreach(GameObject rune in _weapon.runeList)
+            sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+            
+            foreach (GameObject rune in _weapon.runeList)
             {
-                Debug.Log("Loop inside");
-                MonoBehaviour temp = sting.AddComponent(typeof(MonoBehaviour)) as MonoBehaviour;
-                temp = rune.GetComponent<MonoBehaviour>();
+                //MonoBehaviour temp = sting.AddComponent(typeof(MonoBehaviour)) as MonoBehaviour;
+                //temp = rune.GetComponent<MonoBehaviour>();
             }
-
-            Debug.Log("Loop after");
-            sting.GetComponent<AbilityEvents>().Instantiated();
+            sting.GetComponent<AbilityEvents>().UseAbility();
         }
     }
 

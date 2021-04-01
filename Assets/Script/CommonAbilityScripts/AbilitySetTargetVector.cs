@@ -16,7 +16,7 @@ public class AbilitySetTargetVector : MonoBehaviour
     {
         _iTargetPosition = _events._abilityCastSource.GetComponent<IAbilityTargetPosition>();
         _targetPosition = _iTargetPosition.GetTargetPosition();
-        _targetVector = ((Vector2)transform.position - _targetPosition).normalized;
+        _targetVector = (_targetPosition - (Vector2)transform.position).normalized;
 
     }
 
@@ -46,7 +46,7 @@ public class AbilitySetTargetVector : MonoBehaviour
 
     public void SetTargetVector()
     {
-        _targetVector = ((Vector2)transform.position - _targetPosition).normalized;
+        _targetVector = (_targetPosition - (Vector2)transform.position).normalized;
     }
 
     public Vector2 GetTargetVector()
