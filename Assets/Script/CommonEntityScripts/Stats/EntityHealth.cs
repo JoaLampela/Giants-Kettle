@@ -4,8 +4,9 @@ public class EntityHealth : MonoBehaviour
 {
     private EntityEvents events;
     private EntityStats stats;
-    [SerializeField] private int health;
+    public int health;
     private float oneHealth;
+
 
     private void Awake()
     {
@@ -62,6 +63,7 @@ public class EntityHealth : MonoBehaviour
         events.LoseHealth(damage);
         if(health - damage <= 0) events.Die();
         else health -= damage;
+
     }
     private void GainHealth(int amount)
     {
@@ -75,6 +77,7 @@ public class EntityHealth : MonoBehaviour
             events.GainHealth(amount);
             health += amount;
         }
+
     }
 
     private void RegenHealth()
@@ -89,6 +92,7 @@ public class EntityHealth : MonoBehaviour
             }
         }
         if (health > stats.currentMaxHealth) health = stats.currentMaxHealth;
+
     }
 
 
