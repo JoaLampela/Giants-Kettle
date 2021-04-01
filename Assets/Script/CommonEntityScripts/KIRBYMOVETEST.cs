@@ -164,7 +164,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
-            float allyRange = vectorNode.ObstacleCheck(gameObject, maxAllyRange, objectCollider);
+            float allyRange = vectorNode.EnemyCheck(gameObject, maxAllyRange, objectCollider);
             if (allyRange == 0)
                 continue;
             vectorNode.weight = vectorNode.weight * 1 / (maxAllyRange / allyRange);
