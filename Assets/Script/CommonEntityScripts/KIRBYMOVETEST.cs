@@ -9,8 +9,8 @@ public class KIRBYMOVETEST : MonoBehaviour
     //Each variable name represents a compass point
     List<VectorNode> vectorNodes;
     VectorNode debugBestVectorNode;
-    float maxObstacleVectorDistance = 0.5f;
-    float maxMeleeEnemyRange = 2;
+    float maxObstacleVectorDistance = 0.2f;
+    float maxAllyRange = 1;
     CircleCollider2D objectCollider;
     Path path;
     float nextWayPointDistance = 0.5f;
@@ -88,8 +88,15 @@ public class KIRBYMOVETEST : MonoBehaviour
         {
             if (path.vectorPath.Count - currentWaypoint >= 4)
                 AddWeightsByTarget(2);
-            else
+            /*else
+            {
+                CirclePlayer();
+            }*/
+            if (path.vectorPath.Count - currentWaypoint >= 5)
+            {
                 DodgeCheck();
+            }
+
             RemoveWeightsByObstacle();
             ChangeWeightByAlly();
             GetComponent<Rigidbody2D>().velocity = FindBestMovementOption();
@@ -134,27 +141,22 @@ public class KIRBYMOVETEST : MonoBehaviour
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
-            float allyRange = vectorNode.EnemyCheck(gameObject, maxMeleeEnemyRange, objectCollider);
-            if (allyRange == 0)
+            float obstacleRange = vectorNode.EnemyCheck(gameObject, maxObstacleVectorDistance, objectCollider);
+            if (obstacleRange == 0)
                 continue;
-            Debug.Log("obstacle range: " + allyRange);
-            vectorNode.weight = vectorNode.weight * 1 / (maxMeleeEnemyRange / allyRange);
+            vectorNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
             VectorNode leftNode = vectorNode;
-            float counter = 2;
             for (int i = 1; i < 4; i++)
             {
-                leftNode.weight = vectorNode.weight * 1 / (maxMeleeEnemyRange / allyRange);
+                leftNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
                 leftNode = leftNode.leftVector;
-                counter += 2;
             }
             VectorNode rightNode = vectorNode;
-            counter = 2;
             for (int i = 1; i < 4; i++)
             {
 
-                rightNode.weight = vectorNode.weight * 1 / (maxMeleeEnemyRange / allyRange);
+                rightNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
                 rightNode = rightNode.rightVector;
-                counter += 2;
             }
         }
     }
@@ -162,26 +164,48 @@ public class KIRBYMOVETEST : MonoBehaviour
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
+            float allyRange = vectorNode.ObstacleCheck(gameObject, maxAllyRange, objectCollider);
+            if (allyRange == 0)
+                continue;
+            vectorNode.weight = vectorNode.weight * 1 / (maxAllyRange / allyRange);
+            VectorNode leftNode = vectorNode;
+            for (int i = 1; i < 5; i++)
+            {
+                leftNode.weight = vectorNode.weight * 1 / (maxAllyRange / allyRange);
+                leftNode = leftNode.leftVector;
+            }
+            VectorNode rightNode = vectorNode;
+            for (int i = 1; i < 5; i++)
+            {
+                rightNode.weight = vectorNode.weight * 1 / (maxAllyRange / allyRange);
+                rightNode = rightNode.rightVector;
+            }
+        }
+    }
+    private void CirclePlayer()
+    {
+        foreach (VectorNode vectorNode in vectorNodes)
+        {
             float obstacleRange = vectorNode.ObstacleCheck(gameObject, maxObstacleVectorDistance, objectCollider);
             if (obstacleRange == 0)
                 continue;
-            //Debug.Log("obstacle range: " + obstacleRange);
-            vectorNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
+            vectorNode.weight = 0.2f;
+            float tempweight = 0.2f;
             VectorNode leftNode = vectorNode;
-            float counter = 2;
             for (int i = 1; i < 5; i++)
             {
-                leftNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
+                tempweight += 0.2f;
+                leftNode.weight = tempweight;
                 leftNode = leftNode.leftVector;
-                counter += 2;
             }
             VectorNode rightNode = vectorNode;
-            counter = 2;
+            tempweight = 0.2f;
             for (int i = 1; i < 5; i++)
             {
-                rightNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
+
+                tempweight += 0.2f;
+                rightNode.weight = tempweight;
                 rightNode = rightNode.rightVector;
-                counter += 2;
             }
         }
     }
@@ -297,14 +321,30 @@ public class KIRBYMOVETEST : MonoBehaviour
             }
             return 0;
         }
-        public float EnemyCheck(GameObject gameObject, float maxObstacleVectorDistance, CircleCollider2D gameObjectCollider)
+
+        public float EnemyCheck(GameObject gameObject, float maxEnemyReactDistance, CircleCollider2D gameObjectCollider)
         {
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(direction.x * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.x, direction.y * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.y), direction, maxObstacleVectorDistance);
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(direction.x * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.x, direction.y * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.y), direction, maxEnemyReactDistance);
             //Debug.DrawLine(gameObject.transform.position, direction * maxObstacleVectorDistance + (Vector2)gameObject.transform.position, Color.green, Time.deltaTime);
             //Debug.Log("raycasting");
             if (hit)
             {
                 if (hit.transform.CompareTag("Enemy"))
+                {
+                    return hit.distance;
+                }
+            }
+            return 0;
+        }
+
+        public float PlayerCheck(GameObject gameObject, float maxPlayerReactDistance, CircleCollider2D gameObjectCollider)
+        {
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(direction.x * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.x, direction.y * gameObjectCollider.radius * 1.01f + gameObjectCollider.offset.y), direction, maxPlayerReactDistance);
+            //Debug.DrawLine(gameObject.transform.position, direction * maxObstacleVectorDistance + (Vector2)gameObject.transform.position, Color.green, Time.deltaTime);
+            //Debug.Log("raycasting");
+            if (hit)
+            {
+                if (hit.transform.CompareTag("Player"))
                 {
                     return hit.distance;
                 }
