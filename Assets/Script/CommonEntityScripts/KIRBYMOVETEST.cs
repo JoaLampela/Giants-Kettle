@@ -11,6 +11,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     VectorNode debugBestVectorNode;
     float maxObstacleVectorDistance = 0.2f;
     float maxAllyRange = 1;
+    float maxPlayerRange = 6f;
     CircleCollider2D objectCollider;
     Path path;
     float nextWayPointDistance = 1f;
@@ -72,7 +73,6 @@ public class KIRBYMOVETEST : MonoBehaviour
         else
             reachedEndOfPath = false;
 
-        
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWayPointDistance)
         {
@@ -84,20 +84,20 @@ public class KIRBYMOVETEST : MonoBehaviour
         Debug.DrawRay(gameObject.transform.position, AstarDirection, Color.red, Time.deltaTime);
 
 
-        if (path.vectorPath.Count - currentWaypoint >= 4)
+        if (CalculateDistanceOfRemainingWaypoints() >= 2f)
             foreach (VectorNode vn in vectorNodes)
             {
                 vn.weight = 0;
             }
         if (targetingSystem.target != null)
         {
-            if (path.vectorPath.Count - currentWaypoint >= 4)
+            if (CalculateDistanceOfRemainingWaypoints() >= 4f)
                 AddWeightsByTarget(2);
-            /*else
+            else
             {
                 CirclePlayer();
-            }*/
-            if (path.vectorPath.Count - currentWaypoint >= 5)
+            }
+            if (CalculateDistanceOfRemainingWaypoints() <= 4f)
             {
                 DodgeCheck();
             }
@@ -107,6 +107,17 @@ public class KIRBYMOVETEST : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = FindBestMovementOption();
 
         }
+    }
+    private float CalculateDistanceOfRemainingWaypoints()
+    {
+        float distance = 0;
+        Vector2 LastWaypointPosition = rb.position;
+        foreach (Vector2 wayPoint in path.vectorPath)
+        {
+            distance += Vector2.Distance(LastWaypointPosition, wayPoint);
+            LastWaypointPosition = wayPoint;
+        }
+        return distance;
     }
     void OnPathComplete(Path p)
     {
@@ -191,13 +202,13 @@ public class KIRBYMOVETEST : MonoBehaviour
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
-            float obstacleRange = vectorNode.ObstacleCheck(gameObject, maxObstacleVectorDistance, objectCollider);
+            float obstacleRange = vectorNode.PlayerCheck(gameObject, maxPlayerRange, objectCollider);
             if (obstacleRange == 0)
                 continue;
             vectorNode.weight = 0.2f;
             float tempweight = 0.2f;
             VectorNode leftNode = vectorNode;
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 4; i++)
             {
                 tempweight += 0.2f;
                 leftNode.weight = tempweight;
@@ -205,7 +216,7 @@ public class KIRBYMOVETEST : MonoBehaviour
             }
             VectorNode rightNode = vectorNode;
             tempweight = 0.2f;
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 4; i++)
             {
 
                 tempweight += 0.2f;
