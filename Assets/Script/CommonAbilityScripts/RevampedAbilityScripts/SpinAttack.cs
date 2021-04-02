@@ -2,17 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinAttack : MonoBehaviour
+public class SpinAttack : MonoBehaviour, IAbility
 {
-    // Start is called before the first frame update
-    void Start()
+    EntityEvents _entityEvents;
+    [SerializeField] private int _spellSlot;
+    [SerializeField] private int _abilityCost = 10;
+    ItemWeapon _weapon;
+
+
+    private void Start()
     {
-        
+        Subscribe();
+        _weapon = (ItemWeapon)GetComponent<Inventory>().rightHand._item;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        _entityEvents = GetComponent<EntityEvents>();
+    }
+
+    private void OnDisable()
+    {
+        Unsubscribe();
+    }
+
+    public int GetCastValue()
+    {
+        return -1;
+    }
+
+    public void SetSlot(int slot)
+    {
+        _spellSlot = slot;
+    }
+
+    public void TryCast()
+    {
+        _entityEvents.TryCastAbilityCostHealth(_spellSlot, _abilityCost);
+    }
+
+    private void Cast(int slot)
+    {
+        if (_spellSlot == slot)
+        {
+            Debug.Log("Casted Spin Attack");
+            _entityEvents.DeteriorateHealth(_abilityCost);
+        }
+    }
+
+    private void CannotAffordCast(int slot)
+    {
+        if (_spellSlot == slot)
+        {
+            Debug.Log("CANNOT AFFORD TO CAST SPIN ATTACK");
+        }
+    }
+
+    private void Subscribe()
+    {
+        _entityEvents.OnCallBackCastAbility += Cast;
+        _entityEvents.OnCanNotAffordAbility += CannotAffordCast;
+    }
+
+    public void Unsubscribe()
+    {
+        _entityEvents.OnCallBackCastAbility -= Cast;
+        _entityEvents.OnCanNotAffordAbility -= CannotAffordCast;
     }
 }

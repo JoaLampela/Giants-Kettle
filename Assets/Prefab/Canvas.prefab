@@ -841,7 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slot: 0
-  _item: {fileID: 11400000, guid: d5e2535c19bdf7c44a808aa869ab0b75, type: 2}
+  _item: {fileID: 0}
   icon: {fileID: 8525123744996375037}
   isEquipmentSlot: 0
 --- !u!1 &8525123744019060099
@@ -2464,7 +2464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slot: 0
-  _item: {fileID: 11400000, guid: 8793f483c7787d74ab6e9187f539d2e3, type: 2}
+  _item: {fileID: 0}
   icon: {fileID: 8525123744726042021}
   isEquipmentSlot: 0
 --- !u!1 &8525123744746928074
@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slot: 0
-  _item: {fileID: 11400000, guid: 74547fddac8493545b7e0c878031d9e5, type: 2}
+  _item: {fileID: 11400000, guid: 2944105f908d2314693fd2f56ddf482a, type: 2}
   icon: {fileID: 8525123745357855206}
   isEquipmentSlot: 0
 --- !u!1 &8525123744770771370
@@ -5721,7 +5721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slot: 0
-  _item: {fileID: 11400000, guid: 038121d89f18b754db5648a5403eb5b5, type: 2}
+  _item: {fileID: 0}
   icon: {fileID: 8525123744936956788}
   isEquipmentSlot: 0
 --- !u!1 &8525123745894273456

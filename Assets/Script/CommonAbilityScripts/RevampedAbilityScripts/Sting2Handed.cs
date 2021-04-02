@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigProjectile : MonoBehaviour, IAbility
+public class Sting2Handed : MonoBehaviour, IAbility
 {
     EntityEvents _entityEvents;
     [SerializeField] private int _spellSlot;
@@ -28,7 +28,7 @@ public class BigProjectile : MonoBehaviour, IAbility
 
     public int GetCastValue()
     {
-        throw new System.NotImplementedException();
+        return -1;
     }
 
     public void SetSlot(int slot)
@@ -45,7 +45,7 @@ public class BigProjectile : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("Casted Big Projectile");
+            Debug.Log("Casted Sting 2handed");
             _entityEvents.DeteriorateHealth(_abilityCost);
         }
     }
@@ -54,7 +54,7 @@ public class BigProjectile : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("CANNOT AFFORD TO CAST BIG PROJECTILE");
+            Debug.Log("CANNOT AFFORD TO CAST STING 2HANDED");
         }
     }
 

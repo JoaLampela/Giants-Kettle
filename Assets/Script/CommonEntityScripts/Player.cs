@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<EntityAbilityManager>().SetAbility(2, GetComponent<AbilityGroundSlam>());
+
     }
 
     private void Update()

@@ -72,7 +72,7 @@ public class Inventory : MonoBehaviour
                                 leftHand._item = null;
                                 leftHand.icon.sprite = null;
                             }
-                            Unequip(rightHand._item, inventorySlot);
+                            Unequip(rightHand._item, rightHand);
                             NewItem(rightHand._item);
                             rightHand._item = null;
                             rightHand.icon.sprite = null;
@@ -84,7 +84,7 @@ public class Inventory : MonoBehaviour
                                 rightHand._item = null;
                                 rightHand.icon.sprite = null;
                             }
-                            Unequip(leftHand._item, inventorySlot);
+                            Unequip(leftHand._item, leftHand);
                             NewItem(leftHand._item);
                             leftHand._item = null;
                             leftHand.icon.sprite = null;
@@ -179,16 +179,39 @@ public class Inventory : MonoBehaviour
                     }
                     break;
                 case (2):
-
+                    Debug.Log("Unequipped 2 hander");
+                    abilityManager.RemoveAbility(2);
+                    abilityManager.RemoveAbility(1);
+                    Destroy(GetComponent<Sting2Handed>());
+                    Destroy(GetComponent<SpinAttack>());
                     break;
                 case (3):
-
+                    if (slot == rightHand)
+                    {
+                        Debug.Log("Unequipped Right");
+                        abilityManager.RemoveAbility(2);
+                        Destroy(GetComponent<ShieldToss>());
+                    }
+                    if (slot == leftHand)
+                    {
+                        Debug.Log("Unequipped Left");
+                        abilityManager.RemoveAbility(1);
+                        Destroy(GetComponent<Block>());
+                    }
                     break;
                 case (4):
-
+                    Debug.Log("Unequipped bow");
+                    abilityManager.RemoveAbility(2);
+                    abilityManager.RemoveAbility(1);
+                    Destroy(GetComponent<PowerShot>());
+                    Destroy(GetComponent<TripleShot>());
                     break;
                 case (5):
-
+                    Debug.Log("Unequipped Staff");
+                    abilityManager.RemoveAbility(2);
+                    abilityManager.RemoveAbility(1);
+                    Destroy(GetComponent<BigProjectile>());
+                    Destroy(GetComponent<NonProjectile>());
                     break;
             }
         }
@@ -227,16 +250,39 @@ public class Inventory : MonoBehaviour
                     }
                     break;
                 case (2):
-
+                    Debug.Log("Equip 2 hander");
+                    Sting2Handed sting2Handed = gameObject.AddComponent<Sting2Handed>();
+                    abilityManager.SetAbility(2, sting2Handed);
+                    SpinAttack spinAttack = gameObject.AddComponent<SpinAttack>();
+                    abilityManager.SetAbility(1, spinAttack);
                     break;
                 case (3):
-
+                    if (slot == rightHand)
+                    {
+                        Debug.Log("Equipped Right");
+                        ShieldToss shieldToss = gameObject.AddComponent<ShieldToss>();
+                        abilityManager.SetAbility(2, shieldToss);
+                    }
+                    if (slot == leftHand)
+                    {
+                        Debug.Log("Equipped Left");
+                        Block block = gameObject.AddComponent<Block>();
+                        abilityManager.SetAbility(1, block);
+                    }
                     break;
                 case (4):
-
+                    Debug.Log("Equip bow");
+                    PowerShot powerShot = gameObject.AddComponent<PowerShot>();
+                    abilityManager.SetAbility(2, powerShot);
+                    TripleShot tripleShot = gameObject.AddComponent<TripleShot>();
+                    abilityManager.SetAbility(1, tripleShot);
                     break;
                 case (5):
-
+                    Debug.Log("Equip staff");
+                    BigProjectile bigProjectile = gameObject.AddComponent<BigProjectile>();
+                    abilityManager.SetAbility(2, bigProjectile);
+                    NonProjectile nonProjectile = gameObject.AddComponent<NonProjectile>();
+                    abilityManager.SetAbility(1, nonProjectile);
                     break;
             }
         }
