@@ -217,7 +217,7 @@ MonoBehaviour:
   generationAreaOuterBorder: 50
   levels:
   - roomList: 0000000001000000040000000400000004000000040000000300000003000000030000000200000002000000
-  tunnelWidth: 2
+  tunnelWidth: 3
   spawnPointCreationPrecentagePerTile: 1
   spawnRoom: {fileID: 9012813900297514595, guid: 4ec9f1d143bc0084099be4145f55f546, type: 3}
   exitRoom: {fileID: 1311955666255823563, guid: 30bcc437adb56a0458c2185fb4e70460, type: 3}
@@ -1323,6 +1323,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2084327877503855711, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084327877503855711, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8525123744524478070, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.5

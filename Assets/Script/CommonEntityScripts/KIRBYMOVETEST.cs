@@ -9,19 +9,21 @@ public class KIRBYMOVETEST : MonoBehaviour
     //Each variable name represents a compass point
     List<VectorNode> vectorNodes;
     VectorNode debugBestVectorNode;
-    float maxObstacleVectorDistance = 0.2f;
+    float maxObstacleVectorDistance = 0.4f;
     float maxAllyRange = 1;
-    float maxPlayerRange = 6f;
+    public float maxPlayerRange = 3f;
     CircleCollider2D objectCollider;
     Path path;
-    float nextWayPointDistance = 1f;
+    float nextWayPointDistance = 0.4f;
     int currentWaypoint = 0;
     public bool reachedEndOfPath = false;
     Seeker seeker;
     Rigidbody2D rb;
     Vector2 AstarDirection;
     public float entitySpeed = 15;
-
+    private VectorNode lastDirection;
+    public AnimationCurve circleWeightTransformationCurve;
+    public AnimationCurve circlingDistanceHarshnessRegulator;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,7 @@ public class KIRBYMOVETEST : MonoBehaviour
         Vector2 dir = new Vector2(0, 1);
 
         VectorNode previousVectorNode = new VectorNode(dir);
+        lastDirection = previousVectorNode;
         vectorNodes.Add(previousVectorNode);
         debugBestVectorNode = previousVectorNode;
         for (int i = 0; i < 15; i++)
@@ -77,10 +80,10 @@ public class KIRBYMOVETEST : MonoBehaviour
         if (distance < nextWayPointDistance)
         {
             currentWaypoint++;
-            Debug.Log("New waypoint");
+            //Debug.Log("New waypoint");
         }
         AstarDirection = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Debug.Log(AstarDirection + " " + (Vector2)path.vectorPath[currentWaypoint] + " " + rb.position + " Distance: " + Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]));
+        //Debug.Log(AstarDirection + " " + (Vector2)path.vectorPath[currentWaypoint] + " " + rb.position + " Distance: " + Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]));
         Debug.DrawRay(gameObject.transform.position, AstarDirection, Color.red, Time.deltaTime);
 
 
@@ -91,13 +94,17 @@ public class KIRBYMOVETEST : MonoBehaviour
             }
         if (targetingSystem.target != null)
         {
-            if (CalculateDistanceOfRemainingWaypoints() >= 4f)
-                AddWeightsByTarget(2);
+            if (CalculateDistanceOfRemainingWaypoints() >= maxPlayerRange)
+                AddWeightsByTarget();
             else
             {
                 CirclePlayer();
+                //Debug.Log("Pursuading");
             }
-            if (CalculateDistanceOfRemainingWaypoints() <= 4f)
+            lastDirection.weight = lastDirection.weight * 2f;
+            lastDirection.leftVector.weight = lastDirection.leftVector.weight * 1.5f;
+            lastDirection.rightVector.weight = lastDirection.rightVector.weight * 1.5f;
+            if (CalculateDistanceOfRemainingWaypoints() <= maxPlayerRange + 1f)
             {
                 DodgeCheck();
             }
@@ -150,6 +157,7 @@ public class KIRBYMOVETEST : MonoBehaviour
                 currentWeight = vectorNode.weight;
             }
         }
+        lastDirection = bestVectorNode;
         Vector2 bestMovementOption = bestVectorNode.direction * entitySpeed;
         return bestMovementOption;
     }
@@ -157,7 +165,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
-            float obstacleRange = vectorNode.EnemyCheck(gameObject, maxObstacleVectorDistance, objectCollider);
+            float obstacleRange = vectorNode.ObstacleCheck(gameObject, maxObstacleVectorDistance, objectCollider);
             if (obstacleRange == 0)
                 continue;
             vectorNode.weight = vectorNode.weight * 1 / (maxObstacleVectorDistance / obstacleRange);
@@ -202,49 +210,47 @@ public class KIRBYMOVETEST : MonoBehaviour
     {
         foreach (VectorNode vectorNode in vectorNodes)
         {
-            float obstacleRange = vectorNode.PlayerCheck(gameObject, maxPlayerRange, objectCollider);
-            if (obstacleRange == 0)
-                continue;
-            vectorNode.weight = 0.2f;
-            float tempweight = 0.2f;
-            VectorNode leftNode = vectorNode;
-            for (int i = 1; i < 4; i++)
+            VectorNode StartingNode = FindClosestPointingVectorNodeToAPoint(targetingSystem.target.transform.position);
+            VectorNode leftNode = StartingNode;
+            for (int i = 0; i < vectorNodes.Count; i++)
             {
-                tempweight += 0.2f;
-                leftNode.weight = tempweight;
+                leftNode.weight = circleWeightTransformationCurve.Evaluate(Vector2.Dot(AstarDirection, leftNode.direction));
                 leftNode = leftNode.leftVector;
             }
-            VectorNode rightNode = vectorNode;
-            tempweight = 0.2f;
-            for (int i = 1; i < 4; i++)
-            {
-
-                tempweight += 0.2f;
-                rightNode.weight = tempweight;
-                rightNode = rightNode.rightVector;
-            }
         }
+        foreach (VectorNode vectorNode in vectorNodes)
+            if (Vector2.Distance(targetingSystem.target.transform.position, rb.transform.position) < maxPlayerRange - maxPlayerRange / 4 && Vector2.Dot(AstarDirection, vectorNode.direction) < 0)
+            {
+                vectorNode.weight += Mathf.Abs(Vector2.Dot(AstarDirection, vectorNode.direction)) * 
+                    circlingDistanceHarshnessRegulator.Evaluate(Mathf.Clamp(Vector2.Distance(targetingSystem.target.transform.position, rb.transform.position), 0, maxPlayerRange - maxPlayerRange/4));
+            }
     }
 
-    private void AddWeightsByTarget(float desiredDistance)
+    private void AddWeightsByTarget()
     {
         VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
 
-        float tempWeight = 1;
-        closestVectorNode.weight = tempWeight;
+        closestVectorNode.weight = 1;
         VectorNode leftNode = closestVectorNode;
         for (int i = 1; i < 8; i++)
         {
-            tempWeight -= 0.10f;
-            leftNode.weight = tempWeight;
+            if (Vector2.Dot(AstarDirection, leftNode.direction) < -0.5f)
+                leftNode.weight = 0;
+            else if (Vector2.Dot(AstarDirection, leftNode.direction) < 0 )
+            {
+                leftNode.weight = Mathf.Abs(Vector2.Dot(AstarDirection, leftNode.direction));
+            }
+            else
+                leftNode.weight = Vector2.Dot(AstarDirection, leftNode.direction)*1.5f;
             leftNode = leftNode.leftVector;
         }
-        tempWeight = 1;
         VectorNode rightNode = closestVectorNode;
         for (int i = 1; i < 8; i++)
         {
-            tempWeight -= 0.115f;
-            rightNode.weight = tempWeight;
+            if (Vector2.Dot(AstarDirection, rightNode.direction) < 0)
+                rightNode.weight = 0;
+            else
+                rightNode.weight = Vector2.Dot(AstarDirection, rightNode.direction);
             rightNode = rightNode.rightVector;
         }
 
@@ -253,8 +259,6 @@ public class KIRBYMOVETEST : MonoBehaviour
     {
         if (targetingSystem.target.GetComponent<MovementScript>() && targetingSystem.target.GetComponent<MovementScript>().attacking)
         {
-
-
             VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
             VectorNode oppositeNode = closestVectorNode;
             for (int i = 1; i < vectorNodes.Count / 2; i++)
@@ -262,7 +266,7 @@ public class KIRBYMOVETEST : MonoBehaviour
                 oppositeNode = oppositeNode.leftVector;
             }
 
-            float tempWeight = 1;
+            float tempWeight = 3;
             oppositeNode.weight = tempWeight;
             VectorNode leftNode = oppositeNode;
             for (int i = 1; i < 8; i++)
