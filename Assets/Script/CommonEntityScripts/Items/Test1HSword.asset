@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2924b11a31825464387b1860570e57a2, type: 3}
   m_Name: Test1HSword
   m_EditorClassIdentifier: 
-  inventorySlot: 6
   Itemname: ShortSword
+  inventorySlot: 6
   description: pog
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  iconSprite: {fileID: 0}
+  inGameSprite: {fileID: 0}
   isTwoHander: 0
   buffs: []
-  scriptName: 
   runeSlots: 2
-  runeList:
-  - {fileID: 8872533423126406925, guid: 5f76935c508191e44b76656a92713ddd, type: 3}
+  baseRune: {fileID: 11400000, guid: 567037badc5d6c04ebe2c20bd16a5707, type: 2}
   type: 
   weaponType: 1
   physicalDamage: 0

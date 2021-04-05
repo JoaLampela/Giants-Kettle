@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b08352ec5bb1c34bb428a0669891d29, type: 3}
   m_Name: Iron Helmet
   m_EditorClassIdentifier: 
-  inventorySlot: 1
   Itemname: Iron Helmet
+  inventorySlot: 1
   description: none
-  sprite: {fileID: 21300000, guid: 1e4143efd93e5044092ac2d711700189, type: 3}
+  iconSprite: {fileID: 0}
+  inGameSprite: {fileID: 0}
   isTwoHander: 0
   buffs:
   - sourceID: 
     effectID: bonusHealthRegen
     effectiveness: 100
     duration: 0
+  runeSlots: 0
+  baseRune: {fileID: 0}
+  type: 
   armor: 30

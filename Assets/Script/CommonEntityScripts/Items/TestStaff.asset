@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2924b11a31825464387b1860570e57a2, type: 3}
   m_Name: TestStaff
   m_EditorClassIdentifier: 
-  inventorySlot: 0
-  Itemname: 
+  inventorySlot: 6
+  Itemname: TestStaff
   description: 
-  sprite: {fileID: 0}
-  isTwoHander: 0
+  sprite: {fileID: 21300000, guid: daf4e6f201fb30d409a88118aae8fab7, type: 3}
+  isTwoHander: 1
   buffs: []
   scriptName: 
   runeSlots: 0
   runeList: []
   type: 
-  weaponType: 0
+  weaponType: 5
   physicalDamage: 0
   spiritDamage: 0

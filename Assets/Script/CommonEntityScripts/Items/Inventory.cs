@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
             if (inventorySlot._item == null)
             {
                 inventorySlot._item = item;
-                inventorySlot.icon.sprite = item.sprite;
+                inventorySlot.icon.sprite = item.iconSprite;
                 slotFound = true;
                 break;
             }
@@ -92,8 +92,8 @@ public class Inventory : MonoBehaviour
                         Equip(item, inventorySlot);
                         rightHand._item = item;
                         leftHand._item = item;
-                        rightHand.icon.sprite = item.sprite;
-                        leftHand.icon.sprite = item.sprite;
+                        rightHand.icon.sprite = item.iconSprite;
+                        leftHand.icon.sprite = item.iconSprite;
                     }
                     else if (inventorySlot._item != null)
                     {
@@ -101,7 +101,7 @@ public class Inventory : MonoBehaviour
                         {
                             Equip(item, inventorySlot);
                             rightHand._item = item;
-                            rightHand.icon.sprite = item.sprite;
+                            rightHand.icon.sprite = item.iconSprite;
 
                             Item temp = leftHand._item;
                             leftHand._item = null;
@@ -117,7 +117,7 @@ public class Inventory : MonoBehaviour
                             Unequip(temp, rightHand);
                             Equip(item, inventorySlot);
                             rightHand._item = item;
-                            rightHand.icon.sprite = item.sprite;
+                            rightHand.icon.sprite = item.iconSprite;
                             item = temp;
                             if (leftHand._item != null)
                             {
@@ -125,21 +125,21 @@ public class Inventory : MonoBehaviour
                                 leftHand._item = item;
                                 Unequip(temp, inventorySlot);
                                 Equip(item, leftHand);
-                                leftHand.icon.sprite = item.sprite;
+                                leftHand.icon.sprite = item.iconSprite;
                                 NewItem(temp);
                             }
                             else
                             {
                                 leftHand._item = item;
                                 Equip(item, leftHand);
-                                leftHand.icon.sprite = item.sprite;
+                                leftHand.icon.sprite = item.iconSprite;
                             }
                         }
                         else
                         {
                             Item temp = inventorySlot._item;
                             inventorySlot._item = item;
-                            inventorySlot.icon.sprite = item.sprite;
+                            inventorySlot.icon.sprite = item.iconSprite;
                             NewItem(temp);
                         }
 
@@ -148,7 +148,7 @@ public class Inventory : MonoBehaviour
                     {
                         Equip(item, inventorySlot);
                         inventorySlot._item = item;
-                        inventorySlot.icon.sprite = item.sprite;
+                        inventorySlot.icon.sprite = item.iconSprite;
                     }
                     break;
                 }
@@ -224,7 +224,7 @@ public class Inventory : MonoBehaviour
         {
             events.RemoveBuff(buff.sourceID);
         }
-        if (item.scriptName != "") Destroy(GetComponent(Type.GetType(item.scriptName)));
+        //if (item.scriptName != "") Destroy(GetComponent(Type.GetType(item.scriptName)));
     }
 
     public void Equip(Item item, UiButtonClick slot)
@@ -294,7 +294,7 @@ public class Inventory : MonoBehaviour
         {
             events.NewBuff(buff.sourceID, buff.effectID, buff.effectiveness);
         }
-        if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
+        //if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
     }
 
     public void UseConsumable(Item item)
@@ -304,7 +304,7 @@ public class Inventory : MonoBehaviour
         {
             events.NewBuff(buff.sourceID, buff.effectID, buff.effectiveness, buff.duration);
         }
-        if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
+        //if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
     }
 
     public void DropItem(Item item)
@@ -312,6 +312,6 @@ public class Inventory : MonoBehaviour
         Debug.Log("Dropped item " + item.name);
         GameObject groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
         groundItem.GetComponent<ItemOnGround>().item = item;
-        groundItem.GetComponent<SpriteRenderer>().sprite = item.sprite;
+        groundItem.GetComponent<SpriteRenderer>().sprite = item.iconSprite;
     }
 }

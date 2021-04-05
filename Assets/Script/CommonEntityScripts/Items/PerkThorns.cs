@@ -6,6 +6,8 @@ public class PerkThorns : MonoBehaviour, IPerk
 {
     EntityEvents events;
 
+    public string StringProperty { get { return $"{nameof(PerkThorns)}.{nameof(StringProperty)}"; } }
+
     private void Awake()
     {
         events = GetComponent<EntityEvents>();
@@ -31,5 +33,10 @@ public class PerkThorns : MonoBehaviour, IPerk
     private void OnDisable()
     {
         Unsubscribe();
+    }
+
+    public void Method()
+    {
+        throw new System.NotImplementedException();
     }
 }

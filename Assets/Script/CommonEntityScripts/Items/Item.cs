@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Item : ScriptableObject
 {
-    public int inventorySlot;
     public string Itemname;
+    public int inventorySlot;
     public string description;
-    public Sprite sprite;
+    public Sprite iconSprite;
+    public Sprite inGameSprite;
     public bool isTwoHander;
     public List<ItemBuff> buffs;
-    public string scriptName;
     public int runeSlots;
-    public List<GameObject> runeList;
+    public Rune baseRune;
     public string type;
 }
 

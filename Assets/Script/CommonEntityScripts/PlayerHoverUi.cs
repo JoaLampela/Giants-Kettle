@@ -53,7 +53,7 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     {
         grabbedItem = item;
         grabbedItemSlot = slot;
-        flyingIcon.GetComponent<Image>().sprite = grabbedItem.sprite;
+        flyingIcon.GetComponent<Image>().sprite = grabbedItem.iconSprite;
         flyingIcon.SetActive(true);
     }
     private void DropItem()

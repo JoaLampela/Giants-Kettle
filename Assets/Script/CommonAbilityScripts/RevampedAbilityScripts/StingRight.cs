@@ -34,11 +34,11 @@ public class StingRight : MonoBehaviour, IAbility
             GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, gameObject.transform.position, gameObject.transform.rotation);
             sting.GetComponent<AbilityEvents>().SetSource(gameObject);
             
-            foreach (GameObject rune in _weapon.runeList)
-            {
+            //foreach (GameObject rune in _weapon.runeList)
+            //{
                 //MonoBehaviour temp = sting.AddComponent(typeof(MonoBehaviour)) as MonoBehaviour;
                 //temp = rune.GetComponent<MonoBehaviour>();
-            }
+            //}
             sting.GetComponent<AbilityEvents>().UseAbility();
         }
     }

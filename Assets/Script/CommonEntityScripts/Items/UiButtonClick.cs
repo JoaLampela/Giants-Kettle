@@ -25,7 +25,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         if (!isEquipmentSlot) playerInventory.inventorySlots.Add(this);
         else playerInventory.equipmentSlots.Add(this);
         if(playerHoverUi != null) //Debug.Log("found");
-        if (_item) icon.sprite = _item.sprite; 
+        if (_item) icon.sprite = _item.iconSprite; 
     }
 
     public void PlaceItem(Item item, UiButtonClick previousSlot = null)
@@ -82,8 +82,8 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 }
                 playerInventory.rightHand._item = item;
                 playerInventory.leftHand._item = item;
-                playerInventory.rightHand.icon.sprite = item.sprite;
-                playerInventory.leftHand.icon.sprite = item.sprite;
+                playerInventory.rightHand.icon.sprite = item.iconSprite;
+                playerInventory.leftHand.icon.sprite = item.iconSprite;
             }
             else
             {
@@ -106,12 +106,12 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                         playerInventory.NewItem(temp);
                     }
                     _item = item;
-                    icon.sprite = item.sprite;
+                    icon.sprite = item.iconSprite;
                 }
                 else
                 {
                     _item = item;
-                    icon.sprite = item.sprite;
+                    icon.sprite = item.iconSprite;
                 }
             }
         }
@@ -131,7 +131,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 _item = null;
             }
             _item = item;
-            icon.sprite = _item.sprite;
+            icon.sprite = _item.iconSprite;
         }
     }
 

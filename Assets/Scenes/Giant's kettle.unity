@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &509605543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 804063150401777529, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+  m_PrefabInstance: {fileID: 8525123744192288158}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &672271096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,6 +1334,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2084327877503855711, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084327877503855711, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033548013121461632, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: fill
+      value: 
+      objectReference: {fileID: 509605543}
     - target: {fileID: 8525123744524478070, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.5
@@ -1471,5 +1494,9 @@ PrefabInstance:
       propertyPath: _item
       value: 
       objectReference: {fileID: 11400000, guid: e0a054940f81be544b3897450a5dd57b, type: 2}
+    - target: {fileID: 8525123745213934483, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
+      propertyPath: _item
+      value: 
+      objectReference: {fileID: 11400000, guid: 69d128263b2e30542a3e6986f3a922db, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a647c1a23b68c5b4789ee02ae1f5f3fb, type: 3}
