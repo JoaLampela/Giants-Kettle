@@ -281,8 +281,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951f84beccc25a644bf9f22f89a3aa65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPlayerRange: 5
   reachedEndOfPath: 0
   entitySpeed: 10
+  circleWeightTransformationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.994812
+      value: 0.19087093
+      inSlope: 0.60117805
+      outSlope: 0.60117805
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.22132379
+      value: 0.92198503
+      inSlope: 0.6154071
+      outSlope: 0.6154071
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.059518833
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.69108564
+      value: 0.894929
+      inSlope: -0.72018343
+      outSlope: -0.72018343
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13499102
+    - serializedVersion: 3
+      time: 1.0000288
+      value: -0.00047514914
+      inSlope: -2.8982806
+      outSlope: -2.8982806
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  circlingDistanceHarshnessRegulator:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0054926677
+      value: 0.0011456609
+      inSlope: 1.7572649
+      outSlope: 1.7572649
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06383746
+    - serializedVersion: 3
+      time: 1.017129
+      value: 1.1363789
+      inSlope: 0.26714373
+      outSlope: 0.26714373
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07367666
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!50 &4195473747476214592
 Rigidbody2D:
   serializedVersion: 4
