@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemOnGround : MonoBehaviour
 {
-    public Item item;
+    public Item _item;
     private Inventory playerInventory;
 
     private void Awake()
@@ -16,9 +16,15 @@ public class ItemOnGround : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Picked up " + item.name);
-            playerInventory.NewItem(item);
+            Debug.Log("Picked up " + _item.item.name);
+            playerInventory.NewItem(_item);
             Destroy(gameObject);
         }
+    }
+
+    public void SetItem(Item newItem)
+    {
+        GetComponent<SpriteRenderer>().sprite = newItem.item.iconSprite;
+        _item = newItem;
     }
 }

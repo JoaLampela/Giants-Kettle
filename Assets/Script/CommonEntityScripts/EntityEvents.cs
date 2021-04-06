@@ -91,20 +91,16 @@ public class EntityEvents : MonoBehaviour
     public event Action<GameObject, int> OnIncreaseAggro;
     public event Action<GameObject, int> OnSetAggro;
 
-
-    public event Action<ItemArmor> OnEquipArmor;
-    public event Action<ItemWeapon, int> OnEquipWeapon;
-    public event Action<ItemConsumable> OnUseConsumable;
-    public event Action<Item> OnAddNewItemToInventory;
+    public event Action<ItemObject> OnAddNewItemToInventory;
     public event Action<int> OnRemoveItem;
-    public event Action<Item, int> OnAddNewItemToSlot;
+    public event Action<ItemObject, int> OnAddNewItemToSlot;
     public event Action<UiButtonClick> OnUseItem;
 
     public void UseItem(UiButtonClick invSlot)
     {
         OnUseItem?.Invoke(invSlot);
     }
-    public void AddNewItemToSlot(Item item, int slot)
+    public void AddNewItemToSlot(ItemObject item, int slot)
     {
         OnAddNewItemToSlot?.Invoke(item, slot);
     }
@@ -114,25 +110,9 @@ public class EntityEvents : MonoBehaviour
     }
 
 
-    public void AddNewItemToInventory(Item item)
+    public void AddNewItemToInventory(ItemObject item)
     {
         OnAddNewItemToInventory?.Invoke(item);
-    }
-
-    public void EquipArmor(ItemArmor armor)
-    {
-        Debug.Log("Equip armor event");
-        OnEquipArmor?.Invoke(armor);
-    }
-
-    public void EquipWeapon(ItemWeapon weapon, int slot = -1)
-    {
-        OnEquipWeapon?.Invoke(weapon, slot);
-    }
-
-    public void UseConsumable(ItemConsumable consumable)
-    {
-        OnUseConsumable?.Invoke(consumable);
     }
 
     public void SetHealth(int value)

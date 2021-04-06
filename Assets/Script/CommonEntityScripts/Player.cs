@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    void Start()
-    {
+    public ItemObject testItemObject;
+    public ItemOnGround itemOnGround;
+    public ItemObject testItemObject2;
 
-    }
 
     private void Update()
     {
         if(Input.GetMouseButtonDown(0)) 
         {
-            //GetComponent<EntityEvents>().NewBuff("test", "invisibility", 1, 5);
-            //Debug.Log("invis");
+            ItemOnGround groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+            groundItem.SetItem(new Item(testItemObject2));
         }
         if (Input.GetMouseButtonDown(1))
         {
-            GetComponent<EntityEvents>().ChangeTeam(1);
-            Debug.Log("invis");
+            ItemOnGround groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+            groundItem.SetItem(new Item(testItemObject));
         }
     }
 }

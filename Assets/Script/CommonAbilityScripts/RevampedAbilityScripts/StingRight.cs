@@ -7,12 +7,12 @@ public class StingRight : MonoBehaviour, IAbility
     EntityEvents _entityEvents;
     [SerializeField] private int _spellSlot;
     [SerializeField] private int _abilityCost = 10;
-    ItemWeapon _weapon;
+    //ItemWeapon _weapon;
 
     private void Start()
     {
         Subscribe();
-        _weapon = (ItemWeapon)GetComponent<Inventory>().rightHand._item;
+        //_weapon = (ItemWeapon)GetComponent<Inventory>().rightHand._item;
     }
 
     private void Awake()

@@ -5,6 +5,15 @@ using System;
 
 public class Inventory : MonoBehaviour
 {
+    public enum ItemType
+    {
+        Default,
+        Weapon,
+        Armor,
+        Consumable,
+        Rune
+    }
+
     private EntityEvents events;
 
     public List<UiButtonClick> inventorySlots = new List<UiButtonClick>();
@@ -42,7 +51,7 @@ public class Inventory : MonoBehaviour
             if (inventorySlot._item == null)
             {
                 inventorySlot._item = item;
-                inventorySlot.icon.sprite = item.iconSprite;
+                inventorySlot.icon.sprite = item.item.iconSprite;
                 slotFound = true;
                 break;
             }
@@ -50,24 +59,24 @@ public class Inventory : MonoBehaviour
         if (!slotFound) DropItem(item);
     }
 
-    public void UseItem(Item item)
+    public void UseItem(Item usedItem)
     {
-        if (item.inventorySlot == -1)
+        if ((int)usedItem.item.type == 3)
         {
-            UseConsumable(item);
+            UseConsumable(usedItem);
         }
         else
         {
             Debug.Log("Used item");
             foreach (UiButtonClick inventorySlot in equipmentSlots)
             {
-                if (inventorySlot._slot == item.inventorySlot)
+                if ((int)inventorySlot._type == (int)usedItem.item.type)
                 {
-                    if (item.isTwoHander)
+                    if (usedItem.item.isTwoHander)
                     {
                         if (rightHand._item != null)
                         {
-                            if (rightHand._item.isTwoHander)
+                            if (rightHand._item.item.isTwoHander)
                             {
                                 leftHand._item = null;
                                 leftHand.icon.sprite = null;
@@ -79,7 +88,7 @@ public class Inventory : MonoBehaviour
                         }
                         if (leftHand._item != null)
                         {
-                            if (leftHand._item.isTwoHander)
+                            if (leftHand._item.item.isTwoHander)
                             {
                                 rightHand._item = null;
                                 rightHand.icon.sprite = null;
@@ -89,19 +98,19 @@ public class Inventory : MonoBehaviour
                             leftHand._item = null;
                             leftHand.icon.sprite = null;
                         }
-                        Equip(item, inventorySlot);
-                        rightHand._item = item;
-                        leftHand._item = item;
-                        rightHand.icon.sprite = item.iconSprite;
-                        leftHand.icon.sprite = item.iconSprite;
+                        Equip(usedItem, inventorySlot);
+                        rightHand._item = usedItem;
+                        leftHand._item = usedItem;
+                        rightHand.icon.sprite = usedItem.item.iconSprite;
+                        leftHand.icon.sprite = usedItem.item.iconSprite;
                     }
                     else if (inventorySlot._item != null)
                     {
-                        if (inventorySlot._item.isTwoHander)
+                        if (inventorySlot._item.item.isTwoHander)
                         {
-                            Equip(item, inventorySlot);
-                            rightHand._item = item;
-                            rightHand.icon.sprite = item.iconSprite;
+                            Equip(usedItem, inventorySlot);
+                            rightHand._item = usedItem;
+                            rightHand.icon.sprite = usedItem.item.iconSprite;
 
                             Item temp = leftHand._item;
                             leftHand._item = null;
@@ -115,40 +124,40 @@ public class Inventory : MonoBehaviour
                         {
                             Item temp = rightHand._item;
                             Unequip(temp, rightHand);
-                            Equip(item, inventorySlot);
-                            rightHand._item = item;
-                            rightHand.icon.sprite = item.iconSprite;
-                            item = temp;
+                            Equip(usedItem, inventorySlot);
+                            rightHand._item = usedItem;
+                            rightHand.icon.sprite = usedItem.item.iconSprite;
+                            usedItem = temp;
                             if (leftHand._item != null)
                             {
                                 temp = leftHand._item;
-                                leftHand._item = item;
+                                leftHand._item = usedItem;
                                 Unequip(temp, inventorySlot);
-                                Equip(item, leftHand);
-                                leftHand.icon.sprite = item.iconSprite;
+                                Equip(usedItem, leftHand);
+                                leftHand.icon.sprite = usedItem.item.iconSprite;
                                 NewItem(temp);
                             }
                             else
                             {
-                                leftHand._item = item;
-                                Equip(item, leftHand);
-                                leftHand.icon.sprite = item.iconSprite;
+                                leftHand._item = usedItem;
+                                Equip(usedItem, leftHand);
+                                leftHand.icon.sprite = usedItem.item.iconSprite;
                             }
                         }
                         else
                         {
                             Item temp = inventorySlot._item;
-                            inventorySlot._item = item;
-                            inventorySlot.icon.sprite = item.iconSprite;
+                            inventorySlot._item = usedItem;
+                            inventorySlot.icon.sprite = usedItem.item.iconSprite;
                             NewItem(temp);
                         }
 
                     }
                     else
                     {
-                        Equip(item, inventorySlot);
-                        inventorySlot._item = item;
-                        inventorySlot.icon.sprite = item.iconSprite;
+                        Equip(usedItem, inventorySlot);
+                        inventorySlot._item = usedItem;
+                        inventorySlot.icon.sprite = usedItem.item.iconSprite;
                     }
                     break;
                 }
@@ -156,13 +165,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Unequip(Item item, UiButtonClick slot)
+    public void Unequip(Item unequippedItem, UiButtonClick slot)
     {
         if(slot == rightHand || slot == leftHand)
         {
-            ItemWeapon weapon = (ItemWeapon)item;
+            WeaponObject weapon = (WeaponObject)unequippedItem.item;
 
-            switch (weapon.weaponType)
+            switch ((int)weapon.type)
             {
                 case (1):
                     if (slot == rightHand)
@@ -216,26 +225,19 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        Debug.Log("Unequipped " + item.name);
+        Debug.Log("Unequipped " + unequippedItem.item.name);
         testEquipmentCount--;
-
-
-        foreach (ItemBuff buff in item.buffs)
-        {
-            events.RemoveBuff(buff.sourceID);
-        }
-        //if (item.scriptName != "") Destroy(GetComponent(Type.GetType(item.scriptName)));
     }
 
-    public void Equip(Item item, UiButtonClick slot)
+    public void Equip(Item equippedItem, UiButtonClick slot)
     {
         if(slot == rightHand || slot == leftHand)
         {
-            ItemWeapon weapon = (ItemWeapon)item;
+            WeaponObject weapon = (WeaponObject)equippedItem.item;
 
-            switch (weapon.weaponType)
+            switch ((int)weapon.weaponType)
             {
-                case (1):
+                case (0):
                     if (slot == rightHand)
                     {
                         Debug.Log("Equipped Right");
@@ -249,14 +251,14 @@ public class Inventory : MonoBehaviour
                         abilityManager.SetAbility(1, stingLeft);
                     }
                     break;
-                case (2):
+                case (1):
                     Debug.Log("Equip 2 hander");
                     Sting2Handed sting2Handed = gameObject.AddComponent<Sting2Handed>();
                     abilityManager.SetAbility(2, sting2Handed);
                     SpinAttack spinAttack = gameObject.AddComponent<SpinAttack>();
                     abilityManager.SetAbility(1, spinAttack);
                     break;
-                case (3):
+                case (2):
                     if (slot == rightHand)
                     {
                         Debug.Log("Equipped Right");
@@ -270,14 +272,14 @@ public class Inventory : MonoBehaviour
                         abilityManager.SetAbility(1, block);
                     }
                     break;
-                case (4):
+                case (3):
                     Debug.Log("Equip bow");
                     PowerShot powerShot = gameObject.AddComponent<PowerShot>();
                     abilityManager.SetAbility(2, powerShot);
                     TripleShot tripleShot = gameObject.AddComponent<TripleShot>();
                     abilityManager.SetAbility(1, tripleShot);
                     break;
-                case (5):
+                case (4):
                     Debug.Log("Equip staff");
                     BigProjectile bigProjectile = gameObject.AddComponent<BigProjectile>();
                     abilityManager.SetAbility(2, bigProjectile);
@@ -287,31 +289,30 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        Debug.Log("Equipped " + item.name);
+        Debug.Log("Equipped " + equippedItem.item.name);
         testEquipmentCount++;
-
-        foreach (ItemBuff buff in item.buffs)
-        {
-            events.NewBuff(buff.sourceID, buff.effectID, buff.effectiveness);
-        }
-        //if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
     }
 
-    public void UseConsumable(Item item)
+    public void UseConsumable(Item usedItem)
     {
-        Debug.Log("Used " + item.name);
-        foreach (ItemBuff buff in item.buffs)
+        Debug.Log("Used " + usedItem.item.name);
+        if ((int)usedItem.item.type == 2)
         {
-            events.NewBuff(buff.sourceID, buff.effectID, buff.effectiveness, buff.duration);
+            ConsumableObject consumable = (ConsumableObject)usedItem.item;
+            foreach (ItemBuff buff in consumable.buffs)
+            {
+                events.NewBuff(buff.sourceID, buff.effectID, buff.effectiveness, buff.duration);
+            }
+            //if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
         }
-        //if (item.scriptName != "") gameObject.AddComponent(Type.GetType(item.scriptName));
+
     }
 
-    public void DropItem(Item item)
+    public void DropItem(Item droppedItem)
     {
-        Debug.Log("Dropped item " + item.name);
+        Debug.Log("Dropped item " + droppedItem.item.name);
         GameObject groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
-        groundItem.GetComponent<ItemOnGround>().item = item;
-        groundItem.GetComponent<SpriteRenderer>().sprite = item.iconSprite;
+        groundItem.GetComponent<ItemOnGround>()._item = droppedItem;
+        groundItem.GetComponent<SpriteRenderer>().sprite = droppedItem.item.iconSprite;
     }
 }

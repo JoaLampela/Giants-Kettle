@@ -10,7 +10,7 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     public UiButtonClick hoveredSlot = null;
     private Item grabbedItem = null;
     private UiButtonClick grabbedItemSlot = null;
-    public event Action<Item, int> OnDropItem;
+    public event Action<ItemObject, int> OnDropItem;
     public GameObject flyingIcon;
     private Inventory playerInventory;
 
@@ -33,9 +33,9 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
         {
             if (hoveredSlot != null)
             {
-                if(hoveredSlot._slot != 0)
+                if(hoveredSlot._type != 0)
                 {
-                    if (hoveredSlot._slot == grabbedItem.inventorySlot) PlaceItem();
+                    if ((int)hoveredSlot._type == (int)grabbedItem.item.type) PlaceItem();
                     else
                     {
                         playerInventory.NewItem(grabbedItem);
@@ -53,7 +53,7 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     {
         grabbedItem = item;
         grabbedItemSlot = slot;
-        flyingIcon.GetComponent<Image>().sprite = grabbedItem.iconSprite;
+        flyingIcon.GetComponent<Image>().sprite = grabbedItem.item.iconSprite;
         flyingIcon.SetActive(true);
     }
     private void DropItem()
