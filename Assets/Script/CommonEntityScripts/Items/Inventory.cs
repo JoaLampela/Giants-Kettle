@@ -20,6 +20,42 @@ public class Inventory : MonoBehaviour
     public List<UiButtonClick> equipmentSlots = new List<UiButtonClick>();
     public UiButtonClick rightHand;
     public UiButtonClick leftHand;
+
+    public UiButtonClick armorHeadR1;
+    public UiButtonClick armorHeadR2;
+    public UiButtonClick armorHeadR3;
+    public UiButtonClick armorHeadR4;
+    public UiButtonClick armorHeadR5;
+    public UiButtonClick armorHeadR6;
+
+    public UiButtonClick armorChestR1;
+    public UiButtonClick armorChestR2;
+    public UiButtonClick armorChestR3;
+    public UiButtonClick armorChestR4;
+    public UiButtonClick armorChestR5;
+    public UiButtonClick armorChestR6;
+
+    public UiButtonClick armorLegsR1;
+    public UiButtonClick armorLegsR2;
+    public UiButtonClick armorLegsR3;
+    public UiButtonClick armorLegsR4;
+    public UiButtonClick armorLegsR5;
+    public UiButtonClick armorLegsR6;
+
+    public UiButtonClick weaponRightHandR1;
+    public UiButtonClick weaponRightHandR2;
+    public UiButtonClick weaponRightHandR3;
+    public UiButtonClick weaponRightHandR4;
+    public UiButtonClick weaponRightHandR5;
+    public UiButtonClick weaponRightHandR6;
+
+    public UiButtonClick weaponLeftHandR1;
+    public UiButtonClick weaponLeftHandR2;
+    public UiButtonClick weaponLeftHandR3;
+    public UiButtonClick weaponLeftHandR4;
+    public UiButtonClick weaponLeftHandR5;
+    public UiButtonClick weaponLeftHandR6;
+
     public int testEquipmentCount = 0;
     public GameObject itemOnGround;
     public EntityAbilityManager abilityManager;
