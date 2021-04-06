@@ -1,7 +1,6 @@
-using System.Collections;
+﻿using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class KIRBYMOVETEST : MonoBehaviour
 {
@@ -221,8 +220,8 @@ public class KIRBYMOVETEST : MonoBehaviour
         foreach (VectorNode vectorNode in vectorNodes)
             if (Vector2.Distance(targetingSystem.target.transform.position, rb.transform.position) < maxPlayerRange - maxPlayerRange / 4 && Vector2.Dot(AstarDirection, vectorNode.direction) < 0)
             {
-                vectorNode.weight += Mathf.Abs(Vector2.Dot(AstarDirection, vectorNode.direction)) * 
-                    circlingDistanceHarshnessRegulator.Evaluate(Mathf.Clamp(Vector2.Distance(targetingSystem.target.transform.position, rb.transform.position), 0, maxPlayerRange - maxPlayerRange/4));
+                vectorNode.weight += Mathf.Abs(Vector2.Dot(AstarDirection, vectorNode.direction)) *
+                    circlingDistanceHarshnessRegulator.Evaluate(Mathf.Clamp(Vector2.Distance(targetingSystem.target.transform.position, rb.transform.position), 0, maxPlayerRange - maxPlayerRange / 4));
             }
     }
 
@@ -236,12 +235,12 @@ public class KIRBYMOVETEST : MonoBehaviour
         {
             if (Vector2.Dot(AstarDirection, leftNode.direction) < -0.5f)
                 leftNode.weight = 0;
-            else if (Vector2.Dot(AstarDirection, leftNode.direction) < 0 )
+            else if (Vector2.Dot(AstarDirection, leftNode.direction) < 0)
             {
                 leftNode.weight = Mathf.Abs(Vector2.Dot(AstarDirection, leftNode.direction));
             }
             else
-                leftNode.weight = Vector2.Dot(AstarDirection, leftNode.direction)*1.5f;
+                leftNode.weight = Vector2.Dot(AstarDirection, leftNode.direction) * 1.5f;
             leftNode = leftNode.leftVector;
         }
         VectorNode rightNode = closestVectorNode;
@@ -257,7 +256,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     }
     private void DodgeCheck()
     {
-        if (targetingSystem.target.GetComponent<MovementScript>() && targetingSystem.target.GetComponent<MovementScript>().attacking)
+        if (targetingSystem.target.GetComponent<MovementScript>() && targetingSystem.target.GetComponent<Player_Weapon>().attacking)
         {
             VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
             VectorNode oppositeNode = closestVectorNode;
@@ -304,12 +303,12 @@ public class KIRBYMOVETEST : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        foreach (VectorNode vector in vectorNodes)
+        /*foreach (VectorNode vector in vectorNodes)
         {
             Gizmos.DrawLine(gameObject.transform.position, (vector.ReturnWeightByDirection() + (Vector2)gameObject.transform.position));
             Gizmos.DrawLine(gameObject.transform.position, (debugBestVectorNode.direction * debugBestVectorNode.weight * 2f) + (Vector2)gameObject.transform.position);
 
-        }
+        }*/
     }
 
     private class VectorNode
