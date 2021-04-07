@@ -46,11 +46,15 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     public void PlaceItem(Item newItem, UiButtonClick previousSlot = null)
     {
-        if ((int)_type != 0)
+        if ((int)_type != 0 && _type != ItemType.Rune)
         {
             Debug.Log("!=0");
             playerInventory.Equip(newItem, this);
             if (_item != null) playerInventory.Unequip(_item, this);
+        }
+        if( _type == ItemType.Rune )
+        {
+            playerInventory.AddNewRuneToItem(newItem, gameObject);
         }
         if(this == playerInventory.rightHand || this == playerInventory.leftHand)
         {
@@ -158,7 +162,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     {
         if(eventData.button == PointerEventData.InputButton.Right)
         {
-            if((int)_type != 0 && _item != null)
+            if((int)_type != 0 && _item != null && _type != ItemType.Rune)
             {
                 playerInventory.Unequip(_item, this);
                 if(_item.item.isTwoHander)
@@ -190,7 +194,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     playerInventory.NewItem(temp);
                 }
             }
-            else if (_item != null)
+            else if (_item != null && (int)_item.item.type != (int)ItemType.Rune)
             {
                 Item temp = _item;
                 icon.sprite = null;
@@ -212,7 +216,8 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     playerInventory.rightHand._item = null;
                     playerInventory.rightHand.icon.sprite = null;
                 }
-                if ((int)_type != 0) playerInventory.Unequip(_item, this);
+                if ((int)_type != 0 && _type != ItemType.Rune) playerInventory.Unequip(_item, this);
+                if (_type == ItemType.Rune) playerInventory.RemoveRuneFromItem(gameObject);
                 playerHoverUi.SetGrabbedItem(_item, this);
                 icon.sprite = null;
                 _item = null;

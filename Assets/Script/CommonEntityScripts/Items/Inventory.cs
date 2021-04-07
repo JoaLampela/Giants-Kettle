@@ -22,6 +22,9 @@ public class Inventory : MonoBehaviour
     public List<UiButtonClick> equipmentSlots = new List<UiButtonClick>();
     public UiButtonClick rightHand;
     public UiButtonClick leftHand;
+    public UiButtonClick armorHead;
+    public UiButtonClick armorChest;
+    public UiButtonClick armorLegs;
 
     public GameObject armorHeadR1;
     public GameObject armorHeadR2;
@@ -234,7 +237,7 @@ public class Inventory : MonoBehaviour
         EquipmentObject equipmentObject = (EquipmentObject)unequippedItem.item;
         if ((int)slot._type == 1)
         {
-            if (slot == rightHand)
+            if (slot == rightHand || unequippedItem.item.isTwoHander)
             {
                 weaponRightHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
                 weaponRightHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
@@ -249,7 +252,7 @@ public class Inventory : MonoBehaviour
                 weaponRightHandR5.SetActive(false);
                 weaponRightHandR6.SetActive(false);
             }
-            else if (slot == leftHand)
+            if (slot == leftHand || unequippedItem.item.isTwoHander)
             {
                 weaponLeftHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
                 weaponLeftHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
@@ -359,11 +362,13 @@ public class Inventory : MonoBehaviour
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
-        Debug.Log("rune slots " + equipmentObject.runeSlots + "type " + (int)slot._type + " slot = " + slot);
+        Debug.Log("equippin " + equippedItem + " to " + slot + " isTwohander = " +equippedItem.item.isTwoHander);
         if ((int)slot._type == 1)
         {
-            if(slot == rightHand)
+            if(slot == rightHand || equippedItem.item.isTwoHander)
             {
+                Debug.Log("In right");
+
                 Debug.Log("rune slots " + equipmentObject.runeSlots);
                 switch(equipmentObject.runeSlots)
                 {
@@ -403,6 +408,7 @@ public class Inventory : MonoBehaviour
                         weaponRightHandR6.SetActive(true);
                         break;
                 }
+
                 if (equippedItem._runeList.Length >= 1)
                     if (equippedItem._runeList[0] != null) weaponRightHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
                 if (equippedItem._runeList.Length >= 2)
@@ -416,8 +422,9 @@ public class Inventory : MonoBehaviour
                 if (equippedItem._runeList.Length == 6)
                     if (equippedItem._runeList[5] != null) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
             }
-            else if(slot == leftHand)
+            if(slot == leftHand || equippedItem.item.isTwoHander)
             {
+                Debug.Log("In left");
                 switch (equipmentObject.runeSlots)
                 {
                     case 0:
@@ -676,6 +683,180 @@ public class Inventory : MonoBehaviour
 
     }
 
+
+    public void AddNewRuneToItem(Item newItem, GameObject slot)
+    {
+        Debug.Log("Addidng new rune to " + slot);
+        RuneObject rune = (RuneObject)newItem.item;
+        if (slot == weaponRightHandR1)
+        {
+            rightHand._item._runeList[0] = rune;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponRightHandR2)
+        {
+            rightHand._item._runeList[1] = rune;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponRightHandR3)
+        {
+            rightHand._item._runeList[2] = rune;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponRightHandR4)
+        {
+            rightHand._item._runeList[3] = rune;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponRightHandR5)
+        {
+            rightHand._item._runeList[4] = rune;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponRightHandR6)
+        {
+            rightHand._item._runeList[5] = rune;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+
+        else if (slot == weaponLeftHandR1)
+        {
+            leftHand._item._runeList[0] = rune;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponLeftHandR2)
+        {
+            leftHand._item._runeList[1] = rune;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponLeftHandR3)
+        {
+            leftHand._item._runeList[2] = rune;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponLeftHandR4)
+        {
+            leftHand._item._runeList[3] = rune;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponLeftHandR5)
+        {
+            leftHand._item._runeList[4] = rune;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+        else if (slot == weaponLeftHandR6)
+        {
+            leftHand._item._runeList[5] = rune;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
+        }
+
+        else if (slot == armorHeadR1) armorHead._item._runeList[0] = rune;
+        else if (slot == armorHeadR2) armorHead._item._runeList[1] = rune;
+        else if (slot == armorHeadR3) armorHead._item._runeList[2] = rune;
+        else if (slot == armorHeadR4) armorHead._item._runeList[3] = rune;
+        else if (slot == armorHeadR5) armorHead._item._runeList[4] = rune;
+        else if (slot == armorHeadR6) armorHead._item._runeList[5] = rune;
+
+        else if (slot == armorChestR1) armorChest._item._runeList[0] = rune;
+        else if (slot == armorChestR2) armorChest._item._runeList[1] = rune;
+        else if (slot == armorChestR3) armorChest._item._runeList[2] = rune;
+        else if (slot == armorChestR4) armorChest._item._runeList[3] = rune;
+        else if (slot == armorChestR5) armorChest._item._runeList[4] = rune;
+        else if (slot == armorChestR6) armorChest._item._runeList[5] = rune;
+
+        else if (slot == armorLegsR1) armorLegs._item._runeList[0] = rune;
+        else if (slot == armorLegsR2) armorLegs._item._runeList[1] = rune;
+        else if (slot == armorLegsR3) armorLegs._item._runeList[2] = rune;
+        else if (slot == armorLegsR4) armorLegs._item._runeList[3] = rune;
+        else if (slot == armorLegsR5) armorLegs._item._runeList[4] = rune;
+        else if (slot == armorLegsR6) armorLegs._item._runeList[5] = rune;
+    }
+    public void RemoveRuneFromItem(GameObject slot)
+    {
+        Debug.Log("Removing rune from " + slot);
+        if (slot == weaponRightHandR1)
+        {
+            rightHand._item._runeList[0] = null;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponRightHandR2)
+        {
+            rightHand._item._runeList[1] = null;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponRightHandR3)
+        {
+            rightHand._item._runeList[2] = null;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR3.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponRightHandR4)
+        {
+            rightHand._item._runeList[3] = null;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR4.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponRightHandR5)
+        {
+            rightHand._item._runeList[4] = null;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR5.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponRightHandR6)
+        {
+            rightHand._item._runeList[5] = null;
+            if (rightHand._item.item.isTwoHander) weaponLeftHandR6.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+
+        else if (slot == weaponLeftHandR1)
+        {
+            leftHand._item._runeList[0] = null;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponLeftHandR2)
+        {
+            leftHand._item._runeList[1] = null;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponLeftHandR3)
+        {
+            leftHand._item._runeList[2] = null;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR3.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponLeftHandR4)
+        {
+            leftHand._item._runeList[3] = null;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR4.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponLeftHandR5)
+        {
+            leftHand._item._runeList[4] = null;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR5.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+        else if (slot == weaponLeftHandR6)
+        {
+            leftHand._item._runeList[5] = null;
+            if (leftHand._item.item.isTwoHander) weaponRightHandR6.GetComponent<UiButtonClick>().RemoveItemFromslot();
+        }
+
+        else if (slot == armorHeadR1) armorHead._item._runeList[0] = null;
+        else if (slot == armorHeadR2) armorHead._item._runeList[1] = null;
+        else if (slot == armorHeadR3) armorHead._item._runeList[2] = null;
+        else if (slot == armorHeadR4) armorHead._item._runeList[3] = null;
+        else if (slot == armorHeadR5) armorHead._item._runeList[4] = null;
+        else if (slot == armorHeadR6) armorHead._item._runeList[5] = null;
+
+        else if (slot == armorChestR1) armorChest._item._runeList[0] = null;
+        else if (slot == armorChestR2) armorChest._item._runeList[1] = null;
+        else if (slot == armorChestR3) armorChest._item._runeList[2] = null;
+        else if (slot == armorChestR4) armorChest._item._runeList[3] = null;
+        else if (slot == armorChestR5) armorChest._item._runeList[4] = null;
+        else if (slot == armorChestR6) armorChest._item._runeList[5] = null;
+
+        else if (slot == armorLegsR1) armorLegs._item._runeList[0] = null;
+        else if (slot == armorLegsR2) armorLegs._item._runeList[1] = null;
+        else if (slot == armorLegsR3) armorLegs._item._runeList[2] = null;
+        else if (slot == armorLegsR4) armorLegs._item._runeList[3] = null;
+        else if (slot == armorLegsR5) armorLegs._item._runeList[4] = null;
+        else if (slot == armorLegsR6) armorLegs._item._runeList[5] = null;
+    }
     public void DropItem(Item droppedItem)
     {
         Debug.Log("Dropped item " + droppedItem.item.name);
