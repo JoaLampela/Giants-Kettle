@@ -323,7 +323,7 @@ MonoBehaviour:
   generationAreaOuterBorder: 50
   levels:
   - roomList: 0000000001000000040000000400000004000000040000000300000003000000030000000200000002000000
-  tunnelWidth: 2
+  tunnelWidth: 4
   spawnPointCreationPrecentagePerTile: 1
   spawnRoom: {fileID: 9012813900297514595, guid: 4ec9f1d143bc0084099be4145f55f546, type: 3}
   exitRoom: {fileID: 1311955666255823563, guid: 30bcc437adb56a0458c2185fb4e70460, type: 3}
@@ -377,12 +377,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc45bc510236272448999f29f48af8da, type: 2}
   - {fileID: 11400000, guid: 1485aac0da1a4bb45b9cee02a5eb7b94, type: 2}
   - {fileID: 11400000, guid: 8633b230b36ceb54cbcf21879fece954, type: 2}
-  - {fileID: 11400000, guid: 6089058b67a33244cb7a2da3c4430d84, type: 2}
+  - {fileID: 11400000, guid: 665c9c53a26c03540b9189239f9a169d, type: 2}
   - {fileID: 11400000, guid: 2ea30538dd1dccc4ba69fbae6235f110, type: 2}
   - {fileID: 11400000, guid: 665c9c53a26c03540b9189239f9a169d, type: 2}
   - {fileID: 11400000, guid: 438f97d2dfb36e946addbdd1223e1a4a, type: 2}
   - {fileID: 11400000, guid: 6eab0c5ef29b410468cb21f25136203f, type: 2}
-  - {fileID: 11400000, guid: 91b4438fb9b21684a89653b8e19b17bf, type: 2}
+  - {fileID: 11400000, guid: 665c9c53a26c03540b9189239f9a169d, type: 2}
   - {fileID: 11400000, guid: 665c9c53a26c03540b9189239f9a169d, type: 2}
   - {fileID: 11400000, guid: 665c9c53a26c03540b9189239f9a169d, type: 2}
   - {fileID: 11400000, guid: 665c9c53a26c03540b9189239f9a169d, type: 2}
@@ -390,6 +390,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 665c9c53a26c03540b9189239f9a169d, type: 2}
   - {fileID: 11400000, guid: 6089058b67a33244cb7a2da3c4430d84, type: 2}
   - {fileID: 11400000, guid: 91b4438fb9b21684a89653b8e19b17bf, type: 2}
+  - {fileID: 11400000, guid: 6089058b67a33244cb7a2da3c4430d84, type: 2}
+  - {fileID: 11400000, guid: 91b4438fb9b21684a89653b8e19b17bf, type: 2}
+  - {fileID: 11400000, guid: e16a7d0c738be4a4da7808ecdf38879e, type: 2}
+  - {fileID: 11400000, guid: f67c5f76483f28a42be8e608da5cd138, type: 2}
+  - {fileID: 11400000, guid: 9e23379b0bf71854b8bd5152e9e60402, type: 2}
   upsideWall: {fileID: 11400000, guid: 5e27908fae1d0d34997b5beaf6a94f61, type: 2}
   downSideWall: {fileID: 11400000, guid: 3162093cde255ef448c93999c7bc1eb1, type: 2}
   playerTransform: {fileID: 0}
@@ -1157,7 +1162,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1556,7 +1561,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
