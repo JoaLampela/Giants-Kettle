@@ -10,6 +10,7 @@ public class Player_Animations : MonoBehaviour
     public GameObject leftArm;
     public GameObject leftArmContainer;
 
+    private Rigidbody2D playerRB;
     private Animator animator;
     private bool usingSingleHandedSword;
     private bool usingTwoHandedSword;
@@ -26,6 +27,7 @@ public class Player_Animations : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerRB = GetComponent<Rigidbody2D>();
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
         SwitchToSingleHandedSword();
@@ -79,6 +81,11 @@ public class Player_Animations : MonoBehaviour
                 StartCoroutine(SetAttacking(1.5f));
                 StartCoroutine(SetAttackOnCooldown(2f));
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && !attacking)
+        {
+            if (GetComponent<MovementScript>().Dash())
+                animator.SetTrigger("Dash");
         }
         if (Input.GetKeyDown(KeyCode.E) && !attacking && !attackOnCooldown)
         {

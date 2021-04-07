@@ -513,6 +513,7 @@ MonoBehaviour:
   speed: 8
   playerCamera: {fileID: 0}
   swordCollider: {fileID: 0}
+  dashCoolDown: 1
 --- !u!114 &7051720969466832980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +665,9 @@ MonoBehaviour:
   equipmentSlots: []
   rightHand: {fileID: 0}
   leftHand: {fileID: 0}
+  armorHead: {fileID: 0}
+  armorChest: {fileID: 0}
+  armorLegs: {fileID: 0}
   armorHeadR1: {fileID: 0}
   armorHeadR2: {fileID: 0}
   armorHeadR3: {fileID: 0}

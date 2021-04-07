@@ -6,8 +6,9 @@ public class MovementScript : MonoBehaviour
     public float speed = 8;
     public Camera playerCamera;
     public BoxCollider2D swordCollider;
+    public float dashCoolDown;
 
-
+    private bool canDash;
     private Vector2 movement;
     private Rigidbody2D playerRB;
     private bool walkingBackWards;
@@ -19,10 +20,12 @@ public class MovementScript : MonoBehaviour
 
 
 
+
     //Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        canDash = true;
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         baseMovementSpeed = speed;
@@ -50,7 +53,16 @@ public class MovementScript : MonoBehaviour
 
 
     }
-
+    public bool Dash()
+    {
+        if (canDash)
+        {
+            canDash = false;
+            StartCoroutine(DashEnumerator(0.10f));
+            return true;
+        }
+        return false;
+    }
     //get input for the player movement
     void GetMovementInput()
     {
@@ -68,6 +80,14 @@ public class MovementScript : MonoBehaviour
 
         //.normalized caps the vector length to 1, so that diagonal movement works properly
         movement = new Vector2(moveX, moveY).normalized;
+    }
+    public IEnumerator DashEnumerator(float DashTime)
+    {
+        yield return new WaitForSeconds(DashTime);
+        playerRB.AddForce(playerRB.velocity.normalized * 10000f);
+        yield return new WaitForSeconds(dashCoolDown);
+        canDash = true;
+
     }
     public IEnumerator AttackSlow(float slowTime)
     {
