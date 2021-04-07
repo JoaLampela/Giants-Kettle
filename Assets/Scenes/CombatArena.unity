@@ -1673,6 +1673,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5223802194290256615, guid: 29fa06935c8aeea45ad04b7a97b483f0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7051720969466832968, guid: 29fa06935c8aeea45ad04b7a97b483f0, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -1725,6 +1729,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7051720969466832980, guid: 29fa06935c8aeea45ad04b7a97b483f0, type: 3}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29fa06935c8aeea45ad04b7a97b483f0, type: 3}
 --- !u!1 &7051720970070323234 stripped
