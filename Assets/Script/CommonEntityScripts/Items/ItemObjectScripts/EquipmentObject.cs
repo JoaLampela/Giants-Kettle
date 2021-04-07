@@ -5,5 +5,5 @@ using UnityEngine;
 public class EquipmentObject : ItemObject
 {
     public int runeSlots;
-    public Rune baseRune;
+    public RuneObject baseRune;
 }

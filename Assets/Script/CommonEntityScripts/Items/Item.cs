@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Item
 {
-    public Rune[] _runeList;
+    public RuneObject[] _runeList;
     public ItemObject item;
 
     public Item(ItemObject newItem)
     {
+        Debug.Log(newItem);
         item = newItem;
-        if((int)item.type == 1)
+        if(item.type == ItemType.Rune)
+        {
+
+        }
+        else if((int)item.type == 1 || (int)item.type == 2 || (int)item.type == 3 || (int)item.type == 4)
         {
             EquipmentObject equipment = (EquipmentObject)item;
-            _runeList = new Rune[equipment.runeSlots];
+            _runeList = new RuneObject[equipment.runeSlots];
+
+            EquipmentObject equipmentObject = (EquipmentObject)item;
+            if (equipmentObject.baseRune != null) _runeList[0] = equipmentObject.baseRune;
         }
     }
 }

@@ -102,7 +102,7 @@ public class CaveRoom : Room
             {
                 largestListSize = wallregions[i].Count;
                 largestListIndex = i;
-                Debug.Log("so far found index of largest list: " + i);
+                //Debug.Log("so far found index of largest list: " + i);
             }
         }
         //Debug.Log("Largest list size: " + largestListSize + " Largest list: " + largestListIndex);

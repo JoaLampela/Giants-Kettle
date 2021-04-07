@@ -162,17 +162,15 @@ public class Inventory : MonoBehaviour
                         {
                             Item temp = rightHand._item;
                             Unequip(temp, rightHand);
-                            Equip(usedItem, inventorySlot);
-                            rightHand._item = usedItem;
-                            rightHand.icon.sprite = usedItem.item.iconSprite;
+                            Equip(usedItem, rightHand);
+                            rightHand.SetNewItemToslot(usedItem);
                             usedItem = temp;
                             if (leftHand._item != null)
                             {
                                 temp = leftHand._item;
-                                leftHand._item = usedItem;
-                                Unequip(temp, inventorySlot);
+                                leftHand.SetNewItemToslot(usedItem);
+                                Unequip(temp, leftHand);
                                 Equip(usedItem, leftHand);
-                                leftHand.icon.sprite = usedItem.item.iconSprite;
                                 NewItem(temp);
                             }
                             else
@@ -189,17 +187,15 @@ public class Inventory : MonoBehaviour
                         {
                             Item temp = leftHand._item;
                             Unequip(temp, leftHand);
-                            Equip(usedItem, inventorySlot);
-                            leftHand._item = usedItem;
-                            leftHand.icon.sprite = usedItem.item.iconSprite;
+                            Equip(usedItem, leftHand);
+                            leftHand.SetNewItemToslot(usedItem);
                             usedItem = temp;
                             if (rightHand._item != null)
                             {
                                 temp = rightHand._item;
-                                rightHand._item = usedItem;
-                                Unequip(temp, inventorySlot);
+                                rightHand.SetNewItemToslot(usedItem);
+                                Unequip(temp, rightHand);
                                 Equip(usedItem, rightHand);
-                                rightHand.icon.sprite = usedItem.item.iconSprite;
                                 NewItem(temp);
                             }
                             else
@@ -240,210 +236,61 @@ public class Inventory : MonoBehaviour
         {
             if (slot == rightHand)
             {
-                Debug.Log("rune slots " + equipmentObject.runeSlots);
-                switch (equipmentObject.runeSlots)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                        weaponRightHandR1.SetActive(false);
-                        break;
-                    case 2:
-                        weaponRightHandR1.SetActive(false);
-                        weaponRightHandR2.SetActive(false);
-                        break;
-                    case 3:
-                        weaponRightHandR1.SetActive(false);
-                        weaponRightHandR2.SetActive(false);
-                        weaponRightHandR3.SetActive(false);
-                        break;
-                    case 4:
-                        weaponRightHandR1.SetActive(false);
-                        weaponRightHandR2.SetActive(false);
-                        weaponRightHandR3.SetActive(false);
-                        weaponRightHandR4.SetActive(false);
-                        break;
-                    case 5:
-                        weaponRightHandR1.SetActive(false);
-                        weaponRightHandR2.SetActive(false);
-                        weaponRightHandR3.SetActive(false);
-                        weaponRightHandR4.SetActive(false);
-                        weaponRightHandR5.SetActive(false);
-                        break;
-                    case 6:
-                        weaponRightHandR1.SetActive(false);
-                        weaponRightHandR2.SetActive(false);
-                        weaponRightHandR3.SetActive(false);
-                        weaponRightHandR4.SetActive(false);
-                        weaponRightHandR5.SetActive(false);
-                        weaponRightHandR6.SetActive(false);
-                        break;
-                }
+                weaponRightHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponRightHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponRightHandR3.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponRightHandR4.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponRightHandR5.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponRightHandR6.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponRightHandR1.SetActive(false);
+                weaponRightHandR2.SetActive(false);
+                weaponRightHandR3.SetActive(false);
+                weaponRightHandR4.SetActive(false);
+                weaponRightHandR5.SetActive(false);
+                weaponRightHandR6.SetActive(false);
             }
             else if (slot == leftHand)
             {
-                switch (equipmentObject.runeSlots)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                        weaponLeftHandR1.SetActive(false);
-                        break;
-                    case 2:
-                        weaponLeftHandR1.SetActive(false);
-                        weaponLeftHandR2.SetActive(false);
-                        break;
-                    case 3:
-                        weaponLeftHandR1.SetActive(false);
-                        weaponLeftHandR2.SetActive(false);
-                        weaponLeftHandR3.SetActive(false);
-                        break;
-                    case 4:
-                        weaponLeftHandR1.SetActive(false);
-                        weaponLeftHandR2.SetActive(false);
-                        weaponLeftHandR3.SetActive(false);
-                        weaponLeftHandR4.SetActive(false);
-                        break;
-                    case 5:
-                        weaponLeftHandR1.SetActive(false);
-                        weaponLeftHandR2.SetActive(false);
-                        weaponLeftHandR3.SetActive(false);
-                        weaponLeftHandR4.SetActive(false);
-                        weaponLeftHandR5.SetActive(false);
-                        break;
-                    case 6:
-                        weaponLeftHandR1.SetActive(false);
-                        weaponLeftHandR2.SetActive(false);
-                        weaponLeftHandR3.SetActive(false);
-                        weaponLeftHandR4.SetActive(false);
-                        weaponLeftHandR5.SetActive(false);
-                        weaponLeftHandR6.SetActive(false);
-                        break;
-                }
+                weaponLeftHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponLeftHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponLeftHandR3.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponLeftHandR4.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponLeftHandR5.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponLeftHandR6.GetComponent<UiButtonClick>().RemoveItemFromslot();
+                weaponLeftHandR1.SetActive(false);
+                weaponLeftHandR2.SetActive(false);
+                weaponLeftHandR3.SetActive(false);
+                weaponLeftHandR4.SetActive(false);
+                weaponLeftHandR5.SetActive(false);
+                weaponLeftHandR6.SetActive(false);
             }
         }
         else if ((int)slot._type == 2)
         {
-            switch (equipmentObject.runeSlots)
-            {
-                case 0:
-                    break;
-                case 1:
-                    armorHeadR1.SetActive(false);
-                    break;
-                case 2:
-                    armorHeadR1.SetActive(false);
-                    armorHeadR2.SetActive(false);
-                    break;
-                case 3:
-                    armorHeadR1.SetActive(false);
-                    armorHeadR2.SetActive(false);
-                    armorHeadR3.SetActive(false);
-                    break;
-                case 4:
-                    armorHeadR1.SetActive(false);
-                    armorHeadR2.SetActive(false);
-                    armorHeadR3.SetActive(false);
-                    armorHeadR4.SetActive(false);
-                    break;
-                case 5:
-                    armorHeadR1.SetActive(false);
-                    armorHeadR2.SetActive(false);
-                    armorHeadR3.SetActive(false);
-                    armorHeadR4.SetActive(false);
-                    armorHeadR5.SetActive(false);
-                    break;
-                case 6:
-                    armorHeadR1.SetActive(false);
-                    armorHeadR2.SetActive(false);
-                    armorHeadR3.SetActive(false);
-                    armorHeadR4.SetActive(false);
-                    armorHeadR5.SetActive(false);
-                    armorHeadR6.SetActive(false);
-                    break;
-            }
+            armorHeadR1.SetActive(false);
+            armorHeadR2.SetActive(false);
+            armorHeadR3.SetActive(false);
+            armorHeadR4.SetActive(false);
+            armorHeadR5.SetActive(false);
+            armorHeadR6.SetActive(false);
         }
         else if ((int)slot._type == 3)
         {
-            switch (equipmentObject.runeSlots)
-            {
-                case 0:
-                    break;
-                case 1:
-                    armorChestR1.SetActive(false);
-                    break;
-                case 2:
-                    armorChestR1.SetActive(false);
-                    armorChestR2.SetActive(false);
-                    break;
-                case 3:
-                    armorChestR1.SetActive(false);
-                    armorChestR2.SetActive(false);
-                    armorChestR3.SetActive(false);
-                    break;
-                case 4:
-                    armorChestR1.SetActive(false);
-                    armorChestR2.SetActive(false);
-                    armorChestR3.SetActive(false);
-                    armorChestR4.SetActive(false);
-                    break;
-                case 5:
-                    armorChestR1.SetActive(false);
-                    armorChestR2.SetActive(false);
-                    armorChestR3.SetActive(false);
-                    armorChestR4.SetActive(false);
-                    armorChestR5.SetActive(false);
-                    break;
-                case 6:
-                    armorChestR1.SetActive(false);
-                    armorChestR2.SetActive(false);
-                    armorChestR3.SetActive(false);
-                    armorChestR4.SetActive(false);
-                    armorChestR5.SetActive(false);
-                    armorChestR6.SetActive(false);
-                    break;
-            }
+            armorChestR1.SetActive(false);
+            armorChestR2.SetActive(false);
+            armorChestR3.SetActive(false);
+            armorChestR4.SetActive(false);
+            armorChestR5.SetActive(false);
+            armorChestR6.SetActive(false);
         }
         else if ((int)slot._type == 4)
         {
-            switch (equipmentObject.runeSlots)
-            {
-                case 0:
-                    break;
-                case 1:
-                    armorLegsR1.SetActive(false);
-                    break;
-                case 2:
-                    armorLegsR1.SetActive(false);
-                    armorLegsR2.SetActive(false);
-                    break;
-                case 3:
-                    armorLegsR1.SetActive(false);
-                    armorLegsR2.SetActive(false);
-                    armorLegsR3.SetActive(false);
-                    break;
-                case 4:
-                    armorLegsR1.SetActive(false);
-                    armorLegsR2.SetActive(false);
-                    armorLegsR3.SetActive(false);
-                    armorLegsR4.SetActive(false);
-                    break;
-                case 5:
-                    armorLegsR1.SetActive(false);
-                    armorLegsR2.SetActive(false);
-                    armorLegsR3.SetActive(false);
-                    armorLegsR4.SetActive(false);
-                    armorLegsR5.SetActive(false);
-                    break;
-                case 6:
-                    armorLegsR1.SetActive(false);
-                    armorLegsR2.SetActive(false);
-                    armorLegsR3.SetActive(false);
-                    armorLegsR4.SetActive(false);
-                    armorLegsR5.SetActive(false);
-                    armorLegsR6.SetActive(false);
-                    break;
-            }
+            armorLegsR1.SetActive(false);
+            armorLegsR2.SetActive(false);
+            armorLegsR3.SetActive(false);
+            armorLegsR4.SetActive(false);
+            armorLegsR5.SetActive(false);
+            armorLegsR6.SetActive(false);
         }
 
 
@@ -556,6 +403,18 @@ public class Inventory : MonoBehaviour
                         weaponRightHandR6.SetActive(true);
                         break;
                 }
+                if (equippedItem._runeList.Length >= 1)
+                    if (equippedItem._runeList[0] != null) weaponRightHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                if (equippedItem._runeList.Length >= 2)
+                    if (equippedItem._runeList[1] != null) weaponRightHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+                if (equippedItem._runeList.Length >= 3)
+                    if (equippedItem._runeList[2] != null) weaponRightHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+                if (equippedItem._runeList.Length >= 4)
+                    if (equippedItem._runeList[3] != null) weaponRightHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+                if (equippedItem._runeList.Length >= 5)
+                    if (equippedItem._runeList[4] != null) weaponRightHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+                if (equippedItem._runeList.Length == 6)
+                    if (equippedItem._runeList[5] != null) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
             }
             else if(slot == leftHand)
             {
@@ -597,6 +456,18 @@ public class Inventory : MonoBehaviour
                         weaponLeftHandR6.SetActive(true);
                         break;
                 }
+                if(equippedItem._runeList.Length >= 1)
+                    if(equippedItem._runeList[0] != null) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                if (equippedItem._runeList.Length >= 2)
+                    if (equippedItem._runeList[1] != null) weaponLeftHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+                if (equippedItem._runeList.Length >= 3)
+                    if (equippedItem._runeList[2] != null) weaponLeftHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+                if (equippedItem._runeList.Length >= 4)
+                    if (equippedItem._runeList[3] != null) weaponLeftHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+                if (equippedItem._runeList.Length >= 5)
+                    if (equippedItem._runeList[4] != null) weaponLeftHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+                if (equippedItem._runeList.Length == 6)
+                    if (equippedItem._runeList[5] != null) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
             }
         }
         else if((int)slot._type == 2)
@@ -722,6 +593,9 @@ public class Inventory : MonoBehaviour
                     break;
             }
         }
+        
+
+
 
 
 

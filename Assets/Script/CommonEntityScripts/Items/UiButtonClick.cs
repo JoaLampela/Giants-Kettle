@@ -117,15 +117,18 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     else
                     {
                         Item temp = _item;
+                        playerInventory.Unequip(temp, this);
                         _item = null;
                         icon.sprite = null;
                         playerInventory.NewItem(temp);
                     }
+                    playerInventory.Equip(newItem, this);
                     _item = newItem;
                     icon.sprite = newItem.item.iconSprite;
                 }
                 else
                 {
+                    playerInventory.Equip(newItem, this);
                     _item = newItem;
                     icon.sprite = newItem.item.iconSprite;
                 }
@@ -220,6 +223,17 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         playerHoverUi.UpdateHoveredSlot(this);
+    }
+
+    public void SetNewItemToslot(Item newItem)
+    {
+        _item = newItem;
+        icon.sprite = newItem.item.iconSprite;
+    }
+    public void RemoveItemFromslot()
+    {
+        _item = null;
+        icon.sprite = null;
     }
 
     public void SetVisible()

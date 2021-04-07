@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 710893a9e2af052488e1e088896790f4, type: 3}
-  m_Name: TestRune
+  m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
+  m_Name: testRune
   m_EditorClassIdentifier: 
-  runeName: TestRune
+  type: 6
   description: 
-  baseRuneSprite: {fileID: 0}
-  runeIconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: daf4e6f201fb30d409a88118aae8fab7, type: 3}
+  inGameSprite: {fileID: 0}
+  isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: 7963893057509206000, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ObjectField: {fileID: 0}
     ResultType: 
