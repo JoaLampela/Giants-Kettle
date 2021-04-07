@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Player_Weapon : MonoBehaviour
+public class Player_Animations : MonoBehaviour
 {
     public bool attacking { private set; get; }
     public Vector2 lookDirection { private set; get; }

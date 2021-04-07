@@ -31,7 +31,7 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lookDirection = GetComponent<Player_Weapon>().lookDirection;
+        lookDirection = GetComponent<Player_Animations>().lookDirection;
         GetMovementInput();
     }
 
