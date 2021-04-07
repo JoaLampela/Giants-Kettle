@@ -9,7 +9,9 @@ public class Inventory : MonoBehaviour
     {
         Default,
         Weapon,
-        Armor,
+        ArmorHead,
+        ArmorChest,
+        ArmorLegs,
         Consumable,
         Rune
     }
@@ -322,15 +324,126 @@ public class Inventory : MonoBehaviour
         }
         else if ((int)slot._type == 2)
         {
-
+            switch (equipmentObject.runeSlots)
+            {
+                case 0:
+                    break;
+                case 1:
+                    armorHeadR1.SetActive(false);
+                    break;
+                case 2:
+                    armorHeadR1.SetActive(false);
+                    armorHeadR2.SetActive(false);
+                    break;
+                case 3:
+                    armorHeadR1.SetActive(false);
+                    armorHeadR2.SetActive(false);
+                    armorHeadR3.SetActive(false);
+                    break;
+                case 4:
+                    armorHeadR1.SetActive(false);
+                    armorHeadR2.SetActive(false);
+                    armorHeadR3.SetActive(false);
+                    armorHeadR4.SetActive(false);
+                    break;
+                case 5:
+                    armorHeadR1.SetActive(false);
+                    armorHeadR2.SetActive(false);
+                    armorHeadR3.SetActive(false);
+                    armorHeadR4.SetActive(false);
+                    armorHeadR5.SetActive(false);
+                    break;
+                case 6:
+                    armorHeadR1.SetActive(false);
+                    armorHeadR2.SetActive(false);
+                    armorHeadR3.SetActive(false);
+                    armorHeadR4.SetActive(false);
+                    armorHeadR5.SetActive(false);
+                    armorHeadR6.SetActive(false);
+                    break;
+            }
         }
         else if ((int)slot._type == 3)
         {
-
+            switch (equipmentObject.runeSlots)
+            {
+                case 0:
+                    break;
+                case 1:
+                    armorChestR1.SetActive(false);
+                    break;
+                case 2:
+                    armorChestR1.SetActive(false);
+                    armorChestR2.SetActive(false);
+                    break;
+                case 3:
+                    armorChestR1.SetActive(false);
+                    armorChestR2.SetActive(false);
+                    armorChestR3.SetActive(false);
+                    break;
+                case 4:
+                    armorChestR1.SetActive(false);
+                    armorChestR2.SetActive(false);
+                    armorChestR3.SetActive(false);
+                    armorChestR4.SetActive(false);
+                    break;
+                case 5:
+                    armorChestR1.SetActive(false);
+                    armorChestR2.SetActive(false);
+                    armorChestR3.SetActive(false);
+                    armorChestR4.SetActive(false);
+                    armorChestR5.SetActive(false);
+                    break;
+                case 6:
+                    armorChestR1.SetActive(false);
+                    armorChestR2.SetActive(false);
+                    armorChestR3.SetActive(false);
+                    armorChestR4.SetActive(false);
+                    armorChestR5.SetActive(false);
+                    armorChestR6.SetActive(false);
+                    break;
+            }
         }
         else if ((int)slot._type == 4)
         {
-
+            switch (equipmentObject.runeSlots)
+            {
+                case 0:
+                    break;
+                case 1:
+                    armorLegsR1.SetActive(false);
+                    break;
+                case 2:
+                    armorLegsR1.SetActive(false);
+                    armorLegsR2.SetActive(false);
+                    break;
+                case 3:
+                    armorLegsR1.SetActive(false);
+                    armorLegsR2.SetActive(false);
+                    armorLegsR3.SetActive(false);
+                    break;
+                case 4:
+                    armorLegsR1.SetActive(false);
+                    armorLegsR2.SetActive(false);
+                    armorLegsR3.SetActive(false);
+                    armorLegsR4.SetActive(false);
+                    break;
+                case 5:
+                    armorLegsR1.SetActive(false);
+                    armorLegsR2.SetActive(false);
+                    armorLegsR3.SetActive(false);
+                    armorLegsR4.SetActive(false);
+                    armorLegsR5.SetActive(false);
+                    break;
+                case 6:
+                    armorLegsR1.SetActive(false);
+                    armorLegsR2.SetActive(false);
+                    armorLegsR3.SetActive(false);
+                    armorLegsR4.SetActive(false);
+                    armorLegsR5.SetActive(false);
+                    armorLegsR6.SetActive(false);
+                    break;
+            }
         }
 
 
@@ -488,15 +601,126 @@ public class Inventory : MonoBehaviour
         }
         else if((int)slot._type == 2)
         {
-
+            switch (equipmentObject.runeSlots)
+            {
+                case 0:
+                    break;
+                case 1:
+                    armorHeadR1.SetActive(true);
+                    break;
+                case 2:
+                    armorHeadR1.SetActive(true);
+                    armorHeadR2.SetActive(true);
+                    break;
+                case 3:
+                    armorHeadR1.SetActive(true);
+                    armorHeadR2.SetActive(true);
+                    armorHeadR3.SetActive(true);
+                    break;
+                case 4:
+                    armorHeadR1.SetActive(true);
+                    armorHeadR2.SetActive(true);
+                    armorHeadR3.SetActive(true);
+                    armorHeadR4.SetActive(true);
+                    break;
+                case 5:
+                    armorHeadR1.SetActive(true);
+                    armorHeadR2.SetActive(true);
+                    armorHeadR3.SetActive(true);
+                    armorHeadR4.SetActive(true);
+                    armorHeadR5.SetActive(true);
+                    break;
+                case 6:
+                    armorHeadR1.SetActive(true);
+                    armorHeadR2.SetActive(true);
+                    armorHeadR3.SetActive(true);
+                    armorHeadR4.SetActive(true);
+                    armorHeadR5.SetActive(true);
+                    armorHeadR6.SetActive(true);
+                    break;
+            }
         }
         else if ((int)slot._type == 3)
         {
-
+            switch (equipmentObject.runeSlots)
+            {
+                case 0:
+                    break;
+                case 1:
+                    armorChestR1.SetActive(true);
+                    break;
+                case 2:
+                    armorChestR1.SetActive(true);
+                    armorChestR2.SetActive(true);
+                    break;
+                case 3:
+                    armorChestR1.SetActive(true);
+                    armorChestR2.SetActive(true);
+                    armorChestR3.SetActive(true);
+                    break;
+                case 4:
+                    armorChestR1.SetActive(true);
+                    armorChestR2.SetActive(true);
+                    armorChestR3.SetActive(true);
+                    armorChestR4.SetActive(true);
+                    break;
+                case 5:
+                    armorChestR1.SetActive(true);
+                    armorChestR2.SetActive(true);
+                    armorChestR3.SetActive(true);
+                    armorChestR4.SetActive(true);
+                    armorChestR5.SetActive(true);
+                    break;
+                case 6:
+                    armorChestR1.SetActive(true);
+                    armorChestR2.SetActive(true);
+                    armorChestR3.SetActive(true);
+                    armorChestR4.SetActive(true);
+                    armorChestR5.SetActive(true);
+                    armorChestR6.SetActive(true);
+                    break;
+            }
         }
         else if ((int)slot._type == 4)
         {
-
+            switch (equipmentObject.runeSlots)
+            {
+                case 0:
+                    break;
+                case 1:
+                    armorLegsR1.SetActive(true);
+                    break;
+                case 2:
+                    armorLegsR1.SetActive(true);
+                    armorLegsR2.SetActive(true);
+                    break;
+                case 3:
+                    armorLegsR1.SetActive(true);
+                    armorLegsR2.SetActive(true);
+                    armorLegsR3.SetActive(true);
+                    break;
+                case 4:
+                    armorLegsR1.SetActive(true);
+                    armorLegsR2.SetActive(true);
+                    armorLegsR3.SetActive(true);
+                    armorLegsR4.SetActive(true);
+                    break;
+                case 5:
+                    armorLegsR1.SetActive(true);
+                    armorLegsR2.SetActive(true);
+                    armorLegsR3.SetActive(true);
+                    armorLegsR4.SetActive(true);
+                    armorLegsR5.SetActive(true);
+                    break;
+                case 6:
+                    armorLegsR1.SetActive(true);
+                    armorLegsR2.SetActive(true);
+                    armorLegsR3.SetActive(true);
+                    armorLegsR4.SetActive(true);
+                    armorLegsR5.SetActive(true);
+                    armorLegsR6.SetActive(true);
+                    break;
+            }
         }
 
 
