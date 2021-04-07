@@ -67,9 +67,9 @@ public class Player_Animations : MonoBehaviour
             {
                 animator.SetTrigger("Special");
                 attacking = true;
-                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.30f * 2f));
-                StartCoroutine(SetAttacking(0.6f));
-                StartCoroutine(SetAttackOnCooldown(0.6f));
+                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.80f));
+                StartCoroutine(SetAttacking(0.8f));
+                StartCoroutine(SetAttackOnCooldown(0.8f));
             }
             if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
             {
