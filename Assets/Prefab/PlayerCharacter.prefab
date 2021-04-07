@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 6359173399256699797}
   - component: {fileID: 7852401013459449329}
   - component: {fileID: 8698435716602996018}
+  - component: {fileID: 5223802194290256615}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -534,6 +535,36 @@ MonoBehaviour:
   equipmentSlots: []
   rightHand: {fileID: 0}
   leftHand: {fileID: 0}
+  armorHeadR1: {fileID: 0}
+  armorHeadR2: {fileID: 0}
+  armorHeadR3: {fileID: 0}
+  armorHeadR4: {fileID: 0}
+  armorHeadR5: {fileID: 0}
+  armorHeadR6: {fileID: 0}
+  armorChestR1: {fileID: 0}
+  armorChestR2: {fileID: 0}
+  armorChestR3: {fileID: 0}
+  armorChestR4: {fileID: 0}
+  armorChestR5: {fileID: 0}
+  armorChestR6: {fileID: 0}
+  armorLegsR1: {fileID: 0}
+  armorLegsR2: {fileID: 0}
+  armorLegsR3: {fileID: 0}
+  armorLegsR4: {fileID: 0}
+  armorLegsR5: {fileID: 0}
+  armorLegsR6: {fileID: 0}
+  weaponRightHandR1: {fileID: 0}
+  weaponRightHandR2: {fileID: 0}
+  weaponRightHandR3: {fileID: 0}
+  weaponRightHandR4: {fileID: 0}
+  weaponRightHandR5: {fileID: 0}
+  weaponRightHandR6: {fileID: 0}
+  weaponLeftHandR1: {fileID: 0}
+  weaponLeftHandR2: {fileID: 0}
+  weaponLeftHandR3: {fileID: 0}
+  weaponLeftHandR4: {fileID: 0}
+  weaponLeftHandR5: {fileID: 0}
+  weaponLeftHandR6: {fileID: 0}
   testEquipmentCount: 0
   itemOnGround: {fileID: 1598165947520860255, guid: 996ffc1cb127e254d90e72c747436162, type: 3}
   abilityManager: {fileID: 0}
@@ -714,6 +745,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a12b8f20d8f0364fa15e71810739353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5223802194290256615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051720969466832969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b375f3e06133e4eac4afb0d30763fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testItemObject: {fileID: 0}
+  itemOnGround: {fileID: 0}
+  testItemObject2: {fileID: 0}
 --- !u!1 &7051720969780881987
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   description: 
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: 7fea356589ea88646ba55c71fc226ef7, type: 3}
   inGameSprite: {fileID: 0}
   isTwoHander: 1
   runeSlots: 0

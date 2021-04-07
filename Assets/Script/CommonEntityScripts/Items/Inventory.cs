@@ -21,40 +21,40 @@ public class Inventory : MonoBehaviour
     public UiButtonClick rightHand;
     public UiButtonClick leftHand;
 
-    public UiButtonClick armorHeadR1;
-    public UiButtonClick armorHeadR2;
-    public UiButtonClick armorHeadR3;
-    public UiButtonClick armorHeadR4;
-    public UiButtonClick armorHeadR5;
-    public UiButtonClick armorHeadR6;
+    public GameObject armorHeadR1;
+    public GameObject armorHeadR2;
+    public GameObject armorHeadR3;
+    public GameObject armorHeadR4;
+    public GameObject armorHeadR5;
+    public GameObject armorHeadR6;
 
-    public UiButtonClick armorChestR1;
-    public UiButtonClick armorChestR2;
-    public UiButtonClick armorChestR3;
-    public UiButtonClick armorChestR4;
-    public UiButtonClick armorChestR5;
-    public UiButtonClick armorChestR6;
+    public GameObject armorChestR1;
+    public GameObject armorChestR2;
+    public GameObject armorChestR3;
+    public GameObject armorChestR4;
+    public GameObject armorChestR5;
+    public GameObject armorChestR6;
 
-    public UiButtonClick armorLegsR1;
-    public UiButtonClick armorLegsR2;
-    public UiButtonClick armorLegsR3;
-    public UiButtonClick armorLegsR4;
-    public UiButtonClick armorLegsR5;
-    public UiButtonClick armorLegsR6;
+    public GameObject armorLegsR1;
+    public GameObject armorLegsR2;
+    public GameObject armorLegsR3;
+    public GameObject armorLegsR4;
+    public GameObject armorLegsR5;
+    public GameObject armorLegsR6;
 
-    public UiButtonClick weaponRightHandR1;
-    public UiButtonClick weaponRightHandR2;
-    public UiButtonClick weaponRightHandR3;
-    public UiButtonClick weaponRightHandR4;
-    public UiButtonClick weaponRightHandR5;
-    public UiButtonClick weaponRightHandR6;
+    public GameObject weaponRightHandR1;
+    public GameObject weaponRightHandR2;
+    public GameObject weaponRightHandR3;
+    public GameObject weaponRightHandR4;
+    public GameObject weaponRightHandR5;
+    public GameObject weaponRightHandR6;
 
-    public UiButtonClick weaponLeftHandR1;
-    public UiButtonClick weaponLeftHandR2;
-    public UiButtonClick weaponLeftHandR3;
-    public UiButtonClick weaponLeftHandR4;
-    public UiButtonClick weaponLeftHandR5;
-    public UiButtonClick weaponLeftHandR6;
+    public GameObject weaponLeftHandR1;
+    public GameObject weaponLeftHandR2;
+    public GameObject weaponLeftHandR3;
+    public GameObject weaponLeftHandR4;
+    public GameObject weaponLeftHandR5;
+    public GameObject weaponLeftHandR6;
 
     public int testEquipmentCount = 0;
     public GameObject itemOnGround;
@@ -178,8 +178,38 @@ public class Inventory : MonoBehaviour
                                 leftHand._item = usedItem;
                                 Equip(usedItem, leftHand);
                                 leftHand.icon.sprite = usedItem.item.iconSprite;
+                         
                             }
+
                         }
+
+                        else if (inventorySlot == leftHand)
+                        {
+                            Item temp = leftHand._item;
+                            Unequip(temp, leftHand);
+                            Equip(usedItem, inventorySlot);
+                            leftHand._item = usedItem;
+                            leftHand.icon.sprite = usedItem.item.iconSprite;
+                            usedItem = temp;
+                            if (rightHand._item != null)
+                            {
+                                temp = rightHand._item;
+                                rightHand._item = usedItem;
+                                Unequip(temp, inventorySlot);
+                                Equip(usedItem, rightHand);
+                                rightHand.icon.sprite = usedItem.item.iconSprite;
+                                NewItem(temp);
+                            }
+                            else
+                            {
+                                rightHand._item = usedItem;
+                                Equip(usedItem, rightHand);
+                                rightHand.icon.sprite = usedItem.item.iconSprite;
+
+                            }
+
+                        }
+
                         else
                         {
                             Item temp = inventorySlot._item;
@@ -203,7 +233,108 @@ public class Inventory : MonoBehaviour
 
     public void Unequip(Item unequippedItem, UiButtonClick slot)
     {
-        if(slot == rightHand || slot == leftHand)
+        EquipmentObject equipmentObject = (EquipmentObject)unequippedItem.item;
+        if ((int)slot._type == 1)
+        {
+            if (slot == rightHand)
+            {
+                Debug.Log("rune slots " + equipmentObject.runeSlots);
+                switch (equipmentObject.runeSlots)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        weaponRightHandR1.SetActive(false);
+                        break;
+                    case 2:
+                        weaponRightHandR1.SetActive(false);
+                        weaponRightHandR2.SetActive(false);
+                        break;
+                    case 3:
+                        weaponRightHandR1.SetActive(false);
+                        weaponRightHandR2.SetActive(false);
+                        weaponRightHandR3.SetActive(false);
+                        break;
+                    case 4:
+                        weaponRightHandR1.SetActive(false);
+                        weaponRightHandR2.SetActive(false);
+                        weaponRightHandR3.SetActive(false);
+                        weaponRightHandR4.SetActive(false);
+                        break;
+                    case 5:
+                        weaponRightHandR1.SetActive(false);
+                        weaponRightHandR2.SetActive(false);
+                        weaponRightHandR3.SetActive(false);
+                        weaponRightHandR4.SetActive(false);
+                        weaponRightHandR5.SetActive(false);
+                        break;
+                    case 6:
+                        weaponRightHandR1.SetActive(false);
+                        weaponRightHandR2.SetActive(false);
+                        weaponRightHandR3.SetActive(false);
+                        weaponRightHandR4.SetActive(false);
+                        weaponRightHandR5.SetActive(false);
+                        weaponRightHandR6.SetActive(false);
+                        break;
+                }
+            }
+            else if (slot == leftHand)
+            {
+                switch (equipmentObject.runeSlots)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        weaponLeftHandR1.SetActive(false);
+                        break;
+                    case 2:
+                        weaponLeftHandR1.SetActive(false);
+                        weaponLeftHandR2.SetActive(false);
+                        break;
+                    case 3:
+                        weaponLeftHandR1.SetActive(false);
+                        weaponLeftHandR2.SetActive(false);
+                        weaponLeftHandR3.SetActive(false);
+                        break;
+                    case 4:
+                        weaponLeftHandR1.SetActive(false);
+                        weaponLeftHandR2.SetActive(false);
+                        weaponLeftHandR3.SetActive(false);
+                        weaponLeftHandR4.SetActive(false);
+                        break;
+                    case 5:
+                        weaponLeftHandR1.SetActive(false);
+                        weaponLeftHandR2.SetActive(false);
+                        weaponLeftHandR3.SetActive(false);
+                        weaponLeftHandR4.SetActive(false);
+                        weaponLeftHandR5.SetActive(false);
+                        break;
+                    case 6:
+                        weaponLeftHandR1.SetActive(false);
+                        weaponLeftHandR2.SetActive(false);
+                        weaponLeftHandR3.SetActive(false);
+                        weaponLeftHandR4.SetActive(false);
+                        weaponLeftHandR5.SetActive(false);
+                        weaponLeftHandR6.SetActive(false);
+                        break;
+                }
+            }
+        }
+        else if ((int)slot._type == 2)
+        {
+
+        }
+        else if ((int)slot._type == 3)
+        {
+
+        }
+        else if ((int)slot._type == 4)
+        {
+
+        }
+
+
+        if (slot == rightHand || slot == leftHand)
         {
             WeaponObject weapon = (WeaponObject)unequippedItem.item;
 
@@ -267,7 +398,110 @@ public class Inventory : MonoBehaviour
 
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
-        if(slot == rightHand || slot == leftHand)
+        EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
+        Debug.Log("rune slots " + equipmentObject.runeSlots + "type " + (int)slot._type + " slot = " + slot);
+        if ((int)slot._type == 1)
+        {
+            if(slot == rightHand)
+            {
+                Debug.Log("rune slots " + equipmentObject.runeSlots);
+                switch(equipmentObject.runeSlots)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        weaponRightHandR1.SetActive(true);
+                        break;
+                    case 2:
+                        weaponRightHandR1.SetActive(true);
+                        weaponRightHandR2.SetActive(true);
+                        break;
+                    case 3:
+                        weaponRightHandR1.SetActive(true);
+                        weaponRightHandR2.SetActive(true);
+                        weaponRightHandR3.SetActive(true);
+                        break;
+                    case 4:
+                        weaponRightHandR1.SetActive(true);
+                        weaponRightHandR2.SetActive(true);
+                        weaponRightHandR3.SetActive(true);
+                        weaponRightHandR4.SetActive(true);
+                        break;
+                    case 5:
+                        weaponRightHandR1.SetActive(true);
+                        weaponRightHandR2.SetActive(true);
+                        weaponRightHandR3.SetActive(true);
+                        weaponRightHandR4.SetActive(true);
+                        weaponRightHandR5.SetActive(true);
+                        break;
+                    case 6:
+                        weaponRightHandR1.SetActive(true);
+                        weaponRightHandR2.SetActive(true);
+                        weaponRightHandR3.SetActive(true);
+                        weaponRightHandR4.SetActive(true);
+                        weaponRightHandR5.SetActive(true);
+                        weaponRightHandR6.SetActive(true);
+                        break;
+                }
+            }
+            else if(slot == leftHand)
+            {
+                switch (equipmentObject.runeSlots)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        weaponLeftHandR1.SetActive(true);
+                        break;
+                    case 2:
+                        weaponLeftHandR1.SetActive(true);
+                        weaponLeftHandR2.SetActive(true);
+                        break;
+                    case 3:
+                        weaponLeftHandR1.SetActive(true);
+                        weaponLeftHandR2.SetActive(true);
+                        weaponLeftHandR3.SetActive(true);
+                        break;
+                    case 4:
+                        weaponLeftHandR1.SetActive(true);
+                        weaponLeftHandR2.SetActive(true);
+                        weaponLeftHandR3.SetActive(true);
+                        weaponLeftHandR4.SetActive(true);
+                        break;
+                    case 5:
+                        weaponLeftHandR1.SetActive(true);
+                        weaponLeftHandR2.SetActive(true);
+                        weaponLeftHandR3.SetActive(true);
+                        weaponLeftHandR4.SetActive(true);
+                        weaponLeftHandR5.SetActive(true);
+                        break;
+                    case 6:
+                        weaponLeftHandR1.SetActive(true);
+                        weaponLeftHandR2.SetActive(true);
+                        weaponLeftHandR3.SetActive(true);
+                        weaponLeftHandR4.SetActive(true);
+                        weaponLeftHandR5.SetActive(true);
+                        weaponLeftHandR6.SetActive(true);
+                        break;
+                }
+            }
+        }
+        else if((int)slot._type == 2)
+        {
+
+        }
+        else if ((int)slot._type == 3)
+        {
+
+        }
+        else if ((int)slot._type == 4)
+        {
+
+        }
+
+
+
+        if (slot == rightHand || slot == leftHand)
         {
             WeaponObject weapon = (WeaponObject)equippedItem.item;
 

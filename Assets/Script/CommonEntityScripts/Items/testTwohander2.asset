@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
-  m_Name: testTwoHander2
+  m_Name: testTwohander2
   m_EditorClassIdentifier: 
   type: 1
   description: 

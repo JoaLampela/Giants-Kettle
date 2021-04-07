@@ -39,7 +39,9 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         if (!isEquipmentSlot) playerInventory.inventorySlots.Add(this);
         else playerInventory.equipmentSlots.Add(this);
         if(playerHoverUi != null) //Debug.Log("found");
-        if (_item != null) icon.sprite = _item.item.iconSprite; 
+        if (_item != null) icon.sprite = _item.item.iconSprite;
+
+        if ((int)_type == 6) SetInvisible();
     }
 
     public void PlaceItem(Item newItem, UiButtonClick previousSlot = null)
@@ -218,5 +220,14 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         playerHoverUi.UpdateHoveredSlot(this);
+    }
+
+    public void SetVisible()
+    {
+        gameObject.SetActive(true);
+    }
+    public void SetInvisible()
+    {
+        gameObject.SetActive(false);
     }
 }
