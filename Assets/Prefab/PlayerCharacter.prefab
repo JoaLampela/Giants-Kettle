@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7051720969390189161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2161416466367798763}
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae07a8bc16e26f34b9fa86c8f367c922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 2
   baseHealth: 0
   baseSpirit: 0
   baseEnergy: 0
@@ -706,7 +706,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de148eb5fcced3b4081c062026abeb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightArm: {fileID: 7051720968973546008}
+  rightArmContainer: {fileID: 7051720968973546008}
+  rightArm: {fileID: 7051720969390189161}
+  leftArm: {fileID: 7051720970361916754}
+  leftArmContainer: {fileID: 7051720970071662151}
 --- !u!114 &6359173399256699797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,7 +983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7051720970361916754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7051720970071662150}
@@ -1062,7 +1065,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7312141570797176905}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0019999743, y: 0.04200001, z: -52.43727}
+  m_LocalPosition: {x: -0.001999974, y: 0.04200001, z: -52.43727}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7051720969390189160}

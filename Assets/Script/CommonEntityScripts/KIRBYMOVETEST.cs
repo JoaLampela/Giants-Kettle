@@ -256,7 +256,7 @@ public class KIRBYMOVETEST : MonoBehaviour
     }
     private void DodgeCheck()
     {
-        if (targetingSystem.target.GetComponent<MovementScript>() && targetingSystem.target.GetComponent<Player_Weapon>().attacking)
+        if (targetingSystem.target.GetComponent<MovementScript>() && targetingSystem.target.GetComponent<Player_Animations>().attacking)
         {
             VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
             VectorNode oppositeNode = closestVectorNode;
