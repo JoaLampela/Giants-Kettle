@@ -44,12 +44,15 @@ public class Player_Animations : MonoBehaviour
                 attacking = true;
                 StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.04f * 2f));
                 StartCoroutine(SetAttacking(0.04f));
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0, 500));
                 StartCoroutine(SetAttackOnCooldown(0.4f));
             }
             if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
             {
                 animator.SetTrigger("Special");
                 attacking = true;
+
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.15f, 1000));
                 StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.30f * 2f));
                 StartCoroutine(SetAttacking(0.30f));
                 StartCoroutine(SetAttackOnCooldown(0.6f));
@@ -61,6 +64,7 @@ public class Player_Animations : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
                 attacking = true;
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.4f, 1000));
                 StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.6f));
                 StartCoroutine(SetAttacking(0.5f));
                 StartCoroutine(SetAttackOnCooldown(0.6f));
@@ -69,6 +73,7 @@ public class Player_Animations : MonoBehaviour
             {
                 animator.SetTrigger("Special");
                 attacking = true;
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.6f, 1500));
                 StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.80f));
                 StartCoroutine(SetAttacking(0.8f));
                 StartCoroutine(SetAttackOnCooldown(0.8f));
