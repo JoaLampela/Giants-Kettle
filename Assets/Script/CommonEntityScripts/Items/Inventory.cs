@@ -18,8 +18,8 @@ public class Inventory : MonoBehaviour
 
     private EntityEvents events;
 
-    public List<UiButtonClick> inventorySlots = new List<UiButtonClick>();
-    public List<UiButtonClick> equipmentSlots = new List<UiButtonClick>();
+    public UiButtonClick[] inventorySlots;
+    public UiButtonClick[] equipmentSlots;
     public UiButtonClick rightHand;
     public UiButtonClick leftHand;
     public UiButtonClick armorHead;
@@ -67,8 +67,15 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
+        
         events = GetComponent<EntityEvents>();
         abilityManager = GetComponent<EntityAbilityManager>();
+    }
+    private void Start()
+    {
+        inventorySlots = new UiButtonClick[24];
+        equipmentSlots = new UiButtonClick[36];
+        Debug.Log(inventorySlots.Length + "lenght");
     }
 
 
@@ -102,7 +109,7 @@ public class Inventory : MonoBehaviour
 
     public void UseItem(Item usedItem)
     {
-        if ((int)usedItem.item.type == 3)
+        if ((int)usedItem.item.type == (int)ItemType.Consumable)
         {
             UseConsumable(usedItem);
         }
@@ -119,13 +126,11 @@ public class Inventory : MonoBehaviour
                         {
                             if (rightHand._item.item.isTwoHander)
                             {
-                                leftHand._item = null;
-                                leftHand.icon.sprite = null;
+                                leftHand.RemoveItemFromslot();
                             }
                             Unequip(rightHand._item, rightHand);
                             NewItem(rightHand._item);
-                            rightHand._item = null;
-                            rightHand.icon.sprite = null;
+                            rightHand.RemoveItemFromslot();
                         }
                         if (leftHand._item != null)
                         {
@@ -136,8 +141,7 @@ public class Inventory : MonoBehaviour
                             }
                             Unequip(leftHand._item, leftHand);
                             NewItem(leftHand._item);
-                            leftHand._item = null;
-                            leftHand.icon.sprite = null;
+                            leftHand.RemoveItemFromslot();
                         }
                         Equip(usedItem, inventorySlot);
                         rightHand._item = usedItem;
@@ -149,14 +153,16 @@ public class Inventory : MonoBehaviour
                     {
                         if (inventorySlot._item.item.isTwoHander)
                         {
+                            Item temp = leftHand._item;
+                            leftHand.RemoveItemFromslot();
+                            Unequip(temp, inventorySlot);
+
                             Equip(usedItem, inventorySlot);
+                            Debug.Log(usedItem + " to slot " + inventorySlot);
                             rightHand._item = usedItem;
                             rightHand.icon.sprite = usedItem.item.iconSprite;
 
-                            Item temp = leftHand._item;
-                            leftHand._item = null;
-                            leftHand.icon.sprite = null;
-                            Unequip(temp, inventorySlot);
+                            
                             NewItem(temp);
                         }
 
@@ -671,7 +677,7 @@ public class Inventory : MonoBehaviour
     public void UseConsumable(Item usedItem)
     {
         Debug.Log("Used " + usedItem.item.name);
-        if ((int)usedItem.item.type == 2)
+        if ((int)usedItem.item.type == (int)ItemType.Consumable)
         {
             ConsumableObject consumable = (ConsumableObject)usedItem.item;
             foreach (ItemBuff buff in consumable.buffs)

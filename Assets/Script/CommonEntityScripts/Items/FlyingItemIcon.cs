@@ -7,7 +7,6 @@ public class FlyingItemIcon : MonoBehaviour
 {
     public Vector3 offset;
 
-
     void Update()
     {
         MoveObject(); 

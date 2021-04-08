@@ -13,6 +13,7 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     public event Action<ItemObject, int> OnDropItem;
     public GameObject flyingIcon;
     private Inventory playerInventory;
+    [SerializeField] private Sprite empty;
 
     private void Awake()
     {
@@ -53,8 +54,10 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     {
         grabbedItem = item;
         grabbedItemSlot = slot;
-        flyingIcon.GetComponent<Image>().sprite = grabbedItem.item.iconSprite;
+        flyingIcon.GetComponent<Image>().sprite = empty;
         flyingIcon.SetActive(true);
+        flyingIcon.GetComponent<Image>().sprite = grabbedItem.item.iconSprite;
+        
     }
     private void DropItem()
     {

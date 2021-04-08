@@ -18,11 +18,13 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     private Inventory playerInventory;
     private PlayerHoverUi playerHoverUi;
-    
+
+    [SerializeField] private Sprite defaultIcon;
     public ItemType _type;
     public Item _item;
     public Image icon;
     [SerializeField] private bool isEquipmentSlot;
+    [SerializeField] private int slotNuber;
 
 
     
@@ -36,8 +38,9 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     }
     private void Start()
     {
-        if (!isEquipmentSlot) playerInventory.inventorySlots.Add(this);
-        else playerInventory.equipmentSlots.Add(this);
+        Debug.Log("slot " +slotNuber);
+        if (!isEquipmentSlot) playerInventory.inventorySlots[slotNuber] = this;
+        else playerInventory.equipmentSlots[slotNuber] = this;
         if(playerHoverUi != null) //Debug.Log("found");
         if (_item != null) icon.sprite = _item.item.iconSprite;
 
@@ -49,8 +52,8 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         if ((int)_type != 0 && _type != ItemType.Rune)
         {
             Debug.Log("!=0");
-            playerInventory.Equip(newItem, this);
             if (_item != null) playerInventory.Unequip(_item, this);
+            if(!newItem.item.isTwoHander) playerInventory.Equip(newItem, this);
         }
         if( _type == ItemType.Rune )
         {
@@ -65,8 +68,8 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     Item temp;
                     if (_item.item.isTwoHander) {
                         temp = playerInventory.leftHand._item;
-                        playerInventory.rightHand._item = null;
-                        playerInventory.leftHand._item = null;
+                        playerInventory.rightHand.RemoveItemFromslot();
+                        playerInventory.leftHand.RemoveItemFromslot();
                     }
                     else temp = _item;
                     playerInventory.NewItem(temp);
@@ -86,7 +89,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                         if(playerInventory.leftHand._item != null)
                         {
                             Item temp = playerInventory.leftHand._item;
-                            playerInventory.Unequip(temp, this);
+                            playerInventory.Unequip(temp, playerInventory.leftHand);
                             playerInventory.NewItem(temp);
                         }
                     }
@@ -95,11 +98,12 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                         if (playerInventory.rightHand._item != null)
                         {
                             Item temp = playerInventory.rightHand._item;
-                            playerInventory.Unequip(temp, this);
+                            playerInventory.Unequip(temp, playerInventory.rightHand);
                             playerInventory.NewItem(temp);
                         }
                     }
                 }
+                playerInventory.Equip(newItem, this);
                 playerInventory.rightHand._item = newItem;
                 playerInventory.leftHand._item = newItem;
                 playerInventory.rightHand.icon.sprite = newItem.item.iconSprite;
@@ -112,18 +116,15 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     if(_item.item.isTwoHander)
                     {
                         Item temp = playerInventory.leftHand._item;
-                        playerInventory.rightHand._item = null;
-                        playerInventory.leftHand._item = null;
-                        playerInventory.rightHand.icon.sprite = null;
-                        playerInventory.leftHand.icon.sprite = null;
+                        playerInventory.leftHand.RemoveItemFromslot();
+                        playerInventory.rightHand.RemoveItemFromslot();
                         playerInventory.NewItem(temp);
                     }
                     else
                     {
                         Item temp = _item;
                         playerInventory.Unequip(temp, this);
-                        _item = null;
-                        icon.sprite = null;
+                        RemoveItemFromslot();
                         playerInventory.NewItem(temp);
                     }
                     playerInventory.Equip(newItem, this);
@@ -170,35 +171,29 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     if(this == playerInventory.rightHand)
                     {
                         Item temp = playerInventory.leftHand._item;
-                        playerInventory.leftHand._item = null;
-                        playerInventory.leftHand.icon.sprite = null;
-                        playerInventory.rightHand._item = null;
-                        playerInventory.rightHand.icon.sprite = null;
+                        playerInventory.leftHand.RemoveItemFromslot();
+                        playerInventory.rightHand.RemoveItemFromslot();
                         playerInventory.NewItem(temp);
                     }
                     else if (this == playerInventory.leftHand)
                     {
                         Item temp = playerInventory.rightHand._item;
-                        playerInventory.rightHand._item = null;
-                        playerInventory.rightHand.icon.sprite = null;
-                        playerInventory.leftHand._item = null;
-                        playerInventory.leftHand.icon.sprite = null;
+                        playerInventory.rightHand.RemoveItemFromslot();
+                        playerInventory.leftHand.RemoveItemFromslot();
                         playerInventory.NewItem(temp);
                     }
                 }
                 else if(playerInventory.InventoryHasRoom())
                 {
                     Item temp = _item;
-                    _item = null;
-                    icon.sprite = null;
+                    RemoveItemFromslot();
                     playerInventory.NewItem(temp);
                 }
             }
             else if (_item != null && (int)_item.item.type != (int)ItemType.Rune)
             {
                 Item temp = _item;
-                icon.sprite = null;
-                _item = null;
+                RemoveItemFromslot();
                 playerInventory.UseItem(temp);
             }
         }
@@ -208,19 +203,16 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             {
                 if(this == playerInventory.rightHand && _item.item.isTwoHander)
                 {
-                    playerInventory.leftHand._item = null;
-                    playerInventory.leftHand.icon.sprite = null;
+                    playerInventory.leftHand.RemoveItemFromslot();
                 }
                 else if (this == playerInventory.leftHand && _item.item.isTwoHander)
                 {
-                    playerInventory.rightHand._item = null;
-                    playerInventory.rightHand.icon.sprite = null;
+                    playerInventory.rightHand.RemoveItemFromslot();
                 }
                 if ((int)_type != 0 && _type != ItemType.Rune) playerInventory.Unequip(_item, this);
                 if (_type == ItemType.Rune) playerInventory.RemoveRuneFromItem(gameObject);
                 playerHoverUi.SetGrabbedItem(_item, this);
-                icon.sprite = null;
-                _item = null;
+                RemoveItemFromslot();
             }
         }
     }
@@ -238,7 +230,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public void RemoveItemFromslot()
     {
         _item = null;
-        icon.sprite = null;
+        icon.sprite = defaultIcon;
     }
 
     public void SetVisible()
