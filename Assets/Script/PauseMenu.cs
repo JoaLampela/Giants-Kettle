@@ -8,7 +8,6 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
-    public GameObject gameOverScreen;
 
     private void Start()
     {
@@ -19,13 +18,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (gameOverScreen.activeSelf)
-            {
-                Time.timeScale = 1f;
-                GamePaused = false;
-                SceneManager.LoadScene(0);
-            }
-            else if (GamePaused)
+            if (GamePaused)
             {
                 Resume();
             }
