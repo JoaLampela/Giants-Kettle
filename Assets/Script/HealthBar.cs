@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
@@ -9,9 +10,11 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public TMP_Text healthText;
     private EntityEvents _events;
     private GameObject player;
     private int health;
+    private int maxHealth;
 
 
     private void Start()
@@ -36,14 +39,16 @@ public class HealthBar : MonoBehaviour
         slider.maxValue = hp;
         slider.value = hp;
         fill.color = gradient.Evaluate(1f);
+        maxHealth = hp;
     }
 
     public void SetHealth(int hp)
     {
         slider.value = hp;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        healthText.text = hp + " / " + maxHealth;
     }
-    
+
     private void Subscribe()
     {
         _events.OnSetHealth += SetMaxHealth;
