@@ -1,28 +1,28 @@
-﻿using Pathfinding;
+using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KIRBYMOVETEST : MonoBehaviour
+public class EnemyMovementController : MonoBehaviour
 {
     EntityTargetingSystem targetingSystem;
     //Each variable name represents a compass point
     List<VectorNode> vectorNodes;
     VectorNode debugBestVectorNode;
-    float maxObstacleVectorDistance = 0.4f;
-    float maxAllyRange = 1;
+    public float maxObstacleVectorDistance = 0.4f;
+    public float maxAllyRange = 2;
     public float maxPlayerRange = 3f;
-    CircleCollider2D objectCollider;
-    Path path;
-    float nextWayPointDistance = 0.4f;
-    int currentWaypoint = 0;
     public bool reachedEndOfPath = false;
-    Seeker seeker;
-    Rigidbody2D rb;
-    Vector2 AstarDirection;
     public float entitySpeed = 15;
-    private VectorNode lastDirection;
     public AnimationCurve circleWeightTransformationCurve;
     public AnimationCurve circlingDistanceHarshnessRegulator;
+    private CircleCollider2D objectCollider;
+    private Path path;
+    private float nextWayPointDistance = 0.4f;
+    private int currentWaypoint = 0;
+    private Seeker seeker;
+    private Rigidbody2D rb;
+    private Vector2 AstarDirection;
+    private VectorNode lastDirection;
     // Start is called before the first frame update
     void Start()
     {
@@ -303,12 +303,14 @@ public class KIRBYMOVETEST : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        /*foreach (VectorNode vector in vectorNodes)
+        /*
+        foreach (VectorNode vector in vectorNodes)
         {
             Gizmos.DrawLine(gameObject.transform.position, (vector.ReturnWeightByDirection() + (Vector2)gameObject.transform.position));
             Gizmos.DrawLine(gameObject.transform.position, (debugBestVectorNode.direction * debugBestVectorNode.weight * 2f) + (Vector2)gameObject.transform.position);
 
-        }*/
+        }
+        */
     }
 
     private class VectorNode

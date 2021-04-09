@@ -89,6 +89,12 @@ public class MovementScript : MonoBehaviour
         canDash = true;
 
     }
+    public IEnumerator AttackStep(float waitTime, float force)
+    {
+        yield return new WaitForSeconds(waitTime);
+        playerRB.AddForce(force * lookDirection);
+    }
+
     public IEnumerator AttackSlow(float slowTime)
     {
         attacking = true;

@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 52ae0672dd1c8fc4695569c2cfab9eea
+guid: 37fc0c5d897d5834d9637e3a94abf1bb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8413475829046335857
-    second: goblin_1_0
+      213: 1615107039829335778
+    second: humanoid sprites_0
   - first:
-      213: -2738401152758695642
-    second: goblin_1_1
+      213: -5795778371625421338
+    second: humanoid sprites_1
   - first:
-      213: 2708216160566752093
-    second: goblin_1_2
+      213: -5844115611228466929
+    second: humanoid sprites_2
   - first:
-      213: -4329499697887612118
-    second: goblin_1_3
+      213: 7352607066327393997
+    second: humanoid sprites_3
   - first:
-      213: 8533420868367544377
-    second: goblin_1_4
+      213: -2233988790869732073
+    second: humanoid sprites_4
   - first:
-      213: 2326417246157483475
-    second: goblin_1_5
+      213: 3876017238230520071
+    second: humanoid sprites_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,55 +109,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: goblin_1_0
+      name: humanoid sprites_0
       rect:
         serializedVersion: 2
-        x: 139
-        y: 351
-        width: 565
-        height: 436
+        x: 300
+        y: 358
+        width: 285
+        height: 359
       alignment: 9
-      pivot: {x: 0.43099916, y: 0.16268823}
+      pivot: {x: 0.44737998, y: 0.11210348}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17954a4a0bba2c470800000000000000
-      internalID: 8413475829046335857
+      spriteID: 2ee9247ab430a6610800000000000000
+      internalID: 1615107039829335778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goblin_1_1
+      name: humanoid sprites_1
       rect:
         serializedVersion: 2
-        x: 77
-        y: 182
-        width: 140
-        height: 147
+        x: 138
+        y: 197
+        width: 121
+        height: 131
       alignment: 9
-      pivot: {x: 0.5000001, y: 0.5218608}
+      pivot: {x: 0.42917728, y: 0.4918227}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6293c4509ae3ff9d0800000000000000
-      internalID: -2738401152758695642
+      spriteID: 6e5ff524742419fa0800000000000000
+      internalID: -5795778371625421338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goblin_1_2
+      name: humanoid sprites_2
       rect:
         serializedVersion: 2
-        x: 314
-        y: 166
-        width: 232
-        height: 176
+        x: 318
+        y: 152
+        width: 226
+        height: 191
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,71 +165,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d53bd81df34859520800000000000000
-      internalID: 2708216160566752093
+      spriteID: f019966a0d785eea0800000000000000
+      internalID: -5844115611228466929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goblin_1_3
+      name: humanoid sprites_3
       rect:
         serializedVersion: 2
-        x: 637
-        y: 226
+        x: 627
+        y: 194
+        width: 120
+        height: 119
+      alignment: 9
+      pivot: {x: 0.5178528, y: 0.472995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc6a879cb25b90660800000000000000
+      internalID: 7352607066327393997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: humanoid sprites_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 46
         width: 128
-        height: 125
+        height: 86
       alignment: 9
-      pivot: {x: 0.53347445, y: 0.49143016}
+      pivot: {x: 0.5251062, y: 0.4999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a237f34a6f68ae3c0800000000000000
-      internalID: -4329499697887612118
+      spriteID: 7155108e7074ff0e0800000000000000
+      internalID: -2233988790869732073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goblin_1_4
+      name: humanoid sprites_5
       rect:
         serializedVersion: 2
-        x: 258
-        y: 42
-        width: 140
-        height: 89
+        x: 459
+        y: 52
+        width: 132
+        height: 84
       alignment: 9
-      pivot: {x: 0.5076512, y: 0.5240715}
+      pivot: {x: 0.54057544, y: 0.47449565}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 930f3f9511dcc6670800000000000000
-      internalID: 8533420868367544377
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goblin_1_5
-      rect:
-        serializedVersion: 2
-        x: 453
-        y: 43
-        width: 144
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5223164, y: 0.5334745}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3dd2f84d828194020800000000000000
-      internalID: 2326417246157483475
+      spriteID: 701550464216ac530800000000000000
+      internalID: 3876017238230520071
       vertices: []
       indices: 
       edges: []
