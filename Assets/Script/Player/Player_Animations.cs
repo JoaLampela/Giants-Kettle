@@ -10,6 +10,8 @@ public class Player_Animations : MonoBehaviour
     public GameObject leftArm;
     public GameObject leftArmContainer;
 
+    public float trueAttackSpeed = 1;
+
     private Rigidbody2D playerRB;
     private Animator animator;
     private bool usingSingleHandedSword;
@@ -20,17 +22,18 @@ public class Player_Animations : MonoBehaviour
     private bool offhandUsingSingleHandedSword;
     private bool offhandUsingShield;
 
-
     private bool attackOnCooldown;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        trueAttackSpeed = 2f;
         playerRB = GetComponent<Rigidbody2D>();
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
         SwitchToSingleHandedSword();
+        animator.SetFloat("TrueAttackSpeed", trueAttackSpeed);
     }
 
     // Update is called once per frame
@@ -42,20 +45,20 @@ public class Player_Animations : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
                 attacking = true;
-                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.04f * 2f));
+                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.04f * 2f / trueAttackSpeed));
                 StartCoroutine(SetAttacking(0.04f));
-                StartCoroutine(GetComponent<MovementScript>().AttackStep(0, 500));
-                StartCoroutine(SetAttackOnCooldown(0.4f));
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0 / trueAttackSpeed, 500));
+                StartCoroutine(SetAttackOnCooldown(0.4f / trueAttackSpeed));
             }
             if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
             {
                 animator.SetTrigger("Special");
                 attacking = true;
 
-                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.15f, 1000));
-                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.30f * 2f));
-                StartCoroutine(SetAttacking(0.30f));
-                StartCoroutine(SetAttackOnCooldown(0.6f));
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.15f / trueAttackSpeed, 1000));
+                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.30f * 2f / trueAttackSpeed));
+                StartCoroutine(SetAttacking(0.30f / trueAttackSpeed));
+                StartCoroutine(SetAttackOnCooldown(0.6f / trueAttackSpeed));
             }
         }
         if (usingTwoHandedSword)
@@ -64,27 +67,27 @@ public class Player_Animations : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
                 attacking = true;
-                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.4f, 1000));
-                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.6f));
-                StartCoroutine(SetAttacking(0.5f));
-                StartCoroutine(SetAttackOnCooldown(0.6f));
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.4f / trueAttackSpeed, 1000));
+                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.6f / trueAttackSpeed));
+                StartCoroutine(SetAttacking(0.5f / trueAttackSpeed));
+                StartCoroutine(SetAttackOnCooldown(0.6f / trueAttackSpeed));
             }
             if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
             {
                 animator.SetTrigger("Special");
                 attacking = true;
-                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.6f, 1500));
-                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.80f));
-                StartCoroutine(SetAttacking(0.8f));
-                StartCoroutine(SetAttackOnCooldown(0.8f));
+                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.6f / trueAttackSpeed, 1500));
+                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.80f / trueAttackSpeed));
+                StartCoroutine(SetAttacking(0.8f / trueAttackSpeed));
+                StartCoroutine(SetAttackOnCooldown(0.8f / trueAttackSpeed));
             }
             if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
             {
                 animator.SetTrigger("LeftAttack");
                 attacking = true;
-                StartCoroutine(GetComponent<MovementScript>().AttackSlow(1.5f));
-                StartCoroutine(SetAttacking(1.5f));
-                StartCoroutine(SetAttackOnCooldown(2f));
+                StartCoroutine(GetComponent<MovementScript>().AttackSlow(1.5f / trueAttackSpeed));
+                StartCoroutine(SetAttacking(1.5f / trueAttackSpeed));
+                StartCoroutine(SetAttackOnCooldown(2f / trueAttackSpeed));
             }
         }
         if (Input.GetKeyDown(KeyCode.Space) && !attacking)

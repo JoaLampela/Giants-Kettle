@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Short_Sword_Basic_Attack1
+  m_Name: Humanoid_TwoHanded_Idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,49 +19,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: 23.779}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.016666668
-        value: {x: 0, y: 0, z: -111.936}
-        inSlope: {x: 0, y: 0, z: -2074.9219}
-        outSlope: {x: 0, y: 0, z: -2074.9219}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.033333335
-        value: {x: 0, y: 0, z: -129.227}
-        inSlope: {x: 0, y: 0, z: -856.77}
-        outSlope: {x: 0, y: 0, z: -856.77}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.05
-        value: {x: 0, y: 0, z: -140.495}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
         value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -70,17 +27,8 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.016666668
-        value: {x: 0, y: 0, z: 6.815}
-        inSlope: {x: 0, y: 0, z: 183.59999}
-        outSlope: {x: 0, y: 0, z: 183.59999}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.033333335
-        value: {x: 0, y: 0, z: 8.345}
+        time: 0.5
+        value: {x: 0, y: 0, z: -6.516}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -88,7 +36,25 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.05
+        time: 1
+        value: {x: 0, y: 0, z: -0.812}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 1.4833333
+        value: {x: 0, y: 0, z: -5.8}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 2
         value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -99,14 +65,14 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Character_Body/Character_Head
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
   m_PositionCurves:
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.062, y: 0.949, z: 0}
+        value: {x: 0.62, y: -0.058000028, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -114,26 +80,35 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.016666668
-        value: {x: 1.025, y: 0.418, z: 0}
-        inSlope: {x: 0, y: -42.12, z: 0}
-        outSlope: {x: 0, y: -42.12, z: 0}
+        time: 0.5
+        value: {x: 0.57, y: 0.086, z: 0}
+        inSlope: {x: -0.100000024, y: 0.10000003, z: 0}
+        outSlope: {x: -0.100000024, y: 0.10000003, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.033333335
-        value: {x: 0.805, y: -0.455, z: 0}
-        inSlope: {x: -22.5, y: -10.800004, z: 0}
-        outSlope: {x: -22.5, y: -10.800004, z: 0}
+        time: 1
+        value: {x: 0.52, y: 0.111, z: 0}
+        inSlope: {x: -0.03661018, y: 0, z: 0}
+        outSlope: {x: -0.03661018, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.05
-        value: {x: 0.275, y: -0.545, z: 0}
+        time: 1.4833333
+        value: {x: 0.511, y: -0.019, z: 0}
+        inSlope: {x: 0, y: -0.15600014, z: 0}
+        outSlope: {x: 0, y: -0.15600014, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 2
+        value: {x: 0.62, y: -0.058000028, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -143,7 +118,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -155,21 +130,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 905541718
+      path: 3520304530
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 905541718
-      attribute: 4
-      script: {fileID: 0}
-      typeID: 4
-      customType: 4
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3026836474
+      path: 3520304530
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -181,12 +149,12 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.05
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -202,7 +170,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.062
+        value: 0.62
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -210,8 +178,26 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.016666668
-        value: 1.025
+        time: 0.5
+        value: 0.57
+        inSlope: -0.100000024
+        outSlope: -0.100000024
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.52
+        inSlope: -0.03661018
+        outSlope: -0.03661018
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.4833333
+        value: 0.511
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -219,17 +205,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.033333335
-        value: 0.805
-        inSlope: -22.5
-        outSlope: -22.5
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.05
-        value: 0.275
+        time: 2
+        value: 0.62
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -240,7 +217,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -248,7 +225,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.949
+        value: -0.058000028
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -256,26 +233,35 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.016666668
-        value: 0.418
-        inSlope: -42.12
-        outSlope: -42.12
+        time: 0.5
+        value: 0.086
+        inSlope: 0.10000003
+        outSlope: 0.10000003
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.033333335
-        value: -0.455
-        inSlope: -10.800004
-        outSlope: -10.800004
+        time: 1
+        value: 0.111
+        inSlope: 0
+        outSlope: 0
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.05
-        value: -0.545
+        time: 1.4833333
+        value: -0.019
+        inSlope: -0.15600014
+        outSlope: -0.15600014
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2
+        value: -0.058000028
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -286,7 +272,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -302,7 +288,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.016666668
+        time: 0.5
         value: 0
         inSlope: 0
         outSlope: 0
@@ -311,7 +297,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.033333335
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -320,7 +306,16 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.05
+        time: 1.4833333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -332,7 +327,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -348,7 +343,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.016666668
+        time: 0.5
         value: 0
         inSlope: 0
         outSlope: 0
@@ -357,7 +352,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.033333335
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -366,7 +361,16 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.05
+        time: 1.4833333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -378,7 +382,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -394,7 +398,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.016666668
+        time: 0.5
         value: 0
         inSlope: 0
         outSlope: 0
@@ -403,7 +407,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.033333335
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -412,7 +416,16 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.05
+        time: 1.4833333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -424,53 +437,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 23.779
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.016666668
-        value: -111.936
-        inSlope: -2074.9219
-        outSlope: -2074.9219
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.033333335
-        value: -129.227
-        inSlope: -856.77
-        outSlope: -856.77
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.05
-        value: -140.495
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.z
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -486,8 +453,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.016666668
-        value: 0
+        time: 0.5
+        value: -6.516
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -495,8 +462,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.033333335
-        value: 0
+        time: 1
+        value: -0.812
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -504,27 +471,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.05
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.x
-    path: Character_Body/Character_Head
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
+        time: 1.4833333
+        value: -5.8
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -532,71 +480,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.016666668
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.033333335
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.05
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.y
-    path: Character_Body/Character_Head
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.016666668
-        value: 6.815
-        inSlope: 183.59999
-        outSlope: 183.59999
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.033333335
-        value: 8.345
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.05
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -608,7 +492,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Character_Body/Character_Head
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -618,8 +502,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Character_Body/Character_Head
+    attribute: m_LocalEulerAngles.x
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -629,37 +513,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Character_Body/Character_Head
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Character_Body/Character_Head
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -669,7 +523,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Character_Body/Character_R_Arm_Container/Character_R_Arm
+    path: Humanoid_R_Hand_Container/Humanoid_R_Hand
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2372017703133981585}
-  m_LocalRotation: {x: -0, y: -0, z: -0.31935734, w: 0.9476344}
-  m_LocalPosition: {x: 0.059, y: -0.044, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7047585919287008165}
   m_Father: {fileID: 2999592408897162216}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -37.248}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2986856811097728365
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2999592407995462466}
   - component: {fileID: 2999592407995462465}
   m_Layer: 0
-  m_Name: Goblin_L_Leg
+  m_Name: Humanoid_L_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2999592408810420988}
   m_Layer: 0
-  m_Name: Goblin_L_Hand_Container
+  m_Name: Humanoid_L_Hand_Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,8 +191,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.183, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2999592409731149085}
+  m_Children: []
   m_Father: {fileID: 2999592409753981145}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -207,7 +206,7 @@ GameObject:
   - component: {fileID: 2999592408897162216}
   - component: {fileID: 2999592408897162215}
   m_Layer: 0
-  m_Name: Gobil_R_Hand
+  m_Name: Humanoid_R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2999592408897162214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.62, y: -0.058000028, z: 0}
+  m_LocalPosition: {x: 0.62, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6961364908343297685}
@@ -290,7 +289,7 @@ GameObject:
   - component: {fileID: 2999592409116054408}
   - component: {fileID: 2999592409116054407}
   m_Layer: 0
-  m_Name: Goblin_R_Leg
+  m_Name: Humanoid_R_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +371,7 @@ GameObject:
   - component: {fileID: 2999592409138567248}
   - component: {fileID: 2999592409138567247}
   m_Layer: 0
-  m_Name: Goblin_Body
+  m_Name: Humanoid_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,7 +453,7 @@ GameObject:
   - component: {fileID: 2999592409309157653}
   - component: {fileID: 2999592409309157652}
   m_Layer: 0
-  m_Name: Goblin_Head
+  m_Name: Humanoid_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2999592409626809052}
   m_Layer: 0
-  m_Name: Goblin_R_Hand_Container
+  m_Name: Humanoid_R_Hand_Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,6 +552,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2999592408897162216}
+  - {fileID: 2999592409731149085}
   m_Father: {fileID: 2999592409753981145}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 2999592409731149085}
   - component: {fileID: 2999592409731149084}
   m_Layer: 0
-  m_Name: Goblin_L_Hand
+  m_Name: Humanoid_L_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,12 +580,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2999592409731149083}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.506, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.905, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2999592408810420988}
-  m_RootOrder: 0
+  m_Father: {fileID: 2999592409626809052}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2999592409731149084
 SpriteRenderer:
@@ -661,6 +661,7 @@ GameObject:
   - component: {fileID: 2999592409753981149}
   - component: {fileID: 2999592409753981094}
   - component: {fileID: 2999592409753981095}
+  - component: {fileID: 7029590356948249206}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
   m_TagString: Untagged
@@ -1016,6 +1017,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7029590356948249206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b763c8ff1442a754e8c63c2ddbf487c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 2999592409731149083}
+  rightHand: {fileID: 2999592408897162214}
+  leftHandContainer: {fileID: 2999592408810420987}
+  rightHandContainer: {fileID: 2999592409626809051}
 --- !u!1 &4587282264388292676
 GameObject:
   m_ObjectHideFlags: 0
