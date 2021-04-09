@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
+public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public enum ItemType
     {
@@ -25,6 +25,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public Image icon;
     [SerializeField] private bool isEquipmentSlot;
     [SerializeField] private int slotNuber;
+    [SerializeField] public RuneTooltipController runeTooltipController;
 
 
     
@@ -35,10 +36,17 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         playerHoverUi = GameObject.Find("Canvas").GetComponentInChildren<PlayerHoverUi>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerInventory = player.GetComponent<Inventory>();
+        if(gameObject.transform.childCount >= 2)
+        {
+            if (gameObject.transform.GetChild(1).GetComponent<RuneTooltipController>())
+            {
+                runeTooltipController = gameObject.transform.GetChild(1).GetComponent<RuneTooltipController>();
+            }
+        }
+        
     }
     private void Start()
     {
-        Debug.Log("slot " +slotNuber);
         if (!isEquipmentSlot) playerInventory.inventorySlots[slotNuber] = this;
         else playerInventory.equipmentSlots[slotNuber] = this;
         if(playerHoverUi != null) //Debug.Log("found");
@@ -49,6 +57,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     public void PlaceItem(Item newItem, UiButtonClick previousSlot = null)
     {
+        
         if ((int)_type != 0 && _type != ItemType.Rune)
         {
             Debug.Log("!=0");
@@ -127,13 +136,13 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                         RemoveItemFromslot();
                         playerInventory.NewItem(temp);
                     }
-                    playerInventory.Equip(newItem, this);
+                    //playerInventory.Equip(newItem, this);
                     _item = newItem;
                     icon.sprite = newItem.item.iconSprite;
                 }
                 else
                 {
-                    playerInventory.Equip(newItem, this);
+                    //playerInventory.Equip(newItem, this);
                     _item = newItem;
                     icon.sprite = newItem.item.iconSprite;
                 }
@@ -157,11 +166,14 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             _item = newItem;
             icon.sprite = _item.item.iconSprite;
         }
+        SetRuneToolTipOn();
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Right)
+        if (runeTooltipController != null) runeTooltipController.HideToolTip();
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
             if((int)_type != 0 && _item != null && _type != ItemType.Rune)
             {
@@ -210,7 +222,10 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     playerInventory.rightHand.RemoveItemFromslot();
                 }
                 if ((int)_type != 0 && _type != ItemType.Rune) playerInventory.Unequip(_item, this);
-                if (_type == ItemType.Rune) playerInventory.RemoveRuneFromItem(gameObject);
+                if (_type == ItemType.Rune)
+                {
+                    playerInventory.RemoveRuneFromItem(gameObject);
+                }
                 playerHoverUi.SetGrabbedItem(_item, this);
                 RemoveItemFromslot();
             }
@@ -220,7 +235,25 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         playerHoverUi.UpdateHoveredSlot(this);
+        SetRuneToolTipOn();
     }
+
+    public void SetRuneToolTipOn()
+    {
+        if (runeTooltipController != null) runeTooltipController.HideToolTip();
+        if (playerHoverUi.hoveredSlot == this)
+        {
+            if (runeTooltipController != null)
+            {
+                if (_item != null) runeTooltipController.DisplayToolTip();
+            }
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (runeTooltipController != null) runeTooltipController.HideToolTip();
+    }   
 
     public void SetNewItemToslot(Item newItem)
     {
@@ -241,4 +274,6 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     {
         gameObject.SetActive(false);
     }
+
+    
 }

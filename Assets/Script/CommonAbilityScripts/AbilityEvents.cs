@@ -14,6 +14,7 @@ public class AbilityEvents : MonoBehaviour
     public event Action<Collider2D> _onHit;
     public event Action _onActivate;
     public event Action _onInstantiated;
+    public event Action _onDestroy;
 
     private void Start()
     {
@@ -53,5 +54,9 @@ public class AbilityEvents : MonoBehaviour
     public void SetSource(GameObject source)
     {
         _abilityCastSource = source;
+    }
+    public void Destroy()
+    {
+        _onDestroy?.Invoke();
     }
 }

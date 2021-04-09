@@ -69,6 +69,10 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     private void PlaceItem()
     {
         hoveredSlot.PlaceItem(grabbedItem, grabbedItemSlot);
+        if (hoveredSlot.runeTooltipController != null)
+        {
+            if (hoveredSlot._item != null) hoveredSlot.runeTooltipController.DisplayToolTip();
+        }
         grabbedItem = null;
         grabbedItemSlot = null;
         flyingIcon.SetActive(false);

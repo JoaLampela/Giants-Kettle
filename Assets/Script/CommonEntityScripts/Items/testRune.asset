@@ -18,5 +18,5 @@ MonoBehaviour:
   inGameSprite: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: 0}
+    ObjectField: {fileID: 7078469439219623900, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 

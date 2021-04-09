@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("VITTU");
         ItemOnGround groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject2));
         groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);

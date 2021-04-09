@@ -9,11 +9,10 @@ public class Item
 
     public Item(ItemObject newItem)
     {
-        Debug.Log(newItem);
         item = newItem;
         if(item.type == ItemType.Rune)
         {
-
+            _runeList = new RuneObject[0];
         }
         else if((int)item.type == 1 || (int)item.type == 2 || (int)item.type == 3 || (int)item.type == 4)
         {
@@ -22,6 +21,10 @@ public class Item
 
             EquipmentObject equipmentObject = (EquipmentObject)item;
             if (equipmentObject.baseRune != null) _runeList[0] = equipmentObject.baseRune;
+        }
+        else
+        {
+            _runeList = new RuneObject[0];
         }
     }
 }

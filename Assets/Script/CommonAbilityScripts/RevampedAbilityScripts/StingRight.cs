@@ -7,12 +7,12 @@ public class StingRight : MonoBehaviour, IAbility
     EntityEvents _entityEvents;
     [SerializeField] private int _spellSlot;
     [SerializeField] private int _abilityCost = 10;
-    //ItemWeapon _weapon;
+    Item _weapon;
 
     private void Start()
     {
         Subscribe();
-        //_weapon = (ItemWeapon)GetComponent<Inventory>().rightHand._item;
+        _weapon = GetComponent<Inventory>().rightHand._item;
     }
 
     private void Awake()
@@ -30,15 +30,21 @@ public class StingRight : MonoBehaviour, IAbility
         if (_spellSlot == slot)
         {
             Debug.Log("cast right");
+            _entityEvents.CastAbility();
             _entityEvents.DeteriorateHealth(_abilityCost);
             GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, gameObject.transform.position, gameObject.transform.rotation);
             sting.GetComponent<AbilityEvents>().SetSource(gameObject);
             
-            //foreach (GameObject rune in _weapon.runeList)
-            //{
-                //MonoBehaviour temp = sting.AddComponent(typeof(MonoBehaviour)) as MonoBehaviour;
-                //temp = rune.GetComponent<MonoBehaviour>();
-            //}
+            for (int i = 0; i < _weapon._runeList.Length; i ++)
+            {
+                if(_weapon._runeList[i] != null)
+                {
+                    _weapon._runeList[i]._IruneContainer.Result.SetAbilityEvents(sting.GetComponent<AbilityEvents>());
+                    _weapon._runeList[i]._IruneContainer.Result.SetProjectile(sting.gameObject);
+                    _weapon._runeList[i]._IruneContainer.Result.SubscribeAbility();
+
+                }
+            }
             sting.GetComponent<AbilityEvents>().UseAbility();
         }
     }
