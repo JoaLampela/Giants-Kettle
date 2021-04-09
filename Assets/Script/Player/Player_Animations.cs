@@ -28,7 +28,7 @@ public class Player_Animations : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        trueAttackSpeed = 2f;
+
         playerRB = GetComponent<Rigidbody2D>();
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
