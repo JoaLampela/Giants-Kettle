@@ -51,16 +51,7 @@ public class Player_Animations : MonoBehaviour
                 StartCoroutine(GetComponent<MovementScript>().AttackStep(0 / trueAttackSpeed, 500));
                 StartCoroutine(SetAttackOnCooldown(0.4f / trueAttackSpeed));
             }
-            if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Special");
-                attacking = true;
-
-                StartCoroutine(GetComponent<MovementScript>().AttackStep(0.15f / trueAttackSpeed, 1000));
-                StartCoroutine(GetComponent<MovementScript>().AttackSlow(0.30f * 2f / trueAttackSpeed));
-                StartCoroutine(SetAttacking(0.30f / trueAttackSpeed));
-                StartCoroutine(SetAttackOnCooldown(0.6f / trueAttackSpeed));
-            }
+            
         }
         if (usingTwoHandedSword)
         {
