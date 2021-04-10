@@ -95,6 +95,16 @@ public class EntityEvents : MonoBehaviour
     public event Action<int> OnRemoveItem;
     public event Action<ItemObject, int> OnAddNewItemToSlot;
     public event Action<UiButtonClick> OnUseItem;
+    
+    public event Action OnAnimationTriggerPoint;
+    public event Action OnSpellOver;
+
+
+    public void AnimationTriggerPoint()
+    {
+        Debug.Log("Animation Trigger Point");
+        OnAnimationTriggerPoint?.Invoke();
+    }
 
     public void UseItem(UiButtonClick invSlot)
     {

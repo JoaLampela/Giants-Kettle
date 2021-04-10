@@ -20,7 +20,7 @@ public class ItemObject : ScriptableObject
 
     
     public Sprite iconSprite;
-    public Sprite inGameSprite;
+    public GameObject inGameObject;
     [HideInInspector] public bool isTwoHander;
 }
 

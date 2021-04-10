@@ -45,6 +45,41 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
                         flyingIcon.SetActive(false);
                     }
                 }
+                else if(hoveredSlot._item != null)
+                {
+                    Debug.Log("Item slot was not empty");
+                    if (grabbedItem.item.type == ItemType.Rune)
+                    {
+                        bool slotFound = false;
+                        for (int i = 0; i < hoveredSlot._item._runeList.Length; i++)
+                        {
+                            if (hoveredSlot._item._runeList[i] == null)
+                            {
+                                slotFound = true;
+                                hoveredSlot._item._runeList[i] = (RuneObject)grabbedItem.item;
+                                break;
+                            }
+                        }
+                        if (!slotFound)
+                        {
+                            playerInventory.NewItem(grabbedItem);
+                        }
+                        else
+                        {
+                            if (hoveredSlot.runeTooltipController != null)
+                            {
+                                hoveredSlot.runeTooltipController.HideToolTip();
+                                hoveredSlot.runeTooltipController.DisplayToolTip();
+                            }
+                            
+                        }
+                        grabbedItem = null;
+                        grabbedItemSlot = null;
+                        flyingIcon.SetActive(false);
+                    }
+                    else PlaceItem();
+                }
+                
                 else PlaceItem();
             }
             else DropItem();

@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
         Bow,
         Staff
     }
-
+    private Player_Animations player_Animations; 
     private EntityEvents events;
 
     public UiButtonClick[] inventorySlots;
@@ -76,7 +76,7 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        
+        player_Animations = GetComponent<Player_Animations>();
         events = GetComponent<EntityEvents>();
         abilityManager = GetComponent<EntityAbilityManager>();
     }
@@ -326,6 +326,7 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.OneHandedSword):
                     if (slot == rightHand)
                     {
+                        player_Animations.SwitchToEmptyRightHand();
                         Debug.Log("Unequipped Right");
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<StingRight>());
@@ -541,6 +542,18 @@ public class Inventory : MonoBehaviour
                     armorHeadR6.SetActive(true);
                     break;
             }
+            if (equippedItem._runeList.Length >= 1)
+                if (equippedItem._runeList[0] != null) armorHeadR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+            if (equippedItem._runeList.Length >= 2)
+                if (equippedItem._runeList[1] != null) armorHeadR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+            if (equippedItem._runeList.Length >= 3)
+                if (equippedItem._runeList[2] != null) armorHeadR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+            if (equippedItem._runeList.Length >= 4)
+                if (equippedItem._runeList[3] != null) armorHeadR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+            if (equippedItem._runeList.Length >= 5)
+                if (equippedItem._runeList[4] != null) armorHeadR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+            if (equippedItem._runeList.Length == 6)
+                if (equippedItem._runeList[5] != null) armorHeadR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
         }
         else if ((int)slot._type == 3)
         {
@@ -582,6 +595,18 @@ public class Inventory : MonoBehaviour
                     armorChestR6.SetActive(true);
                     break;
             }
+            if (equippedItem._runeList.Length >= 1)
+                if (equippedItem._runeList[0] != null) armorChestR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+            if (equippedItem._runeList.Length >= 2)
+                if (equippedItem._runeList[1] != null) armorChestR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+            if (equippedItem._runeList.Length >= 3)
+                if (equippedItem._runeList[2] != null) armorChestR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+            if (equippedItem._runeList.Length >= 4)
+                if (equippedItem._runeList[3] != null) armorChestR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+            if (equippedItem._runeList.Length >= 5)
+                if (equippedItem._runeList[4] != null) armorChestR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+            if (equippedItem._runeList.Length == 6)
+                if (equippedItem._runeList[5] != null) armorChestR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
         }
         else if ((int)slot._type == 4)
         {
@@ -623,6 +648,18 @@ public class Inventory : MonoBehaviour
                     armorLegsR6.SetActive(true);
                     break;
             }
+            if (equippedItem._runeList.Length >= 1)
+                if (equippedItem._runeList[0] != null) armorLegsR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+            if (equippedItem._runeList.Length >= 2)
+                if (equippedItem._runeList[1] != null) armorLegsR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+            if (equippedItem._runeList.Length >= 3)
+                if (equippedItem._runeList[2] != null) armorLegsR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+            if (equippedItem._runeList.Length >= 4)
+                if (equippedItem._runeList[3] != null) armorLegsR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+            if (equippedItem._runeList.Length >= 5)
+                if (equippedItem._runeList[4] != null) armorLegsR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+            if (equippedItem._runeList.Length == 6)
+                if (equippedItem._runeList[5] != null) armorLegsR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
         }
         if (slot == rightHand || slot == leftHand)
         {
@@ -635,12 +672,14 @@ public class Inventory : MonoBehaviour
                     if (slot == rightHand)
                     {
                         Debug.Log("Equipped Right");
+                        player_Animations.SwitchToSingleHandedSword(weapon.inGameObject);
                         StingRight stingRight = gameObject.AddComponent<StingRight>();
                         abilityManager.SetAbility(2, stingRight);
                     }
                     if (slot == leftHand)
                     {
                         Debug.Log("Equipped Left");
+                        player_Animations.SwitchToSingleHandedSword(weapon.inGameObject);
                         StingLeft stingLeft = gameObject.AddComponent<StingLeft>();
                         abilityManager.SetAbility(1, stingLeft);
                     }

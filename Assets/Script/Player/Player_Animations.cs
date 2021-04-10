@@ -9,6 +9,8 @@ public class Player_Animations : MonoBehaviour
     public GameObject rightArm;
     public GameObject leftArm;
     public GameObject leftArmContainer;
+    [SerializeField] private GameObject rightHandWeapon;
+    [SerializeField] private GameObject leftHandWeapon;
 
     public float trueAttackSpeed = 1;
 
@@ -32,7 +34,6 @@ public class Player_Animations : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
-        SwitchToSingleHandedSword();
         animator.SetFloat("TrueAttackSpeed", trueAttackSpeed);
     }
 
@@ -95,20 +96,7 @@ public class Player_Animations : MonoBehaviour
             if (GetComponent<MovementScript>().Dash())
                 animator.SetTrigger("Dash");
         }
-        if (Input.GetKeyDown(KeyCode.E) && !attacking && !attackOnCooldown)
-        {
-            if (usingSingleHandedSword)
-            {
-                Debug.Log("Switching to two handed");
-                SwitchToTwoHandedSword();
-            }
-
-            else
-            {
-                Debug.Log("Switching to single handed");
-                SwitchToSingleHandedSword();
-            }
-        }
+        
         if (!attacking)
             LookToMouse();
         else
@@ -145,14 +133,19 @@ public class Player_Animations : MonoBehaviour
         }
         rightArmContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
     }
-    public void SwitchToSingleHandedSword()
+    public void SwitchToSingleHandedSword(GameObject  inGameObject)
     {
-
         leftArm.transform.parent = leftArmContainer.transform;
         LeftHandResetPosition();
         UnequipRightHandBools();
+        rightHandWeapon = Instantiate(inGameObject, rightArm.transform.position, new Quaternion(0, 0, 0, 0), rightArm.transform);
         usingSingleHandedSword = true;
         animator.SetBool("ShortSwordEquiped", true);
+    }
+    public void SwitchToEmptyRightHand()
+    {
+        UnequipRightHandBools();
+        leftArm.transform.parent = leftArmContainer.transform;
     }
     public void SwitchToTwoHandedSword()
     {
@@ -165,6 +158,7 @@ public class Player_Animations : MonoBehaviour
     }
     private void UnequipRightHandBools()
     {
+        Destroy(rightHandWeapon);
         usingSingleHandedSword = false;
         usingTwoHandedSword = false;
         usingStaff = false;

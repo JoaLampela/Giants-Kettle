@@ -79,14 +79,7 @@ public class AbilityStatScaling : MonoBehaviour
 
     public void GetDamage()
     {
-        float levelBonus = 1;
-
-        for (int i = 0; i < spellDamageLevel; i++)
-        {
-            levelBonus += (maxDamageScale - levelBonus) * levelUpSpeed;
-        }
-
-        _events._damage = new Damage(_events._abilityCastSource, (int)(levelBonus * CalculatePhysicalDamage()), (int)(levelBonus * CalculateSpiritDamage()));
+        _events._damage = new Damage(_events._abilityCastSource, (int)(CalculatePhysicalDamage()), (int)(CalculateSpiritDamage()));
     }
 
     private int CalculatePhysicalDamage()

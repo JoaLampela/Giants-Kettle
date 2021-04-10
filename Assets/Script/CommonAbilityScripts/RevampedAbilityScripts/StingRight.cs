@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StingRight : MonoBehaviour, IAbility
 {
+    private Animator animator;
     EntityEvents _entityEvents;
     [SerializeField] private int _spellSlot;
     [SerializeField] private int _abilityCost = 10;
@@ -17,6 +18,7 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         _entityEvents = GetComponent<EntityEvents>();
     }
 
@@ -29,24 +31,31 @@ public class StingRight : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
+            _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
             Debug.Log("cast right");
+            animator.SetTrigger("Special");
             _entityEvents.CastAbility();
             _entityEvents.DeteriorateHealth(_abilityCost);
-            GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, gameObject.transform.position, gameObject.transform.rotation);
-            sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-            
-            for (int i = 0; i < _weapon._runeList.Length; i ++)
-            {
-                if(_weapon._runeList[i] != null)
-                {
-                    _weapon._runeList[i]._IruneContainer.Result.SetAbilityEvents(sting.GetComponent<AbilityEvents>());
-                    _weapon._runeList[i]._IruneContainer.Result.SetProjectile(sting.gameObject);
-                    _weapon._runeList[i]._IruneContainer.Result.SubscribeAbility();
-
-                }
-            }
-            sting.GetComponent<AbilityEvents>().UseAbility();
         }
+    }
+
+    private void InstatiateHitBox()
+    {
+        _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, gameObject.transform.position, gameObject.transform.rotation);
+        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+
+        for (int i = 0; i < _weapon._runeList.Length; i++)
+        {
+            if (_weapon._runeList[i] != null)
+            {
+                _weapon._runeList[i]._IruneContainer.Result.SetAbilityEvents(sting.GetComponent<AbilityEvents>());
+                _weapon._runeList[i]._IruneContainer.Result.SetProjectile(sting.gameObject);
+                _weapon._runeList[i]._IruneContainer.Result.SubscribeAbility();
+
+            }
+        }
+        sting.GetComponent<AbilityEvents>().UseAbility();
     }
 
     private void CannotAffordCast(int slot)
@@ -76,11 +85,13 @@ public class StingRight : MonoBehaviour, IAbility
     {
         _entityEvents.OnCallBackCastAbility += Cast;
         _entityEvents.OnCanNotAffordAbility += CannotAffordCast;
+        
     }
 
     public void Unsubscribe()
     {
         _entityEvents.OnCallBackCastAbility -= Cast;
         _entityEvents.OnCanNotAffordAbility -= CannotAffordCast;
+        _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
     }
 }
