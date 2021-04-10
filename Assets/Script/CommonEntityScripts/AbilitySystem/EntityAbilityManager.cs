@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EntityAbilityManager : MonoBehaviour
 {
+    public GameObject rightHandGameObject;
+    public GameObject leftHandGameObject;
+
+
+
     bool castingAbility = false;
     readonly private float minTimeBetweenAbilityCasts = 0.1f;
 

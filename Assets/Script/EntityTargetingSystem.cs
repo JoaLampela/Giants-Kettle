@@ -101,7 +101,7 @@ public class EntityTargetingSystem : MonoBehaviour
 
     private void TakeDamage(Damage damage)
     {
-        IncreaseAggro(damage.source, (damage.physicalDamage + damage.spiritDamage));
+        IncreaseAggro(damage.source, damage._damage);
     }
 
     private void IncreaseAggro(GameObject entity, int amount)

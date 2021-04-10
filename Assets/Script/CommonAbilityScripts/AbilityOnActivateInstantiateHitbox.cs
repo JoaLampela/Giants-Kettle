@@ -25,7 +25,7 @@ public class AbilityOnActivateInstantiateHitbox : MonoBehaviour
     private void Activate()
     {
         GameObject temp = Instantiate(_hitBox, transform);
-        temp.GetComponent<AbilityEvents>()._damage = _events._damage;
+        //temp.GetComponent<AbilityEvents>()._damage = _events._damage;
         temp.GetComponent<AbilityEvents>().SetSource(_events._abilityCastSource);
     }
 

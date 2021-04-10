@@ -6,9 +6,12 @@ public class StingRight : MonoBehaviour, IAbility
 {
     private Animator animator;
     EntityEvents _entityEvents;
+    EntityAbilityManager abilityManager;
     [SerializeField] private int _spellSlot;
     [SerializeField] private int _abilityCost = 10;
+    private IAbilityTargetPosition targetPositionScript;
     Item _weapon;
+    private Vector2 targetPosAtStart;
 
     private void Start()
     {
@@ -18,6 +21,8 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void Awake()
     {
+        abilityManager = GetComponent<EntityAbilityManager>();
+        targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
         _entityEvents = GetComponent<EntityEvents>();
     }
@@ -31,6 +36,8 @@ public class StingRight : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
+            targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+            Debug.Log(targetPosAtStart);
             _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
             Debug.Log("cast right");
             animator.SetTrigger("Special");
@@ -42,8 +49,10 @@ public class StingRight : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        //sting.transform.rotation = Quaternion.FromToRotation(transform.position, targetPosAtStart);
 
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
@@ -52,7 +61,6 @@ public class StingRight : MonoBehaviour, IAbility
                 _weapon._runeList[i]._IruneContainer.Result.SetAbilityEvents(sting.GetComponent<AbilityEvents>());
                 _weapon._runeList[i]._IruneContainer.Result.SetProjectile(sting.gameObject);
                 _weapon._runeList[i]._IruneContainer.Result.SubscribeAbility();
-
             }
         }
         sting.GetComponent<AbilityEvents>().UseAbility();

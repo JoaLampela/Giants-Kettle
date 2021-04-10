@@ -726,6 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9264487c11a192439a0d7c98e2ce48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightHandGameObject: {fileID: 7051720969390189161}
+  leftHandGameObject: {fileID: 7051720970361916754}
   sting: {fileID: 8025816061667156796, guid: 75fed09d59f62c6458b50e09095c0220, type: 3}
   sting2: {fileID: 8025816061667156796, guid: e21851256793a9242afc9f9896abefd4, type: 3}
 --- !u!114 &8698435716602996018

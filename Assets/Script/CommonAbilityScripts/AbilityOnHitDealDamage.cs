@@ -29,7 +29,7 @@ public class AbilityOnHitDealDamage : MonoBehaviour
         {
             if(collider.gameObject.GetComponent<EntityStats>().team != castSource.GetComponent<EntityStats>().team)
             {
-                collider.gameObject.GetComponent<EntityEvents>().HitThis(_events._damage);
+                //collider.gameObject.GetComponent<EntityEvents>().HitThis(_events._damage);
             }
         }
     }

@@ -46,9 +46,8 @@ public class EntityHealth : MonoBehaviour
 
     private void DamageCalculation(Damage damage)
     {
-        if (damage.physicalDamage > 0) events.PhysicalDamageTaken(damage.physicalDamage);
-        if (damage.spiritDamage > 0) events.SpiritDamageTaken(damage.spiritDamage);
-        TakeDamage((int)((damage.physicalDamage + damage.spiritDamage) * GetDamageReduction()));
+        if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
+        TakeDamage((int)(damage._damage * GetDamageReduction()));
     }
 
     private float GetDamageReduction()

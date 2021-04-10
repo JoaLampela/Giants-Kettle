@@ -79,7 +79,7 @@ public class AbilityStatScaling : MonoBehaviour
 
     public void GetDamage()
     {
-        _events._damage = new Damage(_events._abilityCastSource, (int)(CalculatePhysicalDamage()), (int)(CalculateSpiritDamage()));
+        //_events._damage = new Damage(_events._abilityCastSource, (int)CalculatePhysicalDamage());
     }
 
     private int CalculatePhysicalDamage()

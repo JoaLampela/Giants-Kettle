@@ -11,20 +11,20 @@ public class SingleHandedSword : MonoBehaviour
         Debug.Log(collision);
         if (collision.GetComponent<EntityEvents>())
             //collision.GetComponent<EntityEvents>().ChangeTeam(2);
-            collision.GetComponent<EntityEvents>().HitThis(new Damage(player, player.GetComponent<EntityStats>().currentMaxPhysicalDamage, 0));
+            collision.GetComponent<EntityEvents>().HitThis(new Damage(player, player.GetComponent<EntityStats>().currentMaxPhysicalDamage));
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision);
         if (collision.GetComponent<EntityEvents>())
             //collision.GetComponent<EntityEvents>().ChangeTeam(2);
-            collision.GetComponent<EntityEvents>().HitThis(new Damage(player, player.GetComponent<EntityStats>().currentMaxPhysicalDamage, 0));
+            collision.GetComponent<EntityEvents>().HitThis(new Damage(player, player.GetComponent<EntityStats>().currentMaxPhysicalDamage));
     }
     public void OnTriggerLeave2D(Collider2D collision)
     {
         Debug.Log(collision);
         if (collision.GetComponent<EntityEvents>())
             //collision.GetComponent<EntityEvents>().ChangeTeam(2);
-            collision.GetComponent<EntityEvents>().HitThis(new Damage(player, player.GetComponent<EntityStats>().currentMaxPhysicalDamage, 0));
+            collision.GetComponent<EntityEvents>().HitThis(new Damage(player, player.GetComponent<EntityStats>().currentMaxPhysicalDamage));
     }
 }

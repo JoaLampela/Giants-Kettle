@@ -5,13 +5,13 @@ using UnityEngine;
 public class Damage
 {
     public GameObject source;
-    public int physicalDamage;
-    public int spiritDamage;
+    public int _damage;
+    public int _trueDamage;
 
-    public Damage(GameObject newSource, int newPhysicalDamage = 0, int newSpiritDamage = 0)
+    public Damage(GameObject newSource, int damage = 0, int trueDamage = 0)
     {
         source = newSource;
-        physicalDamage = newPhysicalDamage;
-        spiritDamage = newSpiritDamage;
+        _damage = damage;
+        _trueDamage = trueDamage;
     }
 }
