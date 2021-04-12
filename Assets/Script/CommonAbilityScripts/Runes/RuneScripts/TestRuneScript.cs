@@ -8,50 +8,86 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     private AbilityEvents _events;
     private GameObject _entity;
     private EntityEvents _entityEvents;
+    private WeaponType _weaponType;
+    private bool isInArmor;
 
+
+    //Always needed functions
+    public enum WeaponType
+    {
+        OneHandedSword,
+        TwoHandedSword,
+        Shield,
+        Bow,
+        Staff
+    }
+    public void SetIsInArmorSlot()
+    {
+        isInArmor = true;
+    }
     public void SetAbilityEvents(AbilityEvents events)
     {
         _events = events;
     }
-
     public void SetEntity(GameObject entity)
     {
         _entity = entity;
         _entityEvents = entity.GetComponent<EntityEvents>();
+        SetUpPermanentEffects();
     }
-
     public void SetProjectile(GameObject projectile)
     {
         _projectile = projectile;
     }
-
-    public void SubscribeAbility()
+    public void SetWeaponType(IRuneScript.WeaponType weaponType)
     {
-        Debug.Log("Subscribed");
-        _events._onActivate += Test;
-        _events._onDestroy += UnsubscribeAbility;
+        if (weaponType == IRuneScript.WeaponType.OneHandedSword) _weaponType = WeaponType.OneHandedSword;
+        else if (weaponType == IRuneScript.WeaponType.TwoHandedSword) _weaponType = WeaponType.TwoHandedSword;
+        else if (weaponType == IRuneScript.WeaponType.Shield) _weaponType = WeaponType.Shield;
+        else if (weaponType == IRuneScript.WeaponType.Bow) _weaponType = WeaponType.Bow;
+        else if (weaponType == IRuneScript.WeaponType.Staff) _weaponType = WeaponType.Staff;
     }
 
-    public void SubscribeEntity()
+    private void SetUpPermanentEffects()
     {
-        Debug.Log("Subscribed to entity events");
-        _entityEvents.OnCastAbility += Test;
+        if(isInArmor)
+        {
+            _entityEvents.NewBuff("TestRuneScriptBuff1", EntityStats.BuffType.Health, 100);
+            _entityEvents.NewBuff("TestRuneScriptBuff2", EntityStats.BuffType.Speed, 100);
+        }
+        else
+        {
+
+        }
+
     }
 
-    public void UnsubscribeAbility()
-    {
-        _events._onActivate -= Test;
-        _events._onDestroy -= UnsubscribeAbility;
-    }
-
-    public void UnsubscribeEntity()
-    {
-        Debug.Log("unsubscribed to entity events");
-        _entityEvents.OnCastAbility -= Test;
-    }
 
     private void Test()
     {
         Debug.Log("IT WORKS!");
     }
+
+    
+
+    //Subs and Unsubs
+    public void SubscribeAbility()
+    {
+        _events._onActivate += Test;
+        _events._onDestroy += UnsubscribeAbility;
+    }
+    public void SubscribeEntity()
+    {
+        _entityEvents.OnCastAbility += Test;
+    }
+    public void UnsubscribeAbility()
+    {
+        _events._onActivate -= Test;
+        _events._onDestroy -= UnsubscribeAbility;
+    }
+    public void UnsubscribeEntity()
+    {
+        _entityEvents.OnCastAbility -= Test;
+    }
+
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 public class EntityRage : MonoBehaviour
 {
     private EntityEvents events;
-    private EntityStats stats;
+    private ArchivedEntityStats stats;
     [SerializeField] private int rage;
     private float oneRage;
 
     private void Awake()
     {
-        stats = GetComponent<EntityStats>();
+        stats = GetComponent<ArchivedEntityStats>();
         events = GetComponent<EntityEvents>();
     }
     private void Start()

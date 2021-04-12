@@ -28,7 +28,7 @@ public class ItemObject : ScriptableObject
 public class ItemBuff
 {
     public string sourceID;
-    public string effectID;
+    public EntityStats.BuffType effectID;
     public int effectiveness;
     public float duration;
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Buff : MonoBehaviour
 {
     public string _sourceId;
-    public string _effectID;
+    public EntityStats.BuffType _effectID;
     public int _value;
     EntityEvents events;
     BuffManager buffManager;

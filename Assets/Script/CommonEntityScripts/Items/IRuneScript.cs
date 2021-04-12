@@ -5,6 +5,16 @@ using System;
 
 public interface IRuneScript
 {
+    public enum WeaponType
+    {
+        OneHandedSword,
+        TwoHandedSword,
+        Shield,
+        Bow,
+        Staff
+    }
+    public void SetIsInArmorSlot();
+    public void SetWeaponType(WeaponType weaponType);
     public void SetProjectile(GameObject projectile);
     public void SetAbilityEvents(AbilityEvents abilityEvents);
     public void SetEntity(GameObject entity);

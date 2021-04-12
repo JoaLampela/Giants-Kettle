@@ -57,7 +57,7 @@ public class EntityEvents : MonoBehaviour
     public event Action OnNormalAttack;
 
     //Add new Buff for entity
-    public event Action<string, string, int, float> OnNewBuff;
+    public event Action<string, EntityStats.BuffType, int, float> OnNewBuff;
 
     //OnRemoveBuff input is buff source name
     public event Action<string> OnRemoveBuff;
@@ -249,7 +249,7 @@ public class EntityEvents : MonoBehaviour
     {
         OnNormalAttack?.Invoke();
     }
-    public void NewBuff(string SourceId, string id, int value, float duration = -1)
+    public void NewBuff(string SourceId, EntityStats.BuffType id, int value, float duration = -1)
     {
         OnNewBuff?.Invoke(SourceId, id, value, duration);
     }

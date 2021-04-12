@@ -71,7 +71,7 @@ public class BuffManager : MonoBehaviour
 
 
     //Creates and adds new Buff-script to this entity.
-    private void NewBuff(string sourceId, string id, int value, float duration)
+    private void NewBuff(string sourceId, EntityStats.BuffType id, int value, float duration)
     {
         Debug.Log("New buff " + sourceId + " id " + id + " value " + value);
         Buff buff = gameObject.AddComponent<Buff>();

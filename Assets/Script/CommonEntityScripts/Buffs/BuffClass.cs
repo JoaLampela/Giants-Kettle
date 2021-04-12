@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BuffClass
 {
-    public string _id;
+    public EntityStats.BuffType _id;
     public int _value;
 
-    public BuffClass(string id, int value)
+    public BuffClass(EntityStats.BuffType id, int value)
     {
         _id = id;
         _value = value;

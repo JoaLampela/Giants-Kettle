@@ -7,7 +7,7 @@ public class AbilityOnHitApplyBuff : MonoBehaviour
     private AbilityEvents _events;
 
     [SerializeField] private string _sourceID;
-    [SerializeField] private string _effectID;
+    [SerializeField] private EntityStats.BuffType _effectID;
     [SerializeField] private int _effectiveness;
     [SerializeField] private float _duration;
 

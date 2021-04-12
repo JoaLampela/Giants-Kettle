@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8010610717326123582}
   - component: {fileID: 7078469439219623900}
-  - component: {fileID: 7963893057509206000}
   m_Layer: 0
-  m_Name: TestRuneScriptContainer
+  m_Name: RuneScriptContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,17 +41,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30df75fd6802aec46a54746550c99d14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7963893057509206000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3014448224700399142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299e7da8ee9229a4f870aebf4e752c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

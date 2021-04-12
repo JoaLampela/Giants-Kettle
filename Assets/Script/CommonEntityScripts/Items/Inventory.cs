@@ -854,13 +854,12 @@ public class Inventory : MonoBehaviour
 
     public void NewAffectingRune(Item newItem, ItemObject newRune)
     {
-        
         if(leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
-            Debug.Log("Yes");
             RuneObject rune = (RuneObject)newRune;
             rune._IruneContainer.Result.SetEntity(gameObject);
             rune._IruneContainer.Result.SubscribeEntity();
+            if (!(newItem == leftHand._item && newItem == rightHand._item)) rune._IruneContainer.Result.SetIsInArmorSlot();
         }
     }
     public void RemoveAffectingRune(Item newItem, ItemObject newRune)

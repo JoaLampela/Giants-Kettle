@@ -292,12 +292,9 @@ GameObject:
   - component: {fileID: 7051720969466832973}
   - component: {fileID: 7051720969466832970}
   - component: {fileID: 7051720969466832971}
-  - component: {fileID: 7051720969466832980}
   - component: {fileID: 7051720969466832981}
+  - component: {fileID: 4364698182969924757}
   - component: {fileID: 7051720969466832978}
-  - component: {fileID: 7051720969466832979}
-  - component: {fileID: 7051720969466832976}
-  - component: {fileID: 7051720969466832977}
   - component: {fileID: 7051720969466832975}
   - component: {fileID: 7051720969466832972}
   - component: {fileID: 5648197906562935413}
@@ -384,63 +381,6 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   swordCollider: {fileID: 0}
   dashCoolDown: 1
---- !u!114 &7051720969466832980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051720969466832969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae07a8bc16e26f34b9fa86c8f367c922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 2
-  baseHealth: 0
-  baseSpirit: 0
-  baseEnergy: 0
-  baseRage: 0
-  baseHealthRegen: 0
-  baseRageDepletion: 0
-  baseSpiritRegen: 0
-  baseEnergyRegen: 0
-  baseSpeed: 0
-  baseSlow: 0
-  baseTenacity: 0
-  basePhysicalDamage: 0
-  baseSpiritDamage: 0
-  baseCriticalStrikeChance: 1
-  baseSpellHaste: 0
-  baseArmor: 0
-  baseAttackSpeed: 1
-  currentMaxHealth: 0
-  currentMaxSpirit: 0
-  currentMaxEnergy: 0
-  currentMaxRage: 0
-  currentHealthRegen: 0
-  currentRageDepletion: 0
-  currentSpiritRegen: 0
-  currentEnergyRegen: 0
-  currentMaxRageGain: 0
-  currentMaxSpeed: 0
-  currentMaxSlow: 0
-  currentMaxTenacity: 0
-  currentMaxPhysicalDamage: 0
-  currentMaxSpiritDamage: 0
-  currentMaxCriticalStrikeChance: 0
-  currentMaxSpellHaste: 0
-  currentArmor: 0
-  currentMaxAttackSpeed: 0
-  isInvisible: 0
-  isInCombat: 0
-  isInAction: 0
-  isTakingDamage: 0
-  isStunned: 0
-  onHealthRegen: 0
-  onSpiritRegen: 0
-  onEnergyRegen: 0
-  onRageDepletion: 0
 --- !u!114 &7051720969466832981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +393,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9506a5bea775c24eac272fed3b57a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4364698182969924757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051720969466832969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
+  baseHealth: 100
+  baseSpirit: 0
+  baseHealthRegen: 0
+  baseSpiritRegen: 0
+  baseSpeed: 0
+  baseSlow: 0
+  baseTenacity: 0
+  basePhysicalDamage: 10
+  baseCriticalStrikeChance: 1
+  baseSpellHaste: 0
+  baseArmor: 0
+  baseAttackSpeed: 1
+  currentMaxHealth: 0
+  currentMaxSpirit: 0
+  currentHealthRegen: 0
+  currentSpiritRegen: 0
+  currentSpeed: 0
+  currentSlow: 0
+  currentTenacity: 0
+  currentPhysicalDamage: 0
+  currentCriticalStrikeChance: 0
+  currentSpellHaste: 0
+  currentArmor: 0
+  currentAttackSpeed: 0
+  isInvisible: 0
+  isInCombat: 0
+  isInAction: 0
+  isTakingDamage: 0
+  isStunned: 0
+  onHealthRegen: 0
 --- !u!114 &7051720969466832978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,45 +449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
---- !u!114 &7051720969466832979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051720969466832969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cee8ca41f84f57408c7c6204feb792e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energy: 0
---- !u!114 &7051720969466832976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051720969466832969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2adf3ff4faa60c74d8b19ccf707096a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spirit: 0
---- !u!114 &7051720969466832977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051720969466832969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ca33349de5796b4f9b3efd0a3746f73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rage: 0
 --- !u!114 &7051720969466832975
 MonoBehaviour:
   m_ObjectHideFlags: 0

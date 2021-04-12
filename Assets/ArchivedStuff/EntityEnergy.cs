@@ -5,13 +5,13 @@ using UnityEngine;
 public class EntityEnergy : MonoBehaviour
 {
     private EntityEvents events;
-    private EntityStats stats;
+    private ArchivedEntityStats stats;
     [SerializeField] private int energy;
     private float oneEnergy;
 
     private void Awake()
     {
-        stats = GetComponent<EntityStats>();
+        stats = GetComponent<ArchivedEntityStats>();
         events = GetComponent<EntityEvents>();
     }
     private void Start()

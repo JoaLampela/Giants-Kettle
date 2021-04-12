@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7717395726962872803}
   - component: {fileID: 5383559275107123190}
-  - component: {fileID: 5503710693400111715}
+  - component: {fileID: 5688676860415703454}
   - component: {fileID: 265745227025303280}
   - component: {fileID: 8343847155517277790}
   - component: {fileID: 3098609201185213822}
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5503710693400111715
+--- !u!114 &5688676860415703454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,54 +104,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 1582426512252007567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae07a8bc16e26f34b9fa86c8f367c922, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  baseHealth: 5
+  baseHealth: 20
   baseSpirit: 0
-  baseEnergy: 0
-  baseRage: 0
   baseHealthRegen: 0
-  baseRageDepletion: 0
   baseSpiritRegen: 0
-  baseEnergyRegen: 0
   baseSpeed: 0
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 0
-  baseSpiritDamage: 0
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 0
   baseAttackSpeed: 1
   currentMaxHealth: 0
   currentMaxSpirit: 0
-  currentMaxEnergy: 0
-  currentMaxRage: 0
   currentHealthRegen: 0
-  currentRageDepletion: 0
   currentSpiritRegen: 0
-  currentEnergyRegen: 0
-  currentMaxRageGain: 0
-  currentMaxSpeed: 0
-  currentMaxSlow: 0
-  currentMaxTenacity: 0
-  currentMaxPhysicalDamage: 0
-  currentMaxSpiritDamage: 0
-  currentMaxCriticalStrikeChance: 0
-  currentMaxSpellHaste: 0
+  currentSpeed: 0
+  currentSlow: 0
+  currentTenacity: 0
+  currentPhysicalDamage: 0
+  currentCriticalStrikeChance: 0
+  currentSpellHaste: 0
   currentArmor: 0
-  currentMaxAttackSpeed: 0
+  currentAttackSpeed: 0
   isInvisible: 0
   isInCombat: 0
   isInAction: 0
   isTakingDamage: 0
   isStunned: 0
   onHealthRegen: 0
-  onSpiritRegen: 0
-  onEnergyRegen: 0
-  onRageDepletion: 0
 --- !u!114 &265745227025303280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9264487c11a192439a0d7c98e2ce48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightHandGameObject: {fileID: 0}
+  leftHandGameObject: {fileID: 0}
   sting: {fileID: 0}
   sting2: {fileID: 0}
 --- !u!114 &5414056378907933711
@@ -330,6 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951f84beccc25a644bf9f22f89a3aa65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxObstacleVectorDistance: 0.4
+  maxAllyRange: 2
   maxPlayerRange: 5
   reachedEndOfPath: 0
   entitySpeed: 10
