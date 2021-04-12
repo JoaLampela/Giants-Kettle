@@ -5,6 +5,14 @@ using UnityEngine.Tilemaps;
 using System;
 using Pathfinding;
 
+
+public class NamedArrayAttribute : PropertyAttribute
+{
+    public readonly string[] names;
+    public NamedArrayAttribute(string[] names) { this.names = names; }
+}
+
+
 public class MeshGenerator : MonoBehaviour
 {
     public bool wallsOn = false;
@@ -15,14 +23,12 @@ public class MeshGenerator : MonoBehaviour
     public GameObject TilemapGO;
     public Tilemap caveTilemap;
     public Tilemap wallTilemap;
-    public Tile testTile;
+
     public List<Tile> tileList;
+    [NamedArrayAttribute(new string[] { "Neutral", "Happy", "Sad" })]
+    public Material[] textures;
 
-    public Tile upsideWall;
-    public Tile downSideWall;
     public Transform playerTransform;
-
-
     private List<Vector3> vertices;
     private List<int> triangles;
     //these is private but are they really?
@@ -111,15 +117,15 @@ public class MeshGenerator : MonoBehaviour
                         break;
                     //only 1 controlNodes is active
                     case 1:
-                        //bottomleft square
+                        //bottomleft triangle
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 2:
-                        //bottom right square
+                        //bottom right triangle
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 4:
-                        //top right squre
+                        //top right triangle
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
                         //wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
                         //bottom left wall square
@@ -128,20 +134,20 @@ public class MeshGenerator : MonoBehaviour
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
                         //if the block to the right is a upside wall
                         if (squareGrid.squares[x + 1, y]._configuration == 12) {
-                            //top right wall square
+                            //top right wall triangle
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         } else if (squareGrid.squares[x + 1, y]._configuration == 8) {
-                            //if the block to the right is top left square
+                            //if the block to the right is top left triangle
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         }
 
-                        //if the block to the right is a top left square
+                        //if the block to the right is a top left triangle
 
                         break;
                     case 8:
-                        //top left square
+                        //top left triangle
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
-                        //bottom right wall square
+                        //bottom right wall triangle
                         wallTilemap.SetTile(cellVector, tileList[19]);
 
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
@@ -151,14 +157,14 @@ public class MeshGenerator : MonoBehaviour
                             //top left wall square
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         } else if (squareGrid.squares[x - 1, y]._configuration == 4) {
-                            //if the block to the left is a top right square
+                            //if the block to the left is a top right triangle
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         }
                         break;
 
                     //two nodes
                     case 3:
-                        //downside wall
+                        //bottom wall
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
 
                         break;
@@ -171,7 +177,7 @@ public class MeshGenerator : MonoBehaviour
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                     case 12:
-                        //upside wall
+                        //top wall
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
                         //full wall square
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
@@ -248,7 +254,7 @@ public class MeshGenerator : MonoBehaviour
                         break;
                     //four nodes
                     case 15:
-                        //full
+                        //full square
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
                         break;
                 }
