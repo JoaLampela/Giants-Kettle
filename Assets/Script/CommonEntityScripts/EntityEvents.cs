@@ -5,6 +5,9 @@ using System;
 
 public class EntityEvents : MonoBehaviour
 {
+    //Called when changing runes
+    public event Action OnEquipRunesChange;
+
     //OnHitGameObject
     public event Action<Damage> OnHitThis;
 
@@ -99,6 +102,10 @@ public class EntityEvents : MonoBehaviour
     public event Action OnAnimationTriggerPoint;
     public event Action OnSpellOver;
 
+    public void EquipRunesChange()
+    {
+        OnEquipRunesChange?.Invoke();
+    }
 
     public void AnimationTriggerPoint()
     {

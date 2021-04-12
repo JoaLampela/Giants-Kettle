@@ -65,8 +65,11 @@ public class BuffManager : MonoBehaviour
     //removes the buff from the dictionary
     public void RemoveBuff(string sourceId, BuffClass buff)
     {
-        if(activeBuffs[sourceId]._value == buff._value) stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
-        activeBuffs.Remove(sourceId);
+        if(activeBuffs.ContainsKey(sourceId))
+        {
+            if (activeBuffs[sourceId]._value == buff._value) stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
+            activeBuffs.Remove(sourceId);
+        }
     }
 
 

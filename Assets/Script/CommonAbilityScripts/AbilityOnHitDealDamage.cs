@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AbilityOnHitDealDamage : MonoBehaviour
 {
+    public int damage;
     private AbilityEvents _events;
 
     private void Start()
@@ -29,7 +30,7 @@ public class AbilityOnHitDealDamage : MonoBehaviour
         {
             if(collider.gameObject.GetComponent<EntityStats>().team != castSource.GetComponent<EntityStats>().team)
             {
-                //collider.gameObject.GetComponent<EntityEvents>().HitThis(_events._damage);
+                collider.gameObject.GetComponent<EntityEvents>().HitThis(new Damage(castSource, damage, 0));
             }
         }
     }

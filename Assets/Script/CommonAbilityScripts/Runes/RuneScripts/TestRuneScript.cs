@@ -11,7 +11,6 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     private bool isInArmor;
 
-
     //Always needed functions
     public enum WeaponType
     {
@@ -21,24 +20,29 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
         Bow,
         Staff
     }
+
     public void SetIsInArmorSlot()
     {
         isInArmor = true;
     }
+
     public void SetAbilityEvents(AbilityEvents events)
     {
         _events = events;
     }
+
     public void SetEntity(GameObject entity)
     {
         _entity = entity;
         _entityEvents = entity.GetComponent<EntityEvents>();
         SetUpPermanentEffects();
     }
+
     public void SetProjectile(GameObject projectile)
     {
         _projectile = projectile;
     }
+
     public void SetWeaponType(IRuneScript.WeaponType weaponType)
     {
         if (weaponType == IRuneScript.WeaponType.OneHandedSword) _weaponType = WeaponType.OneHandedSword;
@@ -46,6 +50,16 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
         else if (weaponType == IRuneScript.WeaponType.Shield) _weaponType = WeaponType.Shield;
         else if (weaponType == IRuneScript.WeaponType.Bow) _weaponType = WeaponType.Bow;
         else if (weaponType == IRuneScript.WeaponType.Staff) _weaponType = WeaponType.Staff;
+    }
+
+    public void OnEquip()
+    {
+        
+    }
+
+    public void OnUnequip()
+    {
+
     }
 
     private void SetUpPermanentEffects()
@@ -63,6 +77,7 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     }
 
 
+
     private void Test()
     {
         Debug.Log("IT WORKS!");
@@ -76,18 +91,55 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
         _events._onActivate += Test;
         _events._onDestroy += UnsubscribeAbility;
     }
+
     public void SubscribeEntity()
     {
         _entityEvents.OnCastAbility += Test;
     }
+
     public void UnsubscribeAbility()
     {
         _events._onActivate -= Test;
         _events._onDestroy -= UnsubscribeAbility;
     }
+
     public void UnsubscribeEntity()
     {
         _entityEvents.OnCastAbility -= Test;
     }
 
+    public void IncrementDuplicateCountWeapon()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DecrementDuplicateCountWeapon()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void IncrementDuplicateCountArmor()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DecrementDuplicateCountArmor()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public int GetDuplicateCountWeapon()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveRune()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public int GetDuplicateCountArmor()
+    {
+        throw new System.NotImplementedException();
+    }
 }

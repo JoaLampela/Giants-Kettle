@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EntityStats : MonoBehaviour
 {
-    
     GameEventManager gameEventManager;
     EntityEvents events;
 
@@ -103,7 +102,6 @@ public class EntityStats : MonoBehaviour
 
         events.SetHealth(currentMaxHealth);
         events.SetSpirit(currentMaxSpirit);
-
     }
 
 
@@ -179,7 +177,7 @@ public class EntityStats : MonoBehaviour
     }
     public void UpdateBuff(BuffType buffType, int value)
     {
-        Debug.Log(buffType + " " + value);
+        Debug.Log(buffType + " +" + value);
         int temp;
         switch (buffType)
         {

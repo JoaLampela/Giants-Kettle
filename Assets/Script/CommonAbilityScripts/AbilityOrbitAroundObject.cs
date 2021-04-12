@@ -17,7 +17,6 @@ public class AbilityOrbitAroundObject : MonoBehaviour
     
     private void LateUpdate()
     {
-        gameObject.transform.position = (Vector2)(_target.transform.position + (transform.position - _target.transform.position).normalized * _orbitDistance);
-        gameObject.transform.RotateAround(_target.transform.position, Vector2.up, _orbitSpeed * Time.deltaTime);
+        transform.RotateAround(_target.transform.position, Vector3.forward, _orbitSpeed * Time.deltaTime);
     }
 }
