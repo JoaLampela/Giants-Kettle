@@ -58,9 +58,15 @@ public class StingRight : MonoBehaviour, IAbility
         {
             if (_weapon._runeList[i] != null)
             {
-                _weapon._runeList[i]._IruneContainer.Result.SetAbilityEvents(sting.GetComponent<AbilityEvents>());
-                _weapon._runeList[i]._IruneContainer.Result.SetProjectile(sting.gameObject);
-                _weapon._runeList[i]._IruneContainer.Result.SubscribeAbility();
+                if(!sting.GetComponent( _weapon._runeList[i]._IruneContainer.Result.GetType()))
+                {
+                    sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    _weapon._runeList[i]._IruneContainer.Result.SetAbilityEvents(sting.GetComponent<AbilityEvents>());
+                }
+                else
+                {
+
+                }
             }
         }
         sting.GetComponent<AbilityEvents>().UseAbility();
