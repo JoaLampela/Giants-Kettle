@@ -9,6 +9,9 @@ TagManager:
   - PlayerSpawnPoint
   - Ground
   - Enemy
+  - FxTemporaire
+  - Projectile
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - UI
   - top
   - Walls
-  - 
-  - 
+  - Projectiles
+  - Weapons
   - 
   - 
   - 

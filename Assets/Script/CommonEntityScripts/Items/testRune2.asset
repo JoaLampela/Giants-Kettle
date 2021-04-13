@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: 
-  iconSprite: {fileID: 21300000, guid: 45501ecd164014249bef2353a9f4f80d, type: 3}
-  inGameSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: 204428885485de142a6f2b9d25a69145, type: 3}
+  inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: 0}
+    ObjectField: {fileID: 5981430273776051293, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
+  runeTier: 1
