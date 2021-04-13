@@ -23,7 +23,7 @@ public class AbilityOnActivateDestroy : MonoBehaviour
 
     private void Activate()
     {
-        Destroy(gameObject);
+        _events.Destroy();
     }
 
     private void Subscribe()

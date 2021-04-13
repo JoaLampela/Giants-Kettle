@@ -7,6 +7,8 @@ public class AbilityEvents : MonoBehaviour
     [HideInInspector] public Vector2 _targetPositionAtStart;
     [HideInInspector] public Vector2 _targetPosition = new Vector2(0, 0);
     [HideInInspector] public Vector2 _targetVector = new Vector2(0, 0);
+    public int hitBoxScale;
+    public int spriteScale;
 
     public int damageMultiplier;
     public int bonusFlatDamage;

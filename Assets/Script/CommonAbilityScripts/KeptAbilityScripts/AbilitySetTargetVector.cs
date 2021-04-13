@@ -28,15 +28,24 @@ public class AbilitySetTargetVector : MonoBehaviour
 
     private void Update()
     {
-        if (_targetVectorUpdating)
+        if(_targetPosition != null && _targetVector != null && _iTargetPosition != null)
         {
-            if (_targetPositionUpdating)
+            if (_targetVectorUpdating)
             {
-                _targetPosition = _iTargetPosition.GetTargetPosition();
+                if (_targetPositionUpdating)
+                {
+                    _targetPosition = _iTargetPosition.GetTargetPosition();
+                }
+                SetTargetVector();
             }
-            SetTargetVector();
+            SetAbilityRotation(_iTargetPosition.GetTargetPosition());
         }
-        SetAbilityRotation(_iTargetPosition.GetTargetPosition());
+        else
+        {
+            _iTargetPosition = _events._abilityCastSource.GetComponent<IAbilityTargetPosition>();
+            _targetPosition = _iTargetPosition.GetTargetPosition();
+            _targetVector = (_targetPosition - (Vector2)transform.position).normalized;
+        }
     }
 
     public void SetAbilityRotation(Vector2 targetPosition)
