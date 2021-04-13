@@ -12,6 +12,7 @@ TagManager:
   - FxTemporaire
   - Projectile
   - Weapon
+  - InventoryPanel
   layers:
   - Default
   - TransparentFX
