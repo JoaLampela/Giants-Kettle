@@ -3,7 +3,7 @@ using System;
 
 public class AbilityEvents : MonoBehaviour
 {
-    [HideInInspector] public GameObject _abilityCastSource; //Source of the ability
+    public GameObject _abilityCastSource; //Source of the ability
     [HideInInspector] public Vector2 _targetPositionAtStart;
     [HideInInspector] public Vector2 _targetPosition = new Vector2(0, 0);
     [HideInInspector] public Vector2 _targetVector = new Vector2(0, 0);
@@ -11,6 +11,9 @@ public class AbilityEvents : MonoBehaviour
     public int damageMultiplier;
     public int bonusFlatDamage;
     public int bonusFlatTrueDamage;
+
+    //while summoning copies set this value to false
+    public bool firstCopy = true;
 
     //All different event types for Abilities:
     public event Action _onUseAbility;
@@ -20,7 +23,7 @@ public class AbilityEvents : MonoBehaviour
     public event Action _onInstantiated;
     public event Action _onDestroy;
 
-    private void Start()
+    private void Start()    
     {
         UseAbility();
     }
@@ -59,17 +62,25 @@ public class AbilityEvents : MonoBehaviour
     {
         _abilityCastSource = source;
     }
+
     public void Destroy()
     {
         _onDestroy?.Invoke();
     }
 
+
     public void DealDamage(GameObject target, int baseDamage, int trueDamage = 0)
     {
-        if(target.GetComponent<EntityEvents>())
+        if(target.GetComponent<EntityStats>())
         {
-            Debug.Log("Dealing damage");
-            target.GetComponent<EntityEvents>().HitThis(new Damage(_abilityCastSource, (int)((baseDamage + bonusFlatDamage) * damageMultiplier/100f), trueDamage + bonusFlatTrueDamage));
+            if(target.GetComponent<EntityStats>().team != _abilityCastSource.GetComponent<EntityStats>().team)
+            {
+                if (target.GetComponent<EntityEvents>())
+                {
+                    Debug.Log("Dealing damage " + baseDamage + " " + bonusFlatDamage + " " + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage + " " + damageMultiplier / 100f);
+                    target.GetComponent<EntityEvents>().HitThis(new Damage(_abilityCastSource, (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f), trueDamage + bonusFlatTrueDamage));
+                }
+            }
         }
     }
 }

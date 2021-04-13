@@ -151,10 +151,13 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         }
         else
         {
-            if(_item != null)
+            if (_item != null)
             {
-                if((int)previousSlot._type != 0)
+                playerInventory.RemoveRuneFromItem(gameObject);
+                if ((int)previousSlot._type != 0)
                 {
+                    Debug.Log("REMOVING RUNE");
+                    
                     if ((int)previousSlot._type == (int)_item.item.type) previousSlot.PlaceItem(_item);
                     else playerInventory.NewItem(_item);
                 }

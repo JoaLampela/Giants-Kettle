@@ -49,26 +49,45 @@ public class StingRight : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
-        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        //sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+        
         //sting.transform.rotation = Quaternion.FromToRotation(transform.position, targetPosAtStart);
-
+        Debug.Log(_weapon._runeList.Length);
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
             {
+
                 if(!sting.GetComponent( _weapon._runeList[i]._IruneContainer.Result.GetType()))
                 {
+                    Debug.Log("Adding the script");
                     sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                    //_weapon._runeList[i]._IruneContainer.Result.SetAbilityEvents(sting.GetComponent<AbilityEvents>());
+                    IRuneScript temp = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    temp.SetDuplicateCountWeapon(0);
+                    Debug.Log("Incrementing from sting " + temp.GetDuplicateCountWeapon());
                 }
-                else
+                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                
+                if(_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
                 {
-
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
                 }
             }
         }
+        sting.GetComponent<AbilityEvents>().SetSource(gameObject); 
         sting.GetComponent<AbilityEvents>().UseAbility();
     }
 

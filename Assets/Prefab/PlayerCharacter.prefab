@@ -414,7 +414,7 @@ MonoBehaviour:
   baseSpeed: 0
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 10
+  basePhysicalDamage: 5
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 0
@@ -652,10 +652,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de148eb5fcced3b4081c062026abeb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightArmContainer: {fileID: 7051720968973546008}
-  rightArm: {fileID: 7051720969390189161}
-  leftArm: {fileID: 7051720970361916754}
-  leftArmContainer: {fileID: 7051720970071662151}
+  rightHandContainer: {fileID: 7051720968973546008}
+  rightHand: {fileID: 7051720969390189161}
+  leftHand: {fileID: 7051720970361916754}
+  leftHandContainer: {fileID: 7051720970071662151}
   rightHandWeapon: {fileID: 0}
   leftHandWeapon: {fileID: 0}
   trueAttackSpeed: 1

@@ -932,10 +932,8 @@ public class Inventory : MonoBehaviour
         {
             RuneObject rune = (RuneObject)newRune;
             rune._IruneContainer.Result.SetEntity(gameObject);
-            Debug.Log("NEW RUNE IF CHECK (BEFORE)");
             if(!gameObject.GetComponent(rune._IruneContainer.Result.GetType()))
             {
-                Debug.Log("NEW RUNE IF CHECK (AFTER)");
                 gameObject.AddComponent(rune._IruneContainer.Result.GetType());
             }
 
@@ -943,47 +941,100 @@ public class Inventory : MonoBehaviour
             
             if (!(newItem == leftHand._item || newItem == rightHand._item))
             {
-                Debug.Log("INCREMENT ARMOR");
-                runeScript.IncrementDuplicateCountArmor();
+                if(rune.runeTier == RuneObject.RuneTier.basic)
+                {
+                    runeScript.IncrementDuplicateCountArmor();
+                }
+                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.IncrementDuplicateCountArmor();
+                    runeScript.IncrementDuplicateCountArmor();
+                }
+                else if (rune.runeTier == RuneObject.RuneTier.perfected)
+                {
+                    runeScript.IncrementDuplicateCountArmor();
+                    runeScript.IncrementDuplicateCountArmor();
+                    runeScript.IncrementDuplicateCountArmor();
+                }
             }
             else
             {
                 Debug.Log("INCREMENT WEAPON");
-                runeScript.IncrementDuplicateCountWeapon();
+                if (rune.runeTier == RuneObject.RuneTier.basic)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (rune.runeTier == RuneObject.RuneTier.perfected)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
             }
         }
     }
     public void RemoveAffectingRune(Item newItem, ItemObject newRune)
     {
-        Debug.Log("REMOVE AFFECTING RUNE");
+        Debug.Log("REMOVE AFFECTING RUNE " + newRune);
         if (leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
             RuneObject rune = (RuneObject)newRune;
             IRuneScript runeScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
 
-            if ((runeScript.GetDuplicateCountArmor() == 0 && runeScript.GetDuplicateCountWeapon() == 1) || (runeScript.GetDuplicateCountArmor() == 1 && runeScript.GetDuplicateCountWeapon() == 0))
+            if (!(newItem == leftHand._item || newItem == rightHand._item))
             {
-                runeScript.RemoveRune();
+                if (rune.runeTier == RuneObject.RuneTier.basic)
+                {
+                    runeScript.DecrementDuplicateCountArmor();
+                }
+                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.DecrementDuplicateCountArmor();
+                    runeScript.DecrementDuplicateCountArmor();
+                }
+                else if (rune.runeTier == RuneObject.RuneTier.perfected)
+                {
+                    runeScript.DecrementDuplicateCountArmor();
+                    runeScript.DecrementDuplicateCountArmor();
+                    runeScript.DecrementDuplicateCountArmor();
+                }
+
             }
             else
             {
-                if(!(newItem == leftHand._item || newItem == rightHand._item))
+                Debug.Log("DECREMENT WEAPON");
+                if (rune.runeTier == RuneObject.RuneTier.basic)
                 {
-                    Debug.Log("DECREMENT ARMOR");
-                    runeScript.DecrementDuplicateCountArmor();
-                }
-                else
-                {
-                    Debug.Log("DECREMENT WEAPON");
                     runeScript.DecrementDuplicateCountWeapon();
                 }
+                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.DecrementDuplicateCountWeapon();
+                    runeScript.DecrementDuplicateCountWeapon();
+                }
+                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.DecrementDuplicateCountWeapon();
+                    runeScript.DecrementDuplicateCountWeapon();
+                    runeScript.DecrementDuplicateCountWeapon();
+                }
+            }
+
+            if ((runeScript.GetDuplicateCountArmor() == 0 && runeScript.GetDuplicateCountWeapon() == 0))
+            {
+                runeScript.RemoveRune();
             }
         }
     }
 
     public void RemoveRuneFromItem(GameObject slot)
     {
-        Debug.Log("Removing rune from " + slot);
+        Debug.Log("Removing rune from " + slot + slot.GetComponent<UiButtonClick>()._item.item);
         if (slot == weaponRightHandR1)
         {
             rightHand._item._runeList[0] = null;

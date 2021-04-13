@@ -17,21 +17,27 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        ItemOnGround groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        StartCoroutine(SpawnItems());
+    }
+
+    IEnumerator SpawnItems()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject2));
-        groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject));
-        groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject3));
-        groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject4));
-        groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject5));
-        groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject6));
-        groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject7));
-        groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject8));
     }
 }

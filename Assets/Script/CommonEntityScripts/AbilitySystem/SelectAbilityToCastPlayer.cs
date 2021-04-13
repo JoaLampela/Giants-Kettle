@@ -15,7 +15,7 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             entityAbilityManager.CastAbility(1);
         }
@@ -23,21 +23,9 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
         {
             entityAbilityManager.CastAbility(2);
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            entityAbilityManager.CastAbility(3);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            entityAbilityManager.CastAbility(4);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            entityAbilityManager.CastAbility(5);
-        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            entityAbilityManager.CastAbility(6);
+            entityAbilityManager.CastAbility(3);
         }
         
     }

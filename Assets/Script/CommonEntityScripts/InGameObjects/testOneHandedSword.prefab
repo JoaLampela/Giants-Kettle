@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1297005670360602980}
   - component: {fileID: 1297005670360602983}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,9 +140,9 @@ GameObject:
   - component: {fileID: 1297005671206144920}
   - component: {fileID: 1297005671206144921}
   - component: {fileID: 1297005671206144934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: testOneHandedSword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

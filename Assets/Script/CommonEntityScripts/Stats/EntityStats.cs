@@ -177,7 +177,6 @@ public class EntityStats : MonoBehaviour
     }
     public void UpdateBuff(BuffType buffType, int value)
     {
-        Debug.Log(buffType + " +" + value);
         int temp;
         switch (buffType)
         {

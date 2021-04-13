@@ -43,33 +43,6 @@ public class SelectAbilityToCastAI : MonoBehaviour
                 bestCastValue = abilityCastValue;
             }
         }
-        if (entityAbilityManager.ability4 != null)
-        {
-            abilityCastValue = entityAbilityManager.ability4.GetCastValue();
-            if (abilityCastValue > bestCastValue)
-            {
-                abilitySlotWithHighestCastValye = 4;
-                bestCastValue = abilityCastValue;
-            }
-        }
-        if (entityAbilityManager.ability5 != null)
-        {
-            abilityCastValue = entityAbilityManager.ability5.GetCastValue();
-            if (abilityCastValue > bestCastValue)
-            {
-                abilitySlotWithHighestCastValye = 5;
-                bestCastValue = abilityCastValue;
-            }
-        }
-        if (entityAbilityManager.ability6 != null)
-        {
-            abilityCastValue = entityAbilityManager.ability6.GetCastValue();
-            if (abilityCastValue > bestCastValue)
-            {
-                abilitySlotWithHighestCastValye = 6;
-                bestCastValue = abilityCastValue;
-            }
-        }
         if (bestCastValue >= castValueLimit)
         {
             entityAbilityManager.CastAbility(abilitySlotWithHighestCastValye);

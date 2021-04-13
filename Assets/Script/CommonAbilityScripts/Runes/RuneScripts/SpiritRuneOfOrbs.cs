@@ -10,8 +10,8 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     private GameObject _entity;
     private EntityEvents _entityEvents;
     private WeaponType _weaponType;
-    [SerializeField] private int duplicateCountWeapon;
-    [SerializeField] private int duplicateCountArmor;
+    [SerializeField] private int duplicateCountWeapon = 0;
+    [SerializeField] private int duplicateCountArmor = 0;
     private List<GameObject> projectiles;
 
     //Always needed functions
@@ -23,11 +23,17 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         Bow,
         Staff
     }
-
+    public void SetDuplicateCountWeapon(int value)
+    {
+        duplicateCountWeapon = value;
+    }
     public void IncrementDuplicateCountWeapon()
     {
+        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon); 
         duplicateCountWeapon++;
-        SetUpPermanentEffects();
+        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon);
+        if(_entityEvents != null) SetUpPermanentEffects();
+
     }
 
     public void DecrementDuplicateCountWeapon()
@@ -128,6 +134,8 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         if(gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
+            Activate();
+            Debug.Log("Subscribe ability");
         }
     }
 
@@ -157,6 +165,22 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<AbilityEvents>())
         {
             UnsubscribeAbility();
+        }
+    }
+
+    public void Activate()
+    {
+        Debug.Log("weapon cound " + duplicateCountWeapon);  
+        Debug.Log("AbilityActivated");
+        GameObject projectile = RuneAssets.i.RuneOrbWeaponProjectile;
+        projectile.GetComponent<AbilityEvents>().SetSource(gameObject.GetComponent<AbilityEvents>()._abilityCastSource);
+        float degrees = 360f / (float)duplicateCountWeapon;
+        Debug.Log("weapon cound " + duplicateCountWeapon);
+        for (int i = 0; i < duplicateCountWeapon; i++)
+        {
+            Debug.Log("Summoning orb");
+            projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
+            projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * degrees);
         }
     }
 

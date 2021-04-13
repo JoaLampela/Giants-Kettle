@@ -8,15 +8,12 @@ public class AbilityOrbitAroundObject : MonoBehaviour
     private GameObject _target;
     [SerializeField] private float _orbitDistance;
     [SerializeField] private float _orbitSpeed;
-    
+
     private void Awake()
     {
         _events = GetComponent<AbilityEvents>();
-        _target = _events._abilityCastSource;
+        _target = transform.parent.gameObject;
     }
+
     
-    private void LateUpdate()
-    {
-        transform.RotateAround(_target.transform.position, Vector3.forward, _orbitSpeed * Time.deltaTime);
-    }
 }

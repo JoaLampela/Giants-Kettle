@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class AbilityOnHitDealDamage : MonoBehaviour
 {
-    public int damage;
     private AbilityEvents _events;
+    private List<GameObject> hitTargets;
+    [SerializeField] private int baseDamage;
+    [SerializeField] private int damageScaling;
+    [SerializeField] private bool canHitMultipleTime;
 
     private void Start()
     {
-        Subscribe();
+        hitTargets = new List<GameObject>();
     }
 
     private void Awake()
@@ -17,31 +20,12 @@ public class AbilityOnHitDealDamage : MonoBehaviour
         _events = GetComponent<AbilityEvents>();
     }
 
-    private void OnDisable()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Unsubscribe();
-    }
-
-    private void Activate(Collider2D collider)
-    {
-        GameObject castSource = _events._abilityCastSource;
-
-        if (collider.gameObject.GetComponent<EntityStats>())
+        if (!hitTargets.Contains(collision.gameObject))
         {
-            if(collider.gameObject.GetComponent<EntityStats>().team != castSource.GetComponent<EntityStats>().team)
-            {
-                collider.gameObject.GetComponent<EntityEvents>().HitThis(new Damage(castSource, damage, 0));
-            }
+            if(!canHitMultipleTime) hitTargets.Add(collision.gameObject);
+            _events.DealDamage(collision.gameObject, (int)(baseDamage * damageScaling / 100f), 0);
         }
-    }
-
-    private void Subscribe()
-    {
-        _events._onHit += Activate;
-    }
-
-    private void Unsubscribe()
-    {
-        _events._onHit -= Activate;
     }
 }

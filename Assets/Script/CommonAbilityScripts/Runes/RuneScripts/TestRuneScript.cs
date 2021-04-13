@@ -142,4 +142,9 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     {
         throw new System.NotImplementedException();
     }
+
+    public void SetDuplicateCountWeapon(int value)
+    {
+        throw new System.NotImplementedException();
+    }
 }

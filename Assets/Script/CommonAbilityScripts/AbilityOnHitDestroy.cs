@@ -23,7 +23,17 @@ public class AbilityOnHitDestroy : MonoBehaviour
 
     private void Activate(Collider2D collider)
     {
-        Destroy(gameObject);
+        if(collider.gameObject.GetComponent<EntityStats>())
+        {
+            if (_events._abilityCastSource.GetComponent<EntityStats>().team != collider.gameObject.GetComponent<EntityStats>().team)
+            {
+                _events.Destroy();
+            }
+        }
+        else
+        {
+            _events.Destroy();
+        }
     }
 
     private void Subscribe()

@@ -15,9 +15,6 @@ public class EntityAbilityManager : MonoBehaviour
     public IAbility ability1;
     public IAbility ability2;
     public IAbility ability3;
-    public IAbility ability4;
-    public IAbility ability5;
-    public IAbility ability6;
     public GameObject sting;
     public GameObject sting2;
 
@@ -43,15 +40,6 @@ public class EntityAbilityManager : MonoBehaviour
                     break;
                 case 3:
                     ability3.TryCast();
-                    break;
-                case 4:
-                    ability4.TryCast();
-                    break;
-                case 5:
-                    ability5.TryCast();
-                    break;
-                case 6:
-                    ability6.TryCast();
                     break;
             }
         }
@@ -81,18 +69,6 @@ public class EntityAbilityManager : MonoBehaviour
                 ability3 = ability;
                 ability3.SetSlot(3);
                 break;
-            case 4:
-                ability4 = ability;
-                ability4.SetSlot(4);
-                break;
-            case 5:
-                ability5 = ability;
-                ability5.SetSlot(5);
-                break;
-            case 6:
-                ability6 = ability;
-                ability6.SetSlot(6);
-                break;
         }
     }
 
@@ -110,15 +86,6 @@ public class EntityAbilityManager : MonoBehaviour
                 break;
             case 3:
                 ability3 = null;
-                break;
-            case 4:
-                ability4 = null;
-                break;
-            case 5:
-                ability5 = null;
-                break;
-            case 6:
-                ability6 = null;
                 break;
         }
     }
