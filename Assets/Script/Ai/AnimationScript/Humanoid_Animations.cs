@@ -10,6 +10,12 @@ public class Humanoid_Animations : MonoBehaviour
     public GameObject rightHand;
     public GameObject leftHandContainer;
     public GameObject rightHandContainer;
+    public GameObject rightHandWeapon;
+    public GameObject leftHandWeapon;
+
+    [Header("Spawn these prefrabs for the goblin")]
+    public GameObject weapon1;
+    public GameObject weapon2;
 
     private Rigidbody2D humanoidRB;
     private Animator animator;
@@ -18,8 +24,8 @@ public class Humanoid_Animations : MonoBehaviour
     private bool usingStaff;
     private bool usingShield;
     private bool usingBow;
-    private bool offhandUsingSingleHandedSword;
-    private bool offhandUsingShield;
+    private bool offHandUsingSingleHandedSword;
+    private bool offHandUsingShield;
     private bool attackOnCooldown;
 
 
@@ -30,44 +36,89 @@ public class Humanoid_Animations : MonoBehaviour
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
 
-
-        SwitchToSingleHandedSword();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (weapon1 != null)
         {
-            if (usingSingleHandedSword)
-            {
-                SwitchToTwoHandedSword();
-            }
-            else
-            {
-                SwitchToSingleHandedSword();
-            }
+            SwitchToSingleHandedSword(weapon1);
+        }
+        if (weapon2 != null)
+        {
+            SwitchToOffHandSingleHandedSword(weapon2);
         }
     }
 
-    public void SwitchToSingleHandedSword()
+    public void SwitchToSingleHandedSword(GameObject inGameObject)
     {
         leftHand.transform.parent = leftHandContainer.transform;
         LeftHandResetPosition();
         UnequipRightHandBools();
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
         usingSingleHandedSword = true;
         animator.SetBool("ShortSwordEquiped", true);
     }
-    public void SwitchToTwoHandedSword()
+    public void SwitchToOffHandSingleHandedSword(GameObject inGameObject)
+    {
+        leftHand.transform.parent = leftHandContainer.transform;
+        LeftHandResetPosition();
+        UnequipLeftHandBools();
+        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        offHandUsingSingleHandedSword = true;
+        animator.SetBool("ShortSwordOffHandEquiped", true);
+    }
+    public void SwitchToOffHandShield(GameObject inGameObject)
+    {
+        leftHand.transform.parent = leftHandContainer.transform;
+        LeftHandResetPosition();
+        UnequipLeftHandBools();
+        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        offHandUsingShield = true;
+        animator.SetBool("ShortSwordOffHandEquiped", true);
+    }
+    public void SwitchToBow(GameObject inGameObject)
     {
         UnequipRightHandBools();
-        UnequipLefHandBools();
+        UnequipLeftHandBools();
         leftHand.transform.parent = rightHand.transform;
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        usingBow = true;
+        animator.SetBool("BowEquiped", true);
+        leftHand.transform.position = rightHand.transform.position + new Vector3(0, -0.1f, 0);
+    }
+    public void SwitchToTwoHandedSword(GameObject inGameObject)
+    {
+        UnequipRightHandBools();
+        UnequipLeftHandBools();
+        leftHand.transform.parent = rightHand.transform;
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
         usingTwoHandedSword = true;
         animator.SetBool("TwoHandedSwordEquiped", true);
         leftHand.transform.position = rightHand.transform.position + new Vector3(0, -0.1f, 0);
     }
+    public void SwitchToStaff(GameObject inGameObject)
+    {
+        UnequipRightHandBools();
+        UnequipLeftHandBools();
+        leftHand.transform.parent = rightHand.transform;
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        usingStaff = true;
+        animator.SetBool("StaffEquiped", true);
+        leftHand.transform.position = rightHand.transform.position + new Vector3(0, -0.1f, 0);
+    }
+
+    public void SwitchToEmptyRightHand()
+    {
+        UnequipRightHandBools();
+        leftHand.transform.parent = leftHandContainer.transform;
+    }
+    public void SwitchToEmptyLeftHand()
+    {
+        UnequipLeftHandBools();
+        LeftHandResetPosition();
+        leftHand.transform.parent = leftHandContainer.transform;
+    }
+
     private void UnequipRightHandBools()
     {
+        Destroy(rightHandWeapon);
         usingSingleHandedSword = false;
         usingTwoHandedSword = false;
         usingStaff = false;
@@ -79,10 +130,10 @@ public class Humanoid_Animations : MonoBehaviour
         animator.SetBool("StaffEquiped", false);
         animator.SetBool("ShieldEquiped", false);
     }
-    private void UnequipLefHandBools()
+    private void UnequipLeftHandBools()
     {
-        offhandUsingShield = false;
-        offhandUsingSingleHandedSword = false;
+        offHandUsingShield = false;
+        offHandUsingSingleHandedSword = false;
         usingTwoHandedSword = false;
         usingStaff = false;
         usingBow = false;

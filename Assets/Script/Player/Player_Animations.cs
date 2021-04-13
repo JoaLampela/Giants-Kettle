@@ -5,10 +5,10 @@ public class Player_Animations : MonoBehaviour
 {
     public bool attacking { private set; get; }
     public Vector2 lookDirection { private set; get; }
-    public GameObject rightArmContainer;
-    public GameObject rightArm;
-    public GameObject leftArm;
-    public GameObject leftArmContainer;
+    public GameObject rightHandContainer;
+    public GameObject rightHand;
+    public GameObject leftHand;
+    public GameObject leftHandContainer;
     [SerializeField] private GameObject rightHandWeapon;
     [SerializeField] private GameObject leftHandWeapon;
 
@@ -21,8 +21,8 @@ public class Player_Animations : MonoBehaviour
     private bool usingStaff;
     private bool usingShield;
     private bool usingBow;
-    private bool offhandUsingSingleHandedSword;
-    private bool offhandUsingShield;
+    private bool offHandUsingSingleHandedSword;
+    private bool offHandUsingShield;
 
     private bool attackOnCooldown;
 
@@ -51,7 +51,7 @@ public class Player_Animations : MonoBehaviour
                 StartCoroutine(GetComponent<MovementScript>().AttackStep(0 / trueAttackSpeed, 500));
                 StartCoroutine(SetAttackOnCooldown(0.4f / trueAttackSpeed));
             }
-            
+
         }
         if (usingTwoHandedSword)
         {
@@ -87,7 +87,7 @@ public class Player_Animations : MonoBehaviour
             if (GetComponent<MovementScript>().Dash())
                 animator.SetTrigger("Dash");
         }
-        
+
         if (!attacking)
             LookToMouse();
         else
@@ -100,7 +100,7 @@ public class Player_Animations : MonoBehaviour
 
     private void LookDirectionUpdate()
     {
-        Vector2 difference = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z)) - rightArmContainer.transform.position;
+        Vector2 difference = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z)) - rightHandContainer.transform.position;
         difference.Normalize();
         lookDirection = difference;
     }
@@ -108,7 +108,7 @@ public class Player_Animations : MonoBehaviour
     private void LookToMouse()
     {
 
-        Vector2 difference = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z)) - rightArmContainer.transform.position;
+        Vector2 difference = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z)) - rightHandContainer.transform.position;
         difference.Normalize();
         lookDirection = difference;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -122,31 +122,78 @@ public class Player_Animations : MonoBehaviour
         {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
-        rightArmContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        rightHandContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
     }
-    public void SwitchToSingleHandedSword(GameObject  inGameObject)
+    public void SwitchToSingleHandedSword(GameObject inGameObject)
     {
-        leftArm.transform.parent = leftArmContainer.transform;
+        leftHand.transform.parent = leftHandContainer.transform;
         LeftHandResetPosition();
         UnequipRightHandBools();
-        rightHandWeapon = Instantiate(inGameObject, rightArm.transform.position, new Quaternion(0, 0, 0, 0), rightArm.transform);
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
         usingSingleHandedSword = true;
         animator.SetBool("ShortSwordEquiped", true);
     }
+    public void SwitchToOffHandSingleHandedSword(GameObject inGameObject)
+    {
+        leftHand.transform.parent = leftHandContainer.transform;
+        LeftHandResetPosition();
+        UnequipLeftHandBools();
+        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        offHandUsingSingleHandedSword = true;
+        animator.SetBool("ShortSwordOffHandEquiped", true);
+    }
+    public void SwitchToOffHandShield(GameObject inGameObject)
+    {
+        leftHand.transform.parent = leftHandContainer.transform;
+        LeftHandResetPosition();
+        UnequipLeftHandBools();
+        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        offHandUsingShield = true;
+        animator.SetBool("ShortSwordOffHandEquiped", true);
+    }
+    public void SwitchToBow(GameObject inGameObject)
+    {
+        UnequipRightHandBools();
+        UnequipLeftHandBools();
+        leftHand.transform.parent = rightHand.transform;
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        usingBow = true;
+        animator.SetBool("BowEquiped", true);
+        leftHand.transform.position = rightHand.transform.position + new Vector3(0, -0.1f, 0);
+    }
+    public void SwitchToTwoHandedSword(GameObject inGameObject)
+    {
+        UnequipRightHandBools();
+        UnequipLeftHandBools();
+        leftHand.transform.parent = rightHand.transform;
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        usingTwoHandedSword = true;
+        animator.SetBool("TwoHandedSwordEquiped", true);
+        leftHand.transform.position = rightHand.transform.position + new Vector3(0, -0.1f, 0);
+    }
+    public void SwitchToStaff(GameObject inGameObject)
+    {
+        UnequipRightHandBools();
+        UnequipLeftHandBools();
+        leftHand.transform.parent = rightHand.transform;
+        rightHandWeapon = Instantiate(inGameObject, rightHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        usingStaff = true;
+        animator.SetBool("StaffEquiped", true);
+        leftHand.transform.position = rightHand.transform.position + new Vector3(0, -0.1f, 0);
+    }
+
     public void SwitchToEmptyRightHand()
     {
         UnequipRightHandBools();
-        leftArm.transform.parent = leftArmContainer.transform;
+        leftHand.transform.parent = leftHandContainer.transform;
     }
-    public void SwitchToTwoHandedSword()
+    public void SwitchToEmptyLeftHand()
     {
-        UnequipRightHandBools();
-        UnequipLefHandBools();
-        leftArm.transform.parent = rightArm.transform;
-        usingTwoHandedSword = true;
-        animator.SetBool("TwoHandedSwordEquiped", true);
-        leftArm.transform.position = rightArm.transform.position + new Vector3(0, -0.1f, 0);
+        UnequipLeftHandBools();
+        LeftHandResetPosition();
+        leftHand.transform.parent = leftHandContainer.transform;
     }
+
     private void UnequipRightHandBools()
     {
         Destroy(rightHandWeapon);
@@ -161,10 +208,10 @@ public class Player_Animations : MonoBehaviour
         animator.SetBool("StaffEquiped", false);
         animator.SetBool("ShieldEquiped", false);
     }
-    private void UnequipLefHandBools()
+    private void UnequipLeftHandBools()
     {
-        offhandUsingShield = false;
-        offhandUsingSingleHandedSword = false;
+        offHandUsingShield = false;
+        offHandUsingSingleHandedSword = false;
         usingTwoHandedSword = false;
         usingStaff = false;
         usingBow = false;
@@ -176,11 +223,11 @@ public class Player_Animations : MonoBehaviour
     }
     private void LeftHandResetPosition()
     {
-        leftArm.transform.position = new Vector3(-0.4f, 0, 0) * transform.localScale.x + leftArmContainer.transform.position;
+        leftHand.transform.position = new Vector3(-0.4f, 0, 0) * transform.localScale.x + leftHandContainer.transform.position;
     }
     private void RightHandResetPosition()
     {
-        leftArm.transform.position = new Vector3(0.4f, 0, 0) * transform.localScale.x + rightArmContainer.transform.position;
+        leftHand.transform.position = new Vector3(0.4f, 0, 0) * transform.localScale.x + rightHandContainer.transform.position;
     }
     IEnumerator SetAttacking(float CoolDown)
     {
