@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e2e2e7965a54f4897d5b4b9636d201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6274655148876385004, guid: 079559bd5775ee04bac02e13e2665f46, type: 3}
+  RuneOrbArmorProjectile: {fileID: 6274655148876385004, guid: 079559bd5775ee04bac02e13e2665f46, type: 3}
+  RuneOrbWeaponProjectile: {fileID: 6274655148876385004, guid: 83b968a9eddd3e44a97e83d03de8aa3e, type: 3}
