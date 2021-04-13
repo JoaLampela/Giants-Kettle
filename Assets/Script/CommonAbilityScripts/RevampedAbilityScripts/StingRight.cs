@@ -8,7 +8,6 @@ public class StingRight : MonoBehaviour, IAbility
     EntityEvents _entityEvents;
     EntityAbilityManager abilityManager;
     [SerializeField] private int _spellSlot;
-    [SerializeField] private int _abilityCost = 10;
     private IAbilityTargetPosition targetPositionScript;
     Item _weapon;
     private Vector2 targetPosAtStart;
@@ -34,24 +33,24 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_spellSlot == slot)
+        if (_weapon.currentCooldownAbility1 <= 0)
         {
-            targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
-            Debug.Log(targetPosAtStart);
-            _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
-            Debug.Log("cast right");
-            animator.SetTrigger("Special");
-            _entityEvents.CastAbility();
-            _entityEvents.DeteriorateHealth(_abilityCost);
+            if (_spellSlot == slot)
+            {
+                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1;
+                targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+                _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
+                Debug.Log("cast right");
+                animator.SetTrigger("Special");
+                _entityEvents.CastAbility();
+            }
         }
+        else CannotAffordCast(slot);
     }
 
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        //sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-        
-        //sting.transform.rotation = Quaternion.FromToRotation(transform.position, targetPosAtStart);
         Debug.Log(_weapon._runeList.Length);
         GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
@@ -62,11 +61,7 @@ public class StingRight : MonoBehaviour, IAbility
 
                 if(!sting.GetComponent( _weapon._runeList[i]._IruneContainer.Result.GetType()))
                 {
-                    Debug.Log("Adding the script");
                     sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                    IRuneScript temp = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                    temp.SetDuplicateCountWeapon(0);
-                    Debug.Log("Incrementing from sting " + temp.GetDuplicateCountWeapon());
                 }
                 IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
                 
@@ -111,7 +106,7 @@ public class StingRight : MonoBehaviour, IAbility
 
     public void TryCast()
     {
-        _entityEvents.TryCastAbilityCostHealth(_spellSlot, _abilityCost);
+        _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
     private void Subscribe()

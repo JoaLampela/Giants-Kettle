@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f0c5d36d9a1f14da16314fb077a575, type: 3}
   m_Name: New OneHandedSword Object
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   type: 1
   description: 
   iconSprite: {fileID: 0}
-  inGameSprite: {fileID: 0}
+  inGameObject: {fileID: 0}
   isTwoHander: 0
-  buffs: []
   runeSlots: 0
   baseRune: {fileID: 0}
   weaponType: 0
+  maxCooldownAbility1: 0
+  currentCooldownAbility1: 0
+  maxCooldownAbility2: 0
+  currentCooldownAbility2: 0

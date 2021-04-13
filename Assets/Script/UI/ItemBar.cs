@@ -49,7 +49,7 @@ public class ItemBar : MonoBehaviour
 
     void UseItem(int slot)
     {
-        player.GetComponent<Inventory>().UseItem(player.GetComponent<Inventory>().inventorySlots[slot]._item);
+        player.GetComponent<Inventory>().inventorySlots[slot].HotbarUseItem();
     }
 
     /*

@@ -4,26 +4,92 @@ using UnityEngine;
 
 public class Sting2Handed : MonoBehaviour, IAbility
 {
+    private Animator animator;
     EntityEvents _entityEvents;
+    EntityAbilityManager abilityManager;
     [SerializeField] private int _spellSlot;
-    [SerializeField] private int _abilityCost = 10;
-    //ItemWeapon _weapon;
-
+    private IAbilityTargetPosition targetPositionScript;
+    Item _weapon;
+    private Vector2 targetPosAtStart;
 
     private void Start()
     {
         Subscribe();
-        //_weapon = (ItemWeapon)GetComponent<Inventory>().rightHand._item;
+        _weapon = GetComponent<Inventory>().rightHand._item;
     }
 
     private void Awake()
     {
+        abilityManager = GetComponent<EntityAbilityManager>();
+        targetPositionScript = GetComponent<IAbilityTargetPosition>();
+        animator = GetComponent<Animator>();
         _entityEvents = GetComponent<EntityEvents>();
     }
 
     private void OnDisable()
     {
         Unsubscribe();
+    }
+
+    private void Cast(int slot)
+    {
+        if (_weapon.currentCooldownAbility1 <= 0)
+        {
+            if (_spellSlot == slot)
+            {
+                targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+                _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
+                //add animation call for 2 handed sting here animator.SetTrigger("Special");
+                _entityEvents.CastAbility();
+            }
+        }
+        else CannotAffordCast(slot);
+    }
+
+    private void InstatiateHitBox()
+    {
+        _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
+        Debug.Log(_weapon._runeList.Length);
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().heavySting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        for (int i = 0; i < _weapon._runeList.Length; i++)
+        {
+            if (_weapon._runeList[i] != null)
+            {
+
+                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
+                {
+                    sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                }
+                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+
+                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+            }
+        }
+        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+        sting.GetComponent<AbilityEvents>().UseAbility();
+    }
+
+    private void CannotAffordCast(int slot)
+    {
+        if (_spellSlot == slot)
+        {
+            Debug.Log("CANNOT AFFORD TO HEAVY STING");
+        }
     }
 
     public int GetCastValue()
@@ -38,35 +104,20 @@ public class Sting2Handed : MonoBehaviour, IAbility
 
     public void TryCast()
     {
-        _entityEvents.TryCastAbilityCostHealth(_spellSlot, _abilityCost);
-    }
-
-    private void Cast(int slot)
-    {
-        if (_spellSlot == slot)
-        {
-            Debug.Log("Casted Sting 2handed");
-            _entityEvents.DeteriorateHealth(_abilityCost);
-        }
-    }
-
-    private void CannotAffordCast(int slot)
-    {
-        if (_spellSlot == slot)
-        {
-            Debug.Log("CANNOT AFFORD TO CAST STING 2HANDED");
-        }
+        _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
     private void Subscribe()
     {
         _entityEvents.OnCallBackCastAbility += Cast;
         _entityEvents.OnCanNotAffordAbility += CannotAffordCast;
+
     }
 
     public void Unsubscribe()
     {
         _entityEvents.OnCallBackCastAbility -= Cast;
         _entityEvents.OnCanNotAffordAbility -= CannotAffordCast;
+        _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
     }
 }

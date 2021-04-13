@@ -15,8 +15,16 @@ public class EntityAbilityManager : MonoBehaviour
     public IAbility ability1;
     public IAbility ability2;
     public IAbility ability3;
+
     public GameObject sting;
-    public GameObject sting2;
+    public GameObject heavySting;
+    public GameObject spinAttack;
+    public GameObject bigProjectile;
+    public GameObject nonProjectile;
+    public GameObject shieldSlam;
+    public GameObject shieldToss;
+    public GameObject tripleShot;
+    public GameObject powerShot;
 
     public void CastAbility(int slot)
     {

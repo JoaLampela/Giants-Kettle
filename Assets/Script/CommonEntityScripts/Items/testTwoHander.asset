@@ -15,8 +15,12 @@ MonoBehaviour:
   type: 1
   description: 
   iconSprite: {fileID: 21300000, guid: 7fea356589ea88646ba55c71fc226ef7, type: 3}
-  inGameSprite: {fileID: 0}
+  inGameObject: {fileID: 0}
   isTwoHander: 1
   runeSlots: 3
   baseRune: {fileID: 0}
   weaponType: 1
+  maxCooldownAbility1: 30
+  currentCooldownAbility1: 30
+  maxCooldownAbility2: 0
+  currentCooldownAbility2: 0

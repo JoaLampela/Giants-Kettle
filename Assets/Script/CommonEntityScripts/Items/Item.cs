@@ -7,6 +7,12 @@ public class Item
     public RuneObject[] _runeList;
     public ItemObject item;
 
+    public float maxCooldownAbility1;
+    public float currentCooldownAbility1;
+
+    public float maxCooldownAbility2;
+    public float currentCooldownAbility2;
+
     public Item(ItemObject newItem)
     {
         item = newItem;
@@ -25,6 +31,16 @@ public class Item
         else
         {
             _runeList = new RuneObject[0];
+        }
+        if (item.type == ItemType.Weapon)
+        {
+            WeaponObject weapon = (WeaponObject)item;
+            maxCooldownAbility1 = weapon.maxCooldownAbility1;
+            currentCooldownAbility1 = weapon.currentCooldownAbility1;
+
+            maxCooldownAbility2 = weapon.maxCooldownAbility2;
+            currentCooldownAbility2 = weapon.maxCooldownAbility2;
+            GameAbilityCoolDownManager.Instance.weaponsOnCooldown.Add(this);
         }
     }
 }

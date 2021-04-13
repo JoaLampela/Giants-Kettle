@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class StingLeft : MonoBehaviour, IAbility
 {
+    private Animator animator;
     EntityEvents _entityEvents;
+    EntityAbilityManager abilityManager;
     [SerializeField] private int _spellSlot;
-    [SerializeField] private int _abilityCost = 10;
-    //ItemWeapon _weapon;
+    private IAbilityTargetPosition targetPositionScript;
+    Item _weapon;
+    private Vector2 targetPosAtStart;
 
     private void Start()
     {
         Subscribe();
-        //_weapon = (ItemWeapon)GetComponent<Inventory>().leftHand._item;
+        _weapon = GetComponent<Inventory>().leftHand._item;
     }
 
     private void Awake()
     {
+        abilityManager = GetComponent<EntityAbilityManager>();
+        targetPositionScript = GetComponent<IAbilityTargetPosition>();
+        animator = GetComponent<Animator>();
         _entityEvents = GetComponent<EntityEvents>();
     }
 
@@ -27,28 +33,57 @@ public class StingLeft : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_spellSlot == slot)
+        if (_weapon.currentCooldownAbility2 <= 0)
         {
-            Debug.Log("cast left");
-            _entityEvents.DeteriorateHealth(_abilityCost);
-            GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting2, gameObject.transform.position, gameObject.transform.rotation);
-            sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-            
-            //foreach (GameObject rune in _weapon.runeList)
-            //{
-                //MonoBehaviour temp = sting.AddComponent(typeof(MonoBehaviour)) as MonoBehaviour;
-                //temp = rune.GetComponent<MonoBehaviour>();
-            //}
-            sting.GetComponent<AbilityEvents>().UseAbility();
+            if (_spellSlot == slot)
+            {
+                targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+                _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
+                Debug.Log("cast left");
+                //Add sting left here animator.SetTrigger("Special");
+                _entityEvents.CastAbility();
+            }
         }
+        else CannotAffordCast(slot);
+    }
+
+    private void InstatiateHitBox()
+    {
+        _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        for (int i = 0; i < _weapon._runeList.Length; i++)
+        {
+            if (_weapon._runeList[i] != null)
+            {
+
+                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType())) sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+
+                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
+                {
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon();
+                }
+            }
+        }
+        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+        sting.GetComponent<AbilityEvents>().UseAbility();
     }
 
     private void CannotAffordCast(int slot)
     {
-        if (_spellSlot == slot)
-        {
-            Debug.Log("CANNOT AFFORD TO STING");
-        }
+        if (_spellSlot == slot) Debug.Log("CANNOT AFFORD TO STING LEFT");
     }
 
     public int GetCastValue()
@@ -63,7 +98,7 @@ public class StingLeft : MonoBehaviour, IAbility
 
     public void TryCast()
     {
-        _entityEvents.TryCastAbilityCostHealth(_spellSlot, _abilityCost);
+        _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
     private void Subscribe()
@@ -76,5 +111,6 @@ public class StingLeft : MonoBehaviour, IAbility
     {
         _entityEvents.OnCallBackCastAbility -= Cast;
         _entityEvents.OnCanNotAffordAbility -= CannotAffordCast;
+        _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
     }
 }

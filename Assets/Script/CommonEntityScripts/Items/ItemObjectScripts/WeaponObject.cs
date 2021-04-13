@@ -14,4 +14,10 @@ public class WeaponObject : EquipmentObject
     }
 
     public WeaponType weaponType;
+
+    public float maxCooldownAbility1;
+    public float currentCooldownAbility1;
+
+    public float maxCooldownAbility2;
+    public float currentCooldownAbility2;
 }

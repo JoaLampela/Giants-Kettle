@@ -54950,7 +54950,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123743848185849}
   isEquipmentSlot: 0
-  slotNuber: 21
+  slotNuber: 11
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123743993110041
 GameObject:
@@ -54965,7 +54965,7 @@ GameObject:
   - component: {fileID: 8525123743993110036}
   - component: {fileID: 8525123743993110039}
   m_Layer: 5
-  m_Name: InventorySlot 5
+  m_Name: InventorySlot 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54985,7 +54985,7 @@ RectTransform:
   - {fileID: 8525123744996375036}
   - {fileID: 4769371626153878245}
   m_Father: {fileID: 1560493197060203004}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -55046,7 +55046,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744996375037}
   isEquipmentSlot: 0
-  slotNuber: 4
+  slotNuber: 7
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744019060099
 GameObject:
@@ -55142,7 +55142,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745494849055}
   isEquipmentSlot: 0
-  slotNuber: 12
+  slotNuber: 19
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744076257634
 GameObject:
@@ -55238,7 +55238,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745462528663}
   isEquipmentSlot: 0
-  slotNuber: 22
+  slotNuber: 9
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744092118880
 GameObject:
@@ -55334,7 +55334,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745932164590}
   isEquipmentSlot: 0
-  slotNuber: 19
+  slotNuber: 12
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744236143029
 GameObject:
@@ -55505,7 +55505,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123743879988976}
   isEquipmentSlot: 0
-  slotNuber: 10
+  slotNuber: 20
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744282943751
 GameObject:
@@ -55796,7 +55796,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745850747085}
   isEquipmentSlot: 0
-  slotNuber: 8
+  slotNuber: 23
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744566318652
 GameObject:
@@ -55892,7 +55892,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744377754838}
   isEquipmentSlot: 0
-  slotNuber: 20
+  slotNuber: 10
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744660545766
 GameObject:
@@ -55988,7 +55988,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745146974907}
   isEquipmentSlot: 0
-  slotNuber: 18
+  slotNuber: 13
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744674483104
 GameObject:
@@ -56560,7 +56560,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744726042021}
   isEquipmentSlot: 0
-  slotNuber: 3
+  slotNuber: 1
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123744746928074
 GameObject:
@@ -57169,7 +57169,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744236143027}
   isEquipmentSlot: 0
-  slotNuber: 23
+  slotNuber: 8
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745063488096
 GameObject:
@@ -57265,7 +57265,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745894273454}
   isEquipmentSlot: 0
-  slotNuber: 15
+  slotNuber: 18
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745146974909
 GameObject:
@@ -57355,7 +57355,7 @@ GameObject:
   - component: {fileID: 8525123745161658598}
   - component: {fileID: 8525123745161658601}
   m_Layer: 5
-  m_Name: InventorySlot 7
+  m_Name: InventorySlot 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57375,7 +57375,7 @@ RectTransform:
   - {fileID: 8525123744282943748}
   - {fileID: 2131214898772935528}
   m_Father: {fileID: 1560493197060203004}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -57436,7 +57436,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744282943749}
   isEquipmentSlot: 0
-  slotNuber: 6
+  slotNuber: 4
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745190011123
 GameObject:
@@ -57532,7 +57532,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744770771368}
   isEquipmentSlot: 0
-  slotNuber: 17
+  slotNuber: 15
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745204802513
 GameObject:
@@ -57628,7 +57628,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744697885305}
   isEquipmentSlot: 0
-  slotNuber: 14
+  slotNuber: 16
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745213934485
 GameObject:
@@ -57643,7 +57643,7 @@ GameObject:
   - component: {fileID: 8525123745213934480}
   - component: {fileID: 8525123745213934483}
   m_Layer: 5
-  m_Name: InventorySlot 8
+  m_Name: InventorySlot 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57663,7 +57663,7 @@ RectTransform:
   - {fileID: 8525123745494337681}
   - {fileID: 5604062794040986455}
   m_Father: {fileID: 1560493197060203004}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -57724,7 +57724,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745494337678}
   isEquipmentSlot: 0
-  slotNuber: 7
+  slotNuber: 6
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745269353747
 GameObject:
@@ -58044,7 +58044,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744721790373}
   isEquipmentSlot: 0
-  slotNuber: 11
+  slotNuber: 22
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745454795544
 GameObject:
@@ -58533,7 +58533,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745719319983}
   isEquipmentSlot: 0
-  slotNuber: 16
+  slotNuber: 14
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745719319985
 GameObject:
@@ -58704,7 +58704,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745366095786}
   isEquipmentSlot: 0
-  slotNuber: 9
+  slotNuber: 21
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745749164858
 GameObject:
@@ -58800,7 +58800,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123745269353745}
   isEquipmentSlot: 0
-  slotNuber: 13
+  slotNuber: 17
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745750484614
 GameObject:
@@ -59046,7 +59046,7 @@ MonoBehaviour:
   _type: 0
   icon: {fileID: 8525123744936956788}
   isEquipmentSlot: 0
-  slotNuber: 1
+  slotNuber: 3
   runeTooltipController: {fileID: 0}
 --- !u!1 &8525123745894273456
 GameObject:
@@ -59614,10 +59614,10 @@ RectTransform:
   - {fileID: 8525123744732201299}
   - {fileID: 8525123745060681831}
   - {fileID: 8525123745864744218}
-  - {fileID: 8525123743993110038}
-  - {fileID: 8525123744895885364}
   - {fileID: 8525123745161658600}
+  - {fileID: 8525123744895885364}
   - {fileID: 8525123745213934482}
+  - {fileID: 8525123743993110038}
   - {fileID: 8525123745062872957}
   - {fileID: 8525123744076257635}
   - {fileID: 8525123744566318653}

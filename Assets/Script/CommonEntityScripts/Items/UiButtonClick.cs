@@ -240,6 +240,44 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         }
     }
 
+    public void HotbarUseItem()
+    {
+        if (runeTooltipController != null) runeTooltipController.HideToolTip();
+        if ((int)_type != 0 && _item != null && _type != ItemType.Rune)
+        {
+            playerInventory.Unequip(_item, this);
+            if (_item.item.isTwoHander)
+            {
+                if (this == playerInventory.rightHand)
+                {
+                    Item temp = playerInventory.leftHand._item;
+                    playerInventory.leftHand.RemoveItemFromslot();
+                    playerInventory.rightHand.RemoveItemFromslot();
+                    playerInventory.NewItem(temp);
+                }
+                else if (this == playerInventory.leftHand)
+                {
+                    Item temp = playerInventory.rightHand._item;
+                    playerInventory.rightHand.RemoveItemFromslot();
+                    playerInventory.leftHand.RemoveItemFromslot();
+                    playerInventory.NewItem(temp);
+                }
+            }
+            else if (playerInventory.InventoryHasRoom())
+            {
+                Item temp = _item;
+                RemoveItemFromslot();
+                playerInventory.NewItem(temp);
+            }
+        }
+        else if (_item != null && (int)_item.item.type != (int)ItemType.Rune)
+        {
+            Item temp = _item;
+            RemoveItemFromslot();
+            playerInventory.UseItem(temp);
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         playerHoverUi.UpdateHoveredSlot(this);
