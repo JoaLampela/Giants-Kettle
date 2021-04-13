@@ -34,12 +34,13 @@ public class TestDie : MonoBehaviour
 
     private void Die()
     {
-        StartCoroutine(DieLater());
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (squishing)
         {
             counterX += Time.deltaTime * 10;
@@ -47,7 +48,7 @@ public class TestDie : MonoBehaviour
             float scaleX = Mathf.Lerp(1, 2, counterX);
             float scaleY = Mathf.Lerp(1, 0.3f, counterY);
             gameObject.transform.localScale = new Vector3(scaleX, scaleY, 1);
-        }
+        }*/
 
     }
 

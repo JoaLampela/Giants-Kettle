@@ -7,8 +7,11 @@ public class ExitPrefab : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("EXITING GAME");
-        GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<MapGeneration>().ExitLevel();
-        GameObject.Find("Game Manager").GetComponent<GameEventManager>().ExitLevel();
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("EXITING LEVEL");
+            GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<MapGeneration>().ExitLevel();
+            GameObject.Find("Game Manager").GetComponent<GameEventManager>().ExitLevel();
+        }
     }
 }
