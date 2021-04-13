@@ -8,6 +8,8 @@ public class CaveRoom : Room
     private bool useRandomSeed = true;
     private string seed;
     private int randomFillPrecent = 59;
+    private int width = 30;
+    private int height = 30;
 
 
     public CaveRoom(Coord centre, int[,] map)
@@ -19,31 +21,7 @@ public class CaveRoom : Room
         for (int i = 0; i < 4; i++)
             SmoothMap(centre, map);
         ProcessMap(centre, map);
-
-        tiles = new List<Coord>();
-        for (int x = -15 + centre.tileX; x < 15 + centre.tileX; x++)
-        {
-            for (int y = -15 + centre.tileY; y < 15 + centre.tileY; y++)
-            {
-                if (map[x, y] == 0) tiles.Add(new Coord(x, y));
-            }
-        }
-        roomSize = tiles.Count;
-        connectedRooms = new List<Room>();
-        edgeTiles = new List<Coord>();
-        foreach (Coord tile in tiles)
-        {
-            for (int x = tile.tileX - 1; x <= tile.tileX + 1; x++)
-            {
-                for (int y = tile.tileY - 1; y <= tile.tileY + 1; y++)
-                {
-                    if (map[x, y] == 1)
-                    {
-                        edgeTiles.Add(tile);
-                    }
-                }
-            }
-        }
+        SetRoomBorders(centre, map);
     }
 
     private void RandomFillMap(Coord centre, int[,] map)
@@ -52,9 +30,9 @@ public class CaveRoom : Room
 
 
 
-        for (int x = -15 + centre.tileX; x < 15 + centre.tileX; x++)
+        for (int x = -width / 2 + centre.tileX; x < width / 2 + centre.tileX; x++)
         {
-            for (int y = -15 + centre.tileY; y < 15 + centre.tileY; y++)
+            for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)
             {
                 map[x, y] = (Random.Range(0, 100) < randomFillPrecent) ? 0 : 1;
             }
@@ -63,9 +41,9 @@ public class CaveRoom : Room
 
     void SmoothMap(Coord centre, int[,] map)
     {
-        for (int x = -15 + centre.tileX; x < 15 + centre.tileX; x++)
+        for (int x = -width / 2 + centre.tileX; x < width / 2 + centre.tileX; x++)
         {
-            for (int y = -15 + centre.tileY; y < 15 + centre.tileY; y++)
+            for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)
             {
                 int neighbourWallTiles = GetSorroundingWallCount(x, y, map);
                 if (neighbourWallTiles > 4)
@@ -132,18 +110,18 @@ public class CaveRoom : Room
     {
         Debug.Log("fetching regions");
         List<List<Coord>> regions = new List<List<Coord>>();
-        int[,] mapFlags = new int[30, 30];
-        for (int x = 0; x < 30; x++)
+        int[,] mapFlags = new int[width, height];
+        for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < 30; y++)
+            for (int y = 0; y < width; y++)
             {
-                if (mapFlags[x, y] == 0 && map[x + centre.tileX - 15, y + centre.tileY - 15] == tileType)
+                if (mapFlags[x, y] == 0 && map[x + centre.tileX - width / 2, y + centre.tileY - height / 2] == tileType)
                 {
                     List<Coord> newRegion = GetRegionTiles(x, y, centre, map);
                     regions.Add(newRegion);
                     foreach (Coord tile in newRegion)
                     {
-                        mapFlags[tile.tileX - centre.tileX + 15, tile.tileY - centre.tileY + 15] = 1;
+                        mapFlags[tile.tileX - centre.tileX + width / 2, tile.tileY - centre.tileY + height / 2] = 1;
                     }
                 }
             }
@@ -155,11 +133,11 @@ public class CaveRoom : Room
     {
         //Debug.Log("Fetching region tiles");
         List<Coord> tiles = new List<Coord>();
-        int[,] mapFlags = new int[30, 30];
-        int tileType = map[startX + centre.tileX - 15, startY + centre.tileY - 15];
+        int[,] mapFlags = new int[width, height];
+        int tileType = map[startX + centre.tileX - width / 2, startY + centre.tileY - height / 2];
 
         Queue<Coord> queue = new Queue<Coord>();
-        queue.Enqueue(new Coord(startX + centre.tileX - 15, startY + centre.tileY - 15));
+        queue.Enqueue(new Coord(startX + centre.tileX - width / 2, startY + centre.tileY - height / 2));
         mapFlags[startX, startY] = 1;
 
         while (queue.Count > 0)
@@ -169,12 +147,12 @@ public class CaveRoom : Room
             for (int x = tile.tileX - 1; x <= tile.tileX + 1; x++)
                 for (int y = tile.tileY - 1; y <= tile.tileY + 1; y++)
                 {
-                    if (x > centre.tileX - 15 && x < centre.tileX + 15 && y > centre.tileY - 15 && y < centre.tileY + 15)
+                    if (x > centre.tileX - width / 2 && x < centre.tileX + width / 2 && y > centre.tileY - height / 2 && y < centre.tileY + height / 2)
                         if (y == tile.tileY || x == tile.tileX)
                         {
-                            if (mapFlags[x - centre.tileX + 15, y - centre.tileY + 15] == 0 && map[x, y] == tileType)
+                            if (mapFlags[x - centre.tileX + width / 2, y - centre.tileY + height / 2] == 0 && map[x, y] == tileType)
                             {
-                                mapFlags[x - centre.tileX + 15, y - centre.tileY + 15] = 1;
+                                mapFlags[x - centre.tileX + width / 2, y - centre.tileY + height / 2] = 1;
                                 queue.Enqueue(new Coord(x, y));
                                 //Debug.Log("Queueboi");
                             }
@@ -182,6 +160,33 @@ public class CaveRoom : Room
                 }
         }
         return tiles;
+    }
+    void SetRoomBorders(Coord centre, int[,] map)
+    {
+        tiles = new List<Coord>();
+        for (int x = -width / 2 + centre.tileX; x < width / 2 + centre.tileX; x++)
+        {
+            for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)
+            {
+                if (map[x, y] == 0) tiles.Add(new Coord(x, y));
+            }
+        }
+        roomSize = tiles.Count;
+        connectedRooms = new List<Room>();
+        edgeTiles = new List<Coord>();
+        foreach (Coord tile in tiles)
+        {
+            for (int x = tile.tileX - 1; x <= tile.tileX + 1; x++)
+            {
+                for (int y = tile.tileY - 1; y <= tile.tileY + 1; y++)
+                {
+                    if (map[x, y] == 1)
+                    {
+                        edgeTiles.Add(tile);
+                    }
+                }
+            }
+        }
     }
 
 }
