@@ -54,6 +54,7 @@ public class AbilityHoamToClosestEnemy : MonoBehaviour
         else
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = ((Vector2)target.transform.position - (Vector2)transform.position).normalized * projectileSpeed;
+
         }
 
         

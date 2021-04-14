@@ -14,6 +14,8 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     [SerializeField] private int duplicateCountArmor = 0;
     private List<GameObject> projectiles;
 
+    public bool destroyed = false;
+
     //Always needed functions
     public enum WeaponType
     {
@@ -22,6 +24,11 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         Shield,
         Bow,
         Staff
+    }
+
+    private void Update()
+    {
+        Debug.Log("I EXIST");
     }
     public void SetDuplicateCountWeapon(int value)
     {
@@ -66,7 +73,11 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
 
     public void RemoveRune()
     {
-        Destroy(this);
+        Debug.Log("Destroyed");
+        destroyed = true;
+        this.enabled = false;
+        
+        //Destroy(this);
     }
 
     public void SetEntity(GameObject entity)
@@ -127,6 +138,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     //Subs & Unsub -related Unity functions
     private void Start()
     {
+        Debug.Log("Spirit rune script added");
         if(gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();
@@ -206,5 +218,10 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     public void UnsubscribeEntity()
     {
         _entityEvents.OnCastAbility -= Test;
+    }
+
+    public bool GetIsDestroyed()
+    {
+        return destroyed;
     }
 }

@@ -40,7 +40,7 @@ public class TripleShot : MonoBehaviour, IAbility
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
 
-                //Needs to be changed to shield triple shot //animator.SetTrigger("Special");
+                animator.SetTrigger("Special");
 
                 _entityEvents.CastAbility();
             }

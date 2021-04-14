@@ -153,11 +153,12 @@ public class Inventory : MonoBehaviour
                             NewItem(leftHand._item);
                             leftHand.RemoveItemFromslot();
                         }
-                        Equip(usedItem, inventorySlot);
+                        
                         rightHand._item = usedItem;
                         leftHand._item = usedItem;
                         rightHand.icon.sprite = usedItem.item.iconSprite;
                         leftHand.icon.sprite = usedItem.item.iconSprite;
+                        Equip(usedItem, inventorySlot);
                     }
                     else if (inventorySlot._item != null)
                     {
@@ -167,10 +168,12 @@ public class Inventory : MonoBehaviour
                             leftHand.RemoveItemFromslot();
                             Unequip(temp, inventorySlot);
 
-                            Equip(usedItem, inventorySlot);
-                            Debug.Log(usedItem + " to slot " + inventorySlot);
+
                             rightHand._item = usedItem;
                             rightHand.icon.sprite = usedItem.item.iconSprite;
+                            Equip(usedItem, inventorySlot);
+                            Debug.Log(usedItem + " to slot " + inventorySlot);
+                            
 
                             
                             NewItem(temp);
@@ -387,7 +390,6 @@ public class Inventory : MonoBehaviour
 
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
-        Debug.Log("ERROR:" + equippedItem);
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
         Debug.Log("equipping " + equippedItem + " to " + slot + " isTwohander = " +equippedItem.item.isTwoHander);
         if ((int)slot._type == 1)
@@ -927,18 +929,30 @@ public class Inventory : MonoBehaviour
 
     public void NewAffectingRune(Item newItem, ItemObject newRune)
     {
-        Debug.Log("NEW AFFECTING RUNE");
+        Debug.Log("NEW AFFECTING RUNE" + newRune + " " + (leftHand._item == newItem) + " " + (rightHand._item == newItem));
         if(leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
+            Debug.Log("Inside");
             RuneObject rune = (RuneObject)newRune;
-            rune._IruneContainer.Result.SetEntity(gameObject);
+            
+            Debug.Log("Before component check");
             if(!gameObject.GetComponent(rune._IruneContainer.Result.GetType()))
             {
+                Debug.Log("Adding the component");
                 gameObject.AddComponent(rune._IruneContainer.Result.GetType());
+                IRuneScript tempRuneScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+                tempRuneScript.SetEntity(gameObject);
+            }
+            else
+            {
+                IRuneScript runeScript2 = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+                Debug.Log("contains " + runeScript2.GetIsDestroyed());
+                Debug.Log("contains " + gameObject.GetComponent<EntityStats>());
+
             }
 
             IRuneScript runeScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
-            
+
             if (!(newItem == leftHand._item || newItem == rightHand._item))
             {
                 if(rune.runeTier == RuneObject.RuneTier.basic)
@@ -971,6 +985,8 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+        RuneObject rune2 = (RuneObject)newRune;
+        Debug.Log("contains " + gameObject.GetComponent(rune2._IruneContainer.Result.GetType()));
     }
     public void RemoveAffectingRune(Item newItem, ItemObject newRune)
     {
@@ -1012,8 +1028,10 @@ public class Inventory : MonoBehaviour
                 }
             }
 
+            Debug.Log("Removing the component Before");
             if ((runeScript.GetDuplicateCountArmor() == 0 && runeScript.GetDuplicateCountWeapon() == 0))
             {
+                Debug.Log("Removing the component");
                 runeScript.RemoveRune();
             }
         }

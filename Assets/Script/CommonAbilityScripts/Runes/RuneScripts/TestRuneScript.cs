@@ -167,4 +167,9 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     {
         throw new System.NotImplementedException();
     }
+
+    public bool GetIsDestroyed()
+    {
+        throw new System.NotImplementedException();
+    }
 }

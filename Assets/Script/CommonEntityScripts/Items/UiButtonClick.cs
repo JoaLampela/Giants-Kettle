@@ -111,11 +111,12 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                         }
                     }
                 }
-                playerInventory.Equip(newItem, this);
+                
                 playerInventory.rightHand._item = newItem;
                 playerInventory.leftHand._item = newItem;
                 playerInventory.rightHand.icon.sprite = newItem.item.iconSprite;
                 playerInventory.leftHand.icon.sprite = newItem.item.iconSprite;
+                playerInventory.Equip(newItem, this);
             }
             else
             {
