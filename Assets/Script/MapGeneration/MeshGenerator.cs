@@ -185,12 +185,21 @@ public class MeshGenerator : MonoBehaviour
                         break;
                     //diagonal two nodes
                     case 5:
-                        //diagonal left ro right
+                        //diagonal left to right top
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        if (squareGrid.squares[x + 1, y + 1]._configuration == 1)
+                        {
+                            wallVector = caveTilemap.WorldToCell(squareGrid.squares[x + 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
+                            wallTilemap.SetTile(wallVector, tileList[21]);
+                        }
                         break;
                     case 10:
-                        //diagonal right to left
+                        //diagonal right to left top
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        if (squareGrid.squares[x - 1, y + 1]._configuration == 2) {
+                            wallVector = caveTilemap.WorldToCell(squareGrid.squares[x - 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
+                            wallTilemap.SetTile(wallVector, tileList[22]);
+                        }
                         break;
 
                     //three nodes
