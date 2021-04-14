@@ -146,10 +146,13 @@ public class MapGeneration : MonoBehaviour
         }
         ConnectClosestRooms(allRooms);
         InstansiateRooms(allRooms);
+        foreach (Room room in allRooms)
+            room.SetEdgeTilesNewType(map, 2);
         CreateSpawnPoints(mainRoom);
 
         //generate mesh of the map
         meshGenerator.GenerateMesh(map, 1);
+
     }
 
     private void OnDrawGizmos()
@@ -158,7 +161,22 @@ public class MapGeneration : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                //Gizmos.color = map[x, y] == 1 ? Color.black : Color.white;
+                switch (map[x, y])
+                {
+                    case 0:
+                        Gizmos.color = Color.white;
+                        break;
+                    case 1:
+                        Gizmos.color = Color.black;
+                        break;
+                    case 2:
+                        Gizmos.color = Color.red;
+                        break;
+                    default:
+                        Gizmos.color = Color.yellow;
+                        break;
+                }
+
                 Gizmos.DrawCube(new Vector3(x - width / 2 + 0.5f, y - height / 2 + 0.5f, 0), Vector3.one);
             }
         }
