@@ -27,30 +27,30 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     {
         duplicateCountWeapon = value;
     }
-    public void IncrementDuplicateCountWeapon()
+    public void IncrementDuplicateCountWeapon(int amount)
     {
         Debug.Log("Incrementing weapon runes " + duplicateCountWeapon); 
-        duplicateCountWeapon++;
+        duplicateCountWeapon += amount;
         Debug.Log("Incrementing weapon runes " + duplicateCountWeapon);
         if(_entityEvents != null) SetUpPermanentEffects();
 
     }
 
-    public void DecrementDuplicateCountWeapon()
+    public void DecrementDuplicateCountWeapon(int amount)
     {
-        duplicateCountWeapon--;
+        duplicateCountWeapon -= amount;
         SetUpPermanentEffects();
     }
 
-    public void IncrementDuplicateCountArmor()
+    public void IncrementDuplicateCountArmor(int amount)
     {
-        duplicateCountArmor++;
+        duplicateCountArmor += amount;
         SetUpPermanentEffects();
     }
 
-    public void DecrementDuplicateCountArmor()
+    public void DecrementDuplicateCountArmor(int amount)
     {
-        duplicateCountArmor--;
+        duplicateCountArmor -= amount;
         SetUpPermanentEffects();
     }
 
@@ -88,6 +88,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     
     private void SetUpPermanentEffects()
     {
+        Debug.Log("Removing buffs");
         _entityEvents.RemoveBuff("SpiritRuneOfOrbsArmor");
         _entityEvents.RemoveBuff("SpiritRuneOfOrbsWeapon");
 

@@ -147,4 +147,24 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     {
         throw new System.NotImplementedException();
     }
+
+    public void IncrementDuplicateCountWeapon(int amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DecrementDuplicateCountWeapon(int amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void IncrementDuplicateCountArmor(int amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DecrementDuplicateCountArmor(int amount)
+    {
+        throw new System.NotImplementedException();
+    }
 }

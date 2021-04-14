@@ -15,13 +15,13 @@ public interface IRuneScript
     }
 
     public void SetDuplicateCountWeapon(int value);
-    public void IncrementDuplicateCountWeapon();
+    public void IncrementDuplicateCountWeapon(int amount);
 
-    public void DecrementDuplicateCountWeapon();
+    public void DecrementDuplicateCountWeapon(int amount);
 
-    public void IncrementDuplicateCountArmor();
+    public void IncrementDuplicateCountArmor(int amount);
 
-    public void DecrementDuplicateCountArmor();
+    public void DecrementDuplicateCountArmor(int amount);
     public int GetDuplicateCountWeapon();
 
     public void RemoveRune();

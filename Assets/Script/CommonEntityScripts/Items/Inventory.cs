@@ -943,18 +943,15 @@ public class Inventory : MonoBehaviour
             {
                 if(rune.runeTier == RuneObject.RuneTier.basic)
                 {
-                    runeScript.IncrementDuplicateCountArmor();
+                    runeScript.IncrementDuplicateCountArmor(1);
                 }
                 else if (rune.runeTier == RuneObject.RuneTier.refined)
                 {
-                    runeScript.IncrementDuplicateCountArmor();
-                    runeScript.IncrementDuplicateCountArmor();
+                    runeScript.IncrementDuplicateCountArmor(2);
                 }
                 else if (rune.runeTier == RuneObject.RuneTier.perfected)
                 {
-                    runeScript.IncrementDuplicateCountArmor();
-                    runeScript.IncrementDuplicateCountArmor();
-                    runeScript.IncrementDuplicateCountArmor();
+                    runeScript.IncrementDuplicateCountArmor(3);
                 }
             }
             else
@@ -962,18 +959,15 @@ public class Inventory : MonoBehaviour
                 Debug.Log("INCREMENT WEAPON");
                 if (rune.runeTier == RuneObject.RuneTier.basic)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(1);
                 }
                 else if (rune.runeTier == RuneObject.RuneTier.refined)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(2);
                 }
                 else if (rune.runeTier == RuneObject.RuneTier.perfected)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(3);
                 }
             }
         }
@@ -990,38 +984,31 @@ public class Inventory : MonoBehaviour
             {
                 if (rune.runeTier == RuneObject.RuneTier.basic)
                 {
-                    runeScript.DecrementDuplicateCountArmor();
+                    runeScript.DecrementDuplicateCountArmor(1);
                 }
                 else if (rune.runeTier == RuneObject.RuneTier.refined)
                 {
-                    runeScript.DecrementDuplicateCountArmor();
-                    runeScript.DecrementDuplicateCountArmor();
+                    runeScript.DecrementDuplicateCountArmor(2);
                 }
                 else if (rune.runeTier == RuneObject.RuneTier.perfected)
                 {
-                    runeScript.DecrementDuplicateCountArmor();
-                    runeScript.DecrementDuplicateCountArmor();
-                    runeScript.DecrementDuplicateCountArmor();
+                    runeScript.DecrementDuplicateCountArmor(3);
                 }
 
             }
             else
             {
-                Debug.Log("DECREMENT WEAPON");
                 if (rune.runeTier == RuneObject.RuneTier.basic)
                 {
-                    runeScript.DecrementDuplicateCountWeapon();
+                    runeScript.DecrementDuplicateCountWeapon(1);
                 }
                 else if (rune.runeTier == RuneObject.RuneTier.refined)
                 {
-                    runeScript.DecrementDuplicateCountWeapon();
-                    runeScript.DecrementDuplicateCountWeapon();
+                    runeScript.DecrementDuplicateCountWeapon(2);
                 }
-                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                else if (rune.runeTier == RuneObject.RuneTier.perfected)
                 {
-                    runeScript.DecrementDuplicateCountWeapon();
-                    runeScript.DecrementDuplicateCountWeapon();
-                    runeScript.DecrementDuplicateCountWeapon();
+                    runeScript.DecrementDuplicateCountWeapon(3);
                 }
             }
 

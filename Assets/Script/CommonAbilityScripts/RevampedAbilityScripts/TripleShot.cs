@@ -33,15 +33,19 @@ public class TripleShot : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_spellSlot == slot)
+        if (_weapon.currentCooldownAbility2 <= 0)
         {
-            targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
-            _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
+            if (_spellSlot == slot)
+            {
+                targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+                _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
 
-            //Needs to be changed to shield triple shot //animator.SetTrigger("Special");
+                //Needs to be changed to shield triple shot //animator.SetTrigger("Special");
 
-            _entityEvents.CastAbility();
+                _entityEvents.CastAbility();
+            }
         }
+        else CannotAffordCast(slot);
     }
 
     private void InstatiateHitBox()
@@ -59,18 +63,15 @@ public class TripleShot : MonoBehaviour, IAbility
 
                 if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(1);
                 }
                 else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(2);
                 }
                 else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(3);
                 }
             }
         }

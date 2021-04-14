@@ -36,7 +36,6 @@ public class AbilityOrbitAroundSource : MonoBehaviour
     {
         if (_target != null)
         {
-            Debug.Log(_orbitSpeed * Time.deltaTime + " " + _target.transform.position);
             transform.RotateAround(_target.transform.position, Vector3.forward, _orbitSpeed * Time.deltaTime);
         }
         else

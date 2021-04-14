@@ -63,18 +63,15 @@ public class SpinAttack : MonoBehaviour, IAbility
 
                 if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(1);
                 }
                 else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(2);
                 }
                 else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
                 {
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
-                    runeScript.IncrementDuplicateCountWeapon();
+                    runeScript.IncrementDuplicateCountWeapon(3);
                 }
             }
         }

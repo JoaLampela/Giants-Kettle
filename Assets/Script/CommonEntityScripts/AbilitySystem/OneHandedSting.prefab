@@ -82,6 +82,8 @@ MonoBehaviour:
   _targetPositionAtStart: {x: 1.7186337, y: 3.614849}
   _targetPosition: {x: 0, y: 0}
   _targetVector: {x: 0, y: 0}
+  hitBoxScale: 0
+  spriteScale: 0
   damageMultiplier: 100
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
@@ -197,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c4446554604674d84de71dde1edef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLifeTime: 2
+  _maxLifeTime: 5
 --- !u!114 &6048179540206227452
 MonoBehaviour:
   m_ObjectHideFlags: 0
