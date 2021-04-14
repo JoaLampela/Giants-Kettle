@@ -133,10 +133,13 @@ public class MeshGenerator : MonoBehaviour
 
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
                         //if the block to the right is a upside wall
-                        if (squareGrid.squares[x + 1, y]._configuration == 12) {
+                        if (squareGrid.squares[x + 1, y]._configuration == 12)
+                        {
                             //top right wall triangle
                             wallTilemap.SetTile(wallVector, tileList[22]);
-                        } else if (squareGrid.squares[x + 1, y]._configuration == 8) {
+                        }
+                        else if (squareGrid.squares[x + 1, y]._configuration == 8)
+                        {
                             //if the block to the right is top left triangle
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         }
@@ -153,10 +156,13 @@ public class MeshGenerator : MonoBehaviour
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
                         //if the block to the left is a upside wall
-                        if (squareGrid.squares[x - 1, y]._configuration == 12) {
+                        if (squareGrid.squares[x - 1, y]._configuration == 12)
+                        {
                             //top left wall square
                             wallTilemap.SetTile(wallVector, tileList[21]);
-                        } else if (squareGrid.squares[x - 1, y]._configuration == 4) {
+                        }
+                        else if (squareGrid.squares[x - 1, y]._configuration == 4)
+                        {
                             //if the block to the left is a top right triangle
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         }
@@ -217,9 +223,11 @@ public class MeshGenerator : MonoBehaviour
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x + 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
                         //if the block to the right is a upside wall
-                        if (squareGrid.squares[x + 1, y]._configuration == 12) {
+                        if (squareGrid.squares[x + 1, y]._configuration == 12)
+                        {
                             //if this block is in a 90 degree corner, do not add the wall tile square
-                            if (!(squareGrid.squares[x, y - 1]._configuration == 6)) {
+                            if (!(squareGrid.squares[x, y - 1]._configuration == 6))
+                            {
                                 //full wall square
                                 Debug.Log("configuration is 12!!");
                                 wallTilemap.SetTile(wallVector, tileList[20]);
@@ -230,7 +238,9 @@ public class MeshGenerator : MonoBehaviour
                         {
                             //if block to the right is missing a bottom left square do nothing,
                             //because the triangle under this already sets th right wall
-                        } else {
+                        }
+                        else
+                        {
                             //top left wall square
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         }
@@ -238,11 +248,12 @@ public class MeshGenerator : MonoBehaviour
                     case 14:
                         //missing bottom left square
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
-                        
+
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x - 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
                         //if the block to the left is a upside wall
-                        if (squareGrid.squares[x - 1, y]._configuration == 12) {
+                        if (squareGrid.squares[x - 1, y]._configuration == 12)
+                        {
                             //see if the wall below is not right side wall
                             if (!(squareGrid.squares[x, y - 1]._configuration == 6))
                             {
@@ -251,15 +262,19 @@ public class MeshGenerator : MonoBehaviour
                                 wallTilemap.SetTile(wallVector, tileList[20]);
                             }
 
-                        } else if (squareGrid.squares[x - 1, y]._configuration == 13) {
+                        }
+                        else if (squareGrid.squares[x - 1, y]._configuration == 13)
+                        {
                             //if the block to the left is missing bottom right square, do nothing
                             //because the triangle under this already sets the right tile
-                        } else {
+                        }
+                        else
+                        {
                             //top right wall square
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         }
 
-                        
+
                         break;
                     //four nodes
                     case 15:
@@ -639,7 +654,7 @@ public class MeshGenerator : MonoBehaviour
                 {
                     //count the new square position
                     Vector2 position = new Vector2(-mapWidth / 2 + x * squareSize + squareSize / 2, -mapHeight / 2 + y * squareSize + squareSize / 2);
-                    controlNodes[x, y] = new ControlNode(position, map[x, y] != 0, squareSize);
+                    controlNodes[x, y] = new ControlNode(position, map[x, y] == 1, squareSize);
                 }
             }
 

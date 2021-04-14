@@ -8,12 +8,13 @@ public class CaveRoom : Room
     private bool useRandomSeed = true;
     private string seed;
     private int randomFillPrecent = 59;
-    private int width = 30;
-    private int height = 30;
+
 
 
     public CaveRoom(Coord centre, int[,] map)
     {
+        width = 30;
+        height = 30;
         roomType = 4;
         CentreTile = centre;
 
@@ -160,33 +161,6 @@ public class CaveRoom : Room
                 }
         }
         return tiles;
-    }
-    void SetRoomBorders(Coord centre, int[,] map)
-    {
-        tiles = new List<Coord>();
-        for (int x = -width / 2 + centre.tileX; x < width / 2 + centre.tileX; x++)
-        {
-            for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)
-            {
-                if (map[x, y] == 0) tiles.Add(new Coord(x, y));
-            }
-        }
-        roomSize = tiles.Count;
-        connectedRooms = new List<Room>();
-        edgeTiles = new List<Coord>();
-        foreach (Coord tile in tiles)
-        {
-            for (int x = tile.tileX - 1; x <= tile.tileX + 1; x++)
-            {
-                for (int y = tile.tileY - 1; y <= tile.tileY + 1; y++)
-                {
-                    if (map[x, y] == 1)
-                    {
-                        edgeTiles.Add(tile);
-                    }
-                }
-            }
-        }
     }
 
 }
