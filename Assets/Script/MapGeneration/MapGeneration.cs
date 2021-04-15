@@ -154,7 +154,7 @@ public class MapGeneration : MonoBehaviour
         meshGenerator.GenerateMesh(map, 1);
 
     }
-
+    /*
     private void OnDrawGizmos()
     {
         for (int x = 0; x < width; x++)
@@ -180,7 +180,7 @@ public class MapGeneration : MonoBehaviour
                 Gizmos.DrawCube(new Vector3(x - width / 2 + 0.5f, y - height / 2 + 0.5f, 0), Vector3.one);
             }
         }
-    }
+    }*/
     void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
         List<Room> roomListA = new List<Room>();
