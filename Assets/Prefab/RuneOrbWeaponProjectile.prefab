@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  projectileSpeed: 5
-  orbitSpeed: 270
+  projectileSpeed: 10
+  orbitSpeed: 360
   triggerDistance: 6
 --- !u!50 &-5737632313622840735
 Rigidbody2D:
@@ -485,7 +485,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1634,7 +1634,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0, g: 0.4966693, b: 1, a: 1}
+        key1: {r: 0, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5191,11 +5191,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5370980921516771429, guid: d7021c92e85cc7b449d603423b05a611, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5370980921516771429, guid: d7021c92e85cc7b449d603423b05a611, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 1
+      value: 0.09648333
       objectReference: {fileID: 0}
     - target: {fileID: 5370980921516771429, guid: d7021c92e85cc7b449d603423b05a611, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r

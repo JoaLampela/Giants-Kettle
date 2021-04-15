@@ -7,13 +7,13 @@ public class AbilityHoamToClosestEnemy : MonoBehaviour
     GameEventManager gameEventManager;
     AbilityEvents events;
     [SerializeField] private GameObject target;
-    [SerializeField] private float projectileSpeed;
 
     [SerializeField] private float orbitSpeed;
 
 
     [SerializeField] private float triggerDistance;
     private bool targetFound = false;
+    private float speed = 10;
 
     private void Awake()
     {
@@ -53,7 +53,7 @@ public class AbilityHoamToClosestEnemy : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<Rigidbody2D>().velocity = ((Vector2)target.transform.position - (Vector2)transform.position).normalized * projectileSpeed;
+            gameObject.GetComponent<Rigidbody2D>().velocity = ((Vector2)target.transform.position - (Vector2)transform.position).normalized * speed;
 
         }
 

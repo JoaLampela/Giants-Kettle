@@ -41,7 +41,6 @@ public class BuffManager : MonoBehaviour
         //if buff with this sourceId is not present in dictionary, new entry is created with this sourceId
         if(!activeBuffs.ContainsKey(sourceId))
         {
-            Debug.Log("contains key");
             stats.UpdateBuff(buff._id, buff._value);
             activeBuffs.Add(sourceId, buff);
             
@@ -77,8 +76,10 @@ public class BuffManager : MonoBehaviour
     private void NewBuff(string sourceId, EntityStats.BuffType id, int value, float duration)
     {
         Buff buff = gameObject.AddComponent<Buff>();
-        buff._sourceId = sourceId;
+        if (id == EntityStats.BuffType.Burning) buff._sourceId = "Burning";
+        else buff._sourceId = sourceId;
         buff._value = value;
+        
         buff._effectID = id;
         //if buff has duration this starts courutine that destroys 
         //the script component after set amount of time

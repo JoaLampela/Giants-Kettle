@@ -50,6 +50,7 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        GetComponent<EntityEvents>().NewBuff("Sting Right", EntityStats.BuffType.Burning, 1, 3);
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
         Debug.Log(_weapon._runeList.Length);
         GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);

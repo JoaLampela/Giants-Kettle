@@ -118,7 +118,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
 
             for(int i = 0; i < 2 + duplicateCountArmor; i++)
             {
-                projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
+                projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(3, 0, 0), Quaternion.identity, transform);
                 projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * degrees);
                 projectiles.Add(projectile);
             }

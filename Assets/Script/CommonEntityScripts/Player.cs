@@ -39,5 +39,7 @@ public class Player : MonoBehaviour
         groundItem.SetItem(new Item(testItemObject7));
         groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(testItemObject8));
+
+        GetComponent<EntityEvents>().NewBuff("Start", EntityStats.BuffType.Burning, 1, 30);
     }
 }
