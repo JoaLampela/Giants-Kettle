@@ -30,7 +30,6 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     public void IncrementDuplicateCountWeapon(int amount)
     {
         duplicateCountWeapon += amount;
-        if(_entityEvents != null) SetUpPermanentEffects();
     }
 
     public void DecrementDuplicateCountWeapon(int amount)
@@ -41,7 +40,6 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     public void IncrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor += amount;
-        SetUpPermanentEffects();
     }
 
     public void DecrementDuplicateCountArmor(int amount)

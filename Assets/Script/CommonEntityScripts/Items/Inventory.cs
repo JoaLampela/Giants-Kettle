@@ -184,8 +184,9 @@ public class Inventory : MonoBehaviour
                         {
                             Item temp = rightHand._item;
                             Unequip(temp, rightHand);
-                            Equip(usedItem, rightHand);
                             rightHand.SetNewItemToslot(usedItem);
+                            Equip(usedItem, rightHand);
+                            
                             usedItem = temp;
                             if (leftHand._item != null)
                             {
@@ -755,7 +756,7 @@ public class Inventory : MonoBehaviour
                 tempList.Add(equippedItem._runeList[i]);
             }
         }
-        NewAffectingRune(equippedItem, tempList);
+        StartCoroutine(NewAffectingRune(equippedItem, tempList));
     }
 
     public void UseConsumable(Item usedItem)
@@ -786,7 +787,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(rightHand._item, item);
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[0] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -796,7 +797,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(rightHand._item, item);
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[1] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -806,7 +807,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(rightHand._item, item);
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[2] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -816,7 +817,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(rightHand._item, item);
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[3] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -826,7 +827,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(rightHand._item, item);
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[4] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -836,7 +837,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(rightHand._item, item);
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[5] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -847,7 +848,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(leftHand._item, item);
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[0] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -857,7 +858,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(leftHand._item, item);
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[1] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -867,7 +868,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(leftHand._item, item);
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[2] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -877,7 +878,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(leftHand._item, item);
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[3] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -887,7 +888,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(leftHand._item, item);
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[4] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -897,7 +898,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(leftHand._item, item);
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[5] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
@@ -908,7 +909,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorHead._item, item);
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[0] = rune;
         }
         else if (slot == armorHeadR2)
@@ -917,7 +918,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorHead._item, item);
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[1] = rune;
         }
         else if (slot == armorHeadR3)
@@ -926,7 +927,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorHead._item, item);
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[2] = rune;
         }
         else if (slot == armorHeadR4)
@@ -935,7 +936,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorHead._item, item);
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[3] = rune;
         }
         else if (slot == armorHeadR5)
@@ -944,7 +945,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorHead._item, item);
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[4] = rune;
         }
         else if (slot == armorHeadR6)
@@ -953,7 +954,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorHead._item, item);
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[5] = rune;
         }
 
@@ -964,7 +965,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorChest._item, item);
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[0] = rune;
         }
         else if (slot == armorChestR2)
@@ -973,7 +974,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorChest._item, item);
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[1] = rune;
         }
         else if (slot == armorChestR3)
@@ -982,7 +983,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorChest._item, item);
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[2] = rune;
         }
         else if (slot == armorChestR4)
@@ -991,7 +992,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorChest._item, item);
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[3] = rune;
         }
         else if (slot == armorChestR5)
@@ -1000,7 +1001,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorChest._item, item);
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[4] = rune;
         }
         else if (slot == armorChestR6)
@@ -1009,7 +1010,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorChest._item, item);
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[5] = rune;
         }
 
@@ -1019,7 +1020,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorLegs._item, item);
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[0] = rune;
         }
         else if (slot == armorLegsR2)
@@ -1028,7 +1029,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorLegs._item, item);
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[1] = rune;
         }
         else if (slot == armorLegsR3)
@@ -1037,7 +1038,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorLegs._item, item);
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[2] = rune;
         }
         else if (slot == armorLegsR4)
@@ -1046,7 +1047,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorLegs._item, item);
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[3] = rune;
         }
         else if (slot == armorLegsR5)
@@ -1055,7 +1056,7 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorLegs._item, item);
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[4] = rune;
         }
         else if (slot == armorLegsR6)
@@ -1064,13 +1065,14 @@ public class Inventory : MonoBehaviour
             {
                 slot.GetComponent<UiButtonClick>()._item.item
             };
-            NewAffectingRune(armorLegs._item, item);
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[5] = rune;
         }
     }
 
-    public void NewAffectingRune(Item newItem, List<ItemObject> newRunes)
+    public IEnumerator NewAffectingRune(Item newItem, List<ItemObject> newRunes)
     {
+        yield return 0;
         Debug.Log("NEW AFFECTING RUNE" + newRunes + " " + (leftHand._item == newItem) + " " + (rightHand._item == newItem));
         if(leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
@@ -1086,6 +1088,10 @@ public class Inventory : MonoBehaviour
                     gameObject.AddComponent(rune._IruneContainer.Result.GetType());
                     IRuneScript tempRuneScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
                     tempRuneScript.SetEntity(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Already Contains the component");
                 }
 
 
@@ -1131,9 +1137,9 @@ public class Inventory : MonoBehaviour
                 {
                     IRuneScript tempRuneScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
                     bool duplicate = false;
-                    foreach(IRuneScript runeScrip in dublicateComponents)
+                    foreach(IRuneScript runeScript in dublicateComponents)
                     {
-                        if(runeScrip.GetType() == tempRuneScript.GetType())
+                        if(runeScript.GetType() == tempRuneScript.GetType())
                         {
                             duplicate = true;
                         }

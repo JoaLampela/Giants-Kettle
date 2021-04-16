@@ -17,7 +17,8 @@ public class Sting2Handed : MonoBehaviour, IAbility
     private void Start()
     {
         Subscribe();
-        _weapon = GetComponent<Inventory>().rightHand._item;
+        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().rightHand._item;
+        else _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
     }
 
     private void Awake()
