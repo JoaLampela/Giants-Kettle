@@ -79,6 +79,7 @@ public class EntityStats : MonoBehaviour
     [HideInInspector] public bool isTakingDamage = false;
     [HideInInspector] public bool isStunned = false;
     [HideInInspector] public bool onHealthRegen = false;
+    public bool isOnFire = false;
 
     private void Awake()
     {
@@ -171,7 +172,8 @@ public class EntityStats : MonoBehaviour
         SpellHaste,
         Armor,
         AttackSpeed,
-        Invisibility
+        Invisibility,
+        Burning
 
 
     }
@@ -260,7 +262,16 @@ public class EntityStats : MonoBehaviour
                 baseAttackSpeed += value;
                 UpdateAttackSpeed();
                 break;
-
+            case BuffType.Burning:
+                if (value == 1)
+                {
+                    isOnFire = true;
+                }
+                else
+                {
+                    isOnFire = false;
+                }
+                break;
 
             case BuffType.Invisibility:
                 if (value == 1)
@@ -277,6 +288,6 @@ public class EntityStats : MonoBehaviour
         }
     }
 
-
+                                                                                    
 }
 

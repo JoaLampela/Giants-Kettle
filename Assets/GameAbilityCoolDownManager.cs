@@ -29,7 +29,6 @@ public class GameAbilityCoolDownManager : MonoBehaviour
             if (weapon.currentCooldownAbility1 > 0)
             {
                 weapon.currentCooldownAbility1 -= Time.deltaTime;
-                Debug.Log(weapon.currentCooldownAbility1 + " " + weapon);
             }
             else weapon.currentCooldownAbility1 = 0;
 

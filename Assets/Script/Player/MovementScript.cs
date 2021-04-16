@@ -53,16 +53,6 @@ public class MovementScript : MonoBehaviour
 
 
     }
-    public bool Dash()
-    {
-        if (canDash)
-        {
-            canDash = false;
-            StartCoroutine(DashEnumerator(0.10f));
-            return true;
-        }
-        return false;
-    }
     //get input for the player movement
     void GetMovementInput()
     {
@@ -81,27 +71,21 @@ public class MovementScript : MonoBehaviour
         //.normalized caps the vector length to 1, so that diagonal movement works properly
         movement = new Vector2(moveX, moveY).normalized;
     }
-    public IEnumerator DashEnumerator(float DashTime)
+    
+    public void AttackStep(float force)
     {
-        yield return new WaitForSeconds(DashTime);
-        playerRB.AddForce(playerRB.velocity.normalized * 10000f);
-        yield return new WaitForSeconds(dashCoolDown);
-        canDash = true;
-
-    }
-    public IEnumerator AttackStep(float waitTime, float force)
-    {
-        yield return new WaitForSeconds(waitTime);
         playerRB.AddForce(force * lookDirection);
     }
 
-    public IEnumerator AttackSlow(float slowTime)
+    public void StartAttackSlow()
     {
         attacking = true;
         speed = speed * 0.25f;
-        yield return new WaitForSeconds(slowTime);
-        speed = baseMovementSpeed;
+    }
+    public void StopAttackSlow()
+    {
         attacking = false;
+        speed = baseMovementSpeed;
     }
 
 }

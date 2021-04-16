@@ -15,7 +15,8 @@ public class StingLeft : MonoBehaviour, IAbility
     private void Start()
     {
         Subscribe();
-        _weapon = GetComponent<Inventory>().leftHand._item;
+        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().leftHand._item;
+        else _weapon = new Item(GetComponent<AiInventory>().leftHandWeapon);
     }
 
     private void Awake()

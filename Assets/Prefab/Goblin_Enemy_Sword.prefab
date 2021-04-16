@@ -664,6 +664,8 @@ GameObject:
   - component: {fileID: -3938578041699925576}
   - component: {fileID: 3706040177357316448}
   - component: {fileID: 3251229112990383395}
+  - component: {fileID: 3390920854865766816}
+  - component: {fileID: 1364352101872148967}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
   m_TagString: Untagged
@@ -834,7 +836,14 @@ MonoBehaviour:
   rightHandGameObject: {fileID: 0}
   leftHandGameObject: {fileID: 0}
   sting: {fileID: 0}
-  sting2: {fileID: 0}
+  heavySting: {fileID: 0}
+  spinAttack: {fileID: 0}
+  bigProjectile: {fileID: 0}
+  nonProjectile: {fileID: 0}
+  shieldSlam: {fileID: 0}
+  shieldToss: {fileID: 0}
+  tripleShot: {fileID: 0}
+  powerShot: {fileID: 0}
 --- !u!114 &2999592409753981150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,6 +1036,7 @@ MonoBehaviour:
   isTakingDamage: 0
   isStunned: 0
   onHealthRegen: 0
+  isOnFire: 0
 --- !u!114 &3706040177357316448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1063,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashTime: 0.1
   whiteMaterial: {fileID: 2100000, guid: a613d21703d216848bbd0b297fb7c09b, type: 2}
+--- !u!114 &3390920854865766816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11eda1d9a1661414887703c1b97ef8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedArmorRunes: []
+  rightHandWeapon: {fileID: 0}
+  leftHandWeapon: {fileID: 0}
+  possibleWeapons:
+  - {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
+  - {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
+  - {fileID: 11400000, guid: 3e83ca827649391469b277bca436b2b6, type: 2}
+  armorRunes:
+  - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
+  - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
+  - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
+  minRuneCount: 1
+  maxRuneCount: 3
+  canDualWield: 1
+--- !u!114 &1364352101872148967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9264487c11a192439a0d7c98e2ce48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandGameObject: {fileID: 0}
+  leftHandGameObject: {fileID: 0}
+  sting: {fileID: 0}
+  heavySting: {fileID: 0}
+  spinAttack: {fileID: 0}
+  bigProjectile: {fileID: 0}
+  nonProjectile: {fileID: 0}
+  shieldSlam: {fileID: 0}
+  shieldToss: {fileID: 0}
+  tripleShot: {fileID: 0}
+  powerShot: {fileID: 0}
 --- !u!1 &4587282264388292676
 GameObject:
   m_ObjectHideFlags: 0

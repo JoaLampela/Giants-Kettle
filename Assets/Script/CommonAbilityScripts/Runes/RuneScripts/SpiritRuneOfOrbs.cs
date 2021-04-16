@@ -29,29 +29,22 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     }
     public void IncrementDuplicateCountWeapon(int amount)
     {
-        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon); 
         duplicateCountWeapon += amount;
-        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon);
-        if(_entityEvents != null) SetUpPermanentEffects();
-
     }
 
     public void DecrementDuplicateCountWeapon(int amount)
     {
         duplicateCountWeapon -= amount;
-        SetUpPermanentEffects();
     }
 
     public void IncrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor += amount;
-        SetUpPermanentEffects();
     }
 
     public void DecrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor -= amount;
-        SetUpPermanentEffects();
     }
 
     public int GetDuplicateCountWeapon()
@@ -86,9 +79,8 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     }
 
     
-    private void SetUpPermanentEffects()
+    public void SetUpPermanentEffects()
     {
-        Debug.Log("Removing buffs");
         _entityEvents.RemoveBuff("SpiritRuneOfOrbsArmor");
         _entityEvents.RemoveBuff("SpiritRuneOfOrbsWeapon");
 
@@ -103,12 +95,11 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
             GameObject projectile = RuneAssets.i.RuneOrbArmorProjectile;
             _entityEvents.NewBuff("SpiritRuneOfOrbsArmor", EntityStats.BuffType.Health, duplicateCountArmor * 100);
             projectile.GetComponent<AbilityEvents>().SetSource(gameObject);
-            float degrees = 360f / (2f + (float)duplicateCountArmor);
 
             for(int i = 0; i < 2 + duplicateCountArmor; i++)
             {
                 projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
-                projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * degrees);
+                projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (2f + (float)duplicateCountArmor)));
                 projectiles.Add(projectile);
             }
         }
@@ -119,14 +110,10 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         }
     }
 
-    private void Test()
-    {
-        Debug.Log("IT WORKS!");
-    }
-
     //Subs & Unsub -related Unity functions
     private void Start()
     {
+        Debug.Log("Spirit rune script added");
         if(gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();
@@ -136,7 +123,6 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         {
             SubscribeAbility();
             Activate();
-            Debug.Log("Subscribe ability");
         }
     }
 
@@ -171,40 +157,33 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
 
     public void Activate()
     {
-        Debug.Log("weapon cound " + duplicateCountWeapon);  
-        Debug.Log("AbilityActivated");
         GameObject projectile = RuneAssets.i.RuneOrbWeaponProjectile;
         projectile.GetComponent<AbilityEvents>().SetSource(gameObject.GetComponent<AbilityEvents>()._abilityCastSource);
-        float degrees = 360f / (float)duplicateCountWeapon;
-        Debug.Log("weapon cound " + duplicateCountWeapon);
         for (int i = 0; i < duplicateCountWeapon; i++)
         {
-            Debug.Log("Summoning orb");
             projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
-            projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * degrees);
+            projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (float)duplicateCountWeapon));
         }
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
-        _abilityEvents._onActivate += Test;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnCastAbility += Test;
+        //_entityEvents.OnCastAbility += DoStuffOnCastAbility;
     }
 
     public void UnsubscribeAbility()
     {
-        _abilityEvents._onActivate -= Test;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnCastAbility -= Test;
+        //_entityEvents.OnCastAbility -= DoStuffOnCastAbility;
     }
 }

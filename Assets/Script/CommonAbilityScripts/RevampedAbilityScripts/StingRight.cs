@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StingRight : MonoBehaviour, IAbility
 {
+    private Player_Animations playerAnimations;
+    private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
     EntityAbilityManager abilityManager;
@@ -15,11 +17,15 @@ public class StingRight : MonoBehaviour, IAbility
     private void Start()
     {
         Subscribe();
-        _weapon = GetComponent<Inventory>().rightHand._item;
+        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().rightHand._item;
+        else _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
+
     }
 
     private void Awake()
     {
+        playerAnimations = GetComponent<Player_Animations>();
+        movementScript = GetComponent<MovementScript>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -41,6 +47,8 @@ public class StingRight : MonoBehaviour, IAbility
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 Debug.Log("cast right");
+                movementScript.StartAttackSlow();
+                playerAnimations.SetAttacking(true);
                 animator.SetTrigger("Special");
                 _entityEvents.CastAbility();
             }
@@ -50,6 +58,7 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        GetComponent<EntityEvents>().NewBuff("Sting Right", EntityStats.BuffType.Burning, 1, 3);
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
         Debug.Log(_weapon._runeList.Length);
         GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
@@ -59,13 +68,13 @@ public class StingRight : MonoBehaviour, IAbility
             if (_weapon._runeList[i] != null)
             {
 
-                if(!sting.GetComponent( _weapon._runeList[i]._IruneContainer.Result.GetType()))
+                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
                 {
                     sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
                 }
                 IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                
-                if(_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
+
+                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
                 {
                     runeScript.IncrementDuplicateCountWeapon(1);
                 }
@@ -79,8 +88,11 @@ public class StingRight : MonoBehaviour, IAbility
                 }
             }
         }
-        sting.GetComponent<AbilityEvents>().SetSource(gameObject); 
+        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
         sting.GetComponent<AbilityEvents>().UseAbility();
+        movementScript.AttackStep(500);
+        movementScript.StopAttackSlow();
+        playerAnimations.SetAttacking(false);
     }
 
     private void CannotAffordCast(int slot)
@@ -110,7 +122,7 @@ public class StingRight : MonoBehaviour, IAbility
     {
         _entityEvents.OnCallBackCastAbility += Cast;
         _entityEvents.OnCanNotAffordAbility += CannotAffordCast;
-        
+
     }
 
     public void Unsubscribe()

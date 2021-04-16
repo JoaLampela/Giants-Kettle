@@ -13,7 +13,7 @@ public interface IRuneScript
         Bow,
         Staff
     }
-
+    public void SetUpPermanentEffects();
     public void SetDuplicateCountWeapon(int value);
     public void IncrementDuplicateCountWeapon(int amount);
 

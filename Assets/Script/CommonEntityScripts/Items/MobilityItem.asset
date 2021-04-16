@@ -9,14 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
-  m_Name: New TwoHandedSword Object
+  m_Script: {fileID: 11500000, guid: 22727b0861fb16940a1c1fbb83720440, type: 3}
+  m_Name: MobilityItem
   m_EditorClassIdentifier: 
   type: 1
   description: 
   iconSprite: {fileID: 0}
-  inGameSprite: {fileID: 0}
-  isTwoHander: 1
+  inGameObject: {fileID: 0}
+  isTwoHander: 0
   runeSlots: 0
   baseRune: {fileID: 0}
-  weaponType: 1
+  weaponType: 2
+  maxCooldownAbility1: 0
+  currentCooldownAbility1: 0
+  maxCooldownAbility2: 0
+  currentCooldownAbility2: 0

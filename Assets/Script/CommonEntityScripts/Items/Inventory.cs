@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
         Bow,
         Staff
     }
-    private Player_Animations player_Animations; 
+    private Player_Animations player_Animations;
     private EntityEvents events;
 
     public UiButtonClick[] inventorySlots;
@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
     public UiButtonClick armorHead;
     public UiButtonClick armorChest;
     public UiButtonClick armorLegs;
+    public WeaponObject dashItem;
 
     public GameObject armorHeadR1;
     public GameObject armorHeadR2;
@@ -153,11 +154,12 @@ public class Inventory : MonoBehaviour
                             NewItem(leftHand._item);
                             leftHand.RemoveItemFromslot();
                         }
-                        Equip(usedItem, inventorySlot);
+                        
                         rightHand._item = usedItem;
                         leftHand._item = usedItem;
                         rightHand.icon.sprite = usedItem.item.iconSprite;
                         leftHand.icon.sprite = usedItem.item.iconSprite;
+                        Equip(usedItem, inventorySlot);
                     }
                     else if (inventorySlot._item != null)
                     {
@@ -167,10 +169,12 @@ public class Inventory : MonoBehaviour
                             leftHand.RemoveItemFromslot();
                             Unequip(temp, inventorySlot);
 
-                            Equip(usedItem, inventorySlot);
-                            Debug.Log(usedItem + " to slot " + inventorySlot);
+
                             rightHand._item = usedItem;
                             rightHand.icon.sprite = usedItem.item.iconSprite;
+                            Equip(usedItem, inventorySlot);
+                            Debug.Log(usedItem + " to slot " + inventorySlot);
+                            
 
                             
                             NewItem(temp);
@@ -181,8 +185,9 @@ public class Inventory : MonoBehaviour
                         {
                             Item temp = rightHand._item;
                             Unequip(temp, rightHand);
-                            Equip(usedItem, rightHand);
                             rightHand.SetNewItemToslot(usedItem);
+                            Equip(usedItem, rightHand);
+                            
                             usedItem = temp;
                             if (leftHand._item != null)
                             {
@@ -326,20 +331,23 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.OneHandedSword):
                     if (slot == rightHand)
                     {
-                        player_Animations.SwitchToEmptyRightHand();
                         Debug.Log("Unequipped Right");
+                        player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<StingRight>());
                     }
                     if (slot == leftHand)
                     {
                         Debug.Log("Unequipped Left");
+                        player_Animations.SwitchToEmptyLeftHand();
                         abilityManager.RemoveAbility(1);
                         Destroy(GetComponent<StingLeft>());
                     }
                     break;
                 case ((int)WeaponType.TwoHandedSword):
                     Debug.Log("Unequipped 2 hander");
+                    player_Animations.SwitchToEmptyLeftHand();
+                    player_Animations.SwitchToEmptyRightHand();
                     abilityManager.RemoveAbility(2);
                     abilityManager.RemoveAbility(1);
                     Destroy(GetComponent<Sting2Handed>());
@@ -349,24 +357,30 @@ public class Inventory : MonoBehaviour
                     if (slot == rightHand)
                     {
                         Debug.Log("Unequipped Right");
+                        player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<ShieldToss>());
                     }
                     if (slot == leftHand)
                     {
                         Debug.Log("Unequipped Left");
+                        player_Animations.SwitchToEmptyLeftHand();
                         abilityManager.RemoveAbility(1);
                         Destroy(GetComponent<Block>());
                     }
                     break;
                 case ((int)WeaponType.Bow):
                     Debug.Log("Unequipped bow");
+                    player_Animations.SwitchToEmptyLeftHand();
+                    player_Animations.SwitchToEmptyRightHand();
                     abilityManager.RemoveAbility(2);
                     abilityManager.RemoveAbility(1);
                     Destroy(GetComponent<PowerShot>());
                     Destroy(GetComponent<TripleShot>());
                     break;
                 case ((int)WeaponType.Staff):
+                    player_Animations.SwitchToEmptyLeftHand();
+                    player_Animations.SwitchToEmptyRightHand();
                     Debug.Log("Unequipped Staff");
                     abilityManager.RemoveAbility(2);
                     abilityManager.RemoveAbility(1);
@@ -379,25 +393,29 @@ public class Inventory : MonoBehaviour
         Debug.Log("Unequipped " + unequippedItem.item.name);
         testEquipmentCount--;
 
+        List<ItemObject> tempList = new List<ItemObject>();
         for (int i = 0; i < unequippedItem._runeList.Length; i++)
         {
-            if (unequippedItem._runeList[i] != null) RemoveAffectingRune(unequippedItem, unequippedItem._runeList[i]);
+            if (unequippedItem._runeList[i] != null)
+            {
+                tempList.Add(unequippedItem._runeList[i]);
+            }
         }
+        RemoveAffectingRune(unequippedItem, tempList);
     }
 
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
-        Debug.Log("ERROR:" + equippedItem);
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
-        Debug.Log("equipping " + equippedItem + " to " + slot + " isTwohander = " +equippedItem.item.isTwoHander);
+        Debug.Log("equipping " + equippedItem + " to " + slot + " isTwohander = " + equippedItem.item.isTwoHander);
         if ((int)slot._type == 1)
         {
-            if(slot == rightHand || equippedItem.item.isTwoHander)
+            if (slot == rightHand || equippedItem.item.isTwoHander)
             {
                 Debug.Log("In right");
 
                 Debug.Log("rune slots " + equipmentObject.runeSlots);
-                switch(equipmentObject.runeSlots)
+                switch (equipmentObject.runeSlots)
                 {
                     case 0:
                         break;
@@ -449,7 +467,7 @@ public class Inventory : MonoBehaviour
                 if (equippedItem._runeList.Length == 6)
                     if (equippedItem._runeList[5] != null) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
             }
-            if(slot == leftHand || equippedItem.item.isTwoHander)
+            if (slot == leftHand || equippedItem.item.isTwoHander)
             {
                 switch (equipmentObject.runeSlots)
                 {
@@ -489,8 +507,8 @@ public class Inventory : MonoBehaviour
                         weaponLeftHandR6.SetActive(true);
                         break;
                 }
-                if(equippedItem._runeList.Length >= 1)
-                    if(equippedItem._runeList[0] != null) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                if (equippedItem._runeList.Length >= 1)
+                    if (equippedItem._runeList[0] != null) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
                 if (equippedItem._runeList.Length >= 2)
                     if (equippedItem._runeList[1] != null) weaponLeftHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
                 if (equippedItem._runeList.Length >= 3)
@@ -503,7 +521,7 @@ public class Inventory : MonoBehaviour
                     if (equippedItem._runeList[5] != null) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
             }
         }
-        else if((int)slot._type == 2)
+        else if ((int)slot._type == 2)
         {
             switch (equipmentObject.runeSlots)
             {
@@ -680,13 +698,14 @@ public class Inventory : MonoBehaviour
                     if (slot == leftHand)
                     {
                         Debug.Log("Equipped Left");
-                        player_Animations.SwitchToSingleHandedSword(weapon.inGameObject);
+                        player_Animations.SwitchToOffHandSingleHandedSword(weapon.inGameObject);
                         StingLeft stingLeft = gameObject.AddComponent<StingLeft>();
                         abilityManager.SetAbility(1, stingLeft);
                     }
                     break;
                 case ((int)WeaponType.TwoHandedSword):
                     Debug.Log("Equip 2 hander");
+                    player_Animations.SwitchToTwoHandedSword(weapon.inGameObject);
                     Sting2Handed sting2Handed = gameObject.AddComponent<Sting2Handed>();
                     abilityManager.SetAbility(2, sting2Handed);
                     SpinAttack spinAttack = gameObject.AddComponent<SpinAttack>();
@@ -695,12 +714,14 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.Shield):
                     if (slot == rightHand)
                     {
+                        player_Animations.SwitchToShield(weapon.inGameObject);
                         Debug.Log("Equipped Right");
                         ShieldToss shieldToss = gameObject.AddComponent<ShieldToss>();
                         abilityManager.SetAbility(2, shieldToss);
                     }
                     if (slot == leftHand)
                     {
+                        player_Animations.SwitchToOffHandShield(weapon.inGameObject);
                         Debug.Log("Equipped Left");
                         Block block = gameObject.AddComponent<Block>();
                         abilityManager.SetAbility(1, block);
@@ -708,6 +729,7 @@ public class Inventory : MonoBehaviour
                     break;
                 case ((int)WeaponType.Bow):
                     Debug.Log("Equip bow");
+                    player_Animations.SwitchToBow(weapon.inGameObject);
                     PowerShot powerShot = gameObject.AddComponent<PowerShot>();
                     abilityManager.SetAbility(2, powerShot);
                     TripleShot tripleShot = gameObject.AddComponent<TripleShot>();
@@ -715,6 +737,7 @@ public class Inventory : MonoBehaviour
                     break;
                 case ((int)WeaponType.Staff):
                     Debug.Log("Equip staff");
+                    player_Animations.SwitchToStaff(weapon.inGameObject);
                     BigProjectile bigProjectile = gameObject.AddComponent<BigProjectile>();
                     abilityManager.SetAbility(2, bigProjectile);
                     NonProjectile nonProjectile = gameObject.AddComponent<NonProjectile>();
@@ -725,14 +748,16 @@ public class Inventory : MonoBehaviour
 
         Debug.Log("Equipped " + equippedItem.item.name);
         testEquipmentCount++;
-        for(int i = 0; i < equippedItem._runeList.Length; i++)
+
+        List<ItemObject> tempList = new List<ItemObject>();
+        for (int i = 0; i < equippedItem._runeList.Length; i++)
         {
             if (equippedItem._runeList[i] != null)
             {
-                Debug.Log("New item contained new rune");
-                NewAffectingRune(equippedItem, equippedItem._runeList[i]);
+                tempList.Add(equippedItem._runeList[i]);
             }
         }
+        StartCoroutine(NewAffectingRune(equippedItem, tempList));
     }
 
     public void UseConsumable(Item usedItem)
@@ -754,267 +779,440 @@ public class Inventory : MonoBehaviour
     public void AddNewRuneToItem(Item newItem, GameObject slot)
     {
 
-        
+
         Debug.Log("Addidng new rune to " + slot);
         RuneObject rune = (RuneObject)newItem.item;
         if (slot == weaponRightHandR1)
         {
-            NewAffectingRune(rightHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[0] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponRightHandR2)
         {
-            NewAffectingRune(rightHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[1] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponRightHandR3)
         {
-            NewAffectingRune(rightHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[2] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponRightHandR4)
         {
-            NewAffectingRune(rightHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[3] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponRightHandR5)
         {
-            NewAffectingRune(rightHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[4] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponRightHandR6)
         {
-            NewAffectingRune(rightHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(rightHand._item, item));
             rightHand._item._runeList[5] = rune;
             if (rightHand._item.item.isTwoHander) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
 
         else if (slot == weaponLeftHandR1)
         {
-            NewAffectingRune(leftHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[0] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponLeftHandR2)
         {
-            NewAffectingRune(leftHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[1] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponLeftHandR3)
         {
-            NewAffectingRune(leftHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[2] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponLeftHandR4)
         {
-            NewAffectingRune(leftHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[3] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponLeftHandR5)
         {
-            NewAffectingRune(leftHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[4] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
         else if (slot == weaponLeftHandR6)
         {
-            NewAffectingRune(leftHand._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(leftHand._item, item));
             leftHand._item._runeList[5] = rune;
             if (leftHand._item.item.isTwoHander) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(newItem);
         }
 
         else if (slot == armorHeadR1)
         {
-            NewAffectingRune(armorHead._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[0] = rune;
         }
         else if (slot == armorHeadR2)
         {
-            NewAffectingRune(armorHead._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[1] = rune;
         }
         else if (slot == armorHeadR3)
         {
-            NewAffectingRune(armorHead._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[2] = rune;
         }
         else if (slot == armorHeadR4)
         {
-            NewAffectingRune(armorHead._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[3] = rune;
         }
         else if (slot == armorHeadR5)
         {
-            NewAffectingRune(armorHead._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[4] = rune;
         }
         else if (slot == armorHeadR6)
         {
-            NewAffectingRune(armorHead._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorHead._item, item));
             armorHead._item._runeList[5] = rune;
         }
 
         else if (slot == armorChestR1)
         {
-            NewAffectingRune(armorChest._item, newItem.item);
+            Debug.Log(slot);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[0] = rune;
         }
         else if (slot == armorChestR2)
         {
-            NewAffectingRune(armorChest._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[1] = rune;
         }
         else if (slot == armorChestR3)
         {
-            NewAffectingRune(armorChest._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[2] = rune;
         }
         else if (slot == armorChestR4)
         {
-            NewAffectingRune(armorChest._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[3] = rune;
         }
         else if (slot == armorChestR5)
         {
-            NewAffectingRune(armorChest._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[4] = rune;
         }
         else if (slot == armorChestR6)
         {
-            NewAffectingRune(armorChest._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorChest._item, item));
             armorChest._item._runeList[5] = rune;
         }
 
         else if (slot == armorLegsR1)
         {
-            NewAffectingRune(armorLegs._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[0] = rune;
         }
         else if (slot == armorLegsR2)
         {
-            NewAffectingRune(armorLegs._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[1] = rune;
         }
         else if (slot == armorLegsR3)
         {
-            NewAffectingRune(armorLegs._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[2] = rune;
         }
         else if (slot == armorLegsR4)
         {
-            NewAffectingRune(armorLegs._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[3] = rune;
         }
         else if (slot == armorLegsR5)
         {
-            NewAffectingRune(armorLegs._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[4] = rune;
         }
         else if (slot == armorLegsR6)
         {
-            NewAffectingRune(armorLegs._item, newItem.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            StartCoroutine(NewAffectingRune(armorLegs._item, item));
             armorLegs._item._runeList[5] = rune;
         }
     }
 
-    public void NewAffectingRune(Item newItem, ItemObject newRune)
+    public IEnumerator NewAffectingRune(Item newItem, List<ItemObject> newRunes)
     {
-        Debug.Log("NEW AFFECTING RUNE");
+        yield return 0;
+        Debug.Log("NEW AFFECTING RUNE" + newRunes + " " + (leftHand._item == newItem) + " " + (rightHand._item == newItem));
         if(leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
-            RuneObject rune = (RuneObject)newRune;
-            rune._IruneContainer.Result.SetEntity(gameObject);
-            if(!gameObject.GetComponent(rune._IruneContainer.Result.GetType()))
+            Debug.Log("Inside");
+            foreach (ItemObject item in newRunes)
             {
-                gameObject.AddComponent(rune._IruneContainer.Result.GetType());
-            }
+                RuneObject rune = (RuneObject)item;
 
-            IRuneScript runeScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
-            
-            if (!(newItem == leftHand._item || newItem == rightHand._item))
-            {
-                if(rune.runeTier == RuneObject.RuneTier.basic)
+                Debug.Log("Before component check");
+                if (!gameObject.GetComponent(rune._IruneContainer.Result.GetType()))
                 {
-                    runeScript.IncrementDuplicateCountArmor(1);
+                    Debug.Log("Adding the component");
+                    gameObject.AddComponent(rune._IruneContainer.Result.GetType());
+                    IRuneScript tempRuneScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+                    tempRuneScript.SetEntity(gameObject);
                 }
-                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                else
                 {
-                    runeScript.IncrementDuplicateCountArmor(2);
+                    Debug.Log("Already Contains the component");
                 }
-                else if (rune.runeTier == RuneObject.RuneTier.perfected)
+
+
+                IRuneScript runeScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+
+                if (!(newItem == leftHand._item || newItem == rightHand._item))
                 {
-                    runeScript.IncrementDuplicateCountArmor(3);
+                    if (rune.runeTier == RuneObject.RuneTier.basic)
+                    {
+                        runeScript.IncrementDuplicateCountArmor(1);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.refined)
+                    {
+                        runeScript.IncrementDuplicateCountArmor(2);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.perfected)
+                    {
+                        runeScript.IncrementDuplicateCountArmor(3);
+                    }
+                }
+                else
+                {
+                    Debug.Log("INCREMENT WEAPON");
+                    if (rune.runeTier == RuneObject.RuneTier.basic)
+                    {
+                        runeScript.IncrementDuplicateCountWeapon(1);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.refined)
+                    {
+                        runeScript.IncrementDuplicateCountWeapon(2);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.perfected)
+                    {
+                        runeScript.IncrementDuplicateCountWeapon(3);
+                    }
                 }
             }
-            else
+            List<IRuneScript> dublicateComponents = new List<IRuneScript>();
+            foreach (ItemObject item in newRunes)
             {
-                Debug.Log("INCREMENT WEAPON");
-                if (rune.runeTier == RuneObject.RuneTier.basic)
+                RuneObject rune = (RuneObject)item;
+                if (gameObject.GetComponent(rune._IruneContainer.Result.GetType()) && !dublicateComponents.Contains(rune._IruneContainer.Result))
                 {
-                    runeScript.IncrementDuplicateCountWeapon(1);
-                }
-                else if (rune.runeTier == RuneObject.RuneTier.refined)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(2);
-                }
-                else if (rune.runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(3);
+                    IRuneScript tempRuneScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+                    bool duplicate = false;
+                    foreach(IRuneScript runeScript in dublicateComponents)
+                    {
+                        if(runeScript.GetType() == tempRuneScript.GetType())
+                        {
+                            duplicate = true;
+                        }
+                    }
+                    if(!duplicate)
+                    {
+                        tempRuneScript.SetUpPermanentEffects();
+                        dublicateComponents.Add(tempRuneScript);
+                    }
                 }
             }
         }
     }
-    public void RemoveAffectingRune(Item newItem, ItemObject newRune)
+    public void RemoveAffectingRune(Item newItem, List<ItemObject> removedRunes)
     {
-        Debug.Log("REMOVE AFFECTING RUNE " + newRune);
+        Debug.Log("REMOVE AFFECTING RUNE " + removedRunes + " from " + newItem);
         if (leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
-            RuneObject rune = (RuneObject)newRune;
-            IRuneScript runeScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
-
-            if (!(newItem == leftHand._item || newItem == rightHand._item))
+            foreach(ItemObject item in removedRunes)
             {
-                if (rune.runeTier == RuneObject.RuneTier.basic)
+                RuneObject rune = (RuneObject)item;
+                IRuneScript runeScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+
+                if (!(newItem == leftHand._item || newItem == rightHand._item))
                 {
-                    runeScript.DecrementDuplicateCountArmor(1);
+                    Debug.Log("Degrementting armor");
+                    if (rune.runeTier == RuneObject.RuneTier.basic)
+                    {
+                        runeScript.DecrementDuplicateCountArmor(1);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.refined)
+                    {
+                        runeScript.DecrementDuplicateCountArmor(2);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.perfected)
+                    {
+                        runeScript.DecrementDuplicateCountArmor(3);
+                    }
+
                 }
-                else if (rune.runeTier == RuneObject.RuneTier.refined)
+                else
                 {
-                    runeScript.DecrementDuplicateCountArmor(2);
-                }
-                else if (rune.runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.DecrementDuplicateCountArmor(3);
+                    Debug.Log("Degrementting weapon");
+                    if (rune.runeTier == RuneObject.RuneTier.basic)
+                    {
+                        runeScript.DecrementDuplicateCountWeapon(1);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.refined)
+                    {
+                        runeScript.DecrementDuplicateCountWeapon(2);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.perfected)
+                    {
+                        runeScript.DecrementDuplicateCountWeapon(3);
+                    }
                 }
 
+                Debug.Log("Removing the component Before");
+                if ((runeScript.GetDuplicateCountArmor() == 0 && runeScript.GetDuplicateCountWeapon() == 0))
+                {
+                    Debug.Log("Removing the component");
+                    runeScript.RemoveRune();
+                }
             }
-            else
+            foreach (ItemObject item in removedRunes)
             {
-                if (rune.runeTier == RuneObject.RuneTier.basic)
+                RuneObject rune = (RuneObject)item;
+                if (gameObject.GetComponent(rune._IruneContainer.Result.GetType()))
                 {
-                    runeScript.DecrementDuplicateCountWeapon(1);
+                    IRuneScript tempRuneScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+                    tempRuneScript.SetUpPermanentEffects();
                 }
-                else if (rune.runeTier == RuneObject.RuneTier.refined)
-                {
-                    runeScript.DecrementDuplicateCountWeapon(2);
-                }
-                else if (rune.runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.DecrementDuplicateCountWeapon(3);
-                }
-            }
-
-            if ((runeScript.GetDuplicateCountArmor() == 0 && runeScript.GetDuplicateCountWeapon() == 0))
-            {
-                runeScript.RemoveRune();
             }
         }
     }
@@ -1025,168 +1223,288 @@ public class Inventory : MonoBehaviour
         if (slot == weaponRightHandR1)
         {
             rightHand._item._runeList[0] = null;
-            RemoveAffectingRune(rightHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(rightHand._item, item);
             if (rightHand._item.item.isTwoHander) weaponLeftHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponRightHandR2)
         {
             rightHand._item._runeList[1] = null;
-            RemoveAffectingRune(rightHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(rightHand._item, item);
             if (rightHand._item.item.isTwoHander) weaponLeftHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponRightHandR3)
         {
             rightHand._item._runeList[2] = null;
-            RemoveAffectingRune(rightHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(rightHand._item, item);
             if (rightHand._item.item.isTwoHander) weaponLeftHandR3.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponRightHandR4)
         {
             rightHand._item._runeList[3] = null;
-            RemoveAffectingRune(rightHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(rightHand._item, item);
             if (rightHand._item.item.isTwoHander) weaponLeftHandR4.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponRightHandR5)
         {
             rightHand._item._runeList[4] = null;
-            RemoveAffectingRune(rightHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(rightHand._item, item);
             if (rightHand._item.item.isTwoHander) weaponLeftHandR5.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponRightHandR6)
         {
             rightHand._item._runeList[5] = null;
-            RemoveAffectingRune(rightHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(rightHand._item, item);
             if (rightHand._item.item.isTwoHander) weaponLeftHandR6.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
 
         else if (slot == weaponLeftHandR1)
         {
             leftHand._item._runeList[0] = null;
-            RemoveAffectingRune(leftHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(leftHand._item, item);
             if (leftHand._item.item.isTwoHander) weaponRightHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponLeftHandR2)
         {
             leftHand._item._runeList[1] = null;
-            RemoveAffectingRune(leftHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(leftHand._item, item);
             if (leftHand._item.item.isTwoHander) weaponRightHandR2.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponLeftHandR3)
         {
             leftHand._item._runeList[2] = null;
-            RemoveAffectingRune(leftHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(leftHand._item, item);
             if (leftHand._item.item.isTwoHander) weaponRightHandR3.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponLeftHandR4)
         {
             leftHand._item._runeList[3] = null;
-            RemoveAffectingRune(leftHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(leftHand._item, item);
             if (leftHand._item.item.isTwoHander) weaponRightHandR4.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponLeftHandR5)
         {
             leftHand._item._runeList[4] = null;
-            RemoveAffectingRune(leftHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(leftHand._item, item);
             if (leftHand._item.item.isTwoHander) weaponRightHandR5.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
         else if (slot == weaponLeftHandR6)
         {
             leftHand._item._runeList[5] = null;
-            RemoveAffectingRune(leftHand._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(leftHand._item, item);
             if (leftHand._item.item.isTwoHander) weaponRightHandR6.GetComponent<UiButtonClick>().RemoveItemFromslot();
         }
 
         else if (slot == armorHeadR1)
         {
             armorHead._item._runeList[0] = null;
-            RemoveAffectingRune(armorHead._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorHead._item, item);
         }
         else if (slot == armorHeadR2)
         {
             armorHead._item._runeList[1] = null;
-            RemoveAffectingRune(armorHead._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorHead._item, item);
         }
         else if (slot == armorHeadR3)
         {
             armorHead._item._runeList[2] = null;
-            RemoveAffectingRune(armorHead._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorHead._item, item);
         }
         else if (slot == armorHeadR4)
         {
             armorHead._item._runeList[3] = null;
-            RemoveAffectingRune(armorHead._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorHead._item, item);
         }
         else if (slot == armorHeadR5)
         {
             armorHead._item._runeList[4] = null;
-            RemoveAffectingRune(armorHead._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorHead._item, item);
         }
         else if (slot == armorHeadR6)
         {
             armorHead._item._runeList[5] = null;
-            RemoveAffectingRune(armorHead._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorHead._item, item);
         }
 
         else if (slot == armorChestR1)
         {
             armorChest._item._runeList[0] = null;
-            RemoveAffectingRune(armorChest._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorChest._item, item);
         }
         else if (slot == armorChestR2)
         {
             armorChest._item._runeList[1] = null;
-            RemoveAffectingRune(armorChest._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorChest._item, item);
         }
         else if (slot == armorChestR3)
         {
             armorChest._item._runeList[2] = null;
-            RemoveAffectingRune(armorChest._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorChest._item, item);
         }
         else if (slot == armorChestR4)
         {
             armorChest._item._runeList[3] = null;
-            RemoveAffectingRune(armorChest._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorChest._item, item);
         }
         else if (slot == armorChestR5)
         {
             armorChest._item._runeList[4] = null;
-            RemoveAffectingRune(armorChest._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorChest._item, item);
         }
         else if (slot == armorChestR6)
         {
             armorChest._item._runeList[5] = null;
-            RemoveAffectingRune(armorChest._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorChest._item, item);
         }
 
         else if (slot == armorLegsR1)
         {
             armorLegs._item._runeList[0] = null;
-            RemoveAffectingRune(armorLegs._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorLegs._item, item);
         }
         else if (slot == armorLegsR2)
         {
             armorLegs._item._runeList[1] = null;
-            RemoveAffectingRune(armorLegs._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorLegs._item, item);
         }
         else if (slot == armorLegsR3)
         {
             armorLegs._item._runeList[2] = null;
-            RemoveAffectingRune(armorLegs._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorLegs._item, item);
         }
         else if (slot == armorLegsR4)
         {
             armorLegs._item._runeList[3] = null;
-            RemoveAffectingRune(armorLegs._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorLegs._item, item);
         }
         else if (slot == armorLegsR5)
         {
             armorLegs._item._runeList[4] = null;
-            RemoveAffectingRune(armorLegs._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorLegs._item, item);
         }
         else if (slot == armorLegsR6)
         {
             armorLegs._item._runeList[5] = null;
-            RemoveAffectingRune(armorLegs._item, slot.GetComponent<UiButtonClick>()._item.item);
+            List<ItemObject> item = new List<ItemObject>
+            {
+                slot.GetComponent<UiButtonClick>()._item.item
+            };
+            RemoveAffectingRune(armorLegs._item, item);
         }
     }
     public void DropItem(Item droppedItem)

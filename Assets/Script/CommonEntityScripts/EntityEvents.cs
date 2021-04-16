@@ -41,7 +41,7 @@ public class EntityEvents : MonoBehaviour
 
 
     //OnHitEnemyGameObject
-    public event Action<Damage> OnHitEnemy;
+    public event Action<Damage, GameObject> OnHitEnemy;
 
     //OnKillEnemy
     public event Action OnKillEnemy;
@@ -204,9 +204,9 @@ public class EntityEvents : MonoBehaviour
     {
         OnDeteriorateSpirit?.Invoke(amount);
     }
-    public void HitEnemy(Damage damage)
+    public void HitEnemy(Damage damage, GameObject target)
     {
-        OnHitEnemy?.Invoke(damage);
+        OnHitEnemy?.Invoke(damage, target);
     }
     public void KillEnemy()
     {

@@ -41,7 +41,6 @@ public class BuffManager : MonoBehaviour
         //if buff with this sourceId is not present in dictionary, new entry is created with this sourceId
         if(!activeBuffs.ContainsKey(sourceId))
         {
-            Debug.Log("contains key");
             stats.UpdateBuff(buff._id, buff._value);
             activeBuffs.Add(sourceId, buff);
             
@@ -67,8 +66,16 @@ public class BuffManager : MonoBehaviour
     {
         if(activeBuffs.ContainsKey(sourceId))
         {
-            if (activeBuffs[sourceId]._value == buff._value) stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
+            if (activeBuffs[sourceId]._value == buff._value)
+            {
+                stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
+                Debug.Log("Buff removed");
+            }
             activeBuffs.Remove(sourceId);
+        }
+        else
+        {
+            Debug.Log("NO BUFF TO REMOVE");
         }
     }
 
@@ -76,9 +83,12 @@ public class BuffManager : MonoBehaviour
     //Creates and adds new Buff-script to this entity.
     private void NewBuff(string sourceId, EntityStats.BuffType id, int value, float duration)
     {
+        Debug.Log("New buff added");
         Buff buff = gameObject.AddComponent<Buff>();
-        buff._sourceId = sourceId;
+        if (id == EntityStats.BuffType.Burning) buff._sourceId = "Burning";
+        else buff._sourceId = sourceId;
         buff._value = value;
+        
         buff._effectID = id;
         //if buff has duration this starts courutine that destroys 
         //the script component after set amount of time
