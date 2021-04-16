@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
     public UiButtonClick armorHead;
     public UiButtonClick armorChest;
     public UiButtonClick armorLegs;
+    public WeaponObject dashItem;
 
     public GameObject armorHeadR1;
     public GameObject armorHeadR2;

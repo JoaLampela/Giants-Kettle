@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 8698435716602996018}
   - component: {fileID: 5223802194290256615}
   - component: {fileID: 6547226303119389737}
+  - component: {fileID: 3861479087382183506}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -565,6 +566,7 @@ MonoBehaviour:
   armorHead: {fileID: 0}
   armorChest: {fileID: 0}
   armorLegs: {fileID: 0}
+  dashItem: {fileID: 0}
   armorHeadR1: {fileID: 0}
   armorHeadR2: {fileID: 0}
   armorHeadR3: {fileID: 0}
@@ -779,6 +781,7 @@ MonoBehaviour:
   shieldToss: {fileID: 0}
   tripleShot: {fileID: 0}
   powerShot: {fileID: 0}
+  dash: {fileID: 0}
 --- !u!114 &8698435716602996018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +827,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f94d7e706c579c479acfcdc304e460b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3861479087382183506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051720969466832969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ca6e6bfc2bcc44f995e289f7d3cc9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spellSlot: 0
 --- !u!1 &7051720969780881987
 GameObject:
   m_ObjectHideFlags: 0

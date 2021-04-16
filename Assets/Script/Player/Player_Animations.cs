@@ -56,11 +56,6 @@ public class Player_Animations : MonoBehaviour
                 animator.SetTrigger("Attack");
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !attacking)
-        {
-            if (GetComponent<MovementScript>().Dash())
-                animator.SetTrigger("Dash");
-        }
         if (usingStaff)
         {
             if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)

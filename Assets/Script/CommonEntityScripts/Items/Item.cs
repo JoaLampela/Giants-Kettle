@@ -34,6 +34,7 @@ public class Item
         }
         if (item.type == ItemType.Weapon)
         {
+            Debug.Log("ADDED " + item);
             WeaponObject weapon = (WeaponObject)item;
             maxCooldownAbility1 = weapon.maxCooldownAbility1;
             currentCooldownAbility1 = weapon.currentCooldownAbility1;
