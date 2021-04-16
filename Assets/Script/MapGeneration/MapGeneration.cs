@@ -22,6 +22,7 @@ public class MapGeneration : MonoBehaviour
     public GameObject enemyRoom1;
     public GameObject enemyRoom2;
     public GameObject caveRoom;
+    public GameObject testRoom;
     [Header("Object prefabs")]
     public GameObject spawnPoint;
     public GameObject item;
@@ -37,6 +38,8 @@ public class MapGeneration : MonoBehaviour
     public int enemyRoom2SpaceRequired = 16;
     [Range(15, 30)]
     public int caveRoomSpaceRequired = 16;
+    [Range(15, 30)]
+    public int testRoomSpaceRequired = 16;
 
 
     private Room mainRoom;
@@ -119,6 +122,15 @@ public class MapGeneration : MonoBehaviour
                         if (isCircleEmptyWalls(new Coord(x, y), caveRoomSpaceRequired))
                         {
                             Room room = new CaveRoom(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
+                    }
+                    else if (levels[0].roomList[i] == 5)
+                    {
+                        if (isCircleEmptyWalls(new Coord(x, y), testRoomSpaceRequired))
+                        {
+                            Room room = new TestRoom(new Coord(x, y), map);
                             allRooms.Add(room);
                             roomSpawned = true;
                         }
@@ -399,6 +411,12 @@ public class MapGeneration : MonoBehaviour
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
+                case 5:
+                    {
+                        GameObject currentRoom = Instantiate(testRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
+                    }
+                    break;
             }
         }
     }
@@ -413,7 +431,6 @@ public class MapGeneration : MonoBehaviour
                 {
                     if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
                     {
-
                         GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
                         spawn.transform.parent = gameObject.transform;
                     }
