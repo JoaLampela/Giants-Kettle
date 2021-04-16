@@ -1894,5 +1894,9 @@ PrefabInstance:
       propertyPath: team
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8022222436220051869, guid: 29fa06935c8aeea45ad04b7a97b483f0, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29fa06935c8aeea45ad04b7a97b483f0, type: 3}

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sting2Handed : MonoBehaviour, IAbility
 {
+    private Player_Animations playerAnimations;
+    private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
     EntityAbilityManager abilityManager;
@@ -20,6 +22,8 @@ public class Sting2Handed : MonoBehaviour, IAbility
 
     private void Awake()
     {
+        playerAnimations = GetComponent<Player_Animations>();
+        movementScript = GetComponent<MovementScript>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -39,7 +43,9 @@ public class Sting2Handed : MonoBehaviour, IAbility
             {
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
-                //add animation call for 2 handed sting here animator.SetTrigger("Special");
+                movementScript.StartAttackSlow();
+                playerAnimations.SetAttacking(true);
+                animator.SetTrigger("Special");
                 _entityEvents.CastAbility();
             }
         }
@@ -79,6 +85,10 @@ public class Sting2Handed : MonoBehaviour, IAbility
         }
         sting.GetComponent<AbilityEvents>().SetSource(gameObject);
         sting.GetComponent<AbilityEvents>().UseAbility();
+
+        movementScript.AttackStep(1000);
+        playerAnimations.SetAttacking(false);
+        movementScript.StopAttackSlow();
     }
 
     private void CannotAffordCast(int slot)

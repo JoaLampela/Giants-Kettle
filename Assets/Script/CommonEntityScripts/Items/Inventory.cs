@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
         Bow,
         Staff
     }
-    private Player_Animations player_Animations; 
+    private Player_Animations player_Animations;
     private EntityEvents events;
 
     public UiButtonClick[] inventorySlots;
@@ -329,20 +329,23 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.OneHandedSword):
                     if (slot == rightHand)
                     {
-                        player_Animations.SwitchToEmptyRightHand();
                         Debug.Log("Unequipped Right");
+                        player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<StingRight>());
                     }
                     if (slot == leftHand)
                     {
                         Debug.Log("Unequipped Left");
+                        player_Animations.SwitchToEmptyLeftHand();
                         abilityManager.RemoveAbility(1);
                         Destroy(GetComponent<StingLeft>());
                     }
                     break;
                 case ((int)WeaponType.TwoHandedSword):
                     Debug.Log("Unequipped 2 hander");
+                    player_Animations.SwitchToEmptyLeftHand();
+                    player_Animations.SwitchToEmptyRightHand();
                     abilityManager.RemoveAbility(2);
                     abilityManager.RemoveAbility(1);
                     Destroy(GetComponent<Sting2Handed>());
@@ -352,24 +355,30 @@ public class Inventory : MonoBehaviour
                     if (slot == rightHand)
                     {
                         Debug.Log("Unequipped Right");
+                        player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<ShieldToss>());
                     }
                     if (slot == leftHand)
                     {
                         Debug.Log("Unequipped Left");
+                        player_Animations.SwitchToEmptyLeftHand();
                         abilityManager.RemoveAbility(1);
                         Destroy(GetComponent<Block>());
                     }
                     break;
                 case ((int)WeaponType.Bow):
                     Debug.Log("Unequipped bow");
+                    player_Animations.SwitchToEmptyLeftHand();
+                    player_Animations.SwitchToEmptyRightHand();
                     abilityManager.RemoveAbility(2);
                     abilityManager.RemoveAbility(1);
                     Destroy(GetComponent<PowerShot>());
                     Destroy(GetComponent<TripleShot>());
                     break;
                 case ((int)WeaponType.Staff):
+                    player_Animations.SwitchToEmptyLeftHand();
+                    player_Animations.SwitchToEmptyRightHand();
                     Debug.Log("Unequipped Staff");
                     abilityManager.RemoveAbility(2);
                     abilityManager.RemoveAbility(1);
@@ -396,15 +405,15 @@ public class Inventory : MonoBehaviour
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
-        Debug.Log("equipping " + equippedItem + " to " + slot + " isTwohander = " +equippedItem.item.isTwoHander);
+        Debug.Log("equipping " + equippedItem + " to " + slot + " isTwohander = " + equippedItem.item.isTwoHander);
         if ((int)slot._type == 1)
         {
-            if(slot == rightHand || equippedItem.item.isTwoHander)
+            if (slot == rightHand || equippedItem.item.isTwoHander)
             {
                 Debug.Log("In right");
 
                 Debug.Log("rune slots " + equipmentObject.runeSlots);
-                switch(equipmentObject.runeSlots)
+                switch (equipmentObject.runeSlots)
                 {
                     case 0:
                         break;
@@ -456,7 +465,7 @@ public class Inventory : MonoBehaviour
                 if (equippedItem._runeList.Length == 6)
                     if (equippedItem._runeList[5] != null) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
             }
-            if(slot == leftHand || equippedItem.item.isTwoHander)
+            if (slot == leftHand || equippedItem.item.isTwoHander)
             {
                 switch (equipmentObject.runeSlots)
                 {
@@ -496,8 +505,8 @@ public class Inventory : MonoBehaviour
                         weaponLeftHandR6.SetActive(true);
                         break;
                 }
-                if(equippedItem._runeList.Length >= 1)
-                    if(equippedItem._runeList[0] != null) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                if (equippedItem._runeList.Length >= 1)
+                    if (equippedItem._runeList[0] != null) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
                 if (equippedItem._runeList.Length >= 2)
                     if (equippedItem._runeList[1] != null) weaponLeftHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
                 if (equippedItem._runeList.Length >= 3)
@@ -510,7 +519,7 @@ public class Inventory : MonoBehaviour
                     if (equippedItem._runeList[5] != null) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
             }
         }
-        else if((int)slot._type == 2)
+        else if ((int)slot._type == 2)
         {
             switch (equipmentObject.runeSlots)
             {
@@ -687,13 +696,14 @@ public class Inventory : MonoBehaviour
                     if (slot == leftHand)
                     {
                         Debug.Log("Equipped Left");
-                        player_Animations.SwitchToSingleHandedSword(weapon.inGameObject);
+                        player_Animations.SwitchToOffHandSingleHandedSword(weapon.inGameObject);
                         StingLeft stingLeft = gameObject.AddComponent<StingLeft>();
                         abilityManager.SetAbility(1, stingLeft);
                     }
                     break;
                 case ((int)WeaponType.TwoHandedSword):
                     Debug.Log("Equip 2 hander");
+                    player_Animations.SwitchToTwoHandedSword(weapon.inGameObject);
                     Sting2Handed sting2Handed = gameObject.AddComponent<Sting2Handed>();
                     abilityManager.SetAbility(2, sting2Handed);
                     SpinAttack spinAttack = gameObject.AddComponent<SpinAttack>();
@@ -702,12 +712,14 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.Shield):
                     if (slot == rightHand)
                     {
+                        player_Animations.SwitchToShield(weapon.inGameObject);
                         Debug.Log("Equipped Right");
                         ShieldToss shieldToss = gameObject.AddComponent<ShieldToss>();
                         abilityManager.SetAbility(2, shieldToss);
                     }
                     if (slot == leftHand)
                     {
+                        player_Animations.SwitchToOffHandShield(weapon.inGameObject);
                         Debug.Log("Equipped Left");
                         Block block = gameObject.AddComponent<Block>();
                         abilityManager.SetAbility(1, block);
@@ -715,6 +727,7 @@ public class Inventory : MonoBehaviour
                     break;
                 case ((int)WeaponType.Bow):
                     Debug.Log("Equip bow");
+                    player_Animations.SwitchToBow(weapon.inGameObject);
                     PowerShot powerShot = gameObject.AddComponent<PowerShot>();
                     abilityManager.SetAbility(2, powerShot);
                     TripleShot tripleShot = gameObject.AddComponent<TripleShot>();
@@ -722,6 +735,7 @@ public class Inventory : MonoBehaviour
                     break;
                 case ((int)WeaponType.Staff):
                     Debug.Log("Equip staff");
+                    player_Animations.SwitchToStaff(weapon.inGameObject);
                     BigProjectile bigProjectile = gameObject.AddComponent<BigProjectile>();
                     abilityManager.SetAbility(2, bigProjectile);
                     NonProjectile nonProjectile = gameObject.AddComponent<NonProjectile>();
@@ -763,7 +777,7 @@ public class Inventory : MonoBehaviour
     public void AddNewRuneToItem(Item newItem, GameObject slot)
     {
 
-        
+
         Debug.Log("Addidng new rune to " + slot);
         RuneObject rune = (RuneObject)newItem.item;
         if (slot == weaponRightHandR1)
