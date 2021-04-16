@@ -335,6 +335,7 @@ public class Inventory : MonoBehaviour
                         player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<StingRight>());
+                        Destroy(GetComponent<OneHandedBasicAttack>());
                     }
                     if (slot == leftHand)
                     {
@@ -693,7 +694,9 @@ public class Inventory : MonoBehaviour
                         Debug.Log("Equipped Right");
                         player_Animations.SwitchToSingleHandedSword(weapon.inGameObject);
                         StingRight stingRight = gameObject.AddComponent<StingRight>();
+                        OneHandedBasicAttack oneHandedBasicAttack = gameObject.AddComponent<OneHandedBasicAttack>();
                         abilityManager.SetAbility(2, stingRight);
+                        abilityManager.SetAbility(4, oneHandedBasicAttack);
                     }
                     if (slot == leftHand)
                     {

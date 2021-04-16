@@ -27,6 +27,10 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
         {
             entityAbilityManager.CastAbility(3);
         }
+        if(Input.GetMouseButtonDown(0))
+        {
+            entityAbilityManager.CastAbility(4);
+        }
         
     }
 }

@@ -41,14 +41,6 @@ public class Player_Animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (usingSingleHandedSword)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-
-        }
         if (usingTwoHandedSword)
         {
             if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
