@@ -25,6 +25,7 @@ public class Dash : MonoBehaviour, IAbility
         Subscribe();
         GetComponent<EntityAbilityManager>().SetAbility(3, this);
         dashItem = GetComponent<Inventory>().dashItem;
+        Debug.Log(dashItem.weaponType);
         dashItemContainer = new Item(dashItem);
 
 
