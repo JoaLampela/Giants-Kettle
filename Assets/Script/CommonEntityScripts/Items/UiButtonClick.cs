@@ -63,10 +63,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             Debug.Log("!=0");
             if (_item != null) playerInventory.Unequip(_item, this);
         }
-        if( _type == ItemType.Rune )
-        {
-            playerInventory.AddNewRuneToItem(newItem, gameObject);
-        }
+
         if(this == playerInventory.rightHand || this == playerInventory.leftHand)
         {
             if(newItem.item.isTwoHander)
@@ -172,8 +169,12 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             icon.sprite = _item.item.iconSprite;
             if((int)newItem.item.type != (int)ItemType.Rune)
             {
-                playerInventory.Equip(newItem, this);
+                if(this._type != 0) playerInventory.Equip(newItem, this);
             }
+        }
+        if (_type == ItemType.Rune)
+        {
+            playerInventory.AddNewRuneToItem(newItem, gameObject);
         }
         SetRuneToolTipOn();
 

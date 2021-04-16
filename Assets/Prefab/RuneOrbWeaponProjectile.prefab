@@ -108,8 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  projectileSpeed: 10
-  orbitSpeed: 360
+  orbitSpeed: -360
   triggerDistance: 6
 --- !u!50 &-5737632313622840735
 Rigidbody2D:

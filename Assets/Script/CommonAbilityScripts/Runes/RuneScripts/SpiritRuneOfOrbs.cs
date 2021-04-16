@@ -14,8 +14,6 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     [SerializeField] private int duplicateCountArmor = 0;
     private List<GameObject> projectiles;
 
-    public bool destroyed = false;
-
     //Always needed functions
     public enum WeaponType
     {
@@ -25,20 +23,13 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         Bow,
         Staff
     }
-
-    private void Update()
-    {
-        Debug.Log("I EXIST");
-    }
     public void SetDuplicateCountWeapon(int value)
     {
         duplicateCountWeapon = value;
     }
     public void IncrementDuplicateCountWeapon(int amount)
     {
-        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon); 
         duplicateCountWeapon += amount;
-        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon);
         if(_entityEvents != null) SetUpPermanentEffects();
 
     }
@@ -52,13 +43,11 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     public void IncrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor += amount;
-        SetUpPermanentEffects();
     }
 
     public void DecrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor -= amount;
-        SetUpPermanentEffects();
     }
 
     public int GetDuplicateCountWeapon()
@@ -74,10 +63,8 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     public void RemoveRune()
     {
         Debug.Log("Destroyed");
-        destroyed = true;
-        this.enabled = false;
         
-        //Destroy(this);
+        Destroy(this);
     }
 
     public void SetEntity(GameObject entity)
@@ -97,7 +84,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     }
 
     
-    private void SetUpPermanentEffects()
+    public void SetUpPermanentEffects()
     {
         Debug.Log("Removing buffs");
         _entityEvents.RemoveBuff("SpiritRuneOfOrbsArmor");
@@ -218,10 +205,5 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     public void UnsubscribeEntity()
     {
         _entityEvents.OnCastAbility -= Test;
-    }
-
-    public bool GetIsDestroyed()
-    {
-        return destroyed;
     }
 }
