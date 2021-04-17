@@ -259,7 +259,6 @@ public class Inventory : MonoBehaviour
 
     public void Unequip(Item unequippedItem, UiButtonClick slot)
     {
-        EquipmentObject equipmentObject = (EquipmentObject)unequippedItem.item;
         if ((int)slot._type == 1)
         {
             if (slot == rightHand || unequippedItem.item.isTwoHander)
@@ -353,6 +352,7 @@ public class Inventory : MonoBehaviour
                     abilityManager.RemoveAbility(1);
                     Destroy(GetComponent<Sting2Handed>());
                     Destroy(GetComponent<SpinAttack>());
+                    Destroy(GetComponent<TwoHandedBasicAttack>());
                     break;
                 case ((int)WeaponType.Shield):
                     if (slot == rightHand)
@@ -710,9 +710,11 @@ public class Inventory : MonoBehaviour
                     Debug.Log("Equip 2 hander");
                     player_Animations.SwitchToTwoHandedSword(weapon.inGameObject);
                     Sting2Handed sting2Handed = gameObject.AddComponent<Sting2Handed>();
+                    TwoHandedBasicAttack twoHandedBasicAttack = gameObject.AddComponent<TwoHandedBasicAttack>();
                     abilityManager.SetAbility(2, sting2Handed);
                     SpinAttack spinAttack = gameObject.AddComponent<SpinAttack>();
                     abilityManager.SetAbility(1, spinAttack);
+                    abilityManager.SetAbility(4, twoHandedBasicAttack);
                     break;
                 case ((int)WeaponType.Shield):
                     if (slot == rightHand)

@@ -41,7 +41,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
         {
             if (_spellSlot == slot)
             {
-                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1;
+                //_weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1;
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 playerAnimations.SetAttacking(true);
@@ -54,7 +54,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject basicAttack = Instantiate(GetComponent<EntityAbilityManager>().basicAttack, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        GameObject basicAttack = Instantiate(GetComponent<EntityAbilityManager>().basicAttackOneHandedSword, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         basicAttack.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         basicAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
         basicAttack.GetComponent<AbilityEvents>().UseAbility();

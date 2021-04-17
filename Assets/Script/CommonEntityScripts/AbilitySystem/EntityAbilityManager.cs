@@ -28,7 +28,8 @@ public class EntityAbilityManager : MonoBehaviour
     public GameObject tripleShot;
     public GameObject powerShot;
     public GameObject dash;
-    public GameObject basicAttack;
+    public GameObject basicAttackOneHandedSword;
+    public GameObject basicAttackTwoHandedSword;
 
     public void CastAbility(int slot)
     {

@@ -8,11 +8,11 @@ public class AbilityOnStayDealDamage : MonoBehaviour
     private List<GameObject> hitTargets;
     [SerializeField] private int baseDamage;
     [SerializeField] private int damageScaling;
-
-    private void Start()
+ private void Start()
     {
         hitTargets = new List<GameObject>();
     }
+   
 
     private void Awake()
     {
