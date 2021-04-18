@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EntityHealth : MonoBehaviour
@@ -6,6 +7,8 @@ public class EntityHealth : MonoBehaviour
     private EntityStats stats;
     public int health;
     private float oneHealth;
+    private bool fireTickOnCD = false;
+    private float timeBetweenFireTicks = 1f;
 
 
     private void Awake()
@@ -20,6 +23,23 @@ public class EntityHealth : MonoBehaviour
     private void Update()
     {
         RegenHealth();
+        
+
+        if(stats.isOnFire)
+        {
+            if(!fireTickOnCD)
+            {
+                fireTickOnCD = true;
+                StartCoroutine(fireTick());
+            }
+        }
+    }
+
+    private IEnumerator fireTick()
+    {
+        events.HitThis(new Damage(gameObject, (int)(stats.currentMaxHealth * 0.02f)));
+        yield return new WaitForSeconds(timeBetweenFireTicks);
+        fireTickOnCD = false;
     }
   
     private void Subscribe()
