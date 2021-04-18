@@ -41,13 +41,6 @@ public class Player_Animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (usingTwoHandedSword)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-        }
         if (usingStaff)
         {
             if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
@@ -57,17 +50,6 @@ public class Player_Animations : MonoBehaviour
             if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
             {
                 animator.SetTrigger("Special");
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("LeftAttack");
-            }
-        }
-        if (offHandUsingSingleHandedSword)
-        {
-            if (!attacking)
-            {
-                LeftHandLookOppositeToMouse();
             }
             if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
             {

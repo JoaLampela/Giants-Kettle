@@ -13,8 +13,8 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
     private IAbilityTargetPosition targetPositionScript;
     Item _weapon;
     private Vector2 targetPosAtStart;
-    private float basicAttackCooldown;
-    private bool basicAttackOffCooldown = true;
+    private float basicAttackCooldown = 1f;
+    public bool basicAttackOffCooldown = true;
 
     private void Start()
     {
@@ -41,12 +41,13 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
+        
         if (basicAttackOffCooldown)
         {
             if (_spellSlot == slot)
             {
                 basicAttackOffCooldown = false;
-                basicAttackCooldownFunction();
+                StartCoroutine(basicAttackCooldownFunction());
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 playerAnimations.SetAttacking(true);
@@ -59,6 +60,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
     private IEnumerator basicAttackCooldownFunction()
     {
         float trueCooldown = basicAttackCooldown * 100f / (100f + GetComponent<EntityStats>().currentAttackSpeed);
+        Debug.Log("Attack Cooldown " + trueCooldown);
         yield return new WaitForSeconds(trueCooldown);
         basicAttackOffCooldown = true;
     }

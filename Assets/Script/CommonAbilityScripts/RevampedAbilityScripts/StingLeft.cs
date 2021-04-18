@@ -40,8 +40,7 @@ public class StingLeft : MonoBehaviour, IAbility
             {
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
-                Debug.Log("cast left");
-                //Add sting left here animator.SetTrigger("Special");
+                animator.SetTrigger("LeftAttack");
                 _entityEvents.CastAbility();
             }
         }
@@ -96,6 +95,7 @@ public class StingLeft : MonoBehaviour, IAbility
 
     public void TryCast()
     {
+        Debug.Log("Trying to cast ability 1");
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
