@@ -34,7 +34,8 @@ public class Inventory : MonoBehaviour
     public UiButtonClick armorHead;
     public UiButtonClick armorChest;
     public UiButtonClick armorLegs;
-    public WeaponObject dashItem;
+    public Item dashItem;
+    public WeaponObject dashItemObject;
 
     public GameObject armorHeadR1;
     public GameObject armorHeadR2;
@@ -83,6 +84,7 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
+        dashItem = new Item(dashItemObject);
         inventorySlots = new UiButtonClick[24];
         equipmentSlots = new UiButtonClick[36];
         Debug.Log(inventorySlots.Length + "lenght");

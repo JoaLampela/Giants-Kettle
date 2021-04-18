@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class OneHandedBasicAttack : MonoBehaviour, IAbility
@@ -11,6 +13,8 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
     private IAbilityTargetPosition targetPositionScript;
     Item _weapon;
     private Vector2 targetPosAtStart;
+    private float basicAttackCooldown;
+    private bool basicAttackOffCooldown = true;
 
     private void Start()
     {
@@ -37,11 +41,12 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (true) //cooldown here
+        if (basicAttackOffCooldown)
         {
             if (_spellSlot == slot)
             {
-                //_weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1;
+                basicAttackOffCooldown = false;
+                basicAttackCooldownFunction();
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 playerAnimations.SetAttacking(true);
@@ -49,6 +54,13 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
             }
         }
         else CannotAffordCast(slot);
+    }
+
+    private IEnumerator basicAttackCooldownFunction()
+    {
+        float trueCooldown = basicAttackCooldown * 100f / (100f + GetComponent<EntityStats>().currentAttackSpeed);
+        yield return new WaitForSeconds(trueCooldown);
+        basicAttackOffCooldown = true;
     }
 
     private void InstatiateHitBox()
