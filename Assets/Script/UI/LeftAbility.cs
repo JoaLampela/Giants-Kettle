@@ -16,6 +16,7 @@ public class LeftAbility : MonoBehaviour
 
     private void Start()
     {
+        icon.fillAmount = 0;
         SetIcon();
     }
 

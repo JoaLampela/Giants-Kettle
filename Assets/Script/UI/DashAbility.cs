@@ -11,6 +11,10 @@ public class DashAbility : MonoBehaviour
     private Item dash;
     private bool dashed = false;
 
+    private void Start()
+    {
+        icon.fillAmount = 0;
+    }
 
     private void Update()
     {

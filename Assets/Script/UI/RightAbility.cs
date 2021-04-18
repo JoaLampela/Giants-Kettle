@@ -21,6 +21,7 @@ public class RightAbility : MonoBehaviour
 
     private void Update()
     {
+        icon.fillAmount = 0;
         AbilityUpdate();
     }
 
