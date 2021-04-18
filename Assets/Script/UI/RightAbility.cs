@@ -44,7 +44,7 @@ public class RightAbility : MonoBehaviour
 
             if (isCooldown && Time.timeScale != 0)
             {
-                iconFill.fillAmount -= 1 / _item.maxCooldownAbility1 * Time.deltaTime;
+                iconFill.fillAmount -= (1 / _item.maxCooldownAbility1) * Time.deltaTime;
                 if (iconFill.fillAmount <= 0)
                 {
                     iconFill.fillAmount = 0;
