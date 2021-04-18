@@ -76,6 +76,9 @@ public class Inventory : MonoBehaviour
     public GameObject itemOnGround;
     public EntityAbilityManager abilityManager;
 
+    [SerializeField] private DashAbility dashAbility;
+    [SerializeField] private RightAbility rightAbility;
+    [SerializeField] private LeftAbility leftAbility; 
     private void Awake()
     {
         player_Animations = GetComponent<Player_Animations>();

@@ -7,17 +7,10 @@ using UnityEngine.UI;
 public class DashAbility : MonoBehaviour
 {
     public Image icon;
-    private float cooldown;
     private bool isCooldown = false;
     private Item dash;
+    private bool dashed = false;
 
-
-
-    private void Start()
-    {
-        dash = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().dashItem;
-        cooldown = dash.currentCooldownAbility1;
-    }
 
     private void Update()
     {
@@ -26,7 +19,10 @@ public class DashAbility : MonoBehaviour
 
     void AbilityUpdate()
     {
-        if(isCooldown == false && Time.timeScale != 0)
+        
+        if(dash == null) dash = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().dashItem;
+        if (dash.currentCooldownAbility1 > 0) dashed = true;
+        if (!isCooldown && Time.timeScale != 0 && dashed)
         {
             isCooldown = true;
             icon.fillAmount = 1;
@@ -34,13 +30,13 @@ public class DashAbility : MonoBehaviour
 
         if (isCooldown && Time.timeScale != 0)
         {
-            icon.fillAmount -= 1 / cooldown * Time.deltaTime;
+            icon.fillAmount -= 1 / dash.maxCooldownAbility1 * Time.deltaTime;
 
             if(icon.fillAmount <= 0)
             {
                 icon.fillAmount = 0;
                 isCooldown = false;
-                cooldown = dash.currentCooldownAbility1;
+                dashed = false;
             }
         }
     }
