@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class RightAbility : MonoBehaviour
 {
+    public Image iconFill;
     public Image icon;
-    public Image iconBG;
     private float cooldown;
     private bool isCooldown = false;
     private Item _item = null;
@@ -16,12 +16,12 @@ public class RightAbility : MonoBehaviour
 
     private void Start()
     {
+        iconFill.fillAmount = 0;
         SetIcon();
     }
 
     private void Update()
     {
-        icon.fillAmount = 0;
         AbilityUpdate();
     }
 
@@ -34,16 +34,16 @@ public class RightAbility : MonoBehaviour
             if (isCooldown == false && Time.timeScale != 0)
             {
                 isCooldown = true;
-                icon.fillAmount = 1;
+                iconFill.fillAmount = 1;
             }
 
             if (isCooldown && Time.timeScale != 0)
             {
-                icon.fillAmount -= 1 / cooldown * Time.deltaTime;
+                iconFill.fillAmount -= 1 / cooldown * Time.deltaTime;
 
-                if (icon.fillAmount <= 0)
+                if (iconFill.fillAmount <= 0)
                 {
-                    icon.fillAmount = 0;
+                    iconFill.fillAmount = 0;
                     isCooldown = false;
                     cooldown = _item.currentCooldownAbility1;
                 }
@@ -69,13 +69,13 @@ public class RightAbility : MonoBehaviour
     {
         if (_item == null)
         {
+            iconFill.sprite = null;
             icon.sprite = null;
-            iconBG.sprite = null;
         }
         else
         {
+            iconFill.sprite = Resources.Load<Sprite>("Assets/Import/goblin_1_1");
             icon.sprite = Resources.Load<Sprite>("Assets/Import/goblin_1_1");
-            iconBG.sprite = Resources.Load<Sprite>("Assets/Import/goblin_1_1");
         }
     }
 }
