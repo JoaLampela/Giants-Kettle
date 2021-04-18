@@ -15738,8 +15738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94dedf9a335289c41af9e33478cb21c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconFill: {fileID: 6651208167382979205}
   icon: {fileID: 5913699144772503957}
-  iconBG: {fileID: 6651208167382979205}
 --- !u!1 &2360374848528518575
 GameObject:
   m_ObjectHideFlags: 0
@@ -18092,7 +18092,7 @@ GameObject:
   - component: {fileID: 3505671083941847360}
   - component: {fileID: 6651208167382979205}
   m_Layer: 5
-  m_Name: LeftBG
+  m_Name: LeftFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18138,7 +18138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -18146,12 +18146,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -4329499697887612118, guid: 52ae0672dd1c8fc4695569c2cfab9eea, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
@@ -23044,7 +23044,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -2738401152758695642, guid: 52ae0672dd1c8fc4695569c2cfab9eea, type: 3}
-  m_Type: 3
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -31208,7 +31208,7 @@ GameObject:
   - component: {fileID: 4791669704878562182}
   - component: {fileID: 650988334463990557}
   m_Layer: 5
-  m_Name: DashBG
+  m_Name: DashFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31254,7 +31254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -31262,12 +31262,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 853e5d1f4d4d359468ae35f0e9db4894, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
@@ -34099,8 +34099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff16d18f2788074c94aeb4324130250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconFill: {fileID: 5633640913130827934}
   icon: {fileID: 6516612341022636823}
-  iconBG: {fileID: 5633640913130827934}
 --- !u!1 &5172549647838555649
 GameObject:
   m_ObjectHideFlags: 0
@@ -36530,7 +36530,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -4329499697887612118, guid: 52ae0672dd1c8fc4695569c2cfab9eea, type: 3}
-  m_Type: 3
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -36704,7 +36704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9e442ed2b7c3c499c117d0a60d4869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 5753606925919205057}
+  iconFill: {fileID: 650988334463990557}
 --- !u!1 &5705666474139409851
 GameObject:
   m_ObjectHideFlags: 0
@@ -54883,7 +54883,7 @@ GameObject:
   - component: {fileID: 4009211655920559530}
   - component: {fileID: 5633640913130827934}
   m_Layer: 5
-  m_Name: RightBG
+  m_Name: RightFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54929,7 +54929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -54937,12 +54937,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -2738401152758695642, guid: 52ae0672dd1c8fc4695569c2cfab9eea, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
@@ -61999,12 +61999,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 853e5d1f4d4d359468ae35f0e9db4894, type: 3}
-  m_Type: 3
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1

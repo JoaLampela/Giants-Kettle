@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class DashAbility : MonoBehaviour
 {
-    public Image icon;
+    public Image iconFill;
     private bool isCooldown = false;
     private Item dash;
     private bool dashed = false;
 
+    private void Start()
+    {
+        iconFill.fillAmount = 0;
+    }
 
     private void Update()
     {
@@ -25,16 +29,16 @@ public class DashAbility : MonoBehaviour
         if (!isCooldown && Time.timeScale != 0 && dashed)
         {
             isCooldown = true;
-            icon.fillAmount = 1;
+            iconFill.fillAmount = 1;
         }
 
         if (isCooldown && Time.timeScale != 0)
         {
-            icon.fillAmount -= 1 / dash.maxCooldownAbility1 * Time.deltaTime;
+            iconFill.fillAmount -= 1 / dash.maxCooldownAbility1 * Time.deltaTime;
 
-            if(icon.fillAmount <= 0)
+            if(iconFill.fillAmount <= 0)
             {
-                icon.fillAmount = 0;
+                iconFill.fillAmount = 0;
                 isCooldown = false;
                 dashed = false;
             }
