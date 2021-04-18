@@ -8,9 +8,11 @@ public class LeftAbility : MonoBehaviour
 {
     public Image iconFill;
     public Image icon;
-    private float cooldown;
     private bool isCooldown = false;
-    private Item _item = null;
+    private Item _item;
+    private bool usedLeftAbility = false;
+
+    [SerializeField] private Sprite iconSprite;
 
 
 
@@ -31,35 +33,35 @@ public class LeftAbility : MonoBehaviour
     {
         if(_item != null)
         {
-            if (isCooldown == false && Time.timeScale != 0)
+            if (_item.currentCooldownAbility2 > 0) usedLeftAbility = true;
+            if (isCooldown == false && Time.timeScale != 0 && usedLeftAbility)
             {
+                Debug.Log("Used left");
                 isCooldown = true;
                 iconFill.fillAmount = 1;
             }
 
             if (isCooldown && Time.timeScale != 0)
             {
-                iconFill.fillAmount -= 1 / cooldown * Time.deltaTime;
-
+                iconFill.fillAmount -= 1 / _item.maxCooldownAbility2 * Time.deltaTime;
                 if (iconFill.fillAmount <= 0)
                 {
                     iconFill.fillAmount = 0;
                     isCooldown = false;
-                    cooldown = _item.currentCooldownAbility2;
+                    usedLeftAbility = false;
                 }
             }
         }
     }
 
 
-    void SetAbility(Item item)
+    public void SetAbility(Item item, Inventory.Hand hand)
     {
         _item = item;
-        cooldown = _item.currentCooldownAbility2;
         SetIcon();
     }
 
-    void RemoveAbility()
+    public void RemoveAbility()
     {
         _item = null;
         SetIcon();
@@ -74,8 +76,9 @@ public class LeftAbility : MonoBehaviour
         }
         else
         {
-            iconFill.sprite = Resources.Load<Sprite>("Assets/Import/goblin_1_3");
-            icon.sprite = Resources.Load<Sprite>("Assets/Import/goblin_1_3");
+            Debug.Log("Else in 2");
+            iconFill.sprite = iconSprite;
+            icon.sprite = iconSprite;
         }
     }
 }

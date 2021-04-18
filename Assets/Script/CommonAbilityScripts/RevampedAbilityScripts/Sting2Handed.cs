@@ -43,6 +43,8 @@ public class Sting2Handed : MonoBehaviour, IAbility
             if (_spellSlot == slot)
             {
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+               _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1;
+                Debug.Log("Stng2 " + _weapon.currentCooldownAbility1 + " " + _weapon.currentCooldownAbility2);
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 movementScript.StartAttackSlow();
                 playerAnimations.SetAttacking(true);
@@ -56,7 +58,6 @@ public class Sting2Handed : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        Debug.Log(_weapon._runeList.Length);
         GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().heavySting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         for (int i = 0; i < _weapon._runeList.Length; i++)

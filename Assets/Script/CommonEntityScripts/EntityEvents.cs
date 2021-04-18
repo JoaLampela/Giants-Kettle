@@ -169,7 +169,6 @@ public class EntityEvents : MonoBehaviour
     }
     public void HitThis(Damage damage)
     {
-        Debug.Log(gameObject + " took damage " + damage._damage);
         OnHitThis?.Invoke(damage);
     }
     public void RecoverHealth(int amount)

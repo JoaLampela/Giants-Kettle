@@ -78,7 +78,6 @@ public class AbilityEvents : MonoBehaviour
             {
                 if (target.GetComponent<EntityEvents>())
                 {
-                    Debug.Log("Dealing damage " + baseDamage + " " + bonusFlatDamage + " " + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage + " " + damageMultiplier / 100f);
                     target.GetComponent<EntityEvents>().HitThis(new Damage(_abilityCastSource, (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f), trueDamage + bonusFlatTrueDamage));
                 }
             }

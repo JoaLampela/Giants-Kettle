@@ -15740,6 +15740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconFill: {fileID: 6651208167382979205}
   icon: {fileID: 5913699144772503957}
+  iconSprite: {fileID: 21300000, guid: 7f05b2479a5085742a873c63aab1a183, type: 3}
 --- !u!1 &2360374848528518575
 GameObject:
   m_ObjectHideFlags: 0
@@ -34101,6 +34102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconFill: {fileID: 5633640913130827934}
   icon: {fileID: 6516612341022636823}
+  iconSprite: {fileID: 21300000, guid: 107ed6209ccb21e4aaeb3f110cbd732a, type: 3}
 --- !u!1 &5172549647838555649
 GameObject:
   m_ObjectHideFlags: 0
