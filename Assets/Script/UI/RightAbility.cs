@@ -72,5 +72,10 @@ public class RightAbility : MonoBehaviour
             icon.sprite = null;
             iconBG.sprite = null;
         }
+        else
+        {
+            icon.sprite = Resources.Load<Sprite>("Assets/Import/goblin_1_1");
+            iconBG.sprite = Resources.Load<Sprite>("Assets/Import/goblin_1_1");
+        }
     }
 }
