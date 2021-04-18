@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiritVitalityRuneOfTinder : MonoBehaviour
+public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -26,6 +26,7 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour
     {
         duplicateCountWeapon = value;
     }
+
     public void IncrementDuplicateCountWeapon(int amount)
     {
         duplicateCountWeapon += amount;
@@ -35,7 +36,6 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour
     public void DecrementDuplicateCountWeapon(int amount)
     {
         duplicateCountWeapon -= amount;
-        if (_entityEvents != null) SetUpPermanentEffects();
     }
 
     public void IncrementDuplicateCountArmor(int amount)
@@ -47,7 +47,6 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour
     public void DecrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor -= amount;
-        if (_entityEvents != null) SetUpPermanentEffects();
     }
 
     public int GetDuplicateCountWeapon()
@@ -81,7 +80,7 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour
         else if (weaponType == IRuneScript.WeaponType.Staff) _weaponType = WeaponType.Staff;
     }
 
-    private void SetUpPermanentEffects()
+    public void SetUpPermanentEffects()
     {
         _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderArmor");
         _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderWeapon");
@@ -108,7 +107,6 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-            Activate();
         }
     }
 
@@ -121,8 +119,8 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfOrbsArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfOrbsWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderWeapon");
 
         foreach (GameObject projectile in projectiles)
         {
@@ -141,35 +139,36 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour
         }
     }
 
-    public void Activate()
+    public void ActivateArmorEffect(Damage damage)
     {
-        GameObject projectile = RuneAssets.i.RuneOrbWeaponProjectile;
-        projectile.GetComponent<AbilityEvents>().SetSource(gameObject.GetComponent<AbilityEvents>()._abilityCastSource);
-        for (int i = 0; i < duplicateCountWeapon; i++)
-        {
-            projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
-            projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (float)duplicateCountWeapon));
-        }
+        damage.source.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
+    }
+
+    public void ActivateWeaponEffect(Damage damage, GameObject target)
+    {
+        target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
+        _abilityEvents._onDealDamage += ActivateWeaponEffect;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
 
     public void SubscribeEntity()
     {
-        //_entityEvents.OnCastAbility += OnCastDoStuff;
+        _entityEvents.OnHitThis += ActivateArmorEffect;
     }
 
     public void UnsubscribeAbility()
     {
+        _abilityEvents._onDealDamage -= ActivateWeaponEffect;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }
 
     public void UnsubscribeEntity()
     {
-        //_entityEvents.OnCastAbility -= OnCastDoStuff;
+        _entityEvents.OnHitThis -= ActivateArmorEffect;
     }
 }
