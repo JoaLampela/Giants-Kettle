@@ -80,7 +80,11 @@ public class EntityHealth : MonoBehaviour
     private void TakeDamage(int damage, Damage damgeContainer)
     {
         events.LoseHealth(damage);
-        if(health - damage <= 0) events.Die(damgeContainer.source);
+        if (health - damage <= 0)
+        {
+            events.Die(damgeContainer.source);
+            damgeContainer.source.GetComponent<EntityEvents>().KillEnemy(gameObject);
+        }
         else health -= damage;
 
     }
