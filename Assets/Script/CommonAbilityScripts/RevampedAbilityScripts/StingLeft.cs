@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StingLeft : MonoBehaviour, IAbility
 {
+    private Player_Animations playerAnimations;
     private Animator animator;
     EntityEvents _entityEvents;
     EntityAbilityManager abilityManager;
@@ -11,6 +12,7 @@ public class StingLeft : MonoBehaviour, IAbility
     private IAbilityTargetPosition targetPositionScript;
     Item _weapon;
     private Vector2 targetPosAtStart;
+    
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class StingLeft : MonoBehaviour, IAbility
 
     private void Awake()
     {
+        playerAnimations = GetComponent<Player_Animations>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -38,8 +41,10 @@ public class StingLeft : MonoBehaviour, IAbility
         {
             if (_spellSlot == slot)
             {
+                _weapon.currentCooldownAbility2 = _weapon.maxCooldownAbility2 * 100f / (100f + GetComponent<EntityStats>().currentSpellHaste);
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
+                playerAnimations.SetAttacking(true);
                 animator.SetTrigger("LeftAttack");
                 _entityEvents.CastAbility();
             }
@@ -76,6 +81,7 @@ public class StingLeft : MonoBehaviour, IAbility
         }
         sting.GetComponent<AbilityEvents>().SetSource(gameObject);
         sting.GetComponent<AbilityEvents>().UseAbility();
+        playerAnimations.SetAttacking(false);
     }
 
     private void CannotAffordCast(int slot)

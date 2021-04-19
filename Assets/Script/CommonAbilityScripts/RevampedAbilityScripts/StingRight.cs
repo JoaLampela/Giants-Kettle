@@ -43,7 +43,7 @@ public class StingRight : MonoBehaviour, IAbility
         {
             if (_spellSlot == slot)
             {
-                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1;
+                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f / (100f + GetComponent<EntityStats>().currentSpellHaste);
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 Debug.Log("cast right");
