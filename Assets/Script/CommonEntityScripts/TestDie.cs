@@ -32,7 +32,7 @@ public class TestDie : MonoBehaviour
     }
 
 
-    private void Die()
+    private void Die(GameObject source)
     {
         Destroy(gameObject);
     }

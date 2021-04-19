@@ -67,7 +67,7 @@ public class EntityHealth : MonoBehaviour
     private void DamageCalculation(Damage damage)
     {
         if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
-        TakeDamage((int)(damage._damage * GetDamageReduction()));
+        TakeDamage((int)(damage._damage * GetDamageReduction()), damage);
     }
 
     private float GetDamageReduction()
@@ -77,10 +77,10 @@ public class EntityHealth : MonoBehaviour
         return (armorBalanceValue / (armorBalanceValue + stats.currentArmor));
     }
 
-    private void TakeDamage(int damage)
+    private void TakeDamage(int damage, Damage damgeContainer)
     {
         events.LoseHealth(damage);
-        if(health - damage <= 0) events.Die();
+        if(health - damage <= 0) events.Die(damgeContainer.source);
         else health -= damage;
 
     }
@@ -113,8 +113,6 @@ public class EntityHealth : MonoBehaviour
         if (health > stats.currentMaxHealth) health = stats.currentMaxHealth;
 
     }
-
-
     private void CheckIfEnoughToCast(int spellSlot, int amount)
     {
         if (health >= amount) events.CallBackCastAbility(spellSlot);
