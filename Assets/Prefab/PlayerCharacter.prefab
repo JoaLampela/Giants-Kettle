@@ -566,7 +566,7 @@ MonoBehaviour:
   armorHead: {fileID: 0}
   armorChest: {fileID: 0}
   armorLegs: {fileID: 0}
-  dashItem: {fileID: 0}
+  dashItemObject: {fileID: 0}
   armorHeadR1: {fileID: 0}
   armorHeadR2: {fileID: 0}
   armorHeadR3: {fileID: 0}
@@ -600,6 +600,9 @@ MonoBehaviour:
   testEquipmentCount: 0
   itemOnGround: {fileID: 1598165947520860255, guid: 996ffc1cb127e254d90e72c747436162, type: 3}
   abilityManager: {fileID: 0}
+  dashAbility: {fileID: 0}
+  rightAbility: {fileID: 0}
+  leftAbility: {fileID: 0}
 --- !u!95 &7051720969466832972
 Animator:
   serializedVersion: 3
@@ -782,6 +785,8 @@ MonoBehaviour:
   tripleShot: {fileID: 0}
   powerShot: {fileID: 0}
   dash: {fileID: 0}
+  basicAttackOneHandedSword: {fileID: 0}
+  basicAttackTwoHandedSword: {fileID: 0}
 --- !u!114 &8698435716602996018
 MonoBehaviour:
   m_ObjectHideFlags: 0
