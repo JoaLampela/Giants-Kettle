@@ -102,6 +102,17 @@ public class Dash : MonoBehaviour, IAbility
     {
         return -1;
     }
+
+    public Item GetWeapon()
+    {
+        return null;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.indeterminate;
+    }
+
     private void Subscribe()
     {
         _entityEvents.OnCallBackCastAbility += Cast;

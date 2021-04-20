@@ -57,6 +57,7 @@ public class StingLeft : MonoBehaviour, IAbility
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
         GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        sting.GetComponent<AbilityEvents>().iability = this;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
@@ -103,6 +104,16 @@ public class StingLeft : MonoBehaviour, IAbility
     {
         Debug.Log("Trying to cast ability 1");
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
+    }
+
+    public Item GetWeapon()
+    {
+        return _weapon;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.left;
     }
 
     private void Subscribe()

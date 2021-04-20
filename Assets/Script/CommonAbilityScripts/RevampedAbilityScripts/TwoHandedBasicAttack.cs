@@ -97,6 +97,16 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
+    public Item GetWeapon()
+    {
+        return _weapon;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.indeterminate;
+    }
+
     private void Subscribe()
     {
         _entityEvents.OnCallBackCastAbility += Cast;
