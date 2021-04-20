@@ -29,6 +29,7 @@ public class MapGeneration : MonoBehaviour
     [Header("Object prefabs")]
     public GameObject spawnPoint;
     public GameObject item;
+    public GameObject testPlantPrefab;
 
 
     [Header("Room space requirements (max amount should not go over generation area outer border)")]
@@ -168,6 +169,7 @@ public class MapGeneration : MonoBehaviour
 
         //generate mesh of the map
         meshGenerator.GenerateMesh(map, gridSize);
+        GeneratePlants();
 
     }
     /*
@@ -425,11 +427,29 @@ public class MapGeneration : MonoBehaviour
         }
     }
 
+    public void GeneratePlants()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (map[x, y] == 0 || map[x, y] == 3)
+                {
+                    if (Random.Range(0, 100) < 6)
+                    {
+                        GameObject plant = GameObject.Instantiate(testPlantPrefab, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+                        plant.transform.parent = gameObject.transform;
+                    }
+                }
+            }
+        }
+    }
+
     public void CreateSpawnPoints(Room spawnRoom)
     {
-        for (int x = generationAreaOuterBorder; x < width - generationAreaOuterBorder; x++)
+        for (int x = 0; x < width; x++)
         {
-            for (int y = generationAreaOuterBorder; y < width - generationAreaOuterBorder; y++)
+            for (int y = 0; y < height; y++)
             {
                 if (map[x, y] == 0 && !spawnRoom.tiles.Contains(new Coord(x, y)))
                 {
