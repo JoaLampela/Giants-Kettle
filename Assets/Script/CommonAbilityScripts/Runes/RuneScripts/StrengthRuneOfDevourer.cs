@@ -139,14 +139,14 @@ public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
         }
     }
 
-    public void ActivateArmorEffect(Damage damage)
+    public void ActivateArmorEffect(GameObject target)
     {
-        //TODO: OnEnemyDeath heal %enemyHealth
+        _entityEvents.RecoverHealth((int)(duplicateCountArmor * target.GetComponent<EntityStats>().currentMaxHealth * 0.10f));
     }
 
     public void ActivateWeaponEffect(Damage damage, GameObject target)
     {
-        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)(duplicateCountWeapon * 500.00f * (damage._damage + damage._trueDamage)));
+        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)(duplicateCountWeapon * 0.05f * (damage._damage + damage._trueDamage)));
     }
 
     //Subs and Unsubs
@@ -158,7 +158,7 @@ public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnKillEnemy += ActivateArmorEffect;
     }
 
     public void UnsubscribeAbility()
@@ -169,6 +169,6 @@ public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnKillEnemy -= ActivateArmorEffect;
     }
 }
