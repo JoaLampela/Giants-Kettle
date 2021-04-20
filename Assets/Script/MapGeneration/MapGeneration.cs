@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
 {
+    [Header("Size settings")]
+    public float gridSize = 2;
+
     [Header("Room spawn amount settings")]
     public int width = 200;
     public int height = 200;
@@ -26,6 +29,7 @@ public class MapGeneration : MonoBehaviour
     [Header("Object prefabs")]
     public GameObject spawnPoint;
     public GameObject item;
+
 
     [Header("Room space requirements (max amount should not go over generation area outer border)")]
     [Range(4, 100)]
@@ -163,7 +167,7 @@ public class MapGeneration : MonoBehaviour
         CreateSpawnPoints(mainRoom);
 
         //generate mesh of the map
-        meshGenerator.GenerateMesh(map, 1);
+        meshGenerator.GenerateMesh(map, gridSize);
 
     }
     /*
@@ -371,49 +375,49 @@ public class MapGeneration : MonoBehaviour
     }
     Vector2 CoordToWorldPoint(Coord tile)
     {
-        return new Vector2(-width / 2 + .5f + tile.tileX, -height / 2 + .5f + tile.tileY);
+        return new Vector2((-width / 2 + .5f + tile.tileX) * gridSize, (-height / 2 + -1 + tile.tileY) * gridSize);
     }
 
     public void InstansiateRooms(List<Room> allRooms)
     {
         foreach (Room room in allRooms)
         {
-
+            Vector2 roomPosition = new Vector2((-width / 2 + room.CentreTile.tileX + 0.5f) * gridSize, (-height / 2 + room.CentreTile.tileY - 1) * gridSize);
             switch (room.roomType)
             {
                 case 0:
                     {
-                        GameObject currentRoom = Instantiate(spawnRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(spawnRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
                 case 1:
                     {
-                        GameObject currentRoom = Instantiate(exitRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(exitRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
                 case 2:
                     {
-                        GameObject currentRoom = Instantiate(enemyRoom1, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(enemyRoom1, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
                 case 3:
                     {
-                        GameObject currentRoom = Instantiate(enemyRoom2, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(enemyRoom2, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
                 case 4:
                     {
-                        GameObject currentRoom = Instantiate(caveRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(caveRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
                 case 5:
                     {
-                        GameObject currentRoom = Instantiate(testRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(testRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                     }
                     break;
