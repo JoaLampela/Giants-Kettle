@@ -844,6 +844,9 @@ MonoBehaviour:
   shieldToss: {fileID: 0}
   tripleShot: {fileID: 0}
   powerShot: {fileID: 0}
+  dash: {fileID: 0}
+  basicAttackOneHandedSword: {fileID: 0}
+  basicAttackTwoHandedSword: {fileID: 0}
 --- !u!114 &2999592409753981150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,6 +1115,9 @@ MonoBehaviour:
   shieldToss: {fileID: 0}
   tripleShot: {fileID: 0}
   powerShot: {fileID: 0}
+  dash: {fileID: 0}
+  basicAttackOneHandedSword: {fileID: 0}
+  basicAttackTwoHandedSword: {fileID: 0}
 --- !u!1 &4587282264388292676
 GameObject:
   m_ObjectHideFlags: 0

@@ -63,5 +63,4 @@ public class HealthBar : MonoBehaviour
     {
         Unsubscribe();
     }
-
 }

@@ -14,6 +14,4 @@ public class AbilityOrbitAroundObject : MonoBehaviour
         _events = GetComponent<AbilityEvents>();
         _target = transform.parent.gameObject;
     }
-
-    
 }

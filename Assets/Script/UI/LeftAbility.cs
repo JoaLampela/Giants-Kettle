@@ -11,6 +11,7 @@ public class LeftAbility : MonoBehaviour
     private bool isCooldown = false;
     private Item _item;
     private bool usedLeftAbility = false;
+    [SerializeField] private EntityStats stats;
 
     [SerializeField] private Sprite iconSprite;
 
@@ -43,7 +44,7 @@ public class LeftAbility : MonoBehaviour
 
             if (isCooldown && Time.timeScale != 0)
             {
-                iconFill.fillAmount -= (1 / _item.maxCooldownAbility2) * Time.deltaTime;
+                iconFill.fillAmount -= (1 / (_item.maxCooldownAbility2 * 100f / (100f + stats.currentSpellHaste))) * Time.deltaTime;
                 if (iconFill.fillAmount <= 0)
                 {
                     iconFill.fillAmount = 0;

@@ -109,7 +109,6 @@ public class EntityEvents : MonoBehaviour
 
     public void AnimationTriggerPoint()
     {
-        Debug.Log("Animation Trigger Point");
         OnAnimationTriggerPoint?.Invoke();
     }
 
