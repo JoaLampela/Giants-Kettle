@@ -14,6 +14,7 @@ public class GoblinEnemySword : MonoBehaviour
     private EntityTargetingSystem targetingSystem;
     private Rigidbody2D goblinRB;
     private CircleCollider2D goblinCollider;
+    private EntityAbilityManager abilityManager;
 
     float currentRotation;
 
@@ -25,7 +26,9 @@ public class GoblinEnemySword : MonoBehaviour
         goblinRB = GetComponent<Rigidbody2D>();
         goblinCollider = GetComponent<CircleCollider2D>();
         targetingSystem = GetComponent<EntityTargetingSystem>();
+        abilityManager = GetComponent<EntityAbilityManager>();
         currentRotation = 0;
+
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class GoblinEnemySword : MonoBehaviour
                 LookToTarget();
                 if (Vector2.Distance(targetingSystem.target.transform.position, transform.position) < attackRange && canAttack)
                 {
-                    animator.SetTrigger("Attack");
+                    abilityManager.CastAbility(3);
                     StartCoroutine(SetAttackOnCoolDown(2f));
                 }
             }
