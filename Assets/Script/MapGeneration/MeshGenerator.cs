@@ -20,7 +20,8 @@ public class MeshGenerator : MonoBehaviour
 
     public SquareGrid squareGrid;
     public MeshFilter wallMeshFilter;
-    public GameObject TilemapGO;
+    public GameObject wallTilemapGO;
+    public GameObject caveTilemapGO;
     public Tilemap caveTilemap;
     public Tilemap wallTilemap;
 
@@ -296,7 +297,9 @@ public class MeshGenerator : MonoBehaviour
        
         */
 
-        TilemapGO.AddComponent<TilemapCollider2D>();
+        wallTilemapGO.AddComponent<TilemapCollider2D>();
+        caveTilemapGO.AddComponent<TilemapCollider2D>();
+        
 
 
     }
