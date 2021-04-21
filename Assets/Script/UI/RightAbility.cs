@@ -16,8 +16,6 @@ public class RightAbility : MonoBehaviour
 
     [SerializeField] private Sprite iconSprite;
 
-
-
     private void Start()
     {
         iconFill.fillAmount = 0;
@@ -45,7 +43,7 @@ public class RightAbility : MonoBehaviour
 
             if (isCooldown && Time.timeScale != 0)
             {
-                iconFill.fillAmount -= (1 / (_item.maxCooldownAbility1 * 100f/(100f + stats.currentSpellHaste))) * Time.deltaTime;
+                iconFill.fillAmount = _item.currentCooldownAbility1 / _item.maxCooldownAbility1;
                 if (iconFill.fillAmount <= 0)
                 {
                     iconFill.fillAmount = 0;

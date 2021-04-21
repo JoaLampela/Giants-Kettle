@@ -49,14 +49,6 @@ public class Player_Animations : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
             }
-            if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Special");
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("LeftAttack");
-            }
         }
 
 

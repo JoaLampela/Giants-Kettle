@@ -41,6 +41,7 @@ public class AbilityEvents : MonoBehaviour
     public void Activate()
     {
         _onActivate?.Invoke();
+        Debug.Log("Activated");
     }
 
     //Called when the ability doesn't reach a suitable target and fizzles

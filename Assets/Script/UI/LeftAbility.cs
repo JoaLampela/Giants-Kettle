@@ -44,7 +44,7 @@ public class LeftAbility : MonoBehaviour
 
             if (isCooldown && Time.timeScale != 0)
             {
-                iconFill.fillAmount -= (1 / (_item.maxCooldownAbility2 * 100f / (100f + stats.currentSpellHaste))) * Time.deltaTime;
+                iconFill.fillAmount = _item.currentCooldownAbility2/_item.maxCooldownAbility2;
                 if (iconFill.fillAmount <= 0)
                 {
                     iconFill.fillAmount = 0;
