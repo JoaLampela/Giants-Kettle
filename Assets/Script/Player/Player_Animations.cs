@@ -42,16 +42,6 @@ public class Player_Animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (usingStaff)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-        }
-
-
         if (!attacking)
             LookToMouse();
         else

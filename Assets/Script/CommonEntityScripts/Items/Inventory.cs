@@ -773,12 +773,14 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.Staff):
                     Debug.Log("Equip staff");
                     player_Animations.SwitchToStaff(weapon.inGameObject);
+                    StaffBasicAttack staffBasicAttack = gameObject.AddComponent<StaffBasicAttack>();
                     BigProjectile bigProjectile = gameObject.AddComponent<BigProjectile>();
                     abilityManager.SetAbility(2, bigProjectile);
                     NonProjectile nonProjectile = gameObject.AddComponent<NonProjectile>();
                     abilityManager.SetAbility(1, nonProjectile);
                     rightAbility.SetAbility(equippedItem, Hand.Right);
                     leftAbility.SetAbility(equippedItem, Hand.Left);
+                    abilityManager.SetAbility(4, staffBasicAttack);
                     break;
             }
         }

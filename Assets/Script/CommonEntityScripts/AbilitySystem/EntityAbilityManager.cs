@@ -30,6 +30,7 @@ public class EntityAbilityManager : MonoBehaviour
     public GameObject dash;
     public GameObject basicAttackOneHandedSword;
     public GameObject basicAttackTwoHandedSword;
+    public GameObject basicAttackStaff;
 
     public void CastAbility(int slot)
     {
