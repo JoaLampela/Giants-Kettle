@@ -10,7 +10,6 @@ public class Dash : MonoBehaviour, IAbility
     EntityEvents _entityEvents;
     [SerializeField] private int _spellSlot;
     private IAbilityTargetPosition targetPositionScript;
-    private WeaponObject dashItem;
     private Vector2 targetPosAtStart;
     private float dashTime = 0.10f;
     private Item dashItemContainer;
@@ -24,8 +23,7 @@ public class Dash : MonoBehaviour, IAbility
     {
         Subscribe();
         GetComponent<EntityAbilityManager>().SetAbility(3, this);
-        dashItem = GetComponent<Inventory>().dashItem;
-        dashItemContainer = new Item(dashItem);
+        
 
 
        
@@ -52,7 +50,10 @@ public class Dash : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        Debug.Log(slot + " " + dashItemContainer.currentCooldownAbility1);
+        if(dashItemContainer == null)
+        {
+            dashItemContainer = GetComponent<Inventory>().dashItem;
+        }
         if (dashItemContainer.currentCooldownAbility1 <= 0)
         {
             if (_spellSlot == slot)
@@ -101,6 +102,17 @@ public class Dash : MonoBehaviour, IAbility
     {
         return -1;
     }
+
+    public Item GetWeapon()
+    {
+        return null;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.indeterminate;
+    }
+
     private void Subscribe()
     {
         _entityEvents.OnCallBackCastAbility += Cast;

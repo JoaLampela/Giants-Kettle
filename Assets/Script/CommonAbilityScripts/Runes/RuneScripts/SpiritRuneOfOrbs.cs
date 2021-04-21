@@ -23,10 +23,12 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         Bow,
         Staff
     }
+
     public void SetDuplicateCountWeapon(int value)
     {
         duplicateCountWeapon = value;
     }
+    
     public void IncrementDuplicateCountWeapon(int amount)
     {
         duplicateCountWeapon += amount;
@@ -77,7 +79,6 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         else if (weaponType == IRuneScript.WeaponType.Bow) _weaponType = WeaponType.Bow;
         else if (weaponType == IRuneScript.WeaponType.Staff) _weaponType = WeaponType.Staff;
     }
-
     
     public void SetUpPermanentEffects()
     {
@@ -93,12 +94,12 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         if(duplicateCountArmor != 0)
         {
             GameObject projectile = RuneAssets.i.RuneOrbArmorProjectile;
-            _entityEvents.NewBuff("SpiritRuneOfOrbsArmor", EntityStats.BuffType.Health, duplicateCountArmor * 100);
+            _entityEvents.NewBuff("SpiritRuneOfOrbsArmor", EntityStats.BuffType.Health, duplicateCountArmor * 100); //TODO: Spell Haste
             projectile.GetComponent<AbilityEvents>().SetSource(gameObject);
 
             for(int i = 0; i < 2 + duplicateCountArmor; i++)
             {
-                projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
+                projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(3, 0, 0), Quaternion.identity, transform);
                 projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (2f + (float)duplicateCountArmor)));
                 projectiles.Add(projectile);
             }
@@ -106,14 +107,13 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         
         if(duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfOrbsWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("SpiritRuneOfOrbsWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5); //TODO: Decide on a better stat buff
         }
     }
 
     //Subs & Unsub -related Unity functions
     private void Start()
     {
-        Debug.Log("Spirit rune script added");
         if(gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();

@@ -97,11 +97,8 @@ public class BuffManager : MonoBehaviour
             StartCoroutine(buff.DestroyAfterTime(duration));
         }
     }
-
-
     private void OnDisable()
     {
         Unsubscribe();
     }
-
 }

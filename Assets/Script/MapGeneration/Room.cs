@@ -99,13 +99,50 @@ public class Room : IComparable<Room>
         hallWayTiles = new List<Coord>(); ;
         connectedRooms = new List<Room>();
         tiles = new List<Coord>();
-        for (int x = -(width) / 2 + centre.tileX; x < (width) / 2 + centre.tileX; x++)
+        int counter = 1;
+        Coord startingTile = new Coord(0, 0);
+        bool notFound = true;
+        while (notFound)
         {
-            for (int y = -(height) / 2 + centre.tileY; y < (height) / 2 + centre.tileY; y++)
+            for (int x = -counter + centre.tileX; (x < counter + centre.tileX) && notFound; x++)
             {
-                if (map[x, y] == 0) tiles.Add(new Coord(x, y));
+                for (int y = -counter + centre.tileY; (y < counter + centre.tileY) && notFound; y++)
+                {
+                    if (map[x, y] == 0)
+                    {
+                        startingTile = new Coord(x, y);
+                        notFound = false;
+                    }
+                }
             }
+            counter++;
         }
+
+        int[,] mapFlags = new int[map.GetLength(0), map.GetLength(1)];
+        Queue<Coord> queue = new Queue<Coord>();
+        queue.Enqueue(new Coord(startingTile.tileX, startingTile.tileY));
+        mapFlags[startingTile.tileX, startingTile.tileY] = 1;
+
+        Debug.Log("Starting Coord: x: " + startingTile.tileX + " y: " + startingTile.tileY);
+
+        while (queue.Count > 0)
+        {
+            Coord tile = queue.Dequeue();
+            tiles.Add(tile);
+            for (int x = tile.tileX - 1; x <= tile.tileX + 1; x++)
+                for (int y = tile.tileY - 1; y <= tile.tileY + 1; y++)
+                {
+                    if (y == tile.tileY || x == tile.tileX)
+                    {
+                        if (mapFlags[x, y] == 0 && map[x, y] == 0)
+                        {
+                            mapFlags[x, y] = 1;
+                            queue.Enqueue(new Coord(x, y));
+                        }
+                    }
+                }
+        }
+
         roomSize = tiles.Count;
         Debug.Log("Room size: " + roomSize);
         foreach (Coord tile in tiles)

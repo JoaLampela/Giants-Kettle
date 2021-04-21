@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EntityHealth : MonoBehaviour
@@ -6,6 +7,8 @@ public class EntityHealth : MonoBehaviour
     private EntityStats stats;
     public int health;
     private float oneHealth;
+    private bool fireTickOnCD = false;
+    private float timeBetweenFireTicks = 1f;
 
 
     private void Awake()
@@ -20,6 +23,23 @@ public class EntityHealth : MonoBehaviour
     private void Update()
     {
         RegenHealth();
+        
+
+        if(stats.isOnFire)
+        {
+            if(!fireTickOnCD)
+            {
+                fireTickOnCD = true;
+                StartCoroutine(fireTick());
+            }
+        }
+    }
+
+    private IEnumerator fireTick()
+    {
+        events.HitThis(new Damage(gameObject, (int)(stats.currentMaxHealth * 0.02f)));
+        yield return new WaitForSeconds(timeBetweenFireTicks);
+        fireTickOnCD = false;
     }
   
     private void Subscribe()
@@ -47,7 +67,7 @@ public class EntityHealth : MonoBehaviour
     private void DamageCalculation(Damage damage)
     {
         if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
-        TakeDamage((int)(damage._damage * GetDamageReduction()));
+        TakeDamage((int)(damage._damage * GetDamageReduction()), damage);
     }
 
     private float GetDamageReduction()
@@ -57,10 +77,14 @@ public class EntityHealth : MonoBehaviour
         return (armorBalanceValue / (armorBalanceValue + stats.currentArmor));
     }
 
-    private void TakeDamage(int damage)
+    private void TakeDamage(int damage, Damage damgeContainer)
     {
         events.LoseHealth(damage);
-        if(health - damage <= 0) events.Die();
+        if (health - damage <= 0)
+        {
+            events.Die(damgeContainer.source);
+            damgeContainer.source.GetComponent<EntityEvents>().KillEnemy(gameObject);
+        }
         else health -= damage;
 
     }
@@ -93,8 +117,6 @@ public class EntityHealth : MonoBehaviour
         if (health > stats.currentMaxHealth) health = stats.currentMaxHealth;
 
     }
-
-
     private void CheckIfEnoughToCast(int spellSlot, int amount)
     {
         if (health >= amount) events.CallBackCastAbility(spellSlot);

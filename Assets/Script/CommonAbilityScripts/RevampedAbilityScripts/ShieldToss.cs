@@ -100,6 +100,16 @@ public class ShieldToss : MonoBehaviour, IAbility
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
+    public Item GetWeapon()
+    {
+        return _weapon;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.right;
+    }
+
     private void Subscribe()
     {
         _entityEvents.OnCallBackCastAbility += Cast;

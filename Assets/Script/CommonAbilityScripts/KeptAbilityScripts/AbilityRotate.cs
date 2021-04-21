@@ -47,6 +47,4 @@ public class AbilityRotate : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
-
-
 }

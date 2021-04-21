@@ -7,6 +7,7 @@ public class AbilityEvents : MonoBehaviour
     [HideInInspector] public Vector2 _targetPositionAtStart;
     [HideInInspector] public Vector2 _targetPosition = new Vector2(0, 0);
     [HideInInspector] public Vector2 _targetVector = new Vector2(0, 0);
+    public IAbility iability;
     public int abilityScale;
 
     public int damageMultiplier;
@@ -23,6 +24,7 @@ public class AbilityEvents : MonoBehaviour
     public event Action _onActivate;
     public event Action _onInstantiated;
     public event Action _onDestroy;
+    public event Action<Damage, GameObject> _onDealDamage;
 
     private void Start()    
     {
@@ -39,6 +41,7 @@ public class AbilityEvents : MonoBehaviour
     public void Activate()
     {
         _onActivate?.Invoke();
+        Debug.Log("Activated");
     }
 
     //Called when the ability doesn't reach a suitable target and fizzles
@@ -69,6 +72,11 @@ public class AbilityEvents : MonoBehaviour
         _onDestroy?.Invoke();
     }
 
+    public void DealDamageEvent(Damage damage, GameObject target)
+    {
+        _onDealDamage?.Invoke(damage, target);
+    }
+
 
     public void DealDamage(GameObject target, int baseDamage, int trueDamage = 0)
     {
@@ -79,7 +87,9 @@ public class AbilityEvents : MonoBehaviour
                 if (target.GetComponent<EntityEvents>())
                 {
                     Debug.Log("Dealing damage " + baseDamage + " " + bonusFlatDamage + " " + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage + " " + damageMultiplier / 100f);
-                    target.GetComponent<EntityEvents>().HitThis(new Damage(_abilityCastSource, (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f), trueDamage + bonusFlatTrueDamage));
+                    Damage damage = new Damage(_abilityCastSource, (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f), trueDamage + bonusFlatTrueDamage);
+                    target.GetComponent<EntityEvents>().HitThis(damage);
+                    DealDamageEvent(damage, target);
                 }
             }
         }

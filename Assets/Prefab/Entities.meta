@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefab/Entities.meta
 guid: 5f705a6dada2b2843bc30ac95e6363b7
+=======
+guid: 0fb352b56313eb2488787b58798b8786
+>>>>>>> 1355f4347843800d68741cefc5a6e8606d8796d9:Assets/Animatons/Bow.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

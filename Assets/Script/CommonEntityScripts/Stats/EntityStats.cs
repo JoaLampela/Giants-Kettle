@@ -286,8 +286,6 @@ public class EntityStats : MonoBehaviour
                 }
                 break;
         }
-    }
-
-                                                                                    
+    }                                                                                  
 }
 

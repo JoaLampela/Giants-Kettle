@@ -19,15 +19,13 @@ public class Block : MonoBehaviour, IAbility
         throw new System.NotImplementedException();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public Item GetWeapon()
     {
-        
+        return null;
     }
 
-    // Update is called once per frame
-    void Update()
+    public IAbility.Hand GetHand()
     {
-        
+        return IAbility.Hand.left;
     }
 }

@@ -43,6 +43,8 @@ public class Sting2Handed : MonoBehaviour, IAbility
             if (_spellSlot == slot)
             {
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+               _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f/(100f + GetComponent<EntityStats>().currentSpellHaste);
+                Debug.Log("Stng2 " + _weapon.currentCooldownAbility1 + " " + _weapon.currentCooldownAbility2);
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 movementScript.StartAttackSlow();
                 playerAnimations.SetAttacking(true);
@@ -56,9 +58,9 @@ public class Sting2Handed : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        Debug.Log(_weapon._runeList.Length);
         GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().heavySting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        sting.GetComponent<AbilityEvents>().iability = this;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
@@ -113,6 +115,16 @@ public class Sting2Handed : MonoBehaviour, IAbility
     public void TryCast()
     {
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
+    }
+
+    public Item GetWeapon()
+    {
+        return _weapon;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.right;
     }
 
     private void Subscribe()

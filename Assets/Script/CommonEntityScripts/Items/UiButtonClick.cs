@@ -322,6 +322,4 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     {
         gameObject.SetActive(false);
     }
-
-    
 }

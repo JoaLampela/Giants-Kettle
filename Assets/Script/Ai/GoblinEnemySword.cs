@@ -42,7 +42,6 @@ public class GoblinEnemySword : MonoBehaviour
                 LookToTarget();
                 if (Vector2.Distance(targetingSystem.target.transform.position, transform.position) < attackRange && canAttack)
                 {
-                    Debug.Log("Attacked");
                     animator.SetTrigger("Attack");
                     StartCoroutine(SetAttackOnCoolDown(2f));
                 }

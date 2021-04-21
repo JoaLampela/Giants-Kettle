@@ -22,5 +22,5 @@ MonoBehaviour:
   weaponType: 0
   maxCooldownAbility1: 3
   currentCooldownAbility1: 0
-  maxCooldownAbility2: 0
-  currentCooldownAbility2: 30
+  maxCooldownAbility2: 3
+  currentCooldownAbility2: 0

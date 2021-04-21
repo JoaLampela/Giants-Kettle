@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class AbilityBar : MonoBehaviour
 {
-    public Image fill;
+    private Image dashIcon;
+    private Image leftIcon;
+    private Image rightIcon;
     private EntityEvents entityEvents;
     private AbilityEvents abilityEvents;
     private GameObject player;
-    private IAbility ability1;
-    private IAbility ability2;
+    private IAbility dash;
+    private IAbility left;
+    private IAbility right;
 
 
     private void Start()
@@ -27,6 +30,8 @@ public class AbilityBar : MonoBehaviour
 
     private void Update()
     {
-        ability1 = player.GetComponent<EntityAbilityManager>().ability1;
+        left = player.GetComponent<EntityAbilityManager>().ability1;
+        right = player.GetComponent<EntityAbilityManager>().ability2;
+        dash = player.GetComponent<EntityAbilityManager>().ability3;
     }
 }

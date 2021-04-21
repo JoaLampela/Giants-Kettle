@@ -18,6 +18,7 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             entityAbilityManager.CastAbility(1);
+            Debug.Log(" SelectAbility To cast ability 1");
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -26,6 +27,10 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             entityAbilityManager.CastAbility(3);
+        }
+        if(Input.GetMouseButtonDown(0))
+        {
+            entityAbilityManager.CastAbility(4);
         }
         
     }

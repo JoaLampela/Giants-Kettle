@@ -14,6 +14,7 @@ public class Player_Animations : MonoBehaviour
     [SerializeField] private GameObject leftHandWeapon;
 
     public float trueAttackSpeed = 1;
+    public bool isBurning = false;
 
     private Rigidbody2D playerRB;
     private Animator animator;
@@ -24,6 +25,7 @@ public class Player_Animations : MonoBehaviour
     private bool usingBow;
     private bool offHandUsingSingleHandedSword;
     private bool offHandUsingShield;
+    
 
     private bool attackOnCooldown;
 
@@ -31,7 +33,6 @@ public class Player_Animations : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         playerRB = GetComponent<Rigidbody2D>();
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
@@ -41,49 +42,6 @@ public class Player_Animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (usingSingleHandedSword)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-
-        }
-        if (usingTwoHandedSword)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-        }
-        if (usingStaff)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-            if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Special");
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("LeftAttack");
-            }
-        }
-        if (offHandUsingSingleHandedSword)
-        {
-            if (!attacking)
-            {
-                LeftHandLookOppositeToMouse();
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("LeftAttack");
-            }
-        }
-
-
         if (!attacking)
             LookToMouse();
         else

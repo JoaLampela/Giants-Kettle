@@ -40,7 +40,7 @@ public class EntityTeamManager : MonoBehaviour
         gameManager.AddToTeam(team, gameObject);
         stats.team = team;
     }
-    private void Die()
+    private void Die(GameObject source)
     {
         gameManager.RemoveFromTeam(stats.team, gameObject);
     }
