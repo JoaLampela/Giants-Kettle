@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TwoHandedBasicAttack : MonoBehaviour, IAbility
 {
-    private Player_Animations playerAnimations;
+    private IEntityAnimations playerAnimations;
     private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
@@ -25,7 +25,7 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
 
     private void Awake()
     {
-        playerAnimations = GetComponent<Player_Animations>();
+        playerAnimations = GetComponent<IEntityAnimations>();
         movementScript = GetComponent<MovementScript>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
@@ -67,7 +67,12 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject basicAttack = Instantiate(GetComponent<EntityAbilityManager>().basicAttackTwoHandedSword, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        Vector2 mouseDirection = Input.mousePosition;
+        Vector2 direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        float angle = Vector2.Angle(Vector2.up, direction);
+        float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
+        Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
+        GameObject basicAttack = Instantiate(GetComponent<EntityAbilityManager>().basicAttackTwoHandedSword, abilityManager.rightHandGameObject.transform.position, rotation);
         basicAttack.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         basicAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
         basicAttack.GetComponent<AbilityEvents>().UseAbility();

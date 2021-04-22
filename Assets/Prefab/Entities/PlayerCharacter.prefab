@@ -502,7 +502,7 @@ MonoBehaviour:
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 0
-  baseAttackSpeed: 1
+  baseAttackSpeed: 0
   currentMaxHealth: 0
   currentMaxSpirit: 0
   currentHealthRegen: 0
@@ -788,6 +788,7 @@ MonoBehaviour:
   dash: {fileID: 0}
   basicAttackOneHandedSword: {fileID: 0}
   basicAttackTwoHandedSword: {fileID: 0}
+  basicAttackStaff: {fileID: 0}
 --- !u!114 &8698435716602996018
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,11 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
     private List<GameObject> projectiles;
+    private Item containerItem;
+    private IRuneScript.Hand _hand;
+
+    [SerializeField] private int duplicateCountWeaponRight = 0;
+    [SerializeField] private int duplicateCountWeaponLeft = 0;
 
     //Always needed functions
     public enum WeaponType
@@ -27,14 +32,32 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
         duplicateCountWeapon = value;
     }
 
-    public void IncrementDuplicateCountWeapon(int amount)
+    public void IncrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight += amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft += amount;
+        }
+
         duplicateCountWeapon += amount;
         if (_entityEvents != null) SetUpPermanentEffects();
     }
 
-    public void DecrementDuplicateCountWeapon(int amount)
+    public void DecrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight -= amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft -= amount;
+        }
+
         duplicateCountWeapon -= amount;
     }
 
@@ -170,5 +193,21 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
     public void UnsubscribeEntity()
     {
         _entityEvents.OnHitThis -= ActivateArmorEffect;
+    }
+
+    public void SetContainerItem(Item item, IRuneScript.Hand hand)
+    {
+        containerItem = item;
+        _hand = hand;
+    }
+
+    public int GetDuplicateCountWeaponRight()
+    {
+        return duplicateCountWeaponRight;
+    }
+
+    public int GetDuplicateCountWeaponLeft()
+    {
+        return duplicateCountWeaponLeft;
     }
 }

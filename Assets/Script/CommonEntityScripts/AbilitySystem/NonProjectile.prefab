@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5497203935767387426}
   - component: {fileID: 6053393832105171858}
   - component: {fileID: 4255855881907744366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4815,7 +4815,7 @@ GameObject:
   - component: {fileID: 8203121057477101579}
   - component: {fileID: 6140189233669771799}
   - component: {fileID: 2681258790343854420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9623,9 +9623,9 @@ GameObject:
   - component: {fileID: 5212762983624657166}
   - component: {fileID: 3120963451672044199}
   - component: {fileID: 6877835718912988183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NonProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9815,6 +9815,10 @@ PrefabInstance:
     - target: {fileID: 7266867321039263997, guid: 197837610ab09804594be3ad30794045, type: 3}
       propertyPath: m_Name
       value: ef_20_blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266867321039263997, guid: 197837610ab09804594be3ad30794045, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7266867321039263997, guid: 197837610ab09804594be3ad30794045, type: 3}
       propertyPath: m_IsActive

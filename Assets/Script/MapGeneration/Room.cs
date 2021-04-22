@@ -123,8 +123,6 @@ public class Room : IComparable<Room>
         queue.Enqueue(new Coord(startingTile.tileX, startingTile.tileY));
         mapFlags[startingTile.tileX, startingTile.tileY] = 1;
 
-        Debug.Log("Starting Coord: x: " + startingTile.tileX + " y: " + startingTile.tileY);
-
         while (queue.Count > 0)
         {
             Coord tile = queue.Dequeue();
@@ -144,7 +142,6 @@ public class Room : IComparable<Room>
         }
 
         roomSize = tiles.Count;
-        Debug.Log("Room size: " + roomSize);
         foreach (Coord tile in tiles)
         {
             for (int x = tile.tileX - 1; x <= tile.tileX + 1; x++)

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -7857102348007421130}
   - component: {fileID: -787154071761557027}
   - component: {fileID: 3711669226398990478}
-  - component: {fileID: -5737632313622840735}
   - component: {fileID: 6288458360073050419}
   - component: {fileID: 4182595577049257460}
   - component: {fileID: 492772646875630049}
@@ -58,8 +57,7 @@ MonoBehaviour:
   _targetPositionAtStart: {x: 0, y: 0}
   _targetPosition: {x: 0, y: 0}
   _targetVector: {x: 0, y: 0}
-  hitBoxScale: 0
-  spriteScale: 0
+  abilityScale: 0
   damageMultiplier: 100
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
@@ -109,28 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   orbitSpeed: -360
+  source: {fileID: 0}
   triggerDistance: 6
---- !u!50 &-5737632313622840735
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6274655148876385004}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  sourcePos: {x: 0, y: 0}
 --- !u!114 &6288458360073050419
 MonoBehaviour:
   m_ObjectHideFlags: 0

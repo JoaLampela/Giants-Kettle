@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Humanoid_Animations : MonoBehaviour
+public class Humanoid_Animations : MonoBehaviour, IEntityAnimations
 {
     public bool attacking { private set; get; }
     public Vector2 lookDirection { private set; get; }
@@ -179,5 +179,10 @@ public class Humanoid_Animations : MonoBehaviour
         attackOnCooldown = true;
         yield return new WaitForSeconds(CoolDown);
         attackOnCooldown = false;
+    }
+
+    public void SetAttacking(bool value)
+    {
+        attacking = value;
     }
 }

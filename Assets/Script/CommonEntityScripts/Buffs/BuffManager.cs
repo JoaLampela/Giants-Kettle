@@ -36,7 +36,6 @@ public class BuffManager : MonoBehaviour
     //Called from Buff-script when new buff is created or old one has been deleted
     public void UpdateActiveBuffs(string sourceId, BuffClass buff)
     {
-        Debug.Log("Updating buffs " + sourceId + " buff " + buff._id);
 
         //if buff with this sourceId is not present in dictionary, new entry is created with this sourceId
         if(!activeBuffs.ContainsKey(sourceId))
@@ -69,7 +68,6 @@ public class BuffManager : MonoBehaviour
             if (activeBuffs[sourceId]._value == buff._value)
             {
                 stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
-                Debug.Log("Buff removed");
             }
             activeBuffs.Remove(sourceId);
         }

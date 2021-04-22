@@ -45,7 +45,7 @@ public class GoblinEnemySword : MonoBehaviour
                 LookToTarget();
                 if (Vector2.Distance(targetingSystem.target.transform.position, transform.position) < attackRange && canAttack)
                 {
-                    abilityManager.CastAbility(3);
+                    abilityManager.CastAbility(4);
                     StartCoroutine(SetAttackOnCoolDown(2f));
                 }
             }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour, IAbility
 {
-    private Player_Animations playerAnimations;
-    private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
     [SerializeField] private int _spellSlot;
@@ -32,8 +30,6 @@ public class Dash : MonoBehaviour, IAbility
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerAnimations = GetComponent<Player_Animations>();
-        movementScript = GetComponent<MovementScript>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
         _entityEvents = GetComponent<EntityEvents>();
@@ -52,7 +48,8 @@ public class Dash : MonoBehaviour, IAbility
     {
         if(dashItemContainer == null)
         {
-            dashItemContainer = GetComponent<Inventory>().dashItem;
+            if(GetComponent<Inventory>()) dashItemContainer = GetComponent<Inventory>().dashItem;
+            else if(GetComponent<AiInventory>()) dashItemContainer = GetComponent<AiInventory>().dashItem;
         }
         if (dashItemContainer.currentCooldownAbility1 <= 0)
         {
@@ -76,8 +73,6 @@ public class Dash : MonoBehaviour, IAbility
         dash.GetComponent<AbilityEvents>().SetSource(gameObject);
         dash.GetComponent<AbilityEvents>().UseAbility();
         StartCoroutine(DashEnumerator(dashTime));
-        movementScript.StopAttackSlow();
-        playerAnimations.SetAttacking(false);
     }
 
     private void CannotAffordCast(int slot)

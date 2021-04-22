@@ -10,7 +10,6 @@ public interface IAbility
         left,
         indeterminate
     }
-
     public void SetSlot(int slot);
     public void TryCast();
 

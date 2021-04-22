@@ -64,20 +64,18 @@ public class BigProjectile : MonoBehaviour, IAbility
         Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
         GameObject bigProjectile = Instantiate(GetComponent<EntityAbilityManager>().bigProjectile, (Vector2)transform.position + direction * 2, rotation);
         bigProjectile.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
-        bigProjectile.GetComponent<AbilityEvents>().iability = this;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
             {
 
-                if (!bigProjectile.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType())) bigProjectile.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                IRuneScript runeScript = (IRuneScript)bigProjectile.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-
-                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic) runeScript.IncrementDuplicateCountWeapon(1);
-
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined) runeScript.IncrementDuplicateCountWeapon(2);
-
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected) runeScript.IncrementDuplicateCountWeapon(3);
+                if (!bigProjectile.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
+                {
+                    bigProjectile.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScript = (IRuneScript)bigProjectile.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScriptOnPlayer = (IRuneScript)GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    runeScript.SetDuplicateCountWeapon(runeScriptOnPlayer.GetDuplicateCountWeapon());
+                }
             }
         }
         bigProjectile.GetComponent<AbilityEvents>().SetSource(gameObject);

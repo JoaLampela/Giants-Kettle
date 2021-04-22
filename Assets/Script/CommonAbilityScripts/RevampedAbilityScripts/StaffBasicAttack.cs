@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StaffBasicAttack : MonoBehaviour, IAbility
 {
-    private Player_Animations playerAnimations;
+    private IEntityAnimations playerAnimations;
     private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
@@ -26,7 +26,7 @@ public class StaffBasicAttack : MonoBehaviour, IAbility
 
     private void Awake()
     {
-        playerAnimations = GetComponent<Player_Animations>();
+        playerAnimations = GetComponent<IEntityAnimations>();
         movementScript = GetComponent<MovementScript>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();

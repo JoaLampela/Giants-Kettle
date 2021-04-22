@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpinAttack : MonoBehaviour, IAbility
 {
-    private Player_Animations playerAnimations;
+    private IEntityAnimations playerAnimations;
     private Animator animator;
     EntityEvents _entityEvents;
     EntityAbilityManager abilityManager;
@@ -22,7 +22,7 @@ public class SpinAttack : MonoBehaviour, IAbility
 
     private void Awake()
     {
-        playerAnimations = GetComponent<Player_Animations>();
+        playerAnimations = GetComponent<IEntityAnimations>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -54,32 +54,26 @@ public class SpinAttack : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().spinAttack, transform.position, abilityManager.rightHandGameObject.transform.rotation);
-        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        GameObject spinAttack = Instantiate(GetComponent<EntityAbilityManager>().spinAttack, transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        spinAttack.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+
+        
+
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
             {
-
-                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType())) sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-
-                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
+                if (!spinAttack.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
                 {
-                    runeScript.IncrementDuplicateCountWeapon(1);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(2);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(3);
+                    spinAttack.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScript = (IRuneScript)spinAttack.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScriptOnPlayer = (IRuneScript)GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    runeScript.SetDuplicateCountWeapon(runeScriptOnPlayer.GetDuplicateCountWeapon());
                 }
             }
         }
-        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-        sting.GetComponent<AbilityEvents>().UseAbility();
+        spinAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
+        spinAttack.GetComponent<AbilityEvents>().UseAbility();
         playerAnimations.SetAttacking(false);
     }
 

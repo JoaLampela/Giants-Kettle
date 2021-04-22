@@ -76,8 +76,6 @@ public class EntityAbilityManager : MonoBehaviour
 
     public void SetAbility(int slot, IAbility ability)
     {
-        Debug.Log("Ability Set: " + slot);
-
         switch (slot) 
         {
             case 1:

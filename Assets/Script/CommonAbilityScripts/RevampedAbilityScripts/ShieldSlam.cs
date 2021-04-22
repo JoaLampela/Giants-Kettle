@@ -50,32 +50,24 @@ public class ShieldSlam : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().shieldSlam, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
-        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        GameObject shieldSlam = Instantiate(GetComponent<EntityAbilityManager>().shieldSlam, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        shieldSlam.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
             {
 
-                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType())) sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-
-                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
+                if (!shieldSlam.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
                 {
-                    runeScript.IncrementDuplicateCountWeapon(1);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(2);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(3);
+                    shieldSlam.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScript = (IRuneScript)shieldSlam.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScriptOnPlayer = (IRuneScript)GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    runeScript.SetDuplicateCountWeapon(runeScriptOnPlayer.GetDuplicateCountWeapon());
                 }
             }
         }
-        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-        sting.GetComponent<AbilityEvents>().UseAbility();
+        shieldSlam.GetComponent<AbilityEvents>().SetSource(gameObject);
+        shieldSlam.GetComponent<AbilityEvents>().UseAbility();
     }
 
     private void CannotAffordCast(int slot)

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Player_Animations : MonoBehaviour
+public class Player_Animations : MonoBehaviour, IEntityAnimations
 {
     public bool attacking { private set; get; }
     public Vector2 lookDirection { private set; get; }
@@ -12,6 +12,7 @@ public class Player_Animations : MonoBehaviour
     public GameObject leftHandContainer;
     [SerializeField] private GameObject rightHandWeapon;
     [SerializeField] private GameObject leftHandWeapon;
+    private EntityStats stats;
 
     public float trueAttackSpeed = 1;
     public bool isBurning = false;
@@ -36,6 +37,7 @@ public class Player_Animations : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
+        stats = GetComponent<EntityStats>();
         animator.SetFloat("TrueAttackSpeed", trueAttackSpeed);
     }
 
@@ -48,6 +50,7 @@ public class Player_Animations : MonoBehaviour
         {
             LookDirectionUpdate();
         }
+        trueAttackSpeed = stats.currentAttackSpeed / 100;
     }
 
 

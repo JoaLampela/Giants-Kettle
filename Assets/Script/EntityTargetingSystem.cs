@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityTargetingSystem : MonoBehaviour
+public class EntityTargetingSystem : MonoBehaviour, IAbilityTargetPosition
 {
     [SerializeField] float aggroRange = 10; 
     public GameObject target;
@@ -184,5 +184,10 @@ public class EntityTargetingSystem : MonoBehaviour
     private void OnDisable()
     {
         Unsubscribe();
+    }
+
+    public Vector2 GetTargetPosition()
+    {
+        return target.transform.position;
     }
 }

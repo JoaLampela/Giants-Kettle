@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 3706040177357316448}
   - component: {fileID: 3251229112990383395}
   - component: {fileID: 3390920854865766816}
+  - component: {fileID: 5965364300633923012}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
   m_TagString: Untagged
@@ -704,7 +705,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 100
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -831,8 +832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9264487c11a192439a0d7c98e2ce48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightHandGameObject: {fileID: 0}
-  leftHandGameObject: {fileID: 0}
+  rightHandGameObject: {fileID: 2999592408897162214}
+  leftHandGameObject: {fileID: 2999592409731149083}
   sting: {fileID: 4807899679787710312, guid: dc31245c363e03b4daa1035d9a90dd2f, type: 3}
   heavySting: {fileID: 6625174652820836543, guid: f015971a80ceec448a32d8bf95c3dbfb, type: 3}
   spinAttack: {fileID: 5611731055022139601, guid: f8fc6f8f109c343448e85ec7e1a24113, type: 3}
@@ -874,7 +875,7 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 5
   reachedEndOfPath: 0
-  entitySpeed: 10
+  entitySpeed: 3
   circleWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1016,7 +1017,7 @@ MonoBehaviour:
   baseSpeed: 1
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 0
+  basePhysicalDamage: 10
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 0
@@ -1081,6 +1082,7 @@ MonoBehaviour:
   equippedArmorRunes: []
   rightHandWeapon: {fileID: 0}
   leftHandWeapon: {fileID: 0}
+  dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons:
   - {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
   - {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
@@ -1092,3 +1094,16 @@ MonoBehaviour:
   maxRuneCount: 3
   canDualWield: 1
   humanoid_Animations: {fileID: 0}
+--- !u!114 &5965364300633923012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ca6e6bfc2bcc44f995e289f7d3cc9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spellSlot: 3

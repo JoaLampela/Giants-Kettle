@@ -37,7 +37,6 @@ public class LeftAbility : MonoBehaviour
             if (_item.currentCooldownAbility2 > 0) usedLeftAbility = true;
             if (isCooldown == false && Time.timeScale != 0 && usedLeftAbility)
             {
-                Debug.Log("Used left");
                 isCooldown = true;
                 iconFill.fillAmount = 1;
             }

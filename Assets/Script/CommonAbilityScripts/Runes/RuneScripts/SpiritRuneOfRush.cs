@@ -10,8 +10,14 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
+
+    [SerializeField] private int duplicateCountWeaponRight = 0;
+    [SerializeField] private int duplicateCountWeaponLeft = 0;
+
     private List<GameObject> projectiles;
-    private IAbility iability;
+    private Item containerItem;
+    private IRuneScript.Hand _hand;
+
 
     //Always needed functions
     public enum WeaponType
@@ -28,15 +34,85 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
         duplicateCountWeapon = value;
     }
 
-    public void IncrementDuplicateCountWeapon(int amount)
+    public void IncrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
+        if(hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight += amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft += amount;
+        }
+
         duplicateCountWeapon += amount;
         if (_entityEvents != null) SetUpPermanentEffects();
+        Debug.Log("HAND " + _hand);
+        if (_hand == IRuneScript.Hand.right || _hand == IRuneScript.Hand.dual)
+        {
+            float oldCdReduction;
+            if (2 * (duplicateCountWeapon - amount) == 0) oldCdReduction = 0;
+            else oldCdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1 / ((2f / 3f) * (duplicateCountWeapon - amount));
+            Debug.Log((float)containerItem.baseMaxCooldownAbility1 + " / " + "(1.26f * " + duplicateCountWeapon);
+            float cdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1/((2f/3f) * duplicateCountWeapon);
+            cdReduction -= oldCdReduction;
+            Debug.Log("CD reduction right by " + cdReduction);
+            containerItem.maxCooldownAbility1 -= cdReduction;
+        }
+        if (_hand == IRuneScript.Hand.left || _hand == IRuneScript.Hand.dual)
+        {
+            float oldCdReduction;
+            if (2 * (duplicateCountWeapon - amount) == 0) oldCdReduction = 0;
+            else oldCdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * (duplicateCountWeapon - amount));
+            float cdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * (duplicateCountWeapon));
+            cdReduction -= oldCdReduction;
+            Debug.Log("CD reduction left by " + cdReduction);
+            containerItem.maxCooldownAbility2 -= cdReduction;
+        }
     }
 
-    public void DecrementDuplicateCountWeapon(int amount)
+    public void DecrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight -= amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft -= amount;
+        }
+
         duplicateCountWeapon -= amount;
+        Debug.Log(duplicateCountWeapon);
+        if (_hand == IRuneScript.Hand.right || _hand == IRuneScript.Hand.dual)
+        {
+
+            float oldCdReduction;
+            Debug.Log(duplicateCountWeapon);
+            
+            oldCdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1 / ((2f / 3f) * (duplicateCountWeapon + amount));
+            float cdReduction;
+            if (2 * duplicateCountWeapon == 0) cdReduction = 0;
+            else cdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1 / ((2f / 3f) * duplicateCountWeapon);
+            
+            oldCdReduction -= cdReduction;
+            Debug.Log("CD increased right by " + oldCdReduction);
+            containerItem.maxCooldownAbility1 += oldCdReduction;
+        }
+        if (_hand == IRuneScript.Hand.left || _hand == IRuneScript.Hand.dual)
+        {
+            float oldCdReduction;
+            
+            oldCdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * (duplicateCountWeapon + amount));
+            float cdReduction;
+            if (2 * duplicateCountWeapon == 0) cdReduction = 0;
+            else cdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * duplicateCountWeapon);
+            oldCdReduction -= cdReduction;
+            Debug.Log("CD increased left by " + oldCdReduction);
+            containerItem.maxCooldownAbility2 += oldCdReduction;
+        }
+
+        
     }
 
     public void IncrementDuplicateCountArmor(int amount)
@@ -103,21 +179,12 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();
-        }
 
+
+        }
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-            iability = _abilityEvents.iability;
-
-            if (iability.GetHand() == IAbility.Hand.right)
-            {
-                iability.GetWeapon().currentCooldownAbility1 = iability.GetWeapon().currentCooldownAbility1 / (2 * duplicateCountWeapon);
-            }
-            if (iability.GetHand() == IAbility.Hand.left)
-            {
-                iability.GetWeapon().currentCooldownAbility2 = iability.GetWeapon().currentCooldownAbility2 / (2 * duplicateCountWeapon);
-            }
             _abilityEvents.damageMultiplier = _abilityEvents.damageMultiplier / (2 * duplicateCountWeapon);
         }
 
@@ -159,7 +226,7 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
 
     public void ActivateWeaponEffect(Damage damage, GameObject target)
     {
-        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)(duplicateCountWeapon * 500.00f * (damage._damage + damage._trueDamage)));
+
     }
 
     //Subs and Unsubs
@@ -183,5 +250,22 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
     public void UnsubscribeEntity()
     {
 
+    }
+
+    public void SetContainerItem(Item item, IRuneScript.Hand hand)
+    {
+        Debug.Log("Setting container item");
+        containerItem = item;
+        _hand = hand;
+    }
+
+    public int GetDuplicateCountWeaponRight()
+    {
+        return duplicateCountWeaponRight;
+    }
+
+    public int GetDuplicateCountWeaponLeft()
+    {
+        return duplicateCountWeaponLeft;
     }
 }

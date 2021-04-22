@@ -90,6 +90,7 @@ public class EntityHealth : MonoBehaviour
     }
     private void GainHealth(int amount)
     {
+        Debug.Log("Gained health");
         if ((health + amount) > stats.currentMaxHealth)
         {
             events.GainHealth(stats.currentMaxHealth - health);

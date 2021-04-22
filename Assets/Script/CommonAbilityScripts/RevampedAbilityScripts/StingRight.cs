@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StingRight : MonoBehaviour, IAbility
 {
-    private Player_Animations playerAnimations;
+    private IEntityAnimations playerAnimations;
     private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
@@ -24,7 +24,8 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void Awake()
     {
-        playerAnimations = GetComponent<Player_Animations>();
+        movementScript = GetComponent<MovementScript>();
+        playerAnimations = GetComponent<IEntityAnimations>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -58,20 +59,17 @@ public class StingRight : MonoBehaviour, IAbility
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
         GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
-        sting.GetComponent<AbilityEvents>().iability = this;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
             {
-
-                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType())) sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-
-                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic) runeScript.IncrementDuplicateCountWeapon(1);
-
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined) runeScript.IncrementDuplicateCountWeapon(2);
-                
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected) runeScript.IncrementDuplicateCountWeapon(3);
+                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
+                {
+                    sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScriptOnPlayer = (IRuneScript)GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    runeScript.SetDuplicateCountWeapon(runeScriptOnPlayer.GetDuplicateCountWeaponRight());
+                }
             }
         }
         sting.GetComponent<AbilityEvents>().SetSource(gameObject);

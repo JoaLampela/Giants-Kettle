@@ -13,6 +13,11 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
     private List<GameObject> projectiles;
+    private Item containerItem;
+    private IRuneScript.Hand _hand;
+
+    [SerializeField] private int duplicateCountWeaponRight = 0;
+    [SerializeField] private int duplicateCountWeaponLeft = 0;
 
     //Always needed functions
     public enum WeaponType
@@ -29,13 +34,31 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         duplicateCountWeapon = value;
     }
     
-    public void IncrementDuplicateCountWeapon(int amount)
+    public void IncrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight += amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft += amount;
+        }
+
         duplicateCountWeapon += amount;
     }
 
-    public void DecrementDuplicateCountWeapon(int amount)
+    public void DecrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight -= amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft -= amount;
+        }
+
         duplicateCountWeapon -= amount;
     }
 
@@ -162,6 +185,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         for (int i = 0; i < duplicateCountWeapon; i++)
         {
             projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
+            projectile.GetComponent<AbilityHoamToClosestEnemy>().source = gameObject;
             projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (float)duplicateCountWeapon));
         }
     }
@@ -185,5 +209,26 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     public void UnsubscribeEntity()
     {
         //_entityEvents.OnCastAbility -= DoStuffOnCastAbility;
+    }
+
+    public void SetContainerItem(Item item)
+    {
+        containerItem = item;
+    }
+
+    public void SetContainerItem(Item item, IRuneScript.Hand hand)
+    {
+        containerItem = item;
+        _hand = hand;
+    }
+
+    public int GetDuplicateCountWeaponRight()
+    {
+        return duplicateCountWeaponRight;
+    }
+
+    public int GetDuplicateCountWeaponLeft()
+    {
+        return duplicateCountWeaponLeft;
     }
 }
