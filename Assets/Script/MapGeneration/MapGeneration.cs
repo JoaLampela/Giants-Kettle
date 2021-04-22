@@ -344,7 +344,7 @@ public class MapGeneration : MonoBehaviour
         int longest = Mathf.Abs(dx);
         int shortest = Mathf.Abs(dy);
 
-        if (longest < shortest)
+        if (longest <= shortest)
         {
             inverted = true;
             longest = Mathf.Abs(dy);
@@ -354,7 +354,7 @@ public class MapGeneration : MonoBehaviour
             gradientStep = System.Math.Sign(dx);
         }
         int gradientAccumulation = longest / 2;
-        for (int i = 0; i < longest; i++)
+        for (int i = 0; i <= longest; i++)
         {
             line.Add(new Coord(x, y));
 
