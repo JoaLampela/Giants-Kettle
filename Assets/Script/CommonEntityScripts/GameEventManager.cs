@@ -7,7 +7,7 @@ public class GameEventManager : MonoBehaviour
 {
     public static GameEventManager Instance { get; private set; }
 
-
+    public int globalLevel = 0;
     public GameObject player;
     public float time;
     public float combatDuration;
@@ -33,9 +33,13 @@ public class GameEventManager : MonoBehaviour
     public bool playerLevelUpScreenVisible = false;
     public GameObject LevelUpScreen;
     public TextMeshProUGUI levelPointsText;
+
+    public TextMeshProUGUI gameTimeText;
+
     private void Update()
     {
         time += Time.deltaTime;
+        globalLevel = (int)time / 100 + 1;
         if (combatOn) combatDuration += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible)
@@ -52,7 +56,41 @@ public class GameEventManager : MonoBehaviour
             Debug.Log("CLOSED");
         }
         levelPointsText.text = playerLevelUpPoints.ToString();
+
+        UpdateGameTimer();
     }
+
+    private void UpdateGameTimer()
+    {
+        int hours;
+        int mins;
+        int seconds;
+
+        
+        mins = (int)(((int)time / 60f));
+        seconds = (int)time - mins*60;
+        hours = (int)(mins / 60f);
+        mins -= hours * 60;
+        if(hours > 99)
+        {
+            mins = 42;
+            hours = 69;
+            seconds = 00;
+        }
+        string hoursString;
+        if (hours.ToString().Length == 1) hoursString = "0" + hours.ToString();
+        else hoursString = hours.ToString();
+
+        string minutesString;
+        if (mins.ToString().Length == 1) minutesString = "0" + mins.ToString();
+        else minutesString = mins.ToString();
+
+        string secondsString;
+        if (seconds.ToString().Length == 1) secondsString = "0" + seconds.ToString();
+        else secondsString = seconds.ToString();
+        gameTimeText.text = hoursString + ":" + minutesString + ":" + secondsString;
+    }
+
     public void ReducePlayerLevelUpPoints()
     {
         playerLevelUpPoints--;

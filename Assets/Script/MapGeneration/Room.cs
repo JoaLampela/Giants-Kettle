@@ -163,7 +163,7 @@ public class Room : IComparable<Room>
 
     public void RoomAction()
     {
-        Debug.Log("RoomAction in room type: " + roomType);
+        //Debug.Log("RoomAction in room type: " + roomType);
         if (roomObject.GetComponent<CombatRoomScript>())
             roomObject.GetComponent<CombatRoomScript>().StartCombat();
 

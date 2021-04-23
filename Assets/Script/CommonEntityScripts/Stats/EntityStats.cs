@@ -7,6 +7,8 @@ public class EntityStats : MonoBehaviour
     GameEventManager gameEventManager;
     EntityEvents events;
 
+    public int level;
+
     [Header("0 = neutral, 1 = AI, 2 = Player")]
     public int team = 0;
 
@@ -31,24 +33,24 @@ public class EntityStats : MonoBehaviour
     public int baseAttackSpeed = 1;
 
     [Header("current resourses")]
-    public int currentMaxHealth;
-    public int currentMaxSpirit;
+    [HideInInspector] public int currentMaxHealth;
+    [HideInInspector] public int currentMaxSpirit;
 
     [Header("current resourse regens")]
-    public int currentHealthRegen;
-    public int currentSpiritRegen;
+    [HideInInspector] public int currentHealthRegen;
+    [HideInInspector] public int currentSpiritRegen;
 
     [Header("current movement speed stats")]
-    public int currentSpeed;
-    public int currentSlow;
-    public int currentTenacity;
+    [HideInInspector] public int currentSpeed;
+    [HideInInspector] public int currentSlow;
+    [HideInInspector] public int currentTenacity;
 
     [Header("current combat stats")]
-    public int currentPhysicalDamage;
-    public int currentCriticalStrikeChance;
-    public int currentSpellHaste;
-    public int currentArmor;
-    public int currentAttackSpeed;
+    [HideInInspector] public int currentPhysicalDamage;
+    [HideInInspector] public int currentCriticalStrikeChance;
+    [HideInInspector] public int currentSpellHaste;
+    [HideInInspector] public int currentArmor;
+    [HideInInspector] public int currentAttackSpeed;
 
 
     //Total Stat Multipliers
@@ -88,6 +90,8 @@ public class EntityStats : MonoBehaviour
     }
     private void Start()
     {
+        level = gameEventManager.globalLevel;
+
         UpdateMaxHealth();
         UpdateMaxSpirit();
         UpdateHealthRegen();

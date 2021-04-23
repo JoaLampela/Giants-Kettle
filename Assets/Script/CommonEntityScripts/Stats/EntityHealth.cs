@@ -66,14 +66,16 @@ public class EntityHealth : MonoBehaviour
 
     private void DamageCalculation(Damage damage)
     {
+        Debug.Log(damage._damage);
         if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
         TakeDamage((int)(damage._damage * GetDamageReduction()), damage);
+        Debug.Log(GetDamageReduction());
     }
 
     private float GetDamageReduction()
     {
         //To be adjusted later
-        int armorBalanceValue = 100;
+        float armorBalanceValue = 100f;
         return (armorBalanceValue / (armorBalanceValue + stats.currentArmor));
     }
 

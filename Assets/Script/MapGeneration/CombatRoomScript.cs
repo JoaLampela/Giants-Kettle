@@ -18,7 +18,7 @@ public class CombatRoomScript : MonoBehaviour
     }
     public void EndCombat()
     {
-        Debug.Log("Ending combat");
+        //Debug.Log("Ending combat");
         GetComponent<DoorScript>().OpenDoors();
     }
 

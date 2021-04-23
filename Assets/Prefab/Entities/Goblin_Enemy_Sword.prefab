@@ -665,6 +665,7 @@ GameObject:
   - component: {fileID: 3251229112990383395}
   - component: {fileID: 3390920854865766816}
   - component: {fileID: 5965364300633923012}
+  - component: {fileID: 4319518181496570747}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
   m_TagString: Untagged
@@ -1018,19 +1019,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   team: 1
-  baseHealth: 100
-  baseSpirit: 10
-  baseHealthRegen: 10
-  baseSpiritRegen: 100
+  baseHealth: 200
+  baseSpirit: 0
+  baseHealthRegen: 60
+  baseSpiritRegen: 0
   baseSpeed: 1
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 10
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
-  baseArmor: 0
-  baseAttackSpeed: 1
+  baseArmor: 30
+  baseAttackSpeed: 0
   currentMaxHealth: 0
   currentMaxSpirit: 0
   currentHealthRegen: 0
@@ -1116,3 +1118,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spellSlot: 3
+--- !u!114 &4319518181496570747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPerLevel: 100
+  spiritPerLevel: 0
+  healthRegenPerLevel: 30
+  spiritRegenPerLevel: 0
+  physicalDamagePerLevel: 10
+  armorPerLevel: 10

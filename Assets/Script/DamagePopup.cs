@@ -36,7 +36,6 @@ public class DamagePopup : MonoBehaviour
         float fontSize = minDamageFontSize += (int)(((float)(maxDamageSize - minDamageFontSize) / maxDamageSizeDamage) * damage);
         if (isCriticalHit) fontSize += (0.5f * fontSize);
         if(fontSize > maxDamageSize) fontSize = maxDamageSize;
-        Debug.Log(fontSize);
         return (int)fontSize;
     }
 
