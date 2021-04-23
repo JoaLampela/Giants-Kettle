@@ -19,6 +19,7 @@ public class Room : IComparable<Room>
     public Room() { }
     protected int width;
     protected int height;
+    public GameObject roomObject;
     public Room(List<Coord> roomTiles, int[,] map)
     {
         isMainRoom = false;
@@ -88,6 +89,7 @@ public class Room : IComparable<Room>
         {
             if (map[wallEdgeTile.tileX, wallEdgeTile.tileY] != 1)
             {
+                hallWayTiles.Add(wallEdgeTile);
                 map[wallEdgeTile.tileX, wallEdgeTile.tileY] = type;
             }
         }
@@ -157,5 +159,13 @@ public class Room : IComparable<Room>
             }
         }
         Debug.Log("Roomstats\nRoom size: " + roomSize + "\nEdge tiles: " + edgeTiles.Count + "\nEdge wall tiles: " + edgeWallTiles.Count);
+    }
+
+    public void RoomAction()
+    {
+        Debug.Log("RoomAction in room type: " + roomType);
+        if (roomObject.GetComponent<CombatRoomScript>())
+            roomObject.GetComponent<CombatRoomScript>().StartCombat();
+
     }
 }
