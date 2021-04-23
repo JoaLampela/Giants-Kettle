@@ -19,7 +19,7 @@ public class CaveRoom : Room
         CentreTile = centre;
 
         RandomFillMap(centre, map);
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
             SmoothMap(centre, map);
         ProcessMap(centre, map);
         SetRoomBorders(centre, map);

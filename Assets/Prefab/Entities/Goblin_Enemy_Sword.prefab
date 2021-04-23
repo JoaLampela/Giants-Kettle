@@ -871,7 +871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951f84beccc25a644bf9f22f89a3aa65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxObstacleVectorDistance: 1.5
+  maxObstacleVectorDistance: 0.5
   maxAllyRange: 2
   maxPlayerRange: 5
   reachedEndOfPath: 0
@@ -889,14 +889,23 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.50827706
-      value: 1.3709724
-      inSlope: -1.6953272
-      outSlope: -1.6953272
+      time: -0.2835676
+      value: 1.4093758
+      inSlope: -2.1634498
+      outSlope: -2.1634498
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.094783746
+    - serializedVersion: 3
+      time: 0.4718054
+      value: 1.4673358
+      inSlope: -0.5676054
+      outSlope: -0.5676054
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17978571
+      outWeight: 1
     - serializedVersion: 3
       time: 0.64065415
       value: 0.25007844
