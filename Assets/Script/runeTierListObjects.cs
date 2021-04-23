@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class runeTierListObjects : MonoBehaviour
+public class RuneTierListObjects : MonoBehaviour
 {
+    [SerializeField] private GameObject rune1;
+    [SerializeField] private GameObject rune2;
+    [SerializeField] private GameObject rune3;
+
     public RuneObject defaultRune;
 
     public RuneObject[] spiritRunesTier1;
@@ -47,9 +51,9 @@ public class runeTierListObjects : MonoBehaviour
     public RuneObject[] agilityPowerRunesTier3;
 
     public int spiritScore = 1;
-    public int vitalityScore = 2;
-    public int agilityScore = 3;
-    public int powerScore = 4;
+    public int vitalityScore = 1;
+    public int agilityScore = 1;
+    public int powerScore = 1;
 
     public int spiritVitalityScore = 0;
     public int spiritAgilityScore = 0;
@@ -113,6 +117,61 @@ public class runeTierListObjects : MonoBehaviour
         }
     }
 
+    public void IncrementScore(RuneObject rune)
+    {
+        switch (rune.runeType)
+        {
+            case RuneObject.RuneType.spirit:
+                if (vitalityScore > spiritScore) spiritVitalityScore++;
+                if (agilityScore > spiritScore) spiritAgilityScore++;
+                if (powerScore > spiritScore) spiritPowerScore++;
+                spiritScore++;
+                break;
+            case RuneObject.RuneType.vitality:
+                if (spiritScore > vitalityScore) spiritVitalityScore++;
+                if (agilityScore > vitalityScore) vitalityAgilityScore++;
+                if (powerScore > vitalityScore) vitalityPowerScore++;
+                vitalityScore++;
+                break;
+            case RuneObject.RuneType.agility:
+                if (spiritScore > agilityScore) spiritAgilityScore++;
+                if (vitalityScore > agilityScore) vitalityAgilityScore++;
+                if (powerScore > agilityScore) agilityPowerScore++;
+                agilityScore++;
+                break;
+            case RuneObject.RuneType.power:
+                if (spiritScore > powerScore) spiritPowerScore++;
+                if (vitalityScore > powerScore) vitalityPowerScore++;
+                if (agilityScore > powerScore) agilityPowerScore++;
+                powerScore++;
+                break;
+            case RuneObject.RuneType.spiritVitality:
+                IncrementScore(Runes.spirit);
+                IncrementScore(Runes.vitality);
+                break;
+            case RuneObject.RuneType.spiritAgility:
+                IncrementScore(Runes.spirit);
+                IncrementScore(Runes.agility);
+                break;
+            case RuneObject.RuneType.spiritPower:
+                IncrementScore(Runes.spirit);
+                IncrementScore(Runes.power);
+                break;
+            case RuneObject.RuneType.vitalityAgility:
+                IncrementScore(Runes.agility);
+                IncrementScore(Runes.vitality);
+                break;
+            case RuneObject.RuneType.vitalityPower:
+                IncrementScore(Runes.power);
+                IncrementScore(Runes.vitality);
+                break;
+            case RuneObject.RuneType.agilitypower:
+                IncrementScore(Runes.agility);
+                IncrementScore(Runes.power);
+                break;
+        }
+    }
+
     private int GetScore(Runes rune)
     {
         switch (rune)
@@ -125,31 +184,88 @@ public class runeTierListObjects : MonoBehaviour
                 return agilityScore;
             case Runes.power:
                 return powerScore;
+            case Runes.spiritVitality:
+                if (spiritVitalityScore > 5) return spiritVitalityScore;
+                else return 0;
+            case Runes.spiritAgility:
+                if (spiritAgilityScore > 5) return spiritAgilityScore;
+                else return 0;
+            case Runes.spiritPower:
+                if (spiritPowerScore > 5) return spiritPowerScore;
+                else return 0;
+            case Runes.vitalityAgility:
+                if (vitalityAgilityScore > 5) return vitalityAgilityScore;
+                else return 0;
+            case Runes.vitalityPower:
+                if (vitalityPowerScore > 5) return vitalityPowerScore;
+                else return 0;
+            case Runes.agilityPower:
+                if (agilityPowerScore > 5) return agilityPowerScore;
+                else return 0;
         }
         return 0;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) GetRandomRune();
-        
+        RuneObject rune = defaultRune;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RandomizeNewRunes();
+            rune = GetRandomRune();
+            Debug.Log(rune);
+        }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            IncrementScore(Runes.spirit);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            IncrementScore(Runes.vitality);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            IncrementScore(Runes.agility);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            IncrementScore(Runes.power);
+        }
+
+
     }
 
     public RuneObject GetRandomRune()
     {
-        int upperLimit = (1 + spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore + spiritAgilityScore + spiritPowerScore + vitalityAgilityScore + vitalityPowerScore + agilityPowerScore);
+        int spiritVitalityScore1 = spiritVitalityScore;
+        int spiritAgilityScore1 = spiritAgilityScore;
+        int spiritPowerScore1 = spiritPowerScore;
+        int vitalityAgilityScore1 = vitalityAgilityScore;
+        int vitalityPowerScore1 = vitalityPowerScore;
+        int agilityPowerScore1 = agilityPowerScore;
+
+        if (spiritVitalityScore1 < 6) spiritVitalityScore1 = 0;
+        if (spiritAgilityScore1 < 6) spiritAgilityScore1 = 0;
+        if (spiritPowerScore1 < 6) spiritPowerScore1 = 0;
+        if (vitalityAgilityScore1 < 6) vitalityAgilityScore1 = 0;
+        if (vitalityPowerScore1 < 6) vitalityPowerScore1 = 0;
+        if (agilityPowerScore1 < 6) agilityPowerScore1 = 0;
+
+        int upperLimit = (1 + spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1 + vitalityAgilityScore1 + vitalityPowerScore1 + agilityPowerScore1);
         int selectedRuneNumber = Random.Range(1, upperLimit);
+        Debug.Log(spiritScore + " " + vitalityScore + " " + agilityScore + " " + powerScore + " " + spiritVitalityScore1 +" "+ spiritAgilityScore1 +" "+ spiritPowerScore1 +" "+ vitalityAgilityScore1 +" "+ vitalityPowerScore1 + " " + agilityPowerScore1);
         Debug.Log(upperLimit + " " + selectedRuneNumber);
         Runes selectedRuneType = Runes.empty;
+        Debug.Log(selectedRuneNumber);
         if (selectedRuneNumber <= spiritScore) selectedRuneType = Runes.spirit;
         else if (selectedRuneNumber <= spiritScore + vitalityScore) selectedRuneType = Runes.vitality;
         else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore) selectedRuneType = Runes.agility;
         else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore) selectedRuneType = Runes.power;
-        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore) selectedRuneType = Runes.spiritVitality;
-        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore + spiritAgilityScore) selectedRuneType = Runes.spiritAgility;
-        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore + spiritAgilityScore + spiritPowerScore) selectedRuneType = Runes.spiritPower;
-        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore + spiritAgilityScore + spiritPowerScore + vitalityAgilityScore) selectedRuneType = Runes.vitalityAgility;
-        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore + spiritAgilityScore + spiritPowerScore + vitalityAgilityScore + vitalityPowerScore) selectedRuneType = Runes.vitalityPower;
-        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore + spiritAgilityScore + spiritPowerScore + vitalityAgilityScore + vitalityPowerScore + agilityPowerScore) selectedRuneType = Runes.agilityPower;
+        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1) selectedRuneType = Runes.spiritVitality;
+        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1) selectedRuneType = Runes.spiritAgility;
+        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1) selectedRuneType = Runes.spiritPower;
+        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1 + vitalityAgilityScore1) selectedRuneType = Runes.vitalityAgility;
+        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1 + vitalityAgilityScore1 + vitalityPowerScore1) selectedRuneType = Runes.vitalityPower;
+        else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1 + vitalityAgilityScore1 + vitalityPowerScore1 + agilityPowerScore1) selectedRuneType = Runes.agilityPower;
 
 
         Debug.Log(selectedRuneType);
@@ -159,16 +275,16 @@ public class runeTierListObjects : MonoBehaviour
         int tier2Propability = 0;
         int tier3Propability = 0;
 
-        if(runeScore < 5)
+        if(runeScore < 6)
         {
             tier1Propability = 100;
             tier2Propability = 0;
             tier3Propability = 0;
         }
-        else if(runeScore < 10)
+        else if(runeScore < 11)
         {
-            tier1Propability = 50 - runeScore * 5;
-            tier2Propability = 50 + runeScore * 5;
+            tier1Propability = 75 - runeScore * 5;
+            tier2Propability = 25 + runeScore * 5;
             tier3Propability = 0;
         }
         else 
@@ -187,17 +303,22 @@ public class runeTierListObjects : MonoBehaviour
         else if (selectedRuneRarity <= tier2Propability) runeRarity = RuneRarity.refined;
         else runeRarity = RuneRarity.perfected;
 
-        return GiveRune(selectedRuneType, runeRarity);
+        RuneObject rune = GiveRune(selectedRuneType, runeRarity);
+        Debug.Log(rune);
+        return rune;
 
     }
+    
     private RuneObject GiveRune(Runes selectedRuneType, RuneRarity runeRarity)
     {
+        Debug.Log(selectedRuneType + " " + runeRarity);
         if (selectedRuneType == Runes.spirit && runeRarity == RuneRarity.basic)
         {
             if (spiritRunesTier1.Length != 0)
             {
                 int listLenght = spiritRunesTier1.Length;
                 int pickedIndex = Random.Range(0, listLenght);
+                Debug.Log(pickedIndex);
                 return spiritRunesTier1[pickedIndex];
             }
             else return defaultRune;
@@ -225,11 +346,11 @@ public class runeTierListObjects : MonoBehaviour
 
         if (selectedRuneType == Runes.vitality && runeRarity == RuneRarity.basic)
         {
-            if (spiritRunesTier1.Length != 0)
+            if (vitalityRunesTier1.Length != 0)
             {
-                int listLenght = spiritRunesTier1.Length;
+                int listLenght = vitalityRunesTier1.Length;
                 int pickedIndex = Random.Range(0, listLenght);
-                return spiritRunesTier1[pickedIndex];
+                return vitalityRunesTier1[pickedIndex];
             }
             else return defaultRune;
         }
@@ -318,17 +439,7 @@ public class runeTierListObjects : MonoBehaviour
 
         if (selectedRuneType == Runes.spiritVitality && runeRarity == RuneRarity.basic)
         {
-            if (spiritVitalityRunesTier1.Length != 0)
-            {
-                int listLenght = spiritVitalityRunesTier1.Length;
-                int pickedIndex = Random.Range(0, listLenght);
-                return spiritVitalityRunesTier1[pickedIndex];
-            }
-            else
-            {
-                if (spiritScore > vitalityScore) return GiveRune(Runes.spirit, RuneRarity.basic);
-                else return GiveRune(Runes.vitality, RuneRarity.basic);
-            }
+            return GiveRune(Runes.spiritVitality, RuneRarity.refined);
         }
         if (selectedRuneType == Runes.spiritVitality && runeRarity == RuneRarity.refined)
         {
@@ -361,17 +472,7 @@ public class runeTierListObjects : MonoBehaviour
 
         if (selectedRuneType == Runes.spiritAgility && runeRarity == RuneRarity.basic)
         {
-            if (spiritAgilityRunesTier1.Length != 0)
-            {
-                int listLenght = spiritAgilityRunesTier1.Length;
-                int pickedIndex = Random.Range(0, listLenght);
-                return spiritAgilityRunesTier1[pickedIndex];
-            }
-            else
-            {
-                if (spiritScore > agilityScore) return GiveRune(Runes.spirit, RuneRarity.basic);
-                else return GiveRune(Runes.agility, RuneRarity.basic);
-            }
+            return GiveRune(Runes.spiritAgility, RuneRarity.refined);
         }
         if (selectedRuneType == Runes.spiritAgility && runeRarity == RuneRarity.refined)
         {
@@ -404,17 +505,7 @@ public class runeTierListObjects : MonoBehaviour
 
         if (selectedRuneType == Runes.spiritPower && runeRarity == RuneRarity.basic)
         {
-            if (spiritPowerRunesTier1.Length != 0)
-            {
-                int listLenght = spiritPowerRunesTier1.Length;
-                int pickedIndex = Random.Range(0, listLenght);
-                return spiritPowerRunesTier1[pickedIndex];
-            }
-            else
-            {
-                if (spiritScore > powerScore) return GiveRune(Runes.spirit, RuneRarity.basic);
-                else return GiveRune(Runes.power, RuneRarity.basic);
-            }
+            return GiveRune(Runes.spiritPower, RuneRarity.refined);
         }
         if (selectedRuneType == Runes.spiritPower && runeRarity == RuneRarity.refined)
         {
@@ -447,17 +538,7 @@ public class runeTierListObjects : MonoBehaviour
 
         if (selectedRuneType == Runes.vitalityAgility && runeRarity == RuneRarity.basic)
         {
-            if (vitalityAgilityRunesTier1.Length != 0)
-            {
-                int listLenght = vitalityAgilityRunesTier1.Length;
-                int pickedIndex = Random.Range(0, listLenght);
-                return vitalityAgilityRunesTier1[pickedIndex];
-            }
-            else
-            {
-                if (vitalityScore > agilityScore) return GiveRune(Runes.vitality, RuneRarity.basic);
-                else return GiveRune(Runes.agility, RuneRarity.basic);
-            }
+            return GiveRune(Runes.vitalityAgility, RuneRarity.refined);
         }
         if (selectedRuneType == Runes.vitalityAgility && runeRarity == RuneRarity.refined)
         {
@@ -490,17 +571,7 @@ public class runeTierListObjects : MonoBehaviour
 
         if (selectedRuneType == Runes.vitalityPower && runeRarity == RuneRarity.basic)
         {
-            if (vitalityPowerRunesTier1.Length != 0)
-            {
-                int listLenght = vitalityPowerRunesTier1.Length;
-                int pickedIndex = Random.Range(0, listLenght);
-                return vitalityPowerRunesTier1[pickedIndex];
-            }
-            else
-            {
-                if (vitalityScore > powerScore) return GiveRune(Runes.vitality, RuneRarity.basic);
-                else return GiveRune(Runes.power, RuneRarity.basic);
-            }
+            return GiveRune(Runes.vitalityPower, RuneRarity.refined);
         }
         if (selectedRuneType == Runes.vitalityPower && runeRarity == RuneRarity.refined)
         {
@@ -533,17 +604,7 @@ public class runeTierListObjects : MonoBehaviour
 
         if (selectedRuneType == Runes.agilityPower && runeRarity == RuneRarity.basic)
         {
-            if (agilityPowerRunesTier1.Length != 0)
-            {
-                int listLenght = agilityPowerRunesTier1.Length;
-                int pickedIndex = Random.Range(0, listLenght);
-                return agilityPowerRunesTier1[pickedIndex];
-            }
-            else
-            {
-                if (agilityScore > powerScore) return GiveRune(Runes.agility, RuneRarity.basic);
-                else return GiveRune(Runes.power, RuneRarity.basic);
-            }
+            return GiveRune(Runes.agilityPower, RuneRarity.refined);
         }
         if (selectedRuneType == Runes.agilityPower && runeRarity == RuneRarity.refined)
         {
@@ -574,5 +635,22 @@ public class runeTierListObjects : MonoBehaviour
             }
         }
         else return defaultRune;
+    }
+
+    public void RandomizeNewRunes()
+    {
+        Debug.Log("Runes " + rune1 + " " + rune2 + " " + rune3);
+        
+        
+        
+        RuneObject rune1temp = GetRandomRune();
+        Debug.Log(rune1temp);
+        rune1.GetComponent<SelectRuneButton>().SetNewRune(rune1temp);
+        RuneObject rune2temp = GetRandomRune();
+        Debug.Log(rune2temp);
+        rune2.GetComponent<SelectRuneButton>().SetNewRune(rune2temp);
+        RuneObject rune3temp = GetRandomRune();
+        Debug.Log(rune3temp);
+        rune3.GetComponent<SelectRuneButton>().SetNewRune(rune3temp);
     }
 }

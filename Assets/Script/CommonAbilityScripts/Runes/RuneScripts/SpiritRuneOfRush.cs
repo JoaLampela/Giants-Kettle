@@ -185,7 +185,7 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-            _abilityEvents.damageMultiplier = _abilityEvents.damageMultiplier / (2 * duplicateCountWeapon);
+            _abilityEvents.damageMultiplier = (int)(_abilityEvents.damageMultiplier / ((2f/3f) * duplicateCountWeapon));
         }
 
     }

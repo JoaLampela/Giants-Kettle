@@ -37,7 +37,7 @@ public class EntityHealth : MonoBehaviour
 
     private IEnumerator fireTick()
     {
-        events.HitThis(new Damage(gameObject, (int)(stats.currentMaxHealth * 0.02f)));
+        events.HitThis(new Damage(gameObject, false, (int)(stats.currentMaxHealth * 0.02f)));
         yield return new WaitForSeconds(timeBetweenFireTicks);
         fireTickOnCD = false;
     }
@@ -79,6 +79,8 @@ public class EntityHealth : MonoBehaviour
 
     private void TakeDamage(int damage, Damage damgeContainer)
     {
+        if(damgeContainer._damage > 0) DamagePopup.Create(transform.position, damage, damgeContainer._isCriticalHit, false);
+        if(damgeContainer._trueDamage > 0) DamagePopup.Create(transform.position, damage, damgeContainer._isCriticalHit, true);
         events.LoseHealth(damage);
         if (health - damage <= 0)
         {

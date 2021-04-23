@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -86,11 +88,30 @@ public class AbilityEvents : MonoBehaviour
                 if (target.GetComponent<EntityEvents>())
                 {
                     Debug.Log("Dealing damage " + baseDamage + " " + bonusFlatDamage + " " + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage + " " + damageMultiplier / 100f);
-                    Damage damage = new Damage(_abilityCastSource, (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f), trueDamage + bonusFlatTrueDamage);
+
+                    bool isCrit = CalculateIfIsCriticalHit();
+                    int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f);
+                    int totaltrueDmg = trueDamage + bonusFlatTrueDamage;
+                    if (isCrit) {
+                        totalBasicDmg *= 2;
+                        totaltrueDmg *= 2;
+                    }
+                    Damage damage = new Damage(_abilityCastSource, isCrit, totalBasicDmg, totaltrueDmg);
                     target.GetComponent<EntityEvents>().HitThis(damage);
                     DealDamageEvent(damage, target);
                 }
             }
         }
+    }
+    private bool CalculateIfIsCriticalHit()
+    {
+        int critChance = _abilityCastSource.GetComponent<EntityStats>().currentCriticalStrikeChance;
+        int random = UnityEngine.Random.Range(1, 100);
+        if (critChance >= random)
+        {
+            Debug.Log("Attack was critical");
+            return true;
+        }
+        else return false;
     }
 }

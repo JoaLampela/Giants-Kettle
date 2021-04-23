@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class GameEventManager : MonoBehaviour
 {
@@ -25,10 +26,33 @@ public class GameEventManager : MonoBehaviour
     public event Action OnExitLevel;
     public event Action OnUpdateAggro;
 
+    public int playerLevelUpPoints;
+    public bool playerLevelUpScreenVisible = false;
+    public GameObject LevelUpScreen;
+    public TextMeshProUGUI levelPointsText;
     private void Update()
     {
         time += Time.deltaTime;
         if (combatOn) combatDuration += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible)
+        {
+            playerLevelUpScreenVisible = true;
+            LevelUpScreen.SetActive(true);
+            LevelUpScreen.GetComponent<RuneTierListObjects>().RandomizeNewRunes();
+            Debug.Log("OPENED");
+        }
+        else if((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible)
+        {
+            playerLevelUpScreenVisible = false;
+            LevelUpScreen.SetActive(false);
+            Debug.Log("CLOSED");
+        }
+        levelPointsText.text = playerLevelUpPoints.ToString();
+    }
+    public void ReducePlayerLevelUpPoints()
+    {
+        playerLevelUpPoints--;
     }
 
     public void CombatStart()
@@ -48,6 +72,8 @@ public class GameEventManager : MonoBehaviour
             OnCombatEnd();
             combatOn = false;
         }
+        
+
     }
 
     public void AllEntitiesRemove(GameObject entity)
