@@ -26,6 +26,9 @@ public class GameEventManager : MonoBehaviour
     public event Action OnExitLevel;
     public event Action OnUpdateAggro;
 
+    public event Action OnRoomClear;
+    public event Action OnWaveClear;
+
     public int playerLevelUpPoints;
     public bool playerLevelUpScreenVisible = false;
     public GameObject LevelUpScreen;
@@ -54,6 +57,16 @@ public class GameEventManager : MonoBehaviour
     {
         playerLevelUpPoints--;
     }
+
+    public void RoomClear()
+    {
+        OnRoomClear?.Invoke();
+    }
+    public void WaveClear()
+    {
+        OnWaveClear?.Invoke();
+    }
+
 
     public void CombatStart()
     {
