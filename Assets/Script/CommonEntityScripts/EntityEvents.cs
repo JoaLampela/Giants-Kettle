@@ -74,7 +74,7 @@ public class EntityEvents : MonoBehaviour
 
 
     //Called when game objects health reaches 0
-    public event Action<GameObject> OnDie;
+    public event Action<GameObject, GameObject> OnDie;
 
 
     //TryCast is listened by corresponding resource scripts. if entity has enough
@@ -98,7 +98,7 @@ public class EntityEvents : MonoBehaviour
     public event Action<int> OnRemoveItem;
     public event Action<ItemObject, int> OnAddNewItemToSlot;
     public event Action<UiButtonClick> OnUseItem;
-    
+
     public event Action OnAnimationTriggerPoint;
     public event Action OnSpellOver;
 
@@ -159,7 +159,8 @@ public class EntityEvents : MonoBehaviour
     {
         OnTryCastAbilityCostRage?.Invoke(spellSlot, cost);
     }
-    public void CallBackCastAbility(int spellSlot) {
+    public void CallBackCastAbility(int spellSlot)
+    {
         OnCallBackCastAbility?.Invoke(spellSlot);
     }
     public void CanNotAffordAbility(int spellSlot)
@@ -189,7 +190,7 @@ public class EntityEvents : MonoBehaviour
     public void DeteriorateHealth(int amount, Damage damage)
     {
         OnDeteriorateHealth?.Invoke(amount, damage);
-    } 
+    }
     public void DeteriorateEnergy(int amount)
     {
         OnDeteriorateEnergy?.Invoke(amount);
@@ -298,6 +299,6 @@ public class EntityEvents : MonoBehaviour
     public void Die(GameObject source)
     {
         Debug.Log(gameObject.name + " Died");
-        OnDie?.Invoke(source);
+        OnDie?.Invoke(source, gameObject);
     }
 }
