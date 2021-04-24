@@ -63,7 +63,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   team: 1
   baseHealth: 20
   baseSpirit: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   isTakingDamage: 0
   isStunned: 0
   onHealthRegen: 0
+  isOnFire: 0
 --- !u!114 &265745227025303280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +192,18 @@ MonoBehaviour:
   rightHandGameObject: {fileID: 0}
   leftHandGameObject: {fileID: 0}
   sting: {fileID: 0}
-  sting2: {fileID: 0}
+  heavySting: {fileID: 0}
+  spinAttack: {fileID: 0}
+  bigProjectile: {fileID: 0}
+  nonProjectile: {fileID: 0}
+  shieldSlam: {fileID: 0}
+  shieldToss: {fileID: 0}
+  tripleShot: {fileID: 0}
+  powerShot: {fileID: 0}
+  dash: {fileID: 0}
+  basicAttackOneHandedSword: {fileID: 0}
+  basicAttackTwoHandedSword: {fileID: 0}
+  basicAttackStaff: {fileID: 0}
 --- !u!114 &5414056378907933711
 MonoBehaviour:
   m_ObjectHideFlags: 0

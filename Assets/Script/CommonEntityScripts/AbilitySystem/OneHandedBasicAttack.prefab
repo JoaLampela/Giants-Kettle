@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5793262223406568231}
   - component: {fileID: 3272498806925567378}
   - component: {fileID: 1360453682123732122}
+  - component: {fileID: -2059154857496085764}
   m_Layer: 0
   m_Name: OneHandedBasicAttack
   m_TagString: Untagged
@@ -113,6 +114,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
+--- !u!114 &-2059154857496085764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8510906528349343103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16389eb6406e8443b5bf4245263e06f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1962299522472206429
 PrefabInstance:
   m_ObjectHideFlags: 0

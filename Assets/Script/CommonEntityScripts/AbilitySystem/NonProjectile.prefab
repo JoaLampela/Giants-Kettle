@@ -5794,7 +5794,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.45129454
+          time: 0.82128966
           value: 1
           inSlope: 1
           outSlope: 1
@@ -9623,6 +9623,8 @@ GameObject:
   - component: {fileID: 5212762983624657166}
   - component: {fileID: 3120963451672044199}
   - component: {fileID: 6877835718912988183}
+  - component: {fileID: 305016987850641105}
+  - component: {fileID: 4547161087062636270}
   m_Layer: 8
   m_Name: NonProjectile
   m_TagString: Projectile
@@ -9745,6 +9747,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &305016987850641105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853000617712076646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea5273f8ef602946b8d50096fe2f3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effect: {fileID: 5521904571480800927, guid: 2b1edabea0f077c4a8d565fee498a459, type: 3}
+--- !u!114 &4547161087062636270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853000617712076646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678275fdb6d0a4640bdde3e75828f98b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delay: 0
 --- !u!1001 &2475072054928140991
 PrefabInstance:
   m_ObjectHideFlags: 0

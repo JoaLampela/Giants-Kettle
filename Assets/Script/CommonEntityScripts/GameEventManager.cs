@@ -2,10 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class GameEventManager : MonoBehaviour
 {
     public static GameEventManager Instance { get; private set; }
+
+    public Light2D globalLight;
 
     public int globalLevel = 0;
     public GameObject player;

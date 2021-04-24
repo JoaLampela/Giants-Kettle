@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -368,7 +368,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -450,7 +450,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -532,7 +532,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -614,7 +614,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -747,7 +747,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -792,10 +792,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  rightArm: {fileID: 377997280308590637}
   playerCamera: {fileID: 0}
   swordCollider: {fileID: 820856628544997672}
-  lastHorizontalAxisRaw: 0
+  dashCoolDown: 0
 --- !u!95 &8663814846823616678
 Animator:
   serializedVersion: 3
@@ -972,6 +971,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9264487c11a192439a0d7c98e2ce48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightHandGameObject: {fileID: 0}
+  leftHandGameObject: {fileID: 0}
+  sting: {fileID: 0}
+  heavySting: {fileID: 0}
+  spinAttack: {fileID: 0}
+  bigProjectile: {fileID: 0}
+  nonProjectile: {fileID: 0}
+  shieldSlam: {fileID: 0}
+  shieldToss: {fileID: 0}
+  tripleShot: {fileID: 0}
+  powerShot: {fileID: 0}
+  dash: {fileID: 0}
+  basicAttackOneHandedSword: {fileID: 0}
+  basicAttackTwoHandedSword: {fileID: 0}
+  basicAttackStaff: {fileID: 0}
 --- !u!114 &885847670333889888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,9 +1014,46 @@ MonoBehaviour:
   equipmentSlots: []
   rightHand: {fileID: 0}
   leftHand: {fileID: 0}
+  armorHead: {fileID: 0}
+  armorChest: {fileID: 0}
+  armorLegs: {fileID: 0}
+  dashItemObject: {fileID: 0}
+  armorHeadR1: {fileID: 0}
+  armorHeadR2: {fileID: 0}
+  armorHeadR3: {fileID: 0}
+  armorHeadR4: {fileID: 0}
+  armorHeadR5: {fileID: 0}
+  armorHeadR6: {fileID: 0}
+  armorChestR1: {fileID: 0}
+  armorChestR2: {fileID: 0}
+  armorChestR3: {fileID: 0}
+  armorChestR4: {fileID: 0}
+  armorChestR5: {fileID: 0}
+  armorChestR6: {fileID: 0}
+  armorLegsR1: {fileID: 0}
+  armorLegsR2: {fileID: 0}
+  armorLegsR3: {fileID: 0}
+  armorLegsR4: {fileID: 0}
+  armorLegsR5: {fileID: 0}
+  armorLegsR6: {fileID: 0}
+  weaponRightHandR1: {fileID: 0}
+  weaponRightHandR2: {fileID: 0}
+  weaponRightHandR3: {fileID: 0}
+  weaponRightHandR4: {fileID: 0}
+  weaponRightHandR5: {fileID: 0}
+  weaponRightHandR6: {fileID: 0}
+  weaponLeftHandR1: {fileID: 0}
+  weaponLeftHandR2: {fileID: 0}
+  weaponLeftHandR3: {fileID: 0}
+  weaponLeftHandR4: {fileID: 0}
+  weaponLeftHandR5: {fileID: 0}
+  weaponLeftHandR6: {fileID: 0}
   testEquipmentCount: 0
   itemOnGround: {fileID: 1598165947520860255, guid: 996ffc1cb127e254d90e72c747436162, type: 3}
   abilityManager: {fileID: 0}
+  dashAbility: {fileID: 0}
+  rightAbility: {fileID: 0}
+  leftAbility: {fileID: 0}
 --- !u!50 &648083809014275549
 Rigidbody2D:
   serializedVersion: 4
