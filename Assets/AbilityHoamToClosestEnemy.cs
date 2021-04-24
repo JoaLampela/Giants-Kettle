@@ -70,6 +70,7 @@ public class AbilityHoamToClosestEnemy : MonoBehaviour
             if (!gameObject.GetComponent<Rigidbody2D>())
             {
                 rb = gameObject.AddComponent<Rigidbody2D>();
+                gameObject.GetComponent<CircleCollider2D>().enabled = true;
                 rb.gravityScale = 0;
                 rb.freezeRotation = true;
                 
