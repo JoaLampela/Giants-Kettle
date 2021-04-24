@@ -419,7 +419,6 @@ public class MapGeneration : MonoBehaviour
                         GameObject currentRoom = Instantiate(spawnRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                         room.roomObject = currentRoom;
-                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
                 case 1:
@@ -427,7 +426,6 @@ public class MapGeneration : MonoBehaviour
                         GameObject currentRoom = Instantiate(exitRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                         room.roomObject = currentRoom;
-                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
                 case 2:
@@ -451,7 +449,6 @@ public class MapGeneration : MonoBehaviour
                         GameObject currentRoom = Instantiate(caveRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                         room.roomObject = currentRoom;
-                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
                 case 5:
@@ -459,7 +456,6 @@ public class MapGeneration : MonoBehaviour
                         GameObject currentRoom = Instantiate(testRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                         room.roomObject = currentRoom;
-                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
             }

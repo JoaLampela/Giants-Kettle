@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2574048284866749818}
-  - component: {fileID: 7389658851805314565}
-  - component: {fileID: -2099977394586269019}
   m_Layer: 0
   m_Name: exitRoom
   m_TagString: Untagged
@@ -33,31 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7389658851805314565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311955666255823563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fb7a34d3ca04b4ea919b925624c67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-2099977394586269019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311955666255823563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ab972c42ca73547a46de4194a93b40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorPrefab: {fileID: 5082875071552657819, guid: fcfbbd9b0d5e87841ae578506b195117, type: 3}
 --- !u!1001 &7544014888662275799
 PrefabInstance:
   m_ObjectHideFlags: 0

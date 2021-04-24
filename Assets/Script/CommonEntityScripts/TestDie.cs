@@ -32,9 +32,9 @@ public class TestDie : MonoBehaviour
     }
 
 
-    private void Die(GameObject source)
+    private void Die(GameObject source, GameObject enemy)
     {
-        Destroy(gameObject);
+        StartCoroutine(DieLater());
     }
 
     // Update is called once per frame
@@ -59,8 +59,7 @@ public class TestDie : MonoBehaviour
 
     IEnumerator DieLater()
     {
-        squishing = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         Destroy(gameObject);
     }
 }
