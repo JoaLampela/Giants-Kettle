@@ -84,6 +84,7 @@ public class BuffManager : MonoBehaviour
         Debug.Log("New buff added");
         Buff buff = gameObject.AddComponent<Buff>();
         if (id == EntityStats.BuffType.Burning) buff._sourceId = "Burning";
+        if (id == EntityStats.BuffType.Stunned) buff._sourceId = "Stunned";
         else buff._sourceId = sourceId;
         buff._value = value;
         

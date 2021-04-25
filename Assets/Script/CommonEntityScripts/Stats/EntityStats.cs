@@ -178,7 +178,8 @@ public class EntityStats : MonoBehaviour
         Armor,
         AttackSpeed,
         Invisibility,
-        Burning
+        Burning,
+        Stunned
 
 
     }
@@ -288,6 +289,16 @@ public class EntityStats : MonoBehaviour
                 {
                     isInvisible = false;
                     gameEventManager.UpdateAggro();
+                }
+                break;
+            case BuffType.Stunned:
+                if (value == 1)
+                {
+                    isStunned = true;
+                }
+                else
+                {
+                    isStunned = false;
                 }
                 break;
         }
