@@ -148,6 +148,15 @@ public class EntityHealth : MonoBehaviour
                 stats.currentShield -= damage;
             }
         }
+        else
+        {
+            if (health - damage <= 0)
+            {
+                events.Die(damgeContainer.source);
+                damgeContainer.source.GetComponent<EntityEvents>().KillEnemy(gameObject);
+            }
+            else health -= damage;
+        }
 
         
 
