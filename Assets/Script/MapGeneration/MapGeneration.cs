@@ -19,6 +19,8 @@ public class MapGeneration : MonoBehaviour
     [Header("Game settings")]
     [Range(0, 100)]
     public int spawnPointCreationPrecentagePerTile;
+    [Range(0, 100)]
+    public int combatRoomSpawnPointCreationPrecentagePerTile;
     [Header("Room prefabs")]
     public GameObject spawnRoom;
     public GameObject exitRoom;
@@ -27,6 +29,7 @@ public class MapGeneration : MonoBehaviour
     public GameObject caveRoom;
     public GameObject testRoom;
     [Header("Object prefabs")]
+    public GameObject combatRoomSpawner;
     public GameObject spawnPoint;
     public GameObject item;
     public GameObject testPlantPrefab;
@@ -449,6 +452,7 @@ public class MapGeneration : MonoBehaviour
                         GameObject currentRoom = Instantiate(caveRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                         room.roomObject = currentRoom;
+                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
                 case 5:
@@ -456,6 +460,7 @@ public class MapGeneration : MonoBehaviour
                         GameObject currentRoom = Instantiate(testRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
                         room.roomObject = currentRoom;
+
                     }
                     break;
             }
@@ -488,14 +493,49 @@ public class MapGeneration : MonoBehaviour
             {
                 if (map[x, y] == 0 && !spawnRoom.tiles.Contains(new Coord(x, y)))
                 {
-                    if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
+                    bool nextToAWall = false;
+                    for (int i = x - 1; i <= x + 1; i++)
                     {
-                        GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
-                        spawn.transform.parent = gameObject.transform;
+                        for (int j = y - 1; j <= y + 1; j++)
+                        {
+                            if (map[i, j] == 1)
+                                nextToAWall = true;
+                        }
                     }
+                    if (!nextToAWall)
+                        if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
+                        {
+                            GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+                            spawn.transform.parent = gameObject.transform;
+                        }
                 }
             }
         }
+        foreach (MapNode mapNode in mapNodes)
+        {
+            if (mapNode != null)
+                if (mapNode._owningRoom.roomObject.GetComponent<CombatRoomScript>())
+                {
+
+                    bool nextToAWall = false;
+                    for (int x = mapNode._nodeCoord.tileX - 1; x <= mapNode._nodeCoord.tileX + 1; x++)
+                    {
+                        for (int y = mapNode._nodeCoord.tileY - 1; y <= mapNode._nodeCoord.tileY + 1; y++)
+                        {
+                            if (map[x, y] == 1)
+                                nextToAWall = true;
+                        }
+                    }
+                    if (!nextToAWall)
+                        if (Random.Range(0, 100) < combatRoomSpawnPointCreationPrecentagePerTile)
+                        {
+                            GameObject spawn = GameObject.Instantiate(combatRoomSpawner, CoordToWorldPoint(new Coord(mapNode._nodeCoord.tileX, mapNode._nodeCoord.tileY)), Quaternion.identity);
+                            spawn.transform.parent = gameObject.transform;
+                            mapNode._owningRoom.roomObject.GetComponent<CombatRoomScript>().spawnPoints.Add(spawn);
+                        }
+                }
+        }
+
     }
 
 

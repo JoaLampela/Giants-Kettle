@@ -5,8 +5,8 @@ using UnityEngine;
 public class MapNode
 {
 
-    public Room _owningRoom;
-    public Coord _nodeCoord;
+    public Room _owningRoom = null;
+    public Coord _nodeCoord = new Coord();
 
     public MapNode() { }
     public MapNode(Coord nodeCoord, Room owningRoom)
