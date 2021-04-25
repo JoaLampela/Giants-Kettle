@@ -26,14 +26,14 @@ public class EntityHealth : MonoBehaviour
     private void Update()
     {
         RegenHealth();
-        
+        DepleteShield();
 
-        if(stats.isOnFire)
+        if (stats.isOnFire)
         {
             if(!fireTickOnCD)
             {
                 fireTickOnCD = true;
-                StartCoroutine(fireTick());
+                StartCoroutine(RireTick());
                 if(flame == null)
                 {
                     flame = Instantiate(GameAssets.i.flameEffect, transform.position, transform.rotation);
@@ -69,15 +69,25 @@ public class EntityHealth : MonoBehaviour
 
     }
 
-    private IEnumerator fireTick()
+    private IEnumerator RireTick()
     {
         events.HitThis(new Damage(GameObject.Find("FireDispenser"), false, (int)(stats.currentMaxHealth * 0.02f)));
         yield return new WaitForSeconds(timeBetweenFireTicks);
         fireTickOnCD = false;
     }
-  
+
+    private void GainShield(int amount)
+    {
+        if (stats.currentShield + amount > stats.currentMaxHealth)
+        {
+            stats.currentShield = stats.currentMaxHealth;
+        }
+        else stats.currentMaxHealth += amount;
+    }
+
     private void Subscribe()
     {
+        events.OnGainShield += GainShield;
         events.OnSetHealth += SetHealth;
         events.OnTryCastAbilityCostHealth += CheckIfEnoughToCast;
         events.OnDeteriorateHealth += TakeDamage;
@@ -86,6 +96,7 @@ public class EntityHealth : MonoBehaviour
     }
     private void Unsubscribe()
     {
+        events.OnGainShield -= GainShield;
         events.OnSetHealth -= SetHealth;
         events.OnTryCastAbilityCostHealth -= CheckIfEnoughToCast;
         events.OnDeteriorateHealth -= TakeDamage;
@@ -118,12 +129,27 @@ public class EntityHealth : MonoBehaviour
         if(damgeContainer._damage > 0) DamagePopup.Create(transform.position, damage, damgeContainer._isCriticalHit, false);
         if(damgeContainer._trueDamage > 0) DamagePopup.Create(transform.position, damage, damgeContainer._isCriticalHit, true);
         events.LoseHealth(damage);
-        if (health - damage <= 0)
+        if(stats.currentShield > 0)
         {
-            events.Die(damgeContainer.source);
-            damgeContainer.source.GetComponent<EntityEvents>().KillEnemy(gameObject);
+            if(stats.currentShield - damage < 0)
+            {
+                stats.currentShield = 0;
+                damage = damage - (int)stats.currentShield;
+
+                if (health - damage <= 0)
+                {
+                    events.Die(damgeContainer.source);
+                    damgeContainer.source.GetComponent<EntityEvents>().KillEnemy(gameObject);
+                }
+                else health -= damage;
+            }
+            else
+            {
+                stats.currentShield -= damage;
+            }
         }
-        else health -= damage;
+
+        
 
     }
     private void GainHealth(int amount)
@@ -156,6 +182,14 @@ public class EntityHealth : MonoBehaviour
         if (health > stats.currentMaxHealth) health = stats.currentMaxHealth;
 
     }
+    private void DepleteShield()
+    {
+        if(stats.currentShield > 0)
+        {
+            stats.currentShield -= (0.1f * stats.currentShield * Time.deltaTime);
+        }
+    }
+
     private void CheckIfEnoughToCast(int spellSlot, int amount)
     {
         if (health >= amount) events.CallBackCastAbility(spellSlot);

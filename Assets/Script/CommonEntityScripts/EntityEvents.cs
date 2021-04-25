@@ -102,6 +102,13 @@ public class EntityEvents : MonoBehaviour
     public event Action OnAnimationTriggerPoint;
     public event Action OnSpellOver;
 
+    public event Action<int> OnGainShield;
+
+    public void GainShield(int amount)
+    {
+        OnGainShield?.Invoke(amount);
+    }
+
     public void EquipRunesChange()
     {
         OnEquipRunesChange?.Invoke();

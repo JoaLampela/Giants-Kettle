@@ -33,6 +33,7 @@ public class EntityStats : MonoBehaviour
     public int baseAttackSpeed = 1;
 
     [Header("current resourses")]
+    public float currentShield;
     [HideInInspector] public int currentMaxHealth;
     [HideInInspector] public int currentMaxSpirit;
 
