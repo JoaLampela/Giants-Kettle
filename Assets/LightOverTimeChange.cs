@@ -10,7 +10,7 @@ public class LightOverTimeChange : MonoBehaviour
     private Color currentColor;
     private float startSize = 0;
     private float currentSize;
-    private bool decreaseIntensity = false;
+    public bool decreaseIntensity = false;
 
 
     [Header("Color Settings")]
@@ -18,13 +18,13 @@ public class LightOverTimeChange : MonoBehaviour
     [SerializeField] private Color colorEnd;
     public bool pulsingColor;
     [SerializeField] [Range(0f, 5f)] float falloutDelay;
-    [SerializeField] [Range(0f, 20f)] float falloutPerSecond;
+    [SerializeField] [Range(0f, 20f)]public  float falloutPerSecond;
     [SerializeField] [Range(0f, 5f)] float lerpTimeColor;
     
     [Header("Size Settings")]
     public bool pulsingSize;
     [SerializeField] [Range(0f, 20f)] float lerpTimeSize;
-    [SerializeField] [Range(0f, 20f)] float newSize;
+    [Range(0f, 20f)] public float newSize;
 
     private float tColor = 0f;
     private float tSize = 0f;

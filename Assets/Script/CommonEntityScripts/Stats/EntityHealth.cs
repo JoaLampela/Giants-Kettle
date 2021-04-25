@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.Experimental.Rendering.Universal;
 public class EntityHealth : MonoBehaviour
 {
     private EntityEvents events;
@@ -9,6 +9,7 @@ public class EntityHealth : MonoBehaviour
     private float oneHealth;
     private bool fireTickOnCD = false;
     private float timeBetweenFireTicks = 1f;
+
 
     private GameObject flame;
 
@@ -38,16 +39,34 @@ public class EntityHealth : MonoBehaviour
                     flame = Instantiate(GameAssets.i.flameEffect, transform.position, transform.rotation);
                     flame.transform.parent = transform;
                 }
+                else
+                {
+                    flame.GetComponent<ParticleSystem>().Play();
+                    flame.GetComponentInChildren<ParticleSystem>().Play();
+                }
             }
         }
         else
         {
             if(flame != null)
             {
-                Destroy(flame);
-                flame = null;
+                StartCoroutine(TurnOffFlame());
+                
             }
         }
+    }
+    private IEnumerator TurnOffFlame()
+    {
+        GameObject temp = flame;
+        flame = null;
+        temp.GetComponent<ParticleSystem>().Stop();
+        temp.GetComponentInChildren<ParticleSystem>().Stop();
+        
+        yield return new WaitForSeconds(2);
+        temp.GetComponentInChildren<LightOverTimeChange>().falloutPerSecond = 1;
+        if (flame == null) Destroy(temp);
+
+
     }
 
     private IEnumerator fireTick()
