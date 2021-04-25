@@ -26,7 +26,7 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
     private bool usingBow;
     private bool offHandUsingSingleHandedSword;
     private bool offHandUsingShield;
-    
+
 
     private bool attackOnCooldown;
 
@@ -44,6 +44,8 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
     // Update is called once per frame
     void Update()
     {
+        if ((offHandUsingSingleHandedSword || offHandUsingShield) && !attacking)
+            LeftHandLookOppositeToMouse();
         if (!attacking)
             LookToMouse();
         else
