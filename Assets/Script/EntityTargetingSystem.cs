@@ -101,7 +101,12 @@ public class EntityTargetingSystem : MonoBehaviour, IAbilityTargetPosition
 
     private void TakeDamage(Damage damage)
     {
-        IncreaseAggro(damage.source, damage._damage);
+        if(damage.source.GetComponent<EntityStats>().team != 3)
+        {
+            Debug.Log("source = " + damage.source + " team = " + damage.source.GetComponent<EntityStats>().team);
+            IncreaseAggro(damage.source, damage._damage);
+        }
+            
     }
 
     private void IncreaseAggro(GameObject entity, int amount)

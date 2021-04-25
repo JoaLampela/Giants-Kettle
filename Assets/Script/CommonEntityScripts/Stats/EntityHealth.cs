@@ -52,7 +52,7 @@ public class EntityHealth : MonoBehaviour
 
     private IEnumerator fireTick()
     {
-        events.HitThis(new Damage(gameObject, false, (int)(stats.currentMaxHealth * 0.02f)));
+        events.HitThis(new Damage(GameObject.Find("FireDispenser"), false, (int)(stats.currentMaxHealth * 0.02f)));
         yield return new WaitForSeconds(timeBetweenFireTicks);
         fireTickOnCD = false;
     }

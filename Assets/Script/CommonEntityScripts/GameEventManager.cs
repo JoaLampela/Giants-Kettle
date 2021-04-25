@@ -18,6 +18,7 @@ public class GameEventManager : MonoBehaviour
     public List<GameObject> allies = new List<GameObject>();
     public List<GameObject> neutrals = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> map = new List<GameObject>();
     public bool combatOn = false;
     public bool gamePaused = false;
 
@@ -154,6 +155,9 @@ public class GameEventManager : MonoBehaviour
             case 2:
                 if (allies.Contains(entity)) allies.Remove(entity);
                 break;
+            case 3:
+                if (map.Contains(entity)) map.Remove(entity);
+                break;
         }
     }
     public void AddToTeam(int team, GameObject entity)
@@ -170,6 +174,9 @@ public class GameEventManager : MonoBehaviour
                 break;
             case 2:
                 allies.Add(entity);
+                break;
+            case 3:
+                map.Add(entity);
                 break;
         }
     }

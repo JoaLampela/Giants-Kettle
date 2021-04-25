@@ -9,7 +9,7 @@ public class EntityStats : MonoBehaviour
 
     public int level;
 
-    [Header("0 = neutral, 1 = AI, 2 = Player")]
+    [Header("0 = neutral, 1 = AI, 2 = Player, 3 = Map")]
     public int team = 0;
 
     [Header("base resourses")]
