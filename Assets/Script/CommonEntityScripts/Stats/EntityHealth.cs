@@ -10,6 +10,8 @@ public class EntityHealth : MonoBehaviour
     private bool fireTickOnCD = false;
     private float timeBetweenFireTicks = 1f;
 
+    private GameObject flame;
+
 
     private void Awake()
     {
@@ -31,6 +33,19 @@ public class EntityHealth : MonoBehaviour
             {
                 fireTickOnCD = true;
                 StartCoroutine(fireTick());
+                if(flame == null)
+                {
+                    flame = Instantiate(GameAssets.i.flameEffect, transform.position, transform.rotation);
+                    flame.transform.parent = transform;
+                }
+            }
+        }
+        else
+        {
+            if(flame != null)
+            {
+                Destroy(flame);
+                flame = null;
             }
         }
     }

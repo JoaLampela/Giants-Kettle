@@ -19,7 +19,7 @@ public class LightOverTimeChange : MonoBehaviour
     public bool pulsingColor;
     [SerializeField] [Range(0f, 5f)] float falloutDelay;
     [SerializeField] [Range(0f, 20f)] float falloutPerSecond;
-    [SerializeField] [Range(0f, 2f)] float lerpTimeColor;
+    [SerializeField] [Range(0f, 5f)] float lerpTimeColor;
     
     [Header("Size Settings")]
     public bool pulsingSize;

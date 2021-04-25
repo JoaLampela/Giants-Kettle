@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfDamagePopup: {fileID: 2231444243916211990, guid: 64400debab8df5c4790cc3626d48f50a, type: 3}
+  flameEffect: {fileID: 4860688981067527717, guid: d1456c3f6292faf44b20e92d6a06d079, type: 3}

@@ -75,6 +75,7 @@ public class AbilityEvents : MonoBehaviour
 
     public void DealDamageEvent(Damage damage, GameObject target)
     {
+        Debug.Log("Ability even dealing damage");
         _onDealDamage?.Invoke(damage, target);
     }
 

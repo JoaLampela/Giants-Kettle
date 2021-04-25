@@ -5,6 +5,7 @@ using UnityEngine;
 public class AbilityOnActivateDestroy : MonoBehaviour
 {
     private AbilityEvents _events;
+    [SerializeField] private float delay;
 
     private void Start()
     {
@@ -23,6 +24,11 @@ public class AbilityOnActivateDestroy : MonoBehaviour
 
     private void Activate()
     {
+        StartCoroutine(DestroyWithDelay());
+    }
+    private IEnumerator DestroyWithDelay()
+    {
+        yield return new WaitForSeconds(delay);
         _events.Destroy();
     }
 
