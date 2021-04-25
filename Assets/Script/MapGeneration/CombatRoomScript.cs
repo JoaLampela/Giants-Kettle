@@ -25,7 +25,7 @@ public class CombatRoomScript : MonoBehaviour
             for (int i = 0; i < waveEnemyAmount; i++)
             {
                 int randomSpawnPoint = (int)Mathf.Round(Random.Range(-0.49f, spawnPoints.Count - 0.51f));
-                GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<DefaultEnemySpawn>().Spawn();
+                GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<EnemySpawnRoom>().Spawn();
                 if (enemy != null)
                 {
                     Debug.Log("Spawning enemy," + enemy);
@@ -67,7 +67,7 @@ public class CombatRoomScript : MonoBehaviour
                     for (int i = 0; i < waveEnemyAmount; i++)
                     {
                         int randomSpawnPoint = (int)Mathf.Round(Random.Range(-0.49f, spawnPoints.Count - 0.51f));
-                        GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<DefaultEnemySpawn>().Spawn();
+                        GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<EnemySpawnRoom>().Spawn();
                         if (enemy != null)
                         {
                             Debug.Log("Spawning enemy," + enemy);
