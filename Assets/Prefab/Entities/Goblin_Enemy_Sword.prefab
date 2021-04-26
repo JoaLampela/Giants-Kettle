@@ -877,7 +877,7 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 5
   reachedEndOfPath: 0
-  entitySpeed: 3
+  entitySpeed: 4
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -996,7 +996,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dodges: 1
-  dashes: 1
+  dashes: 0
 --- !u!114 &2999592409753981094
 MonoBehaviour:
   m_ObjectHideFlags: 0
