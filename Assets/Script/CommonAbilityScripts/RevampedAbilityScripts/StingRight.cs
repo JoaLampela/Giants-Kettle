@@ -49,6 +49,8 @@ public class StingRight : MonoBehaviour, IAbility
                 playerAnimations.SetAttacking(true);
                 animator.SetTrigger("Special");
                 _entityEvents.CastAbility();
+
+                SoundManager.PlaySound(SoundManager.Sound.StingRight, transform.position);
             }
         }
         else CannotAffordCast(slot);

@@ -52,6 +52,8 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 playerAnimations.SetAttacking(true);
                 animator.SetTrigger("Attack");
+
+                SoundManager.PlaySound(SoundManager.Sound.OneHandedBasicAttack, transform.position);
             }
         }
         else CannotAffordCast(slot);

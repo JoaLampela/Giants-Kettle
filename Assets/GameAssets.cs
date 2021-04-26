@@ -18,4 +18,14 @@ public class GameAssets : MonoBehaviour
 
     public Transform pfDamagePopup;
     public GameObject flameEffect;
+
+
+    public SoundAudioClip[] SoundAudioClipArray;
+
+    [System.Serializable]
+    public class SoundAudioClip
+    {
+        public SoundManager.Sound sound;
+        public AudioClip audioClip;
+    }
 }

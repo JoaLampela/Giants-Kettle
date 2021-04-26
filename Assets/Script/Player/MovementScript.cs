@@ -19,7 +19,10 @@ public class MovementScript : MonoBehaviour
 
 
 
-
+    private void Awake()
+    {
+        SoundManager.Initialize();
+    }
 
     //Animator animator;
     // Start is called before the first frame update
@@ -70,6 +73,12 @@ public class MovementScript : MonoBehaviour
 
         //.normalized caps the vector length to 1, so that diagonal movement works properly
         movement = new Vector2(moveX, moveY).normalized;
+
+        bool isIdle = moveX == 0 && moveY == 0;
+        if (!isIdle)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.PlayerMove, transform.position);
+        }
     }
     
     public void AttackStep(float force)

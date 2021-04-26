@@ -47,6 +47,8 @@ public class StingLeft : MonoBehaviour, IAbility
                 playerAnimations.SetAttacking(true);
                 animator.SetTrigger("LeftAttack");
                 _entityEvents.CastAbility();
+
+                SoundManager.PlaySound(SoundManager.Sound.StingLeft, transform.position);
             }
         }
         else CannotAffordCast(slot);
