@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 4319518181496570747}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1033,6 +1033,7 @@ MonoBehaviour:
   baseSpellHaste: 0
   baseArmor: 30
   baseAttackSpeed: 0
+  currentShield: 0
   currentMaxHealth: 0
   currentMaxSpirit: 0
   currentHealthRegen: 0
