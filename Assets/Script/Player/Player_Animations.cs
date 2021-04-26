@@ -118,7 +118,7 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
     public void SwitchToOffHandShield(GameObject inGameObject)
     {
         UnequipLeftHandBools();
-        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), leftHand.transform);
         offHandUsingShield = true;
         animator.SetBool("ShieldOffHandEquiped", true);
     }
