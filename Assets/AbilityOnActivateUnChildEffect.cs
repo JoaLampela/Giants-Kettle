@@ -24,11 +24,15 @@ public class AbilityOnActivateUnChildEffect : MonoBehaviour
 
     private void Activate()
     {
-        if (_effect.GetComponent<ParticleSystem>())
+        if(_effect != null)
         {
-            _effect.GetComponent<ParticleSystem>().Stop();
-            _effect.transform.parent = null;
+            if (_effect.GetComponent<ParticleSystem>())
+            {
+                _effect.GetComponent<ParticleSystem>().Stop();
+                _effect.transform.parent = null;
+            }
         }
+        
        
     }
 
