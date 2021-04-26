@@ -15,6 +15,9 @@ TagManager:
   - InventoryPanel
   - RightHand
   - LeftHand
+  - GameOverScreen
+  - PlayerUI
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
