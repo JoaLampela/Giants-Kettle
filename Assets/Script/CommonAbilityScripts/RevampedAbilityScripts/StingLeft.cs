@@ -54,8 +54,13 @@ public class StingLeft : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        Vector2 mouseDirection = Input.mousePosition;
+        Vector2 direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        float angle = Vector2.Angle(Vector2.up, direction);
+        float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
+        Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().sting, transform.position, rotation);
         sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
