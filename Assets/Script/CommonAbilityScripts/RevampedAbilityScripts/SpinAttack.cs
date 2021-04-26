@@ -46,6 +46,8 @@ public class SpinAttack : MonoBehaviour, IAbility
                 playerAnimations.SetAttacking(true);
                 animator.SetTrigger("LeftAttack");
                 _entityEvents.CastAbility();
+
+                SoundManager.PlaySound(SoundManager.Sound.SpinAttack, transform.position);
             }
         }
         else CannotAffordCast(slot);

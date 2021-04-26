@@ -59,7 +59,8 @@ public class Dash : MonoBehaviour, IAbility
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.CastAbility();
                 InstatiateHitBox();
-                
+
+                SoundManager.PlaySound(SoundManager.Sound.Dash, transform.position);
             }
         }
         else CannotAffordCast(slot);
