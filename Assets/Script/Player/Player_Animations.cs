@@ -195,6 +195,11 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
         animator.SetBool("ShortSwordOffHandEquiped", false);
         animator.SetBool("ShieldOffHandEquiped", false);
     }
+    public bool IsRanged()
+    {
+        if (usingStaff) return true;
+        else return false;
+    }
     public void SetAttacking(bool trueOrFalse)
     {
         attacking = trueOrFalse;
