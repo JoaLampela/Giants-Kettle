@@ -21,10 +21,10 @@ public class Dash : MonoBehaviour, IAbility
     {
         Subscribe();
         GetComponent<EntityAbilityManager>().SetAbility(3, this);
-        
 
 
-       
+
+
     }
 
     private void Awake()
@@ -46,19 +46,20 @@ public class Dash : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if(dashItemContainer == null)
+        if (dashItemContainer == null)
         {
-            if(GetComponent<Inventory>()) dashItemContainer = GetComponent<Inventory>().dashItem;
-            else if(GetComponent<AiInventory>()) dashItemContainer = GetComponent<AiInventory>().dashItem;
+            if (GetComponent<Inventory>()) dashItemContainer = GetComponent<Inventory>().dashItem;
+            else if (GetComponent<AiInventory>()) dashItemContainer = GetComponent<AiInventory>().dashItem;
         }
         if (dashItemContainer.currentCooldownAbility1 <= 0)
         {
             if (_spellSlot == slot)
             {
+                animator.SetTrigger("Dash");
+                _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 dashItemContainer.currentCooldownAbility1 = dashItemContainer.maxCooldownAbility1;
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.CastAbility();
-                InstatiateHitBox();
 
                 SoundManager.PlaySound(SoundManager.Sound.Dash, transform.position);
             }
