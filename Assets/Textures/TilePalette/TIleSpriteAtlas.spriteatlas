@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TIleSpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 3742106321563830695, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 6884241868205658714, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 2343198240378407141, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -388838240310134832, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -3918878884955281847, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 7440310276611522516, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 3619924480094695723, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 426586239581657094, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -6784427962003062550, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -2768258820561027513, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 4130421429997205974, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 4425536614883711253, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 6301763102364570847, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -4261946872620679482, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 2403373356604098647, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -770795620911754239, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -2763137389148320848, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -7551950144846020964, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 8047614602450603432, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -611215653064317179, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 4979526750891464992, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -5879110788855648430, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 5548037406895507469, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 8549406345980065187, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 5337823377161247252, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: -5430384557236764845, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+    - {fileID: 2800000, guid: 2cdb92d7428081249a3e09a9be6b09e8, type: 3}
+    - {fileID: 2800000, guid: 970790ca064835d4bb76108515b5eab2, type: 3}
+    - {fileID: 2800000, guid: 2b70aa2c4495428458b0d8594a0e7278, type: 3}
+    totalSpriteSurfaceArea: 1900544
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2cdb92d7428081249a3e09a9be6b09e8, type: 3}
+  - {fileID: 21300000, guid: 970790ca064835d4bb76108515b5eab2, type: 3}
+  - {fileID: 21300000, guid: 2b70aa2c4495428458b0d8594a0e7278, type: 3}
+  - {fileID: -5430384557236764845, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -6784427962003062550, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -2768258820561027513, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 3619924480094695723, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 426586239581657094, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -3918878884955281847, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 7440310276611522516, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 2343198240378407141, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -388838240310134832, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 3742106321563830695, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 6884241868205658714, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -770795620911754239, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 2403373356604098647, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -7551950144846020964, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -2763137389148320848, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 4425536614883711253, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 4130421429997205974, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -4261946872620679482, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 6301763102364570847, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 5548037406895507469, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 8549406345980065187, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 5337823377161247252, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 8047614602450603432, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -611215653064317179, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: 4979526750891464992, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  - {fileID: -5879110788855648430, guid: fe22be5c62ef17e4b98c18a2e93d8598, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - top_left_wall1
+  - top_right_wall1
+  - cave_full1
+  - tile map (1)_41
+  - tile map (1)_8
+  - tile map (1)_9
+  - tile map (1)_6
+  - tile map (1)_7
+  - tile map (1)_4
+  - tile map (1)_5
+  - tile map (1)_2
+  - tile map (1)_3
+  - tile map (1)_0
+  - tile map (1)_1
+  - tile map (1)_15
+  - tile map (1)_14
+  - tile map (1)_17
+  - tile map (1)_16
+  - tile map (1)_11
+  - tile map (1)_10
+  - tile map (1)_13
+  - tile map (1)_12
+  - tile map (1)_24
+  - tile map (1)_25
+  - tile map (1)_26
+  - tile map (1)_20
+  - tile map (1)_21
+  - tile map (1)_22
+  - tile map (1)_23
+  m_RenderDataMap: {}
+  m_Tag: TIleSpriteAtlas
+  m_IsVariant: 0
