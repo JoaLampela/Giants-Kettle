@@ -430,7 +430,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 2708216160566752093, guid: 52ae0672dd1c8fc4695569c2cfab9eea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -512,7 +512,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 8413475829046335857, guid: 52ae0672dd1c8fc4695569c2cfab9eea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -666,9 +666,10 @@ GameObject:
   - component: {fileID: 3390920854865766816}
   - component: {fileID: 5965364300633923012}
   - component: {fileID: 4319518181496570747}
+  - component: {fileID: 9009737797232915889}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -705,7 +706,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -876,7 +877,49 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 5
   reachedEndOfPath: 0
-  entitySpeed: 3
+  entitySpeed: 4
+  dodgeWeightTransformationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1.0097973
+      value: 0.26497886
+      inSlope: 0.50724024
+      outSlope: 0.50724024
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.28546214
+      value: 0.9219866
+      inSlope: 0.30354595
+      outSlope: 0.30354595
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15000449
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8556033
+      value: 0.5485095
+      inSlope: -3.1414797
+      outSlope: -3.1414797
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09795637
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99302673
+      value: 0.3469572
+      inSlope: -1.4666512
+      outSlope: -1.4666512
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   circleWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -934,24 +977,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: -0.008266449
       value: 0.0030517578
-      inSlope: 1.5024222
-      outSlope: 1.5024222
+      inSlope: 0.84914696
+      outSlope: 0.84914696
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.06666669
+      outWeight: 0.12385323
     - serializedVersion: 3
       time: 0.93345475
       value: 1.0028884
-      inSlope: 0.2199177
-      outSlope: 0.2199177
+      inSlope: 0.38611025
+      outSlope: 0.38611025
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.17083332
+      inWeight: 0.18807332
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dodges: 1
+  dashes: 0
 --- !u!114 &2999592409753981094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1078,7 @@ MonoBehaviour:
   baseSpellHaste: 0
   baseArmor: 30
   baseAttackSpeed: 0
+  currentShield: 0
   currentMaxHealth: 0
   currentMaxSpirit: 0
   currentHealthRegen: 0
@@ -1134,3 +1180,110 @@ MonoBehaviour:
   healthRegenPerLevel: 30
   physicalDamagePerLevel: 10
   armorPerLevel: 10
+--- !u!96 &9009737797232915889
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8d2b44515928ae04fab2bb108967a24c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
+  m_Time: 0.15
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.44285774
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.21884497
+        outSlope: -0.21884497
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.26111114
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1

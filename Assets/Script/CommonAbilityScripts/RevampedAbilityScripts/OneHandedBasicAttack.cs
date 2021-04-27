@@ -69,8 +69,23 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        Vector2 mouseDirection = Input.mousePosition;
-        Vector2 direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        Vector2 direction;
+        if (GetComponent<EntityTargetingSystem>())
+        {
+            Vector2 enemyDirection;
+            if (GetComponent<EntityTargetingSystem>().target != null)
+            {
+                enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
+            }
+            else enemyDirection = GameObject.Find("Player").transform.position;
+            direction = (enemyDirection - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            Vector2 mouseDirection = Input.mousePosition;
+            direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        }
+        
         float angle = Vector2.Angle(Vector2.up, direction);
         float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
         Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);

@@ -13,8 +13,12 @@ public class EnemyMovementController : MonoBehaviour
     public float maxPlayerRange = 3f;
     public bool reachedEndOfPath = false;
     public float entitySpeed = 15;
+
+    public AnimationCurve dodgeWeightTransformationCurve;
     public AnimationCurve circleWeightTransformationCurve;
     public AnimationCurve circlingDistanceHarshnessRegulator;
+    public bool dodges;
+    public bool dashes;
     private CircleCollider2D objectCollider;
     private Path path;
     private float nextWayPointDistance = 0.4f;
@@ -105,7 +109,8 @@ public class EnemyMovementController : MonoBehaviour
             lastDirection.rightVector.weight = lastDirection.rightVector.weight * 1.5f;
             if (CalculateDistanceOfRemainingWaypoints() <= maxPlayerRange + 1f)
             {
-                DodgeCheck();
+                if (dodges)
+                    DodgeCheck();
             }
 
             RemoveWeightsByObstacle();
@@ -258,30 +263,47 @@ public class EnemyMovementController : MonoBehaviour
     {
         if (targetingSystem.target.GetComponent<MovementScript>() && targetingSystem.target.GetComponent<Player_Animations>().attacking)
         {
-            VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
-            VectorNode oppositeNode = closestVectorNode;
-            for (int i = 1; i < vectorNodes.Count / 2; i++)
+            if (targetingSystem.target.GetComponent<Player_Animations>().IsRanged())
             {
-                oppositeNode = oppositeNode.leftVector;
-            }
 
-            float tempWeight = 3;
-            oppositeNode.weight = tempWeight;
-            VectorNode leftNode = oppositeNode;
-            for (int i = 1; i < 8; i++)
-            {
-                tempWeight -= 0.10f;
-                leftNode.weight = tempWeight;
-                leftNode = leftNode.leftVector;
+                VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
+
+                foreach (VectorNode vectorNode in vectorNodes)
+                {
+                    vectorNode.weight *= dodgeWeightTransformationCurve.Evaluate(Vector2.Dot(closestVectorNode.direction, vectorNode.direction));
+                }
+
             }
-            tempWeight = 1;
-            VectorNode rightNode = oppositeNode;
-            for (int i = 1; i < 8; i++)
+            else
             {
-                tempWeight -= 0.115f;
-                rightNode.weight = tempWeight;
-                rightNode = rightNode.rightVector;
+
+
+                VectorNode closestVectorNode = FindClosestPointingVectorNodeToAPoint(AstarDirection * 1.5f + (Vector2)gameObject.transform.position);
+                VectorNode oppositeNode = closestVectorNode;
+                for (int i = 1; i < vectorNodes.Count / 2; i++)
+                {
+                    oppositeNode = oppositeNode.leftVector;
+                }
+
+                float tempWeight = 3;
+                oppositeNode.weight = tempWeight;
+                VectorNode leftNode = oppositeNode;
+                for (int i = 1; i < 8; i++)
+                {
+                    tempWeight -= 0.10f;
+                    leftNode.weight = tempWeight;
+                    leftNode = leftNode.leftVector;
+                }
+                tempWeight = 1;
+                VectorNode rightNode = oppositeNode;
+                for (int i = 1; i < 8; i++)
+                {
+                    tempWeight -= 0.115f;
+                    rightNode.weight = tempWeight;
+                    rightNode = rightNode.rightVector;
+                }
             }
+            if (dashes && GetComponent<Dash>()) GetComponent<EntityAbilityManager>().CastAbility(3);
         }
     }
     VectorNode FindClosestPointingVectorNodeToAPoint(Vector2 point)
