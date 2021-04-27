@@ -131,7 +131,8 @@ public class EntityStats : MonoBehaviour
     }
     public void UpdateSpeed()
     {
-        currentSpeed = (int)(((baseSpeed - baseSlow) *  totalSpeedMultiplier / 100f));
+        currentSpeed = (int)(((baseSpeed - baseSlow) *  totalSpeedMultiplier / 10f));
+        if (currentSpeed < 0) currentSpeed = 0;
     }
     public void UpdateTenacity()
     {

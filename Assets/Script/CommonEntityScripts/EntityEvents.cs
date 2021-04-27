@@ -106,7 +106,12 @@ public class EntityEvents : MonoBehaviour
     public event Action OnLockInventory;
     public event Action OnUnlockInventory;
 
+    public event Action<int> OnTakeStep;
 
+    public void TakeStep(int distance)
+    {
+        OnTakeStep?.Invoke(distance);
+    }
     public void LockInventory()
     {
         OnLockInventory?.Invoke();

@@ -13,6 +13,7 @@ public class StingRight : MonoBehaviour, IAbility
     private IAbilityTargetPosition targetPositionScript;
     Item _weapon;
     private Vector2 targetPosAtStart;
+    public Vector2 mouseDirection;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class StingRight : MonoBehaviour, IAbility
         {
             if (_spellSlot == slot)
             {
+                mouseDirection = Input.mousePosition;
                 _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f / (100f + GetComponent<EntityStats>().currentSpellHaste);
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
@@ -58,6 +60,7 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        _entityEvents.TakeStep(1000);
         Vector2 direction;
         if (GetComponent<EntityTargetingSystem>())
         {
@@ -71,7 +74,7 @@ public class StingRight : MonoBehaviour, IAbility
         }
         else
         {
-            Vector2 mouseDirection = Input.mousePosition;
+            
             direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
         }
         float angle = Vector2.Angle(Vector2.up, direction);
