@@ -56835,6 +56835,7 @@ GameObject:
   - component: {fileID: 981394759932478424}
   - component: {fileID: 2670715782602210164}
   - component: {fileID: 9104158518363951169}
+  - component: {fileID: 4289132561604722400}
   m_Layer: 5
   m_Name: RuneSelectionPanel
   m_TagString: Untagged
@@ -56980,6 +56981,64 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &4289132561604722400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478404184299853083}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3eab520417c2e46a054ef4f65f01f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rune1: {fileID: 0}
+  rune2: {fileID: 0}
+  rune3: {fileID: 0}
+  defaultRune: {fileID: 0}
+  spiritRunesTier1: []
+  spiritRunesTier2: []
+  spiritRunesTier3: []
+  vitalityRunesTier1: []
+  vitalityRunesTier2: []
+  vitalityRunesTier3: []
+  agilityRunesTier1: []
+  agilityRunesTier2: []
+  agilityRunesTier3: []
+  powerRunesTier1: []
+  powerRunesTier2: []
+  powerRunesTier3: []
+  spiritVitalityRunesTier1: []
+  spiritVitalityRunesTier2: []
+  spiritVitalityRunesTier3: []
+  spiritAgilityRunesTier1: []
+  spiritAgilityRunesTier2: []
+  spiritAgilityRunesTier3: []
+  spiritPowerRunesTier1: []
+  spiritPowerRunesTier2: []
+  spiritPowerRunesTier3: []
+  vitalityAgilityRunesTier1: []
+  vitalityAgilityRunesTier2: []
+  vitalityAgilityRunesTier3: []
+  vitalityPowerRunesTier1: []
+  vitalityPowerRunesTier2: []
+  vitalityPowerRunesTier3: []
+  agilityPowerRunesTier1: []
+  agilityPowerRunesTier2: []
+  agilityPowerRunesTier3: []
+  spiritScore: 1
+  vitalityScore: 1
+  agilityScore: 1
+  powerScore: 1
+  spiritVitalityScore: 0
+  spiritAgilityScore: 0
+  spiritPowerScore: 0
+  vitalityAgilityScore: 0
+  vitalityPowerScore: 0
+  agilityPowerScore: 0
+  tier2Requirement: 5
+  tier3Requirement: 10
 --- !u!1 &8498437735845133334
 GameObject:
   m_ObjectHideFlags: 0

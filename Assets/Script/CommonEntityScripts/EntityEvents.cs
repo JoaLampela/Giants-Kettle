@@ -101,6 +101,12 @@ public class EntityEvents : MonoBehaviour
 
     public event Action OnAnimationTriggerPoint;
     public event Action OnSpellOver;
+    public event Action<GameObject, Damage> OnDealCritDamage;
+
+    public void DealCritDamage(GameObject target, Damage damage)
+    {
+        OnDealCritDamage?.Invoke(target, damage);
+    }
 
     public event Action<int> OnGainShield;
 
