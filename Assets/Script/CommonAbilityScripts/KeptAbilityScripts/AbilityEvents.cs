@@ -5,6 +5,8 @@ using System;
 
 public class AbilityEvents : MonoBehaviour
 {
+    public GameObject parentProjectile;
+
     public GameObject _abilityCastSource; //Source of the ability
     [HideInInspector] public Vector2 _targetPositionAtStart;
     [HideInInspector] public Vector2 _targetPosition = new Vector2(0, 0);
@@ -79,7 +81,6 @@ public class AbilityEvents : MonoBehaviour
         _onDealDamage?.Invoke(damage, target);
     }
 
-
     public void DealDamage(GameObject target, int baseDamage, int trueDamage = 0)
     {
         if(target.GetComponent<EntityStats>())
@@ -100,6 +101,10 @@ public class AbilityEvents : MonoBehaviour
                     Damage damage = new Damage(_abilityCastSource, isCrit, totalBasicDmg, totaltrueDmg);
                     target.GetComponent<EntityEvents>().HitThis(damage);
                     DealDamageEvent(damage, target);
+                    if(parentProjectile != null)
+                    {
+                        parentProjectile.GetComponent<AbilityEvents>().DealDamageEvent(damage, target);
+                    }
                 }
             }
         }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5060285191380823829}
   - component: {fileID: 3701456752475542550}
   - component: {fileID: -3316239447209137809}
+  - component: {fileID: 8081230269893391243}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe40893573b443a5278cdcef0c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 0}
   _abilityCastSource: {fileID: 0}
   _targetPositionAtStart: {x: 0, y: 0}
   _targetPosition: {x: 0, y: 0}
@@ -97,3 +99,16 @@ MonoBehaviour:
   buffSource: block
   buffDuration: 1
   buffEffectiveness: 1
+--- !u!114 &8081230269893391243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918147782542231717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678275fdb6d0a4640bdde3e75828f98b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delay: 0
