@@ -244,20 +244,26 @@ public class MeshGenerator : MonoBehaviour
                     //three nodes
                     case 7:
                         //missing top left square
-                        caveTilemap.SetTile(cellVector, tileList[configuration]);
-                        //border top left triangle
-                        wallBorderTilemap.SetTile(cellVector, tileList[26]);
+                        //add border top left triangle
+                        wallBorderTilemap.SetTile(cellVector, tileList[configuration]);
+                        //full cave tile
+                        caveTilemap.SetTile(cellVector, tileList[26]);
                         break;
                     case 11:
                         //missing top right square
-                        caveTilemap.SetTile(cellVector, tileList[configuration]);
                         //border top right triangle
-                        wallBorderTilemap.SetTile(cellVector, tileList[25]);
+                        wallBorderTilemap.SetTile(cellVector, tileList[configuration]);
+                        //full cave tile
+                        caveTilemap.SetTile(cellVector, tileList[25]);
 
                         break;
                     case 13:
                         //missing bottom right square
-                        caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        //border bottom right triangle
+                        wallBorderTilemap.SetTile(cellVector, tileList[configuration]);
+                        //full cave tile
+                        caveTilemap.SetTile(cellVector, tileList[24]);
+
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x + 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
                         //if the block to the right is a upside wall
@@ -283,13 +289,13 @@ public class MeshGenerator : MonoBehaviour
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         }
 
-                        //border bottom right triangle
-                        wallBorderTilemap.SetTile(cellVector, tileList[24]);
-
                         break;
                     case 14:
                         //missing bottom left square
-                        caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        //border bottom right triangle
+                        wallBorderTilemap.SetTile(cellVector, tileList[configuration]);
+                        //full cave tile
+                        caveTilemap.SetTile(cellVector, tileList[23]);
 
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x - 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
@@ -315,11 +321,6 @@ public class MeshGenerator : MonoBehaviour
                             //top right wall square
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         }
-
-                        //border bottom right triangle
-                        wallBorderTilemap.SetTile(cellVector, tileList[23]);
-
-
                         break;
                     //four nodes
                     case 15:
