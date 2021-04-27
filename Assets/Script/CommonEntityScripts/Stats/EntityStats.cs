@@ -77,6 +77,8 @@ public class EntityStats : MonoBehaviour
 
     //Status
     [HideInInspector] public bool isInvisible = false;
+    [HideInInspector] public bool isInvulnurable = false;
+
     [HideInInspector] public bool isInCombat = false;
     [HideInInspector] public bool isInAction = false;
     [HideInInspector] public bool isTakingDamage = false;
@@ -179,7 +181,8 @@ public class EntityStats : MonoBehaviour
         AttackSpeed,
         Invisibility,
         Burning,
-        Stunned
+        Stunned,
+        Invulnurable
 
 
     }
@@ -299,6 +302,16 @@ public class EntityStats : MonoBehaviour
                 else
                 {
                     isStunned = false;
+                }
+                break;
+            case BuffType.Invulnurable:
+                if (value == 1)
+                {
+                    isInvulnurable = true;
+                }
+                else
+                {
+                    isInvulnurable = false;
                 }
                 break;
         }

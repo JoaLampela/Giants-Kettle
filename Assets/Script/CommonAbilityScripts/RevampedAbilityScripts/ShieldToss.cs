@@ -56,6 +56,7 @@ public class ShieldToss : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        Debug.Log("Activated shield toss");
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
         Vector2 direction;
         if (GetComponent<EntityTargetingSystem>())
