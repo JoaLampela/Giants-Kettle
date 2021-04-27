@@ -32,7 +32,12 @@ public class AbilityActivateOnHitWithWall : MonoBehaviour
             activated = true;
             _events.Activate();
         }
-        if(activated && collision.gameObject == _events._abilityCastSource)
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (activated && collision.gameObject == _events._abilityCastSource)
         {
             _events.Destroy();
         }

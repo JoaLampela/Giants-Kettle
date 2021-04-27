@@ -370,6 +370,7 @@ public class Inventory : MonoBehaviour
                         player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<ShieldToss>());
+                        Destroy(GetComponent<ShieldSlam>());
                         rightAbility.RemoveAbility();
                         
                     }
