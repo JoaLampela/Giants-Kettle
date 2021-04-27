@@ -16,12 +16,13 @@ public class MovementScript : MonoBehaviour
     private Animator animator;
     private Vector2 lookDirection;
     private float baseMovementSpeed;
-
+    private EntityEvents events;
 
 
     private void Awake()
     {
         SoundManager.Initialize();
+        events = GetComponent<EntityEvents>();
     }
 
     //Animator animator;
@@ -32,6 +33,26 @@ public class MovementScript : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         baseMovementSpeed = speed;
+        Subscribe();
+    }
+    private void OnDisable()
+    {
+        Unsubscribe();
+    }
+    private void Subscribe()
+    {
+        events.OnTakeStep += TakeStep;
+    }
+    private void Unsubscribe()
+    {
+        events.OnTakeStep -= TakeStep;
+    }
+    private void TakeStep(int distance)
+    {
+        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Debug.Log(dir);
+        Vector2 distanceVector = dir.normalized * distance;
+        playerRB.AddForce(distanceVector);
     }
 
     // Update is called once per frame
@@ -45,6 +66,8 @@ public class MovementScript : MonoBehaviour
     {
         //move the player
         //slower if looking the wrong way
+        speed = GetComponent<EntityStats>().currentSpeed/100f;
+
         if (Vector2.Dot(lookDirection, playerRB.velocity) < 0)
         {
             playerRB.velocity = new Vector2(movement.x * speed * 0.7f, movement.y * speed * 0.7f);

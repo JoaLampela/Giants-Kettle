@@ -14,6 +14,9 @@ public class Sting2Handed : MonoBehaviour, IAbility
     Item _weapon;
     private Vector2 targetPosAtStart;
 
+
+    Vector2 mouseDirection;
+
     private void Start()
     {
         Subscribe();
@@ -42,6 +45,8 @@ public class Sting2Handed : MonoBehaviour, IAbility
         {
             if (_spellSlot == slot)
             {
+                mouseDirection = Input.mousePosition;
+
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f/(100f + GetComponent<EntityStats>().currentSpellHaste);
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
@@ -56,6 +61,7 @@ public class Sting2Handed : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        _entityEvents.TakeStep(1500);
         Vector2 direction;
         if (GetComponent<EntityTargetingSystem>())
         {
@@ -69,7 +75,6 @@ public class Sting2Handed : MonoBehaviour, IAbility
         }
         else
         {
-            Vector2 mouseDirection = Input.mousePosition;
             direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
         }
         float angle = Vector2.Angle(Vector2.up, direction);
