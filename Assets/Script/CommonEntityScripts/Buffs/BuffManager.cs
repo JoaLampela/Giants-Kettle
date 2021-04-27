@@ -85,6 +85,7 @@ public class BuffManager : MonoBehaviour
         Buff buff = gameObject.AddComponent<Buff>();
         if (id == EntityStats.BuffType.Burning) buff._sourceId = "Burning";
         if (id == EntityStats.BuffType.Stunned) buff._sourceId = "Stunned";
+        if (id == EntityStats.BuffType.Invulnurable) buff._sourceId = "Invulnurable";
         else buff._sourceId = sourceId;
         buff._value = value;
         

@@ -111,10 +111,18 @@ public class EntityHealth : MonoBehaviour
 
     private void DamageCalculation(Damage damage)
     {
-        Debug.Log(damage._damage);
-        if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
-        TakeDamage((int)(damage._damage * GetDamageReduction()), damage);
-        Debug.Log(GetDamageReduction());
+        if(!stats.isInvulnurable)
+        {
+            Debug.Log(damage._damage);
+            if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
+            TakeDamage((int)(damage._damage * GetDamageReduction()), damage);
+            Debug.Log(GetDamageReduction());
+        }
+        else
+        {
+            Debug.Log("Damage immune");
+        }
+        
     }
 
     private float GetDamageReduction()

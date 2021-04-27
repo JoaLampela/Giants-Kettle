@@ -751,8 +751,10 @@ public class Inventory : MonoBehaviour
                         player_Animations.SwitchToShield(weapon.inGameObject);
                         Debug.Log("Equipped Right");
                         ShieldToss shieldToss = gameObject.AddComponent<ShieldToss>();
+                        ShieldSlam shieldSlam = gameObject.AddComponent<ShieldSlam>();
                         rightAbility.SetAbility(equippedItem, Hand.Right);
                         abilityManager.SetAbility(2, shieldToss);
+                        abilityManager.SetAbility(4, shieldSlam);
                     }
                     if (slot == leftHand)
                     {

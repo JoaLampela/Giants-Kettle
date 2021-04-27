@@ -17,8 +17,8 @@ public class Block : MonoBehaviour, IAbility
     private void Start()
     {
         Subscribe();
-        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().rightHand._item;
-        else _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
+        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().leftHand._item;
+        else _weapon = new Item(GetComponent<AiInventory>().leftHandWeapon);
     }
 
     private void Awake()

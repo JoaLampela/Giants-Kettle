@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1297005671206144920}
   - component: {fileID: 1297005671206144921}
-  - component: {fileID: 1297005671206144934}
   m_Layer: 9
   m_Name: OneHandedSword
   m_TagString: Weapon
@@ -83,29 +82,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1297005671206144934
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297005671206144932}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0064496994, y: 1.0907164}
-  m_SpriteTilingProperty:
-    border: {x: 0.04137931, y: 0.06896552, z: 0.027586207, w: 0.093103446}
-    pivot: {x: 0.48725984, y: 0.16832712}
-    oldSize: {x: 0.5482759, y: 2.0689654}
-    newSize: {x: 0.636, y: 2.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.21395874, y: 1.6359615}
-  m_EdgeRadius: 0
