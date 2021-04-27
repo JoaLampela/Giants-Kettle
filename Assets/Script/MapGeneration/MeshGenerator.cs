@@ -127,12 +127,12 @@ public class MeshGenerator : MonoBehaviour
                         //bottomleft triangle
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
 
-                        //if the tile to the top left is the same as this
-                        if (squareGrid.squares[x - 1, y + 1]._configuration == 1) {
-                            wallVector = wallTilemap.WorldToCell(squareGrid.squares[x - 1, y]._centerBottom._position + new Vector2(0, 0.5f));
-                            //add a small top right square to the tile on the left
-                            wallBorderTilemap.SetTile(wallVector, tileList[25]);
-                        }
+                        ////if the tile to the top left is the same as this
+                        //if (squareGrid.squares[x - 1, y + 1]._configuration == 1) {
+                        //    wallVector = wallTilemap.WorldToCell(squareGrid.squares[x - 1, y]._centerBottom._position + new Vector2(0, 0.5f));
+                        //    //add a small top right square to the tile on the left
+                        //    wallBorderTilemap.SetTile(wallVector, tileList[25]);
+                        //}
 
                         break;
                     case 2:
@@ -210,6 +210,9 @@ public class MeshGenerator : MonoBehaviour
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         }
 
+                        //set the borders for this tile
+                        wallBorderTilemap.SetTile(cellVector, tileList[28]);
+
                         ////if tile to the bottom left is a top right triangle
                         //if (squareGrid.squares[x + 1, y + 1]._configuration == 4)
                         //{
@@ -227,6 +230,9 @@ public class MeshGenerator : MonoBehaviour
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         }
 
+                        //set the borders for this tile
+                        wallBorderTilemap.SetTile(cellVector, tileList[27]);
+
                         ////if the tile to the bottom right is a top left triangle
                         //if (squareGrid.squares[x + 1, y - 1]._configuration == 8) {
                         //    wallVector = caveTilemap.WorldToCell(squareGrid.squares[x - 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
@@ -239,10 +245,15 @@ public class MeshGenerator : MonoBehaviour
                     case 7:
                         //missing top left square
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        //border top left triangle
+                        wallBorderTilemap.SetTile(cellVector, tileList[26]);
                         break;
                     case 11:
                         //missing top right square
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
+                        //border top right triangle
+                        wallBorderTilemap.SetTile(cellVector, tileList[25]);
+
                         break;
                     case 13:
                         //missing bottom right square
@@ -271,6 +282,10 @@ public class MeshGenerator : MonoBehaviour
                             //top left wall square
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         }
+
+                        //border bottom right triangle
+                        wallBorderTilemap.SetTile(cellVector, tileList[24]);
+
                         break;
                     case 14:
                         //missing bottom left square
@@ -300,6 +315,9 @@ public class MeshGenerator : MonoBehaviour
                             //top right wall square
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         }
+
+                        //border bottom right triangle
+                        wallBorderTilemap.SetTile(cellVector, tileList[23]);
 
 
                         break;
