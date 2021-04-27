@@ -59,7 +59,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     }
     private void OnDisable()
     {
-        Unsubscribe();
+        //Unsubscribe();
     }
 
     private void Subscribe()

@@ -114,10 +114,12 @@ public class EntityEvents : MonoBehaviour
     }
     public void LockInventory()
     {
+        Debug.Log("Locked inventory");
         OnLockInventory?.Invoke();
     }
     public void UnlockInventory()
     {
+        Debug.Log("Unlocked inventory");
         OnUnlockInventory?.Invoke();
     }
 

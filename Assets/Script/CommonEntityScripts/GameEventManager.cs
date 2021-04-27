@@ -39,6 +39,8 @@ public class GameEventManager : MonoBehaviour
     public TextMeshProUGUI levelPointsText;
 
     public TextMeshProUGUI gameTimeText;
+    public GameObject inventory;
+    public bool inventoryOpen = false;
 
     private void Update()
     {
@@ -62,6 +64,21 @@ public class GameEventManager : MonoBehaviour
         levelPointsText.text = playerLevelUpPoints.ToString();
 
         UpdateGameTimer();
+
+        if(Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen)
+        {
+            inventoryOpen = true;
+            inventory.GetComponent<CanvasGroup>().alpha = 1;
+            inventory.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            inventory.GetComponent<CanvasGroup>().interactable = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Tab) && inventoryOpen)
+        {
+            inventoryOpen = false;
+            inventory.GetComponent<CanvasGroup>().alpha = 0;
+            inventory.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            inventory.GetComponent<CanvasGroup>().interactable = false;
+        }
     }
 
     private void UpdateGameTimer()
