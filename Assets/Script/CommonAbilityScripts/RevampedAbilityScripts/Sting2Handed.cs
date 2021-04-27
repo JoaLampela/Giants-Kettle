@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sting2Handed : MonoBehaviour, IAbility
 {
-    private Player_Animations playerAnimations;
+    private IEntityAnimations playerAnimations;
     private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
@@ -17,12 +17,13 @@ public class Sting2Handed : MonoBehaviour, IAbility
     private void Start()
     {
         Subscribe();
-        _weapon = GetComponent<Inventory>().rightHand._item;
+        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().rightHand._item;
+        else _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
     }
 
     private void Awake()
     {
-        playerAnimations = GetComponent<Player_Animations>();
+        playerAnimations = GetComponent<IEntityAnimations>();
         movementScript = GetComponent<MovementScript>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
@@ -42,6 +43,7 @@ public class Sting2Handed : MonoBehaviour, IAbility
             if (_spellSlot == slot)
             {
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+               _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f/(100f + GetComponent<EntityStats>().currentSpellHaste);
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 movementScript.StartAttackSlow();
                 playerAnimations.SetAttacking(true);
@@ -54,32 +56,38 @@ public class Sting2Handed : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        Vector2 direction;
+        if (GetComponent<EntityTargetingSystem>())
+        {
+            Vector2 enemyDirection;
+            if (GetComponent<EntityTargetingSystem>().target != null)
+            {
+                enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
+            }
+            else enemyDirection = GameObject.Find("Player").transform.position;
+            direction = (enemyDirection - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            Vector2 mouseDirection = Input.mousePosition;
+            direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        }
+        float angle = Vector2.Angle(Vector2.up, direction);
+        float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
+        Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        Debug.Log(_weapon._runeList.Length);
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().heavySting, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().heavySting, transform.position, rotation);
         sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
             {
-
                 if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
                 {
                     sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                }
-                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-
-                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(1);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(2);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(3);
+                    IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScriptOnPlayer = (IRuneScript)GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    runeScript.SetDuplicateCountWeapon(runeScriptOnPlayer.GetDuplicateCountWeapon());
                 }
             }
         }
@@ -95,7 +103,7 @@ public class Sting2Handed : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("CANNOT AFFORD TO HEAVY STING");
+            Debug.Log("CANNOT AFFORD TO HEAVY STING " + _weapon.currentCooldownAbility1);
         }
     }
 
@@ -112,6 +120,16 @@ public class Sting2Handed : MonoBehaviour, IAbility
     public void TryCast()
     {
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
+    }
+
+    public Item GetWeapon()
+    {
+        return _weapon;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.right;
     }
 
     private void Subscribe()

@@ -10,6 +10,8 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     private EntityEvents _entityEvents;
     private WeaponType _weaponType;
     private bool isInArmor;
+    private Item containerItem;
+    private IRuneScript.Hand _hand;
 
     //Always needed functions
     public enum WeaponType
@@ -169,6 +171,37 @@ public class TestRuneScript : MonoBehaviour, IRuneScript
     }
 
     public bool GetIsDestroyed()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    void IRuneScript.SetUpPermanentEffects()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SetContainerItem(Item item, IRuneScript.Hand hand)
+    {
+        containerItem = item;
+        _hand = hand;
+    }
+
+    public void IncrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DecrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public int GetDuplicateCountWeaponRight()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public int GetDuplicateCountWeaponLeft()
     {
         throw new System.NotImplementedException();
     }

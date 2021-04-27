@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
 {
+    [Header("Size settings")]
+    public float gridSize = 2;
+
     [Header("Room spawn amount settings")]
     public int width = 200;
     public int height = 200;
@@ -16,15 +19,22 @@ public class MapGeneration : MonoBehaviour
     [Header("Game settings")]
     [Range(0, 100)]
     public int spawnPointCreationPrecentagePerTile;
+    [Range(0, 100)]
+    public int combatRoomSpawnPointCreationPrecentagePerTile;
     [Header("Room prefabs")]
     public GameObject spawnRoom;
     public GameObject exitRoom;
     public GameObject enemyRoom1;
     public GameObject enemyRoom2;
     public GameObject caveRoom;
+    public GameObject testRoom;
     [Header("Object prefabs")]
+    public GameObject combatRoomSpawner;
     public GameObject spawnPoint;
     public GameObject item;
+    public GameObject testPlantPrefab;
+    public GameObject testParticle;
+
 
     [Header("Room space requirements (max amount should not go over generation area outer border)")]
     [Range(4, 100)]
@@ -37,10 +47,14 @@ public class MapGeneration : MonoBehaviour
     public int enemyRoom2SpaceRequired = 16;
     [Range(15, 30)]
     public int caveRoomSpaceRequired = 16;
+    [Range(15, 30)]
+    public int testRoomSpaceRequired = 16;
 
-
+    internal MapNode[,] mapNodes;
+    internal int[,] map;
     private Room mainRoom;
-    int[,] map;
+    private MapNode playerLocationNode;
+
 
     private MeshGenerator meshGenerator;
 
@@ -53,10 +67,21 @@ public class MapGeneration : MonoBehaviour
         player.transform.position = playerSpawnPoint.transform.position;
         //Instantiate(item, playerSpawnPoint.transform.position + Vector2.left);
     }
+    private void LateUpdate()
+    {
+        UpdatePlayerLocationNode();
+    }
 
-
+    private void UpdatePlayerLocationNode()
+    {
+        Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerLocationNode = mapNodes[Mathf.RoundToInt((float)(width - (width / 2 - playerTransform.position.x / gridSize))), Mathf.RoundToInt((float)height - (height / 2 - playerTransform.position.y / gridSize))];
+        if (playerLocationNode != null)
+            playerLocationNode.LocationAction();
+    }
     private void GenerateMap()
     {
+        mapNodes = new MapNode[width, height];
         map = new int[width, height];
         List<Room> allRooms = new List<Room>();
         bool mapGenerated = false;
@@ -123,6 +148,15 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
+                    else if (levels[0].roomList[i] == 5)
+                    {
+                        if (isCircleEmptyWalls(new Coord(x, y), testRoomSpaceRequired))
+                        {
+                            Room room = new TestRoom(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
+                    }
                     cannotSpawnRoomCounter++;
                 }
                 if (!roomSpawned)
@@ -145,13 +179,16 @@ public class MapGeneration : MonoBehaviour
             }
         }
         ConnectClosestRooms(allRooms);
-        InstansiateRooms(allRooms);
         foreach (Room room in allRooms)
             room.SetEdgeTilesNewType(map, 2);
+        AddRoomsToMapNodes(allRooms);
+        InstansiateRooms(allRooms);
+
         CreateSpawnPoints(mainRoom);
 
         //generate mesh of the map
-        meshGenerator.GenerateMesh(map, 1);
+        meshGenerator.GenerateMesh(map, gridSize);
+        GeneratePlants();
 
     }
     /*
@@ -181,6 +218,17 @@ public class MapGeneration : MonoBehaviour
             }
         }
     }*/
+
+    void AddRoomsToMapNodes(List<Room> allRooms)
+    {
+        foreach (Room owningRoom in allRooms)
+        {
+            foreach (Coord tile in owningRoom.tiles)
+            {
+                mapNodes[tile.tileX, tile.tileY] = new MapNode(tile, owningRoom);
+            }
+        }
+    }
     void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
         List<Room> roomListA = new List<Room>();
@@ -326,7 +374,7 @@ public class MapGeneration : MonoBehaviour
         int longest = Mathf.Abs(dx);
         int shortest = Mathf.Abs(dy);
 
-        if (longest < shortest)
+        if (longest <= shortest)
         {
             inverted = true;
             longest = Mathf.Abs(dy);
@@ -336,7 +384,7 @@ public class MapGeneration : MonoBehaviour
             gradientStep = System.Math.Sign(dx);
         }
         int gradientAccumulation = longest / 2;
-        for (int i = 0; i < longest; i++)
+        for (int i = 0; i <= longest; i++)
         {
             line.Add(new Coord(x, y));
 
@@ -357,69 +405,137 @@ public class MapGeneration : MonoBehaviour
         }
         return line;
     }
-    Vector2 CoordToWorldPoint(Coord tile)
+    public Vector2 CoordToWorldPoint(Coord tile)
     {
-        return new Vector2(-width / 2 + .5f + tile.tileX, -height / 2 + .5f + tile.tileY);
+        return new Vector2((-width / 2 + tile.tileX + 0.5f) * gridSize, (-height / 2 + tile.tileY - 0.5f) * gridSize);
     }
 
     public void InstansiateRooms(List<Room> allRooms)
     {
         foreach (Room room in allRooms)
         {
-
+            Vector2 roomPosition = new Vector2((-width / 2 + room.CentreTile.tileX + 0.5f) * gridSize, (-height / 2 + room.CentreTile.tileY - 0.5f) * gridSize);
             switch (room.roomType)
             {
                 case 0:
                     {
-                        GameObject currentRoom = Instantiate(spawnRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(spawnRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
+                        room.roomObject = currentRoom;
                     }
                     break;
                 case 1:
                     {
-                        GameObject currentRoom = Instantiate(exitRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(exitRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
+                        room.roomObject = currentRoom;
                     }
                     break;
                 case 2:
                     {
-                        GameObject currentRoom = Instantiate(enemyRoom1, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(enemyRoom1, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
+                        room.roomObject = currentRoom;
+                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
                 case 3:
                     {
-                        GameObject currentRoom = Instantiate(enemyRoom2, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(enemyRoom2, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
+                        room.roomObject = currentRoom;
+                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
                 case 4:
                     {
-                        GameObject currentRoom = Instantiate(caveRoom, new Vector2(-width / 2 + .5f + room.CentreTile.tileX, -height / 2 + .5f + room.CentreTile.tileY), Quaternion.identity);
+                        GameObject currentRoom = Instantiate(caveRoom, roomPosition, Quaternion.identity);
                         currentRoom.transform.parent = gameObject.transform;
+                        room.roomObject = currentRoom;
+                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
+                    }
+                    break;
+                case 5:
+                    {
+                        GameObject currentRoom = Instantiate(testRoom, roomPosition, Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
+                        room.roomObject = currentRoom;
+
                     }
                     break;
             }
         }
     }
 
-    public void CreateSpawnPoints(Room spawnRoom)
+    public void GeneratePlants()
     {
-        for (int x = generationAreaOuterBorder; x < width - generationAreaOuterBorder; x++)
+        for (int x = 0; x < width; x++)
         {
-            for (int y = generationAreaOuterBorder; y < width - generationAreaOuterBorder; y++)
+            for (int y = 0; y < height; y++)
             {
-                if (map[x, y] == 0 && !spawnRoom.tiles.Contains(new Coord(x, y)))
+                if (map[x, y] == 0 || map[x, y] == 3)
                 {
-                    if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
+                    if (Random.Range(0, 100) < 6)
                     {
-
-                        GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
-                        spawn.transform.parent = gameObject.transform;
+                        GameObject plant = GameObject.Instantiate(testPlantPrefab, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+                        plant.transform.parent = gameObject.transform;
                     }
                 }
             }
         }
+    }
+
+    public void CreateSpawnPoints(Room spawnRoom)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (map[x, y] == 0 && !spawnRoom.tiles.Contains(new Coord(x, y)))
+                {
+                    bool nextToAWall = false;
+                    for (int i = x - 1; i <= x + 1; i++)
+                    {
+                        for (int j = y - 1; j <= y + 1; j++)
+                        {
+                            if (map[i, j] == 1)
+                                nextToAWall = true;
+                        }
+                    }
+                    if (!nextToAWall)
+                        if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
+                        {
+                            GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+                            spawn.transform.parent = gameObject.transform;
+                        }
+                }
+            }
+        }
+        foreach (MapNode mapNode in mapNodes)
+        {
+            if (mapNode != null)
+                if (mapNode._owningRoom.roomObject.GetComponent<CombatRoomScript>())
+                {
+
+                    bool nextToAWall = false;
+                    for (int x = mapNode._nodeCoord.tileX - 1; x <= mapNode._nodeCoord.tileX + 1; x++)
+                    {
+                        for (int y = mapNode._nodeCoord.tileY - 1; y <= mapNode._nodeCoord.tileY + 1; y++)
+                        {
+                            if (map[x, y] == 1)
+                                nextToAWall = true;
+                        }
+                    }
+                    if (!nextToAWall)
+                        if (Random.Range(0, 100) < combatRoomSpawnPointCreationPrecentagePerTile)
+                        {
+                            GameObject spawn = GameObject.Instantiate(combatRoomSpawner, CoordToWorldPoint(new Coord(mapNode._nodeCoord.tileX, mapNode._nodeCoord.tileY)), Quaternion.identity);
+                            spawn.transform.parent = gameObject.transform;
+                            mapNode._owningRoom.roomObject.GetComponent<CombatRoomScript>().spawnPoints.Add(spawn);
+                        }
+                }
+        }
+
     }
 
 

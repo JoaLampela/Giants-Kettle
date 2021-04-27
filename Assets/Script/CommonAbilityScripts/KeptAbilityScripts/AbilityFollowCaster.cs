@@ -19,7 +19,7 @@ public class AbilityFollowCaster : MonoBehaviour
 
     private void Update()
     {
-        if(following)
+        if(following && _events._abilityCastSource != null)
         {
             gameObject.transform.position = _events._abilityCastSource.transform.position;
         }

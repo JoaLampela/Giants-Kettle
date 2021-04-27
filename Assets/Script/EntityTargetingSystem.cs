@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityTargetingSystem : MonoBehaviour
+public class EntityTargetingSystem : MonoBehaviour, IAbilityTargetPosition
 {
-    [SerializeField] float aggroRange = 10; 
+    [SerializeField] float aggroRange = 10;
     public GameObject target;
     private EntityEvents events;
     private GameEventManager gameEventManager;
@@ -30,7 +30,7 @@ public class EntityTargetingSystem : MonoBehaviour
         {
             foreach (GameObject entity in gameEventManager.allies)
             {
-                
+
                 if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !entity.GetComponent<EntityStats>().isInvisible)
                 {
                     if (aggroTable[entity] < 1)
@@ -101,11 +101,17 @@ public class EntityTargetingSystem : MonoBehaviour
 
     private void TakeDamage(Damage damage)
     {
-        IncreaseAggro(damage.source, damage._damage);
+        if (damage.source.GetComponent<EntityStats>().team != 3)
+        {
+            Debug.Log("source = " + damage.source + " team = " + damage.source.GetComponent<EntityStats>().team);
+            IncreaseAggro(damage.source, damage._damage);
+        }
+
     }
 
-    private void IncreaseAggro(GameObject entity, int amount)
+    public void IncreaseAggro(GameObject entity, int amount)
     {
+        Debug.Log("increase aggro");
         if (aggroTable.ContainsKey(entity)) aggroTable[entity] += amount;
         if (target == null || !aggroTable.ContainsKey(target)) target = entity;
         else
@@ -116,6 +122,7 @@ public class EntityTargetingSystem : MonoBehaviour
 
     private void DecreaseAggro(GameObject entity, int amount)
     {
+        Debug.Log("decrease aggro");
         if (aggroTable.ContainsKey(entity))
         {
             aggroTable[entity] -= amount;
@@ -138,7 +145,7 @@ public class EntityTargetingSystem : MonoBehaviour
         float tempDistance = 1000f;
         target = null;
         int tempTopScore = 0;
-        if(stats.team == 0) 
+        if (stats.team == 0)
         {
             target = null;
         }
@@ -146,14 +153,14 @@ public class EntityTargetingSystem : MonoBehaviour
         {
             foreach (GameObject entity in gameEventManager.allies)
             {
-                if(aggroTable.ContainsKey(entity))
+                if (aggroTable.ContainsKey(entity))
                 {
-                    if(aggroTable[entity] > tempTopScore)
+                    if (aggroTable[entity] > tempTopScore)
                     {
                         float distance = Vector2.Distance(entity.transform.position, transform.position);
                         if (!entity.GetComponent<EntityStats>().isInvisible && aggroRange >= distance)
                         {
-                            if(distance < tempDistance)
+                            if (distance < tempDistance)
                             {
                                 tempTopScore = aggroTable[entity];
                                 target = entity;
@@ -184,5 +191,10 @@ public class EntityTargetingSystem : MonoBehaviour
     private void OnDisable()
     {
         Unsubscribe();
+    }
+
+    public Vector2 GetTargetPosition()
+    {
+        return target.transform.position;
     }
 }

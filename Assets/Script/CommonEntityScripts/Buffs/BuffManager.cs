@@ -36,7 +36,6 @@ public class BuffManager : MonoBehaviour
     //Called from Buff-script when new buff is created or old one has been deleted
     public void UpdateActiveBuffs(string sourceId, BuffClass buff)
     {
-        Debug.Log("Updating buffs " + sourceId + " buff " + buff._id);
 
         //if buff with this sourceId is not present in dictionary, new entry is created with this sourceId
         if(!activeBuffs.ContainsKey(sourceId))
@@ -66,8 +65,15 @@ public class BuffManager : MonoBehaviour
     {
         if(activeBuffs.ContainsKey(sourceId))
         {
-            if (activeBuffs[sourceId]._value == buff._value) stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
+            if (activeBuffs[sourceId]._value == buff._value)
+            {
+                stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
+            }
             activeBuffs.Remove(sourceId);
+        }
+        else
+        {
+            Debug.Log("NO BUFF TO REMOVE");
         }
     }
 
@@ -75,8 +81,11 @@ public class BuffManager : MonoBehaviour
     //Creates and adds new Buff-script to this entity.
     private void NewBuff(string sourceId, EntityStats.BuffType id, int value, float duration)
     {
+        Debug.Log("New buff added");
         Buff buff = gameObject.AddComponent<Buff>();
         if (id == EntityStats.BuffType.Burning) buff._sourceId = "Burning";
+        if (id == EntityStats.BuffType.Stunned) buff._sourceId = "Stunned";
+        if (id == EntityStats.BuffType.Invulnurable) buff._sourceId = "Invulnurable";
         else buff._sourceId = sourceId;
         buff._value = value;
         
@@ -88,11 +97,8 @@ public class BuffManager : MonoBehaviour
             StartCoroutine(buff.DestroyAfterTime(duration));
         }
     }
-
-
     private void OnDisable()
     {
         Unsubscribe();
     }
-
 }

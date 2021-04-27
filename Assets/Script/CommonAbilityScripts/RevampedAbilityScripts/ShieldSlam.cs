@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShieldSlam : MonoBehaviour, IAbility
 {
+    private IEntityAnimations playerAnimations;
+    private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
     EntityAbilityManager abilityManager;
@@ -11,15 +13,21 @@ public class ShieldSlam : MonoBehaviour, IAbility
     private IAbilityTargetPosition targetPositionScript;
     Item _weapon;
     private Vector2 targetPosAtStart;
+    private float basicAttackCooldown = 1f;
+    public bool basicAttackOffCooldown = true;
 
     private void Start()
     {
         Subscribe();
-        _weapon = GetComponent<Inventory>().rightHand._item;
+        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().rightHand._item;
+        else _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
+
     }
 
     private void Awake()
     {
+        playerAnimations = GetComponent<IEntityAnimations>();
+        movementScript = GetComponent<MovementScript>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -33,54 +41,65 @@ public class ShieldSlam : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_weapon.currentCooldownAbility2 <= 0)
+
+        if (basicAttackOffCooldown)
         {
             if (_spellSlot == slot)
             {
+                basicAttackOffCooldown = false;
+                StartCoroutine(basicAttackCooldownFunction());
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
-
-                //Needs to be changed to shield slam trigger //animator.SetTrigger("Special");
-
-                _entityEvents.CastAbility();
+                playerAnimations.SetAttacking(true);
+                animator.SetTrigger("Attack");
             }
         }
+        else CannotAffordCast(slot);
+    }
+
+    private IEnumerator basicAttackCooldownFunction()
+    {
+        float trueCooldown = basicAttackCooldown * 100f / (100f + GetComponent<EntityStats>().currentAttackSpeed);
+        Debug.Log("Attack Cooldown " + trueCooldown);
+        yield return new WaitForSeconds(trueCooldown);
+        basicAttackOffCooldown = true;
     }
 
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().shieldSlam, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
-        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
-        for (int i = 0; i < _weapon._runeList.Length; i++)
+        Vector2 direction;
+        if (GetComponent<EntityTargetingSystem>())
         {
-            if (_weapon._runeList[i] != null)
+            Vector2 enemyDirection;
+            if (GetComponent<EntityTargetingSystem>().target != null)
             {
-
-                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType())) sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-
-                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(1);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(2);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(3);
-                }
+                enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
             }
+            else enemyDirection = GameObject.Find("Player").transform.position;
+            direction = (enemyDirection - (Vector2)transform.position).normalized;
         }
-        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-        sting.GetComponent<AbilityEvents>().UseAbility();
+        else
+        {
+            Vector2 mouseDirection = Input.mousePosition;
+            direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        }
+        float angle = Vector2.Angle(Vector2.up, direction);
+        float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
+        Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
+        GameObject basicAttack = Instantiate(GetComponent<EntityAbilityManager>().shieldSlam, (Vector2)transform.position + direction * 2, rotation);
+        basicAttack.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        basicAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
+        basicAttack.GetComponent<AbilityEvents>().UseAbility();
+        playerAnimations.SetAttacking(false);
     }
 
     private void CannotAffordCast(int slot)
     {
-        if (_spellSlot == slot) Debug.Log("CANNOT AFFORD TO SHIELD SLAM");
+        if (_spellSlot == slot)
+        {
+            Debug.Log("BASIC ATTACK IS ON COOLDOWN");
+        }
     }
 
     public int GetCastValue()
@@ -98,10 +117,21 @@ public class ShieldSlam : MonoBehaviour, IAbility
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
+    public Item GetWeapon()
+    {
+        return _weapon;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.indeterminate;
+    }
+
     private void Subscribe()
     {
         _entityEvents.OnCallBackCastAbility += Cast;
         _entityEvents.OnCanNotAffordAbility += CannotAffordCast;
+
     }
 
     public void Unsubscribe()

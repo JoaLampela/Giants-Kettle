@@ -13,6 +13,11 @@ TagManager:
   - Projectile
   - Weapon
   - InventoryPanel
+  - RightHand
+  - LeftHand
+  - GameOverScreen
+  - PlayerUI
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
@@ -24,6 +29,7 @@ TagManager:
   - Walls
   - Projectiles
   - Weapons
+  - Projectiles2
   - 
   - 
   - 
@@ -44,8 +50,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - dmgPopups
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -7,8 +9,7 @@ public class AbilityEvents : MonoBehaviour
     [HideInInspector] public Vector2 _targetPositionAtStart;
     [HideInInspector] public Vector2 _targetPosition = new Vector2(0, 0);
     [HideInInspector] public Vector2 _targetVector = new Vector2(0, 0);
-    public int hitBoxScale;
-    public int spriteScale;
+    public int abilityScale;
 
     public int damageMultiplier;
     public int bonusFlatDamage;
@@ -24,6 +25,7 @@ public class AbilityEvents : MonoBehaviour
     public event Action _onActivate;
     public event Action _onInstantiated;
     public event Action _onDestroy;
+    public event Action<Damage, GameObject> _onDealDamage;
 
     private void Start()    
     {
@@ -39,6 +41,7 @@ public class AbilityEvents : MonoBehaviour
     //Called when activating the ability's effect
     public void Activate()
     {
+        Debug.Log("Activated");
         _onActivate?.Invoke();
     }
 
@@ -70,6 +73,12 @@ public class AbilityEvents : MonoBehaviour
         _onDestroy?.Invoke();
     }
 
+    public void DealDamageEvent(Damage damage, GameObject target)
+    {
+        Debug.Log("Ability even dealing damage");
+        _onDealDamage?.Invoke(damage, target);
+    }
+
 
     public void DealDamage(GameObject target, int baseDamage, int trueDamage = 0)
     {
@@ -80,9 +89,30 @@ public class AbilityEvents : MonoBehaviour
                 if (target.GetComponent<EntityEvents>())
                 {
                     Debug.Log("Dealing damage " + baseDamage + " " + bonusFlatDamage + " " + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage + " " + damageMultiplier / 100f);
-                    target.GetComponent<EntityEvents>().HitThis(new Damage(_abilityCastSource, (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f), trueDamage + bonusFlatTrueDamage));
+
+                    bool isCrit = CalculateIfIsCriticalHit();
+                    int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f);
+                    int totaltrueDmg = trueDamage + bonusFlatTrueDamage;
+                    if (isCrit) {
+                        totalBasicDmg *= 2;
+                        totaltrueDmg *= 2;
+                    }
+                    Damage damage = new Damage(_abilityCastSource, isCrit, totalBasicDmg, totaltrueDmg);
+                    target.GetComponent<EntityEvents>().HitThis(damage);
+                    DealDamageEvent(damage, target);
                 }
             }
         }
+    }
+    private bool CalculateIfIsCriticalHit()
+    {
+        int critChance = _abilityCastSource.GetComponent<EntityStats>().currentCriticalStrikeChance;
+        int random = UnityEngine.Random.Range(1, 100);
+        if (critChance >= random)
+        {
+            Debug.Log("Attack was critical");
+            return true;
+        }
+        else return false;
     }
 }

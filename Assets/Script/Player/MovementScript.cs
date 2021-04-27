@@ -19,7 +19,10 @@ public class MovementScript : MonoBehaviour
 
 
 
-
+    private void Awake()
+    {
+        SoundManager.Initialize();
+    }
 
     //Animator animator;
     // Start is called before the first frame update
@@ -53,16 +56,6 @@ public class MovementScript : MonoBehaviour
 
 
     }
-    public bool Dash()
-    {
-        if (canDash)
-        {
-            canDash = false;
-            StartCoroutine(DashEnumerator(0.10f));
-            return true;
-        }
-        return false;
-    }
     //get input for the player movement
     void GetMovementInput()
     {
@@ -80,15 +73,14 @@ public class MovementScript : MonoBehaviour
 
         //.normalized caps the vector length to 1, so that diagonal movement works properly
         movement = new Vector2(moveX, moveY).normalized;
-    }
-    public IEnumerator DashEnumerator(float DashTime)
-    {
-        yield return new WaitForSeconds(DashTime);
-        playerRB.AddForce(playerRB.velocity.normalized * 10000f);
-        yield return new WaitForSeconds(dashCoolDown);
-        canDash = true;
 
+        bool isIdle = moveX == 0 && moveY == 0;
+        if (!isIdle)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.PlayerMove, transform.position);
+        }
     }
+    
     public void AttackStep(float force)
     {
         playerRB.AddForce(force * lookDirection);

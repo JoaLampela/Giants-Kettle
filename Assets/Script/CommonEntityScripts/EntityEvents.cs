@@ -24,7 +24,7 @@ public class EntityEvents : MonoBehaviour
     public event Action<int> OnRecoverRage;
 
     //called to lose health as a cost of ability
-    public event Action<int> OnDeteriorateHealth;
+    public event Action<int, Damage> OnDeteriorateHealth;
 
     //called to lose energy as a cost of ability
     public event Action<int> OnDeteriorateEnergy;
@@ -41,10 +41,10 @@ public class EntityEvents : MonoBehaviour
 
 
     //OnHitEnemyGameObject
-    public event Action<Damage> OnHitEnemy;
+    public event Action<Damage, GameObject> OnHitEnemy;
 
     //OnKillEnemy
-    public event Action OnKillEnemy;
+    public event Action<GameObject> OnKillEnemy;
 
     //These events are called when entity loses these resources. DO NOT CALL THEM TO REDUCE OR ADD THESE STATS!
     public event Action<int> OnLoseSpirit;
@@ -74,7 +74,7 @@ public class EntityEvents : MonoBehaviour
 
 
     //Called when game objects health reaches 0
-    public event Action OnDie;
+    public event Action<GameObject, GameObject> OnDie;
 
 
     //TryCast is listened by corresponding resource scripts. if entity has enough
@@ -98,9 +98,16 @@ public class EntityEvents : MonoBehaviour
     public event Action<int> OnRemoveItem;
     public event Action<ItemObject, int> OnAddNewItemToSlot;
     public event Action<UiButtonClick> OnUseItem;
-    
+
     public event Action OnAnimationTriggerPoint;
     public event Action OnSpellOver;
+
+    public event Action<int> OnGainShield;
+
+    public void GainShield(int amount)
+    {
+        OnGainShield?.Invoke(amount);
+    }
 
     public void EquipRunesChange()
     {
@@ -109,7 +116,6 @@ public class EntityEvents : MonoBehaviour
 
     public void AnimationTriggerPoint()
     {
-        Debug.Log("Animation Trigger Point");
         OnAnimationTriggerPoint?.Invoke();
     }
 
@@ -160,7 +166,8 @@ public class EntityEvents : MonoBehaviour
     {
         OnTryCastAbilityCostRage?.Invoke(spellSlot, cost);
     }
-    public void CallBackCastAbility(int spellSlot) {
+    public void CallBackCastAbility(int spellSlot)
+    {
         OnCallBackCastAbility?.Invoke(spellSlot);
     }
     public void CanNotAffordAbility(int spellSlot)
@@ -169,7 +176,6 @@ public class EntityEvents : MonoBehaviour
     }
     public void HitThis(Damage damage)
     {
-        Debug.Log(gameObject + " took damage " + damage._damage);
         OnHitThis?.Invoke(damage);
     }
     public void RecoverHealth(int amount)
@@ -188,10 +194,10 @@ public class EntityEvents : MonoBehaviour
     {
         OnRecoverSpirit?.Invoke(amount);
     }
-    public void DeteriorateHealth(int amount)
+    public void DeteriorateHealth(int amount, Damage damage)
     {
-        OnDeteriorateHealth?.Invoke(amount);
-    } 
+        OnDeteriorateHealth?.Invoke(amount, damage);
+    }
     public void DeteriorateEnergy(int amount)
     {
         OnDeteriorateEnergy?.Invoke(amount);
@@ -204,13 +210,13 @@ public class EntityEvents : MonoBehaviour
     {
         OnDeteriorateSpirit?.Invoke(amount);
     }
-    public void HitEnemy(Damage damage)
+    public void HitEnemy(Damage damage, GameObject target)
     {
-        OnHitEnemy?.Invoke(damage);
+        OnHitEnemy?.Invoke(damage, target);
     }
-    public void KillEnemy()
+    public void KillEnemy(GameObject enemy)
     {
-        OnKillEnemy?.Invoke();
+        OnKillEnemy?.Invoke(enemy);
     }
     public void LoseSpirit(int amount)
     {
@@ -297,9 +303,9 @@ public class EntityEvents : MonoBehaviour
     {
         OnRemoveFromTeams?.Invoke();
     }
-    public void Die()
+    public void Die(GameObject source)
     {
         Debug.Log(gameObject.name + " Died");
-        OnDie?.Invoke();
+        OnDie?.Invoke(source, gameObject);
     }
 }

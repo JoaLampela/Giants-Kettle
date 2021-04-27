@@ -21,6 +21,6 @@ MonoBehaviour:
   baseRune: {fileID: 0}
   weaponType: 1
   maxCooldownAbility1: 30
-  currentCooldownAbility1: 30
-  maxCooldownAbility2: 0
+  currentCooldownAbility1: 0
+  maxCooldownAbility2: 10
   currentCooldownAbility2: 0

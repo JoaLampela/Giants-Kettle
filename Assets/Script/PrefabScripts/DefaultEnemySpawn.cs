@@ -11,16 +11,23 @@ public class DefaultEnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Spawn();
+
+    }
+
+    public GameObject Spawn()
+    {
         int i = 0;
         foreach (GameObject enemy in spawnEnemiesList)
         {
             if (Random.Range(1, 100) < spawnPrecentage[i])
-                GameObject.Instantiate(enemy, transform.position, Quaternion.identity);
+            {
+                return GameObject.Instantiate(enemy, transform.position, Quaternion.identity);
+            }
             i++;
         }
-
+        return null;
     }
-
     // Update is called once per frame
     void Update()
     {

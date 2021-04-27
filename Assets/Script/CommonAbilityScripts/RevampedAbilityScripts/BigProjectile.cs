@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BigProjectile : MonoBehaviour, IAbility
 {
+    private Player_Animations playerAnimations;
+    private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
     EntityAbilityManager abilityManager;
@@ -15,11 +17,13 @@ public class BigProjectile : MonoBehaviour, IAbility
     private void Start()
     {
         Subscribe();
-        _weapon = GetComponent<Inventory>().rightHand._item;
+        if (GetComponent<Inventory>()) _weapon = GetComponent<Inventory>().rightHand._item;
+        else _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
     }
 
     private void Awake()
     {
+        playerAnimations = GetComponent<Player_Animations>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -37,11 +41,11 @@ public class BigProjectile : MonoBehaviour, IAbility
         {
             if (_spellSlot == slot)
             {
+                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f / (100f + GetComponent<EntityStats>().currentSpellHaste);
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
-
-                //Needs to be changed to big projectile trigger //animator.SetTrigger("Special");
-
+                playerAnimations.SetAttacking(true);
+                animator.SetTrigger("Special");
                 _entityEvents.CastAbility();
             }
         }
@@ -53,37 +57,49 @@ public class BigProjectile : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
-        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().bigProjectile, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
-        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        Vector2 direction;
+        if (GetComponent<EntityTargetingSystem>())
+        {
+            Vector2 enemyDirection;
+            if (GetComponent<EntityTargetingSystem>().target != null)
+            {
+                enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
+            }
+            else enemyDirection = GameObject.Find("Player").transform.position;
+            direction = (enemyDirection - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            Vector2 mouseDirection = Input.mousePosition;
+            direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        }
+        float angle = Vector2.Angle(Vector2.up, direction);
+        float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
+        Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
+        GameObject bigProjectile = Instantiate(GetComponent<EntityAbilityManager>().bigProjectile, (Vector2)transform.position + direction * 2, rotation);
+        bigProjectile.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         for (int i = 0; i < _weapon._runeList.Length; i++)
         {
             if (_weapon._runeList[i] != null)
             {
 
-                if (!sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType())) sting.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-                IRuneScript runeScript = (IRuneScript)sting.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
-
-                if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.basic)
+                if (!bigProjectile.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType()))
                 {
-                    runeScript.IncrementDuplicateCountWeapon(1);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.refined)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(2);
-                }
-                else if (_weapon._runeList[i].runeTier == RuneObject.RuneTier.perfected)
-                {
-                    runeScript.IncrementDuplicateCountWeapon(3);
+                    bigProjectile.AddComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScript = (IRuneScript)bigProjectile.GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    IRuneScript runeScriptOnPlayer = (IRuneScript)GetComponent(_weapon._runeList[i]._IruneContainer.Result.GetType());
+                    runeScript.SetDuplicateCountWeapon(runeScriptOnPlayer.GetDuplicateCountWeapon());
                 }
             }
         }
-        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-        sting.GetComponent<AbilityEvents>().UseAbility();
+        bigProjectile.GetComponent<AbilityEvents>().SetSource(gameObject);
+        bigProjectile.GetComponent<AbilityEvents>().UseAbility();
+        playerAnimations.SetAttacking(false);
     }
 
     private void CannotAffordCast(int slot)
     {
-        if (_spellSlot == slot) Debug.Log("CANNOT AFFORD TO BIG PROJECTILE");
+        if (_spellSlot == slot) Debug.Log("BIG PROJECTILE ON CD");
     }
 
     public int GetCastValue()
@@ -99,6 +115,16 @@ public class BigProjectile : MonoBehaviour, IAbility
     public void TryCast()
     {
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
+    }
+
+    public Item GetWeapon()
+    {
+        return _weapon;
+    }
+
+    public IAbility.Hand GetHand()
+    {
+        return IAbility.Hand.right;
     }
 
     private void Subscribe()

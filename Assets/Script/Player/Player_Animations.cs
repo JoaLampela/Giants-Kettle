@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Player_Animations : MonoBehaviour
+public class Player_Animations : MonoBehaviour, IEntityAnimations
 {
     public bool attacking { private set; get; }
     public Vector2 lookDirection { private set; get; }
@@ -12,8 +12,10 @@ public class Player_Animations : MonoBehaviour
     public GameObject leftHandContainer;
     [SerializeField] private GameObject rightHandWeapon;
     [SerializeField] private GameObject leftHandWeapon;
+    private EntityStats stats;
 
     public float trueAttackSpeed = 1;
+    public bool isBurning = false;
 
     private Rigidbody2D playerRB;
     private Animator animator;
@@ -25,76 +27,32 @@ public class Player_Animations : MonoBehaviour
     private bool offHandUsingSingleHandedSword;
     private bool offHandUsingShield;
 
+
     private bool attackOnCooldown;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         playerRB = GetComponent<Rigidbody2D>();
         attackOnCooldown = false;
         animator = GetComponent<Animator>();
+        stats = GetComponent<EntityStats>();
         animator.SetFloat("TrueAttackSpeed", trueAttackSpeed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (usingSingleHandedSword)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-
-        }
-        if (usingTwoHandedSword)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && !attacking)
-        {
-            if (GetComponent<MovementScript>().Dash())
-                animator.SetTrigger("Dash");
-        }
-        if (usingStaff)
-        {
-            if (Input.GetMouseButtonDown(0) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Attack");
-            }
-            if (Input.GetMouseButtonDown(1) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("Special");
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("LeftAttack");
-            }
-        }
-        if (offHandUsingSingleHandedSword)
-        {
-            if (!attacking)
-            {
-                LeftHandLookOppositeToMouse();
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !attackOnCooldown)
-            {
-                animator.SetTrigger("LeftAttack");
-            }
-        }
-
-
+        if ((offHandUsingSingleHandedSword || offHandUsingShield) && !attacking)
+            LeftHandLookOppositeToMouse();
         if (!attacking)
             LookToMouse();
         else
         {
             LookDirectionUpdate();
         }
+        trueAttackSpeed = stats.currentAttackSpeed / 100;
     }
 
 
@@ -160,7 +118,7 @@ public class Player_Animations : MonoBehaviour
     public void SwitchToOffHandShield(GameObject inGameObject)
     {
         UnequipLeftHandBools();
-        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), rightHand.transform);
+        leftHandWeapon = Instantiate(inGameObject, leftHand.transform.position, new Quaternion(0, 0, 0, 0), leftHand.transform);
         offHandUsingShield = true;
         animator.SetBool("ShieldOffHandEquiped", true);
     }
@@ -236,6 +194,11 @@ public class Player_Animations : MonoBehaviour
         animator.SetBool("StaffEquiped", false);
         animator.SetBool("ShortSwordOffHandEquiped", false);
         animator.SetBool("ShieldOffHandEquiped", false);
+    }
+    public bool IsRanged()
+    {
+        if (usingStaff) return true;
+        else return false;
     }
     public void SetAttacking(bool trueOrFalse)
     {

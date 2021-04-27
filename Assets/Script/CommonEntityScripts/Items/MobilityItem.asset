@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22727b0861fb16940a1c1fbb83720440, type: 3}
+  m_Name: MobilityItem
+  m_EditorClassIdentifier: 
+  type: 1
+  description: 
+  iconSprite: {fileID: 0}
+  inGameObject: {fileID: 0}
+  isTwoHander: 0
+  runeSlots: 0
+  baseRune: {fileID: 0}
+  weaponType: 2
+  maxCooldownAbility1: 3
+  currentCooldownAbility1: 0
+  maxCooldownAbility2: 0
+  currentCooldownAbility2: 0

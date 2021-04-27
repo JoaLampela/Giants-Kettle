@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class GameEventManager : MonoBehaviour
 {
     public static GameEventManager Instance { get; private set; }
 
+    public Light2D globalLight;
 
+    public int globalLevel = 0;
     public GameObject player;
     public float time;
     public float combatDuration;
@@ -14,6 +18,7 @@ public class GameEventManager : MonoBehaviour
     public List<GameObject> allies = new List<GameObject>();
     public List<GameObject> neutrals = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> map = new List<GameObject>();
     public bool combatOn = false;
     public bool gamePaused = false;
 
@@ -25,11 +30,85 @@ public class GameEventManager : MonoBehaviour
     public event Action OnExitLevel;
     public event Action OnUpdateAggro;
 
+    public event Action OnRoomClear;
+    public event Action OnWaveClear;
+
+    public int playerLevelUpPoints;
+    public bool playerLevelUpScreenVisible = false;
+    public GameObject LevelUpScreen;
+    public TextMeshProUGUI levelPointsText;
+
+    public TextMeshProUGUI gameTimeText;
+
     private void Update()
     {
         time += Time.deltaTime;
+        globalLevel = (int)time / 100 + 1;
         if (combatOn) combatDuration += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible)
+        {
+            playerLevelUpScreenVisible = true;
+            LevelUpScreen.SetActive(true);
+            LevelUpScreen.GetComponent<RuneTierListObjects>().RandomizeNewRunes();
+            Debug.Log("OPENED");
+        }
+        else if((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible)
+        {
+            playerLevelUpScreenVisible = false;
+            LevelUpScreen.SetActive(false);
+            Debug.Log("CLOSED");
+        }
+        levelPointsText.text = playerLevelUpPoints.ToString();
+
+        UpdateGameTimer();
     }
+
+    private void UpdateGameTimer()
+    {
+        int hours;
+        int mins;
+        int seconds;
+
+        
+        mins = (int)(((int)time / 60f));
+        seconds = (int)time - mins*60;
+        hours = (int)(mins / 60f);
+        mins -= hours * 60;
+        if(hours > 99)
+        {
+            mins = 42;
+            hours = 69;
+            seconds = 00;
+        }
+        string hoursString;
+        if (hours.ToString().Length == 1) hoursString = "0" + hours.ToString();
+        else hoursString = hours.ToString();
+
+        string minutesString;
+        if (mins.ToString().Length == 1) minutesString = "0" + mins.ToString();
+        else minutesString = mins.ToString();
+
+        string secondsString;
+        if (seconds.ToString().Length == 1) secondsString = "0" + seconds.ToString();
+        else secondsString = seconds.ToString();
+        gameTimeText.text = hoursString + ":" + minutesString + ":" + secondsString;
+    }
+
+    public void ReducePlayerLevelUpPoints()
+    {
+        playerLevelUpPoints--;
+    }
+
+    public void RoomClear()
+    {
+        OnRoomClear?.Invoke();
+    }
+    public void WaveClear()
+    {
+        OnWaveClear?.Invoke();
+    }
+
 
     public void CombatStart()
     {
@@ -48,6 +127,8 @@ public class GameEventManager : MonoBehaviour
             OnCombatEnd();
             combatOn = false;
         }
+        
+
     }
 
     public void AllEntitiesRemove(GameObject entity)
@@ -74,6 +155,9 @@ public class GameEventManager : MonoBehaviour
             case 2:
                 if (allies.Contains(entity)) allies.Remove(entity);
                 break;
+            case 3:
+                if (map.Contains(entity)) map.Remove(entity);
+                break;
         }
     }
     public void AddToTeam(int team, GameObject entity)
@@ -90,6 +174,9 @@ public class GameEventManager : MonoBehaviour
                 break;
             case 2:
                 allies.Add(entity);
+                break;
+            case 3:
+                map.Add(entity);
                 break;
         }
     }

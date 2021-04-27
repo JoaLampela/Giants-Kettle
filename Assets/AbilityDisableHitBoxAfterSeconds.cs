@@ -15,6 +15,7 @@ public class AbilityDisableHitBoxAfterSeconds : MonoBehaviour
     IEnumerator DisableHitbox()
     {
         yield return new WaitForSeconds(hitboxDuration);
-        GetComponent<BoxCollider2D>().enabled = false;
+        if (GetComponent<BoxCollider2D>()) GetComponent<BoxCollider2D>().enabled = false;
+        else if (GetComponent<CircleCollider2D>()) GetComponent<CircleCollider2D>().enabled = false;
     }
 }

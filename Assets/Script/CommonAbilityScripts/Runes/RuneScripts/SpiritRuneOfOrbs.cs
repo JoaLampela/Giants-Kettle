@@ -13,8 +13,11 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
     private List<GameObject> projectiles;
+    private Item containerItem;
+    private IRuneScript.Hand _hand;
 
-    public bool destroyed = false;
+    [SerializeField] private int duplicateCountWeaponRight = 0;
+    [SerializeField] private int duplicateCountWeaponLeft = 0;
 
     //Always needed functions
     public enum WeaponType
@@ -26,39 +29,47 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         Staff
     }
 
-    private void Update()
-    {
-        Debug.Log("I EXIST");
-    }
     public void SetDuplicateCountWeapon(int value)
     {
         duplicateCountWeapon = value;
     }
-    public void IncrementDuplicateCountWeapon(int amount)
+    
+    public void IncrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
-        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon); 
-        duplicateCountWeapon += amount;
-        Debug.Log("Incrementing weapon runes " + duplicateCountWeapon);
-        if(_entityEvents != null) SetUpPermanentEffects();
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight += amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft += amount;
+        }
 
+        duplicateCountWeapon += amount;
     }
 
-    public void DecrementDuplicateCountWeapon(int amount)
+    public void DecrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponRight -= amount;
+        }
+        if (hand == IRuneScript.Hand.left || hand == IRuneScript.Hand.dual)
+        {
+            duplicateCountWeaponLeft -= amount;
+        }
+
         duplicateCountWeapon -= amount;
-        SetUpPermanentEffects();
     }
 
     public void IncrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor += amount;
-        SetUpPermanentEffects();
     }
 
     public void DecrementDuplicateCountArmor(int amount)
     {
         duplicateCountArmor -= amount;
-        SetUpPermanentEffects();
     }
 
     public int GetDuplicateCountWeapon()
@@ -73,11 +84,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
 
     public void RemoveRune()
     {
-        Debug.Log("Destroyed");
-        destroyed = true;
-        this.enabled = false;
-        
-        //Destroy(this);
+        Destroy(this);
     }
 
     public void SetEntity(GameObject entity)
@@ -95,11 +102,9 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         else if (weaponType == IRuneScript.WeaponType.Bow) _weaponType = WeaponType.Bow;
         else if (weaponType == IRuneScript.WeaponType.Staff) _weaponType = WeaponType.Staff;
     }
-
     
-    private void SetUpPermanentEffects()
+    public void SetUpPermanentEffects()
     {
-        Debug.Log("Removing buffs");
         _entityEvents.RemoveBuff("SpiritRuneOfOrbsArmor");
         _entityEvents.RemoveBuff("SpiritRuneOfOrbsWeapon");
 
@@ -112,33 +117,26 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         if(duplicateCountArmor != 0)
         {
             GameObject projectile = RuneAssets.i.RuneOrbArmorProjectile;
-            _entityEvents.NewBuff("SpiritRuneOfOrbsArmor", EntityStats.BuffType.Health, duplicateCountArmor * 100);
+            _entityEvents.NewBuff("SpiritRuneOfOrbsArmor", EntityStats.BuffType.Health, duplicateCountArmor * 100); //TODO: Spell Haste
             projectile.GetComponent<AbilityEvents>().SetSource(gameObject);
-            float degrees = 360f / (2f + (float)duplicateCountArmor);
 
             for(int i = 0; i < 2 + duplicateCountArmor; i++)
             {
                 projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(3, 0, 0), Quaternion.identity, transform);
-                projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * degrees);
+                projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (2f + (float)duplicateCountArmor)));
                 projectiles.Add(projectile);
             }
         }
         
         if(duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfOrbsWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("SpiritRuneOfOrbsWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5); //TODO: Decide on a better stat buff
         }
-    }
-
-    private void Test()
-    {
-        Debug.Log("IT WORKS!");
     }
 
     //Subs & Unsub -related Unity functions
     private void Start()
     {
-        Debug.Log("Spirit rune script added");
         if(gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();
@@ -148,7 +146,6 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         {
             SubscribeAbility();
             Activate();
-            Debug.Log("Subscribe ability");
         }
     }
 
@@ -183,45 +180,55 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
 
     public void Activate()
     {
-        Debug.Log("weapon cound " + duplicateCountWeapon);  
-        Debug.Log("AbilityActivated");
         GameObject projectile = RuneAssets.i.RuneOrbWeaponProjectile;
         projectile.GetComponent<AbilityEvents>().SetSource(gameObject.GetComponent<AbilityEvents>()._abilityCastSource);
-        float degrees = 360f / (float)duplicateCountWeapon;
-        Debug.Log("weapon cound " + duplicateCountWeapon);
         for (int i = 0; i < duplicateCountWeapon; i++)
         {
-            Debug.Log("Summoning orb");
             projectile = Instantiate(projectile, gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity, transform);
-            projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * degrees);
+            projectile.GetComponent<AbilityHoamToClosestEnemy>().source = gameObject;
+            projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (float)duplicateCountWeapon));
         }
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
-        _abilityEvents._onActivate += Test;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnCastAbility += Test;
+        //_entityEvents.OnCastAbility += DoStuffOnCastAbility;
     }
 
     public void UnsubscribeAbility()
     {
-        _abilityEvents._onActivate -= Test;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnCastAbility -= Test;
+        //_entityEvents.OnCastAbility -= DoStuffOnCastAbility;
     }
 
-    public bool GetIsDestroyed()
+    public void SetContainerItem(Item item)
     {
-        return destroyed;
+        containerItem = item;
+    }
+
+    public void SetContainerItem(Item item, IRuneScript.Hand hand)
+    {
+        containerItem = item;
+        _hand = hand;
+    }
+
+    public int GetDuplicateCountWeaponRight()
+    {
+        return duplicateCountWeaponRight;
+    }
+
+    public int GetDuplicateCountWeaponLeft()
+    {
+        return duplicateCountWeaponLeft;
     }
 }

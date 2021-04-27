@@ -15,6 +15,8 @@ public class EntityAbilityManager : MonoBehaviour
     public IAbility ability1;
     public IAbility ability2;
     public IAbility ability3;
+    public IAbility ability4;
+
 
     public GameObject sting;
     public GameObject heavySting;
@@ -25,6 +27,11 @@ public class EntityAbilityManager : MonoBehaviour
     public GameObject shieldToss;
     public GameObject tripleShot;
     public GameObject powerShot;
+    public GameObject dash;
+    public GameObject basicAttackOneHandedSword;
+    public GameObject basicAttackTwoHandedSword;
+    public GameObject basicAttackStaff;
+    public GameObject block;
 
     public void CastAbility(int slot)
     {
@@ -47,7 +54,16 @@ public class EntityAbilityManager : MonoBehaviour
                     }
                     break;
                 case 3:
-                    ability3.TryCast();
+                    if (ability3 != null)
+                    {
+                        ability3.TryCast();
+                    }
+                    break;
+                case 4:
+                    if (ability4 != null)
+                    {
+                        ability4.TryCast();
+                    }
                     break;
             }
         }
@@ -61,8 +77,6 @@ public class EntityAbilityManager : MonoBehaviour
 
     public void SetAbility(int slot, IAbility ability)
     {
-        Debug.Log("Ability Set: " + slot);
-
         switch (slot) 
         {
             case 1:
@@ -76,6 +90,10 @@ public class EntityAbilityManager : MonoBehaviour
             case 3:
                 ability3 = ability;
                 ability3.SetSlot(3);
+                break;
+            case 4:
+                ability4 = ability;
+                ability4.SetSlot(4);
                 break;
         }
     }
@@ -94,6 +112,9 @@ public class EntityAbilityManager : MonoBehaviour
                 break;
             case 3:
                 ability3 = null;
+                break;
+            case 4:
+                ability4 = null;
                 break;
         }
     }
