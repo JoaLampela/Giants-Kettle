@@ -26,12 +26,13 @@ public class AiInventory : MonoBehaviour
     private void Start()
     {
         dashItem = new Item(dashItemObject);
-
-        RandomizeEquippedWeapons();
-        RandomizeEquippedRunes();
-
-        if (rightHandWeapon != null) AbilitySetUp(rightHandWeapon, WeaponHand.RightHand);
-        if (leftHandWeapon != null && !leftHandWeapon.isTwoHander) AbilitySetUp(leftHandWeapon, WeaponHand.LeftHand);
+        if (possibleWeapons.Length > 0)
+        {
+            RandomizeEquippedWeapons();
+            RandomizeEquippedRunes();
+            if (rightHandWeapon != null) AbilitySetUp(rightHandWeapon, WeaponHand.RightHand);
+            if (leftHandWeapon != null && !leftHandWeapon.isTwoHander) AbilitySetUp(leftHandWeapon, WeaponHand.LeftHand);
+        }
     }
 
     private void RandomizeEquippedWeapons()
