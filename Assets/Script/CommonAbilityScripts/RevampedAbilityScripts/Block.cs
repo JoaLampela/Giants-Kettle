@@ -56,6 +56,7 @@ public class Block : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        Debug.Log("Instantiating block");
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
         Vector2 direction;
         if (GetComponent<EntityTargetingSystem>())
