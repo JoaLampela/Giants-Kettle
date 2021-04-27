@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4549dc544aa2b449b5058751f130d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnWeight: 6300000001000000
+  spawnWeight: 630000002900000001000000
   spawnEnemiesList:
   - {fileID: 2999592409753981144, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
+  - {fileID: 681881871295265569, guid: cd1440242ce735149ad4cc529ca0bb15, type: 3}
   - {fileID: 1582426512252007567, guid: ccedf3244a757504c97e1852b2e95893, type: 3}
 --- !u!198 &26626547656427038
 ParticleSystem:

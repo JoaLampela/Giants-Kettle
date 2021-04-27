@@ -161,11 +161,15 @@ public class Room : IComparable<Room>
         Debug.Log("Roomstats\nRoom size: " + roomSize + "\nEdge tiles: " + edgeTiles.Count + "\nEdge wall tiles: " + edgeWallTiles.Count);
     }
 
-    public void RoomAction()
+    public void RoomAction(Coord nodeCoord)
     {
         //Debug.Log("RoomAction in room type: " + roomType);
-        if (roomObject.GetComponent<CombatRoomScript>())
-            roomObject.GetComponent<CombatRoomScript>().StartCombat();
+        if (!edgeTiles.Contains(nodeCoord))
+        {
+            if (roomObject.GetComponent<CombatRoomScript>())
+                roomObject.GetComponent<CombatRoomScript>().StartCombat();
+        }
+
 
     }
 }

@@ -47,6 +47,7 @@ public class EnemySpawnRoom : MonoBehaviour
     IEnumerator MakeAggro(GameObject enemy)
     {
         yield return new WaitForSeconds(1f);
-        enemy.GetComponent<EntityTargetingSystem>().IncreaseAggro(GameObject.FindGameObjectWithTag("Player"), 100);
+        if (enemy != null)
+            enemy.GetComponent<EntityTargetingSystem>().IncreaseAggro(GameObject.FindGameObjectWithTag("Player"), 100);
     }
 }

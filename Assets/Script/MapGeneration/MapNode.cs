@@ -16,6 +16,6 @@ public class MapNode
     }
     public void LocationAction()
     {
-        _owningRoom.RoomAction();
+        _owningRoom.RoomAction(_nodeCoord);
     }
 }
