@@ -5,6 +5,8 @@ using System;
 
 public class Inventory : MonoBehaviour
 {
+    public bool inventoryLocked;
+
     public enum ItemType
     {
         Default,

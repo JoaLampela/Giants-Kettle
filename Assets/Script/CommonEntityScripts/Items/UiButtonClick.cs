@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public bool inventoryLocked;
+
     public enum ItemType
     {
         Default,
@@ -53,144 +55,245 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         if (_item != null) icon.sprite = _item.item.iconSprite;
 
         if ((int)_type == 6) SetInvisible();
+        Subscribe();
+    }
+    private void OnDisable()
+    {
+        Unsubscribe();
+    }
+
+    private void Subscribe()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<EntityEvents>().OnLockInventory += LockInventory;
+        player.GetComponent<EntityEvents>().OnUnlockInventory += UnlockInventory;
+    }
+    private void Unsubscribe()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<EntityEvents>().OnLockInventory -= LockInventory;
+        player.GetComponent<EntityEvents>().OnUnlockInventory -= UnlockInventory;
+    }
+
+    private void LockInventory()
+    {
+        inventoryLocked = true;
+    }
+    private void UnlockInventory()
+    {
+        inventoryLocked = false;
     }
 
     public void PlaceItem(Item newItem, UiButtonClick previousSlot = null)
     {
-        
-        if ((int)_type != 0 && _type != ItemType.Rune)
+        if(!inventoryLocked)
         {
-            Debug.Log("!=0");
-            if (_item != null) playerInventory.Unequip(_item, this);
-        }
-
-        if(this == playerInventory.rightHand || this == playerInventory.leftHand)
-        {
-            if(newItem.item.isTwoHander)
+            if ((int)_type != 0 && _type != ItemType.Rune)
             {
-                if(_item != null)
-                {
-                    Item temp;
-                    if (_item.item.isTwoHander) {
-                        temp = playerInventory.leftHand._item;
-                        playerInventory.rightHand.RemoveItemFromslot();
-                        playerInventory.leftHand.RemoveItemFromslot();
-                    }
-                    else temp = _item;
-                    playerInventory.NewItem(temp);
-                    if (playerInventory.leftHand == this)
-                    {
-                        if (playerInventory.rightHand._item != null) playerInventory.NewItem(playerInventory.rightHand._item);
-                    }
-                    else if (playerInventory.rightHand == this)
-                    {
-                        if (playerInventory.leftHand._item != null) playerInventory.NewItem(playerInventory.leftHand._item);
-                    }
-                }
-                else
-                {
-                    if (this == playerInventory.rightHand)
-                    {
-                        if(playerInventory.leftHand._item != null)
-                        {
-                            Item temp = playerInventory.leftHand._item;
-                            playerInventory.Unequip(temp, playerInventory.leftHand);
-                            playerInventory.NewItem(temp);
-                        }
-                    }
-                    else if (this == playerInventory.leftHand)
-                    {
-                        if (playerInventory.rightHand._item != null)
-                        {
-                            Item temp = playerInventory.rightHand._item;
-                            playerInventory.Unequip(temp, playerInventory.rightHand);
-                            playerInventory.NewItem(temp);
-                        }
-                    }
-                }
-                
-                playerInventory.rightHand._item = newItem;
-                playerInventory.leftHand._item = newItem;
-                playerInventory.rightHand.icon.sprite = newItem.item.iconSprite;
-                playerInventory.leftHand.icon.sprite = newItem.item.iconSprite;
-                playerInventory.Equip(newItem, this);
+                Debug.Log("!=0");
+                if (_item != null) playerInventory.Unequip(_item, this);
             }
-            else
+
+            if (this == playerInventory.rightHand || this == playerInventory.leftHand)
             {
-                if(_item != null)
+                if (newItem.item.isTwoHander)
                 {
-                    if(_item.item.isTwoHander)
+                    if (_item != null)
                     {
-                        Item temp = playerInventory.leftHand._item;
-                        playerInventory.leftHand.RemoveItemFromslot();
-                        playerInventory.rightHand.RemoveItemFromslot();
+                        Item temp;
+                        if (_item.item.isTwoHander)
+                        {
+                            temp = playerInventory.leftHand._item;
+                            playerInventory.rightHand.RemoveItemFromslot();
+                            playerInventory.leftHand.RemoveItemFromslot();
+                        }
+                        else temp = _item;
                         playerInventory.NewItem(temp);
+                        if (playerInventory.leftHand == this)
+                        {
+                            if (playerInventory.rightHand._item != null) playerInventory.NewItem(playerInventory.rightHand._item);
+                        }
+                        else if (playerInventory.rightHand == this)
+                        {
+                            if (playerInventory.leftHand._item != null) playerInventory.NewItem(playerInventory.leftHand._item);
+                        }
                     }
                     else
                     {
-                        Item temp = _item;
-                        playerInventory.Unequip(temp, this);
-                        RemoveItemFromslot();
-                        playerInventory.NewItem(temp);
+                        if (this == playerInventory.rightHand)
+                        {
+                            if (playerInventory.leftHand._item != null)
+                            {
+                                Item temp = playerInventory.leftHand._item;
+                                playerInventory.Unequip(temp, playerInventory.leftHand);
+                                playerInventory.NewItem(temp);
+                            }
+                        }
+                        else if (this == playerInventory.leftHand)
+                        {
+                            if (playerInventory.rightHand._item != null)
+                            {
+                                Item temp = playerInventory.rightHand._item;
+                                playerInventory.Unequip(temp, playerInventory.rightHand);
+                                playerInventory.NewItem(temp);
+                            }
+                        }
                     }
-                    //playerInventory.Equip(newItem, this);
-                    _item = newItem;
-                    icon.sprite = newItem.item.iconSprite;
+
+                    playerInventory.rightHand._item = newItem;
+                    playerInventory.leftHand._item = newItem;
+                    playerInventory.rightHand.icon.sprite = newItem.item.iconSprite;
+                    playerInventory.leftHand.icon.sprite = newItem.item.iconSprite;
                     playerInventory.Equip(newItem, this);
                 }
                 else
                 {
-                    //playerInventory.Equip(newItem, this);
-                    _item = newItem;
-                    icon.sprite = newItem.item.iconSprite;
-                    playerInventory.Equip(newItem, this);
+                    if (_item != null)
+                    {
+                        if (_item.item.isTwoHander)
+                        {
+                            Item temp = playerInventory.leftHand._item;
+                            playerInventory.leftHand.RemoveItemFromslot();
+                            playerInventory.rightHand.RemoveItemFromslot();
+                            playerInventory.NewItem(temp);
+                        }
+                        else
+                        {
+                            Item temp = _item;
+                            playerInventory.Unequip(temp, this);
+                            RemoveItemFromslot();
+                            playerInventory.NewItem(temp);
+                        }
+                        //playerInventory.Equip(newItem, this);
+                        _item = newItem;
+                        icon.sprite = newItem.item.iconSprite;
+                        playerInventory.Equip(newItem, this);
+                    }
+                    else
+                    {
+                        //playerInventory.Equip(newItem, this);
+                        _item = newItem;
+                        icon.sprite = newItem.item.iconSprite;
+                        playerInventory.Equip(newItem, this);
+                    }
                 }
             }
+            else
+            {
+                if (_item != null)
+                {
+                    playerInventory.RemoveRuneFromItem(gameObject);
+                    if ((int)previousSlot._type != 0)
+                    {
+                        Debug.Log("REMOVING RUNE");
+
+                        if ((int)previousSlot._type == (int)_item.item.type) previousSlot.PlaceItem(_item);
+                        else playerInventory.NewItem(_item);
+                    }
+                    else
+                    {
+                        previousSlot.PlaceItem(_item);
+                    }
+                    _item = null;
+                }
+                _item = newItem;
+                icon.sprite = _item.item.iconSprite;
+                if ((int)newItem.item.type != (int)ItemType.Rune)
+                {
+                    if (this._type != 0) playerInventory.Equip(newItem, this);
+                }
+            }
+            if (_type == ItemType.Rune)
+            {
+                playerInventory.AddNewRuneToItem(newItem, gameObject);
+            }
+            SetRuneToolTipOn();
         }
         else
         {
-            if (_item != null)
-            {
-                playerInventory.RemoveRuneFromItem(gameObject);
-                if ((int)previousSlot._type != 0)
-                {
-                    Debug.Log("REMOVING RUNE");
-                    
-                    if ((int)previousSlot._type == (int)_item.item.type) previousSlot.PlaceItem(_item);
-                    else playerInventory.NewItem(_item);
-                }
-                else
-                {
-                    previousSlot.PlaceItem(_item);
-                }
-                _item = null;
-            }
-            _item = newItem;
-            icon.sprite = _item.item.iconSprite;
-            if((int)newItem.item.type != (int)ItemType.Rune)
-            {
-                if(this._type != 0) playerInventory.Equip(newItem, this);
-            }
+            playerInventory.NewItem(newItem);
         }
-        if (_type == ItemType.Rune)
-        {
-            playerInventory.AddNewRuneToItem(newItem, gameObject);
-        }
-        SetRuneToolTipOn();
+        
 
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (runeTooltipController != null) runeTooltipController.HideToolTip();
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if(!inventoryLocked) 
         {
-            if((int)_type != 0 && _item != null && _type != ItemType.Rune)
+            if (runeTooltipController != null) runeTooltipController.HideToolTip();
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                if ((int)_type != 0 && _item != null && _type != ItemType.Rune)
+                {
+                    playerInventory.Unequip(_item, this);
+                    if (_item.item.isTwoHander)
+                    {
+                        if (this == playerInventory.rightHand)
+                        {
+                            Item temp = playerInventory.leftHand._item;
+                            playerInventory.leftHand.RemoveItemFromslot();
+                            playerInventory.rightHand.RemoveItemFromslot();
+                            playerInventory.NewItem(temp);
+                        }
+                        else if (this == playerInventory.leftHand)
+                        {
+                            Item temp = playerInventory.rightHand._item;
+                            playerInventory.rightHand.RemoveItemFromslot();
+                            playerInventory.leftHand.RemoveItemFromslot();
+                            playerInventory.NewItem(temp);
+                        }
+                    }
+                    else if (playerInventory.InventoryHasRoom())
+                    {
+                        Item temp = _item;
+                        RemoveItemFromslot();
+                        playerInventory.NewItem(temp);
+                    }
+                }
+                else if (_item != null && (int)_item.item.type != (int)ItemType.Rune)
+                {
+                    Item temp = _item;
+                    RemoveItemFromslot();
+                    playerInventory.UseItem(temp);
+                }
+            }
+            else if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                if (_item != null)
+                {
+                    if (this == playerInventory.rightHand && _item.item.isTwoHander)
+                    {
+                        playerInventory.leftHand.RemoveItemFromslot();
+                    }
+                    else if (this == playerInventory.leftHand && _item.item.isTwoHander)
+                    {
+                        playerInventory.rightHand.RemoveItemFromslot();
+                    }
+                    if ((int)_type != 0 && _type != ItemType.Rune) playerInventory.Unequip(_item, this);
+                    if (_type == ItemType.Rune)
+                    {
+                        playerInventory.RemoveRuneFromItem(gameObject);
+                    }
+                    playerHoverUi.SetGrabbedItem(_item, this);
+                    RemoveItemFromslot();
+                }
+            }
+        }
+        
+    }
+
+    public void HotbarUseItem()
+    {
+        if(!inventoryLocked)
+        {
+            if (runeTooltipController != null) runeTooltipController.HideToolTip();
+            if ((int)_type != 0 && _item != null && _type != ItemType.Rune)
             {
                 playerInventory.Unequip(_item, this);
-                if(_item.item.isTwoHander)
+                if (_item.item.isTwoHander)
                 {
-                    if(this == playerInventory.rightHand)
+                    if (this == playerInventory.rightHand)
                     {
                         Item temp = playerInventory.leftHand._item;
                         playerInventory.leftHand.RemoveItemFromslot();
@@ -205,7 +308,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                         playerInventory.NewItem(temp);
                     }
                 }
-                else if(playerInventory.InventoryHasRoom())
+                else if (playerInventory.InventoryHasRoom())
                 {
                     Item temp = _item;
                     RemoveItemFromslot();
@@ -218,65 +321,6 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 RemoveItemFromslot();
                 playerInventory.UseItem(temp);
             }
-        }
-        else if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            if (_item != null)
-            {
-                if(this == playerInventory.rightHand && _item.item.isTwoHander)
-                {
-                    playerInventory.leftHand.RemoveItemFromslot();
-                }
-                else if (this == playerInventory.leftHand && _item.item.isTwoHander)
-                {
-                    playerInventory.rightHand.RemoveItemFromslot();
-                }
-                if ((int)_type != 0 && _type != ItemType.Rune) playerInventory.Unequip(_item, this);
-                if (_type == ItemType.Rune)
-                {
-                    playerInventory.RemoveRuneFromItem(gameObject);
-                }
-                playerHoverUi.SetGrabbedItem(_item, this);
-                RemoveItemFromslot();
-            }
-        }
-    }
-
-    public void HotbarUseItem()
-    {
-        if (runeTooltipController != null) runeTooltipController.HideToolTip();
-        if ((int)_type != 0 && _item != null && _type != ItemType.Rune)
-        {
-            playerInventory.Unequip(_item, this);
-            if (_item.item.isTwoHander)
-            {
-                if (this == playerInventory.rightHand)
-                {
-                    Item temp = playerInventory.leftHand._item;
-                    playerInventory.leftHand.RemoveItemFromslot();
-                    playerInventory.rightHand.RemoveItemFromslot();
-                    playerInventory.NewItem(temp);
-                }
-                else if (this == playerInventory.leftHand)
-                {
-                    Item temp = playerInventory.rightHand._item;
-                    playerInventory.rightHand.RemoveItemFromslot();
-                    playerInventory.leftHand.RemoveItemFromslot();
-                    playerInventory.NewItem(temp);
-                }
-            }
-            else if (playerInventory.InventoryHasRoom())
-            {
-                Item temp = _item;
-                RemoveItemFromslot();
-                playerInventory.NewItem(temp);
-            }
-        }
-        else if (_item != null && (int)_item.item.type != (int)ItemType.Rune)
-        {
-            Item temp = _item;
-            RemoveItemFromslot();
-            playerInventory.UseItem(temp);
         }
     }
 

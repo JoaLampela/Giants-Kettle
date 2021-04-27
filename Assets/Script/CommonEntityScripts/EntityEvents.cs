@@ -101,6 +101,25 @@ public class EntityEvents : MonoBehaviour
 
     public event Action OnAnimationTriggerPoint;
     public event Action OnSpellOver;
+    public event Action<GameObject, Damage> OnDealCritDamage;
+
+    public event Action OnLockInventory;
+    public event Action OnUnlockInventory;
+
+
+    public void LockInventory()
+    {
+        OnLockInventory?.Invoke();
+    }
+    public void UnlockInventory()
+    {
+        OnUnlockInventory?.Invoke();
+    }
+
+    public void DealCritDamage(GameObject target, Damage damage)
+    {
+        OnDealCritDamage?.Invoke(target, damage);
+    }
 
     public event Action<int> OnGainShield;
 

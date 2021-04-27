@@ -4961,6 +4961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88093133cf4ad554a82593dc4f240242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decreaseIntensity: 0
   thislight: {fileID: 5589132134438761801}
   colorEnd: {r: 1, g: 1, b: 1, a: 0}
   pulsingColor: 0
@@ -4979,6 +4980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5589132134651060797}
+  - component: {fileID: 1906398806061548017}
   m_Layer: 0
   m_Name: BigProjectileOnActivateEffect
   m_TagString: Untagged
@@ -5003,6 +5005,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906398806061548017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589132134651060798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c4502a25339b743ac7ceea561c7930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 5
 --- !u!1001 &5589132134114079551
 PrefabInstance:
   m_ObjectHideFlags: 0

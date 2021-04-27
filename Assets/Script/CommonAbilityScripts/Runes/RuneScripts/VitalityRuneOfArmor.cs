@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
+public class VitalityRuneOfArmor : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -105,17 +105,17 @@ public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("StrengthRuneOfDevourerArmor");
-        _entityEvents.RemoveBuff("StrengthRuneOfDevourerWeapon");
+        _entityEvents.RemoveBuff("VitalityRuneOfArmorArmor");
+        _entityEvents.RemoveBuff("VitalityRuneOfArmorWeapon");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("StrengthRuneOfDevourerArmor", EntityStats.BuffType.Health, duplicateCountArmor * 25);
+            _entityEvents.NewBuff("VitalityRuneOfArmorArmor", EntityStats.BuffType.Health, duplicateCountArmor * 20);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("StrengthRuneOfDevourerWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("VitalityRuneOfArmorWeapon", EntityStats.BuffType.Health, duplicateCountWeapon * 20);
         }
     }
 
@@ -142,14 +142,8 @@ public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("StrengthRuneOfDevourerArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("StrengthRuneOfDevourerWeapon");
-
-        foreach (GameObject projectile in projectiles)
-        {
-            Destroy(projectile);
-        }
-        projectiles.Clear();
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfArmorArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfArmorWeapon");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -162,44 +156,26 @@ public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
         }
     }
 
-    public void ActivateArmorEffect(GameObject target)
-    {
-        _entityEvents.RecoverHealth((int)(duplicateCountArmor * target.GetComponent<EntityStats>().currentMaxHealth * 0.10f));
-    }
-
-    public void ActivateWeaponEffect(Damage damage, GameObject target)
-    {
-        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)(duplicateCountWeapon * 0.05f * (damage._damage + damage._trueDamage)));
-    }
-
     //Subs and Unsubs
     public void SubscribeAbility()
     {
-        _abilityEvents._onDealDamage += ActivateWeaponEffect;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnKillEnemy += ActivateArmorEffect;
+
     }
 
     public void UnsubscribeAbility()
     {
-        _abilityEvents._onDealDamage -= ActivateWeaponEffect;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnKillEnemy -= ActivateArmorEffect;
-    }
 
-    public void SetContainerItem(Item item)
-    {
-        
     }
-
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
         containerItem = item;
@@ -209,7 +185,6 @@ public class StrengthRuneOfDevourer : MonoBehaviour, IRuneScript
     {
         return duplicateCountWeaponRight;
     }
-
     public int GetDuplicateCountWeaponLeft()
     {
         return duplicateCountWeaponLeft;
