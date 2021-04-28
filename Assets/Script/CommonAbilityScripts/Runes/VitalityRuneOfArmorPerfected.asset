@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
-  m_Name: PowerRuneOfDevourerPerfected
+  m_Name: VitalityRuneOfArmorPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: AHAHAHAHAHA! CARNAGE!
-  iconSprite: {fileID: 21300000, guid: ae65a56733742a3419822fe073722271, type: 3}
+  description: Armor.
+  iconSprite: {fileID: 21300000, guid: 29de59b9393635c42b16d8867e551797, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: -6765895230817859955, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ObjectField: {fileID: -5292083699584376820, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
   runeTier: 2
-  runeType: 3
+  runeType: 1

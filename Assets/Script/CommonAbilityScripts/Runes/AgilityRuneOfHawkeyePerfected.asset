@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: I CAN SEE IT ALL! IT'S ALL SO CLEAR NOW!
-  iconSprite: {fileID: 21300000, guid: 311c550550633bd4d80aceb40a6ba62d, type: 3}
+  iconSprite: {fileID: 21300000, guid: 0191ed773c982db4e99f63d00005b220, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
     ObjectField: {fileID: -2379606809790413947, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
   runeTier: 2
+  runeType: 2

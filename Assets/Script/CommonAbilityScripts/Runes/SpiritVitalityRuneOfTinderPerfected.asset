@@ -21,3 +21,4 @@ MonoBehaviour:
     ObjectField: {fileID: 7729219167277793689, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
   runeTier: 2
+  runeType: 4
