@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
+  m_Name: VitalityRuneOfArmorRefined
+  m_EditorClassIdentifier: 
+  type: 6
+  description: Armor.
+  iconSprite: {fileID: 21300000, guid: 9d823dca55754054381a5de9efe0bdc1, type: 3}
+  inGameObject: {fileID: 0}
+  isTwoHander: 0
+  _IruneContainer:
+    ObjectField: {fileID: -5292083699584376820, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ResultType: 
+  runeTier: 1
+  runeType: 1

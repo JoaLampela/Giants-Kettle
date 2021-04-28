@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: More damage when hitting enemies far away.
-  iconSprite: {fileID: 21300000, guid: 311c550550633bd4d80aceb40a6ba62d, type: 3}
+  iconSprite: {fileID: 21300000, guid: 79d41a20a1739ea48a4efd4b9dff2ecf, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
     ObjectField: {fileID: -2379606809790413947, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
   runeTier: 0
+  runeType: 2

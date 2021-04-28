@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
-  m_Name: testRune2
+  m_Name: AgilityRuneOfSpeedBasic
   m_EditorClassIdentifier: 
   type: 6
-  description: 
-  iconSprite: {fileID: 21300000, guid: 204428885485de142a6f2b9d25a69145, type: 3}
+  description: Speed.
+  iconSprite: {fileID: 21300000, guid: 2c625ea6e2add504cade0d7a225e5244, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: 5981430273776051293, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ObjectField: {fileID: 4136938590589984287, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
-  runeTier: 1
+  runeTier: 0
+  runeType: 2

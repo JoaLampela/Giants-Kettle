@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Crit up.
-  iconSprite: {fileID: 21300000, guid: 2edf2a70ed082b84fab54b811b7541db, type: 3}
+  iconSprite: {fileID: 21300000, guid: 42317f9890af261499e96ed90a571e17, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
     ObjectField: {fileID: -3037312738251875601, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
-  runeTier: 0
+  runeTier: 1
   runeType: 2
