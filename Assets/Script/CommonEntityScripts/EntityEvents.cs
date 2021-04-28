@@ -112,14 +112,14 @@ public class EntityEvents : MonoBehaviour
     {
         OnTakeStep?.Invoke(distance);
     }
-    public void LockInventory()
+    public void LockInventory(string test = " ")
     {
-        Debug.Log("Locked inventory");
+        Debug.Log("Locked inventory " + test);
         OnLockInventory?.Invoke();
     }
-    public void UnlockInventory()
+    public void UnlockInventory(string test = " ")
     {
-        Debug.Log("Unlocked inventory");
+        Debug.Log("Unlocked inventory " + test);
         OnUnlockInventory?.Invoke();
     }
 

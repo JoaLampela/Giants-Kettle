@@ -677,7 +677,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: LockInventory
-    data: 
+    data: sword1 ba start
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -689,9 +689,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.05
+  - time: 0.033333335
     functionName: UnlockInventory
-    data: 
+    data: end
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

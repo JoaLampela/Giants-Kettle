@@ -667,6 +667,7 @@ GameObject:
   - component: {fileID: 5965364300633923012}
   - component: {fileID: 4319518181496570747}
   - component: {fileID: 9009737797232915889}
+  - component: {fileID: 8271034211688280110}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
   m_TagString: Enemy
@@ -849,6 +850,7 @@ MonoBehaviour:
   basicAttackOneHandedSword: {fileID: 8510906528349343103, guid: fc8d5d36f12a6474ba0dfd29de276b0b, type: 3}
   basicAttackTwoHandedSword: {fileID: 6795277162228328749, guid: 45e37105e683ea54d920e1077ff6468f, type: 3}
   basicAttackStaff: {fileID: 6096043296272375333, guid: 742f2a46c429a4e47ba7c2b950f6a0bb, type: 3}
+  block: {fileID: 0}
 --- !u!114 &2999592409753981150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,6 +1094,7 @@ MonoBehaviour:
   currentArmor: 0
   currentAttackSpeed: 0
   isInvisible: 0
+  isInvulnurable: 0
   isInCombat: 0
   isInAction: 0
   isTakingDamage: 0
@@ -1287,3 +1290,17 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &8271034211688280110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0962f99c65986b84c856579e434b1158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
+  dropChance: 100

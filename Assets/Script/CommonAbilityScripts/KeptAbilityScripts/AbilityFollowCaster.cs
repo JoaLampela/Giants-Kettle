@@ -6,6 +6,7 @@ public class AbilityFollowCaster : MonoBehaviour
 {
     private AbilityEvents _events;
     private bool following = true;
+    public bool followingAfterActivation = false;
 
     private void Start()
     {
@@ -42,6 +43,9 @@ public class AbilityFollowCaster : MonoBehaviour
 
     private void Activate()
     {
-        following = false;
+        if(!followingAfterActivation)
+        {
+            following = false;
+        }        
     }
 }
