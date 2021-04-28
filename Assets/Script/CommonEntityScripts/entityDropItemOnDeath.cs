@@ -33,11 +33,14 @@ public class entityDropItemOnDeath : MonoBehaviour
     }
     private void DropItem(GameObject killer, GameObject killed)
     {
+        int enemyLevel = GetComponent<EntityStats>().level;
         
-        if(Random.Range(0,100) <= dropChance)
+
+
+        if (Random.Range(0,100) <= dropChance)
         {
             Debug.Log("item dropped");
-            int enemyLevel =  GetComponent<EntityStats>().level;
+            
             ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
             ItemTierListScript tierList = GameObject.Find("Game Manager").GetComponent<ItemTierListScript>();
             groundItem.SetItem(new Item(tierList.GiveRandomItem(enemyLevel-1)));

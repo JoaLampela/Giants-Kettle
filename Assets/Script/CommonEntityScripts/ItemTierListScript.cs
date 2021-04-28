@@ -14,25 +14,20 @@ public class ItemTierListScript : MonoBehaviour
     public ItemObject[] tier5Items; //items with 5 runeSlots
     public ItemObject[] tier6Items; //items with 6 runeSlots
 
-    public ItemObject GiveRandomItem(int tier)
+    public ItemObject GiveRandomItem(int tempTier)
     {
-        switch (tier)
+        int tier = Random.Range(0, tempTier);
+
+        return tier switch
         {
-            case 0:
-                return tier0Items[Random.Range(0, tier0Items.Length)];
-            case 1:
-                return tier1Items[Random.Range(0, tier1Items.Length)];
-            case 2:
-                return tier2Items[Random.Range(0, tier2Items.Length)];
-            case 3:
-                return tier3Items[Random.Range(0, tier3Items.Length)];
-            case 4:
-                return tier4Items[Random.Range(0, tier4Items.Length)];
-            case 5:
-                return tier5Items[Random.Range(0, tier5Items.Length)];
-            case 6:
-                return tier6Items[Random.Range(0, tier6Items.Length)];
-        }
-        return tier0Items[Random.Range(0, tier0Items.Length)];
+            0 => tier0Items[Random.Range(0, tier0Items.Length)],
+            1 => tier1Items[Random.Range(0, tier1Items.Length)],
+            2 => tier2Items[Random.Range(0, tier2Items.Length)],
+            3 => tier3Items[Random.Range(0, tier3Items.Length)],
+            4 => tier4Items[Random.Range(0, tier4Items.Length)],
+            5 => tier5Items[Random.Range(0, tier5Items.Length)],
+            6 => tier6Items[Random.Range(0, tier6Items.Length)],
+            _ => tier6Items[Random.Range(0, tier0Items.Length)],
+        };
     }
 }

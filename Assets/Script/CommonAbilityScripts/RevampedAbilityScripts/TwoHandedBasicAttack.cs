@@ -77,7 +77,17 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
             {
                 enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
             }
-            else enemyDirection = GameObject.Find("Player").transform.position;
+            else
+            {
+                if(GameObject.Find("Player"))
+                {
+                    enemyDirection = GameObject.Find("Player").transform.position;
+                }
+                else
+                {
+                    enemyDirection = new Vector2(0, 0);
+                }
+            }
             direction = (enemyDirection - (Vector2)transform.position).normalized;
         }
         else

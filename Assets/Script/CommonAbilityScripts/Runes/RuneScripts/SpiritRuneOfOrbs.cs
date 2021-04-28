@@ -188,10 +188,11 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
             projectile.GetComponent<AbilityHoamToClosestEnemy>().source = gameObject;
             projectile.transform.RotateAround(gameObject.transform.position, Vector3.forward, i * (360f / (float)duplicateCountWeapon));
             projectile.GetComponent<AbilityEvents>().parentProjectile = gameObject;
+            StartCoroutine(SetOrbStats(projectile));
         }
     }
 
-    private IEnumerator setOrbStats(GameObject projectile)
+    private IEnumerator SetOrbStats(GameObject projectile)
     {
         yield return new WaitForEndOfFrame();
         projectile.GetComponent<AbilityEvents>().damageMultiplier = gameObject.GetComponent<AbilityEvents>().damageMultiplier;

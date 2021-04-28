@@ -6,25 +6,107 @@ public class ItemOnGround : MonoBehaviour
 {
     public Item _item;
     private Inventory playerInventory;
+    private bool pickedUp = false;
+    private Rigidbody2D rb;
+    private GameObject player;
+    private float speed = 20;
+    private float currentY = 0;
+    private bool goingUp = true;
+    private bool smoothGoingUp = true;
+    private Vector2 startPos;
+    private float smoorthValue = 0;
+    private float pickUpDistance = 10;
+
 
     private void Awake()
     {
-        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerInventory = player.GetComponent<Inventory>();
+        rb = GetComponent<Rigidbody2D>();
+        startPos = transform.position;
     }
 
     private void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(1) && !pickedUp && Vector2.Distance(player.transform.position,transform.position) < pickUpDistance)
         {
-            Debug.Log("Picked up " + _item.item.name);
-            playerInventory.NewItem(_item);
-            Destroy(gameObject);
+            pickedUp = true;
         }
+    }
+    private void Update()
+    {
+        if(pickedUp)
+        {
+            rb.velocity = (player.transform.position - transform.position).normalized * speed;
+        }
+        else
+        {
+            ItemPopping();
+        }
+    }
+
+    private void ItemPopping()
+    {
+        
+        float moveValueY = 0.5f;
+        float cycleTime = 2f;
+        if(goingUp)
+        {
+            Debug.Log("going up");
+            currentY += (moveValueY * smoorthValue / cycleTime) * Time.deltaTime;
+            if (currentY >= moveValueY)
+            {
+                goingUp = false;
+                smoorthValue = 0;
+            }
+        }
+        else
+        {
+            Debug.Log("going down " + currentY);
+            currentY -= (moveValueY / cycleTime) * Time.deltaTime;
+            if (currentY <= 0)
+            {
+                goingUp = true;
+                smoorthValue = 0;
+            }
+        }
+        transform.position = new Vector2(startPos.x, startPos.y + currentY);
+        if (smoothGoingUp)
+        {
+            smoorthValue += 1f * Time.deltaTime;
+        }
+        else
+        {
+            smoorthValue -= 1f * Time.deltaTime;
+        }
+        if(smoorthValue > 2)
+        {
+            smoothGoingUp = false;
+        }
+        if(smoorthValue < 0)
+        {
+            smoothGoingUp = true;
+        }
+        Debug.Log(smoorthValue);
+
     }
 
     public void SetItem(Item newItem)
     {
         GetComponent<SpriteRenderer>().sprite = newItem.item.iconSprite;
         _item = newItem;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject == player && pickedUp)
+        {
+            playerInventory.NewItem(_item);
+            Destroy(gameObject);
+        }
+        if(collision.tag == "Walls")
+        {
+            pickedUp = true;
+        }
     }
 }

@@ -1556,7 +1556,10 @@ public class Inventory : MonoBehaviour
     public void DropItem(Item droppedItem)
     {
         Debug.Log("Dropped item " + droppedItem.item.name);
-        GameObject groundItem = Instantiate(itemOnGround, transform.position, Quaternion.identity);
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+
+        GameObject groundItem = Instantiate(itemOnGround, pos, Quaternion.identity);
         groundItem.GetComponent<ItemOnGround>()._item = droppedItem;
         groundItem.GetComponent<SpriteRenderer>().sprite = droppedItem.item.iconSprite;
     }

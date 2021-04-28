@@ -18,6 +18,7 @@ TagManager:
   - GameOverScreen
   - PlayerUI
   - PauseMenu
+  - Walls
   layers:
   - Default
   - TransparentFX

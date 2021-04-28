@@ -234,28 +234,32 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                             Item temp = playerInventory.leftHand._item;
                             playerInventory.leftHand.RemoveItemFromslot();
                             playerInventory.rightHand.RemoveItemFromslot();
-                            playerInventory.NewItem(temp);
+                            if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                            else playerInventory.NewItem(temp);
                         }
                         else if (this == playerInventory.leftHand)
                         {
                             Item temp = playerInventory.rightHand._item;
                             playerInventory.rightHand.RemoveItemFromslot();
                             playerInventory.leftHand.RemoveItemFromslot();
-                            playerInventory.NewItem(temp);
+                            if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                            else playerInventory.NewItem(temp);
                         }
                     }
                     else if (playerInventory.InventoryHasRoom())
                     {
                         Item temp = _item;
                         RemoveItemFromslot();
-                        playerInventory.NewItem(temp);
+                        if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                        else playerInventory.NewItem(temp);
                     }
                 }
                 else if (_item != null && (int)_item.item.type != (int)ItemType.Rune)
                 {
                     Item temp = _item;
                     RemoveItemFromslot();
-                    playerInventory.UseItem(temp);
+                    if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                    else playerInventory.UseItem(temp);
                 }
             }
             else if (eventData.button == PointerEventData.InputButton.Left)
