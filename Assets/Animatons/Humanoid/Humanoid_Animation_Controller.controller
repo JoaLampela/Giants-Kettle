@@ -625,7 +625,7 @@ AnimatorController:
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 0
+    m_BlendingMode: 1
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 0
@@ -637,7 +637,7 @@ AnimatorController:
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 0
+    m_BlendingMode: 1
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 0
@@ -709,10 +709,10 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2032546602542692080}
-    m_Position: {x: 630, y: 40, z: 0}
+    m_Position: {x: 540, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6297026044131713092}
-    m_Position: {x: 310, y: 40, z: 0}
+    m_Position: {x: 280, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7827471609544496525}
     m_Position: {x: 40, y: -80, z: 0}
@@ -721,13 +721,13 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2397564752906361581}
-    m_Position: {x: -260, y: 40, z: 0}
+    m_Position: {x: -200, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 623510839543615561}
-    m_Position: {x: -530, y: 40, z: 0}
+    m_Position: {x: -470, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3171990507804270485}
-    m_Position: {x: -520, y: -60, z: 0}
+    m_Position: {x: -460, y: -60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -799,7 +799,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Special
+    m_ConditionEvent: LeftAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3171990507804270485}

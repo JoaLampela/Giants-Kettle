@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,12 +106,12 @@ TextureImporter:
       name: summonor_enemy_0
       rect:
         serializedVersion: 2
-        x: 592
-        y: 919
+        x: 755
+        y: 912
         width: 117
-        height: 115
+        height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,12 +127,12 @@ TextureImporter:
       name: summonor_enemy_1
       rect:
         serializedVersion: 2
-        x: 909
-        y: 912
+        x: 1088
+        y: 911
         width: 391
         height: 481
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.54538614, y: 0.03882978}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -148,12 +148,12 @@ TextureImporter:
       name: summonor_enemy_2
       rect:
         serializedVersion: 2
-        x: 1516
-        y: 913
+        x: 1679
+        y: 918
         width: 117
-        height: 117
+        height: 115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,12 +169,12 @@ TextureImporter:
       name: summonor_enemy_3
       rect:
         serializedVersion: 2
-        x: 914
-        y: 347
+        x: 1081
+        y: 433
         width: 391
         height: 471
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5567324, y: 0.6271597}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

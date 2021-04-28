@@ -118,6 +118,8 @@ public class AiInventory : MonoBehaviour
                 abilityManager.SetAbility(2, bigProjectile);
                 NonProjectile nonProjectile = gameObject.AddComponent<NonProjectile>();
                 abilityManager.SetAbility(1, nonProjectile);
+                StaffBasicAttack staffBasicAttack = gameObject.AddComponent<StaffBasicAttack>();
+                abilityManager.SetAbility(4, staffBasicAttack);
                 break;
         }
     }
