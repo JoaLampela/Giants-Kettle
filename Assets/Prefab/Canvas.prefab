@@ -1822,6 +1822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 3506949048475434449}
@@ -2995,6 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 394632103554165857}
@@ -3451,6 +3453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 46c3f48bf10ae8c46ae334706e1deeb6, type: 3}
   _type: 4
   icon: {fileID: 5632884467305233359}
@@ -4211,6 +4214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 8478656197686761229}
@@ -4386,6 +4390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 3014355072927335333}
@@ -6012,6 +6017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 7221983182252139077}
@@ -6262,6 +6268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 5135612249381606900}
@@ -9446,6 +9453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 5472143909340456300}
@@ -11203,6 +11211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 7412941559283443015}
@@ -11448,6 +11457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 4774886518535918962}
@@ -13638,6 +13648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: e015515d2df867546a20a321483f2065, type: 3}
   _type: 1
   icon: {fileID: 7925408725276614415}
@@ -13848,6 +13859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 7649353988346501327}
@@ -16650,6 +16662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 4487776839931254175}
@@ -17604,6 +17617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 7626009627121357094}
@@ -19134,6 +19148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 1565449269138135946}
@@ -20347,6 +20362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 5510625632037769926}
@@ -21320,6 +21336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 225130557347932699}
@@ -21415,6 +21432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 5732478390889859547}
@@ -27556,6 +27574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 8778347854980651549}
@@ -28176,6 +28195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 8460194740793861215}
@@ -28843,6 +28863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 1078140095120931920}
@@ -31632,6 +31653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: f39c657b64b1860478c64e11dc8ca0ea, type: 3}
   _type: 1
   icon: {fileID: 2365165839373465436}
@@ -33548,6 +33570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 8736913492140868702}
@@ -35156,6 +35179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 9036204041713127300}
@@ -36871,6 +36895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 5474076135386533094}
@@ -37588,6 +37613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 6299356029363046929}
@@ -38933,6 +38959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 4533157642389282730}
@@ -39857,6 +39884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 7048346871105908753}
@@ -42495,6 +42523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 879fec78e1dcb014f8a3767a9ee9df01, type: 3}
   _type: 3
   icon: {fileID: 8017187919175527459}
@@ -46090,6 +46119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 315759744064754102}
@@ -46185,6 +46215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 120489524158327479}
@@ -50321,6 +50352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 3883600657935302030}
@@ -50702,6 +50734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 7986225756270517568}
@@ -51097,6 +51130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 78c6e8143bac08e4baa90757ba286804, type: 3}
   _type: 6
   icon: {fileID: 2675601072619084135}
@@ -56919,54 +56953,109 @@ MonoBehaviour:
   rune2: {fileID: 5376685411368757283}
   rune3: {fileID: 7579943918532508858}
   defaultRune: {fileID: 0}
-  spiritRunesTier1: []
-  spiritRunesTier2: []
-  spiritRunesTier3: []
+  spiritRunesTier1:
+  - {fileID: 11400000, guid: 3b8272e75f2a52b48a6e1b2299bf1694, type: 2}
+  - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
+  - {fileID: 11400000, guid: dadb93e9d95805349a2a253f79912010, type: 2}
+  - {fileID: 11400000, guid: f47a9a76b10306a42be5f2f7e1e5f6d7, type: 2}
+  - {fileID: 11400000, guid: fe4cc996a8241994ba0a34b61653f2b8, type: 2}
+  spiritRunesTier2:
+  - {fileID: 11400000, guid: e52074d244c287f428a27559027c3536, type: 2}
+  - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
+  - {fileID: 11400000, guid: 7bb1add3c58b3d648ad52e65ece2032e, type: 2}
+  - {fileID: 11400000, guid: 7f55b2c2a9ea3274c8301a623ef560f4, type: 2}
+  - {fileID: 11400000, guid: 280140d6437053845980ef2a0ef0f4aa, type: 2}
+  spiritRunesTier3:
+  - {fileID: 11400000, guid: 19d7f3cda96bdb84da78ed393ed956b8, type: 2}
+  - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
+  - {fileID: 11400000, guid: 7d6afafab01220545a828067927fd218, type: 2}
+  - {fileID: 11400000, guid: 9cdbcd9d18f191c409bb28465053ac0c, type: 2}
+  - {fileID: 11400000, guid: a12b0eb32c17ad445a0bf8b910decb6c, type: 2}
   vitalityRunesTier1:
-  - {fileID: 11400000, guid: 7b6a9c08da6fdfb459860ef6cb14786a, type: 2}
-  vitalityRunesTier2: []
-  vitalityRunesTier3: []
+  - {fileID: 11400000, guid: e2c2de05fdc240041a57df551a5948bb, type: 2}
+  - {fileID: 11400000, guid: 95d41d2662e07c948b34bd149d729420, type: 2}
+  - {fileID: 11400000, guid: 25fcd1965dbc8d847be769ec4b24a31a, type: 2}
+  - {fileID: 11400000, guid: 17209eb3eb4ba36438ab3741560cc280, type: 2}
+  vitalityRunesTier2:
+  - {fileID: 11400000, guid: e4b07de0dd5a1f046a78ddf17aa30090, type: 2}
+  - {fileID: 11400000, guid: 66e5c9729925d98458b4c4a1783ecdfa, type: 2}
+  - {fileID: 11400000, guid: 7100d541d3cfbbf458e912acbb569021, type: 2}
+  - {fileID: 11400000, guid: 12ad31f506a430f46a88b1cd4def72cf, type: 2}
+  vitalityRunesTier3:
+  - {fileID: 11400000, guid: 5d158fdea5556644ab22338d858faff1, type: 2}
+  - {fileID: 11400000, guid: d0a315c2610891c45898a38aa56dca3d, type: 2}
+  - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}
+  - {fileID: 11400000, guid: 66fcaec3876bee54cab32ff94cd41656, type: 2}
   agilityRunesTier1:
-  - {fileID: 11400000, guid: 7f374f026d503db46a503a2290a6588c, type: 2}
-  agilityRunesTier2: []
-  agilityRunesTier3: []
+  - {fileID: 11400000, guid: 7dffc1cdedd91c2419b6bdb58cba16cc, type: 2}
+  - {fileID: 11400000, guid: 09bf741591b1628418e4725b1d545ffb, type: 2}
+  - {fileID: 11400000, guid: 0e21cac85811de94587eb7bf690c3734, type: 2}
+  - {fileID: 11400000, guid: d4d85169f7647a544a19614f443e0bed, type: 2}
+  - {fileID: 11400000, guid: d8b5ee3c9a532df49bd189100ed144df, type: 2}
+  agilityRunesTier2:
+  - {fileID: 11400000, guid: bf8ef3a9330d01940afe57fe59b637b4, type: 2}
+  - {fileID: 11400000, guid: 2775d81a97c28a743b9571ffcb1000a6, type: 2}
+  - {fileID: 11400000, guid: 94798eb42b279f9438c66127694f5b1c, type: 2}
+  - {fileID: 11400000, guid: f82ac1f2f934eb2458a7a40e29eabcea, type: 2}
+  - {fileID: 11400000, guid: ccf482d213fe2a747bee7945e70ebf37, type: 2}
+  agilityRunesTier3:
+  - {fileID: 11400000, guid: 90f5cc7da73f59b418b0b1cdf09a5a95, type: 2}
+  - {fileID: 11400000, guid: 53d1b4bc3aed8ac46af9bcc44082d482, type: 2}
+  - {fileID: 11400000, guid: 4fe3bb910e1fada4c9b63ab95d72a5fd, type: 2}
+  - {fileID: 11400000, guid: a0e63c2dd9b30af4a932a1be2d4db3ff, type: 2}
+  - {fileID: 11400000, guid: 088b57a309cd6a945854d8bf770c6d1c, type: 2}
   powerRunesTier1:
-  - {fileID: 11400000, guid: 0a0c15d74ec89b7478342238b193b05d, type: 2}
-  powerRunesTier2: []
-  powerRunesTier3: []
-  spiritVitalityRunesTier1: []
+  - {fileID: 11400000, guid: 2797e0053bce9d145b3f00b642b5ad61, type: 2}
+  - {fileID: 11400000, guid: 5b16db46cfaa0c94f95f728bfcc2aa0c, type: 2}
+  - {fileID: 11400000, guid: 7df4454076ba7304d897f49502084b21, type: 2}
+  - {fileID: 11400000, guid: 6e0756e696b33a645aff6836b7328b97, type: 2}
+  - {fileID: 11400000, guid: 9e2201e6e3be90149a3bd9cdfd9b2a24, type: 2}
+  - {fileID: 11400000, guid: 7dd1899c06f929543921a24cb9ca428d, type: 2}
+  powerRunesTier2:
+  - {fileID: 11400000, guid: fa17768d0643a424e80da7f42d339010, type: 2}
+  - {fileID: 11400000, guid: cf7a20e7fc576754191a21863aa4f4e0, type: 2}
+  - {fileID: 11400000, guid: 15615346fb161974793227309f6ae419, type: 2}
+  - {fileID: 11400000, guid: 3476319f9db4bd24a92dd4f5d12c3a1e, type: 2}
+  - {fileID: 11400000, guid: c14086d19c00ae742a050b6d4d0fb666, type: 2}
+  - {fileID: 11400000, guid: eed81a278bb4e9f4a83e8bc428a09557, type: 2}
+  powerRunesTier3:
+  - {fileID: 11400000, guid: ce904c23bd946ef45a235aea8adaff17, type: 2}
+  - {fileID: 11400000, guid: f2d8b3a9905befc4ea0e2fe61dfaad59, type: 2}
+  - {fileID: 11400000, guid: 49c1c02d52874d24abd03d5fbe00ef4e, type: 2}
+  - {fileID: 11400000, guid: b634da6d59890fb43b2b17c31f06b044, type: 2}
+  - {fileID: 11400000, guid: c4fc3ddefc5d2cf4082adfa582d007b1, type: 2}
+  - {fileID: 11400000, guid: 9c197480f0e944f42a1d09382de9dead, type: 2}
+  spiritVitalityRunesTier1:
+  - {fileID: 11400000, guid: 9b00949537dc3e541a5b27207aa14a39, type: 2}
   spiritVitalityRunesTier2:
-  - {fileID: 11400000, guid: efa77480e8379e94ca16c2408d8e2cc2, type: 2}
-  spiritVitalityRunesTier3: []
+  - {fileID: 11400000, guid: 4524aab1e2fb61841a4b9cb7d313e397, type: 2}
+  spiritVitalityRunesTier3:
+  - {fileID: 11400000, guid: 45466d03f02f8cf42b8880353b14f56b, type: 2}
   spiritAgilityRunesTier1: []
   spiritAgilityRunesTier2: []
   spiritAgilityRunesTier3: []
   spiritPowerRunesTier1: []
-  spiritPowerRunesTier2:
-  - {fileID: 11400000, guid: 5afcb2b96f468fe4783e505f5f381683, type: 2}
+  spiritPowerRunesTier2: []
   spiritPowerRunesTier3: []
   vitalityAgilityRunesTier1: []
-  vitalityAgilityRunesTier2:
-  - {fileID: 11400000, guid: 5a5276f5a4307e9429514fda838874aa, type: 2}
+  vitalityAgilityRunesTier2: []
   vitalityAgilityRunesTier3: []
   vitalityPowerRunesTier1: []
-  vitalityPowerRunesTier2:
-  - {fileID: 11400000, guid: 104846c7648c73045a3e739677f665b2, type: 2}
+  vitalityPowerRunesTier2: []
   vitalityPowerRunesTier3: []
   agilityPowerRunesTier1: []
-  agilityPowerRunesTier2:
-  - {fileID: 11400000, guid: f366e63a002be084681471e0cb255f68, type: 2}
+  agilityPowerRunesTier2: []
   agilityPowerRunesTier3: []
   spiritScore: 1
   vitalityScore: 1
   agilityScore: 1
   powerScore: 1
-  spiritVitalityScore: 0
-  spiritAgilityScore: 0
-  spiritPowerScore: 0
-  vitalityAgilityScore: 0
-  vitalityPowerScore: 0
-  agilityPowerScore: 0
+  spiritVitalityScore: 1
+  spiritAgilityScore: 1
+  spiritPowerScore: 1
+  vitalityAgilityScore: 1
+  vitalityPowerScore: 1
+  agilityPowerScore: 1
   tier2Requirement: 5
   tier3Requirement: 10
 --- !u!225 &9104158518363951169
@@ -57429,6 +57518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123743848185849}
@@ -57525,6 +57615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744996375037}
@@ -57621,6 +57712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745494849055}
@@ -57717,6 +57809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745462528663}
@@ -57813,6 +57906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745932164590}
@@ -57984,6 +58078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123743879988976}
@@ -58275,6 +58370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745850747085}
@@ -58371,6 +58467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744377754838}
@@ -58467,6 +58564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745146974907}
@@ -58562,6 +58660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: 0a4e8761b40630d4c8f0a91853f0cd42, type: 3}
   _type: 2
   icon: {fileID: 8525123745750484612}
@@ -59043,6 +59142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744726042021}
@@ -59139,6 +59239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745357855206}
@@ -59310,6 +59411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745485395418}
@@ -59556,6 +59658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123743883941907}
@@ -59652,6 +59755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744236143027}
@@ -59748,6 +59852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745894273454}
@@ -59919,6 +60024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744282943749}
@@ -60015,6 +60121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744770771368}
@@ -60111,6 +60218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744697885305}
@@ -60207,6 +60315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745494337678}
@@ -60527,6 +60636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744721790373}
@@ -61016,6 +61126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745719319983}
@@ -61187,6 +61298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745366095786}
@@ -61283,6 +61395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123745269353745}
@@ -61529,6 +61642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d835c7135c7b7143a23e1db0ab5a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   defaultIcon: {fileID: 21300000, guid: d64b66670e757aa418240e9b49e0716d, type: 3}
   _type: 0
   icon: {fileID: 8525123744936956788}
@@ -65679,13 +65793,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c550ab5ec4993404eaf2e632d031938b, type: 3}
---- !u!1 &1330546467407886463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7221625454905630952, guid: c550ab5ec4993404eaf2e632d031938b, type: 3}
-  m_PrefabInstance: {fileID: 8525123744051419287}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1330546467407886462 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7221625454905630953, guid: c550ab5ec4993404eaf2e632d031938b, type: 3}
+  m_PrefabInstance: {fileID: 8525123744051419287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1330546467407886463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7221625454905630952, guid: c550ab5ec4993404eaf2e632d031938b, type: 3}
   m_PrefabInstance: {fileID: 8525123744051419287}
   m_PrefabAsset: {fileID: 0}
