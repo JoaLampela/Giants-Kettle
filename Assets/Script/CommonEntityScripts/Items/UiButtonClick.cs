@@ -234,7 +234,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                             Item temp = playerInventory.leftHand._item;
                             playerInventory.leftHand.RemoveItemFromslot();
                             playerInventory.rightHand.RemoveItemFromslot();
-                            if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                            if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
                             else playerInventory.NewItem(temp);
                         }
                         else if (this == playerInventory.leftHand)
@@ -242,7 +242,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                             Item temp = playerInventory.rightHand._item;
                             playerInventory.rightHand.RemoveItemFromslot();
                             playerInventory.leftHand.RemoveItemFromslot();
-                            if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                            if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
                             else playerInventory.NewItem(temp);
                         }
                     }
@@ -250,7 +250,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     {
                         Item temp = _item;
                         RemoveItemFromslot();
-                        if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                        if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
                         else playerInventory.NewItem(temp);
                     }
                 }
@@ -258,8 +258,14 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 {
                     Item temp = _item;
                     RemoveItemFromslot();
-                    if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp);
+                    if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
                     else playerInventory.UseItem(temp);
+                }
+                else
+                {
+                    Item temp = _item;
+                    RemoveItemFromslot();
+                    if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
                 }
             }
             else if (eventData.button == PointerEventData.InputButton.Left)
