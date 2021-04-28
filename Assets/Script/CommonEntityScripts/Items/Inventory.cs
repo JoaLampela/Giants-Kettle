@@ -1561,6 +1561,6 @@ public class Inventory : MonoBehaviour
 
         GameObject groundItem = Instantiate(itemOnGround, pos, Quaternion.identity);
         groundItem.GetComponent<ItemOnGround>()._item = droppedItem;
-        groundItem.GetComponent<SpriteRenderer>().sprite = droppedItem.item.iconSprite;
+        //groundItem.GetComponent<SpriteRenderer>().sprite = droppedItem.item.iconSprite;
     }
 }

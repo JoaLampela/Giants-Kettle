@@ -93,7 +93,7 @@ public class ItemOnGround : MonoBehaviour
 
     public void SetItem(Item newItem)
     {
-        GetComponent<SpriteRenderer>().sprite = newItem.item.iconSprite;
+        //GetComponent<SpriteRenderer>().sprite = newItem.item.iconSprite;
         _item = newItem;
     }
 
