@@ -107,6 +107,7 @@ public class EntityEvents : MonoBehaviour
     public event Action OnUnlockInventory;
 
     public event Action<int> OnTakeStep;
+    public event Action<int> OnSetCurrentHealth;
 
     public void TakeStep(int distance)
     {
@@ -167,6 +168,11 @@ public class EntityEvents : MonoBehaviour
     public void SetHealth(int value)
     {
         OnSetHealth?.Invoke(value);
+    }
+
+    public void SetCurrentHealth(int value)
+    {
+        OnSetCurrentHealth?.Invoke(value);
     }
     public void SetSpirit(int value)
     {

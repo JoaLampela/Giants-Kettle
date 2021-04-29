@@ -14,11 +14,13 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     public GameObject flyingIcon;
     private Inventory playerInventory;
     [SerializeField] private Sprite empty;
+    GameEventManager gameManager;
 
     private void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerInventory = player.GetComponent<Inventory>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
     }
 
 
@@ -30,6 +32,14 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     // Update is called once per frame
     void Update()
     {
+        if(hoveredSlot == null && gameManager.castingLocked)
+        {
+            gameManager.castingLocked = false;
+        }
+        else if(hoveredSlot != null && !gameManager.castingLocked)
+        {
+            gameManager.castingLocked = true;
+        }
         if(Input.GetMouseButtonUp(0) && grabbedItem != null)
         {
             if (hoveredSlot != null)

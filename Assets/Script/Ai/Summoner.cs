@@ -54,7 +54,7 @@ public class Summoner : MonoBehaviour
                 else if (canAttack && canSummon)
                 {
                     abilityManager.CastAbility(1);
-                    StartCoroutine(SetSummonOnCoolDown(20f));
+                    StartCoroutine(SetSummonOnCoolDown(5f));
                     Debug.Log("used summon");
                 }
             }

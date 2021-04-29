@@ -5,7 +5,8 @@ public class EntityHealth : MonoBehaviour
 {
     private EntityEvents events;
     private EntityStats stats;
-    public int health;
+    public int health = -100;
+    public int maxHealth = 0;
     private float oneHealth;
     private bool fireTickOnCD = false;
     private float timeBetweenFireTicks = 1f;
@@ -22,6 +23,7 @@ public class EntityHealth : MonoBehaviour
     private void Start()
     {
         Subscribe();
+        health = stats.currentMaxHealth;
     }
     private void Update()
     {
@@ -93,6 +95,7 @@ public class EntityHealth : MonoBehaviour
         events.OnDeteriorateHealth += TakeDamage;
         events.OnHitThis += DamageCalculation;
         events.OnRecoverHealth += GainHealth;
+        events.OnSetCurrentHealth += SetStartHealth;
     }
     private void Unsubscribe()
     {
@@ -102,10 +105,19 @@ public class EntityHealth : MonoBehaviour
         events.OnDeteriorateHealth -= TakeDamage;
         events.OnHitThis -= DamageCalculation;
         events.OnRecoverHealth -= GainHealth;
+        events.OnSetCurrentHealth -= SetStartHealth;
     }
 
     private void SetHealth(int value)
     {
+        float healthPersentage = (float)health / (float)maxHealth;
+        Debug.Log("health % = " + healthPersentage);
+        health = (int)(healthPersentage * value);
+        maxHealth = value;
+    }
+    private void SetStartHealth(int value)
+    {
+        if (maxHealth == 0) maxHealth = value;
         health = value;
     }
 

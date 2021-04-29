@@ -110,12 +110,14 @@ public class EntityStats : MonoBehaviour
 
         events.SetHealth(currentMaxHealth);
         events.SetSpirit(currentMaxSpirit);
+        events.SetCurrentHealth(currentMaxHealth);
     }
 
 
     public void UpdateMaxHealth()
     {
         currentMaxHealth = (int)((baseHealth  * totalHealthMultiplier / 100f));
+        events.SetHealth(currentMaxHealth);
     }
     public void UpdateMaxSpirit()
     {

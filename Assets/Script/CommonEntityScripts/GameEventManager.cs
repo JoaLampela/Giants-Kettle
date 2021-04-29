@@ -42,6 +42,8 @@ public class GameEventManager : MonoBehaviour
     public GameObject inventory;
     public bool inventoryOpen = false;
 
+    public bool castingLocked = false;
+
     private void Update()
     {
         time += Time.deltaTime;
@@ -119,6 +121,8 @@ public class GameEventManager : MonoBehaviour
 
     public void RoomClear()
     {
+        Debug.Log("Room clear");
+        playerLevelUpPoints++;
         OnRoomClear?.Invoke();
     }
     public void WaveClear()

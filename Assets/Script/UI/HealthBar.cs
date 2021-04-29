@@ -6,15 +6,17 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-
-    public Slider slider;
-    public Gradient gradient;
-    public Image fill;
     public TMP_Text healthText;
     private EntityEvents _events;
     private GameObject player;
     private int health;
+    private float shield;
     private int maxHealth;
+    private EntityHealth healthScript;
+    private EntityStats stats;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Image shieldBar;
+
 
 
     private void Start()
@@ -25,28 +27,30 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        healthScript = player.GetComponent<EntityHealth>();
+        
         _events = player.GetComponent<EntityEvents>();
+        stats = player.GetComponent<EntityStats>();
     }
 
     private void Update()
     {
-        health = player.GetComponent<EntityHealth>().health;
-        SetHealth(health);
+        health = healthScript.health;
+        shield = stats.currentShield;
+        SetHealthAndShield(health);
     }
 
     public void SetMaxHealth(int hp)
     {
-        slider.maxValue = hp;
-        slider.value = hp;
-        fill.color = gradient.Evaluate(1f);
         maxHealth = hp;
     }
 
-    public void SetHealth(int hp)
+    public void SetHealthAndShield(int hp)
     {
-        slider.value = hp;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
-        healthText.text = hp + " / " + maxHealth;
+
+        healthBar.fillAmount = (float)hp / (float)maxHealth;
+        shieldBar.fillAmount = shield / (float)maxHealth;
+        healthText.text = hp+(int)shield + " / " + maxHealth;
     }
 
     private void Subscribe()

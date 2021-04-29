@@ -110,12 +110,12 @@ public class VitalityRuneOfArmor : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("VitalityRuneOfArmorArmor", EntityStats.BuffType.Health, duplicateCountArmor * 20);
+            _entityEvents.NewBuff("VitalityRuneOfArmorArmor", EntityStats.BuffType.Armor, duplicateCountArmor * 20);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityRuneOfArmorWeapon", EntityStats.BuffType.Health, duplicateCountWeapon * 20);
+            _entityEvents.NewBuff("VitalityRuneOfArmorWeapon", EntityStats.BuffType.Armor, duplicateCountWeapon * 20);
         }
     }
 

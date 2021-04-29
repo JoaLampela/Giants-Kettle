@@ -15,23 +15,25 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if(!GameObject.Find("Game Manager").GetComponent<GameEventManager>().castingLocked)
         {
-            entityAbilityManager.CastAbility(1);
-            Debug.Log(" SelectAbility To cast ability 1");
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                entityAbilityManager.CastAbility(1);
+                Debug.Log(" SelectAbility To cast ability 1");
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                entityAbilityManager.CastAbility(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                entityAbilityManager.CastAbility(3);
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                entityAbilityManager.CastAbility(4);
+            }
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            entityAbilityManager.CastAbility(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            entityAbilityManager.CastAbility(3);
-        }
-        if(Input.GetMouseButtonDown(0))
-        {
-            entityAbilityManager.CastAbility(4);
-        }
-        
     }
 }

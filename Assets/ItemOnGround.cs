@@ -87,7 +87,6 @@ public class ItemOnGround : MonoBehaviour
         {
             smoothGoingUp = true;
         }
-        Debug.Log(smoorthValue);
 
     }
 

@@ -54,6 +54,7 @@ public class NonProjectile : MonoBehaviour, IAbility
 
     private void InstatiateHitBox()
     {
+        Debug.Log("NON");
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
         GameObject nonProjectile = Instantiate(GetComponent<EntityAbilityManager>().nonProjectile, abilityManager.rightHandGameObject.transform.position, abilityManager.rightHandGameObject.transform.rotation);
         nonProjectile.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
