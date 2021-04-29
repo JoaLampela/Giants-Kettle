@@ -658,7 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   team: 1
-  baseHealth: 40
+  baseHealth: 5
   baseSpirit: 0
   baseHealthRegen: 60
   baseSpiritRegen: 0
@@ -735,6 +735,7 @@ MonoBehaviour:
   dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons:
   - {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
+  - {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
   armorRunes:
   - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
   - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}

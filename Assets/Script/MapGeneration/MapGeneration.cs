@@ -19,7 +19,6 @@ public class MapGeneration : MonoBehaviour
     [Header("Game settings")]
     [Range(0, 100)]
     public int spawnPointCreationPrecentagePerTile;
-    public int levelsPassed;
     [Range(0, 100)]
     public int combatRoomSpawnPointCreationPrecentagePerTile;
     [Header("Room prefabs")]
@@ -55,7 +54,6 @@ public class MapGeneration : MonoBehaviour
     internal int[,] map;
     private Room mainRoom;
     private MapNode playerLocationNode;
-
 
 
     private MeshGenerator meshGenerator;
@@ -97,7 +95,7 @@ public class MapGeneration : MonoBehaviour
                 }
             }
             allRooms.Clear();
-            for (int i = 0; i < levels[levelsPassed].roomList.Length; i++)
+            for (int i = 0; i < levels[0].roomList.Length; i++)
             {
                 bool roomSpawned = false;
                 int cannotSpawnRoomCounter = 0;
@@ -105,7 +103,7 @@ public class MapGeneration : MonoBehaviour
                 {
                     int x = Random.Range(generationAreaOuterBorder, width - generationAreaOuterBorder);
                     int y = Random.Range(generationAreaOuterBorder, height - generationAreaOuterBorder);
-                    if (levels[levelsPassed].roomList[i] == 0)
+                    if (levels[0].roomList[i] == 0)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
                         {
@@ -114,7 +112,7 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
-                    else if (levels[levelsPassed].roomList[i] == 1)
+                    else if (levels[0].roomList[i] == 1)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), spawnRoomSpaceRequired))
                         {
@@ -123,7 +121,7 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
-                    else if (levels[levelsPassed].roomList[i] == 2)
+                    else if (levels[0].roomList[i] == 2)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), enemyRoom1SpaceRequired))
                         {
@@ -132,7 +130,7 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
-                    else if (levels[levelsPassed].roomList[i] == 3)
+                    else if (levels[0].roomList[i] == 3)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), enemyRoom2SpaceRequired))
                         {
@@ -141,7 +139,7 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
-                    else if (levels[levelsPassed].roomList[i] == 4)
+                    else if (levels[0].roomList[i] == 4)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), caveRoomSpaceRequired))
                         {
@@ -150,7 +148,7 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
-                    else if (levels[levelsPassed].roomList[i] == 5)
+                    else if (levels[0].roomList[i] == 5)
                     {
                         if (isCircleEmptyWalls(new Coord(x, y), testRoomSpaceRequired))
                         {
@@ -164,7 +162,7 @@ public class MapGeneration : MonoBehaviour
                 if (!roomSpawned)
                     break;
             }
-            if (allRooms.Count == levels[levelsPassed].roomList.Length)
+            if (allRooms.Count == levels[0].roomList.Length)
                 mapGenerated = true;
 
         }
@@ -552,9 +550,7 @@ public class MapGeneration : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        levelsPassed++;
-        if (levelsPassed == levels.Length)
-            levelsPassed = 0;
+
         GenerateMap();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
