@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678275fdb6d0a4640bdde3e75828f98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 3
+  _delay: 2
 --- !u!114 &1357838293807768254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSummons:
-  - {fileID: 2999592409753981144, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
-  maxdistance: 6
-  minDistance: 3
-  summonCount: 5
+  - {fileID: 8509359907536792585, guid: c2ba8c0c2b0c06a4ba67c9a93f9d9363, type: 3}
+  maxdistance: 4
+  minDistance: 2
+  summonCount: 10
   summonEffect: {fileID: 4222692722409742216, guid: a47ba909e6fbc6548a696849d12d25da, type: 3}

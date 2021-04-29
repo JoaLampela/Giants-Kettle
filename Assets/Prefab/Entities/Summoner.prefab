@@ -173,7 +173,7 @@ Transform:
   m_GameObject: {fileID: 5149311540306108720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.1561773, y: 0.13579667, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 5149311540783114680}
   - {fileID: 5149311540617242877}
@@ -195,7 +195,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
 --- !u!114 &5149311540306108747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +368,7 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 10
   reachedEndOfPath: 0
-  entitySpeed: 5
+  entitySpeed: 4
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -486,7 +487,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dodges: 1
-  dashes: 0
+  dashes: 1
 --- !u!95 &5149311540306108751
 Animator:
   serializedVersion: 3
@@ -541,14 +542,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   team: 1
-  baseHealth: 200
+  baseHealth: 1000
   baseSpirit: 0
-  baseHealthRegen: 60
+  baseHealthRegen: 100
   baseSpiritRegen: 0
   baseSpeed: 1
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 10
+  basePhysicalDamage: 15
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 30
@@ -651,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 100
+  healthPerLevel: 200
   healthRegenPerLevel: 30
   physicalDamagePerLevel: 10
   armorPerLevel: 10

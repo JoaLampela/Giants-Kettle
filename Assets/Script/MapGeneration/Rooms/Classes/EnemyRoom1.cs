@@ -8,8 +8,8 @@ public class EnemyRoom1 : Room
     {
         CentreTile = centre;
         roomType = 2;
-        width = 10;
-        height = 10;
+        width = 13;
+        height = 13;
         for (int x = -width / 2 + centre.tileX; x < width / 2 + centre.tileX; x++)
         {
             for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)

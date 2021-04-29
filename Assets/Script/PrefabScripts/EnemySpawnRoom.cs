@@ -9,6 +9,8 @@ public class EnemySpawnRoom : MonoBehaviour
     public int[] spawnWeight;
     public GameObject[] spawnEnemiesList;
     private int maxSpawnWeight = 0;
+    public float enemyActivationTime = 0.5f;
+    public float enemyAggroTime = 0.5f;
 
     private void Awake()
     {
@@ -41,12 +43,12 @@ public class EnemySpawnRoom : MonoBehaviour
 
     IEnumerator ActivateObject(GameObject enemy)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(enemyActivationTime);
         enemy.SetActive(true);
     }
     IEnumerator MakeAggro(GameObject enemy)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(enemyActivationTime + enemyAggroTime);
         if (enemy != null)
             enemy.GetComponent<EntityTargetingSystem>().IncreaseAggro(GameObject.FindGameObjectWithTag("Player"), 100);
     }

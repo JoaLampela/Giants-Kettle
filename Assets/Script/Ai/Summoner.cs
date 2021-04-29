@@ -16,6 +16,7 @@ public class Summoner : MonoBehaviour
     private Rigidbody2D goblinRB;
     private CircleCollider2D goblinCollider;
     private EntityAbilityManager abilityManager;
+    float summonCooldown = 2f;
 
 
     float currentRotation;
@@ -46,17 +47,18 @@ public class Summoner : MonoBehaviour
             if (!attacking)
             {
                 LookToTarget();
-                if (Vector2.Distance(targetingSystem.target.transform.position, transform.position) < attackRange && canAttack)
+                if (canAttack && canSummon)
+                {
+                    abilityManager.CastAbility(1);
+                    StartCoroutine(SetSummonOnCoolDown(summonCooldown));
+                    Debug.Log("used summon");
+                }
+                else if (Vector2.Distance(targetingSystem.target.transform.position, transform.position) < attackRange && canAttack)
                 {
                     abilityManager.CastAbility(4);
                     StartCoroutine(SetAttackOnCoolDown(2f));
                 }
-                else if (canAttack && canSummon)
-                {
-                    abilityManager.CastAbility(1);
-                    StartCoroutine(SetSummonOnCoolDown(5f));
-                    Debug.Log("used summon");
-                }
+
             }
 
 

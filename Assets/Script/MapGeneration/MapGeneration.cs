@@ -514,7 +514,7 @@ public class MapGeneration : MonoBehaviour
         foreach (MapNode mapNode in mapNodes)
         {
             if (mapNode != null)
-                if (mapNode._owningRoom.roomObject.GetComponent<CombatRoomScript>())
+                if (mapNode._owningRoom.roomObject.GetComponent<CombatRoomScript>() && mapNode._owningRoom.roomObject.GetComponent<CombatRoomScript>().spawnRandomSpawnPoints)
                 {
 
                     bool nextToAWall = false;

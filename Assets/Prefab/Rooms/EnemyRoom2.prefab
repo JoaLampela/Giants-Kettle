@@ -48,6 +48,8 @@ MonoBehaviour:
   wavesLeft: 3
   roomEnemies: []
   spawnPoints: []
+  gameEventManager: {fileID: 0}
+  spawnRandomSpawnPoints: 1
 --- !u!114 &-3594436119803647716
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,9 +10,18 @@ public class CombatRoomScript : MonoBehaviour
     public List<GameObject> roomEnemies;
     public List<GameObject> spawnPoints;
 
+    public GameEventManager gameEventManager;
+    public bool spawnRandomSpawnPoints;
 
     private bool activated = false;
     private bool inCombat = false;
+
+    private void Start()
+    {
+        gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
+
+    }
+
     public void StartCombat()
     {
 
@@ -32,6 +41,7 @@ public class CombatRoomScript : MonoBehaviour
                     enemy.GetComponent<EntityEvents>().OnDie += DeleteEnemyFromList;
                     roomEnemies.Add(enemy);
                 }
+
             }
         }
     }
@@ -49,6 +59,7 @@ public class CombatRoomScript : MonoBehaviour
         //Debug.Log("Ending combat");
         inCombat = false;
         GetComponent<DoorScript>().OpenDoors();
+        gameEventManager.RoomClear();
     }
 
     private void Update()
@@ -60,6 +71,7 @@ public class CombatRoomScript : MonoBehaviour
 
             if (roomEnemies.Count == 0)
             {
+                gameEventManager.WaveClear();
                 if (wavesLeft == 0)
                     EndCombat();
                 else
