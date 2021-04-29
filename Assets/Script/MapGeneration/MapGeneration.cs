@@ -190,7 +190,7 @@ public class MapGeneration : MonoBehaviour
 
         //generate mesh of the map
         meshGenerator.GenerateMesh(map, gridSize);
-        GeneratePlants();
+        //GeneratePlants();
 
     }
     /*
@@ -469,23 +469,23 @@ public class MapGeneration : MonoBehaviour
         }
     }
 
-    public void GeneratePlants()
-    {
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                if (map[x, y] == 0 || map[x, y] == 3)
-                {
-                    if (Random.Range(0, 100) < 6)
-                    {
-                        GameObject plant = GameObject.Instantiate(testPlantPrefab, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
-                        plant.transform.parent = gameObject.transform;
-                    }
-                }
-            }
-        }
-    }
+    //public void GeneratePlants()
+    //{
+    //    for (int x = 0; x < width; x++)
+    //    {
+    //        for (int y = 0; y < height; y++)
+    //        {
+    //            if (map[x, y] == 0 || map[x, y] == 3)
+    //            {
+    //                if (Random.Range(0, 100) < 6)
+    //                {
+    //                    GameObject plant = GameObject.Instantiate(testPlantPrefab, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+    //                    plant.transform.parent = gameObject.transform;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     public void CreateSpawnPoints(Room spawnRoom)
     {

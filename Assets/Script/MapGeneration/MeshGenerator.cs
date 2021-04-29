@@ -28,14 +28,17 @@ public class MeshGenerator : MonoBehaviour
     public MeshFilter wallMeshFilter;
     public GameObject wallTilemapGO;
     public GameObject caveTilemapGO;
+    public GameObject grassPrefab;
     public Tilemap groundTilemap;
     public Tilemap caveTilemap;
     public Tilemap wallTilemap;
     public Tilemap wallBorderTilemap;
-
+    public GridLayout grid;
+    public GameObject brushTargetGO;
+    public Transform brushTargetTrans;
     public List<Tile> tileList;
-    [NamedArrayAttribute(new string[] { "Neutral", "Happy", "Sad" })]
-    public Material[] textures;
+
+    public UnityEditor.Tilemaps.PrefabBrush prefabBrush;
 
     public Transform playerTransform;
     private List<Vector3> vertices;
@@ -52,14 +55,14 @@ public class MeshGenerator : MonoBehaviour
         checkedVertices = new HashSet<int>();
 
     }
-    //this update is purely for debug services, delete later?
-    private void Update()
-    {
-        MeshRenderer caveMF = GetComponent<MeshRenderer>();
-        caveMF.enabled = caveOn;
-        MeshRenderer wallsMF = transform.GetChild(0).GetComponent<MeshRenderer>();
-        wallsMF.enabled = wallsOn;
-    }
+    ////this update is purely for debug services, delete later?
+    //private void Update()
+    //{
+    //    MeshRenderer caveMF = GetComponent<MeshRenderer>();
+    //    caveMF.enabled = caveOn;
+    //    MeshRenderer wallsMF = transform.GetChild(0).GetComponent<MeshRenderer>();
+    //    wallsMF.enabled = wallsOn;
+    //}
 
     public void GenerateMesh(int[,] map, float squareSize)
     {
@@ -103,7 +106,36 @@ public class MeshGenerator : MonoBehaviour
         AstarPath.active.Scan();
     }
 
+    void InstantiatePrefab(GridLayout grid, GameObject targetGO, GameObject prefab, Vector3Int position)
+    {
+        prefabBrush.Paint(grid, targetGO, prefab, position);
+    }
 
+    public void DestroyChildren(Transform trans)
+    {
+        //int i = 0;
+
+        ////Array to hold all child obj
+        //GameObject[] allChildren = new GameObject[trans.childCount];
+
+        ////Find all child obj and store to that array
+        //foreach (Transform child in transform)
+        //{
+        //    if (i < trans.childCount) {
+        //        allChildren[i] = child.gameObject;
+        //        i += 1;
+        //    }
+        //}
+
+        ////Now destroy them
+        //foreach (GameObject child in allChildren)
+        //{
+        //    DestroyImmediate(child.gameObject);
+        //}
+        foreach (Transform child in trans.transform) {
+            Destroy(child.gameObject);
+        }
+    }
 
     void CreateTiles()
     {
@@ -114,6 +146,7 @@ public class MeshGenerator : MonoBehaviour
         caveTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
         wallBorderTilemap.ClearAllTiles();
+        DestroyChildren(brushTargetTrans);
 
         
         //set the tiles to the map
@@ -130,6 +163,13 @@ public class MeshGenerator : MonoBehaviour
                         randInt = rnd.Next(24, 27);
                        
                         groundTilemap.SetTile(cellVector, tileList[randInt]);
+
+                        randInt = rnd.Next(1, 100);
+
+                        if (randInt <= 20) {
+                            InstantiatePrefab(grid, brushTargetGO, grassPrefab, cellVector);
+                        }
+
                         break;
                     //only 1 controlNodes is active
                     case 1:
@@ -357,9 +397,6 @@ public class MeshGenerator : MonoBehaviour
 
         wallTilemapGO.AddComponent<TilemapCollider2D>();
         caveTilemapGO.AddComponent<TilemapCollider2D>();
-        
-
-
     }
 
 
