@@ -145,7 +145,7 @@ public class MeshGenerator : MonoBehaviour
                         
                         randInt = rnd.Next(24, 27);
                        
-                        groundTilemap.SetTile(cellVector, tileList[randInt]);
+                        groundTilemap.SetTile(cellVector, tileList[0]);
 
                         randInt = rnd.Next(1, 100);
 
@@ -161,7 +161,7 @@ public class MeshGenerator : MonoBehaviour
 
                         //set the ground underneath this tile
                         randInt = rnd.Next(24, 27);
-                        groundTilemap.SetTile(cellVector, tileList[randInt]);
+                        groundTilemap.SetTile(cellVector, tileList[0]);
                         break;
                     case 2:
                         //bottom right triangle
@@ -169,7 +169,7 @@ public class MeshGenerator : MonoBehaviour
 
                         //set the ground underneath this tile
                         randInt = rnd.Next(24, 27);
-                        groundTilemap.SetTile(cellVector, tileList[randInt]);
+                        groundTilemap.SetTile(cellVector, tileList[0]);
                         break;
                     case 4:
                         //top right triangle
@@ -230,7 +230,8 @@ public class MeshGenerator : MonoBehaviour
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
                         randInt = rnd.Next(28, 30);
-                        wallTilemap.SetTile(wallVector, tileList[randInt]);
+                        //set random wall tile from three options
+                        wallTilemap.SetTile(wallVector, tileList[20]);
                         break;
 
                     //diagonal two nodes
