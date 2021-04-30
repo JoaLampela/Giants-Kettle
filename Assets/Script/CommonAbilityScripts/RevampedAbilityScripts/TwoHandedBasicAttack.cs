@@ -40,6 +40,7 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
+        Debug.Log("casting inside two handed ability");
         if (basicAttackOffCooldown) //cooldown here
         {
             if (_spellSlot == slot)
@@ -79,7 +80,7 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
             }
             else
             {
-                if(GameObject.Find("Player"))
+                if (GameObject.Find("Player"))
                 {
                     enemyDirection = GameObject.Find("Player").transform.position;
                 }

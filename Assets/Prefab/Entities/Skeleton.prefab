@@ -742,7 +742,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
   minRuneCount: 1
   maxRuneCount: 3
-  canDualWield: 1
+  canDualWield: 0
   humanoid_Animations: {fileID: 0}
 --- !u!114 &972456043691024661
 MonoBehaviour:

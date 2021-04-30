@@ -30,9 +30,9 @@ public class EntityTargetingSystem : MonoBehaviour, IAbilityTargetPosition
         {
             foreach (GameObject entity in gameEventManager.allies)
             {
-
                 if (aggroTable.ContainsKey(entity) && aggroRange >= Vector2.Distance(entity.transform.position, transform.position) && !entity.GetComponent<EntityStats>().isInvisible)
                 {
+
                     if (aggroTable[entity] < 1)
                     {
                         aggroTable[entity] = 1;
