@@ -108,7 +108,8 @@ public class MeshGenerator : MonoBehaviour
 
     void InstantiatePrefab(GridLayout grid, GameObject targetGO, GameObject prefab, Vector3Int position)
     {
-        prefabBrush.Paint(grid, targetGO, prefab, position);
+        // prefabBrush.Paint(grid, targetGO, prefab, position);
+        prefabBrush.Paint(grid, targetGO, position);
     }
 
     public void DestroyChildren(Transform trans)

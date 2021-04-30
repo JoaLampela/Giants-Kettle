@@ -15,6 +15,7 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     private Inventory playerInventory;
     [SerializeField] private Sprite empty;
     GameEventManager gameManager;
+    [SerializeField] private InspectorPanel inspector;
 
     private void Awake()
     {
@@ -30,15 +31,27 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
     }
 
     // Update is called once per frame
+    [Obsolete]
     void Update()
     {
-        if(hoveredSlot == null && gameManager.castingLocked)
+        if(hoveredSlot == null)
         {
-            gameManager.castingLocked = false;
+            if(gameManager.castingLocked) gameManager.castingLocked = false;
+
+            inspector.DisapleInspector();
         }
-        else if(hoveredSlot != null && !gameManager.castingLocked)
+        else if(hoveredSlot != null)
         {
-            gameManager.castingLocked = true;
+            if(!gameManager.castingLocked) gameManager.castingLocked = true;
+            
+            if (hoveredSlot._item != null)
+            {
+                inspector.SetPreviewImage(hoveredSlot._item.item.iconSprite);
+                inspector.EnableInspector();
+                inspector.InspectorSetRuneSlots(hoveredSlot._item);
+                inspector.InspectorSetRuneEffects(hoveredSlot._item);
+            }
+            else inspector.DisapleInspector();
         }
         if(Input.GetMouseButtonUp(0) && grabbedItem != null)
         {

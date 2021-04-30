@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item
 {
@@ -15,12 +16,20 @@ public class Item
     public float maxCooldownAbility2;
     public float currentCooldownAbility2;
 
+    public Sprite[] runeEffects;
+
+
+
     public Item(ItemObject newItem)
     {
         item = newItem;
+        runeEffects = new Sprite[0];
         if(item.type == ItemType.Rune)
         {
             _runeList = new RuneObject[0];
+            RuneObject rune = (RuneObject)newItem;
+            runeEffects = rune.runeEffects;
+
         }
         else if((int)item.type == 1 || (int)item.type == 2 || (int)item.type == 3 || (int)item.type == 4)
         {

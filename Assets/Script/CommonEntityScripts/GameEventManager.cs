@@ -43,6 +43,7 @@ public class GameEventManager : MonoBehaviour
     public bool inventoryOpen = false;
 
     public bool castingLocked = false;
+    private bool runesRandomized = false;
 
     private void Update()
     {
@@ -52,16 +53,11 @@ public class GameEventManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible)
         {
-            playerLevelUpScreenVisible = true;
-            LevelUpScreen.SetActive(true);
-            LevelUpScreen.GetComponent<RuneTierListObjects>().RandomizeNewRunes();
-            Debug.Log("OPENED");
+            ToggleRuneSelectionView();
         }
         else if((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible)
         {
-            playerLevelUpScreenVisible = false;
-            LevelUpScreen.SetActive(false);
-            Debug.Log("CLOSED");
+            ToggleRuneSelectionView();
         }
         levelPointsText.text = playerLevelUpPoints.ToString();
 
@@ -80,6 +76,22 @@ public class GameEventManager : MonoBehaviour
             inventory.GetComponent<CanvasGroup>().alpha = 0;
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = false;
             inventory.GetComponent<CanvasGroup>().interactable = false;
+        }
+    }
+
+    public void ToggleRuneSelectionView()
+    {
+        if (!playerLevelUpScreenVisible)
+        {
+            playerLevelUpScreenVisible = true;
+            LevelUpScreen.SetActive(true);
+            if(!runesRandomized) LevelUpScreen.GetComponent<RuneTierListObjects>().RandomizeNewRunes();
+            runesRandomized = true;
+        }
+        else
+        {
+            playerLevelUpScreenVisible = false;
+            LevelUpScreen.SetActive(false);
         }
     }
 
