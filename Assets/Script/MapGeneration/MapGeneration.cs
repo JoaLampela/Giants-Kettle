@@ -28,6 +28,7 @@ public class MapGeneration : MonoBehaviour
     public GameObject enemyRoom2;
     public GameObject caveRoom;
     public GameObject testRoom;
+    public GameObject bossRoom;
     [Header("Object prefabs")]
     public GameObject combatRoomSpawner;
     public GameObject spawnPoint;
@@ -49,6 +50,8 @@ public class MapGeneration : MonoBehaviour
     public int caveRoomSpaceRequired = 16;
     [Range(15, 30)]
     public int testRoomSpaceRequired = 16;
+    [Range(40, 60)]
+    public int bossRoomSpaceRequired = 50;
 
     internal MapNode[,] mapNodes;
     internal int[,] map;
@@ -157,6 +160,15 @@ public class MapGeneration : MonoBehaviour
                             roomSpawned = true;
                         }
                     }
+                    else if (levels[levelsPassed].roomList[i] == 10)
+                    {
+                        if (isCircleEmptyWalls(new Coord(x, y), bossRoomSpaceRequired))
+                        {
+                            Room room = new BossRoom(new Coord(x, y), map);
+                            allRooms.Add(room);
+                            roomSpawned = true;
+                        }
+                    }
                     cannotSpawnRoomCounter++;
                 }
                 if (!roomSpawned)
@@ -169,7 +181,7 @@ public class MapGeneration : MonoBehaviour
 
         foreach (Room room in allRooms)
         {
-            if (room.roomType == 0)
+            if (room.roomType == 0 || room.roomType == 10)
             {
                 mainRoom = room;
                 //Debug.Log("Found a spawnroom and made it into a main room");
@@ -191,7 +203,7 @@ public class MapGeneration : MonoBehaviour
         //GeneratePlants();
 
     }
-    /*
+
     private void OnDrawGizmos()
     {
         for (int x = 0; x < width; x++)
@@ -214,10 +226,10 @@ public class MapGeneration : MonoBehaviour
                         break;
                 }
 
-                Gizmos.DrawCube(new Vector3(x - width / 2 + 0.5f, y - height / 2 + 0.5f, 0), Vector3.one);
+                Gizmos.DrawCube(new Vector3(x * 2 - width + 0.5f, y * 2 - height + 0.5f, 0), Vector3.one * 2);
             }
         }
-    }*/
+    }
 
     void AddRoomsToMapNodes(List<Room> allRooms)
     {
@@ -461,6 +473,14 @@ public class MapGeneration : MonoBehaviour
                         currentRoom.transform.parent = gameObject.transform;
                         room.roomObject = currentRoom;
 
+                    }
+                    break;
+                case 10:
+                    {
+                        GameObject currentRoom = Instantiate(bossRoom, roomPosition, Quaternion.identity);
+                        currentRoom.transform.parent = gameObject.transform;
+                        room.roomObject = currentRoom;
+                        currentRoom.GetComponent<DoorScript>().MakeDoors(room);
                     }
                     break;
             }

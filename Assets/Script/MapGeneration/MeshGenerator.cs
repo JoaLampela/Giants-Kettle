@@ -38,7 +38,7 @@ public class MeshGenerator : MonoBehaviour
     public Transform brushTargetTrans;
     public List<Tile> tileList;
 
-    public UnityEditor.Tilemaps.PrefabBrush prefabBrush;
+    public UnityEditor.Tilemaps.PrefabBrush grassBrush;
 
     public Transform playerTransform;
     private List<Vector3> vertices;
@@ -106,33 +106,16 @@ public class MeshGenerator : MonoBehaviour
         AstarPath.active.Scan();
     }
 
-    void InstantiatePrefab(GridLayout grid, GameObject targetGO, GameObject prefab, Vector3Int position)
+    void InstantiatePrefab(GridLayout grid, GameObject targetGO, Vector3Int position, UnityEditor.Tilemaps.PrefabBrush prefabBrush)
     {
         // prefabBrush.Paint(grid, targetGO, prefab, position);
+        prefabBrush.Paint(grid, targetGO, position);
         prefabBrush.Paint(grid, targetGO, position);
     }
 
     public void DestroyChildren(Transform trans)
     {
-        //int i = 0;
-
-        ////Array to hold all child obj
-        //GameObject[] allChildren = new GameObject[trans.childCount];
-
-        ////Find all child obj and store to that array
-        //foreach (Transform child in transform)
-        //{
-        //    if (i < trans.childCount) {
-        //        allChildren[i] = child.gameObject;
-        //        i += 1;
-        //    }
-        //}
-
-        ////Now destroy them
-        //foreach (GameObject child in allChildren)
-        //{
-        //    DestroyImmediate(child.gameObject);
-        //}
+      
         foreach (Transform child in trans.transform) {
             Destroy(child.gameObject);
         }
@@ -161,14 +144,15 @@ public class MeshGenerator : MonoBehaviour
                 switch (configuration) {
                     case 0:
                         //ground
+                        
                         randInt = rnd.Next(24, 27);
                        
-                        groundTilemap.SetTile(cellVector, tileList[randInt]);
+                        groundTilemap.SetTile(cellVector, tileList[0]);
 
                         randInt = rnd.Next(1, 100);
 
-                        if (randInt <= 20) {
-                            InstantiatePrefab(grid, brushTargetGO, grassPrefab, cellVector);
+                        if (randInt <= 10) {
+                            InstantiatePrefab(grid, brushTargetGO, cellVector, grassBrush);
                         }
 
                         break;
@@ -179,7 +163,7 @@ public class MeshGenerator : MonoBehaviour
 
                         //set the ground underneath this tile
                         randInt = rnd.Next(24, 27);
-                        groundTilemap.SetTile(cellVector, tileList[randInt]);
+                        groundTilemap.SetTile(cellVector, tileList[0]);
                         break;
                     case 2:
                         //bottom right triangle
@@ -187,7 +171,7 @@ public class MeshGenerator : MonoBehaviour
 
                         //set the ground underneath this tile
                         randInt = rnd.Next(24, 27);
-                        groundTilemap.SetTile(cellVector, tileList[randInt]);
+                        groundTilemap.SetTile(cellVector, tileList[0]);
                         break;
                     case 4:
                         //top right triangle
@@ -248,7 +232,8 @@ public class MeshGenerator : MonoBehaviour
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
                         randInt = rnd.Next(28, 30);
-                        wallTilemap.SetTile(wallVector, tileList[randInt]);
+                        //set random wall tile from three options
+                        wallTilemap.SetTile(wallVector, tileList[20]);
                         break;
 
                     //diagonal two nodes
