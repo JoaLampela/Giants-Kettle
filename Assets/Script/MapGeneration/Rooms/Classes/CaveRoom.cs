@@ -24,7 +24,7 @@ public class CaveRoom : Room
         for (int i = 0; i < 1; i++)
             GetRidOfEnclosures(centre, map);
         ProcessMap(centre, map);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
             GetRidOfEnclosures(centre, map);
         ProcessMap(centre, map);
 
@@ -36,7 +36,7 @@ public class CaveRoom : Room
         {
             for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)
             {
-                if (map[x, y] == 0 && map[x, y + 1] == 1)
+                if (map[x, y] == 0 && map[x, y - 1] == 1)
                 {
                     if (map[x, y - 1] == 0 && map[x, y - 2] == 1)
                         map[x, y - 2] = 0;
