@@ -110,7 +110,6 @@ public class MeshGenerator : MonoBehaviour
     {
         // prefabBrush.Paint(grid, targetGO, prefab, position);
         prefabBrush.Paint(grid, targetGO, position);
-        prefabBrush.Paint(grid, targetGO, position);
     }
 
     public void DestroyChildren(Transform trans)
