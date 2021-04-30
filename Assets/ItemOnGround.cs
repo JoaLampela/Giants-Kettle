@@ -52,7 +52,6 @@ public class ItemOnGround : MonoBehaviour
         float cycleTime = 2f;
         if(goingUp)
         {
-            Debug.Log("going up");
             currentY += (moveValueY * smoorthValue / cycleTime) * Time.deltaTime;
             if (currentY >= moveValueY)
             {
@@ -62,7 +61,6 @@ public class ItemOnGround : MonoBehaviour
         }
         else
         {
-            Debug.Log("going down " + currentY);
             currentY -= (moveValueY / cycleTime) * Time.deltaTime;
             if (currentY <= 0)
             {
