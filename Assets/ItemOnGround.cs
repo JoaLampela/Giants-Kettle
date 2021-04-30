@@ -28,14 +28,14 @@ public class ItemOnGround : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1) && !pickedUp && Vector2.Distance(player.transform.position, transform.position) < pickUpDistance)
+        if(Input.GetMouseButtonDown(1) && !pickedUp && Vector2.Distance(player.transform.position,transform.position) < pickUpDistance)
         {
             pickedUp = true;
         }
     }
     private void Update()
     {
-        if (pickedUp)
+        if(pickedUp)
         {
             rb.velocity = (player.transform.position - transform.position).normalized * speed;
         }
@@ -47,12 +47,11 @@ public class ItemOnGround : MonoBehaviour
 
     private void ItemPopping()
     {
-
+        
         float moveValueY = 0.5f;
         float cycleTime = 2f;
-        if (goingUp)
+        if(goingUp)
         {
-            //Debug.Log("going up");
             currentY += (moveValueY * smoorthValue / cycleTime) * Time.deltaTime;
             if (currentY >= moveValueY)
             {
@@ -62,7 +61,6 @@ public class ItemOnGround : MonoBehaviour
         }
         else
         {
-            //Debug.Log("going down " + currentY);
             currentY -= (moveValueY / cycleTime) * Time.deltaTime;
             if (currentY <= 0)
             {
@@ -79,11 +77,11 @@ public class ItemOnGround : MonoBehaviour
         {
             smoorthValue -= 1f * Time.deltaTime;
         }
-        if (smoorthValue > 2)
+        if(smoorthValue > 2)
         {
             smoothGoingUp = false;
         }
-        if (smoorthValue < 0)
+        if(smoorthValue < 0)
         {
             smoothGoingUp = true;
         }
@@ -98,12 +96,12 @@ public class ItemOnGround : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject == player && pickedUp)
+        if(collision.gameObject == player && pickedUp)
         {
             playerInventory.NewItem(_item);
             Destroy(gameObject);
         }
-        if (collision.tag == "Walls")
+        if(collision.tag == "Walls")
         {
             pickedUp = true;
         }

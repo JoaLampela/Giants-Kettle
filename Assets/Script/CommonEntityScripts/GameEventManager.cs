@@ -37,6 +37,7 @@ public class GameEventManager : MonoBehaviour
     public bool playerLevelUpScreenVisible = false;
     public GameObject LevelUpScreen;
     public TextMeshProUGUI levelPointsText;
+    public TextMeshProUGUI levelPointsText2LeftCorner;
 
     public TextMeshProUGUI gameTimeText;
     public GameObject inventory;
@@ -60,6 +61,7 @@ public class GameEventManager : MonoBehaviour
             ToggleRuneSelectionView();
         }
         levelPointsText.text = playerLevelUpPoints.ToString();
+        levelPointsText2LeftCorner.text = playerLevelUpPoints.ToString();
 
         UpdateGameTimer();
 
