@@ -19,21 +19,42 @@ public class CaveRoom : Room
         CentreTile = centre;
 
         RandomFillMap(centre, map);
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
             SmoothMap(centre, map);
+        for (int i = 0; i < 1; i++)
+            GetRidOfEnclosures(centre, map);
         ProcessMap(centre, map);
+        for (int i = 0; i < 3; i++)
+            GetRidOfEnclosures(centre, map);
+        ProcessMap(centre, map);
+
         SetRoomBorders(centre, map);
     }
-
-    private void RandomFillMap(Coord centre, int[,] map)
+    private void GetRidOfEnclosures(Coord centre, int[,] map)
     {
-
-
-
-
         for (int x = -width / 2 + centre.tileX; x < width / 2 + centre.tileX; x++)
         {
             for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)
+            {
+                if (map[x, y] == 0 && map[x, y + 1] == 1)
+                {
+                    if (map[x, y - 1] == 0 && map[x, y - 2] == 1)
+                        map[x, y - 2] = 0;
+                }
+                if (map[x, y] == 0 && map[x + 1, y] == 1 && map[x - 1, y] == 1)
+                {
+                    map[x + 1, y] = 0;
+                    map[x - 1, y] = 0;
+                }
+            }
+        }
+    }
+    private void RandomFillMap(Coord centre, int[,] map)
+    {
+
+        for (int x = -width / 2 + centre.tileX + 1; x < width / 2 + centre.tileX; x++)
+        {
+            for (int y = -height / 2 + centre.tileY + 1; y < height / 2 + centre.tileY; y++)
             {
                 map[x, y] = (Random.Range(0, 100) < randomFillPrecent) ? 0 : 1;
             }
