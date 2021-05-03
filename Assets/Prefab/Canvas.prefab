@@ -40184,7 +40184,7 @@ MonoBehaviour:
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
   sword: {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
   shield: {fileID: 11400000, guid: fb858602bc3e380469e8886c23bfb615, type: 2}
-  twoHandedSword: {fileID: 11400000, guid: 342ec59308d62264bac3df2f9d545065, type: 2}
+  twoHandedSword: {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
   staff: {fileID: 11400000, guid: 7c3afe4d68d27f84e82eebaf92d242cf, type: 2}
 --- !u!1 &5330811525201719281
 GameObject:
