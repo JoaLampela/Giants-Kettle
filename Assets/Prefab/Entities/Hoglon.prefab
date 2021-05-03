@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 5827354804768772603}
   - component: {fileID: 8333009041100929968}
   - component: {fileID: -5783217096629348286}
+  - component: {fileID: 8999853913095988126}
   m_Layer: 0
   m_Name: Hoglon
   m_TagString: Untagged
@@ -678,7 +679,7 @@ MonoBehaviour:
   powerShot: {fileID: 0}
   dash: {fileID: 0}
   basicAttackOneHandedSword: {fileID: 0}
-  basicAttackTwoHandedSword: {fileID: 0}
+  basicAttackTwoHandedSword: {fileID: 6270255350637537913, guid: 7083f3ea6e32fb543ba97c68235d4e0f, type: 3}
   basicAttackStaff: {fileID: 0}
   block: {fileID: 0}
 --- !u!95 &3614657879737628779
@@ -777,7 +778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3906990f14120dd4e8fb7ffe59103782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 10
+  attackRange: 9
+  chargeRange: 15
 --- !u!114 &-5783217096629348286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,6 +792,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb0fe2a66c24834881aee6678e1649a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8999853913095988126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123535486604011077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c4a2d2fff9a9c44b420b5b5fdb79e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spellSlot: 1
+  basicAttackOffCooldown: 1
 --- !u!1 &9123535486731900927
 GameObject:
   m_ObjectHideFlags: 0

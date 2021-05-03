@@ -509,30 +509,31 @@ public class MapGeneration : MonoBehaviour
 
     public void CreateSpawnPoints(Room spawnRoom)
     {
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
+        if (spawnRoom.roomType != 10)
+            for (int x = 0; x < width; x++)
             {
-                if (map[x, y] == 0 && !spawnRoom.tiles.Contains(new Coord(x, y)))
+                for (int y = 0; y < height; y++)
                 {
-                    bool nextToAWall = false;
-                    for (int i = x - 1; i <= x + 1; i++)
+                    if (map[x, y] == 0 && !spawnRoom.tiles.Contains(new Coord(x, y)))
                     {
-                        for (int j = y - 1; j <= y + 1; j++)
+                        bool nextToAWall = false;
+                        for (int i = x - 1; i <= x + 1; i++)
                         {
-                            if (map[i, j] == 1)
-                                nextToAWall = true;
+                            for (int j = y - 1; j <= y + 1; j++)
+                            {
+                                if (map[i, j] == 1)
+                                    nextToAWall = true;
+                            }
                         }
+                        if (!nextToAWall)
+                            if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
+                            {
+                                GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
+                                spawn.transform.parent = gameObject.transform;
+                            }
                     }
-                    if (!nextToAWall)
-                        if (Random.Range(0, 100) < spawnPointCreationPrecentagePerTile)
-                        {
-                            GameObject spawn = GameObject.Instantiate(spawnPoint, CoordToWorldPoint(new Coord(x, y)), Quaternion.identity);
-                            spawn.transform.parent = gameObject.transform;
-                        }
                 }
             }
-        }
         foreach (MapNode mapNode in mapNodes)
         {
             if (mapNode != null)
