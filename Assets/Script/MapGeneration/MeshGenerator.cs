@@ -149,10 +149,13 @@ public class MeshGenerator : MonoBehaviour
                         groundTilemap.SetTile(cellVector, tileList[0]);
 
                         randInt = rnd.Next(1, 100);
-
-                        if (randInt <= 10) {
-                            InstantiatePrefab(grid, brushTargetGO, cellVector, grassBrush);
+                        //grass
+                        if (squareGrid.squares[x, y + 1]._configuration == 0) {
+                            if (randInt <= 10) {
+                                InstantiatePrefab(grid, brushTargetGO, cellVector, grassBrush);
+                            }
                         }
+                       
 
                         break;
                     //only 1 controlNodes is active
@@ -161,7 +164,6 @@ public class MeshGenerator : MonoBehaviour
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
 
                         //set the ground underneath this tile
-                        randInt = rnd.Next(24, 27);
                         groundTilemap.SetTile(cellVector, tileList[0]);
                         break;
                     case 2:
