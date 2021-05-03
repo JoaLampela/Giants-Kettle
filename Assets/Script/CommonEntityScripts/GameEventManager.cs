@@ -38,6 +38,7 @@ public class GameEventManager : MonoBehaviour
     public GameObject LevelUpScreen;
     public TextMeshProUGUI levelPointsText;
     public TextMeshProUGUI levelPointsText2LeftCorner;
+    public TextMeshProUGUI levelPointReminderText;
 
     public TextMeshProUGUI gameTimeText;
     public GameObject inventory;
@@ -79,6 +80,8 @@ public class GameEventManager : MonoBehaviour
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = false;
             inventory.GetComponent<CanvasGroup>().interactable = false;
         }
+        if (playerLevelUpPoints > 0) levelPointReminderText.enabled = true;
+        else levelPointReminderText.enabled = false;
     }
 
     public void ToggleRuneSelectionView()

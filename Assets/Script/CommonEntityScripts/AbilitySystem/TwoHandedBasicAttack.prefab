@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe40893573b443a5278cdcef0c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 0}
   _abilityCastSource: {fileID: 0}
   _targetPositionAtStart: {x: 0, y: 0}
   _targetPosition: {x: 0, y: 0}
@@ -84,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coneReachWidth: 40
-  coneReach: 4.5
+  coneReach: 6
 --- !u!114 &5142700671770544123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +114,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 4
 --- !u!114 &7887653994381302156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16389eb6406e8443b5bf4245263e06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followingAfterActivation: 0
 --- !u!1001 &8912518092565903331
 PrefabInstance:
   m_ObjectHideFlags: 0
