@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEditor.Tilemaps;
 using System;
 using Pathfinding;
 
@@ -24,6 +23,7 @@ public class MeshGenerator : MonoBehaviour
 {
     public bool wallsOn = false;
     public bool caveOn = false;
+    public PrefabInstantiator instantiator;
 
     public SquareGrid squareGrid;
     public MeshFilter wallMeshFilter;
@@ -39,7 +39,7 @@ public class MeshGenerator : MonoBehaviour
     public Transform brushTargetTrans;
     public List<Tile> tileList;
 
-    public UnityEditor.Tilemaps.PrefabBrush grassBrush;
+    //public PrefabBrush grassBrush;
 
     public Transform playerTransform;
     private List<Vector3> vertices;
@@ -54,7 +54,7 @@ public class MeshGenerator : MonoBehaviour
         triangleDictionary = new Dictionary<int, List<Triangle>>();
         outlines = new List<List<int>>();
         checkedVertices = new HashSet<int>();
-
+        instantiator = GetComponent<PrefabInstantiator>();
     }
     ////this update is purely for debug services, delete later?
     //private void Update()
@@ -107,12 +107,6 @@ public class MeshGenerator : MonoBehaviour
         AstarPath.active.Scan();
     }
 
-    void InstantiatePrefab(GridLayout grid, GameObject targetGO, Vector3Int position, UnityEditor.Tilemaps.PrefabBrush prefabBrush)
-    {
-        // prefabBrush.Paint(grid, targetGO, prefab, position);
-        prefabBrush.Paint(grid, targetGO, position);
-    }
-
     public void DestroyChildren(Transform trans)
     {
       
@@ -141,6 +135,7 @@ public class MeshGenerator : MonoBehaviour
                 int configuration = squareGrid.squares[x, y]._configuration;
 
                 Vector3Int cellVector = caveTilemap.WorldToCell(squareGrid.squares[x, y]._centerBottom._position + new Vector2(0, 0.5f));
+                Vector3 worldVector = squareGrid.squares[x, y]._centerBottom._position + new Vector2(0, 0.5f);
                 switch (configuration) {
                     case 0:
                         //ground
@@ -153,7 +148,7 @@ public class MeshGenerator : MonoBehaviour
                         //grass
                         if (squareGrid.squares[x, y + 1]._configuration == 0) {
                             if (randInt <= 10) {
-                                InstantiatePrefab(grid, brushTargetGO, cellVector, grassBrush);
+                                instantiator.Paint(brushTargetGO, worldVector, grassPrefab);
                             }
                         }
                        
@@ -387,7 +382,7 @@ public class MeshGenerator : MonoBehaviour
         caveTilemapGO.AddComponent<TilemapCollider2D>();
     }
 
-
+    //currently not in use
     void CreateWallMesh()
     {
         CalculateMeshOutlines();
@@ -428,6 +423,7 @@ public class MeshGenerator : MonoBehaviour
         GetComponent<MeshCollider>().sharedMesh = wallMesh;
     }
 
+    //currently not in use
     //translate the square configuration to mesh points
     void TriangulateSquare(Square square)
     {
@@ -514,7 +510,7 @@ public class MeshGenerator : MonoBehaviour
         }
     }
 
-
+    //currently not in use
     //params keyword makes the parameters given into a list of nodes
     void MeshFromPoints(params Node[] points)
     {
@@ -555,7 +551,7 @@ public class MeshGenerator : MonoBehaviour
             }
         }
     }
-
+    //currently not in use
     void CreateTriangle(Node cornerA, Node cornerB, Node cornerC)
     {
         triangles.Add(cornerA._vertexIndex);
@@ -572,7 +568,7 @@ public class MeshGenerator : MonoBehaviour
         AddTriangleToDictionary(triangle.vertexIndexC, triangle);
 
     }
-
+    //currently not in use
     void AddTriangleToDictionary(int vertexIndexKey, Triangle triangle)
     {
         /*
@@ -600,6 +596,7 @@ public class MeshGenerator : MonoBehaviour
      * if it is, then it runs along the outline until it meets up with itself again
      * and adds it to the outlines list
      */
+    //currently not in use
     void CalculateMeshOutlines()
     {
         for (int vertexIndex = 0; vertexIndex < vertices.Count; vertexIndex++)
@@ -620,7 +617,7 @@ public class MeshGenerator : MonoBehaviour
             }
         }
     }
-
+    //currently not in use
     void FollowOutline(int vertexIndex, int outlineIndex)
     {
         outlines[outlineIndex].Add(vertexIndex);
@@ -634,6 +631,7 @@ public class MeshGenerator : MonoBehaviour
         }
     }
 
+    //currently not in use
     //find the vertex that connects an outline edge, if there is none, return -1
     int GetConnectedOutlineVertex(int vertexIndex)
     {
@@ -659,7 +657,7 @@ public class MeshGenerator : MonoBehaviour
 
         return -1;
     }
-
+    //currently not in use
     /*
     * go through the list that contains the triangles containing vertex A. if the list contains
     * vertex B more than one time, then the line connecting the two vertices is not an outline
@@ -686,7 +684,7 @@ public class MeshGenerator : MonoBehaviour
 
         return isOutline;
     }
-
+    //currently not in use
     struct Triangle
     {
         public int vertexIndexA;
