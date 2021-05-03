@@ -6,7 +6,7 @@ public class ItemOnGround : MonoBehaviour
 {
     public Item _item;
     private Inventory playerInventory;
-    private bool pickedUp = false;
+    public bool pickedUp = false;
     private Rigidbody2D rb;
     private GameObject player;
     private float speed = 20;
