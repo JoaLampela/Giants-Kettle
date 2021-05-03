@@ -8,19 +8,25 @@ public class LeftAbility : MonoBehaviour
 {
     public Image iconFill;
     public Image icon;
+
+
+
     private bool isCooldown = false;
-    private Item _item;
+    private Item _item = null;
     private bool usedLeftAbility = false;
     [SerializeField] private EntityStats stats;
 
-    [SerializeField] private Sprite iconSprite;
+    [SerializeField] private Sprite iconSpriteStingLeft;
+    [SerializeField] private Sprite iconSpriteSpinAttack;
+    [SerializeField] private Sprite iconSpriteBlock;
+    [SerializeField] private Sprite iconSpriteNonProjectile;
 
 
 
     private void Start()
     {
         iconFill.fillAmount = 0;
-        SetIcon();
+        SetIcon(_item);
     }
 
     private void Update()
@@ -58,16 +64,16 @@ public class LeftAbility : MonoBehaviour
     public void SetAbility(Item item, Inventory.Hand hand)
     {
         _item = item;
-        SetIcon();
+        SetIcon(item);
     }
 
     public void RemoveAbility()
     {
         _item = null;
-        SetIcon();
+        SetIcon(_item);
     }
 
-    void SetIcon()
+    void SetIcon(Item item)
     {
         if(_item == null)
         {
@@ -77,8 +83,29 @@ public class LeftAbility : MonoBehaviour
         else
         {
             Debug.Log("Else in 2");
-            iconFill.sprite = iconSprite;
-            icon.sprite = iconSprite;
+            WeaponObject weapon = (WeaponObject)item.item;
+            if(weapon.weaponType == WeaponObject.WeaponType.OneHandedSword)
+            {
+                iconFill.sprite = iconSpriteStingLeft;
+                icon.sprite = iconSpriteStingLeft;
+            }
+            if (weapon.weaponType == WeaponObject.WeaponType.TwoHandedSword)
+            {
+                iconFill.sprite = iconSpriteSpinAttack;
+                icon.sprite = iconSpriteSpinAttack;
+            }
+            if (weapon.weaponType == WeaponObject.WeaponType.Shield)
+            {
+                iconFill.sprite = iconSpriteBlock;
+                icon.sprite = iconSpriteBlock;
+            }
+            if (weapon.weaponType == WeaponObject.WeaponType.Staff)
+            {
+                iconFill.sprite = iconSpriteNonProjectile;
+                icon.sprite = iconSpriteNonProjectile;
+            }
+
+            
         }
     }
 }
