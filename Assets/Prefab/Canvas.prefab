@@ -17332,7 +17332,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   iconSpriteStingLeft: {fileID: 21300000, guid: 583ab00c0c6e6e549883d4c95a665ac9, type: 3}
   iconSpriteSpinAttack: {fileID: 21300000, guid: 49c73162736098b449d5c63becf326ad, type: 3}
-  iconSpriteBlock: {fileID: 21300000, guid: cbd37b4d1fbe6184e9b257c56d214ff9, type: 3}
+  iconSpriteBlock: {fileID: 21300000, guid: 8786728d5e850b04f991d6e3d9f8dcbf, type: 3}
   iconSpriteNonProjectile: {fileID: 21300000, guid: 518a8d3fa423af5418bf33d8ea9944f5, type: 3}
 --- !u!1 &2360374848528518575
 GameObject:
@@ -37895,7 +37895,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   iconSpriteStingRight: {fileID: 21300000, guid: 583ab00c0c6e6e549883d4c95a665ac9, type: 3}
   iconSpriteStingTwoHanded: {fileID: 21300000, guid: 583ab00c0c6e6e549883d4c95a665ac9, type: 3}
-  iconSpriteShieldToss: {fileID: 21300000, guid: cbd37b4d1fbe6184e9b257c56d214ff9, type: 3}
+  iconSpriteShieldToss: {fileID: 21300000, guid: 09ecf526208f40d45aed985fb0c7a9d9, type: 3}
   iconSpriteBigProjectile: {fileID: 21300000, guid: 807ab5495004243438164199f63ea89e, type: 3}
 --- !u!1 &5172549647838555649
 GameObject:
