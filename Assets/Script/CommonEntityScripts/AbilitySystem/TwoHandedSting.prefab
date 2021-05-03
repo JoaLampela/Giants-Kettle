@@ -4889,6 +4889,7 @@ GameObject:
   - component: {fileID: 2089339146790925475}
   - component: {fileID: 2648216328863006385}
   - component: {fileID: 596473895450581790}
+  - component: {fileID: -2773070366533086906}
   m_Layer: 8
   m_Name: TwoHandedSting
   m_TagString: Untagged
@@ -4950,12 +4951,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe40893573b443a5278cdcef0c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 0}
   _abilityCastSource: {fileID: 0}
   _targetPositionAtStart: {x: 1.7186337, y: 3.614849}
   _targetPosition: {x: 0, y: 0}
   _targetVector: {x: 0, y: 0}
   abilityScale: 0
-  damageMultiplier: 100
+  damageMultiplier: 250
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
   firstCopy: 1
@@ -5097,6 +5099,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4d2c646050b7d458282d9ef37b8452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2773070366533086906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625174652820836543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f14f9a3858c8c64db79e35a5adaa613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackAmount: 2500
 --- !u!1 &7008503991358003404
 GameObject:
   m_ObjectHideFlags: 0

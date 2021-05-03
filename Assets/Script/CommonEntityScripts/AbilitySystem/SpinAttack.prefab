@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8206632652939093198}
   - component: {fileID: 5999859889602477189}
   - component: {fileID: 6275585565975648565}
+  - component: {fileID: 8814790006784462501}
   m_Layer: 0
   m_Name: SpinAttack
   m_TagString: Untagged
@@ -49,12 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe40893573b443a5278cdcef0c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 0}
   _abilityCastSource: {fileID: 0}
   _targetPositionAtStart: {x: 0, y: 0}
   _targetPosition: {x: 0, y: 0}
   _targetVector: {x: 0, y: 0}
   abilityScale: 0
-  damageMultiplier: 50
+  damageMultiplier: 100
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
   firstCopy: 1
@@ -73,7 +75,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 5
 --- !u!50 &2576703904839118508
 Rigidbody2D:
   serializedVersion: 4
@@ -135,6 +137,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 5
+--- !u!114 &8814790006784462501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5611731055022139601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f14f9a3858c8c64db79e35a5adaa613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackAmount: 2000
 --- !u!1 &7165609223045066952
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +434,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 9
+      scalar: 11
       minScalar: 1
       maxCurve:
         serializedVersion: 2

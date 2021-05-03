@@ -24,28 +24,31 @@ public class CombatRoomScript : MonoBehaviour
 
     public void StartCombat()
     {
-        if (roomEnemies.Count != 0)
+        if (!inCombat)
         {
-            foreach (GameObject enemy in roomEnemies)
-                enemy.GetComponent<EntityEvents>().OnDie += DeleteEnemyFromList;
-        }
-        if (!activated && !inCombat)
-        {
-            inCombat = true;
-            activated = true;
-            Debug.Log("Starting combat");
-            GetComponent<DoorScript>().CloseDoors();
-            for (int i = 0; i < waveEnemyAmount; i++)
+            if (roomEnemies.Count != 0)
             {
-                int randomSpawnPoint = (int)Mathf.Round(Random.Range(-0.49f, spawnPoints.Count - 0.51f));
-                GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<EnemySpawnRoom>().Spawn();
-                if (enemy != null)
-                {
-                    Debug.Log("Spawning enemy," + enemy);
+                foreach (GameObject enemy in roomEnemies)
                     enemy.GetComponent<EntityEvents>().OnDie += DeleteEnemyFromList;
-                    roomEnemies.Add(enemy);
-                }
+            }
+            if (!activated && !inCombat)
+            {
+                inCombat = true;
+                activated = true;
+                Debug.Log("Starting combat");
+                GetComponent<DoorScript>().CloseDoors();
+                for (int i = 0; i < waveEnemyAmount; i++)
+                {
+                    int randomSpawnPoint = (int)Mathf.Round(Random.Range(-0.49f, spawnPoints.Count - 0.51f));
+                    GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<EnemySpawnRoom>().Spawn();
+                    if (enemy != null)
+                    {
+                        Debug.Log("Spawning enemy," + enemy);
+                        enemy.GetComponent<EntityEvents>().OnDie += DeleteEnemyFromList;
+                        roomEnemies.Add(enemy);
+                    }
 
+                }
             }
         }
     }

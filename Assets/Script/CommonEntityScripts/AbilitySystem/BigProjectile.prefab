@@ -4946,6 +4946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe40893573b443a5278cdcef0c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 0}
   _abilityCastSource: {fileID: 0}
   _targetPositionAtStart: {x: 0, y: 0}
   _targetPosition: {x: 0, y: 0}

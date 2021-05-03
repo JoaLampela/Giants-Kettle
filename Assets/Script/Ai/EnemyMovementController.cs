@@ -1,4 +1,5 @@
 using Pathfinding;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,11 +15,15 @@ public class EnemyMovementController : MonoBehaviour
     public bool reachedEndOfPath = false;
     public float entitySpeed = 15;
 
+
     public AnimationCurve dodgeWeightTransformationCurve;
     public AnimationCurve circleWeightTransformationCurve;
     public AnimationCurve circlingDistanceHarshnessRegulator;
     public bool dodges;
     public bool dashes;
+    private bool useScript;
+    private bool slowed;
+    private float preSlowEntitySpeed;
     private CircleCollider2D objectCollider;
     private Path path;
     private float nextWayPointDistance = 0.4f;
@@ -30,6 +35,8 @@ public class EnemyMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        useScript = true;
+        slowed = false;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         targetingSystem = GetComponent<EntityTargetingSystem>();
@@ -65,58 +72,63 @@ public class EnemyMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (path == null)
+        if (useScript)
         {
-            return;
-        }
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-
-        }
-        else
-            reachedEndOfPath = false;
-
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-        if (distance < nextWayPointDistance)
-        {
-            currentWaypoint++;
-            //Debug.Log("New waypoint");
-        }
-        AstarDirection = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        //Debug.Log(AstarDirection + " " + (Vector2)path.vectorPath[currentWaypoint] + " " + rb.position + " Distance: " + Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]));
-        Debug.DrawRay(gameObject.transform.position, AstarDirection, Color.red, Time.deltaTime);
-
-
-        if (CalculateDistanceOfRemainingWaypoints() >= 2f)
-            foreach (VectorNode vn in vectorNodes)
+            if (reachedEndOfPath == false)
             {
-                vn.weight = 0;
-            }
-        if (targetingSystem.target != null)
-        {
-            if (CalculateDistanceOfRemainingWaypoints() >= maxPlayerRange)
-                AddWeightsByTarget();
-            else
-            {
-                CirclePlayer();
-                //Debug.Log("Pursuading");
-            }
-            lastDirection.weight = lastDirection.weight * 2f;
-            lastDirection.leftVector.weight = lastDirection.leftVector.weight * 1.5f;
-            lastDirection.rightVector.weight = lastDirection.rightVector.weight * 1.5f;
-            if (CalculateDistanceOfRemainingWaypoints() <= maxPlayerRange + 1f)
-            {
-                if (dodges)
-                    DodgeCheck();
-            }
+                if (path == null)
+                {
+                    return;
+                }
+                if (currentWaypoint >= path.vectorPath.Count)
+                {
+                    reachedEndOfPath = true;
+                    return;
 
-            RemoveWeightsByObstacle();
-            ChangeWeightByAlly();
-            GetComponent<Rigidbody2D>().velocity = FindBestMovementOption();
+                }
+                else
+                    reachedEndOfPath = false;
 
+                float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+                if (distance < nextWayPointDistance)
+                {
+                    currentWaypoint++;
+                    //Debug.Log("New waypoint");
+                }
+                AstarDirection = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+                //Debug.Log(AstarDirection + " " + (Vector2)path.vectorPath[currentWaypoint] + " " + rb.position + " Distance: " + Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]));
+                Debug.DrawRay(gameObject.transform.position, AstarDirection, Color.red, Time.deltaTime);
+
+
+                if (CalculateDistanceOfRemainingWaypoints() >= 2f)
+                    foreach (VectorNode vn in vectorNodes)
+                    {
+                        vn.weight = 0;
+                    }
+                if (targetingSystem.target != null)
+                {
+                    if (CalculateDistanceOfRemainingWaypoints() >= maxPlayerRange)
+                        AddWeightsByTarget();
+                    else
+                    {
+                        CirclePlayer();
+                        //Debug.Log("Pursuading");
+                    }
+                    lastDirection.weight = lastDirection.weight * 2f;
+                    lastDirection.leftVector.weight = lastDirection.leftVector.weight * 1.5f;
+                    lastDirection.rightVector.weight = lastDirection.rightVector.weight * 1.5f;
+                    if (CalculateDistanceOfRemainingWaypoints() <= maxPlayerRange + 1f)
+                    {
+                        if (dodges)
+                            DodgeCheck();
+                    }
+
+                    RemoveWeightsByObstacle();
+                    ChangeWeightByAlly();
+                    GetComponent<Rigidbody2D>().velocity = FindBestMovementOption();
+
+                }
+            }
         }
     }
     private float CalculateDistanceOfRemainingWaypoints()
@@ -394,5 +406,40 @@ public class EnemyMovementController : MonoBehaviour
             }
             return 0;
         }
+    }
+    IEnumerator SetHalting(float coolDown)
+    {
+        useScript = false;
+        yield return new WaitForSeconds(coolDown);
+        useScript = true;
+
+    }
+    public void SetMoveSlow(bool trueOrFalse)
+    {
+        if (!slowed && trueOrFalse)
+        {
+            preSlowEntitySpeed = entitySpeed;
+            slowed = true;
+            entitySpeed = entitySpeed / 1.5f;
+        }
+        if (slowed && !trueOrFalse)
+        {
+            entitySpeed = preSlowEntitySpeed;
+            slowed = false;
+        }
+    }
+    public void Halt(bool trueOrFalse, float haltSeconds)
+    {
+        if (true)
+            StartCoroutine(SetHalting(haltSeconds));
+    }
+
+    public void KnockBack(float distance, GameObject source)
+    {
+        Debug.Log("Applied knockback");
+
+        Vector2 dir = transform.position - source.transform.position;
+        Vector2 distanceVector = dir.normalized * distance;
+        rb.AddForce(distanceVector);
     }
 }

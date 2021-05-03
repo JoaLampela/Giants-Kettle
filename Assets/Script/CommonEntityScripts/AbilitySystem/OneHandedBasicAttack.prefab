@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3272498806925567378}
   - component: {fileID: 1360453682123732122}
   - component: {fileID: -2059154857496085764}
+  - component: {fileID: 1934563568530114680}
   m_Layer: 0
   m_Name: OneHandedBasicAttack
   m_TagString: Untagged
@@ -49,12 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe40893573b443a5278cdcef0c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 0}
   _abilityCastSource: {fileID: 0}
   _targetPositionAtStart: {x: 0, y: 0}
   _targetPosition: {x: 0, y: 0}
   _targetVector: {x: 0, y: 0}
   abilityScale: 0
-  damageMultiplier: 100
+  damageMultiplier: 150
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
   firstCopy: 1
@@ -126,6 +128,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16389eb6406e8443b5bf4245263e06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followingAfterActivation: 0
+--- !u!114 &1934563568530114680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8510906528349343103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f14f9a3858c8c64db79e35a5adaa613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackAmount: 2000
 --- !u!1001 &1962299522472206429
 PrefabInstance:
   m_ObjectHideFlags: 0

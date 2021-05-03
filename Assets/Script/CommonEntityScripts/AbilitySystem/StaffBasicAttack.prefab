@@ -4851,6 +4851,7 @@ GameObject:
   - component: {fileID: 6096043296272375339}
   - component: {fileID: 7429331819374787295}
   - component: {fileID: 9095001523838377519}
+  - component: {fileID: 5898332919351360805}
   m_Layer: 8
   m_Name: StaffBasicAttack
   m_TagString: Projectile
@@ -4887,12 +4888,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe40893573b443a5278cdcef0c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 0}
   _abilityCastSource: {fileID: 0}
   _targetPositionAtStart: {x: 0, y: 0}
   _targetPosition: {x: 0, y: 0}
   _targetVector: {x: 0, y: 0}
   abilityScale: 0
-  damageMultiplier: 75
+  damageMultiplier: 50
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
   firstCopy: 1
@@ -4989,6 +4991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d590afd33735d43972955ddc06a988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 0
 --- !u!114 &6096043296272375339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5001,6 +5004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c958675b76517439f1cda2bbe6416d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 0
 --- !u!114 &7429331819374787295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5027,6 +5031,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effect: {fileID: 5729168926018723719}
+--- !u!114 &5898332919351360805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096043296272375333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f14f9a3858c8c64db79e35a5adaa613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackAmount: 500
 --- !u!1 &6338361908451532792
 GameObject:
   m_ObjectHideFlags: 0
