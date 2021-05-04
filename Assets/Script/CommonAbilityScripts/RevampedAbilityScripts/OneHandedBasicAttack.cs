@@ -41,7 +41,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        
+
         if (basicAttackOffCooldown)
         {
             if (_spellSlot == slot)
@@ -77,7 +77,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
             {
                 enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
             }
-            else enemyDirection = GameObject.Find("Player").transform.position;
+            else enemyDirection = GameObject.FindGameObjectWithTag("Player").transform.position;
             direction = (enemyDirection - (Vector2)transform.position).normalized;
         }
         else
@@ -85,7 +85,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
             Vector2 mouseDirection = Input.mousePosition;
             direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
         }
-        
+
         float angle = Vector2.Angle(Vector2.up, direction);
         float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
         Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
