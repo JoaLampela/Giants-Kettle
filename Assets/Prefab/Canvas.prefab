@@ -40182,10 +40182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
-  sword: {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
-  shield: {fileID: 11400000, guid: fb858602bc3e380469e8886c23bfb615, type: 2}
-  twoHandedSword: {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
-  staff: {fileID: 11400000, guid: 7c3afe4d68d27f84e82eebaf92d242cf, type: 2}
+  sword: {fileID: 11400000, guid: 909b09911fb1e8945b10ee2d8ba81ba4, type: 2}
+  shield: {fileID: 11400000, guid: 949cecd3a048a5c43a64269201f01ae1, type: 2}
+  twoHandedSword: {fileID: 11400000, guid: 5a8a2f663a0f9b542a1263f236f9346f, type: 2}
+  staff: {fileID: 11400000, guid: afa0b9f6e27e5f342a81612a54cad446, type: 2}
 --- !u!1 &5330811525201719281
 GameObject:
   m_ObjectHideFlags: 0

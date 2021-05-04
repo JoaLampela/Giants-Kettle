@@ -41,7 +41,9 @@ public class entityDropItemOnDeath : MonoBehaviour
         {            
             ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
             ItemTierListScript tierList = GameObject.Find("Game Manager").GetComponent<ItemTierListScript>();
-            groundItem.SetItem(new Item(tierList.GiveRandomItem(enemyLevel-1)));
+            Item item = new Item(tierList.GiveRandomItem(enemyLevel));
+            Debug.Log(item);
+            groundItem.SetItem(item);
         }
     }
 }

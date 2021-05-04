@@ -16,8 +16,8 @@ public class ItemTierListScript : MonoBehaviour
 
     public ItemObject GiveRandomItem(int tempTier)
     {
-        int tier = Random.Range(0, tempTier);
-
+        int tier = Random.Range(1, tempTier);
+        Debug.Log(tier);
         return tier switch
         {
             0 => tier0Items[Random.Range(0, tier0Items.Length)],

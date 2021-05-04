@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
+  m_Name: rustyTwoHanderT3
+  m_EditorClassIdentifier: 
+  type: 1
+  description: 
+  iconSprite: {fileID: 21300000, guid: b1122cb24353ba24d8fba136d13cfcd6, type: 3}
+  inGameObject: {fileID: 6513725237535493746, guid: 75b5d2c2c00f0d249a6ae6c9e3f5f1d0, type: 3}
+  isTwoHander: 1
+  runeSlots: 3
+  baseRune: {fileID: 0}
+  weaponType: 1
+  maxCooldownAbility1: 3
+  currentCooldownAbility1: 0
+  maxCooldownAbility2: 5
+  currentCooldownAbility2: 0
