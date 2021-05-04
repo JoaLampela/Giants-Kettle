@@ -13,7 +13,9 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
     private bool charging;
     private bool attacking;
     private bool canAttack;
+    private bool canSummon;
     private bool canCharge;
+    private EntityHealth entityHealth;
     private IAbilityTargetPosition targetPositionScript;
     private Animator animator;
     private Vector2 lookDirection;
@@ -27,8 +29,10 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
     {
         GetComponent<EntityAbilityManager>().ability1 = GetComponent<HoglonBasicAttack>();
         GetComponent<EntityAbilityManager>().ability2 = GetComponent<HoglonCharge>();
+        GetComponent<EntityAbilityManager>().ability3 = GetComponent<HoglonSummon>();
 
 
+        entityHealth = GetComponent<EntityHealth>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         enemyMovementController = GetComponent<EnemyMovementController>();
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +40,7 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
         targetingSystem = GetComponent<EntityTargetingSystem>();
         canAttack = true;
         canCharge = true;
+        canSummon = true;
         charging = false;
         attacking = false;
 
@@ -54,17 +59,27 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
                 GetComponent<Rigidbody2D>().velocity = targetPosAtStart.normalized * 15;
             if (!charging)
                 LookToTarget();
-            if (canCharge && canAttack && !attacking && !charging && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) > chargeRange)
+            if (entityHealth.maxHealth / entityHealth.health > 2 && canSummon && !attacking && !charging)
             {
+                attacking = true;
+                Debug.Log("hoglon using ability 3");
+                GetComponent<EntityAbilityManager>().CastAbility(3);
+                StartCoroutine(SetSummonOnCoolDown(10));
+            }
+            else if (canCharge && !attacking && !charging && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) > chargeRange)
+            {
+                attacking = true;
                 GetComponent<EntityAbilityManager>().CastAbility(2);
+                StartCoroutine(SetChargeOnCoolDown(6));
             }
             else if (canAttack && !attacking && !charging && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) < attackRange)
             {
+                attacking = true;
                 GetComponent<EntityAbilityManager>().CastAbility(1);
-                StartCoroutine(SetAttackOnCoolDown(10));
+                StartCoroutine(SetAttackOnCoolDown(6));
             }
-        }
 
+        }
     }
 
     private void LookToTarget()
@@ -96,33 +111,38 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
         StartCoroutine(SetAttackOnCoolDown(0.5f));
     }
 
-    IEnumerator SetAttackOnCoolDown(float coolDown)
+    public IEnumerator SetAttackOnCoolDown(float coolDown)
     {
         canAttack = false;
         attacking = true;
-        canCharge = false;
         enemyMovementController.SetMoveSlow(true);
         yield return new WaitForSeconds(1f);
-        canCharge = true;
         attacking = false;
         enemyMovementController.SetMoveSlow(false);
         StartCoroutine(SetAttackOffCoolDown(coolDown));
+    }
+    public IEnumerator SetSummonOnCoolDown(float coolDown)
+    {
+
+        enemyMovementController.SetMoveSlow(true);
+        canSummon = false;
+        attacking = true;
+        yield return new WaitForSeconds(3f);
+        enemyMovementController.SetMoveSlow(false);
+        attacking = false;
+        StartCoroutine(SetSummonOffCoolDown(coolDown));
     }
     public IEnumerator SetChargeOnCoolDown(float coolDown)
     {
         enemyMovementController.Halt(true);
         targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
         charging = true;
-        canAttack = false;
         canCharge = false;
         attacking = true;
         yield return new WaitForSeconds(2f);
         animator.SetBool("Charging", false);
-
-
         enemyMovementController.Halt(false);
         charging = false;
-        canAttack = true;
         attacking = false;
         StartCoroutine(SetChargeOffCoolDown(coolDown));
     }
@@ -130,6 +150,11 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
     {
         yield return new WaitForSeconds(coolDown);
         canAttack = true;
+    }
+    IEnumerator SetSummonOffCoolDown(float coolDown)
+    {
+        yield return new WaitForSeconds(coolDown);
+        canSummon = true;
     }
     IEnumerator SetChargeOffCoolDown(float coolDown)
     {

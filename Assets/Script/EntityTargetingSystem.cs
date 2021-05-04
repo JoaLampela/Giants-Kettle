@@ -92,7 +92,7 @@ public class EntityTargetingSystem : MonoBehaviour, IAbilityTargetPosition
     private void AggroTableRemove(GameObject entity)
     {
         aggroTable.Remove(entity);
-        if (target = entity)
+        if (target == entity)
         {
             target = null;
             NewTarget();

@@ -11,14 +11,11 @@ public class HoglonCharge : MonoBehaviour, IAbility
     EntityAbilityManager abilityManager;
     [SerializeField] private int _spellSlot;
     private IAbilityTargetPosition targetPositionScript;
-    Item _weapon;
     private Vector2 targetPosAtStart;
 
     private void Start()
     {
         Subscribe();
-        _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
-
     }
 
     private void Awake()
@@ -37,16 +34,12 @@ public class HoglonCharge : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_weapon.currentCooldownAbility1 <= 0)
+        if (_spellSlot == slot)
         {
-            if (_spellSlot == slot)
-            {
-                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f / (100f + GetComponent<EntityStats>().currentSpellHaste);
-                targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
-                playerAnimations.StartCoroutine(playerAnimations.SetChargeOnCoolDown(10));
-                animator.SetBool("Charging", true);
-                SoundManager.PlaySound(SoundManager.Sound.StingLeft, transform.position);
-            }
+            targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+            animator.SetBool("Charging", true);
+            SoundManager.PlaySound(SoundManager.Sound.StingLeft, transform.position);
+
             Vector2 direction;
             if (GetComponent<EntityTargetingSystem>())
             {
@@ -83,7 +76,6 @@ public class HoglonCharge : MonoBehaviour, IAbility
             sting.GetComponent<AbilityEvents>().UseAbility();
             playerAnimations.SetAttacking(false);
         }
-        else CannotAffordCast(slot);
     }
 
 
@@ -110,16 +102,14 @@ public class HoglonCharge : MonoBehaviour, IAbility
         _entityEvents.TryCastAbilityCostHealth(_spellSlot, 0);
     }
 
-    public Item GetWeapon()
-    {
-        return _weapon;
-    }
-
     public IAbility.Hand GetHand()
     {
         return IAbility.Hand.indeterminate;
     }
-
+    public Item GetWeapon()
+    {
+        return null;
+    }
     private void Subscribe()
     {
         _entityEvents.OnCallBackCastAbility += Cast;

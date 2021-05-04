@@ -34,36 +34,32 @@ public class AbilityOnActivateSummonEntity : MonoBehaviour
         Debug.Log("in activate " + sumNum);
         for (int i = 0; i < sumNum; i++)
         {
-            
+
             int randomAngle = Random.Range(0, 360);
             float y = Random.Range(minDistance, maxdistance);
             Vector2 dir = new Vector2(0, y);
-            Debug.Log("dir = " + dir);
             dir = Quaternion.Euler(0, 0, randomAngle) * dir;
             Vector2 pos = (Vector2)transform.position + dir;
 
-            Debug.Log("rotation = " + randomAngle + " dir = " + dir + " pos = " + pos);
 
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.up, 0.1f);
-            if(hit)
+            if (hit)
             {
                 Debug.Log("summon failed");
             }
             else
             {
-                Debug.Log("summon succesfull");
                 Instantiate(summonEffect, pos, transform.rotation);
                 StartCoroutine(SummonEnemy(pos));
             }
-            
+
         }
-        
+
     }
     private IEnumerator SummonEnemy(Vector2 pos)
     {
         yield return new WaitForSeconds(2);
         GameObject summon = possibleSummons[Random.Range(0, possibleSummons.Length)];
-        Debug.Log("Summoning at " + pos);
         Instantiate(summon, pos, Quaternion.identity);
     }
 
