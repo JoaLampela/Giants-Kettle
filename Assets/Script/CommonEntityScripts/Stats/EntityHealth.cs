@@ -144,7 +144,7 @@ public class EntityHealth : MonoBehaviour
     private void TakeDamage(int damage, Damage damgeContainer)
     {
         if(damgeContainer._damage > 0) DamagePopup.Create(transform.position, damage, damgeContainer._isCriticalHit, false);
-        if(damgeContainer._trueDamage > 0) DamagePopup.Create(transform.position, damage, damgeContainer._isCriticalHit, true);
+        if(damgeContainer._trueDamage > 0) DamagePopup.Create(transform.position, damgeContainer._trueDamage, damgeContainer._isCriticalHit, true);
         events.LoseHealth(damage);
         if(stats.currentShield > 0)
         {
