@@ -28,7 +28,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     [SerializeField] private bool isEquipmentSlot;
     [SerializeField] private int slotNuber;
     [SerializeField] public RuneTooltipController runeTooltipController;
-    public bool frameLocked = false;
+    private bool frameLocked = false;
 
 
     
@@ -410,5 +410,19 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     public void SetInvisible()
     {
         gameObject.SetActive(false);
+    }
+
+    [System.Obsolete]
+    public void SetLockOn()
+    {
+        frameLocked = true;
+        gameObject.transform.GetChild(1).gameObject.active = true;
+    }
+
+    [System.Obsolete]
+    public void SetLockOff()
+    {
+        frameLocked = false;
+        gameObject.transform.GetChild(1).gameObject.active = false;
     }
 }

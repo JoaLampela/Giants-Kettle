@@ -284,7 +284,7 @@ public class Inventory : MonoBehaviour
                 weaponRightHandR5.SetActive(false);
                 weaponRightHandR6.SetActive(false);
 
-                weaponRightHandR1.GetComponent<UiButtonClick>().frameLocked = false;
+                weaponRightHandR1.GetComponent<UiButtonClick>().SetLockOff();
             }
             if (slot == leftHand || unequippedItem.item.isTwoHander)
             {
@@ -301,7 +301,7 @@ public class Inventory : MonoBehaviour
                 weaponLeftHandR5.SetActive(false);
                 weaponLeftHandR6.SetActive(false);
 
-                weaponLeftHandR1.GetComponent<UiButtonClick>().frameLocked = false;
+                weaponLeftHandR1.GetComponent<UiButtonClick>().SetLockOff();
             }
         }
         else if ((int)slot._type == 2)
@@ -313,7 +313,7 @@ public class Inventory : MonoBehaviour
             armorHeadR5.SetActive(false);
             armorHeadR6.SetActive(false);
 
-            armorHeadR1.GetComponent<UiButtonClick>().frameLocked = false;
+            armorHeadR1.GetComponent<UiButtonClick>().SetLockOff();
         }
         else if ((int)slot._type == 3)
         {
@@ -324,7 +324,7 @@ public class Inventory : MonoBehaviour
             armorChestR5.SetActive(false);
             armorChestR6.SetActive(false);
 
-            armorChestR1.GetComponent<UiButtonClick>().frameLocked = false;
+            armorChestR1.GetComponent<UiButtonClick>().SetLockOff();
         }
         else if ((int)slot._type == 4)
         {
@@ -335,7 +335,7 @@ public class Inventory : MonoBehaviour
             armorLegsR5.SetActive(false);
             armorLegsR6.SetActive(false);
 
-            armorLegsR1.GetComponent<UiButtonClick>().frameLocked = false;
+            armorLegsR1.GetComponent<UiButtonClick>().SetLockOff();
         }
 
 
@@ -501,7 +501,7 @@ public class Inventory : MonoBehaviour
                 EquipmentObject equipment = (EquipmentObject)equippedItem.item;
                 if (equipment.baseRune != null)
                 {
-                    weaponRightHandR1.GetComponent<UiButtonClick>().frameLocked = true;
+                    weaponRightHandR1.GetComponent<UiButtonClick>().SetLockOn();
                 }
 
             }
@@ -561,7 +561,7 @@ public class Inventory : MonoBehaviour
                 EquipmentObject equipment = (EquipmentObject)equippedItem.item;
                 if (equipment.baseRune != null)
                 {
-                    weaponLeftHandR1.GetComponent<UiButtonClick>().frameLocked = true;
+                    weaponLeftHandR1.GetComponent<UiButtonClick>().SetLockOn();
                 }
             }
         }
@@ -621,7 +621,7 @@ public class Inventory : MonoBehaviour
             EquipmentObject equipment = (EquipmentObject)equippedItem.item;
             if (equipment.baseRune != null)
             {
-                armorHeadR1.GetComponent<UiButtonClick>().frameLocked = true;
+                armorHeadR1.GetComponent<UiButtonClick>().SetLockOn();
             }
         }
         else if ((int)slot._type == 3)
@@ -680,7 +680,7 @@ public class Inventory : MonoBehaviour
             EquipmentObject equipment = (EquipmentObject)equippedItem.item;
             if (equipment.baseRune != null)
             {
-                armorChestR1.GetComponent<UiButtonClick>().frameLocked = true;
+                armorChestR1.GetComponent<UiButtonClick>().SetLockOn();
             }
         }
         else if ((int)slot._type == 4)
@@ -739,7 +739,7 @@ public class Inventory : MonoBehaviour
             EquipmentObject equipment = (EquipmentObject)equippedItem.item;
             if (equipment.baseRune != null)
             {
-                armorLegsR1.GetComponent<UiButtonClick>().frameLocked = true;
+                armorLegsR1.GetComponent<UiButtonClick>().SetLockOn();
             }
         }
         if (slot == rightHand || slot == leftHand)
