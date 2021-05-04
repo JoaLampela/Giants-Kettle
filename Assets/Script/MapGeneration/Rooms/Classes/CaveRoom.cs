@@ -7,7 +7,7 @@ public class CaveRoom : Room
 {
     private bool useRandomSeed = true;
     private string seed;
-    private int randomFillPrecent = 59;
+    private int randomFillPrecent = 56;
 
 
 
@@ -19,34 +19,51 @@ public class CaveRoom : Room
         CentreTile = centre;
 
         RandomFillMap(centre, map);
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 2; i++)
             SmoothMap(centre, map);
-        for (int i = 0; i < 1; i++)
-            GetRidOfEnclosures(centre, map);
         ProcessMap(centre, map);
-        for (int i = 0; i < 1; i++)
-            GetRidOfEnclosures(centre, map);
-        ProcessMap(centre, map);
+        GetRidOfEnclosures(centre, map);
 
         SetRoomBorders(centre, map);
     }
     private void GetRidOfEnclosures(Coord centre, int[,] map)
     {
+        Queue<Coord> queue = new Queue<Coord>();
+
         for (int x = -width / 2 + centre.tileX; x < width / 2 + centre.tileX; x++)
         {
             for (int y = -height / 2 + centre.tileY; y < height / 2 + centre.tileY; y++)
             {
-                if (map[x, y] == 0 && map[x, y - 1] == 1)
-                {
-                    if (map[x, y - 1] == 0 && map[x, y - 2] == 1)
-                        map[x, y - 2] = 0;
-                }
                 if (map[x, y] == 0 && map[x + 1, y] == 1 && map[x - 1, y] == 1)
                 {
                     map[x + 1, y] = 0;
+                    map[x + 2, y] = 0;
+                    map[x - 2, y] = 0;
                     map[x - 1, y] = 0;
                 }
+                if (map[x, y] == 0 && map[x + 2, y] == 1 && map[x - 1, y] == 1)
+                {
+                    map[x + 2, y] = 0;
+                    map[x - 1, y] = 0;
+                }
+
             }
+        }
+        for (int x = -width / 2 + centre.tileX + 3; x < width / 2 + centre.tileX - 2; x++)
+        {
+            for (int y = -height / 2 + centre.tileY + 3; y < height / 2 + centre.tileY - 1; y++)
+            {
+                if (map[x, y] == 0)
+                    queue.Enqueue(new Coord(x, y));
+            }
+        }
+        while (queue.Count > 0)
+        {
+            Coord tile = queue.Dequeue();
+            map[tile.tileX, tile.tileY + 1] = 0;
+            map[tile.tileX, tile.tileY - 1] = 0;
+            map[tile.tileX, tile.tileY - 2] = 0;
+
         }
     }
     private void RandomFillMap(Coord centre, int[,] map)
