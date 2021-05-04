@@ -10,7 +10,6 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
     EntityAbilityManager abilityManager;
     [SerializeField] private int _spellSlot;
     private IAbilityTargetPosition targetPositionScript;
-    Item _weapon;
     private Vector2 targetPosAtStart;
     private float basicAttackCooldown = 2f;
     public bool basicAttackOffCooldown = true;
@@ -18,7 +17,6 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
     private void Start()
     {
         Subscribe();
-        _weapon = new Item(GetComponent<AiInventory>().rightHandWeapon);
 
     }
 
@@ -38,22 +36,18 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (basicAttackOffCooldown) //cooldown here
+
+        if (_spellSlot == slot)
         {
-            if (_spellSlot == slot)
-            {
-                basicAttackOffCooldown = false;
-                StartCoroutine(basicAttackCooldownFunction());
-                targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
-                _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
-                playerAnimations.SetAttacking(true);
-                animator.SetTrigger("Attack");
-                GetComponent<Rigidbody2D>().AddForce(targetPosAtStart.normalized * 3000f);
-                SoundManager.PlaySound(SoundManager.Sound.TwoHandedBasicAttack, transform.position);
-                GetComponent<EnemyMovementController>().SetMoveSlow(true);
-            }
+            basicAttackOffCooldown = false;
+            targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+            _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
+            playerAnimations.SetAttacking(true);
+            animator.SetTrigger("Attack");
+            GetComponent<Rigidbody2D>().AddForce(targetPosAtStart.normalized * 3000f);
+            SoundManager.PlaySound(SoundManager.Sound.TwoHandedBasicAttack, transform.position);
+            GetComponent<EnemyMovementController>().SetMoveSlow(true);
         }
-        else CannotAffordCast(slot);
     }
 
     private IEnumerator basicAttackCooldownFunction()
@@ -106,7 +100,7 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-           
+
         }
     }
 
@@ -127,7 +121,7 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
 
     public Item GetWeapon()
     {
-        return _weapon;
+        return null;
     }
 
     public IAbility.Hand GetHand()

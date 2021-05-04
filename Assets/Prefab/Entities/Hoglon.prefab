@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: -5783217096629348286}
   - component: {fileID: 8999853913095988126}
   - component: {fileID: -6721006193048140394}
+  - component: {fileID: -7740647831612193840}
   m_Layer: 0
   m_Name: Hoglon
   m_TagString: Untagged
@@ -343,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   team: 1
-  baseHealth: 2000
+  baseHealth: 4000
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
@@ -522,7 +523,7 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 3
   reachedEndOfPath: 0
-  entitySpeed: 6
+  entitySpeed: 7
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -660,7 +661,7 @@ MonoBehaviour:
   heavySting: {fileID: 7929451906820197130, guid: 5d43b23c5aef174448ad8abc6ff934da, type: 3}
   spinAttack: {fileID: 0}
   bigProjectile: {fileID: 0}
-  nonProjectile: {fileID: 0}
+  nonProjectile: {fileID: 1894949396038414300, guid: fda613e56af99b3459344efdced433ca, type: 3}
   shieldSlam: {fileID: 0}
   shieldToss: {fileID: 0}
   tripleShot: {fileID: 0}
@@ -767,7 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 7
-  chargeRange: 8
+  chargeRange: 6
 --- !u!114 &-5783217096629348286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +808,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spellSlot: 2
+--- !u!114 &-7740647831612193840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123535486604011077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5925393ffabeeb94285583a9936d99ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spellSlot: 3
 --- !u!1 &9123535486731900927
 GameObject:
   m_ObjectHideFlags: 0
