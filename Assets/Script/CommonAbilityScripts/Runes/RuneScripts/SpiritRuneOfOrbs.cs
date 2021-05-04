@@ -195,7 +195,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
     private IEnumerator SetOrbStats(GameObject projectile)
     {
         yield return new WaitForEndOfFrame();
-        projectile.GetComponent<AbilityEvents>().damageMultiplier = gameObject.GetComponent<AbilityEvents>().damageMultiplier;
+        projectile.GetComponent<AbilityEvents>().damageParentMultiplier = gameObject.GetComponent<AbilityEvents>().damageMultiplier;
     }
 
     //Subs and Unsubs

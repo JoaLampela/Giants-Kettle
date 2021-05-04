@@ -16,6 +16,7 @@ public class AbilityEvents : MonoBehaviour
     public int damageMultiplier;
     public int bonusFlatDamage;
     public int bonusFlatTrueDamage;
+    public int damageParentMultiplier = 100;
 
     //while summoning copies set this value to false
     public bool firstCopy = true;
@@ -88,7 +89,7 @@ public class AbilityEvents : MonoBehaviour
                 if (target.GetComponent<EntityEvents>())
                 {
                     bool isCrit = CalculateIfIsCriticalHit();
-                    int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f);
+                    int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * (damageMultiplier / 100f) * (damageParentMultiplier / 100f));
                     int totaltrueDmg = trueDamage + bonusFlatTrueDamage;
                     if (isCrit) {
                         totalBasicDmg *= 2;
