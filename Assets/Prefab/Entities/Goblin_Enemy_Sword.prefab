@@ -1180,10 +1180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 100
-  healthRegenPerLevel: 30
+  healthPerLevel: 75
+  healthRegenPerLevel: 22
   physicalDamagePerLevel: 10
-  armorPerLevel: 10
+  armorPerLevel: 6
 --- !u!96 &9009737797232915889
 TrailRenderer:
   serializedVersion: 2

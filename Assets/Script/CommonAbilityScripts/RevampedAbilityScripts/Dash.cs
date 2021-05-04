@@ -56,6 +56,7 @@ public class Dash : MonoBehaviour, IAbility
             if (_spellSlot == slot)
             {
                 animator.SetTrigger("Dash");
+                _entityEvents.Dash();
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 dashItemContainer.currentCooldownAbility1 = dashItemContainer.maxCooldownAbility1;
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;

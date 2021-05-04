@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: -6513368408878891188}
   - component: {fileID: 4052830740971540668}
   - component: {fileID: -2241145504570033196}
+  - component: {fileID: 2854217595779573670}
   m_Layer: 0
   m_Name: Flyer
   m_TagString: Untagged
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   team: 1
-  baseHealth: 100
+  baseHealth: 75
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
@@ -326,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
 --- !u!114 &-8009865291015857995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +483,22 @@ MonoBehaviour:
   maxRuneCount: 0
   canDualWield: 0
   humanoid_Animations: {fileID: 0}
+--- !u!114 &2854217595779573670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681881871295265569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPerLevel: 50
+  healthRegenPerLevel: 0
+  physicalDamagePerLevel: 15
+  armorPerLevel: 3
 --- !u!1 &7864369012659691965
 GameObject:
   m_ObjectHideFlags: 0

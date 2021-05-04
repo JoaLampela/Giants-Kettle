@@ -109,6 +109,13 @@ public class EntityEvents : MonoBehaviour
     public event Action<int> OnTakeStep;
     public event Action<int> OnSetCurrentHealth;
 
+    public event Action OnDash;
+
+    public void Dash()
+    {
+        OnDash?.Invoke();
+    }
+
     public void TakeStep(int distance)
     {
         OnTakeStep?.Invoke(distance);
