@@ -21,30 +21,23 @@ public class NamedArrayAttribute : PropertyAttribute
 
 public class MeshGenerator : MonoBehaviour
 {
-    public bool wallsOn = false;
-    public bool caveOn = false;
-    public PrefabInstantiator instantiator;
-
+    public int prefabAmountPercent = 6;
     public SquareGrid squareGrid;
     public MeshFilter wallMeshFilter;
     public GameObject wallTilemapGO;
     public GameObject caveTilemapGO;
     public GameObject grassPrefab;
+    public Transform instanceTargetTrans;
     public Tilemap groundTilemap;
     public Tilemap caveTilemap;
     public Tilemap wallTilemap;
     public Tilemap wallBorderTilemap;
     public GridLayout grid;
-    public GameObject brushTargetGO;
-    public Transform brushTargetTrans;
     public List<Tile> tileList;
 
-    //public PrefabBrush grassBrush;
-
-    public Transform playerTransform;
+    private PrefabInstantiator instantiator;
     private List<Vector3> vertices;
     private List<int> triangles;
-    //these is private but are they really?
     private Dictionary<int, List<Triangle>> triangleDictionary;
     private List<List<int>> outlines;
     private HashSet<int> checkedVertices;
@@ -124,13 +117,13 @@ public class MeshGenerator : MonoBehaviour
         caveTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
         wallBorderTilemap.ClearAllTiles();
-        DestroyChildren(brushTargetTrans);
+        DestroyChildren(instanceTargetTrans);
 
         
         //set the tiles to the map
         for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
         {
-            rnd = new System.Random();
+            //rnd = new System.Random();
             for (int y = 0; y < squareGrid.squares.GetLength(1); y++) {
                 int configuration = squareGrid.squares[x, y]._configuration;
 
@@ -139,16 +132,13 @@ public class MeshGenerator : MonoBehaviour
                 switch (configuration) {
                     case 0:
                         //ground
-                        
-                        randInt = rnd.Next(24, 27);
-                       
                         groundTilemap.SetTile(cellVector, tileList[0]);
 
-                        randInt = rnd.Next(1, 100);
+                        randInt = UnityEngine.Random.Range(1, 100);
                         //grass
                         if (squareGrid.squares[x, y + 1]._configuration == 0) {
-                            if (randInt <= 10) {
-                                instantiator.Paint(brushTargetGO, worldVector, grassPrefab);
+                            if (randInt <= 6) {
+                                instantiator.Paint(grassPrefab, worldVector, instanceTargetTrans);
                             }
                         }
                        
@@ -167,7 +157,6 @@ public class MeshGenerator : MonoBehaviour
                         caveTilemap.SetTile(cellVector, tileList[configuration]);
 
                         //set the ground underneath this tile
-                        randInt = rnd.Next(24, 27);
                         groundTilemap.SetTile(cellVector, tileList[0]);
                         break;
                     case 4:
