@@ -296,7 +296,6 @@ GameObject:
   - component: {fileID: -6811385897359545129}
   - component: {fileID: -5453805505851888429}
   - component: {fileID: 2611264938289849534}
-  - component: {fileID: 9089896077444497395}
   - component: {fileID: -5985847488239493221}
   - component: {fileID: 8628242431214022170}
   - component: {fileID: -4428022742085581303}
@@ -307,6 +306,7 @@ GameObject:
   - component: {fileID: 8333009041100929968}
   - component: {fileID: -5783217096629348286}
   - component: {fileID: 8999853913095988126}
+  - component: {fileID: -6721006193048140394}
   m_Layer: 0
   m_Name: Hoglon
   m_TagString: Untagged
@@ -350,7 +350,7 @@ MonoBehaviour:
   baseSpeed: 2
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 10
+  basePhysicalDamage: 30
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 10
@@ -484,18 +484,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashTime: 0.1
   whiteMaterial: {fileID: 2100000, guid: a613d21703d216848bbd0b297fb7c09b, type: 2}
---- !u!114 &9089896077444497395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9123535486604011077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a58f5ff1ce1640b489e42ada584ef4e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5985847488239493221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951f84beccc25a644bf9f22f89a3aa65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxObstacleVectorDistance: 0.5
+  maxObstacleVectorDistance: 2
   maxAllyRange: 2
   maxPlayerRange: 3
   reachedEndOfPath: 0
@@ -669,7 +657,7 @@ MonoBehaviour:
   rightHandGameObject: {fileID: 0}
   leftHandGameObject: {fileID: 0}
   sting: {fileID: 0}
-  heavySting: {fileID: 0}
+  heavySting: {fileID: 7929451906820197130, guid: 5d43b23c5aef174448ad8abc6ff934da, type: 3}
   spinAttack: {fileID: 0}
   bigProjectile: {fileID: 0}
   nonProjectile: {fileID: 0}
@@ -778,8 +766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3906990f14120dd4e8fb7ffe59103782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 9
-  chargeRange: 15
+  attackRange: 7
+  chargeRange: 8
 --- !u!114 &-5783217096629348286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,6 +794,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spellSlot: 1
   basicAttackOffCooldown: 1
+--- !u!114 &-6721006193048140394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123535486604011077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bd2377a70a2b94292fa912bad96f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spellSlot: 2
 --- !u!1 &9123535486731900927
 GameObject:
   m_ObjectHideFlags: 0
