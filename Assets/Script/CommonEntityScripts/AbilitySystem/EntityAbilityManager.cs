@@ -100,8 +100,6 @@ public class EntityAbilityManager : MonoBehaviour
 
     public void RemoveAbility(int slot)
     {
-        Debug.Log("Ability Removed: " + slot);
-
         switch (slot)
         {
             case 1:

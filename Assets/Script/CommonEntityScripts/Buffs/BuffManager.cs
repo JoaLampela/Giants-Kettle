@@ -81,7 +81,6 @@ public class BuffManager : MonoBehaviour
     //Creates and adds new Buff-script to this entity.
     private void NewBuff(string sourceId, EntityStats.BuffType id, int value, float duration)
     {
-        Debug.Log("New buff added");
         Buff buff = gameObject.AddComponent<Buff>();
         if (id == EntityStats.BuffType.Burning) buff._sourceId = "Burning";
         if (id == EntityStats.BuffType.Stunned) buff._sourceId = "Stunned";

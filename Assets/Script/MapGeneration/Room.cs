@@ -158,7 +158,6 @@ public class Room : IComparable<Room>
                 }
             }
         }
-        Debug.Log("Roomstats\nRoom size: " + roomSize + "\nEdge tiles: " + edgeTiles.Count + "\nEdge wall tiles: " + edgeWallTiles.Count);
     }
 
     public void RoomAction(Coord nodeCoord)

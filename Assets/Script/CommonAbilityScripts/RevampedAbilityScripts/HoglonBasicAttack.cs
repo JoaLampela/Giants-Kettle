@@ -38,7 +38,6 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        Debug.Log("casting inside two handed ability");
         if (basicAttackOffCooldown) //cooldown here
         {
             if (_spellSlot == slot)
@@ -60,9 +59,7 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
     private IEnumerator basicAttackCooldownFunction()
     {
         float trueCooldown = basicAttackCooldown * 10f / (10f + GetComponent<EntityStats>().currentAttackSpeed);
-        Debug.Log("Attack Cooldown " + trueCooldown);
         yield return new WaitForSeconds(trueCooldown);
-        Debug.Log("Attack off cooldown");
         basicAttackOffCooldown = true;
     }
 
@@ -109,7 +106,7 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("BASIC ATTACK IS ON COOLDOWN");
+           
         }
     }
 

@@ -104,7 +104,7 @@ public class StingRight : MonoBehaviour, IAbility
 
     private void CannotAffordCast(int slot)
     {
-        if (_spellSlot == slot) Debug.Log("CANNOT AFFORD TO STING");
+
     }
 
     public int GetCastValue()

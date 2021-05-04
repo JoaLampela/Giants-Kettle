@@ -100,7 +100,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("BASIC ATTACK IS ON COOLDOWN");
+
         }
     }
 

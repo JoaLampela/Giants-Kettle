@@ -122,12 +122,10 @@ public class EntityEvents : MonoBehaviour
     }
     public void LockInventory(string test = " ")
     {
-        Debug.Log("Locked inventory " + test);
         OnLockInventory?.Invoke();
     }
     public void UnlockInventory(string test = " ")
     {
-        Debug.Log("Unlocked inventory " + test);
         OnUnlockInventory?.Invoke();
     }
 
@@ -344,7 +342,6 @@ public class EntityEvents : MonoBehaviour
     }
     public void Die(GameObject source)
     {
-        Debug.Log(gameObject.name + " Died");
         OnDie?.Invoke(source, gameObject);
     }
 }

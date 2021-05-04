@@ -74,7 +74,6 @@ public class EnemyMovementController : MonoBehaviour
     {
         if (useScript)
         {
-            Debug.Log("use eveny movement script");
             if (reachedEndOfPath == false)
             {
                 if (path == null)
@@ -436,8 +435,6 @@ public class EnemyMovementController : MonoBehaviour
 
     public void KnockBack(float distance, GameObject source)
     {
-        Debug.Log("Applied knockback");
-
         Vector2 dir = transform.position - source.transform.position;
         Vector2 distanceVector = dir.normalized * distance;
         rb.AddForce(distanceVector);

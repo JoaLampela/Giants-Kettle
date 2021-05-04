@@ -50,7 +50,6 @@ public class MovementScript : MonoBehaviour
     private void TakeStep(int distance)
     {
         Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        Debug.Log(dir);
         Vector2 distanceVector = dir.normalized * distance;
         playerRB.AddForce(distanceVector);
     }

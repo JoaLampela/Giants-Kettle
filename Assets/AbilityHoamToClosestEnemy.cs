@@ -38,7 +38,6 @@ public class AbilityHoamToClosestEnemy : MonoBehaviour
             {
                 transform.RotateAround(source.transform.position, Vector3.forward, orbitSpeed * Time.deltaTime);
                 sourcePos = source.transform.position;
-                Debug.Log(sourcePos);
             }
             if (events._abilityCastSource.GetComponent<EntityStats>().team == 2)
             {

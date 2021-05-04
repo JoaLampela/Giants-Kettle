@@ -11,11 +11,9 @@ public class DamagePopup : MonoBehaviour
 
     public static DamagePopup Create(Vector3 position, int damageAmount, bool isCriticalHit, bool isTrueDamage)
     {
-        Debug.Log("Creating dmg popup");
         Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, position, Quaternion.identity);
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
         damagePopup.Setup(damageAmount, isCriticalHit);
-        Debug.Log(damagePopup.transform.position);
         return damagePopup;
     }
     private float dissapearTimer;

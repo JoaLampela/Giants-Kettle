@@ -38,9 +38,7 @@ public class entityDropItemOnDeath : MonoBehaviour
 
 
         if (Random.Range(0,100) <= dropChance)
-        {
-            Debug.Log("item dropped");
-            
+        {            
             ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
             ItemTierListScript tierList = GameObject.Find("Game Manager").GetComponent<ItemTierListScript>();
             groundItem.SetItem(new Item(tierList.GiveRandomItem(enemyLevel-1)));

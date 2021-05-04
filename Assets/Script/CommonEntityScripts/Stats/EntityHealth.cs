@@ -111,7 +111,6 @@ public class EntityHealth : MonoBehaviour
     private void SetHealth(int value)
     {
         float healthPersentage = (float)health / (float)maxHealth;
-        Debug.Log("health % = " + healthPersentage);
         health = (int)(healthPersentage * value);
         maxHealth = value;
     }
@@ -125,10 +124,8 @@ public class EntityHealth : MonoBehaviour
     {
         if(!stats.isInvulnurable)
         {
-            Debug.Log(damage._damage);
             if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
             TakeDamage((int)(damage._damage * GetDamageReduction()), damage);
-            Debug.Log(GetDamageReduction());
         }
         else
         {

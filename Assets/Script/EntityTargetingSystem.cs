@@ -103,7 +103,6 @@ public class EntityTargetingSystem : MonoBehaviour, IAbilityTargetPosition
     {
         if (damage.source.GetComponent<EntityStats>().team != 3)
         {
-            Debug.Log("source = " + damage.source + " team = " + damage.source.GetComponent<EntityStats>().team);
             IncreaseAggro(damage.source, damage._damage);
         }
 
@@ -111,7 +110,6 @@ public class EntityTargetingSystem : MonoBehaviour, IAbilityTargetPosition
 
     public void IncreaseAggro(GameObject entity, int amount)
     {
-        Debug.Log("increase aggro");
         if (aggroTable.ContainsKey(entity)) aggroTable[entity] += amount;
         if (target == null || !aggroTable.ContainsKey(target)) target = entity;
         else

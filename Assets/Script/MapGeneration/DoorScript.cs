@@ -16,7 +16,6 @@ public class DoorScript : MonoBehaviour
             DoorList.Add(door);
             door.transform.parent = gameObject.transform;
             door.SetActive(false);
-            Debug.Log("door made");
         }
     }
     public void CloseDoors()

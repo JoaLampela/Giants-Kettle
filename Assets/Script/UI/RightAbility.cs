@@ -40,7 +40,6 @@ public class RightAbility : MonoBehaviour
             if (_item.currentCooldownAbility1 > 0) usedRightAbility = true;
             if (isCooldown == false && Time.timeScale != 0 && usedRightAbility)
             {
-                Debug.Log("Used Right");
                 isCooldown = true;
                 iconFill.fillAmount = 1;
             }
@@ -63,13 +62,11 @@ public class RightAbility : MonoBehaviour
     {
         
         _item = item;
-        Debug.Log("New Ability Set " + _item.item);
         SetIcon(_item);
     }
 
     public void RemoveAbility()
     {
-        Debug.Log("Removed ability");
         _item = null;
         SetIcon(_item);
     }
@@ -83,7 +80,6 @@ public class RightAbility : MonoBehaviour
         }
         else
         {
-            Debug.Log("Else");
             WeaponObject weapon = (WeaponObject)item.item;
             if (weapon.weaponType == WeaponObject.WeaponType.OneHandedSword)
             {

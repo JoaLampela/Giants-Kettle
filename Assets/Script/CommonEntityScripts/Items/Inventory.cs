@@ -92,7 +92,6 @@ public class Inventory : MonoBehaviour
         dashItem = new Item(dashItemObject);
         inventorySlots = new UiButtonClick[24];
         equipmentSlots = new UiButtonClick[36];
-        Debug.Log(inventorySlots.Length + "lenght");
     }
 
 
@@ -133,7 +132,6 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("Used item");
             foreach (UiButtonClick inventorySlot in equipmentSlots)
             {
                 if ((int)inventorySlot._type == (int)usedItem.item.type)
@@ -337,7 +335,6 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.OneHandedSword):
                     if (slot == rightHand)
                     {
-                        Debug.Log("Unequipped Right");
                         player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<StingRight>());
@@ -346,7 +343,6 @@ public class Inventory : MonoBehaviour
                     }
                     if (slot == leftHand)
                     {
-                        Debug.Log("Unequipped Left");
                         player_Animations.SwitchToEmptyLeftHand();
                         abilityManager.RemoveAbility(1);
                         Destroy(GetComponent<StingLeft>());
@@ -354,7 +350,6 @@ public class Inventory : MonoBehaviour
                     }
                     break;
                 case ((int)WeaponType.TwoHandedSword):
-                    Debug.Log("Unequipped 2 hander");
                     player_Animations.SwitchToEmptyLeftHand();
                     player_Animations.SwitchToEmptyRightHand();
                     abilityManager.RemoveAbility(2);
@@ -368,7 +363,6 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.Shield):
                     if (slot == rightHand)
                     {
-                        Debug.Log("Unequipped Right");
                         player_Animations.SwitchToEmptyRightHand();
                         abilityManager.RemoveAbility(2);
                         Destroy(GetComponent<ShieldToss>());
@@ -378,7 +372,6 @@ public class Inventory : MonoBehaviour
                     }
                     if (slot == leftHand)
                     {
-                        Debug.Log("Unequipped Left");
                         player_Animations.SwitchToEmptyLeftHand();
                         abilityManager.RemoveAbility(1);
                         Destroy(GetComponent<Block>());
@@ -386,7 +379,6 @@ public class Inventory : MonoBehaviour
                     }
                     break;
                 case ((int)WeaponType.Bow):
-                    Debug.Log("Unequipped bow");
                     player_Animations.SwitchToEmptyLeftHand();
                     player_Animations.SwitchToEmptyRightHand();
                     abilityManager.RemoveAbility(2);
@@ -411,7 +403,6 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        Debug.Log("Unequipped " + unequippedItem.item.name);
         testEquipmentCount--;
 
         List<ItemObject> tempList = new List<ItemObject>();
@@ -436,14 +427,10 @@ public class Inventory : MonoBehaviour
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
-        Debug.Log("equipping " + equippedItem + " to " + slot + " isTwohander = " + equippedItem.item.isTwoHander);
         if ((int)slot._type == 1)
         {
             if (slot == rightHand || equippedItem.item.isTwoHander)
             {
-                Debug.Log("In right");
-
-                Debug.Log("rune slots " + equipmentObject.runeSlots);
                 switch (equipmentObject.runeSlots)
                 {
                     case 0:
@@ -719,7 +706,6 @@ public class Inventory : MonoBehaviour
                 case ((int)WeaponType.OneHandedSword):
                     if (slot == rightHand)
                     {
-                        Debug.Log("Equipped Right");
                         player_Animations.SwitchToSingleHandedSword(weapon.inGameObject);
                         StingRight stingRight = gameObject.AddComponent<StingRight>();
                         OneHandedBasicAttack oneHandedBasicAttack = gameObject.AddComponent<OneHandedBasicAttack>();
@@ -729,7 +715,6 @@ public class Inventory : MonoBehaviour
                     }
                     if (slot == leftHand)
                     {
-                        Debug.Log("Equipped Left");
                         player_Animations.SwitchToOffHandSingleHandedSword(weapon.inGameObject);
                         StingLeft stingLeft = gameObject.AddComponent<StingLeft>();
                         leftAbility.SetAbility(equippedItem, Hand.Left);
@@ -737,7 +722,6 @@ public class Inventory : MonoBehaviour
                     }
                     break;
                 case ((int)WeaponType.TwoHandedSword):
-                    Debug.Log("Equip 2 hander");
                     player_Animations.SwitchToTwoHandedSword(weapon.inGameObject);
                     Sting2Handed sting2Handed = gameObject.AddComponent<Sting2Handed>();
                     TwoHandedBasicAttack twoHandedBasicAttack = gameObject.AddComponent<TwoHandedBasicAttack>();
@@ -752,7 +736,6 @@ public class Inventory : MonoBehaviour
                     if (slot == rightHand)
                     {
                         player_Animations.SwitchToShield(weapon.inGameObject);
-                        Debug.Log("Equipped Right");
                         ShieldToss shieldToss = gameObject.AddComponent<ShieldToss>();
                         ShieldSlam shieldSlam = gameObject.AddComponent<ShieldSlam>();
                         rightAbility.SetAbility(equippedItem, Hand.Right);
@@ -762,14 +745,12 @@ public class Inventory : MonoBehaviour
                     if (slot == leftHand)
                     {
                         player_Animations.SwitchToOffHandShield(weapon.inGameObject);
-                        Debug.Log("Equipped Left");
                         Block block = gameObject.AddComponent<Block>();
                         leftAbility.SetAbility(equippedItem, Hand.Left);
                         abilityManager.SetAbility(1, block);
                     }
                     break;
                 case ((int)WeaponType.Bow):
-                    Debug.Log("Equip bow");
                     player_Animations.SwitchToBow(weapon.inGameObject);
                     PowerShot powerShot = gameObject.AddComponent<PowerShot>();
                     abilityManager.SetAbility(2, powerShot);
@@ -791,8 +772,6 @@ public class Inventory : MonoBehaviour
                     break;
             }
         }
-
-        Debug.Log("Equipped " + equippedItem.item.name);
         testEquipmentCount++;
 
         List<ItemObject> tempList = new List<ItemObject>();
@@ -1134,18 +1113,14 @@ public class Inventory : MonoBehaviour
     public IEnumerator NewAffectingRune(Item newItem, List<ItemObject> newRunes, IRuneScript.Hand hand)
     {
         yield return 0;
-        Debug.Log("NEW AFFECTING RUNE" + newRunes + " " + (leftHand._item == newItem) + " " + (rightHand._item == newItem));
         if(leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
-            Debug.Log("Inside");
             foreach (ItemObject item in newRunes)
             {
                 RuneObject rune = (RuneObject)item;
 
-                Debug.Log("Before component check");
                 if (!gameObject.GetComponent(rune._IruneContainer.Result.GetType()))
                 {
-                    Debug.Log("Adding the component");
                     gameObject.AddComponent(rune._IruneContainer.Result.GetType());
                     IRuneScript tempRuneScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
                     tempRuneScript.SetEntity(gameObject);
@@ -1153,7 +1128,7 @@ public class Inventory : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Already Contains the component");
+                   
                 }
 
 
@@ -1176,7 +1151,6 @@ public class Inventory : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("INCREMENT WEAPON");
                     if (rune.runeTier == RuneObject.RuneTier.basic)
                     {
                         runeScript.IncrementDuplicateCountWeapon(1, hand);

@@ -82,7 +82,6 @@ public class LeftAbility : MonoBehaviour
         }
         else
         {
-            Debug.Log("Else in 2");
             WeaponObject weapon = (WeaponObject)item.item;
             if(weapon.weaponType == WeaponObject.WeaponType.OneHandedSword)
             {

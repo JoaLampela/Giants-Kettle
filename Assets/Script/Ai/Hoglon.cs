@@ -63,7 +63,6 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
             {
                 GetComponent<EntityAbilityManager>().CastAbility(1);
                 StartCoroutine(SetAttackOnCoolDown(10));
-                Debug.Log("casting");
             }
         }
 

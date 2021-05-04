@@ -39,7 +39,6 @@ public class HoglonCharge : MonoBehaviour, IAbility
     {
         if (_weapon.currentCooldownAbility1 <= 0)
         {
-            Debug.Log("casting inside two handed ability");
             if (_spellSlot == slot)
             {
                 _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f / (100f + GetComponent<EntityStats>().currentSpellHaste);

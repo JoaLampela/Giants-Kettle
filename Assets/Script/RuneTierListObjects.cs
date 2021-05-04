@@ -252,10 +252,7 @@ public class RuneTierListObjects : MonoBehaviour
 
         int upperLimit = (1 + spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1 + vitalityAgilityScore1 + vitalityPowerScore1 + agilityPowerScore1);
         int selectedRuneNumber = Random.Range(1, upperLimit);
-        Debug.Log(spiritScore + " " + vitalityScore + " " + agilityScore + " " + powerScore + " " + spiritVitalityScore1 +" "+ spiritAgilityScore1 +" "+ spiritPowerScore1 +" "+ vitalityAgilityScore1 +" "+ vitalityPowerScore1 + " " + agilityPowerScore1);
-        Debug.Log(upperLimit + " " + selectedRuneNumber);
         Runes selectedRuneType = Runes.empty;
-        Debug.Log(selectedRuneNumber);
         if (selectedRuneNumber <= spiritScore) selectedRuneType = Runes.spirit;
         else if (selectedRuneNumber <= spiritScore + vitalityScore) selectedRuneType = Runes.vitality;
         else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore) selectedRuneType = Runes.agility;
@@ -267,8 +264,6 @@ public class RuneTierListObjects : MonoBehaviour
         else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1 + vitalityAgilityScore1 + vitalityPowerScore1) selectedRuneType = Runes.vitalityPower;
         else if (selectedRuneNumber <= spiritScore + vitalityScore + agilityScore + powerScore + spiritVitalityScore1 + spiritAgilityScore1 + spiritPowerScore1 + vitalityAgilityScore1 + vitalityPowerScore1 + agilityPowerScore1) selectedRuneType = Runes.agilityPower;
 
-
-        Debug.Log(selectedRuneType);
 
         int runeScore = GetScore(selectedRuneType);
         int tier1Propability = 0;
@@ -304,21 +299,18 @@ public class RuneTierListObjects : MonoBehaviour
         else runeRarity = RuneRarity.perfected;
 
         RuneObject rune = GiveRune(selectedRuneType, runeRarity);
-        Debug.Log(rune);
         return rune;
 
     }
     
     private RuneObject GiveRune(Runes selectedRuneType, RuneRarity runeRarity)
     {
-        Debug.Log(selectedRuneType + " " + runeRarity);
         if (selectedRuneType == Runes.spirit && runeRarity == RuneRarity.basic)
         {
             if (spiritRunesTier1.Length != 0)
             {
                 int listLenght = spiritRunesTier1.Length;
                 int pickedIndex = Random.Range(0, listLenght);
-                Debug.Log(pickedIndex);
                 return spiritRunesTier1[pickedIndex];
             }
             else return defaultRune;
@@ -641,16 +633,11 @@ public class RuneTierListObjects : MonoBehaviour
     {
         Debug.Log("Runes " + rune1 + " " + rune2 + " " + rune3);
         
-        
-        
         RuneObject rune1temp = GetRandomRune();
-        Debug.Log(rune1temp);
         rune1.GetComponent<SelectRuneButton>().SetNewRune(rune1temp);
         RuneObject rune2temp = GetRandomRune();
-        Debug.Log(rune2temp);
         rune2.GetComponent<SelectRuneButton>().SetNewRune(rune2temp);
         RuneObject rune3temp = GetRandomRune();
-        Debug.Log(rune3temp);
         rune3.GetComponent<SelectRuneButton>().SetNewRune(rune3temp);
     }
 }

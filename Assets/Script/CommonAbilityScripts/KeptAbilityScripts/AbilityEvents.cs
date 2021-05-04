@@ -43,7 +43,6 @@ public class AbilityEvents : MonoBehaviour
     //Called when activating the ability's effect
     public void Activate()
     {
-        Debug.Log("Activated");
         _onActivate?.Invoke();
     }
 
@@ -77,7 +76,6 @@ public class AbilityEvents : MonoBehaviour
 
     public void DealDamageEvent(Damage damage, GameObject target)
     {
-        Debug.Log("Ability even dealing damage");
         _onDealDamage?.Invoke(damage, target);
     }
 
@@ -89,8 +87,6 @@ public class AbilityEvents : MonoBehaviour
             {
                 if (target.GetComponent<EntityEvents>())
                 {
-                    Debug.Log("Dealing damage " + baseDamage + " " + bonusFlatDamage + " " + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage + " " + damageMultiplier / 100f);
-
                     bool isCrit = CalculateIfIsCriticalHit();
                     int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * damageMultiplier / 100f);
                     int totaltrueDmg = trueDamage + bonusFlatTrueDamage;
@@ -115,7 +111,6 @@ public class AbilityEvents : MonoBehaviour
         int random = UnityEngine.Random.Range(1, 100);
         if (critChance >= random)
         {
-            Debug.Log("Attack was critical");
             return true;
         }
         else return false;

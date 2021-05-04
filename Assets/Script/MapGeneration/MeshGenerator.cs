@@ -301,7 +301,6 @@ public class MeshGenerator : MonoBehaviour
                             if (!(squareGrid.squares[x, y - 1]._configuration == 6))
                             {
                                 //full wall square
-                                Debug.Log("configuration is 12!!");
                                 wallTilemap.SetTile(wallVector, tileList[20]);
                             }
 

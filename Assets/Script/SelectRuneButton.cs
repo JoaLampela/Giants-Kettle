@@ -22,24 +22,16 @@ public class SelectRuneButton : MonoBehaviour
     public void OnButtonClick()
     {
         runeList.IncrementScore(_rune);
-        Debug.Log(runeButton);
         playerInventory.NewItem(new Item(_rune));
         _rune = null;
         GameObject.Find("Game Manager").GetComponent<GameEventManager>().ReducePlayerLevelUpPoints();
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().playerLevelUpPoints > 0)
-        {
-            runeList.RandomizeNewRunes();
-        }
+        runeList.RandomizeNewRunes();
     }
 
     public void SetNewRune(RuneObject rune)
     {
        
         _rune = rune;
-        Debug.Log("set new rune " + _rune);
-        Debug.Log("set new rune " + _rune.iconSprite);
-        Debug.Log("set new rune " + _rune + " " + _rune.iconSprite);
-
         _runeIcon.sprite = _rune.iconSprite;
     }
 
