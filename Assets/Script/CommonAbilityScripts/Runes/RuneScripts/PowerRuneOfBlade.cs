@@ -105,19 +105,14 @@ public class PowerRuneOfBlade : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("PowerRuneOfBladeArmor");
-        _entityEvents.RemoveBuff("PowerRuneOfBladeWeapon");
+        _entityEvents.RemoveBuff("PowerRuneOfBladePlus");
+        _entityEvents.RemoveBuff("PowerRuneOfBladeMinus");
 
-        if (duplicateCountArmor != 0)
+        if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfBladeArmor", EntityStats.BuffType.HealthMultiplier, (int)Mathf.Pow(0.8f, duplicateCountArmor));
-            _entityEvents.NewBuff("PowerRuneOfBladeArmor", EntityStats.BuffType.PhysicalDamageMultiplier, (int)Mathf.Pow(1.25f, duplicateCountArmor));
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("PowerRuneOfBladeWeapon", EntityStats.BuffType.HealthMultiplier, (int)Mathf.Pow(0.8f, duplicateCountWeapon));
-            _entityEvents.NewBuff("PowerRuneOfBladeWeapon", EntityStats.BuffType.PhysicalDamageMultiplier, (int)Mathf.Pow(1.25f, duplicateCountWeapon));
+            Debug.Log("Power");
+            _entityEvents.NewBuff("PowerRuneOfBladePlus", EntityStats.BuffType.PhysicalDamageMultiplier, (int)(Mathf.Pow(1.25f, (duplicateCountArmor + duplicateCountWeapon)) * 100));
+            _entityEvents.NewBuff("PowerRuneOfBladeMinus", EntityStats.BuffType.HealthMultiplier, (int)(Mathf.Pow(0.8f, (duplicateCountArmor + duplicateCountWeapon)) * 100));
         }
     }
 
@@ -144,8 +139,8 @@ public class PowerRuneOfBlade : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfBladeArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfBladeWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfBladePlus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfBladeMinus");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

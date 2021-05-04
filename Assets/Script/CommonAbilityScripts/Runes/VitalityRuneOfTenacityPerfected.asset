@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Tenacity.
-  iconSprite: {fileID: 21300000, guid: 88e6d1d578cdc9d4ea4e2ceb9a72119a, type: 3}
+  iconSprite: {fileID: 21300000, guid: 85003767da5d3b644a20debaefd44cee, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
     ObjectField: {fileID: 8374164943997603818, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
-  runeTier: 0
+  runeTier: 2
   runeType: 1
