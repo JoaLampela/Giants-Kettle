@@ -14,7 +14,7 @@ public class DamagePopup : MonoBehaviour
         Vector2 rand = new Vector2(UnityEngine.Random.Range(0f, 2f), UnityEngine.Random.Range(0f, 2f));
         Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, (Vector2)position + rand, Quaternion.identity);
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-        damagePopup.Setup(damageAmount, isCriticalHit);
+        damagePopup.Setup(damageAmount, isCriticalHit, isTrueDamage);
         return damagePopup;
     }
     private float dissapearTimer;
@@ -44,19 +44,23 @@ public class DamagePopup : MonoBehaviour
     {
         textMesh = transform.GetComponent<TextMeshPro>();
     }
-    public void Setup(int damageAmount, bool isCriticalHit)
+    public void Setup(int damageAmount, bool isCriticalHit, bool isTrueDamage)
     {
         
         textMesh.SetText(damageAmount.ToString());
         if (!isCriticalHit)
         {
             textMesh.fontSize = CalculateDamagePopupFontSize(damageAmount, isCriticalHit); ;
-            textColor = GetColorFromString("FFC500");
+            if(isTrueDamage) textColor = GetColorFromString("0D89FF");
+            else textColor = GetColorFromString("FFC500");
+
         }
         else
         {
-            textMesh.fontSize = CalculateDamagePopupFontSize(damageAmount, isCriticalHit); ;
-            textColor = GetColorFromString("FF2B00");
+            textMesh.fontSize = CalculateDamagePopupFontSize(damageAmount, isCriticalHit);
+            if(isTrueDamage) textColor = GetColorFromString("003199");
+            else textColor = GetColorFromString("FF2B00");
+
         }
         textMesh.color = textColor;
         dissapearTimer = disappearTimerMax;

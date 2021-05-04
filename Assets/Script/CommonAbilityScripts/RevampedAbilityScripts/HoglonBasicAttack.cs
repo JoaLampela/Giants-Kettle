@@ -42,7 +42,6 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
             basicAttackOffCooldown = false;
             targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
             _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
-            playerAnimations.SetAttacking(true);
             animator.SetTrigger("Attack");
             GetComponent<Rigidbody2D>().AddForce(targetPosAtStart.normalized * 3000f);
             SoundManager.PlaySound(SoundManager.Sound.TwoHandedBasicAttack, transform.position);

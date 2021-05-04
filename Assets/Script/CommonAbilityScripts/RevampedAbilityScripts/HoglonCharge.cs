@@ -74,7 +74,6 @@ public class HoglonCharge : MonoBehaviour, IAbility
             sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
             sting.GetComponent<AbilityEvents>().SetSource(gameObject);
             sting.GetComponent<AbilityEvents>().UseAbility();
-            playerAnimations.SetAttacking(false);
         }
     }
 
