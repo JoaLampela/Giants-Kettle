@@ -46,3 +46,4 @@ MonoBehaviour:
   RuneOrbArmorProjectile: {fileID: 6274655148876385004, guid: 079559bd5775ee04bac02e13e2665f46, type: 3}
   RuneOrbWeaponProjectile: {fileID: 6274655148876385004, guid: 83b968a9eddd3e44a97e83d03de8aa3e, type: 3}
   RuneExplosion: {fileID: 4718739796153810321, guid: 7e238401dfc79b842987562e87e1c154, type: 3}
+  RuneThunder: {fileID: 6662768882927669585, guid: 959577799e901c14f8fe933acad8af94, type: 3}

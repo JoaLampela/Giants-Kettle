@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityHoamToTarget : MonoBehaviour
+public class AbilityHomeToTarget : MonoBehaviour
 {
     public GameObject target;
 

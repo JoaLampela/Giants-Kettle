@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityHoamToCaster : MonoBehaviour
+public class AbilityHomeToCaster : MonoBehaviour
 {
     private float _velocity = 0f;
     [SerializeField] float _velocityStart = 0f;
