@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
+public class SpiritAgilityRuneOfKinesis : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -10,9 +10,9 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
+    private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
-    private GameObject explosion;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -105,17 +105,17 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritRuneOfThunderArmor");
-        _entityEvents.RemoveBuff("SpiritRuneOfThunderWeapon");
+        _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisArmor");
+        _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisWeapon");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfThunderArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
+            _entityEvents.NewBuff("SpiritAgilityRuneOfKinesisArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfThunderWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritAgilityRuneOfKinesisWeapon", EntityStats.BuffType.SpeedMultiplier, duplicateCountWeapon * 10);
         }
     }
 
@@ -130,7 +130,6 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-            _abilityEvents.bonusFlatTrueDamage = (duplicateCountArmor + duplicateCountWeapon) * 10;
         }
     }
 
@@ -138,12 +137,13 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
     {
         _entityEvents = gameObject.GetComponent<EntityEvents>();
         _abilityEvents = gameObject.GetComponent<AbilityEvents>();
+        projectiles = new List<GameObject>();
     }
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfThunderArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfThunderWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisWeapon");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -156,18 +156,16 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Damage damage, GameObject target)
+    public void Activate()
     {
-        GameObject thunder = RuneAssets.i.RuneThunder;
-
-        thunder = Instantiate(thunder, target.transform.position, Quaternion.identity);
+        _entity.GetComponent<EntityEvents>().RecoverHealth((duplicateCountArmor + duplicateCountWeapon) * 5);
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onDealDamage += Activate;
+        _abilityEvents._onUseAbility += Activate;
     }
 
     public void SubscribeEntity()
@@ -178,7 +176,7 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onDealDamage -= Activate;
+        _abilityEvents._onUseAbility -= Activate;
     }
 
     public void UnsubscribeEntity()

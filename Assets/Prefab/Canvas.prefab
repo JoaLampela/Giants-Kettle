@@ -64520,18 +64520,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dadb93e9d95805349a2a253f79912010, type: 2}
   - {fileID: 11400000, guid: f47a9a76b10306a42be5f2f7e1e5f6d7, type: 2}
   - {fileID: 11400000, guid: fe4cc996a8241994ba0a34b61653f2b8, type: 2}
+  - {fileID: 11400000, guid: 48ab2e6d1bf9c0840a9069af8744d739, type: 2}
   spiritRunesTier2:
   - {fileID: 11400000, guid: e52074d244c287f428a27559027c3536, type: 2}
   - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
   - {fileID: 11400000, guid: 7bb1add3c58b3d648ad52e65ece2032e, type: 2}
   - {fileID: 11400000, guid: 7f55b2c2a9ea3274c8301a623ef560f4, type: 2}
   - {fileID: 11400000, guid: 280140d6437053845980ef2a0ef0f4aa, type: 2}
+  - {fileID: 11400000, guid: 6b358980d897da8448e9ee3c53624d3e, type: 2}
   spiritRunesTier3:
   - {fileID: 11400000, guid: 19d7f3cda96bdb84da78ed393ed956b8, type: 2}
   - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
   - {fileID: 11400000, guid: 7d6afafab01220545a828067927fd218, type: 2}
   - {fileID: 11400000, guid: 9cdbcd9d18f191c409bb28465053ac0c, type: 2}
   - {fileID: 11400000, guid: a12b0eb32c17ad445a0bf8b910decb6c, type: 2}
+  - {fileID: 11400000, guid: b216035e637aff242a5826292517cb29, type: 2}
   vitalityRunesTier1:
   - {fileID: 11400000, guid: e2c2de05fdc240041a57df551a5948bb, type: 2}
   - {fileID: 11400000, guid: 95d41d2662e07c948b34bd149d729420, type: 2}
