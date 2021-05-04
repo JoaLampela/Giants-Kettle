@@ -4897,6 +4897,7 @@ MonoBehaviour:
   damageMultiplier: 50
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
+  damageParentMultiplier: 100
   firstCopy: 1
 --- !u!114 &6096043296272375332
 MonoBehaviour:
@@ -4910,7 +4911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18590c038c114849a03d3e034ba29df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 30
+  baseDamage: 0
   damageScaling: 100
   canHitMultipleTime: 0
 --- !u!50 &1261447068056255959

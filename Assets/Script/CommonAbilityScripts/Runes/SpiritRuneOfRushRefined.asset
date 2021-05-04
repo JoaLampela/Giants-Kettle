@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Gain speed for the price of power.
-  iconSprite: {fileID: 21300000, guid: 013278a6d16f1dc47b0d40750469fe8b, type: 3}
+  iconSprite: {fileID: 21300000, guid: afd1c73fbb3229044860d0123c3179e0, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
     ObjectField: {fileID: -8575341640708824024, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
   runeTier: 1
+  runeType: 0
+  runeEffects: []

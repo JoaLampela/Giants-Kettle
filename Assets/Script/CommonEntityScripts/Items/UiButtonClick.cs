@@ -28,6 +28,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     [SerializeField] private bool isEquipmentSlot;
     [SerializeField] private int slotNuber;
     [SerializeField] public RuneTooltipController runeTooltipController;
+    public bool frameLocked = false;
 
 
     
@@ -86,14 +87,13 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     public void PlaceItem(Item newItem, UiButtonClick previousSlot = null)
     {
-        if(!inventoryLocked)
+        if(!inventoryLocked && !frameLocked)
         {
             if ((int)_type != 0 && _type != ItemType.Rune)
             {
                 Debug.Log("!=0");
                 if (_item != null) playerInventory.Unequip(_item, this);
             }
-
             if (this == playerInventory.rightHand || this == playerInventory.leftHand)
             {
                 if (newItem.item.isTwoHander)
@@ -111,11 +111,19 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                         playerInventory.NewItem(temp);
                         if (playerInventory.leftHand == this)
                         {
-                            if (playerInventory.rightHand._item != null) playerInventory.NewItem(playerInventory.rightHand._item);
+                            if (playerInventory.rightHand._item != null)
+                            {
+                                playerInventory.NewItem(playerInventory.rightHand._item);
+                                playerInventory.Unequip(playerInventory.rightHand._item, playerInventory.rightHand);
+                            }
                         }
                         else if (playerInventory.rightHand == this)
                         {
-                            if (playerInventory.leftHand._item != null) playerInventory.NewItem(playerInventory.leftHand._item);
+                            if (playerInventory.leftHand._item != null)
+                            {
+                                playerInventory.NewItem(playerInventory.leftHand._item);
+                                playerInventory.Unequip(playerInventory.leftHand._item, playerInventory.leftHand);
+                            }
                         }
                     }
                     else
@@ -251,7 +259,8 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                     {
                         Item temp = _item;
                         RemoveItemFromslot();
-                        if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
+                        Debug.Log("type " + _type);
+                        if (Input.GetKey(KeyCode.LeftShift) && !frameLocked && _type != ItemType.Rune) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
                         else playerInventory.NewItem(temp);
                     }
                 }
@@ -266,7 +275,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 {
                     Item temp = _item;
 
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    if (Input.GetKey(KeyCode.LeftShift) && !frameLocked && _type != ItemType.Rune)
                     {
                         RemoveItemFromslot();
                         playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
@@ -275,23 +284,44 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             }
             else if (eventData.button == PointerEventData.InputButton.Left)
             {
+                Debug.Log("Left click inv");
                 if (_item != null)
                 {
+                    Debug.Log("item not null " + _type + " " + (this == playerInventory.rightHand));
+
                     if (this == playerInventory.rightHand && _item.item.isTwoHander)
                     {
                         playerInventory.leftHand.RemoveItemFromslot();
+                        playerInventory.Unequip(_item, this);
+                        playerHoverUi.SetGrabbedItem(_item, this);
+                        RemoveItemFromslot();
                     }
                     else if (this == playerInventory.leftHand && _item.item.isTwoHander)
                     {
                         playerInventory.rightHand.RemoveItemFromslot();
+                        playerInventory.Unequip(_item, this);
+                        playerHoverUi.SetGrabbedItem(_item, this);
+                        RemoveItemFromslot();
                     }
-                    if ((int)_type != 0 && _type != ItemType.Rune) playerInventory.Unequip(_item, this);
-                    if (_type == ItemType.Rune)
+                    else if ((int)_type != 0 && _type != ItemType.Rune)
+                    {
+                        Debug.Log(_item);
+                        playerInventory.Unequip(_item, this);
+                        playerHoverUi.SetGrabbedItem(_item, this);
+                        RemoveItemFromslot();
+                    }
+                    else if (_type == ItemType.Rune && !frameLocked)
                     {
                         playerInventory.RemoveRuneFromItem(gameObject);
+                        playerHoverUi.SetGrabbedItem(_item, this);
+                        RemoveItemFromslot();
                     }
-                    playerHoverUi.SetGrabbedItem(_item, this);
-                    RemoveItemFromslot();
+                    else if(!frameLocked)
+                    {
+                        playerHoverUi.SetGrabbedItem(_item, this);
+                        RemoveItemFromslot();
+                    }
+                    
                 }
             }
         }

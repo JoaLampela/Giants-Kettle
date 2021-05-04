@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Crits deal additional damage
-  iconSprite: {fileID: 21300000, guid: 311c550550633bd4d80aceb40a6ba62d, type: 3}
+  iconSprite: {fileID: 21300000, guid: 4e771085b838b3d43a6f32fe5f3fb9d8, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
@@ -22,3 +22,4 @@ MonoBehaviour:
     ResultType: 
   runeTier: 1
   runeType: 2
+  runeEffects: []

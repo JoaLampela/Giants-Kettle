@@ -1170,6 +1170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spellSlot: 3
+  mouseDirection: {x: 0, y: 0}
 --- !u!114 &4319518181496570747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,7 +1307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
-  dropChance: 15
+  dropChance: 100
 --- !u!1 &7283148507259584654
 GameObject:
   m_ObjectHideFlags: 0

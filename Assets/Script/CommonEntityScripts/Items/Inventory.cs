@@ -264,8 +264,11 @@ public class Inventory : MonoBehaviour
 
     public void Unequip(Item unequippedItem, UiButtonClick slot)
     {
+        Debug.Log("Unequipped item " + unequippedItem);
         if ((int)slot._type == 1)
         {
+            Debug.Log(slot);
+            Debug.Log(unequippedItem);
             if (slot == rightHand || unequippedItem.item.isTwoHander)
             {
                 weaponRightHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
@@ -280,6 +283,8 @@ public class Inventory : MonoBehaviour
                 weaponRightHandR4.SetActive(false);
                 weaponRightHandR5.SetActive(false);
                 weaponRightHandR6.SetActive(false);
+
+                weaponRightHandR1.GetComponent<UiButtonClick>().frameLocked = false;
             }
             if (slot == leftHand || unequippedItem.item.isTwoHander)
             {
@@ -295,6 +300,8 @@ public class Inventory : MonoBehaviour
                 weaponLeftHandR4.SetActive(false);
                 weaponLeftHandR5.SetActive(false);
                 weaponLeftHandR6.SetActive(false);
+
+                weaponLeftHandR1.GetComponent<UiButtonClick>().frameLocked = false;
             }
         }
         else if ((int)slot._type == 2)
@@ -305,6 +312,8 @@ public class Inventory : MonoBehaviour
             armorHeadR4.SetActive(false);
             armorHeadR5.SetActive(false);
             armorHeadR6.SetActive(false);
+
+            armorHeadR1.GetComponent<UiButtonClick>().frameLocked = false;
         }
         else if ((int)slot._type == 3)
         {
@@ -314,6 +323,8 @@ public class Inventory : MonoBehaviour
             armorChestR4.SetActive(false);
             armorChestR5.SetActive(false);
             armorChestR6.SetActive(false);
+
+            armorChestR1.GetComponent<UiButtonClick>().frameLocked = false;
         }
         else if ((int)slot._type == 4)
         {
@@ -323,6 +334,8 @@ public class Inventory : MonoBehaviour
             armorLegsR4.SetActive(false);
             armorLegsR5.SetActive(false);
             armorLegsR6.SetActive(false);
+
+            armorLegsR1.GetComponent<UiButtonClick>().frameLocked = false;
         }
 
 
@@ -426,6 +439,8 @@ public class Inventory : MonoBehaviour
 
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
+        Debug.Log("Equipped item " + equippedItem);
+
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
         if ((int)slot._type == 1)
         {
@@ -482,6 +497,13 @@ public class Inventory : MonoBehaviour
                     if (equippedItem._runeList[4] != null) weaponRightHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
                 if (equippedItem._runeList.Length == 6)
                     if (equippedItem._runeList[5] != null) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+
+                EquipmentObject equipment = (EquipmentObject)equippedItem.item;
+                if (equipment.baseRune != null)
+                {
+                    weaponRightHandR1.GetComponent<UiButtonClick>().frameLocked = true;
+                }
+
             }
             if (slot == leftHand || equippedItem.item.isTwoHander)
             {
@@ -535,6 +557,12 @@ public class Inventory : MonoBehaviour
                     if (equippedItem._runeList[4] != null) weaponLeftHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
                 if (equippedItem._runeList.Length == 6)
                     if (equippedItem._runeList[5] != null) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+
+                EquipmentObject equipment = (EquipmentObject)equippedItem.item;
+                if (equipment.baseRune != null)
+                {
+                    weaponLeftHandR1.GetComponent<UiButtonClick>().frameLocked = true;
+                }
             }
         }
         else if ((int)slot._type == 2)
@@ -589,6 +617,12 @@ public class Inventory : MonoBehaviour
                 if (equippedItem._runeList[4] != null) armorHeadR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
             if (equippedItem._runeList.Length == 6)
                 if (equippedItem._runeList[5] != null) armorHeadR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+
+            EquipmentObject equipment = (EquipmentObject)equippedItem.item;
+            if (equipment.baseRune != null)
+            {
+                armorHeadR1.GetComponent<UiButtonClick>().frameLocked = true;
+            }
         }
         else if ((int)slot._type == 3)
         {
@@ -642,6 +676,12 @@ public class Inventory : MonoBehaviour
                 if (equippedItem._runeList[4] != null) armorChestR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
             if (equippedItem._runeList.Length == 6)
                 if (equippedItem._runeList[5] != null) armorChestR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+
+            EquipmentObject equipment = (EquipmentObject)equippedItem.item;
+            if (equipment.baseRune != null)
+            {
+                armorChestR1.GetComponent<UiButtonClick>().frameLocked = true;
+            }
         }
         else if ((int)slot._type == 4)
         {
@@ -695,6 +735,12 @@ public class Inventory : MonoBehaviour
                 if (equippedItem._runeList[4] != null) armorLegsR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
             if (equippedItem._runeList.Length == 6)
                 if (equippedItem._runeList[5] != null) armorLegsR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+
+            EquipmentObject equipment = (EquipmentObject)equippedItem.item;
+            if (equipment.baseRune != null)
+            {
+                armorLegsR1.GetComponent<UiButtonClick>().frameLocked = true;
+            }
         }
         if (slot == rightHand || slot == leftHand)
         {
@@ -773,6 +819,8 @@ public class Inventory : MonoBehaviour
             }
         }
         testEquipmentCount++;
+
+        
 
         List<ItemObject> tempList = new List<ItemObject>();
         for (int i = 0; i < equippedItem._runeList.Length; i++)
