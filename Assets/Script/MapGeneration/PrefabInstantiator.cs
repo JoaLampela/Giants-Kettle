@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PrefabInstantiator : MonoBehaviour
 {
-    public void Paint(GameObject brushTarget, Vector3 worldPosition, GameObject prefab)
+    public void Paint(GameObject prefab, Vector3 worldPosition,  Transform targetTrans)
     {
-        Instantiate(prefab, worldPosition, Quaternion.identity);
+        Instantiate(prefab, worldPosition, Quaternion.identity, targetTrans);
     }
 }
