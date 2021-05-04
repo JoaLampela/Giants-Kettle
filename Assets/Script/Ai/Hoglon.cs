@@ -76,7 +76,7 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
             {
                 attacking = true;
                 GetComponent<EntityAbilityManager>().CastAbility(1);
-                StartCoroutine(SetAttackOnCoolDown(6));
+                StartCoroutine(SetAttackOnCoolDown(2));
             }
 
         }
@@ -108,7 +108,7 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
     }
     public void SetAttacking(bool trueOrFalse)
     {
-        StartCoroutine(SetAttackOnCoolDown(0.5f));
+
     }
 
     public IEnumerator SetAttackOnCoolDown(float coolDown)
