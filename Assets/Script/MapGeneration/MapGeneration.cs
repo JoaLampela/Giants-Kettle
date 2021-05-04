@@ -205,7 +205,7 @@ public class MapGeneration : MonoBehaviour
         //GeneratePlants();
 
     }
-    /*
+
     private void OnDrawGizmos()
     {
         for (int x = 0; x < width; x++)
@@ -231,7 +231,7 @@ public class MapGeneration : MonoBehaviour
                 Gizmos.DrawCube(new Vector3(x * 2 - width + 0.5f, y * 2 - height + 0.5f, 0), Vector3.one * 2);
             }
         }
-    }*/
+    }
 
     void AddRoomsToMapNodes(List<Room> allRooms)
     {
