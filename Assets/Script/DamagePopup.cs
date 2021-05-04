@@ -11,7 +11,8 @@ public class DamagePopup : MonoBehaviour
 
     public static DamagePopup Create(Vector3 position, int damageAmount, bool isCriticalHit, bool isTrueDamage)
     {
-        Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, position, Quaternion.identity);
+        Vector2 rand = new Vector2(UnityEngine.Random.Range(0f, 2f), UnityEngine.Random.Range(0f, 2f));
+        Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, (Vector2)position + rand, Quaternion.identity);
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
         damagePopup.Setup(damageAmount, isCriticalHit);
         return damagePopup;

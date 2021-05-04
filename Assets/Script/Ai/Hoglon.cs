@@ -57,7 +57,6 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
             if (canCharge && canAttack && !attacking && !charging && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) > chargeRange)
             {
                 GetComponent<EntityAbilityManager>().CastAbility(2);
-                Debug.Log("charging");
             }
             else if (canAttack && !attacking && !charging && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) < attackRange)
             {

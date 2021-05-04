@@ -84,18 +84,20 @@ public class AbilityEvents : MonoBehaviour
     {
         if(target.GetComponent<EntityStats>())
         {
-            if(target.GetComponent<EntityStats>().team != _abilityCastSource.GetComponent<EntityStats>().team)
+            if (target.GetComponent<EntityStats>().team != _abilityCastSource.GetComponent<EntityStats>().team)
             {
                 if (target.GetComponent<EntityEvents>())
                 {
                     bool isCrit = CalculateIfIsCriticalHit();
                     int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * (damageMultiplier / 100f) * (damageParentMultiplier / 100f));
+                    Debug.Log(gameObject + " base " + baseDamage + " bonus " + bonusFlatDamage + " sourceDmg: " + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage + " multiplier: " + (damageMultiplier / 100f) + " parent multiplier: " + (damageParentMultiplier / 100f));
                     int totaltrueDmg = trueDamage + bonusFlatTrueDamage;
                     if (isCrit) {
                         totalBasicDmg *= 2;
                         totaltrueDmg *= 2;
                     }
                     Damage damage = new Damage(_abilityCastSource, isCrit, totalBasicDmg, totaltrueDmg);
+                    Debug.Log("ability: " + gameObject + " damage: " + damage._damage);
                     target.GetComponent<EntityEvents>().HitThis(damage);
                     DealDamageEvent(damage, target);
                     if(parentProjectile != null)

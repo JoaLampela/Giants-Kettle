@@ -108,7 +108,7 @@ public class Sting2Handed : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("CANNOT AFFORD TO HEAVY STING " + _weapon.currentCooldownAbility1);
+
         }
     }
 

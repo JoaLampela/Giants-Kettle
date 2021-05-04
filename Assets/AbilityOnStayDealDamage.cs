@@ -21,8 +21,10 @@ public class AbilityOnStayDealDamage : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        
         if (!hitTargets.Contains(collision.gameObject))
         {
+            Debug.Log("On stay " + gameObject);
             hitTargets.Add(collision.gameObject);
             _events.DealDamage(collision.gameObject, (int)(baseDamage * damageScaling / 100f), 0);
         }
