@@ -11,6 +11,7 @@ public class Dash : MonoBehaviour, IAbility
     private Vector2 targetPosAtStart;
     private float dashTime = 0.10f;
     private Item dashItemContainer;
+    public Vector2 mouseDirection;
 
 
 
@@ -56,6 +57,7 @@ public class Dash : MonoBehaviour, IAbility
             if (_spellSlot == slot)
             {
                 animator.SetTrigger("Dash");
+                mouseDirection = Input.mousePosition;
                 _entityEvents.Dash();
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 dashItemContainer.currentCooldownAbility1 = dashItemContainer.maxCooldownAbility1;
@@ -71,6 +73,26 @@ public class Dash : MonoBehaviour, IAbility
     private void InstatiateHitBox()
     {
         _entityEvents.OnAnimationTriggerPoint -= InstatiateHitBox;
+
+        Vector2 direction;
+        if (GetComponent<EntityTargetingSystem>())
+        {
+            Vector2 enemyDirection;
+            if (GetComponent<EntityTargetingSystem>().target != null)
+            {
+                enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
+            }
+            else enemyDirection = GameObject.Find("Player").transform.position;
+            direction = (enemyDirection - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        }
+        float angle = Vector2.Angle(Vector2.up, direction);
+        float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
+        Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
+
         GameObject dash = Instantiate(GetComponent<EntityAbilityManager>().dash, gameObject.transform.position, gameObject.transform.rotation);
         dash.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         dash.GetComponent<AbilityEvents>().SetSource(gameObject);

@@ -757,6 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spellSlot: 3
+  mouseDirection: {x: 0, y: 0}
 --- !u!114 &7225429947396374442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,7 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 10
+  healthPerLevel: 20
   healthRegenPerLevel: 30
   physicalDamagePerLevel: 2
   armorPerLevel: 2

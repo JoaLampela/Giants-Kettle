@@ -224,6 +224,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             if (runeTooltipController != null) runeTooltipController.HideToolTip();
             if (eventData.button == PointerEventData.InputButton.Right)
             {
+                Debug.Log("Right Click");
                 if ((int)_type != 0 && _item != null && _type != ItemType.Rune)
                 {
                     playerInventory.Unequip(_item, this);
@@ -264,8 +265,12 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 else
                 {
                     Item temp = _item;
-                    RemoveItemFromslot();
-                    if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
+
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        RemoveItemFromslot();
+                        playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
+                    }
                 }
             }
             else if (eventData.button == PointerEventData.InputButton.Left)

@@ -636,8 +636,12 @@ public class RuneTierListObjects : MonoBehaviour
         RuneObject rune1temp = GetRandomRune();
         rune1.GetComponent<SelectRuneButton>().SetNewRune(rune1temp);
         RuneObject rune2temp = GetRandomRune();
+        while(rune1temp == rune2temp) 
+            rune2temp = GetRandomRune();
         rune2.GetComponent<SelectRuneButton>().SetNewRune(rune2temp);
         RuneObject rune3temp = GetRandomRune();
+        while (rune3temp == rune2temp || rune3temp == rune1temp || (rune3temp.runeType == rune1temp.runeType && rune3temp.runeType == rune2temp.runeType)) 
+            rune3temp = GetRandomRune();
         rune3.GetComponent<SelectRuneButton>().SetNewRune(rune3temp);
     }
 }
