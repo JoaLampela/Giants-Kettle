@@ -53,7 +53,6 @@ public class HoglonSummon : MonoBehaviour, IAbility
         nonProjectile.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         nonProjectile.GetComponent<AbilityEvents>().SetSource(gameObject);
         nonProjectile.GetComponent<AbilityEvents>().UseAbility();
-        playerAnimations.SetAttacking(false);
     }
 
     private void CannotAffordCast(int slot)
