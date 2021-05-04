@@ -59,7 +59,7 @@ public class HoglonBasicAttack : MonoBehaviour, IAbility
 
     private IEnumerator basicAttackCooldownFunction()
     {
-        float trueCooldown = basicAttackCooldown * 100f / (100f + GetComponent<EntityStats>().currentAttackSpeed);
+        float trueCooldown = basicAttackCooldown * 10f / (10f + GetComponent<EntityStats>().currentAttackSpeed);
         Debug.Log("Attack Cooldown " + trueCooldown);
         yield return new WaitForSeconds(trueCooldown);
         Debug.Log("Attack off cooldown");

@@ -10,25 +10,35 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
     public float attackRange;
     public float chargeRange;
     private Rigidbody2D rb;
+    private bool charging;
     private bool attacking;
     private bool canAttack;
     private bool canCharge;
+    private IAbilityTargetPosition targetPositionScript;
     private Animator animator;
     private Vector2 lookDirection;
     private EntityTargetingSystem targetingSystem;
     private EnemyMovementController enemyMovementController;
+    private Vector2 targetPosAtStart;
 
 
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<EntityAbilityManager>().ability1 = GetComponent<HoglonBasicAttack>();
+        GetComponent<EntityAbilityManager>().ability2 = GetComponent<HoglonCharge>();
+
+
+        targetPositionScript = GetComponent<IAbilityTargetPosition>();
         enemyMovementController = GetComponent<EnemyMovementController>();
         rb = GetComponent<Rigidbody2D>();
-        canAttack = true;
-        canCharge = true;
         animator = GetComponent<Animator>();
         targetingSystem = GetComponent<EntityTargetingSystem>();
+        canAttack = true;
+        canCharge = true;
+        charging = false;
+        attacking = false;
+
     }
 
     // Update is called once per frame
@@ -40,19 +50,20 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
             {
                 animator.SetBool("Walking", true);
             }
-            LookToTarget();
-            if (canAttack && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) < attackRange)
+            if (charging)
+                GetComponent<Rigidbody2D>().velocity = targetPosAtStart.normalized * 15;
+            if (!charging)
+                LookToTarget();
+            if (canCharge && canAttack && !attacking && !charging && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) > chargeRange)
+            {
+                GetComponent<EntityAbilityManager>().CastAbility(2);
+                Debug.Log("charging");
+            }
+            else if (canAttack && !attacking && !charging && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) < attackRange)
             {
                 GetComponent<EntityAbilityManager>().CastAbility(1);
+                StartCoroutine(SetAttackOnCoolDown(10));
                 Debug.Log("casting");
-            }
-
-            if (canCharge && Vector2.Distance(targetingSystem.target.transform.position, gameObject.transform.position) < chargeRange)
-            {
-                //GetComponent<EntityAbilityManager>().CastAbility(2);
-                StartCoroutine(SetAttackChargeCoolDown(2));
-                enemyMovementController.Halt(true, 5);
-                Debug.Log("charging");
             }
         }
 
@@ -97,18 +108,33 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
         canCharge = true;
         attacking = false;
         enemyMovementController.SetMoveSlow(false);
-
-        yield return new WaitForSeconds(coolDown);
-        canAttack = true;
+        StartCoroutine(SetAttackOffCoolDown(coolDown));
     }
-    IEnumerator SetAttackChargeCoolDown(float coolDown)
+    public IEnumerator SetChargeOnCoolDown(float coolDown)
     {
+        enemyMovementController.Halt(true);
+        targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+        charging = true;
         canAttack = false;
         canCharge = false;
         attacking = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
+        animator.SetBool("Charging", false);
+
+
+        enemyMovementController.Halt(false);
+        charging = false;
         canAttack = true;
         attacking = false;
+        StartCoroutine(SetChargeOffCoolDown(coolDown));
+    }
+    IEnumerator SetAttackOffCoolDown(float coolDown)
+    {
+        yield return new WaitForSeconds(coolDown);
+        canAttack = true;
+    }
+    IEnumerator SetChargeOffCoolDown(float coolDown)
+    {
         yield return new WaitForSeconds(coolDown);
         canCharge = true;
     }

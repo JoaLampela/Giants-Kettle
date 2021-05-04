@@ -74,6 +74,7 @@ public class EnemyMovementController : MonoBehaviour
     {
         if (useScript)
         {
+            Debug.Log("use eveny movement script");
             if (reachedEndOfPath == false)
             {
                 if (path == null)
@@ -337,14 +338,14 @@ public class EnemyMovementController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        /*
+
         foreach (VectorNode vector in vectorNodes)
         {
             Gizmos.DrawLine(gameObject.transform.position, (vector.ReturnWeightByDirection() + (Vector2)gameObject.transform.position));
             Gizmos.DrawLine(gameObject.transform.position, (debugBestVectorNode.direction * debugBestVectorNode.weight * 2f) + (Vector2)gameObject.transform.position);
 
         }
-        */
+
     }
 
     private class VectorNode
@@ -428,10 +429,9 @@ public class EnemyMovementController : MonoBehaviour
             slowed = false;
         }
     }
-    public void Halt(bool trueOrFalse, float haltSeconds)
+    public void Halt(bool trueOrFalse)
     {
-        if (true)
-            StartCoroutine(SetHalting(haltSeconds));
+        useScript = !trueOrFalse;
     }
 
     public void KnockBack(float distance, GameObject source)
