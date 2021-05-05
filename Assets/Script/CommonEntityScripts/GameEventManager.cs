@@ -52,7 +52,7 @@ public class GameEventManager : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        globalLevel = (int)time / 100 + 1;
+        globalLevel = (int)time / 120 + 1;
         if (combatOn) combatDuration += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible && !pauseMenuOpen)
