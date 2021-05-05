@@ -6,6 +6,9 @@ public class CombatRoomScript : MonoBehaviour
 {
 
     public int waveEnemyAmount = 4;
+    public float additionalEnemiesInWavePerMins = 0.25f;
+    public float additionalWavesPerMins = 0.25f;
+
     public int wavesLeft = 3;
     public List<GameObject> roomEnemies;
     public List<GameObject> spawnPoints;
@@ -13,17 +16,19 @@ public class CombatRoomScript : MonoBehaviour
     public GameEventManager gameEventManager;
     public bool spawnRandomSpawnPoints;
 
+    private int baseWavesLeft;
     private bool activated = false;
     private bool inCombat = false;
 
     private void Start()
     {
         gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
-
+        baseWavesLeft = wavesLeft;
     }
 
     public void StartCombat()
     {
+        wavesLeft = baseWavesLeft + (int)(additionalWavesPerMins * gameEventManager.globalLevel);
         if (!inCombat)
         {
             if (roomEnemies.Count != 0)
@@ -37,7 +42,7 @@ public class CombatRoomScript : MonoBehaviour
                 activated = true;
                 Debug.Log("Starting combat");
                 GetComponent<DoorScript>().CloseDoors();
-                for (int i = 0; i < waveEnemyAmount; i++)
+                for (int i = 0; i < waveEnemyAmount + (int)(additionalEnemiesInWavePerMins * gameEventManager.globalLevel); i++)
                 {
                     int randomSpawnPoint = (int)Mathf.Round(Random.Range(-0.49f, spawnPoints.Count - 0.51f));
                     GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<EnemySpawnRoom>().Spawn();
@@ -83,7 +88,7 @@ public class CombatRoomScript : MonoBehaviour
                     EndCombat();
                 else
                 {
-                    for (int i = 0; i < waveEnemyAmount; i++)
+                    for (int i = 0; i < waveEnemyAmount + (int)(additionalEnemiesInWavePerMins * gameEventManager.globalLevel); i++)
                     {
                         int randomSpawnPoint = (int)Mathf.Round(Random.Range(-0.49f, spawnPoints.Count - 0.51f));
                         GameObject enemy = spawnPoints[randomSpawnPoint].GetComponent<EnemySpawnRoom>().Spawn();

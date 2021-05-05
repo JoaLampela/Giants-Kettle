@@ -404,7 +404,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7051720969466832969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.14, y: 0.381, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7051720968892292084}
@@ -518,6 +518,7 @@ MonoBehaviour:
   currentArmor: 0
   currentAttackSpeed: 0
   isInvisible: 0
+  isInvulnurable: 0
   isInCombat: 0
   isInAction: 0
   isTakingDamage: 0
@@ -549,6 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
 --- !u!114 &7051720969466832975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02d8b54f0a4a97409bd8ba8b1e31e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryLocked: 0
   inventorySlots: []
   equipmentSlots: []
   rightHand: {fileID: 0}
@@ -751,6 +754,7 @@ MonoBehaviour:
   rightHandWeapon: {fileID: 0}
   leftHandWeapon: {fileID: 0}
   trueAttackSpeed: 1
+  trueHasteSpeed: 1
   isBurning: 0
 --- !u!114 &6359173399256699797
 MonoBehaviour:
@@ -791,6 +795,7 @@ MonoBehaviour:
   basicAttackOneHandedSword: {fileID: 0}
   basicAttackTwoHandedSword: {fileID: 0}
   basicAttackStaff: {fileID: 0}
+  block: {fileID: 0}
 --- !u!114 &8698435716602996018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,15 +820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b375f3e06133e4eac4afb0d30763fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testItemObject: {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
-  itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
-  testItemObject2: {fileID: 11400000, guid: 342ec59308d62264bac3df2f9d545065, type: 2}
-  testItemObject3: {fileID: 11400000, guid: 5c0f9b4422f70d043bd66ec513139638, type: 2}
-  testItemObject4: {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
-  testItemObject5: {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
-  testItemObject6: {fileID: 11400000, guid: ea2556c89e9b98b48aac2f74fbd16f53, type: 2}
-  testItemObject7: {fileID: 11400000, guid: bbbfe0d7593f25449a807672790836b3, type: 2}
-  testItemObject8: {fileID: 11400000, guid: e78378b648289e840810bda3f42533a0, type: 2}
 --- !u!114 &6547226303119389737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,6 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spellSlot: 0
+  mouseDirection: {x: 0, y: 0}
 --- !u!1 &7051720969780881987
 GameObject:
   m_ObjectHideFlags: 0

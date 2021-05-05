@@ -57,7 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fb7a34d3ca04b4ea919b925624c67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveEnemyAmount: 8
+  waveEnemyAmount: 4
+  additionalEnemiesInWavePerMins: 0.25
+  additionalWavesPerMins: 0.15
   wavesLeft: 2
   roomEnemies: []
   spawnPoints: []

@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fb7a34d3ca04b4ea919b925624c67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveEnemyAmount: 4
-  wavesLeft: 3
+  waveEnemyAmount: 2
+  additionalEnemiesInWavePerMins: 0.25
+  additionalWavesPerMins: 0.1
+  wavesLeft: 4
   roomEnemies: []
   spawnPoints: []
   gameEventManager: {fileID: 0}

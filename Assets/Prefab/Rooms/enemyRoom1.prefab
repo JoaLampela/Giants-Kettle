@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveEnemyAmount: 1
+  additionalEnemiesInWavePerMins: 0
+  additionalWavesPerMins: 0
   wavesLeft: 0
   roomEnemies: []
   spawnPoints:
