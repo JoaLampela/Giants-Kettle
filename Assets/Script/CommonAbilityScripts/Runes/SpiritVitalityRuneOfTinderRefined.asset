@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: The flames! The beautiful flames!
-  iconSprite: {fileID: 21300000, guid: 55caacca6ebab99468a2961d8ca22d5d, type: 3}
+  iconSprite: {fileID: 21300000, guid: f4642ef77235874439f2ed7164e9500b, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
@@ -22,3 +22,4 @@ MonoBehaviour:
     ResultType: 
   runeTier: 1
   runeType: 4
+  runeEffects: []
