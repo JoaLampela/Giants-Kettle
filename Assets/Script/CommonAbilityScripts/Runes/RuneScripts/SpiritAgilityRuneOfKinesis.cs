@@ -158,30 +158,28 @@ public class SpiritAgilityRuneOfKinesis : MonoBehaviour, IRuneScript
 
     public void Activate()
     {
-        _entity.GetComponent<EntityEvents>().RecoverHealth((duplicateCountArmor + duplicateCountWeapon) * 5);
+        _entity.GetComponent<EntityEvents>().GainShield((duplicateCountArmor + duplicateCountWeapon) * 20);
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onUseAbility += Activate;
     }
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnDash += Activate;
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onUseAbility -= Activate;
     }
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnDash -= Activate;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
+public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -105,17 +105,17 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("PowerRuneOfLeechArmor");
-        _entityEvents.RemoveBuff("PowerRuneOfLeechWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfAnalystArmor");
+        _entityEvents.RemoveBuff("AgilityRuneOfAnalystWeapon");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfLeechArmor", EntityStats.BuffType.PhysicalDamage, duplicateCountArmor * 15);
+            _entityEvents.NewBuff("AgilityRuneOfAnalystArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfLeechWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 15);
+            _entityEvents.NewBuff("AgilityRuneOfAnalystWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
         }
     }
 
@@ -142,8 +142,8 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfLeechArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfLeechWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalystArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalystWeapon");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -156,37 +156,31 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Damage damage, GameObject target)
+    public void Activate(GameObject target, Damage damage)
     {
-        GameObject healOrb = RuneAssets.i.RuneHealOrb;
-        healOrb.GetComponent<AbilityEvents>().SetSource(damage.source);
-
-        healOrb = Instantiate(healOrb, target.transform.position, Quaternion.identity);
-
-        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)((duplicateCountWeapon + duplicateCountArmor) * 0.1f * (damage._damage + damage._trueDamage)));
+        damage._damage *= (int)(0.10f * (duplicateCountArmor + duplicateCountWeapon));
+        target.GetComponent<EntityEvents>().HitThis(damage);
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onDealDamage += Activate;
     }
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnDealCritDamage += Activate;
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onDealDamage -= Activate;
     }
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnDealCritDamage -= Activate;
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {

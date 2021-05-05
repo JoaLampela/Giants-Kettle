@@ -163,8 +163,10 @@ public class AgilityRuneOfBeauty : MonoBehaviour, IRuneScript
 
     public void Activate(GameObject target, Damage damage)
     {
-        damage._damage *= (int)(0.10f * (duplicateCountArmor + duplicateCountWeapon));
-        target.GetComponent<EntityEvents>().HitThis(damage);
+        if(_entity.GetComponent<EntityHealth>().health / _entity.GetComponent<EntityHealth>().maxHealth > 0.90f)
+        {
+            //put in update
+        }
     }
 
     //Subs and Unsubs
@@ -175,7 +177,7 @@ public class AgilityRuneOfBeauty : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnDealCritDamage += Activate;
+
     }
 
     public void UnsubscribeAbility()
@@ -185,7 +187,7 @@ public class AgilityRuneOfBeauty : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnDealCritDamage -= Activate;
+
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {

@@ -20,4 +20,7 @@ public class RuneAssets: MonoBehaviour
     public GameObject RuneOrbWeaponProjectile;
     public GameObject RuneExplosion;
     public GameObject RuneThunder;
+    public GameObject RuneHealing;
+    public GameObject RuneStun;
+    public GameObject RuneHealOrb;
 }

@@ -21,7 +21,7 @@ public class AbilityOnStayActivate : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
+        Debug.Log("Caster: " + _events._abilityCastSource.GetComponent<EntityStats>().team);
 
         if(team == TriggerTargetTeam.Caster)
         {

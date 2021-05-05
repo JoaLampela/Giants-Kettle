@@ -65395,9 +65395,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4524aab1e2fb61841a4b9cb7d313e397, type: 2}
   spiritVitalityRunesTier3:
   - {fileID: 11400000, guid: 45466d03f02f8cf42b8880353b14f56b, type: 2}
-  spiritAgilityRunesTier1: []
-  spiritAgilityRunesTier2: []
-  spiritAgilityRunesTier3: []
+  spiritAgilityRunesTier1:
+  - {fileID: 11400000, guid: 59de74431e2c7004a9fd6190a0ae8377, type: 2}
+  spiritAgilityRunesTier2:
+  - {fileID: 11400000, guid: 671bbc53c8d3ed742b321d332cefcaae, type: 2}
+  spiritAgilityRunesTier3:
+  - {fileID: 11400000, guid: bcce443b0dea4e94b96ca5e1afc0884e, type: 2}
   spiritPowerRunesTier1:
   - {fileID: 11400000, guid: bd0853c20a0f5964681bf0b614d9dc5a, type: 2}
   spiritPowerRunesTier2:
