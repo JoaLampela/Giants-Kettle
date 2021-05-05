@@ -13,8 +13,10 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
     [SerializeField] private GameObject rightHandWeapon;
     [SerializeField] private GameObject leftHandWeapon;
     private EntityStats stats;
+    private EntityEvents entityEvents;
 
     public float trueAttackSpeed = 1;
+    public float trueHasteSpeed = 1;
     public bool isBurning = false;
 
     private Rigidbody2D playerRB;
@@ -31,14 +33,19 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
     private bool attackOnCooldown;
 
 
+    private void Awake()
+    {
+        entityEvents = GetComponent<EntityEvents>();
+        playerRB = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        stats = GetComponent<EntityStats>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody2D>();
+        Subscribe();
         attackOnCooldown = false;
-        animator = GetComponent<Animator>();
-        stats = GetComponent<EntityStats>();
-        animator.SetFloat("TrueAttackSpeed", trueAttackSpeed);
+        UpdateTrueAttackAndHasteSpeed();
     }
 
     // Update is called once per frame
@@ -52,9 +59,12 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
         {
             LookDirectionUpdate();
         }
-        trueAttackSpeed = stats.currentAttackSpeed / 100;
     }
 
+    private void OnDisable()
+    {
+        Unsubscribe();
+    }
 
 
     private void LookDirectionUpdate()
@@ -209,5 +219,22 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
         attackOnCooldown = true;
         yield return new WaitForSeconds(CoolDown);
         attackOnCooldown = false;
+    }
+
+    private void UpdateTrueAttackAndHasteSpeed()
+    {
+        trueHasteSpeed = (100f + GetComponent<EntityStats>().currentSpellHaste) / 100f;
+        animator.SetFloat("TrueHasteSpeed", trueHasteSpeed);
+        trueAttackSpeed = (100f + GetComponent<EntityStats>().currentAttackSpeed) / 100f;
+        animator.SetFloat("TrueAttackSpeed", trueAttackSpeed);
+    }
+    private void Subscribe()
+    {
+        entityEvents.OnStatChange += UpdateTrueAttackAndHasteSpeed;
+    }
+
+    public void Unsubscribe()
+    {
+        entityEvents.OnStatChange -= UpdateTrueAttackAndHasteSpeed;
     }
 }

@@ -158,6 +158,9 @@ public class SpiritRuneOfHealing : MonoBehaviour, IRuneScript
 
     public void Activate()
     {
+        GameObject healing = RuneAssets.i.RuneHealing;
+
+        healing = Instantiate(healing, gameObject.transform.position, Quaternion.identity);
         _entity.GetComponent<EntityEvents>().RecoverHealth((duplicateCountArmor + duplicateCountWeapon) * 5);
     }
 

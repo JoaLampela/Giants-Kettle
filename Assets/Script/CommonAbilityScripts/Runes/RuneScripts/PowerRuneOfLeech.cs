@@ -158,6 +158,11 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage, GameObject target)
     {
+        GameObject healOrb = RuneAssets.i.RuneHealOrb;
+        healOrb.GetComponent<AbilityEvents>().SetSource(damage.source);
+
+        healOrb = Instantiate(healOrb, target.transform.position, Quaternion.identity);
+
         damage.source.GetComponent<EntityEvents>().RecoverHealth((int)((duplicateCountWeapon + duplicateCountArmor) * 0.1f * (damage._damage + damage._trueDamage)));
     }
 

@@ -171,6 +171,7 @@ public class EntityHealth : MonoBehaviour
             {
                 events.Die(damgeContainer.source);
                 damgeContainer.source.GetComponent<EntityEvents>().KillEnemy(gameObject);
+                if (damgeContainer.source == GameObject.Find("FireDispenser")) GameObject.FindGameObjectWithTag("Player").GetComponent<EntityEvents>().KillEnemy(gameObject);
             }
             else health -= damage;
         }

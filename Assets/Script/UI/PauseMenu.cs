@@ -10,10 +10,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject gameOverScreen;
     private EntityEvents events;
+    private GameEventManager gameEventManager;
 
 
     private void Awake()
     {
+        gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
         events = GameObject.FindGameObjectWithTag("Player").GetComponent<EntityEvents>();
     }
 
@@ -25,7 +27,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameEventManager.playerLevelUpScreenVisible)
         {
             if (gameOverScreen.activeSelf)
             {
@@ -44,21 +46,23 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        gameEventManager.pauseMenuOpen = false;
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        gameEventManager.ContinueTime();
         GamePaused = false;
     }
 
     void Pause()
     {
+        gameEventManager.pauseMenuOpen = true;
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        gameEventManager.StopTime();
         GamePaused = true;
     }
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
+        gameEventManager.ContinueTime();
         GamePaused = false;
         SceneManager.LoadScene(0);
     }
@@ -71,7 +75,7 @@ public class PauseMenu : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0;
+        gameEventManager.StopTime();
         GameObject.FindGameObjectWithTag("PlayerUI").SetActive(false);
         GameObject.FindGameObjectWithTag("PauseMenu").SetActive(false);
         GameObject.FindGameObjectWithTag("GameOverScreen").SetActive(true);

@@ -47,3 +47,6 @@ MonoBehaviour:
   RuneOrbWeaponProjectile: {fileID: 6274655148876385004, guid: 83b968a9eddd3e44a97e83d03de8aa3e, type: 3}
   RuneExplosion: {fileID: 4718739796153810321, guid: 7e238401dfc79b842987562e87e1c154, type: 3}
   RuneThunder: {fileID: 6662768882927669585, guid: 959577799e901c14f8fe933acad8af94, type: 3}
+  RuneHealing: {fileID: 5309432768513360154, guid: 344d67b6241731a41b01fd337790379d, type: 3}
+  RuneStun: {fileID: 3510734858974128622, guid: 3cfe27352a005714b902ee3df9fcd4f4, type: 3}
+  RuneHealOrb: {fileID: 790950613734426930, guid: e9aeb9675a6748d4fbe3711afdd4bf3c, type: 3}
