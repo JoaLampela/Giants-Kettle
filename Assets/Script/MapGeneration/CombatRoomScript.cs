@@ -28,7 +28,6 @@ public class CombatRoomScript : MonoBehaviour
 
     public void StartCombat()
     {
-        wavesLeft = baseWavesLeft + (int)(additionalWavesPerMins * gameEventManager.globalLevel);
         if (!inCombat)
         {
             if (roomEnemies.Count != 0)
@@ -38,6 +37,7 @@ public class CombatRoomScript : MonoBehaviour
             }
             if (!activated && !inCombat)
             {
+                wavesLeft = baseWavesLeft + (int)(additionalWavesPerMins * gameEventManager.globalLevel);
                 inCombat = true;
                 activated = true;
                 Debug.Log("Starting combat");
