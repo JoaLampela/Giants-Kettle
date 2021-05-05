@@ -26,7 +26,8 @@ public class AbilityHomeToCaster : MonoBehaviour
 
     private void Update()
     {
-        Vector2 dir = GetComponent<AbilityEvents>()._targetPosition - (Vector2)transform.position;
+        Debug.Log(transform.position);
+        Vector2 dir = (Vector2)GetComponent<AbilityEvents>()._abilityCastSource.transform.position - (Vector2)transform.position;
         if (isAccelerating)
         {
             if (_velocity > _velocityMax)

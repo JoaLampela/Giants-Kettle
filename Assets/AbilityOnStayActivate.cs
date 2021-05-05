@@ -46,5 +46,32 @@ public class AbilityOnStayActivate : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Caster: " + _events._abilityCastSource.GetComponent<EntityStats>().team);
+
+        if (team == TriggerTargetTeam.Caster)
+        {
+            if (collision.GetComponent<EntityStats>())
+            {
+                if (_events._abilityCastSource.GetComponent<EntityStats>().team == collision.GetComponent<EntityStats>().team) Activate();
+            }
+        }
+        if (team == TriggerTargetTeam.Enemy)
+        {
+            if (collision.GetComponent<EntityStats>())
+            {
+                if (_events._abilityCastSource.GetComponent<EntityStats>().team != collision.GetComponent<EntityStats>().team) Activate();
+            }
+        }
+        if (team == TriggerTargetTeam.Neutral)
+        {
+            if (collision.GetComponent<EntityStats>())
+            {
+                Activate();
+            }
+        }
+    }
+
 
 }

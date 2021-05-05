@@ -1071,9 +1071,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   team: 1
-  baseHealth: 100
+  baseHealth: 75
   baseSpirit: 0
-  baseHealthRegen: 60
+  baseHealthRegen: 0
   baseSpiritRegen: 0
   baseSpeed: 1
   baseSlow: 0
@@ -1183,9 +1183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 75
-  healthRegenPerLevel: 22
-  physicalDamagePerLevel: 10
+  healthPerLevel: 60
+  healthRegenPerLevel: 10
+  physicalDamagePerLevel: 8
   armorPerLevel: 6
 --- !u!96 &9009737797232915889
 TrailRenderer:

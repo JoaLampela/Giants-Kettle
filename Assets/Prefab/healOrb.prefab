@@ -184,9 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0555f36045146324cbc0b531b8595b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velocityStart: 5
-  _velocityMax: 50
-  _acceleration: 10
+  _velocityStart: 3
+  _velocityMax: 8
+  _acceleration: 8
   _exponentialAcceleration: 10
   _travelType: 2
 --- !u!114 &5356652704703208971
