@@ -37,46 +37,52 @@ public class HoglonCharge : MonoBehaviour, IAbility
         if (_spellSlot == slot)
         {
             targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
-            animator.SetBool("Charging", true);
+
+            animator.SetTrigger("PreCharge");
             SoundManager.PlaySound(SoundManager.Sound.StingLeft, transform.position);
 
-            Vector2 direction;
-            if (GetComponent<EntityTargetingSystem>())
+            StartCoroutine(Charge());
+        }
+    }
+    IEnumerator Charge()
+    {
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Charging", true);
+        Vector2 direction;
+        if (GetComponent<EntityTargetingSystem>())
+        {
+            Vector2 enemyDirection;
+            if (GetComponent<EntityTargetingSystem>().target != null)
             {
-                Vector2 enemyDirection;
-                if (GetComponent<EntityTargetingSystem>().target != null)
-                {
-                    enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
-                }
-                else
-                {
-                    if (GameObject.FindGameObjectWithTag("Player"))
-                    {
-                        enemyDirection = GameObject.FindGameObjectWithTag("Player").transform.position;
-                    }
-                    else
-                    {
-                        enemyDirection = new Vector2(0, 0);
-                    }
-                }
-                direction = (enemyDirection - (Vector2)transform.position).normalized;
+                enemyDirection = GetComponent<EntityTargetingSystem>().target.transform.position;
             }
             else
             {
-                Vector2 mouseDirection = Input.mousePosition;
-                direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+                if (GameObject.FindGameObjectWithTag("Player"))
+                {
+                    enemyDirection = GameObject.FindGameObjectWithTag("Player").transform.position;
+                }
+                else
+                {
+                    enemyDirection = new Vector2(0, 0);
+                }
             }
-            float angle = Vector2.Angle(Vector2.up, direction);
-            float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
-            Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
-
-            GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().heavySting, direction + GetComponent<CircleCollider2D>().offset, rotation);
-            sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
-            sting.GetComponent<AbilityEvents>().SetSource(gameObject);
-            sting.GetComponent<AbilityEvents>().UseAbility();
+            direction = (enemyDirection - (Vector2)transform.position).normalized;
         }
-    }
+        else
+        {
+            Vector2 mouseDirection = Input.mousePosition;
+            direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+        }
+        float angle = Vector2.Angle(Vector2.up, direction);
+        float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));
+        Quaternion rotation = Quaternion.Euler(0, 0, angle * sign);
 
+        GameObject sting = Instantiate(GetComponent<EntityAbilityManager>().heavySting, direction + GetComponent<CircleCollider2D>().offset, rotation);
+        sting.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
+        sting.GetComponent<AbilityEvents>().SetSource(gameObject);
+        sting.GetComponent<AbilityEvents>().UseAbility();
+    }
 
     private void CannotAffordCast(int slot)
     {
