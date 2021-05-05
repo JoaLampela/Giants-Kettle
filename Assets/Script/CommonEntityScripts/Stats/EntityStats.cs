@@ -116,7 +116,7 @@ public class EntityStats : MonoBehaviour
 
     public void UpdateMaxHealth()
     {
-        currentMaxHealth = (int)((baseHealth  * totalHealthMultiplier / 100f));
+        currentMaxHealth = (int)((baseHealth * totalHealthMultiplier / 100f));
         events.SetHealth(currentMaxHealth);
     }
     public void UpdateMaxSpirit()
@@ -125,15 +125,15 @@ public class EntityStats : MonoBehaviour
     }
     public void UpdateHealthRegen()
     {
-        currentHealthRegen = (int)((baseHealthRegen *  totalHealthRegenMultiplier / 100f));
+        currentHealthRegen = (int)((baseHealthRegen * totalHealthRegenMultiplier / 100f));
     }
     public void UpdateSpiritRegen()
     {
-        currentSpiritRegen = (int)((baseSpiritRegen *  totalSpiritRegenMultiplier / 100f));
+        currentSpiritRegen = (int)((baseSpiritRegen * totalSpiritRegenMultiplier / 100f));
     }
     public void UpdateSpeed()
     {
-        currentSpeed = (int)(((baseSpeed - baseSlow) *  totalSpeedMultiplier / 10f));
+        currentSpeed = (int)(((baseSpeed - baseSlow) * totalSpeedMultiplier / 10f));
         if (currentSpeed < 0) currentSpeed = 0;
     }
     public void UpdateTenacity()
@@ -154,11 +154,11 @@ public class EntityStats : MonoBehaviour
     }
     public void UpdateSpellHaste()
     {
-        currentSpellHaste = (int)((baseSpellHaste *  totalSpellHasteMultiplayer / 100f));
+        currentSpellHaste = (int)((baseSpellHaste * totalSpellHasteMultiplayer / 100f));
     }
     public void UpdateArmor()
     {
-        currentArmor = (int)((baseArmor *  totalArmorMultiplier / 100f));
+        currentArmor = (int)((baseArmor * totalArmorMultiplier / 100f));
     }
 
     public enum BuffType
@@ -318,6 +318,7 @@ public class EntityStats : MonoBehaviour
                 }
                 break;
         }
-    }                                                                                  
+        events.StatChange();
+    }
 }
 
