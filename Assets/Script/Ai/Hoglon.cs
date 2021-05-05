@@ -10,6 +10,7 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
     public float attackRange;
     public float chargeRange;
     private Rigidbody2D rb;
+    private bool preCharging;
     private bool charging;
     private bool attacking;
     private bool canAttack;
@@ -41,6 +42,7 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
         canAttack = true;
         canCharge = true;
         canSummon = true;
+        preCharging = false;
         charging = false;
         attacking = false;
 
@@ -55,6 +57,8 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
             {
                 animator.SetBool("Walking", true);
             }
+            if (preCharging)
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             if (charging)
                 GetComponent<Rigidbody2D>().velocity = targetPosAtStart.normalized * 15;
             if (!charging)
@@ -135,10 +139,13 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
     public IEnumerator SetChargeOnCoolDown(float coolDown)
     {
         enemyMovementController.Halt(true);
-        targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
-        charging = true;
         canCharge = false;
+        preCharging = true;
         attacking = true;
+        yield return new WaitForSeconds(1);
+        targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
+        preCharging = false;
+        charging = true;
         yield return new WaitForSeconds(2f);
         animator.SetBool("Charging", false);
         enemyMovementController.Halt(false);

@@ -429,7 +429,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
-  baseSpeed: 2
+  baseSpeed: 4
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 30
@@ -604,7 +604,7 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 3
   reachedEndOfPath: 0
-  entitySpeed: 7
+  entitySpeed: 8
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
