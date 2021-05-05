@@ -44,6 +44,8 @@ public class GameEventManager : MonoBehaviour
     public GameObject inventory;
     public bool inventoryOpen = false;
 
+    public bool pauseMenuOpen = false;
+
     public bool castingLocked = false;
     private bool runesRandomized = false;
 
@@ -53,27 +55,29 @@ public class GameEventManager : MonoBehaviour
         globalLevel = (int)time / 100 + 1;
         if (combatOn) combatDuration += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible)
+        if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible && !pauseMenuOpen)
         {
             ToggleRuneSelectionView();
+            StopTime();
         }
-        else if((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible)
+        else if((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible && !pauseMenuOpen)
         {
             ToggleRuneSelectionView();
+            ContinueTime();
         }
         levelPointsText.text = playerLevelUpPoints.ToString();
         levelPointsText2LeftCorner.text = playerLevelUpPoints.ToString();
 
         UpdateGameTimer();
 
-        if(Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen)
+        if(Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen && !pauseMenuOpen)
         {
             inventoryOpen = true;
             inventory.GetComponent<CanvasGroup>().alpha = 1;
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = true;
             inventory.GetComponent<CanvasGroup>().interactable = true;
         }
-        else if(Input.GetKeyDown(KeyCode.Tab) && inventoryOpen)
+        else if(Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen)
         {
             inventoryOpen = false;
             inventory.GetComponent<CanvasGroup>().alpha = 0;
@@ -236,5 +240,15 @@ public class GameEventManager : MonoBehaviour
             Destroy(enemy);
         }
         enemies.Clear();
+    }
+
+    public void StopTime()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void ContinueTime()
+    {
+        Time.timeScale = 1f;
     }
 }
