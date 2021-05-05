@@ -111,6 +111,13 @@ public class EntityEvents : MonoBehaviour
 
     public event Action OnDash;
 
+    public event Action OnStatChange;
+
+    public void StatChange()
+    {
+        OnStatChange?.Invoke();
+    }
+
     public void Dash()
     {
         OnDash?.Invoke();
