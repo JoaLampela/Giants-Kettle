@@ -28,4 +28,14 @@ public class GameAssets : MonoBehaviour
         public SoundManager.Sound sound;
         public AudioClip audioClip;
     }
+
+
+    public MusicAudioClip[] MusicAudioClipArray;
+
+    [System.Serializable]
+    public class MusicAudioClip
+    {
+        public MusicManager.Sound music;
+        public AudioClip musicClip;
+    }
 }
