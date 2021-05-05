@@ -13,9 +13,12 @@ public class ItemTierListScript : MonoBehaviour
     public ItemObject[] tier4Items; //items with 4 runeSlots
     public ItemObject[] tier5Items; //items with 5 runeSlots
     public ItemObject[] tier6Items; //items with 6 runeSlots
+    public ItemObject[] tier100Items; //mythic items
 
     public ItemObject GiveRandomItem(int tempTier)
     {
+        if (Random.Range(1, 100) > 95) return tier1Items[Random.Range(0, tier100Items.Length)];
+
         int count = 0;
         for(int i = 0; i < tempTier; i ++)
         {
