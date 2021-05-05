@@ -16,18 +16,19 @@ public class ItemTierListScript : MonoBehaviour
 
     public ItemObject GiveRandomItem(int tempTier)
     {
-        int tier = Random.Range(1, tempTier);
-        Debug.Log(tier);
-        return tier switch
+        int count = 0;
+        for(int i = 0; i < tempTier; i ++)
         {
-            0 => tier0Items[Random.Range(0, tier0Items.Length)],
-            1 => tier1Items[Random.Range(0, tier1Items.Length)],
-            2 => tier2Items[Random.Range(0, tier2Items.Length)],
-            3 => tier3Items[Random.Range(0, tier3Items.Length)],
-            4 => tier4Items[Random.Range(0, tier4Items.Length)],
-            5 => tier5Items[Random.Range(0, tier5Items.Length)],
-            6 => tier6Items[Random.Range(0, tier6Items.Length)],
-            _ => tier6Items[Random.Range(0, tier0Items.Length)],
-        };
+            count += i;
+        }
+
+        int tier = Random.Range(1, count);
+        if (tier > 15) return tier6Items[Random.Range(0, tier6Items.Length)];
+        else if (tier > 10) return tier5Items[Random.Range(0, tier5Items.Length)];
+        else if (tier > 6) return tier4Items[Random.Range(0, tier4Items.Length)];
+        else if (tier > 3) return tier3Items[Random.Range(0, tier3Items.Length)];
+        else if (tier > 1) return tier2Items[Random.Range(0, tier2Items.Length)];
+        else if (tier > 0) return tier1Items[Random.Range(0, tier1Items.Length)];
+        else return tier1Items[Random.Range(0, tier1Items.Length)];
     }
 }
