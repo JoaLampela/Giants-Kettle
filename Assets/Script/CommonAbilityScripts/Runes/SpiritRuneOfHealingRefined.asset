@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
-  m_Name: SpiritRuneOfHealing 1
+  m_Name: SpiritRuneOfHealingRefined
   m_EditorClassIdentifier: 
   type: 6
   description: Heal on ability cast
