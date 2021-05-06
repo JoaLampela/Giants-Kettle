@@ -18,9 +18,9 @@ GameObject:
   - component: {fileID: 4044172290517584007}
   - component: {fileID: 4942973330688338955}
   - component: {fileID: -1727245465903357301}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: healOrb
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7028140934261148450}
   - component: {fileID: 8215336987831699482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shock_wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 9085617484426119063}
   - component: {fileID: 7634239392540613928}
   - component: {fileID: 6356468736832201357}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5184,7 +5184,7 @@ GameObject:
   - component: {fileID: 1776989649079658125}
   - component: {fileID: 2036419857119764356}
   - component: {fileID: 648208528000947578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

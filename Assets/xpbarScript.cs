@@ -39,20 +39,25 @@ public class xpbarScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Kill(GameObject enemy)
     {
+        int xpGain = (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f);
+        if (enemy.GetComponent<EntityStats>().entityName == "Skelebro") xpGain = 1;
+        {
+
+        }
         if(xpGainOnKill > 0)
-            XpPopup.Create(player.transform.position, (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f) + xpGainOnKill);
+            XpPopup.Create(player.transform.position, xpGain+ xpGainOnKill);
 
         Debug.Log("Kill xp");
-        if(currentXp + (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f) >= xpReqwuirement)
+        if(currentXp + xpGain >= xpReqwuirement)
         {
-            int leftOver = (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f) - xpReqwuirement + currentXp;
+            int leftOver = xpGain - xpReqwuirement + currentXp;
             player.GetComponent<EntityStats>().level++;
             currentXp = 0;
             xpReqwuirement += xpRequirementGrowth;
             currentXp += leftOver;
         }
         else
-            currentXp += (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f);
+            currentXp += xpGain;
 
 
         if (currentXp + xpGainOnKill >= xpReqwuirement)

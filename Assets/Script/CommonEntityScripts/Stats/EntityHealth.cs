@@ -129,6 +129,7 @@ public class EntityHealth : MonoBehaviour
         {
             if (damage._damage > 0) events.PhysicalDamageTaken(damage._damage);
             TakeDamage((int)(damage._damage * GetDamageReduction()), damage);
+            
         }
         else
         {
@@ -148,6 +149,7 @@ public class EntityHealth : MonoBehaviour
     {
         if(damgeContainer._damage > 0) DamagePopup.Create(transform.position, damage, damgeContainer._isCriticalHit, false);
         if(damgeContainer._trueDamage > 0) DamagePopup.Create(transform.position, damgeContainer._trueDamage, damgeContainer._isCriticalHit, true);
+        if (damgeContainer._isCriticalHit) damgeContainer.source.GetComponent<EntityEvents>().DealCritDamage(gameObject, damgeContainer);
         events.LoseHealth(damage);
         if(stats.currentShield > 0)
         {
