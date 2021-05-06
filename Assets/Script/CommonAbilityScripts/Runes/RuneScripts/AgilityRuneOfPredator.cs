@@ -13,6 +13,7 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
     private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
+    private int stackCount;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -105,17 +106,17 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfAnalystArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfAnalystWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfPredatorArmor");
+        _entityEvents.RemoveBuff("AgilityRuneOfPredatorWeapon");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfAnalystArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
+            _entityEvents.NewBuff("AgilityRuneOfPredatorArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfAnalystWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("AgilityRuneOfPredatorWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
         }
     }
 
@@ -131,6 +132,7 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
         {
             SubscribeAbility();
         }
+        stackCount = 0;
     }
 
     private void Awake()
@@ -142,8 +144,8 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalystArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalystWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorWeapon");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -158,8 +160,15 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
     public void Activate(GameObject target, Damage damage)
     {
-        damage._damage *= (int)(0.10f * (duplicateCountArmor + duplicateCountWeapon));
-        target.GetComponent<EntityEvents>().HitThis(damage);
+        stackCount++;
+        BuffStackHandler();
+        _entityEvents.NewBuff("AgilityRuneOfPredatorBonus", EntityStats.BuffType.AttackSpeed, (int)(stackCount * ((duplicateCountArmor + duplicateCountWeapon) * 15)), 3.0f);
+    }
+
+    private IEnumerator BuffStackHandler()
+    {
+        yield return new WaitForSeconds(3.0f);
+        stackCount--;
     }
 
     //Subs and Unsubs
