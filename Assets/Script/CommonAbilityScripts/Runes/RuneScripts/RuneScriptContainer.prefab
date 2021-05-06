@@ -39,6 +39,13 @@ GameObject:
   - component: {fileID: 1359847416026172019}
   - component: {fileID: -35340656535352327}
   - component: {fileID: 1603236694271360636}
+  - component: {fileID: -9125609408566145361}
+  - component: {fileID: 6891475975860513836}
+  - component: {fileID: -437477329377246300}
+  - component: {fileID: 8061050957765894555}
+  - component: {fileID: -153932670715432398}
+  - component: {fileID: -3324598916303802936}
+  - component: {fileID: -7031609109326448776}
   m_Layer: 0
   m_Name: RuneScriptContainer
   m_TagString: Untagged
@@ -534,6 +541,118 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6633f68033185824788a720e01df0c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &-9125609408566145361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ff706d7c44bad4594c8d3fdd704d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &6891475975860513836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b2cd832bead624dbfa7007d9309caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &-437477329377246300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ed1fdb5ca32f2439b6c2d61a4c2e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &8061050957765894555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91936753ca638bb4d952277ad08cf989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &-153932670715432398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14faa9515a9952f4782b76255745e5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &-3324598916303802936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7aa47cf5c628e44db559ee794255c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &-7031609109326448776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35119f22785cd3841bbf0dd921168bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duplicateCountWeapon: 0

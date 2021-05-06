@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
-  m_Name: VitalityRuneOfRecoveryPerfected
+  m_Name: PowerRuneOfExecutionBasic
   m_EditorClassIdentifier: 
   type: 6
-  description: Gain health regeneration on getting hit
-  iconSprite: {fileID: 21300000, guid: 5ce0ae80a68f5444e8674af428ea8ecd, type: 3}
+  description: Execute low health enemies
+  iconSprite: {fileID: 21300000, guid: 1047bab2228cf2446b47edf01d1d4baa, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: 1603236694271360636, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ObjectField: {fileID: 6891475975860513836, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
-  runeTier: 2
-  runeType: 1
+  runeTier: 0
+  runeType: 3
   runeEffects: []

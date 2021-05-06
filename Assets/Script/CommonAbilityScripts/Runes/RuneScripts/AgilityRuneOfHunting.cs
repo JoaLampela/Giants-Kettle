@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
+public class AgilityRuneOfHunting : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -13,8 +13,6 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
     private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
-    private EntityHealth health;
-    private bool redundancyCheck;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -107,17 +105,17 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyArmor");
-        _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfHuntingArmor");
+        _entityEvents.RemoveBuff("AgilityRuneOfHuntingWeapon");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
+            _entityEvents.NewBuff("AgilityRuneOfHuntingArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("AgilityRuneOfHuntingWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
         }
     }
 
@@ -127,18 +125,11 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();
-            health = _entity.GetComponent<EntityHealth>();
-            redundancyCheck = true;
         }
 
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-
-            if(_entity.GetComponent<EntityHealth>().health >= _entity.GetComponent<EntityStats>().currentMaxHealth)
-            {
-                _abilityEvents.damageMultiplier *= (int)((duplicateCountArmor + duplicateCountWeapon) * 1.5f);
-            }
         }
     }
 
@@ -151,9 +142,8 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyWeapon");
-        if(_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyBonus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHuntingArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHuntingWeapon");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -166,27 +156,13 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
         }
     }
 
-    private void Update()
+    public void Activate(Damage damage, GameObject target)
     {
-        if(health.health / health.maxHealth >= 1.00f - (duplicateCountArmor + duplicateCountWeapon) * 0.05f)
+        if (target.GetComponent<EntityHealth>().health == target.GetComponent<EntityHealth>().maxHealth)
         {
-            if(redundancyCheck)
-            {
-                Activate();
-            }
+            Damage dmg = new Damage(gameObject, false, 0, (int)(damage._damage * (duplicateCountArmor + duplicateCountWeapon) * 0.10f));
+            target.GetComponent<EntityEvents>().HitThis(dmg);
         }
-        else
-        {
-            _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyBonus");
-            redundancyCheck = true;
-        }
-    }
-
-    public void Activate()
-    {
-        _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyBonus");
-        _entityEvents.NewBuff("AgilityPowerRuneOfBeautyBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 20);
-        redundancyCheck = false;
     }
 
     //Subs and Unsubs
@@ -197,7 +173,7 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnHitEnemy += Activate;
     }
 
     public void UnsubscribeAbility()
@@ -207,7 +183,7 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnHitEnemy -= Activate;
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
