@@ -159,8 +159,9 @@ public class VitalityRuneOfStagger : MonoBehaviour, IRuneScript
     public void ActivateArmorEffect(Damage damage)
     {
         damage.source.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerArmorBonus", EntityStats.BuffType.Stunned, 1, 0.5f);
+
         GameObject stunEffect = RuneAssets.i.RuneStun;
-        stunEffect = Instantiate(stunEffect, damage.source.transform.position, Quaternion.identity);
+        stunEffect = Instantiate(stunEffect, damage.source.transform.position, Quaternion.identity, damage.source.transform);
         Destroy(stunEffect, 0.5f);
     }
 
@@ -171,7 +172,7 @@ public class VitalityRuneOfStagger : MonoBehaviour, IRuneScript
             target.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerWeaponBonus", EntityStats.BuffType.Stunned, 1, 1.0f);
             
             GameObject stunEffect = RuneAssets.i.RuneStun;
-            stunEffect = Instantiate(stunEffect, target.transform.position, Quaternion.identity);
+            stunEffect = Instantiate(stunEffect, target.transform.position, Quaternion.identity, target.transform);
             Destroy(stunEffect, 1.0f);
         }
     }
