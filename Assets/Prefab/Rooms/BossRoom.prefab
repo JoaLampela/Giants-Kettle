@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveEnemyAmount: 0
+  additionalEnemiesInWavePerMins: 0.25
+  additionalWavesPerMins: 0.25
   wavesLeft: 0
   roomEnemies:
   - {fileID: 6759122003657263831}
@@ -220,6 +222,10 @@ PrefabInstance:
     - target: {fileID: 9123535486604011077, guid: 917fbb54f21a383408cae77c0b409254, type: 3}
       propertyPath: m_Name
       value: Hoglon
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123535486604011077, guid: 917fbb54f21a383408cae77c0b409254, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 917fbb54f21a383408cae77c0b409254, type: 3}

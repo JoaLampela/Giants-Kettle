@@ -33,7 +33,11 @@ public class CombatRoomScript : MonoBehaviour
             if (roomEnemies.Count != 0)
             {
                 foreach (GameObject enemy in roomEnemies)
+                {
+                    enemy.SetActive(true);
                     enemy.GetComponent<EntityEvents>().OnDie += DeleteEnemyFromList;
+                }
+
             }
             if (!activated && !inCombat)
             {
