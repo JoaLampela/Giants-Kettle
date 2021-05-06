@@ -105,17 +105,25 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismArmor");
-        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismWeapon");
+        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismAttackSpeed");
+        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismRegen");
+        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismArmorBonus");
+        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismWeaponBonus");
+
+        if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        {
+            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismRegen", EntityStats.BuffType.HealthRegen, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        }
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
+            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismArmorBonus", EntityStats.BuffType.HealthRegen, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismWeaponBonus", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
         }
     }
 
@@ -142,8 +150,10 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismRegen");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismArmorBonus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismWeaponBonus");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

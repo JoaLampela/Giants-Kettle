@@ -111,7 +111,7 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfHawkeyeArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
+            _entityEvents.NewBuff("AgilityRuneOfHawkeyeArmor", EntityStats.BuffType.SpeedMultiplier, duplicateCountArmor * 5);
         }
 
         if (duplicateCountWeapon != 0)

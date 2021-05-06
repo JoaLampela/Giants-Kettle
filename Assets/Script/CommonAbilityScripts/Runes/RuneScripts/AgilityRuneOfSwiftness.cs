@@ -110,12 +110,12 @@ public class AgilityRuneOfSwiftness : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfSwiftnessArmor", EntityStats.BuffType.AttackSpeed, duplicateCountArmor * 30);
+            _entityEvents.NewBuff("AgilityRuneOfSwiftnessArmor", EntityStats.BuffType.AttackSpeed, duplicateCountArmor * 25);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfSwiftnessWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 30);
+            _entityEvents.NewBuff("AgilityRuneOfSwiftnessWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 25);
         }
     }
 
