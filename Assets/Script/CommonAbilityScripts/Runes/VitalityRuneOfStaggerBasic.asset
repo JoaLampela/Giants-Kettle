@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
-  m_Name: AgilityRuneOfPredatorRefined
+  m_Name: VitalityRuneOfStaggerBasic
   m_EditorClassIdentifier: 
   type: 6
-  description: Crits grant attack speed
-  iconSprite: {fileID: 21300000, guid: 58b0cdad5f8d21041b9398334658e23e, type: 3}
+  description: Chance to stun on hit
+  iconSprite: {fileID: 21300000, guid: fba22eed17cf41d459e718e3dc3a722f, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: 7923805670808953868, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ObjectField: {fileID: 1359847416026172019, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
-  runeTier: 1
-  runeType: 2
+  runeTier: 0
+  runeType: 1
   runeEffects: []

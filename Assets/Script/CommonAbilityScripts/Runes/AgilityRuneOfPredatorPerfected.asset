@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
-  m_Name: AgilityRuneOfPredator 1
+  m_Name: AgilityRuneOfPredatorPerfected
   m_EditorClassIdentifier: 
   type: 6
   description: Crits grant attack speed
-  iconSprite: {fileID: 21300000, guid: 9642b63d79408794588df5aa1522cb35, type: 3}
+  iconSprite: {fileID: 21300000, guid: 23ef034f9e4d4db4a91219eab8cb837b, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
     ObjectField: {fileID: 7923805670808953868, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
-  runeTier: 0
+  runeTier: 2
   runeType: 2
   runeEffects: []

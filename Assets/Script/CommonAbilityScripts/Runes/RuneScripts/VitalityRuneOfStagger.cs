@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
+public class VitalityRuneOfStagger : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -105,17 +105,17 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderArmor");
-        _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderWeapon");
+        _entityEvents.RemoveBuff("VitalityRuneOfStaggerArmor");
+        _entityEvents.RemoveBuff("VitalityRuneOfStaggerWeapon");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderArmor", EntityStats.BuffType.Health, duplicateCountArmor * 20);
+            _entityEvents.NewBuff("VitalityRuneOfStaggerArmor", EntityStats.BuffType.Health, duplicateCountArmor * 25);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("VitalityRuneOfStaggerWeapon", EntityStats.BuffType.Health, duplicateCountWeapon * 25);
         }
     }
 
@@ -142,13 +142,8 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderWeapon");
-
-        foreach (GameObject projectile in projectiles)
-        {
-            Destroy(projectile);
-        }
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfStaggerArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfStaggerWeapon");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -163,12 +158,15 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     public void ActivateArmorEffect(Damage damage)
     {
-        damage.source.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
+        damage.source.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerArmorBonus", EntityStats.BuffType.Stunned, 1, 0.5f);
     }
 
     public void ActivateWeaponEffect(Damage damage, GameObject target)
     {
-        target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
+        if(UnityEngine.Random.Range(0, 100) <= 100 - Mathf.Pow(0.95f, duplicateCountWeapon) * 100)
+        {
+            target.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerWeaponBonus", EntityStats.BuffType.Stunned, 1, 1.0f);
+        }
     }
 
     //Subs and Unsubs
@@ -194,18 +192,15 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
     {
         _entityEvents.OnHitThis -= ActivateArmorEffect;
     }
-
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
         containerItem = item;
         _hand = hand;
     }
-
     public int GetDuplicateCountWeaponRight()
     {
         return duplicateCountWeaponRight;
     }
-
     public int GetDuplicateCountWeaponLeft()
     {
         return duplicateCountWeaponLeft;

@@ -28,7 +28,6 @@ GameObject:
   - component: {fileID: 4307389025081057120}
   - component: {fileID: -3489098786848602374}
   - component: {fileID: 7729219167277793689}
-  - component: {fileID: 7078469439219623900}
   - component: {fileID: -5292083699584376820}
   - component: {fileID: 3113167929618443094}
   - component: {fileID: 1539171471440162969}
@@ -37,6 +36,9 @@ GameObject:
   - component: {fileID: -124262184910842740}
   - component: {fileID: -5468999010104989001}
   - component: {fileID: 7923805670808953868}
+  - component: {fileID: 1359847416026172019}
+  - component: {fileID: -35340656535352327}
+  - component: {fileID: 1603236694271360636}
   m_Layer: 0
   m_Name: RuneScriptContainer
   m_TagString: Untagged
@@ -362,18 +364,6 @@ MonoBehaviour:
   duplicateCountArmor: 0
   duplicateCountWeaponRight: 0
   duplicateCountWeaponLeft: 0
---- !u!114 &7078469439219623900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3014448224700399142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30df75fd6802aec46a54746550c99d14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5292083699584376820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,6 +486,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75f3d65deeee26b499c40e18cd2f6c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &1359847416026172019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863b101a79e845e41a3492f1e682bafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &-35340656535352327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62636b450006a594ba8d3e0b61fa17bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &1603236694271360636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6633f68033185824788a720e01df0c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duplicateCountWeapon: 0
