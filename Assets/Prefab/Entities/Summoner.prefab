@@ -615,7 +615,7 @@ MonoBehaviour:
   entityName: Summoner
   level: 0
   team: 1
-  baseHealth: 500
+  baseHealth: 800
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
@@ -726,9 +726,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 100
+  healthPerLevel: 200
   healthRegenPerLevel: 20
-  physicalDamagePerLevel: 15
+  physicalDamagePerLevel: 20
   armorPerLevel: 5
 --- !u!96 &1432059182678377561
 TrailRenderer:
