@@ -158,7 +158,10 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
     {
         stackCount++;
         _entityEvents.NewBuff("AgilityRuneOfPredatorBonus", EntityStats.BuffType.AttackSpeed, (int)(stackCount * ((duplicateCountArmor + duplicateCountWeapon) * 15)), 3.0f);
-        BuffStackHandler();
+        StartCoroutine(BuffStackHandler());
+
+        GameObject predatorEffect = RuneAssets.i.RunePredatorEffect;
+        predatorEffect = Instantiate(predatorEffect, gameObject.transform.position, Quaternion.identity);
     }
 
     private IEnumerator BuffStackHandler()
