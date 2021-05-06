@@ -98,6 +98,7 @@ public class StaffBasicAttack : MonoBehaviour, IAbility
         basicAttack.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         basicAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
         basicAttack.GetComponent<AbilityEvents>().UseAbility();
+        SoundManager.PlaySound(SoundManager.Sound.SpellCast, transform.position);
         playerAnimations.SetAttacking(false);
     }
 

@@ -95,6 +95,7 @@ public class BigProjectile : MonoBehaviour, IAbility
         }
         bigProjectile.GetComponent<AbilityEvents>().SetSource(gameObject);
         bigProjectile.GetComponent<AbilityEvents>().UseAbility();
+        SoundManager.PlaySound(SoundManager.Sound.SpellCast, transform.position);
         playerAnimations.SetAttacking(false);
     }
 

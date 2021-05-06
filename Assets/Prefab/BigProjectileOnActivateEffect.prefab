@@ -4981,6 +4981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5589132134651060797}
   - component: {fileID: 1906398806061548017}
+  - component: {fileID: 6232957520707307053}
   m_Layer: 0
   m_Name: BigProjectileOnActivateEffect
   m_TagString: Untagged
@@ -5018,6 +5019,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 5
+--- !u!114 &6232957520707307053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589132134651060798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf0abf65049a284ba9085db8b1d2d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5589132134114079551
 PrefabInstance:
   m_ObjectHideFlags: 0

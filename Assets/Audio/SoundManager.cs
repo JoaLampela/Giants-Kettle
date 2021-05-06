@@ -12,6 +12,10 @@ public static class SoundManager
         PlayerMove,
         OneHandedBasicAttack,
         TwoHandedBasicAttack,
+        SpellCast,
+        SpellHit,
+        SpellExplode,
+        SpellAoE,
         Dash,
         StingRight,
         StingLeft,
@@ -64,6 +68,7 @@ public static class SoundManager
             {
                  oneShotGameObject = new GameObject("One Shot Sound");
                  oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
+                oneShotAudioSource.outputAudioMixerGroup = sfxGroup;
             }
             oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
         }
