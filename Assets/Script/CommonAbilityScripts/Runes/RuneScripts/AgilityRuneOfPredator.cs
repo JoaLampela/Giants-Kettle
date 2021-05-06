@@ -158,7 +158,7 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
     {
         stackCount++;
         _entityEvents.NewBuff("AgilityRuneOfPredatorBonus", EntityStats.BuffType.AttackSpeed, (int)(stackCount * ((duplicateCountArmor + duplicateCountWeapon) * 15)), 3.0f);
-        BuffStackHandler();
+        StartCoroutine(BuffStackHandler());
     }
 
     private IEnumerator BuffStackHandler()
