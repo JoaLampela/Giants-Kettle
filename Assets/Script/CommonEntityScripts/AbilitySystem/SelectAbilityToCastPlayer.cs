@@ -17,20 +17,37 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
     {
         if(!GameObject.Find("Game Manager").GetComponent<GameEventManager>().castingLocked)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            //if (Input.GetKeyDown(KeyCode.LeftShift))
+            //{
+            //    entityAbilityManager.CastAbility(1);
+            //    Debug.Log(" SelectAbility To cast ability 1");
+            //}
+            //if (Input.GetMouseButtonDown(1))
+            //{
+            //    entityAbilityManager.CastAbility(2);
+            //}
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+           //     entityAbilityManager.CastAbility(3);
+            //}
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    entityAbilityManager.CastAbility(4);
+            //}
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 entityAbilityManager.CastAbility(1);
                 Debug.Log(" SelectAbility To cast ability 1");
             }
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(1))
             {
                 entityAbilityManager.CastAbility(2);
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 entityAbilityManager.CastAbility(3);
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 entityAbilityManager.CastAbility(4);
             }
