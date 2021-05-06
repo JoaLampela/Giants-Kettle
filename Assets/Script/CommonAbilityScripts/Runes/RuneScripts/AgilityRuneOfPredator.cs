@@ -106,17 +106,13 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfPredatorArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfPredatorWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfPredatorAttackSpeed");
+        _entityEvents.RemoveBuff("AgilityRuneOfPredatorCrit");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfPredatorArmor", EntityStats.BuffType.AttackSpeed, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfPredatorWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("AgilityRuneOfPredatorAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 3);
+            _entityEvents.NewBuff("AgilityRuneOfPredatorCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -144,8 +140,8 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorCrit");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

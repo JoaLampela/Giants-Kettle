@@ -105,17 +105,13 @@ public class AgilityRuneOfHunting : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfHuntingArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfHuntingWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfHuntingAttackSpeed");
+        _entityEvents.RemoveBuff("AgilityRuneOfHuntingCrit");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfHuntingArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfHuntingWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("AgilityRuneOfHuntingAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("AgilityRuneOfHuntingCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 3);
         }
     }
 
@@ -142,8 +138,8 @@ public class AgilityRuneOfHunting : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHuntingArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHuntingWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHuntingAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHuntingCrit");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
