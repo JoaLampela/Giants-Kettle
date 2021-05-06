@@ -185,4 +185,9 @@ public class Humanoid_Animations : MonoBehaviour, IEntityAnimations
     {
         attacking = value;
     }
+
+    public bool GetAttacking()
+    {
+        return attacking;
+    }
 }

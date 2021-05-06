@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IEntityAnimations
 {
     public void SetAttacking(bool value);
+    public bool GetAttacking();
 }

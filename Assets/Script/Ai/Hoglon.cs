@@ -168,4 +168,11 @@ public class Hoglon : MonoBehaviour, IEntityAnimations
         yield return new WaitForSeconds(coolDown);
         canCharge = true;
     }
+
+    public bool GetAttacking()
+    {
+        return attacking;
+    }
+
+
 }

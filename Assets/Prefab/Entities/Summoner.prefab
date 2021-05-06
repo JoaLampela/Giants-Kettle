@@ -612,16 +612,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityName: Summoner
   level: 0
   team: 1
-  baseHealth: 1000
+  baseHealth: 500
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
   baseSpeed: 1
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 15
+  basePhysicalDamage: 30
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 30
@@ -712,6 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spellSlot: 3
+  mouseDirection: {x: 0, y: 0}
 --- !u!114 &6135226578623935123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,10 +726,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 200
-  healthRegenPerLevel: 30
-  physicalDamagePerLevel: 10
-  armorPerLevel: 10
+  healthPerLevel: 100
+  healthRegenPerLevel: 20
+  physicalDamagePerLevel: 15
+  armorPerLevel: 5
 --- !u!96 &1432059182678377561
 TrailRenderer:
   serializedVersion: 2

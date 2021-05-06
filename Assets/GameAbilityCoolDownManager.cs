@@ -14,7 +14,6 @@ public class GameAbilityCoolDownManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             weaponsOnCooldown = new List<Item>();
         }
         else

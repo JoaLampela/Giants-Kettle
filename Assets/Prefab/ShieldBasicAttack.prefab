@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3136204303980142173}
   - component: {fileID: 1771582192133275809}
   - component: {fileID: 6148383219627379340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShieldBasicAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,6 +58,7 @@ MonoBehaviour:
   damageMultiplier: 150
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
+  damageParentMultiplier: 100
   firstCopy: 1
 --- !u!58 &8323969941274039814
 CircleCollider2D:
@@ -194,6 +195,10 @@ PrefabInstance:
     - target: {fileID: 6846817570176300731, guid: f540104585cd8a84b88c69d063e7750f, type: 3}
       propertyPath: m_Name
       value: plazma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846817570176300731, guid: f540104585cd8a84b88c69d063e7750f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f540104585cd8a84b88c69d063e7750f, type: 3}

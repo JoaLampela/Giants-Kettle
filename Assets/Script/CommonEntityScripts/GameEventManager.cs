@@ -33,6 +33,9 @@ public class GameEventManager : MonoBehaviour
     public event Action OnRoomClear;
     public event Action OnWaveClear;
 
+    public event Action<RuneObject> OnRunePicked;
+    public event Action<EquipmentObject> OnEquipmentDropepd;
+
     public int playerLevelUpPoints;
     public bool playerLevelUpScreenVisible = false;
     public GameObject LevelUpScreen;
@@ -49,10 +52,12 @@ public class GameEventManager : MonoBehaviour
     public bool castingLocked = false;
     private bool runesRandomized = false;
 
+    [SerializeField] private GameStats gameStats;
+
     private void Update()
     {
         time += Time.deltaTime;
-        globalLevel = (int)time / 120 + 1;
+        globalLevel = (int)time / 120;
         if (combatOn) combatDuration += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible && !pauseMenuOpen)
@@ -142,8 +147,8 @@ public class GameEventManager : MonoBehaviour
 
     public void RoomClear()
     {
+        gameStats.AddClearedRoom();
         Debug.Log("Room clear");
-        playerLevelUpPoints++;
         OnRoomClear?.Invoke();
     }
     public void WaveClear()
@@ -171,6 +176,17 @@ public class GameEventManager : MonoBehaviour
         }
         
 
+    }
+
+    public void EquipmentDropped(EquipmentObject equipment)
+    {
+        OnEquipmentDropepd?.Invoke(equipment);
+    }
+
+    public void RunePicked(RuneObject rune)
+    {
+        OnRunePicked?.Invoke(rune);
+        Debug.Log("Rune picked event");
     }
 
     public void AllEntitiesRemove(GameObject entity)
@@ -233,6 +249,7 @@ public class GameEventManager : MonoBehaviour
     }
     public void ExitLevel()
     {
+        gameStats.AddClearedFloor();
         OnExitLevel?.Invoke();
 
         foreach (GameObject enemy in enemies)

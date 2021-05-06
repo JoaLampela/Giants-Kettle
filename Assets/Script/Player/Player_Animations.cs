@@ -237,4 +237,9 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
     {
         entityEvents.OnStatChange -= UpdateTrueAttackAndHasteSpeed;
     }
+
+    public bool GetAttacking()
+    {
+        return attacking;
+    }
 }

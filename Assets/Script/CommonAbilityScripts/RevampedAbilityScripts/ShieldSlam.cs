@@ -41,8 +41,8 @@ public class ShieldSlam : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-
-        if (basicAttackOffCooldown)
+        Debug.Log(!playerAnimations.GetAttacking());
+        if (basicAttackOffCooldown && !playerAnimations.GetAttacking())
         {
             if (_spellSlot == slot)
             {

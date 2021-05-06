@@ -11,20 +11,24 @@ public class SelectRuneButton : MonoBehaviour
     private RuneObject _rune;
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private RuneTierListObjects runeList;
+    private GameEventManager gameEventManager;
 
     private void Awake()
     {
         _button = runeButton.GetComponent<Button>();
         _runeIcon = runeButton.GetComponent<Image>();
         runeList = GetComponentInParent<RuneTierListObjects>();
+        gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
     }
 
     public void OnButtonClick()
     {
+        Debug.Log("Button clicked");
         runeList.IncrementScore(_rune);
         playerInventory.NewItem(new Item(_rune));
+        gameEventManager.RunePicked(_rune);
         _rune = null;
-        GameObject.Find("Game Manager").GetComponent<GameEventManager>().ReducePlayerLevelUpPoints();
+        gameEventManager.ReducePlayerLevelUpPoints();
         runeList.RandomizeNewRunes();
     }
 

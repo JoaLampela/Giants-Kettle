@@ -37,7 +37,7 @@ public class NonProjectile : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_weapon.currentCooldownAbility2 <= 0)
+        if (_weapon.currentCooldownAbility2 <= 0 && !playerAnimations.GetAttacking())
         {
             if (_spellSlot == slot)
             {

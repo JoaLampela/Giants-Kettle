@@ -42,7 +42,7 @@ public class OneHandedBasicAttack : MonoBehaviour, IAbility
     private void Cast(int slot)
     {
 
-        if (basicAttackOffCooldown)
+        if (basicAttackOffCooldown && !playerAnimations.GetAttacking())
         {
             if (_spellSlot == slot)
             {

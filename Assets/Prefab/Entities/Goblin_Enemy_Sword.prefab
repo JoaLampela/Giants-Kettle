@@ -670,6 +670,7 @@ GameObject:
   - component: {fileID: 4319518181496570747}
   - component: {fileID: 9009737797232915889}
   - component: {fileID: 8271034211688280110}
+  - component: {fileID: 6425927436679375116}
   m_Layer: 0
   m_Name: Goblin_Enemy_Sword
   m_TagString: Enemy
@@ -1069,6 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityName: Goblin
   level: 0
   team: 1
   baseHealth: 75
@@ -1308,6 +1310,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
   dropChance: 100
+--- !u!114 &6425927436679375116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984e265d1a193144eb4de5b7fd912099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 1557162516069061293, guid: 90c5c0f77d75e4540862c2bffe1e6c25, type: 3}
 --- !u!1 &7283148507259584654
 GameObject:
   m_ObjectHideFlags: 0

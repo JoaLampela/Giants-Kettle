@@ -5,6 +5,8 @@ using System;
 
 public class EntityEvents : MonoBehaviour
 {
+    private bool dead = false;
+
     //Called when changing runes
     public event Action OnEquipRunesChange;
 
@@ -145,6 +147,7 @@ public class EntityEvents : MonoBehaviour
 
     public void GainShield(int amount)
     {
+        Debug.Log("Gain shield event");
         OnGainShield?.Invoke(amount);
     }
 
@@ -349,6 +352,11 @@ public class EntityEvents : MonoBehaviour
     }
     public void Die(GameObject source)
     {
-        OnDie?.Invoke(source, gameObject);
+        if(!dead)
+        {
+            dead = true;
+            OnDie?.Invoke(source, gameObject);
+        }
+        
     }
 }

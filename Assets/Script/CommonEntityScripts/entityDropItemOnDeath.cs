@@ -33,7 +33,7 @@ public class entityDropItemOnDeath : MonoBehaviour
     }
     private void DropItem(GameObject killer, GameObject killed)
     {
-        int enemyLevel = GetComponent<EntityStats>().level;
+        int enemyLevel = GetComponent<EntityStats>().level + 1;
         
 
 
@@ -44,6 +44,9 @@ public class entityDropItemOnDeath : MonoBehaviour
             Item item = new Item(tierList.GiveRandomItem(enemyLevel));
             Debug.Log(item);
             groundItem.SetItem(item);
+
+            EquipmentObject equipment = (EquipmentObject)item.item;
+            GameObject.Find("Game Manager").GetComponent<GameEventManager>().EquipmentDropped(equipment);
         }
     }
 }

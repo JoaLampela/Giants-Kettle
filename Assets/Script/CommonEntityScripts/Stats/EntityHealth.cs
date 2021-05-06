@@ -80,11 +80,14 @@ public class EntityHealth : MonoBehaviour
 
     private void GainShield(int amount)
     {
+        
         if (stats.currentShield + amount > stats.currentMaxHealth)
         {
             stats.currentShield = stats.currentMaxHealth;
         }
-        else stats.currentMaxHealth += amount;
+        else stats.currentShield += amount;
+
+        Debug.Log("amount: " + amount + " new value is " + stats.currentShield);
     }
 
     private void Subscribe()

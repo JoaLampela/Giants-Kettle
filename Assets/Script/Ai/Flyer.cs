@@ -72,4 +72,8 @@ public class Flyer : MonoBehaviour, IEntityAnimations
         canAttack = true;
     }
 
+    public bool GetAttacking()
+    {
+        return attacking;
+    }
 }

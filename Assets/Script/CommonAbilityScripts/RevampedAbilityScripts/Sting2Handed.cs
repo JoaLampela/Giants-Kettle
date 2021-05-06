@@ -41,7 +41,7 @@ public class Sting2Handed : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_weapon.currentCooldownAbility1 <= 0)
+        if (_weapon.currentCooldownAbility1 <= 0 && !playerAnimations.GetAttacking())
         {
             if (_spellSlot == slot)
             {

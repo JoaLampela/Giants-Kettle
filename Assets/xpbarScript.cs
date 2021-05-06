@@ -39,7 +39,8 @@ public class xpbarScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Kill(GameObject enemy)
     {
-        XpPopup.Create(player.transform.position, (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f) + xpGainOnKill);
+        if(xpGainOnKill > 0)
+            XpPopup.Create(player.transform.position, (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f) + xpGainOnKill);
 
         Debug.Log("Kill xp");
         if(currentXp + (int)(enemy.GetComponent<EntityStats>().currentMaxHealth / 50f) >= xpReqwuirement)
@@ -67,7 +68,8 @@ public class xpbarScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     private void WaveClear()
     {
-        XpPopup.Create(player.transform.position, xpGainOnWaveClear);
+        if(xpGainOnWaveClear > 0)
+            XpPopup.Create(player.transform.position, xpGainOnWaveClear);
 
         if (currentXp + xpGainOnWaveClear >= xpReqwuirement)
         {
@@ -83,7 +85,11 @@ public class xpbarScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void RoomClear()
     {
-        XpPopup.Create(player.transform.position, xpGainRoomClear);
+        if(xpGainRoomClear > 0)
+        {
+            XpPopup.Create(player.transform.position, xpGainRoomClear);
+        }
+        
 
         if (currentXp + xpGainRoomClear >= xpReqwuirement)
         {
@@ -118,8 +124,8 @@ public class xpbarScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Unsubscribe()
     {
-        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnRoomClear -= RoomClear;
-        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnWaveClear -= WaveClear;
+        //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnRoomClear -= RoomClear;
+        //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnWaveClear -= WaveClear;
         player.GetComponent<EntityEvents>().OnKillEnemy -= Kill;
     }
 
@@ -128,12 +134,14 @@ public class xpbarScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         Unsubscribe();
     }
 
+    [System.Obsolete]
     public void OnPointerExit(PointerEventData eventData)
     {
         levelProgressPopUp.active = false;
         
     }
 
+    [System.Obsolete]
     public void OnPointerEnter(PointerEventData eventData)
     {
         levelProgressPopUp.active = true;

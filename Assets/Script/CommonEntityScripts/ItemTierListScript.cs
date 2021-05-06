@@ -17,15 +17,14 @@ public class ItemTierListScript : MonoBehaviour
 
     public ItemObject GiveRandomItem(int tempTier)
     {
-        if (Random.Range(1, 100) > 95) return tier1Items[Random.Range(0, tier100Items.Length)];
+        if (Random.Range(1, 101) > 95) return tier1Items[Random.Range(0, tier100Items.Length)];
 
         int count = 0;
-        for(int i = 0; i < tempTier; i ++)
+        for(int i = 0; i <= tempTier; i ++)
         {
             count += i;
         }
-
-        int tier = Random.Range(1, count);
+        int tier = Random.Range(1, count + 2);
         if (tier > 15) return tier6Items[Random.Range(0, tier6Items.Length)];
         else if (tier > 10) return tier5Items[Random.Range(0, tier5Items.Length)];
         else if (tier > 6) return tier4Items[Random.Range(0, tier4Items.Length)];

@@ -8,9 +8,10 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
-    public GameObject gameOverScreen;
     private EntityEvents events;
     private GameEventManager gameEventManager;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameOverMenuHandler gameOverMenuHandler;
 
 
     private void Awake()
@@ -22,7 +23,10 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         GamePaused = false;
-        
+
+        Subscribe();
+
+
     }
 
     void Update()
@@ -73,14 +77,15 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void GameOver()
+    public void GameOver(GameObject source, GameObject player)
     {
+        StartCoroutine(gameOverMenuHandler.BeginningOfTheEndKills());
+
+        StartCoroutine(gameOverMenuHandler.BeginningOFTheEndFloors());
         gameEventManager.StopTime();
         GameObject.FindGameObjectWithTag("PlayerUI").SetActive(false);
-        GameObject.FindGameObjectWithTag("PauseMenu").SetActive(false);
-        GameObject.FindGameObjectWithTag("GameOverScreen").SetActive(true);
+        gameOverScreen.SetActive(true);
     }
-    /*
     void Subscribe()
     {
         events.OnDie += GameOver;
@@ -95,5 +100,4 @@ public class PauseMenu : MonoBehaviour
     {
         Unsubscribe();
     }
-    */
 }

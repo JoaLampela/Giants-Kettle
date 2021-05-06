@@ -40,7 +40,7 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (basicAttackOffCooldown) //cooldown here
+        if (basicAttackOffCooldown && !playerAnimations.GetAttacking()) //cooldown here
         {
             if (_spellSlot == slot)
             {

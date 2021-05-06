@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BigProjectile : MonoBehaviour, IAbility
 {
-    private Player_Animations playerAnimations;
+    private IEntityAnimations playerAnimations;
     private MovementScript movementScript;
     private Animator animator;
     EntityEvents _entityEvents;
@@ -23,7 +23,7 @@ public class BigProjectile : MonoBehaviour, IAbility
 
     private void Awake()
     {
-        playerAnimations = GetComponent<Player_Animations>();
+        playerAnimations = GetComponent<IEntityAnimations>();
         abilityManager = GetComponent<EntityAbilityManager>();
         targetPositionScript = GetComponent<IAbilityTargetPosition>();
         animator = GetComponent<Animator>();
@@ -37,7 +37,8 @@ public class BigProjectile : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        if (_weapon.currentCooldownAbility1 <= 0)
+        Debug.Log(playerAnimations);
+        if (_weapon.currentCooldownAbility1 <= 0 && !playerAnimations.GetAttacking())
         {
             if (_spellSlot == slot)
             {

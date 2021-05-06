@@ -7,6 +7,7 @@ public class EntityStats : MonoBehaviour
     GameEventManager gameEventManager;
     EntityEvents events;
 
+    public string entityName;
     public int level;
 
     [Header("0 = neutral, 1 = AI, 2 = Player, 3 = Map")]

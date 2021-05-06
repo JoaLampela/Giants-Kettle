@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4867781357504448721}
   - component: {fileID: 4867781357504448720}
   - component: {fileID: 4867781357504448723}
+  - component: {fileID: 1699011340505777110}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -67,7 +68,9 @@ MonoBehaviour:
   gameTimeText: {fileID: 0}
   inventory: {fileID: 0}
   inventoryOpen: 0
+  pauseMenuOpen: 0
   castingLocked: 0
+  gameStats: {fileID: 1699011340505777110}
 --- !u!114 &4867781357504448721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,11 +110,7 @@ MonoBehaviour:
   tier0Items: []
   tier1Items:
   - {fileID: 11400000, guid: 12e1390e64f293547a345111651f732e, type: 2}
-  - {fileID: 11400000, guid: afa0b9f6e27e5f342a81612a54cad446, type: 2}
   - {fileID: 11400000, guid: 2f811c93a5fdb6143b3bedcc5d2edbd2, type: 2}
-  - {fileID: 11400000, guid: 909b09911fb1e8945b10ee2d8ba81ba4, type: 2}
-  - {fileID: 11400000, guid: 949cecd3a048a5c43a64269201f01ae1, type: 2}
-  - {fileID: 11400000, guid: 5a8a2f663a0f9b542a1263f236f9346f, type: 2}
   tier2Items:
   - {fileID: 11400000, guid: b8d5e9e269dcf1046b549915db94f911, type: 2}
   - {fileID: 11400000, guid: bf431f2f555cd394298c121b774f7087, type: 2}
@@ -147,3 +146,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: abaa287d6d7ffef4085a3f53ed170c0b, type: 2}
   - {fileID: 11400000, guid: cd3211d776369ec4ca18908bac69800a, type: 2}
   - {fileID: 11400000, guid: cd97da032df69f243a056588f370a5e0, type: 2}
+  tier100Items: []
+--- !u!114 &1699011340505777110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4867781357504448684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3836e4cf382444b8943bacca91c3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killedEnemiesTotal: 0
+  killedGoblins: 0
+  killedFlyers: 0
+  killedSkeletons: 0
+  killedSummoners: 0
+  killedHoglins: 0
+  clearedFloors: 0
+  clearedRooms: 0
