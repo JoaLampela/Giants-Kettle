@@ -10,7 +10,6 @@ public class AgilityRuneOfSpeed : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
-    private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
 
@@ -107,16 +106,19 @@ public class AgilityRuneOfSpeed : MonoBehaviour, IRuneScript
     {
         _entityEvents.RemoveBuff("AgilityRuneOfSpeedArmor");
         _entityEvents.RemoveBuff("AgilityRuneOfSpeedWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfSpeedBonus");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfSpeedArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.1f));
+            _entityEvents.NewBuff("AgilityRuneOfSpeedArmor", EntityStats.BuffType.CriticalStrikeChance, duplicateCountArmor * 5);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfSpeedWeapon", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountWeapon * 0.1f));
+            _entityEvents.NewBuff("AgilityRuneOfSpeedWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 10);
         }
+
+        _entityEvents.NewBuff("AgilityRuneOfSpeedBonus", EntityStats.BuffType.SpeedMultiplier, duplicateCountWeapon * 10);
     }
 
     //Subs & Unsub -related Unity functions
@@ -137,13 +139,13 @@ public class AgilityRuneOfSpeed : MonoBehaviour, IRuneScript
     {
         _entityEvents = gameObject.GetComponent<EntityEvents>();
         _abilityEvents = gameObject.GetComponent<AbilityEvents>();
-        projectiles = new List<GameObject>();
     }
 
     private void OnDisable()
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedArmor");
         if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedBonus");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

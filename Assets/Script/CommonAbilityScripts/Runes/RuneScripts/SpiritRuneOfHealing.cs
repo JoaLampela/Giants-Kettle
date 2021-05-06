@@ -115,7 +115,7 @@ public class SpiritRuneOfHealing : MonoBehaviour, IRuneScript
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfHealingWeapon", EntityStats.BuffType.SpeedMultiplier, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritRuneOfHealingWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
         }
     }
 
@@ -168,23 +168,21 @@ public class SpiritRuneOfHealing : MonoBehaviour, IRuneScript
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onUseAbility += Activate;
     }
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnCastAbility += Activate;
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onUseAbility -= Activate;
     }
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnCastAbility -= Activate;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
