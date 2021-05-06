@@ -161,7 +161,7 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
         StartCoroutine(BuffStackHandler());
 
         GameObject predatorEffect = RuneAssets.i.RunePredatorEffect;
-        predatorEffect = Instantiate(predatorEffect, gameObject.transform.position, Quaternion.identity);
+        predatorEffect = Instantiate(predatorEffect, gameObject.transform.position, Quaternion.identity, gameObject.transform);
     }
 
     private IEnumerator BuffStackHandler()

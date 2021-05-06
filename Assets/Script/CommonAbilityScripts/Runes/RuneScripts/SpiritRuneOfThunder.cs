@@ -159,8 +159,7 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
     public void Activate(Damage damage, GameObject target)
     {
         GameObject thunder = RuneAssets.i.RuneThunder;
-
-        thunder = Instantiate(thunder, target.transform.position, Quaternion.identity);
+        thunder = Instantiate(thunder, target.transform.position, Quaternion.identity, target.transform);
     }
 
     //Subs and Unsubs

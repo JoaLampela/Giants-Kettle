@@ -168,7 +168,10 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage)
     {
-        _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismBonus", EntityStats.BuffType.SpeedMultiplier, 100, (duplicateCountArmor + duplicateCountWeapon) * 1);
+        _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismBonus", EntityStats.BuffType.SpeedMultiplier, 100, duplicateCountArmor + duplicateCountWeapon);
+
+        GameObject whoosh = RuneAssets.i.RuneEscapistEffect;
+        whoosh = Instantiate(whoosh, gameObject.transform.position, Quaternion.identity, gameObject.transform);
     }
 
     //Subs and Unsubs
