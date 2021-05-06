@@ -110,12 +110,12 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfLeechArmor", EntityStats.BuffType.PhysicalDamage, duplicateCountArmor * 15);
+            _entityEvents.NewBuff("PowerRuneOfLeechArmor", EntityStats.BuffType.PhysicalDamage, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfLeechWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 15);
+            _entityEvents.NewBuff("PowerRuneOfLeechWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
         }
     }
 
@@ -160,33 +160,30 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
     {
         GameObject healOrb = RuneAssets.i.RuneHealOrb;
         healOrb.GetComponent<AbilityEvents>().SetSource(damage.source);
-
         healOrb = Instantiate(healOrb, target.transform.position, Quaternion.identity);
 
-        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)((duplicateCountWeapon + duplicateCountArmor) * 0.1f * (damage._damage + damage._trueDamage)));
+        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)((duplicateCountWeapon + duplicateCountArmor) * (damage._damage + damage._trueDamage) * 0.03f));
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onDealDamage += Activate;
     }
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnHitEnemy += Activate;
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onDealDamage -= Activate;
     }
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnHitEnemy -= Activate;
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {

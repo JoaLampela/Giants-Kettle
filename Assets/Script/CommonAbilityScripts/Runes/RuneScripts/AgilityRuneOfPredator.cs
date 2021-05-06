@@ -111,7 +111,7 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfPredatorArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
+            _entityEvents.NewBuff("AgilityRuneOfPredatorArmor", EntityStats.BuffType.AttackSpeed, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
@@ -161,8 +161,8 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
     public void Activate(GameObject target, Damage damage)
     {
         stackCount++;
-        BuffStackHandler();
         _entityEvents.NewBuff("AgilityRuneOfPredatorBonus", EntityStats.BuffType.AttackSpeed, (int)(stackCount * ((duplicateCountArmor + duplicateCountWeapon) * 15)), 3.0f);
+        BuffStackHandler();
     }
 
     private IEnumerator BuffStackHandler()
