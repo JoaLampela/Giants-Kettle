@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
+  m_Name: VitalityAgilityRuneOfEscapismPerfected
+  m_EditorClassIdentifier: 
+  type: 6
+  description: Gain movement speed on getting hit
+  iconSprite: {fileID: 21300000, guid: 1345d27b32c57984ebe97464e82f6a74, type: 3}
+  inGameObject: {fileID: 0}
+  isTwoHander: 0
+  _IruneContainer:
+    ObjectField: {fileID: -35340656535352327, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ResultType: 
+  runeTier: 2
+  runeType: 7
+  runeEffects: []

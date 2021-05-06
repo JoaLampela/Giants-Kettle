@@ -149,7 +149,6 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
         {
             Destroy(projectile);
         }
-        projectiles.Clear();
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -169,14 +168,12 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     public void ActivateWeaponEffect(Damage damage, GameObject target)
     {
-        Debug.Log("Weapon effect activated");
         target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
-        Debug.Log("Subscribet to events");
         _abilityEvents._onDealDamage += ActivateWeaponEffect;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
