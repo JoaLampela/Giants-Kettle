@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: -2241145504570033196}
   - component: {fileID: 2854217595779573670}
   - component: {fileID: 2227358727020279601}
+  - component: {fileID: 7552396429364814031}
   m_Layer: 0
   m_Name: Flyer
   m_TagString: Untagged
@@ -253,7 +254,7 @@ MonoBehaviour:
   baseSpeed: 20
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 10
+  basePhysicalDamage: 15
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 0
@@ -499,7 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPerLevel: 40
   healthRegenPerLevel: 0
-  physicalDamagePerLevel: 10
+  physicalDamagePerLevel: 15
   armorPerLevel: 2
 --- !u!114 &2227358727020279601
 MonoBehaviour:
@@ -514,6 +515,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 1557162516069061293, guid: 90c5c0f77d75e4540862c2bffe1e6c25, type: 3}
+--- !u!114 &7552396429364814031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681881871295265569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0962f99c65986b84c856579e434b1158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
+  dropChance: 25
 --- !u!1 &5013314282194355379
 GameObject:
   m_ObjectHideFlags: 0

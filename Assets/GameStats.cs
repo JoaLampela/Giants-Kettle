@@ -55,6 +55,7 @@ public class GameStats : MonoBehaviour
 
     public void AddKilledEnemy(GameObject entity)
     {
+        killedEnemiesTotal++;
         if (entity.GetComponent<EntityStats>().entityName == "Goblin") killedGoblins++;
         else if (entity.GetComponent<EntityStats>().entityName == "Flyer") killedFlyers++;
         else if (entity.GetComponent<EntityStats>().entityName == "Skelebro") killedSkeletons++;

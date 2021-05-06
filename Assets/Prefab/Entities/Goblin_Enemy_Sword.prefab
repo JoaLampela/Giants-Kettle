@@ -1185,8 +1185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 60
-  healthRegenPerLevel: 10
+  healthPerLevel: 70
+  healthRegenPerLevel: 15
   physicalDamagePerLevel: 8
   armorPerLevel: 6
 --- !u!96 &9009737797232915889
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
-  dropChance: 100
+  dropChance: 25
 --- !u!114 &6425927436679375116
 MonoBehaviour:
   m_ObjectHideFlags: 0
