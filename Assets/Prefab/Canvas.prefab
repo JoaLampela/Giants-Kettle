@@ -67942,6 +67942,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f47a9a76b10306a42be5f2f7e1e5f6d7, type: 2}
   - {fileID: 11400000, guid: fe4cc996a8241994ba0a34b61653f2b8, type: 2}
   - {fileID: 11400000, guid: 48ab2e6d1bf9c0840a9069af8744d739, type: 2}
+  - {fileID: 11400000, guid: 17501cb6f0d0b3249b925ab10303e3b8, type: 2}
   spiritRunesTier2:
   - {fileID: 11400000, guid: e52074d244c287f428a27559027c3536, type: 2}
   - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
@@ -67949,6 +67950,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f55b2c2a9ea3274c8301a623ef560f4, type: 2}
   - {fileID: 11400000, guid: 280140d6437053845980ef2a0ef0f4aa, type: 2}
   - {fileID: 11400000, guid: 6b358980d897da8448e9ee3c53624d3e, type: 2}
+  - {fileID: 11400000, guid: ab3a2e980f61a0541b6e63d0b0291746, type: 2}
   spiritRunesTier3:
   - {fileID: 11400000, guid: 19d7f3cda96bdb84da78ed393ed956b8, type: 2}
   - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
@@ -67956,66 +67958,82 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9cdbcd9d18f191c409bb28465053ac0c, type: 2}
   - {fileID: 11400000, guid: a12b0eb32c17ad445a0bf8b910decb6c, type: 2}
   - {fileID: 11400000, guid: b216035e637aff242a5826292517cb29, type: 2}
+  - {fileID: 11400000, guid: d13348978f6a8444b9245d41876f93de, type: 2}
   vitalityRunesTier1:
   - {fileID: 11400000, guid: e2c2de05fdc240041a57df551a5948bb, type: 2}
   - {fileID: 11400000, guid: 95d41d2662e07c948b34bd149d729420, type: 2}
   - {fileID: 11400000, guid: 25fcd1965dbc8d847be769ec4b24a31a, type: 2}
   - {fileID: 11400000, guid: 17209eb3eb4ba36438ab3741560cc280, type: 2}
+  - {fileID: 11400000, guid: 7fa277e78a667b349b24c73f1e610a9a, type: 2}
+  - {fileID: 11400000, guid: 4cf4dbd600c67f542913c69657dbdc06, type: 2}
   vitalityRunesTier2:
   - {fileID: 11400000, guid: e4b07de0dd5a1f046a78ddf17aa30090, type: 2}
   - {fileID: 11400000, guid: 66e5c9729925d98458b4c4a1783ecdfa, type: 2}
   - {fileID: 11400000, guid: 7100d541d3cfbbf458e912acbb569021, type: 2}
   - {fileID: 11400000, guid: 12ad31f506a430f46a88b1cd4def72cf, type: 2}
+  - {fileID: 11400000, guid: 44142459a72ca7547b390333783c9964, type: 2}
+  - {fileID: 11400000, guid: 1cc3637265534554589fdf954e76aa6c, type: 2}
   vitalityRunesTier3:
   - {fileID: 11400000, guid: 5d158fdea5556644ab22338d858faff1, type: 2}
   - {fileID: 11400000, guid: d0a315c2610891c45898a38aa56dca3d, type: 2}
   - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}
   - {fileID: 11400000, guid: 66fcaec3876bee54cab32ff94cd41656, type: 2}
+  - {fileID: 11400000, guid: 4f2a1ab063c43b744a9709ece3158322, type: 2}
+  - {fileID: 11400000, guid: 8346053abb54707408a14d61fc52f7c3, type: 2}
   agilityRunesTier1:
   - {fileID: 11400000, guid: 7dffc1cdedd91c2419b6bdb58cba16cc, type: 2}
   - {fileID: 11400000, guid: 09bf741591b1628418e4725b1d545ffb, type: 2}
   - {fileID: 11400000, guid: 0e21cac85811de94587eb7bf690c3734, type: 2}
   - {fileID: 11400000, guid: d4d85169f7647a544a19614f443e0bed, type: 2}
   - {fileID: 11400000, guid: d8b5ee3c9a532df49bd189100ed144df, type: 2}
+  - {fileID: 11400000, guid: 3838e9a95e7fe224ab121d5eff138942, type: 2}
+  - {fileID: 11400000, guid: 3f3322d71c6c2f14b89141d949ab9dd1, type: 2}
   agilityRunesTier2:
   - {fileID: 11400000, guid: bf8ef3a9330d01940afe57fe59b637b4, type: 2}
   - {fileID: 11400000, guid: 2775d81a97c28a743b9571ffcb1000a6, type: 2}
   - {fileID: 11400000, guid: 94798eb42b279f9438c66127694f5b1c, type: 2}
   - {fileID: 11400000, guid: f82ac1f2f934eb2458a7a40e29eabcea, type: 2}
   - {fileID: 11400000, guid: ccf482d213fe2a747bee7945e70ebf37, type: 2}
+  - {fileID: 11400000, guid: afcd482d37ef3a540b0f9d526573a81d, type: 2}
+  - {fileID: 11400000, guid: 58afe332bbe77f7458e12d656d8d359c, type: 2}
   agilityRunesTier3:
   - {fileID: 11400000, guid: 90f5cc7da73f59b418b0b1cdf09a5a95, type: 2}
   - {fileID: 11400000, guid: 53d1b4bc3aed8ac46af9bcc44082d482, type: 2}
   - {fileID: 11400000, guid: 4fe3bb910e1fada4c9b63ab95d72a5fd, type: 2}
   - {fileID: 11400000, guid: a0e63c2dd9b30af4a932a1be2d4db3ff, type: 2}
   - {fileID: 11400000, guid: 088b57a309cd6a945854d8bf770c6d1c, type: 2}
+  - {fileID: 11400000, guid: cd8f700789fc5684290b4fd3d3690151, type: 2}
+  - {fileID: 11400000, guid: e22a1e6ab3fec0e42a88f160f40369dd, type: 2}
   powerRunesTier1:
   - {fileID: 11400000, guid: 2797e0053bce9d145b3f00b642b5ad61, type: 2}
   - {fileID: 11400000, guid: 5b16db46cfaa0c94f95f728bfcc2aa0c, type: 2}
   - {fileID: 11400000, guid: 7df4454076ba7304d897f49502084b21, type: 2}
   - {fileID: 11400000, guid: 6e0756e696b33a645aff6836b7328b97, type: 2}
   - {fileID: 11400000, guid: 9e2201e6e3be90149a3bd9cdfd9b2a24, type: 2}
-  - {fileID: 11400000, guid: 7dd1899c06f929543921a24cb9ca428d, type: 2}
+  - {fileID: 11400000, guid: 55a9f2f44fb341d4f9e534cb942b6167, type: 2}
   powerRunesTier2:
   - {fileID: 11400000, guid: fa17768d0643a424e80da7f42d339010, type: 2}
   - {fileID: 11400000, guid: cf7a20e7fc576754191a21863aa4f4e0, type: 2}
   - {fileID: 11400000, guid: 15615346fb161974793227309f6ae419, type: 2}
   - {fileID: 11400000, guid: 3476319f9db4bd24a92dd4f5d12c3a1e, type: 2}
   - {fileID: 11400000, guid: c14086d19c00ae742a050b6d4d0fb666, type: 2}
-  - {fileID: 11400000, guid: eed81a278bb4e9f4a83e8bc428a09557, type: 2}
+  - {fileID: 11400000, guid: a144712bd530cba40a065c3d8178159b, type: 2}
   powerRunesTier3:
   - {fileID: 11400000, guid: ce904c23bd946ef45a235aea8adaff17, type: 2}
   - {fileID: 11400000, guid: f2d8b3a9905befc4ea0e2fe61dfaad59, type: 2}
   - {fileID: 11400000, guid: 49c1c02d52874d24abd03d5fbe00ef4e, type: 2}
   - {fileID: 11400000, guid: b634da6d59890fb43b2b17c31f06b044, type: 2}
   - {fileID: 11400000, guid: c4fc3ddefc5d2cf4082adfa582d007b1, type: 2}
-  - {fileID: 11400000, guid: 9c197480f0e944f42a1d09382de9dead, type: 2}
+  - {fileID: 11400000, guid: 0b470e9b541daeb4fb279838d9bfc105, type: 2}
   spiritVitalityRunesTier1:
   - {fileID: 11400000, guid: 9b00949537dc3e541a5b27207aa14a39, type: 2}
+  - {fileID: 11400000, guid: a8995db5bb973184e9878c6335af5830, type: 2}
   spiritVitalityRunesTier2:
   - {fileID: 11400000, guid: 4524aab1e2fb61841a4b9cb7d313e397, type: 2}
+  - {fileID: 11400000, guid: cfb0af9e398bf7a43b7167ceaa406361, type: 2}
   spiritVitalityRunesTier3:
   - {fileID: 11400000, guid: 45466d03f02f8cf42b8880353b14f56b, type: 2}
+  - {fileID: 11400000, guid: f820a30674a26cd499280b5b000e58a8, type: 2}
   spiritAgilityRunesTier1:
   - {fileID: 11400000, guid: 59de74431e2c7004a9fd6190a0ae8377, type: 2}
   spiritAgilityRunesTier2:
@@ -68024,19 +68042,40 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bcce443b0dea4e94b96ca5e1afc0884e, type: 2}
   spiritPowerRunesTier1:
   - {fileID: 11400000, guid: bd0853c20a0f5964681bf0b614d9dc5a, type: 2}
+  - {fileID: 11400000, guid: c6a7d2791a8d70d479e2dedc1eec359a, type: 2}
   spiritPowerRunesTier2:
   - {fileID: 11400000, guid: ff3db3123025ca8429a1933d2d8f9d4e, type: 2}
+  - {fileID: 11400000, guid: e151912c199d000439f41031d9463b1e, type: 2}
   spiritPowerRunesTier3:
   - {fileID: 11400000, guid: bb20c3fbb22b08f42aa147e115e9f226, type: 2}
-  vitalityAgilityRunesTier1: []
-  vitalityAgilityRunesTier2: []
-  vitalityAgilityRunesTier3: []
-  vitalityPowerRunesTier1: []
-  vitalityPowerRunesTier2: []
-  vitalityPowerRunesTier3: []
-  agilityPowerRunesTier1: []
-  agilityPowerRunesTier2: []
-  agilityPowerRunesTier3: []
+  - {fileID: 11400000, guid: 88d4fc9686949a44281a7eb2c2fab0e0, type: 2}
+  vitalityAgilityRunesTier1:
+  - {fileID: 11400000, guid: 2c680c20c9a78394daccee1e0bd2ed1a, type: 2}
+  - {fileID: 11400000, guid: d4875f1cfebb5894ca31cbda3a65c8c3, type: 2}
+  vitalityAgilityRunesTier2:
+  - {fileID: 11400000, guid: 835b84e1d3b8d904a9502797e6742c66, type: 2}
+  - {fileID: 11400000, guid: 50404aaeda3991841bfccc64fa2317d9, type: 2}
+  vitalityAgilityRunesTier3:
+  - {fileID: 11400000, guid: 782335014ed931b41a6bc2228698de74, type: 2}
+  - {fileID: 11400000, guid: 6ba83248884c5a7448863e7da4ec2cfd, type: 2}
+  vitalityPowerRunesTier1:
+  - {fileID: 11400000, guid: 4b0a829b986e0a9488452a1c3b95df4d, type: 2}
+  - {fileID: 11400000, guid: 7dd1899c06f929543921a24cb9ca428d, type: 2}
+  vitalityPowerRunesTier2:
+  - {fileID: 11400000, guid: 2242fd52a424f7f45be7bb9f84675cf9, type: 2}
+  - {fileID: 11400000, guid: eed81a278bb4e9f4a83e8bc428a09557, type: 2}
+  vitalityPowerRunesTier3:
+  - {fileID: 11400000, guid: 8b9fb67ff0e5c104bb333055ef161600, type: 2}
+  - {fileID: 11400000, guid: 9c197480f0e944f42a1d09382de9dead, type: 2}
+  agilityPowerRunesTier1:
+  - {fileID: 11400000, guid: c6195f0b9c07017429cc215f9ed367af, type: 2}
+  - {fileID: 11400000, guid: 0ecbbcee4c826eb458637f90b9ae8060, type: 2}
+  agilityPowerRunesTier2:
+  - {fileID: 11400000, guid: 383234d60a486e54695f238875bc16d8, type: 2}
+  - {fileID: 11400000, guid: 0f61bcdb0d5a03a4a9cdf560b0d6ed52, type: 2}
+  agilityPowerRunesTier3:
+  - {fileID: 11400000, guid: c9a5f3044db943049b12297f3d88caca, type: 2}
+  - {fileID: 11400000, guid: a7e6f6f1ce6e4ac478e425ff8f868a7f, type: 2}
   spiritScore: 1
   vitalityScore: 1
   agilityScore: 1
