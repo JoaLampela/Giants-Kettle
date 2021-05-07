@@ -14,6 +14,9 @@ public class EnemyMovementController : MonoBehaviour
     public float maxPlayerRange = 3f;
     public bool reachedEndOfPath = false;
     public float entitySpeed = 15;
+    public bool useSpeedBuff = false;
+    public float speedBuffAmount = 1.5f;
+    public float speedBuffDistance = 10f;
 
 
     public AnimationCurve dodgeWeightTransformationCurve;
@@ -125,7 +128,10 @@ public class EnemyMovementController : MonoBehaviour
 
                     RemoveWeightsByObstacle();
                     ChangeWeightByAlly();
-                    GetComponent<Rigidbody2D>().velocity = FindBestMovementOption();
+                    Vector2 endVelocity = FindBestMovementOption();
+                    if (useSpeedBuff && CalculateDistanceOfRemainingWaypoints() > speedBuffDistance)
+                        endVelocity *= speedBuffAmount;
+                    GetComponent<Rigidbody2D>().velocity = endVelocity;
 
                 }
             }

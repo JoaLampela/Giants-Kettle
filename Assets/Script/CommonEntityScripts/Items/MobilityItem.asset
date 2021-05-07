@@ -20,7 +20,7 @@ MonoBehaviour:
   runeSlots: 0
   baseRune: {fileID: 0}
   weaponType: 2
-  maxCooldownAbility1: 3
+  maxCooldownAbility1: 2
   currentCooldownAbility1: 0
   maxCooldownAbility2: 0
   currentCooldownAbility2: 0

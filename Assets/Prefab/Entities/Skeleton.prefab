@@ -614,6 +614,9 @@ MonoBehaviour:
   maxPlayerRange: 1
   reachedEndOfPath: 0
   entitySpeed: 5
+  useSpeedBuff: 1
+  speedBuffAmount: 1.5
+  speedBuffDistance: 10
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
