@@ -226,6 +226,7 @@ public class EntityEvents : MonoBehaviour
     public void HitThis(Damage damage)
     {
         OnHitThis?.Invoke(damage);
+        damage.source.GetComponent<EntityEvents>().HitEnemy(damage, gameObject);
     }
     public void RecoverHealth(int amount)
     {

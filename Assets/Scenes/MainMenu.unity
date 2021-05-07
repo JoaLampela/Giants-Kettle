@@ -4206,7 +4206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7342,7 +7342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9016,6 +9016,7 @@ GameObject:
   - component: {fileID: 742891694}
   - component: {fileID: 742891693}
   - component: {fileID: 742891692}
+  - component: {fileID: 742891695}
   m_Layer: 5
   m_Name: StatsView
   m_TagString: Untagged
@@ -9094,6 +9095,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742891690}
   m_CullTransparentMesh: 1
+--- !u!114 &742891695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742891690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d806a0574f7aa4fb330cc97ed776e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalGameStats: {fileID: 89156256}
+  totalPlayTimeText: {fileID: 1727289036}
+  totalenemiesKilledText: {fileID: 1772427795}
+  totalfloorsClearedText: {fileID: 1235444513}
+  totalRoomsClearedText: {fileID: 826559535}
+  totalRunesPickedUpText: {fileID: 1193271496}
+  totalItemsPickedUpText: {fileID: 553748337}
+  totalDamageDealtText: {fileID: 979507553}
+  HighestDamageDealtText: {fileID: 432896826}
+  AttackwithMostDamageText: {fileID: 789621334}
+  totalDeathCountText: {fileID: 1007460973}
+  totalhurtEnemiesText: {fileID: 75420447}
+  totalBossesKilledText: {fileID: 1861609860}
+  causeOfNightmaresText: {fileID: 1139659361}
 --- !u!1 &747554979
 GameObject:
   m_ObjectHideFlags: 0
