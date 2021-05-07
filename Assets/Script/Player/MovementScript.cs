@@ -21,7 +21,6 @@ public class MovementScript : MonoBehaviour
 
     private void Awake()
     {
-        SoundManager.Initialize();
         events = GetComponent<EntityEvents>();
     }
 
