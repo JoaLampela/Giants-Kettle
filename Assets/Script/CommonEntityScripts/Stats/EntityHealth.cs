@@ -207,6 +207,8 @@ public class EntityHealth : MonoBehaviour
     {
         Damage damageContainer = new Damage(killer, true, 0, 999999);
         DamagePopup.Create(transform.position, damageContainer._trueDamage, damageContainer._isCriticalHit, true);
+        events.Die(killer);
+        killer.GetComponent<EntityEvents>().KillEnemy(gameObject);
     }
 
     private void RegenHealth()
