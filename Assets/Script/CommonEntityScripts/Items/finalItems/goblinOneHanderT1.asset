@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f0c5d36d9a1f14da16314fb077a575, type: 3}
-  m_Name: rustyOneHanderT4
+  m_Name: goblinOneHanderT1
   m_EditorClassIdentifier: 
   type: 1
-  description: Abadoned one handed sword
-  iconSprite: {fileID: 21300000, guid: 02e36134dfa96214fb6f65be47a4172b, type: 3}
-  inGameObject: {fileID: 1297005671206144932, guid: b38d9ea2b7eceee43b3d794ef9d5bdf9, type: 3}
+  description: Common one handed sword made for a goblin warrior
+  iconSprite: {fileID: 21300000, guid: 818e7fbceeaf61e40b947412d18a0116, type: 3}
+  inGameObject: {fileID: 6496420423224513077, guid: 3402139974df4c24cb76a5383f492f80, type: 3}
   isTwoHander: 0
-  runeSlots: 4
+  runeSlots: 1
   baseRune: {fileID: 0}
   weaponType: 0
   maxCooldownAbility1: 3

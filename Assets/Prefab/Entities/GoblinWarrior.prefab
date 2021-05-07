@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 8271034211688280110}
   - component: {fileID: 6425927436679375116}
   m_Layer: 0
-  m_Name: Goblin_Enemy_Sword
+  m_Name: GoblinWarrior
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -881,9 +881,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObstacleVectorDistance: 0.5
   maxAllyRange: 2
-  maxPlayerRange: 5
+  maxPlayerRange: 3.5
   reachedEndOfPath: 0
-  entitySpeed: 4
+  entitySpeed: 5
+  useSpeedBuff: 1
+  speedBuffAmount: 1.5
+  speedBuffDistance: 12
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1073,7 +1076,7 @@ MonoBehaviour:
   entityName: Goblin
   level: 0
   team: 1
-  baseHealth: 75
+  baseHealth: 90
   baseSpirit: 0
   baseHealthRegen: 0
   baseSpiritRegen: 0
@@ -1309,7 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
-  dropChance: 25
+  dropChance: 10
 --- !u!114 &6425927436679375116
 MonoBehaviour:
   m_ObjectHideFlags: 0

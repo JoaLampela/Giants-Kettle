@@ -441,6 +441,9 @@ MonoBehaviour:
   maxPlayerRange: 10
   reachedEndOfPath: 0
   entitySpeed: 4
+  useSpeedBuff: 0
+  speedBuffAmount: 1.5
+  speedBuffDistance: 10
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -622,7 +625,7 @@ MonoBehaviour:
   baseSpeed: 1
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 30
+  basePhysicalDamage: 26
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 30
@@ -865,7 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmContainer: {fileID: 5149311540433281843}
   eye: {fileID: 0}
-  attackRange: 8
+  attackRange: 10
 --- !u!1 &5149311540333141235
 GameObject:
   m_ObjectHideFlags: 0

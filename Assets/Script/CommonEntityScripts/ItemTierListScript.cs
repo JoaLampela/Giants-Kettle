@@ -20,15 +20,15 @@ public class ItemTierListScript : MonoBehaviour
         if (Random.Range(1, 101) > 95) return tier1Items[Random.Range(0, tier100Items.Length)];
 
         int count = 0;
-        for(int i = 0; i <= tempTier; i ++)
+        for (int i = 0; i <= tempTier; i++)
         {
             count += i;
         }
         int tier = Random.Range(1, count + 2);
-        if (tier > 15) return tier6Items[Random.Range(0, tier6Items.Length)];
-        else if (tier > 10) return tier5Items[Random.Range(0, tier5Items.Length)];
-        else if (tier > 6) return tier4Items[Random.Range(0, tier4Items.Length)];
-        else if (tier > 3) return tier3Items[Random.Range(0, tier3Items.Length)];
+        if (tier > 40) return tier6Items[Random.Range(0, tier6Items.Length)];
+        else if (tier > 25) return tier5Items[Random.Range(0, tier5Items.Length)];
+        else if (tier > 15) return tier4Items[Random.Range(0, tier4Items.Length)];
+        else if (tier > 6) return tier3Items[Random.Range(0, tier3Items.Length)];
         else if (tier > 1) return tier2Items[Random.Range(0, tier2Items.Length)];
         else if (tier > 0) return tier1Items[Random.Range(0, tier1Items.Length)];
         else return tier1Items[Random.Range(0, tier1Items.Length)];

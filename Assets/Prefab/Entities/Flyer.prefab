@@ -87,6 +87,9 @@ MonoBehaviour:
   maxPlayerRange: 10
   reachedEndOfPath: 0
   entitySpeed: 4
+  useSpeedBuff: 0
+  speedBuffAmount: 1.5
+  speedBuffDistance: 10
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:
@@ -254,7 +257,7 @@ MonoBehaviour:
   baseSpeed: 20
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 15
+  basePhysicalDamage: 17
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 0
@@ -500,7 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPerLevel: 40
   healthRegenPerLevel: 0
-  physicalDamagePerLevel: 15
+  physicalDamagePerLevel: 9
   armorPerLevel: 2
 --- !u!114 &2227358727020279601
 MonoBehaviour:
@@ -528,7 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
-  dropChance: 25
+  dropChance: 15
 --- !u!1 &5013314282194355379
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f0c5d36d9a1f14da16314fb077a575, type: 3}
-  m_Name: rustyOneHanderT5
+  m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
+  m_Name: butterflyAxeTwoHanderT5
   m_EditorClassIdentifier: 
   type: 1
-  description: Abadoned one handed sword
-  iconSprite: {fileID: 21300000, guid: 02e36134dfa96214fb6f65be47a4172b, type: 3}
-  inGameObject: {fileID: 1297005671206144932, guid: b38d9ea2b7eceee43b3d794ef9d5bdf9, type: 3}
-  isTwoHander: 0
+  description: 
+  iconSprite: {fileID: 21300000, guid: 49b1dd1eef112a04b8fab0ff9dad1f51, type: 3}
+  inGameObject: {fileID: 84307434721843549, guid: 9a6f01dea1c5e2341b533c985c0e32ac, type: 3}
+  isTwoHander: 1
   runeSlots: 5
   baseRune: {fileID: 0}
-  weaponType: 0
+  weaponType: 1
   maxCooldownAbility1: 3
   currentCooldownAbility1: 0
-  maxCooldownAbility2: 3
+  maxCooldownAbility2: 5
   currentCooldownAbility2: 0

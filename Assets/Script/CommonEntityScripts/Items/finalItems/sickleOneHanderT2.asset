@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f0c5d36d9a1f14da16314fb077a575, type: 3}
-  m_Name: rustyOneHanderT2
+  m_Name: sickleOneHanderT2
   m_EditorClassIdentifier: 
   type: 1
-  description: Abadoned one handed sword
-  iconSprite: {fileID: 21300000, guid: 02e36134dfa96214fb6f65be47a4172b, type: 3}
-  inGameObject: {fileID: 1297005671206144932, guid: b38d9ea2b7eceee43b3d794ef9d5bdf9, type: 3}
+  description: A tool for killing
+  iconSprite: {fileID: 21300000, guid: 7e4022ed93b835d4887a6ed723fab6d2, type: 3}
+  inGameObject: {fileID: 6996466298925632931, guid: 3b3d603e6355df54e9d5289241ab3b54, type: 3}
   isTwoHander: 0
   runeSlots: 2
   baseRune: {fileID: 0}

@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityName: 
   level: 0
   team: 1
   baseHealth: 20
@@ -135,6 +136,7 @@ MonoBehaviour:
   currentArmor: 0
   currentAttackSpeed: 0
   isInvisible: 0
+  isInvulnurable: 0
   isInCombat: 0
   isInAction: 0
   isTakingDamage: 0
@@ -154,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
 --- !u!114 &8343847155517277790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +208,7 @@ MonoBehaviour:
   basicAttackOneHandedSword: {fileID: 0}
   basicAttackTwoHandedSword: {fileID: 0}
   basicAttackStaff: {fileID: 0}
+  block: {fileID: 0}
 --- !u!114 &5414056378907933711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +341,9 @@ MonoBehaviour:
   maxPlayerRange: 5
   reachedEndOfPath: 0
   entitySpeed: 10
+  useSpeedBuff: 1
+  speedBuffAmount: 1.5
+  speedBuffDistance: 10
   dodgeWeightTransformationCurve:
     serializedVersion: 2
     m_Curve:

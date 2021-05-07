@@ -45,10 +45,8 @@ public class Sting2Handed : MonoBehaviour, IAbility
         {
             if (_spellSlot == slot)
             {
-                mouseDirection = Input.mousePosition;
-
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
-               _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f/(100f + GetComponent<EntityStats>().currentSpellHaste);
+                _weapon.currentCooldownAbility1 = _weapon.maxCooldownAbility1 * 100f / (100f + GetComponent<EntityStats>().currentSpellHaste);
                 _entityEvents.OnAnimationTriggerPoint += InstatiateHitBox;
                 movementScript.StartAttackSlow();
                 playerAnimations.SetAttacking(true);
@@ -75,7 +73,7 @@ public class Sting2Handed : MonoBehaviour, IAbility
         }
         else
         {
-            direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
+            direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
         }
         float angle = Vector2.Angle(Vector2.up, direction);
         float sign = Mathf.Sign(Vector2.Dot(Vector2.left, direction));

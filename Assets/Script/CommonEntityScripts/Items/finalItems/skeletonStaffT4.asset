@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 949ac30fd5ef64544ad7d4516dee16d5, type: 3}
-  m_Name: oldStaffT4
+  m_Name: skeletonStaffT4
   m_EditorClassIdentifier: 
   type: 1
-  description: 
-  iconSprite: {fileID: 21300000, guid: 6bd169d410e44814394bff727bfe0e5e, type: 3}
-  inGameObject: {fileID: 5490470622769133208, guid: a5e1cc5be7f552b4b943fcc9a4643a7e, type: 3}
+  description: Looking at this staff, you can feel something shivering down your
+    spine.
+  iconSprite: {fileID: 21300000, guid: 26f76979a7b6cd84d9afc9367f15f231, type: 3}
+  inGameObject: {fileID: 3622297164880679606, guid: 40cb453c1c6eff94a87fe25823395fa3, type: 3}
   isTwoHander: 1
   runeSlots: 4
   baseRune: {fileID: 0}

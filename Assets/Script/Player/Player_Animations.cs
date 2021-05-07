@@ -53,12 +53,8 @@ public class Player_Animations : MonoBehaviour, IEntityAnimations
     {
         if ((offHandUsingSingleHandedSword || offHandUsingShield) && !attacking)
             LeftHandLookOppositeToMouse();
-        if (!attacking)
-            LookToMouse();
-        else
-        {
-            LookDirectionUpdate();
-        }
+
+        LookToMouse();
     }
 
     private void OnDisable()
