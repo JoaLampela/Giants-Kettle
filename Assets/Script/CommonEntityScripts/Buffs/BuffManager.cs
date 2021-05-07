@@ -40,20 +40,19 @@ public class BuffManager : MonoBehaviour
         //if buff with this sourceId is not present in dictionary, new entry is created with this sourceId
         if(!activeBuffs.ContainsKey(sourceId))
         {
-            stats.UpdateBuff(buff._id, buff._value);
+            stats.UpdateBuff(buff._id, buff._value); //<- 2.
             activeBuffs.Add(sourceId, buff);
             
         }
         else
         {
-            Debug.Log("doesnt contain key");
             //if this sourceId is already present in the dictionary it will be compared with this new one and
             //bigger value is updated to the dictionary
-            if (activeBuffs[sourceId]._value < buff._value)
+            if (activeBuffs[sourceId]._value <= buff._value)
             {
                 stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
                 activeBuffs[sourceId] = buff;
-                stats.UpdateBuff(buff._id, buff._value);
+                stats.UpdateBuff(buff._id, buff._value); //<- 1.
             }
         }
     }
@@ -63,13 +62,17 @@ public class BuffManager : MonoBehaviour
     //removes the buff from the dictionary
     public void RemoveBuff(string sourceId, BuffClass buff)
     {
+        Debug.Log("Removing buff (duration 0)");
+        Debug.Log("activeBuffs " + activeBuffs.Keys);
+
         if(activeBuffs.ContainsKey(sourceId))
         {
             if (activeBuffs[sourceId]._value == buff._value)
             {
                 stats.UpdateBuff(buff._id, -activeBuffs[sourceId]._value);
+                activeBuffs.Remove(sourceId);
             }
-            activeBuffs.Remove(sourceId);
+            
         }
         else
         {

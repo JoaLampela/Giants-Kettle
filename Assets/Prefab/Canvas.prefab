@@ -62407,6 +62407,7 @@ GameObject:
   - component: {fileID: 4452998915079316495}
   - component: {fileID: 3072392896773763728}
   - component: {fileID: 7666637079900990546}
+  - component: {fileID: 3494012730994450340}
   m_Layer: 5
   m_Name: BonePilesPanel
   m_TagString: Untagged
@@ -62473,6 +62474,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3494012730994450340
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816591631509118772}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &7831439410968618889
 GameObject:
   m_ObjectHideFlags: 0

@@ -803,7 +803,7 @@ MonoBehaviour:
   entityName: Skelebro
   level: 0
   team: 1
-  baseHealth: 5
+  baseHealth: 28
   baseSpirit: 0
   baseHealthRegen: 60
   baseSpiritRegen: 0

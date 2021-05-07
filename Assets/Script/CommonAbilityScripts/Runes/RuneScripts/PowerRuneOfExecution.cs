@@ -105,17 +105,11 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("PowerRuneOfExecutionArmor");
-        _entityEvents.RemoveBuff("PowerRuneOfExecutionWeapon");
+        _entityEvents.RemoveBuff("PowerRuneOfExecution");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfExecutionArmor", EntityStats.BuffType.Health, duplicateCountArmor * 25);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("PowerRuneOfExecutionWeapon", EntityStats.BuffType.Health, duplicateCountWeapon * 25);
+            _entityEvents.NewBuff("PowerRuneOfExecution", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -142,8 +136,7 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfExecutionArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfExecutionWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfExecution");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

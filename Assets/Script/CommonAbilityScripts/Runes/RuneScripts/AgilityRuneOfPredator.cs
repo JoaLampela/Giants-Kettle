@@ -106,17 +106,13 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfPredatorArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfPredatorWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfPredatorAttackSpeed");
+        _entityEvents.RemoveBuff("AgilityRuneOfPredatorCrit");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfPredatorArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfPredatorWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("AgilityRuneOfPredatorAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 3);
+            _entityEvents.NewBuff("AgilityRuneOfPredatorCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -144,8 +140,8 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfPredatorCrit");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -161,8 +157,11 @@ public class AgilityRuneOfPredator : MonoBehaviour, IRuneScript
     public void Activate(GameObject target, Damage damage)
     {
         stackCount++;
-        BuffStackHandler();
         _entityEvents.NewBuff("AgilityRuneOfPredatorBonus", EntityStats.BuffType.AttackSpeed, (int)(stackCount * ((duplicateCountArmor + duplicateCountWeapon) * 15)), 3.0f);
+        StartCoroutine(BuffStackHandler());
+
+        GameObject predatorEffect = RuneAssets.i.RunePredatorEffect;
+        predatorEffect = Instantiate(predatorEffect, gameObject.transform.position, Quaternion.identity, gameObject.transform);
     }
 
     private IEnumerator BuffStackHandler()
