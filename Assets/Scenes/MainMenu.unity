@@ -1111,7 +1111,7 @@ MonoBehaviour:
   vitalityRuneOfStagger: 2
   vitalityRuneOfRecovery: 3
   vitalityRuneOfHealth: 4
-  vitalityRuneOfGrowth: 5
+  vitalityRuneOfGrowth: 6
   vitalityRuneOfArmor: 6
   spiritRuneOfHaste: 7
   spiritRuneOfHealing: 8
@@ -9039,9 +9039,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742891690}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &742891693
 MonoBehaviour:
@@ -25471,10 +25471,10 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842325688}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1843521046
 GameObject:
   m_ObjectHideFlags: 0
@@ -27314,9 +27314,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971226312}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &1978608989
 GameObject:

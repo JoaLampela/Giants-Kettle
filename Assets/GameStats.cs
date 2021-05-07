@@ -523,7 +523,7 @@ public class GameStats : MonoBehaviour
         PlayerPrefs.SetInt("TotalDeathCount", PlayerPrefs.GetInt("TotalDeathCount", 0) + 1);
         PlayerPrefs.SetInt("TotalHits", PlayerPrefs.GetInt("TotalHits", 0) + totalHits);
         PlayerPrefs.SetInt("TotalBossesKilled", PlayerPrefs.GetInt("TotalBossesKilled", 0) + killedHoglins + killedSummoners);
-        if(killer.GetComponent<EntityStats>().entityName == "Goblin") PlayerPrefs.SetInt("TotalKilledByGoblin", PlayerPrefs.GetInt("TotalKilledByGoblin", 0) + 1);
+        if (killer.GetComponent<EntityStats>().entityName == "Goblin") PlayerPrefs.SetInt("TotalKilledByGoblin", PlayerPrefs.GetInt("TotalKilledByGoblin", 0) + 1);
         if (killer.GetComponent<EntityStats>().entityName == "Skelebro") PlayerPrefs.SetInt("TotalKilledBySkeleton", PlayerPrefs.GetInt("TotalKilledBySkeleton", 0) + 1);
         if (killer.GetComponent<EntityStats>().entityName == "Summoner") PlayerPrefs.SetInt("TotalKilledBySummoner", PlayerPrefs.GetInt("TotalKilledBySummoner", 0) + 1);
         if (killer.GetComponent<EntityStats>().entityName == "Hoglon") PlayerPrefs.SetInt("TotalKilledByHoglon", PlayerPrefs.GetInt("TotalKilledByHoglon", 0) + 1);
