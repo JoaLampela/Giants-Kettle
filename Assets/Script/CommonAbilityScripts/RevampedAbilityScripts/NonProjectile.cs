@@ -47,7 +47,6 @@ public class NonProjectile : MonoBehaviour, IAbility
                 playerAnimations.SetAttacking(true);
                 animator.SetTrigger("LeftAttack");
                 _entityEvents.CastAbility();
-                SoundManager.PlaySound(SoundManager.Sound.SpellAoE, transform.position);
             }
         }
         else CannotAffordCast(slot);
@@ -75,6 +74,7 @@ public class NonProjectile : MonoBehaviour, IAbility
         nonProjectile.GetComponent<AbilityEvents>().SetSource(gameObject);
         nonProjectile.GetComponent<AbilityEvents>().UseAbility();
         playerAnimations.SetAttacking(false);
+        SoundManager.PlaySound(SoundManager.Sound.SpellAoE, transform.position);
     }
 
     private void CannotAffordCast(int slot)

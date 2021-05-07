@@ -64,7 +64,6 @@ public class Dash : MonoBehaviour, IAbility
                 targetPosAtStart = targetPositionScript.GetTargetPosition() - (Vector2)transform.position;
                 _entityEvents.CastAbility();
 
-                SoundManager.PlaySound(SoundManager.Sound.Dash, transform.position);
             }
         }
         else CannotAffordCast(slot);
@@ -97,6 +96,7 @@ public class Dash : MonoBehaviour, IAbility
         dash.GetComponent<AbilityEvents>()._targetPositionAtStart = targetPosAtStart;
         dash.GetComponent<AbilityEvents>().SetSource(gameObject);
         dash.GetComponent<AbilityEvents>().UseAbility();
+        SoundManager.PlaySound(SoundManager.Sound.Dash, transform.position);
         StartCoroutine(DashEnumerator(dashTime));
     }
 

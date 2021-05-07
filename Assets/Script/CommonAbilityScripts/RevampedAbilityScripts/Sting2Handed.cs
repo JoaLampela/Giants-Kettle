@@ -100,6 +100,7 @@ public class Sting2Handed : MonoBehaviour, IAbility
         movementScript.AttackStep(1000);
         playerAnimations.SetAttacking(false);
         movementScript.StopAttackSlow();
+        SoundManager.PlaySound(SoundManager.Sound.TwoHandedSting, transform.position);
     }
 
     private void CannotAffordCast(int slot)

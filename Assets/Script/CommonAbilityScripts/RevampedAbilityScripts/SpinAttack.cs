@@ -47,7 +47,6 @@ public class SpinAttack : MonoBehaviour, IAbility
                 animator.SetTrigger("LeftAttack");
                 _entityEvents.CastAbility();
 
-                SoundManager.PlaySound(SoundManager.Sound.SpinAttack, transform.position);
             }
         }
         else CannotAffordCast(slot);
@@ -77,6 +76,7 @@ public class SpinAttack : MonoBehaviour, IAbility
         spinAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
         spinAttack.GetComponent<AbilityEvents>().UseAbility();
         playerAnimations.SetAttacking(false);
+        SoundManager.PlaySound(SoundManager.Sound.SpinAttack, transform.position);
     }
 
     private void CannotAffordCast(int slot)

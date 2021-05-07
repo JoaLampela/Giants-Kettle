@@ -69,6 +69,7 @@ public class TripleShot : MonoBehaviour, IAbility
         }
         tripleShot.GetComponent<AbilityEvents>().SetSource(gameObject);
         tripleShot.GetComponent<AbilityEvents>().UseAbility();
+        SoundManager.PlaySound(SoundManager.Sound.TripleShot);
     }
 
     private void CannotAffordCast(int slot)

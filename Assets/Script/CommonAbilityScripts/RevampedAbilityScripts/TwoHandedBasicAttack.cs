@@ -51,7 +51,6 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
                 playerAnimations.SetAttacking(true);
                 animator.SetTrigger("Attack");
 
-                SoundManager.PlaySound(SoundManager.Sound.TwoHandedBasicAttack, transform.position);
             }
         }
         else CannotAffordCast(slot);
@@ -103,6 +102,7 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
         basicAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
         basicAttack.GetComponent<AbilityEvents>().UseAbility();
         playerAnimations.SetAttacking(false);
+        SoundManager.PlaySound(SoundManager.Sound.TwoHandedBasicAttack, transform.position);
     }
 
     private void CannotAffordCast(int slot)

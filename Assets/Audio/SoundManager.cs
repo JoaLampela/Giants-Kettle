@@ -19,11 +19,23 @@ public static class SoundManager
         Dash,
         StingRight,
         StingLeft,
+        TwoHandedSting,
         SpinAttack,
         EnemyHit,
-        EnemyDie,
+        GoblinDie,
+        SkeletonDie,
+        SummonerDie,
+        BossDie,
         ButtonHover,
         ButtonClick,
+        Footstep1,
+        Footstep2,
+        Footstep3,
+        Footstep4,
+        ShieldToss,
+        ShieldSlam,
+        Block,
+        TripleShot,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -106,7 +118,7 @@ public static class SoundManager
         {
             default:
                 return true;
-
+                /*
             case Sound.PlayerMove:
                 if (soundTimerDictionary.ContainsKey(sound))
                 {
@@ -128,6 +140,7 @@ public static class SoundManager
                 {
                     return true;
                 }
+                */
         }
     }
 

@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 5223802194290256615}
   - component: {fileID: 6547226303119389737}
   - component: {fileID: 3861479087382183506}
+  - component: {fileID: 7171108772399456087}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -490,6 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee1c89dca705bb48b2d684c5b274d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityName: 
   level: 0
   team: 2
   baseHealth: 100
@@ -846,6 +848,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spellSlot: 0
   mouseDirection: {x: 0, y: 0}
+--- !u!114 &7171108772399456087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051720969466832969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74aadfc0b1dc79743b683509e0cbbd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7051720969780881987
 GameObject:
   m_ObjectHideFlags: 0
