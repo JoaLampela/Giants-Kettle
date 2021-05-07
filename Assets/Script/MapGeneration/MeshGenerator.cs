@@ -262,6 +262,7 @@ public class MeshGenerator : MonoBehaviour
                             {
                                 wallVector = caveTilemap.WorldToCell(squareGrid.squares[x + 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
                                 wallTilemap.SetTile(wallVector, tileList[21]);
+                                
                             }
                         }
                         ////if tile to the bottom left is a top right triangle
