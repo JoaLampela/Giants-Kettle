@@ -70,6 +70,7 @@ public class MapGeneration : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
         player.transform.position = playerSpawnPoint.transform.position;
+        GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>().StopLoad();
         //Instantiate(item, playerSpawnPoint.transform.position + Vector2.left);
     }
     private void LateUpdate()
@@ -564,6 +565,7 @@ public class MapGeneration : MonoBehaviour
 
     public void ExitLevel()
     {
+
         //Do it anakin
         foreach (Transform child in gameObject.transform)
         {
@@ -573,16 +575,24 @@ public class MapGeneration : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+
         levelsPassed++;
         if (levelsPassed == levels.Length)
             levelsPassed = 0;
+        StartCoroutine(doneLoading());
         GenerateMap();
-
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject[] playerSpawnPoint = GameObject.FindGameObjectsWithTag("PlayerSpawnPoint");
         player.transform.position = playerSpawnPoint[1].transform.position;
         //Debug.Log(playerSpawnPoint[1].transform.position);
+
     }
+    IEnumerator doneLoading()
+    {
+        yield return new WaitForEndOfFrame();
+        GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>().StopLoad();
+    }
+
     [System.Serializable]
     public class Level
     {

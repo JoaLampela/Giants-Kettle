@@ -55,7 +55,7 @@ MonoBehaviour:
   _targetPosition: {x: 0, y: 0}
   _targetVector: {x: 0, y: 0}
   abilityScale: 0
-  damageMultiplier: 150
+  damageMultiplier: 125
   bonusFlatDamage: 0
   bonusFlatTrueDamage: 0
   damageParentMultiplier: 100

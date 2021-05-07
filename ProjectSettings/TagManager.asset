@@ -19,6 +19,8 @@ TagManager:
   - PlayerUI
   - PauseMenu
   - Walls
+  - LoadingScreen
+  - UI
   layers:
   - Default
   - TransparentFX

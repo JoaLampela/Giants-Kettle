@@ -26,6 +26,25 @@ public class ItemOnGround : MonoBehaviour
         startPos = transform.position;
     }
 
+    private void Start()
+    {
+        Subscribe();
+    }
+
+    private void OnDisable()
+    {
+        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnExitLevel -= DestroyGameObject;
+    }
+
+    private void Subscribe()
+    {
+        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnExitLevel += DestroyGameObject;
+    }
+    private void DestroyGameObject()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnMouseOver()
     {
         if(Input.GetMouseButtonDown(1) && !pickedUp && Vector2.Distance(player.transform.position,transform.position) < pickUpDistance)

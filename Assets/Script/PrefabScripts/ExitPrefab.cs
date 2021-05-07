@@ -9,9 +9,21 @@ public class ExitPrefab : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            StartCoroutine(startLoading());
+        }
+        IEnumerator startLoading()
+        {
+            GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>().StartLoad();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+
+
+
             Debug.Log("EXITING LEVEL");
             GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<MapGeneration>().ExitLevel();
             GameObject.Find("Game Manager").GetComponent<GameEventManager>().ExitLevel();
+
         }
     }
 }
