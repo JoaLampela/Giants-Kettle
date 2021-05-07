@@ -5,7 +5,8 @@ using UnityEngine.Tilemaps;
 using System;
 using Pathfinding;
 
-enum Tiles{
+enum Tiles
+{
     ground, bottomLeft, bottomRight, bottomCave, topRight, leftToTopRight,
     rightWall, missingTopLeft, topLeft, leftCave, rightToTopLeft, missingTopRight,
     topCave, missingBottomright, missingBottomLeft, fullCave
@@ -26,7 +27,9 @@ public class MeshGenerator : MonoBehaviour
     public MeshFilter wallMeshFilter;
     public GameObject wallTilemapGO;
     public GameObject caveTilemapGO;
-    public GameObject grassPrefab;
+    public GameObject[] worldGenPrefabs;
+    public GameObject plant;
+    public int plantAmountOfPrefabs;
     public Transform instanceTargetTrans;
     public Tilemap groundTilemap;
     public Tilemap caveTilemap;
@@ -102,8 +105,9 @@ public class MeshGenerator : MonoBehaviour
 
     public void DestroyChildren(Transform trans)
     {
-      
-        foreach (Transform child in trans.transform) {
+
+        foreach (Transform child in trans.transform)
+        {
             Destroy(child.gameObject);
         }
     }
@@ -119,29 +123,44 @@ public class MeshGenerator : MonoBehaviour
         wallBorderTilemap.ClearAllTiles();
         DestroyChildren(instanceTargetTrans);
 
-        
+
         //set the tiles to the map
         for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
         {
             //rnd = new System.Random();
-            for (int y = 0; y < squareGrid.squares.GetLength(1); y++) {
+            for (int y = 0; y < squareGrid.squares.GetLength(1); y++)
+            {
                 int configuration = squareGrid.squares[x, y]._configuration;
 
                 Vector3Int cellVector = caveTilemap.WorldToCell(squareGrid.squares[x, y]._centerBottom._position + new Vector2(0, 0.5f));
                 Vector3 worldVector = squareGrid.squares[x, y]._centerBottom._position + new Vector2(0, 0.5f);
-                switch (configuration) {
+                switch (configuration)
+                {
                     case 0:
                         //ground
                         groundTilemap.SetTile(cellVector, tileList[0]);
 
                         randInt = UnityEngine.Random.Range(1, 100);
                         //grass
-                        if (squareGrid.squares[x, y + 1]._configuration == 0) {
-                            if (randInt <= 6) {
-                                instantiator.Paint(grassPrefab, worldVector, instanceTargetTrans);
+                        if (squareGrid.squares[x, y + 1]._configuration == 0)
+                        {
+
+                            if (randInt <= prefabAmountPercent)
+                            {
+                                if (UnityEngine.Random.Range(1, 100) <= plantAmountOfPrefabs)
+                                {
+                                    instantiator.Paint(plant, worldVector, instanceTargetTrans);
+                                }
+
+                                else
+                                {
+                                    GameObject randomPrefab = worldGenPrefabs[(int)UnityEngine.Random.Range(0, worldGenPrefabs.Length)];
+                                    instantiator.Paint(randomPrefab, worldVector, instanceTargetTrans);
+                                }
+
                             }
                         }
-                       
+
 
                         break;
                     //only 1 controlNodes is active
@@ -168,10 +187,13 @@ public class MeshGenerator : MonoBehaviour
 
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
                         //if the block to the right is a upside wall
-                        if (squareGrid.squares[x + 1, y]._configuration == 12) {
+                        if (squareGrid.squares[x + 1, y]._configuration == 12)
+                        {
                             //top right wall triangle
                             wallTilemap.SetTile(wallVector, tileList[22]);
-                        } else if (squareGrid.squares[x + 1, y]._configuration == 8) {
+                        }
+                        else if (squareGrid.squares[x + 1, y]._configuration == 8)
+                        {
                             //if the block to the right is top left triangle
                             wallTilemap.SetTile(wallVector, tileList[22]);
                         }
@@ -188,10 +210,13 @@ public class MeshGenerator : MonoBehaviour
                         wallVector = caveTilemap.WorldToCell(squareGrid.squares[x, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
 
                         //if the block to the left is a upside wall
-                        if (squareGrid.squares[x - 1, y]._configuration == 12) {
+                        if (squareGrid.squares[x - 1, y]._configuration == 12)
+                        {
                             //top left wall square
                             wallTilemap.SetTile(wallVector, tileList[21]);
-                        } else if (squareGrid.squares[x - 1, y]._configuration == 4) {
+                        }
+                        else if (squareGrid.squares[x - 1, y]._configuration == 4)
+                        {
                             //if the block to the left is a top right triangle
                             wallTilemap.SetTile(wallVector, tileList[21]);
                         }
@@ -233,7 +258,8 @@ public class MeshGenerator : MonoBehaviour
                         if ((squareGrid.squares[x + 1, y + 1]._configuration == 1) || (squareGrid.squares[x + 1, y + 1]._configuration == 5) || (squareGrid.squares[x + 1, y + 1]._configuration == 4))
                         {
                             //if the tile to the right is not a top wall
-                            if (!(squareGrid.squares[x + 1, y]._configuration == 12)) {
+                            if (!(squareGrid.squares[x + 1, y]._configuration == 12))
+                            {
                                 wallVector = caveTilemap.WorldToCell(squareGrid.squares[x + 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
                                 wallTilemap.SetTile(wallVector, tileList[21]);
                             }
@@ -253,9 +279,11 @@ public class MeshGenerator : MonoBehaviour
                         caveTilemap.SetTile(cellVector, tileList[23]);
 
                         //if the tile to the upper left is the same as this, or if it is a bottom right triangle, or if the tile to the bottom right is a top left triangle
-                        if ((squareGrid.squares[x - 1, y + 1]._configuration == 2) || (squareGrid.squares[x - 1, y + 1]._configuration == 10) || (squareGrid.squares[x + 1, y - 1]._configuration == 8)) {
+                        if ((squareGrid.squares[x - 1, y + 1]._configuration == 2) || (squareGrid.squares[x - 1, y + 1]._configuration == 10) || (squareGrid.squares[x + 1, y - 1]._configuration == 8))
+                        {
                             //if the tile to the left is not a top wall
-                            if (!(squareGrid.squares[x - 1, y]._configuration == 12)) {
+                            if (!(squareGrid.squares[x - 1, y]._configuration == 12))
+                            {
                                 wallVector = caveTilemap.WorldToCell(squareGrid.squares[x - 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
                                 wallTilemap.SetTile(wallVector, tileList[22]);
                             }
