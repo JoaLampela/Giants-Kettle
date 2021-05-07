@@ -868,7 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmContainer: {fileID: 5149311540433281843}
   eye: {fileID: 0}
-  attackRange: 10
+  attackRange: 16.07
 --- !u!1 &5149311540333141235
 GameObject:
   m_ObjectHideFlags: 0
