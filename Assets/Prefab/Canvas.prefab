@@ -47823,7 +47823,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.000030517578, y: -0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5420252699996621258
@@ -70640,7 +70640,7 @@ GameObject:
   - component: {fileID: 2435606666821459288}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70787,7 +70787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 2814619061889278407}
-  loadingScreen: {fileID: 0}
+  loadingScreen: {fileID: 6034827283658513943}
   gameOverScreen: {fileID: 8471077672208607712}
   gameOverMenuHandler: {fileID: 2484018982511286734}
 --- !u!114 &2435606666821459288
