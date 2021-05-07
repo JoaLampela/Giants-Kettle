@@ -124,6 +124,7 @@ public class Inventory : MonoBehaviour
         if (!slotFound) DropItem(item);
     }
 
+    [Obsolete]
     public void UseItem(Item usedItem)
     {
         if ((int)usedItem.item.type == (int)ItemType.Consumable)
@@ -262,6 +263,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    [Obsolete]
     public void Unequip(Item unequippedItem, UiButtonClick slot)
     {
         Debug.Log("Unequipped item " + unequippedItem);
@@ -437,6 +439,7 @@ public class Inventory : MonoBehaviour
         Left
     }
 
+    [Obsolete]
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
         Debug.Log("Equipped item " + equippedItem);

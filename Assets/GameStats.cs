@@ -86,8 +86,8 @@ public class GameStats : MonoBehaviour
     private void Unsubscribe()
     {
         player.GetComponent<EntityEvents>().OnKillEnemy -= AddKilledEnemy;
-        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnRunePicked -= AddRune;
-        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnEquipmentDropepd -= AddEquipment;
+        //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnRunePicked -= AddRune;
+        //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnEquipmentDropepd -= AddEquipment;
     }
 
     public void EndGameSaveStats()

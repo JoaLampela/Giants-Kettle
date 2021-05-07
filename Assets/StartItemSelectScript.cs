@@ -20,7 +20,7 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.SetItem(new Item(sword));
         groundItem.pickedUp = true;
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 
     public void SelectShieldShield()
@@ -33,7 +33,7 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.SetItem(new Item(shield));
         groundItem.pickedUp = true;
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 
     public void SelectShieldSword()
@@ -46,7 +46,7 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.SetItem(new Item(sword));
         groundItem.pickedUp = true;
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 
     public void SelectStaff()
@@ -55,7 +55,7 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.SetItem(new Item(staff));
         groundItem.pickedUp = true;
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
     public void Select2HSword()
     {
@@ -63,6 +63,6 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.SetItem(new Item(twoHandedSword));
         groundItem.pickedUp = true;
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 }
