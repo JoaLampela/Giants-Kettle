@@ -22,7 +22,7 @@ public static class SoundManager
         SpinAttack,
         EnemyHit,
         EnemyDie,
-        ButtonHover,
+        ButtonOver,
         ButtonClick,
     }
 
@@ -31,21 +31,14 @@ public static class SoundManager
     private static AudioSource oneShotAudioSource;
     private static AudioMixer masterMixer;
     private static AudioMixerGroup sfxGroup;
-    private static AudioMixerGroup masterGroup;
-    private static bool initialized = false;
 
 
     public static void Initialize()
     {
-        if (!initialized)
-        {
-            masterMixer = Resources.Load("MasterMixer") as AudioMixer;
-            sfxGroup = masterMixer.FindMatchingGroups("SFX")[0];
-            masterGroup = masterMixer.FindMatchingGroups("Master")[0];
-            soundTimerDictionary = new Dictionary<Sound, float>();
-            soundTimerDictionary[Sound.PlayerMove] = 0f;
-            initialized = true;
-        }
+        masterMixer = Resources.Load("MasterMixer") as AudioMixer;
+        sfxGroup = masterMixer.FindMatchingGroups("SFX")[0];
+        soundTimerDictionary = new Dictionary<Sound, float>();
+        soundTimerDictionary[Sound.PlayerMove] = 0f;
     }
 
     public static void PlaySound(Sound sound, Vector3 position)
@@ -71,35 +64,16 @@ public static class SoundManager
     {
         if (CanPlaySound(sound))
         {
-            GameObject soundGameObject = new GameObject("Sound");
-            soundGameObject.transform.position = new Vector3(0,0,0);
-            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-            audioSource.clip = GetAudioClip(sound);
-            audioSource.maxDistance = 100f;
-            audioSource.spatialBlend = 1f;
-            audioSource.rolloffMode = AudioRolloffMode.Linear;
-            audioSource.dopplerLevel = 0f;
-            audioSource.outputAudioMixerGroup = sfxGroup;
-            audioSource.Play();
-
-            Object.Destroy(soundGameObject, audioSource.clip.length);
-        }
-    }
-
-    public static void PlayUISound(Sound sound)
-    {
-        if (CanPlaySound(sound))
-        {
             if(oneShotGameObject == null)
             {
-                oneShotGameObject = new GameObject("One Shot Sound");
-                oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
-                oneShotAudioSource.outputAudioMixerGroup = masterGroup;
+                 oneShotGameObject = new GameObject("One Shot Sound");
+                 oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
+                oneShotAudioSource.outputAudioMixerGroup = sfxGroup;
             }
             oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
         }
     }
-    
+
     private static bool CanPlaySound(Sound sound)
     {
         switch (sound)
@@ -144,5 +118,11 @@ public static class SoundManager
         return null;
     }
 
-  
+    /*
+    public static void AddButtonSounds(this Button_UI button)
+    {
+        button.ClickFunc += () => SoundManager.PlaySound(Sound.ButtonClick);
+        button.MouseOverOnceFunc += () => SoundManager.PlaySound(Sound.ButtonOver);
+    }
+    */
 }
