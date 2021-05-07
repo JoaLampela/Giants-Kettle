@@ -61,6 +61,21 @@ public class TotalGameStats : MonoBehaviour
     public int clearedFloors = 1;
     public int clearedRooms = 0;
 
+    public int totalGameTime = 0;
+    public int runesPicked = 0;
+    public int totalItemsFound = 0;
+    public int totalDamageDealt = 0;
+    public int highestDamageInGame = 0;
+    public int highestDamageAttack = 0;
+    public int totalDeathCount = 0;
+    public int totalHits = 0;
+    public int totalBossesKilled = 0;
+    public int killedByGoblin = 0;
+    public int killedBySkeleton = 0;
+    public int killedBySummoner = 0;
+    public int killedByHoglon = 0;
+    public int killedByFlyer = 0;
+
 
 
     [SerializeField] private RuneObject vitalityRuneOfTenacityRune;
@@ -164,5 +179,80 @@ public class TotalGameStats : MonoBehaviour
         if (rune == vitalityPowerRuneOfStressRune) return vitalityPowerRuneOfStress;
 
         return 0;
+    }
+
+    private void Start()
+    {
+        vitalityRuneOfTenacity = PlayerPrefs.GetInt("Tenacity", 0);
+        vitalityRuneOfStagger = PlayerPrefs.GetInt("Stagger", 0);
+        vitalityRuneOfRecovery = PlayerPrefs.GetInt("Recovery", 0);
+        vitalityRuneOfHealth = PlayerPrefs.GetInt("Health", 0);
+        vitalityRuneOfGrowth = PlayerPrefs.GetInt("Growth", 0);
+        vitalityRuneOfArmor = PlayerPrefs.GetInt("Armor", 0);
+
+        spiritRuneOfHaste = PlayerPrefs.GetInt("Haste", 0);
+        spiritRuneOfHealing = PlayerPrefs.GetInt("Healing", 0);
+        spiritRuneOfOrbs = PlayerPrefs.GetInt("Orbs", 0);
+        spiritRuneOfRush = PlayerPrefs.GetInt("Rush", 0);
+        spiritRuneOfShield = PlayerPrefs.GetInt("Shield", 0);
+        spiritRuneOfThorns = PlayerPrefs.GetInt("Thorns", 0);
+        spiritRuneOfThunder = PlayerPrefs.GetInt("Thunder", 0);
+
+        powerRuneOfBlade = PlayerPrefs.GetInt("Blade", 0);
+        powerRuneOfDevourer = PlayerPrefs.GetInt("Devourer", 0);
+        powerRuneOfExecution = PlayerPrefs.GetInt("Execution", 0);
+        powerRuneOfLeech = PlayerPrefs.GetInt("Leech", 0);
+        powerRuneOfPenetration = PlayerPrefs.GetInt("Penetration", 0);
+        powerRuneOfStrength = PlayerPrefs.GetInt("Strength", 0);
+
+        agilityRuneOfAnalyst = PlayerPrefs.GetInt("Analyst", 0);
+        agilityRuneOfCrit = PlayerPrefs.GetInt("Crit", 0);
+        agilityRuneOfHawkEye = PlayerPrefs.GetInt("HawkEye", 0);
+        agilityRuneOfHunting = PlayerPrefs.GetInt("Hunting", 0);
+        agilityRuneOfPredator = PlayerPrefs.GetInt("Predator", 0);
+        agilityRuneOfSpeed = PlayerPrefs.GetInt("Speed", 0);
+        agilityRuneOfSwiftness = PlayerPrefs.GetInt("Swiftness", 0);
+
+        agilityPowerRuneOfBeauty = PlayerPrefs.GetInt("Beauty", 0);
+        agilityPowerRuneOfFlow = PlayerPrefs.GetInt("Flow", 0);
+
+        spiritAgilityRuneOfKinesis = PlayerPrefs.GetInt("Kinesis", 0);
+        spiritAgilityRuneOfThunderDash = PlayerPrefs.GetInt("ThunderDash", 0);
+
+        spiritPowerRuneOfExplosion = PlayerPrefs.GetInt("Explosion", 0);
+        spiritPowerRuneOfPatience = PlayerPrefs.GetInt("Patience", 0);
+
+        spiritVitalityRuneOfExpenditure = PlayerPrefs.GetInt("Expenditure", 0);
+        spiritVitalityRuneOfTinder = PlayerPrefs.GetInt("Tinder", 0);
+
+        vitalityAgilityRuneOfEscapism = PlayerPrefs.GetInt("Escapism", 0);
+        vitalityAgilityRuneOfRage = PlayerPrefs.GetInt("Rage", 0);
+
+        vitalityPowerRuneOfBash = PlayerPrefs.GetInt("Bash", 0);
+        vitalityPowerRuneOfStress = PlayerPrefs.GetInt("Stress", 0);
+
+        killedEnemiesTotal = PlayerPrefs.GetInt("TotalEnemiesKilled", 0);
+        killedGoblins = PlayerPrefs.GetInt("TotalGoblinsKilled", 0);
+        killedFlyers = PlayerPrefs.GetInt("TotalKilledFlyers", 0);
+        killedSkeletons = PlayerPrefs.GetInt("TotalSkeletonsKilled", 0);
+        killedSummoners = PlayerPrefs.GetInt("TotalSummonersKilled", 0);
+        killedHoglins = PlayerPrefs.GetInt("TotalKilledHoglins", 0);
+        clearedFloors = PlayerPrefs.GetInt("TotalClearedFloors", 0);
+        clearedRooms = PlayerPrefs.GetInt("TotalClearedRooms", 0);
+
+        totalGameTime = PlayerPrefs.GetInt("TotalGameTime", 0);
+        runesPicked = PlayerPrefs.GetInt("TotalRunesPicked", 0);
+        totalItemsFound = PlayerPrefs.GetInt("TotalItemsFound", 0);
+        totalDamageDealt = PlayerPrefs.GetInt("TotalDamageDealt", 0);
+        highestDamageInGame = PlayerPrefs.GetInt("HighestDamageInGame", 0);
+        highestDamageAttack = PlayerPrefs.GetInt("HighestDamageAttack", 0);
+        totalDeathCount = PlayerPrefs.GetInt("TotalDeathCount", 0);
+        totalHits = PlayerPrefs.GetInt("TotalHits", 0);
+        totalBossesKilled = PlayerPrefs.GetInt("TotalBossesKilled", 0);
+        killedByGoblin = PlayerPrefs.GetInt("TotalKilledByGoblin", 0);
+        killedBySkeleton = PlayerPrefs.GetInt("TotalKilledBySkeleton", 0);
+        killedBySummoner = PlayerPrefs.GetInt("TotalKilledBySummoner", 0);
+        killedByHoglon = PlayerPrefs.GetInt("TotalKilledByHoglon", 0);
+        killedByFlyer = PlayerPrefs.GetInt("TotalKilledByFlyer", 0);
     }
 }
