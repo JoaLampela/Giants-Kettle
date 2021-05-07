@@ -15,7 +15,7 @@ public class GameStats : MonoBehaviour
     public int killedSummoners = 0;
     public int killedHoglins = 0;
 
-    public int clearedFloors = 0;
+    public int clearedFloors = 1;
     public int clearedRooms = 0;
 
     private GameObject player;

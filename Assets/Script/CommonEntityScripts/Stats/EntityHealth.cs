@@ -99,6 +99,7 @@ public class EntityHealth : MonoBehaviour
         events.OnHitThis += DamageCalculation;
         events.OnRecoverHealth += GainHealth;
         events.OnSetCurrentHealth += SetStartHealth;
+        events.OnExecute += Execute;
     }
     private void Unsubscribe()
     {
@@ -109,6 +110,8 @@ public class EntityHealth : MonoBehaviour
         events.OnHitThis -= DamageCalculation;
         events.OnRecoverHealth -= GainHealth;
         events.OnSetCurrentHealth -= SetStartHealth;
+        events.OnExecute -= Execute;
+
     }
 
     private void SetHealth(int value)
@@ -198,6 +201,12 @@ public class EntityHealth : MonoBehaviour
             health += amount;
         }
 
+    }
+
+    private void Execute(GameObject killer)
+    {
+        Damage damageContainer = new Damage(killer, true, 0, 999999);
+        DamagePopup.Create(transform.position, damageContainer._trueDamage, damageContainer._isCriticalHit, true);
     }
 
     private void RegenHealth()

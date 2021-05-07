@@ -115,6 +115,8 @@ public class EntityEvents : MonoBehaviour
 
     public event Action OnStatChange;
 
+    public event Action<GameObject> OnExecute;
+
     public void StatChange()
     {
         OnStatChange?.Invoke();
@@ -358,5 +360,10 @@ public class EntityEvents : MonoBehaviour
             OnDie?.Invoke(source, gameObject);
         }
         
+    }
+
+    public void Execute(GameObject killer)
+    {
+        OnExecute?.Invoke(killer);
     }
 }
