@@ -131,7 +131,7 @@ public class xpbarScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnRoomClear -= RoomClear;
         //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnWaveClear -= WaveClear;
-        player.GetComponent<EntityEvents>().OnKillEnemy -= Kill;
+        //player.GetComponent<EntityEvents>().OnKillEnemy -= Kill;
     }
 
     private void OnDisable()

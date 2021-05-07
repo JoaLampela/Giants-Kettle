@@ -85,6 +85,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         inventoryLocked = false;
     }
 
+    [System.Obsolete]
     public void PlaceItem(Item newItem, UiButtonClick previousSlot = null)
     {
         if(!inventoryLocked && !frameLocked)
@@ -225,6 +226,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     }
 
+    [System.Obsolete]
     public void OnPointerDown(PointerEventData eventData)
     {
         if(!inventoryLocked) 
@@ -328,6 +330,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         
     }
 
+    [System.Obsolete]
     public void HotbarUseItem()
     {
         if(!inventoryLocked)

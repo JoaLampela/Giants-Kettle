@@ -124,6 +124,8 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
         grabbedItemSlot = null;
         flyingIcon.SetActive(false);
     }
+
+    [Obsolete]
     private void PlaceItem()
     {
         hoveredSlot.PlaceItem(grabbedItem, grabbedItemSlot);

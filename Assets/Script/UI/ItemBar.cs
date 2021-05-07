@@ -24,6 +24,7 @@ public class ItemBar : MonoBehaviour
         //entityEvents = player.GetComponent<EntityEvents>();
     }
 
+    [System.Obsolete]
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && Time.timeScale != 0)
@@ -47,6 +48,7 @@ public class ItemBar : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     void UseItem(int slot)
     {
         player.GetComponent<Inventory>().inventorySlots[slot].HotbarUseItem();
