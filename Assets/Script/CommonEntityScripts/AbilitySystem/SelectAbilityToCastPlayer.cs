@@ -43,7 +43,7 @@ public class SelectAbilityToCastPlayer : MonoBehaviour
             {
                 entityAbilityManager.CastAbility(2);
             }
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 entityAbilityManager.CastAbility(3);
             }

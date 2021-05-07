@@ -44,7 +44,7 @@ public class EntityStats : MonoBehaviour
 
     [Header("current movement speed stats")]
     [HideInInspector] public int currentSpeed;
-    [HideInInspector] public int currentSlow;
+    public int currentSlow;
     [HideInInspector] public int currentTenacity;
 
     [Header("current combat stats")]

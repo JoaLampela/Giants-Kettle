@@ -407,7 +407,7 @@ MonoBehaviour:
   shieldToss: {fileID: 0}
   tripleShot: {fileID: 0}
   powerShot: {fileID: 0}
-  dash: {fileID: 9207049602966827673, guid: cae349546eca7bc4f9c8963850e8692d, type: 3}
+  dash: {fileID: 8542475248995593289, guid: 06800d83cb7ccee48816fee1034540cc, type: 3}
   basicAttackOneHandedSword: {fileID: 8510906528349343103, guid: fc8d5d36f12a6474ba0dfd29de276b0b, type: 3}
   basicAttackTwoHandedSword: {fileID: 6795277162228328749, guid: 45e37105e683ea54d920e1077ff6468f, type: 3}
   basicAttackStaff: {fileID: 6096043296272375333, guid: 742f2a46c429a4e47ba7c2b950f6a0bb, type: 3}
