@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 7225429947396374442}
   - component: {fileID: 2503689601135937888}
   - component: {fileID: 3278476957032779007}
+  - component: {fileID: 246012140412064830}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Enemy
@@ -1043,6 +1044,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
   dropChance: 100
+--- !u!114 &246012140412064830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8509359907536792585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a3f9eb003c214db5f457cfd566c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8509359907889248055
 GameObject:
   m_ObjectHideFlags: 0

@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 9009737797232915889}
   - component: {fileID: 8271034211688280110}
   - component: {fileID: 6425927436679375116}
+  - component: {fileID: 1242121119213233961}
   m_Layer: 0
   m_Name: GoblinWarrior
   m_TagString: Enemy
@@ -1326,6 +1327,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 1557162516069061293, guid: 90c5c0f77d75e4540862c2bffe1e6c25, type: 3}
+--- !u!114 &1242121119213233961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999592409753981144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60af8ebfc6ce9094885f20558e91195e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7283148507259584654
 GameObject:
   m_ObjectHideFlags: 0
