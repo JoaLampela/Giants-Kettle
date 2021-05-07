@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     private EntityEvents events;
     private GameEventManager gameEventManager;
+    [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameOverMenuHandler gameOverMenuHandler;
 
@@ -54,6 +55,16 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         gameEventManager.ContinueTime();
         GamePaused = false;
+    }
+
+
+    public void StartLoad()
+    {
+        loadingScreen.SetActive(true);
+    }
+    public void StopLoad()
+    {
+        loadingScreen.SetActive(false);
     }
 
     void Pause()
