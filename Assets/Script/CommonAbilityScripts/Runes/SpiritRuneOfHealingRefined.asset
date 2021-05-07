@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Heal on ability cast
-  iconSprite: {fileID: 21300000, guid: d800ebb573b2bf646ac7c07b241b5be9, type: 3}
+  iconSprite: {fileID: 21300000, guid: aba61552b0dd3b243bb81475fe136ddc, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:

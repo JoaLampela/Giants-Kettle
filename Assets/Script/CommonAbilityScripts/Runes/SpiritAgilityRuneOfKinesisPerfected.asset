@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Shield on dash
-  iconSprite: {fileID: 21300000, guid: e8c9bdb01b0d642489ad46c87a31aa8e, type: 3}
+  iconSprite: {fileID: 21300000, guid: 598cf7b168805be4e9a9747d1cc62fda, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:

@@ -1573,9 +1573,21 @@ public class Inventory : MonoBehaviour
     }
     public void DropItem(Item droppedItem)
     {
-        Debug.Log("Dropped item " + droppedItem.item.name);
+        Debug.Log("Dropped item " + droppedItem.item.name + droppedItem._runeList.Length);
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        if(droppedItem._runeList.Length > 0)
+        {
+            for (int i = 0; i < droppedItem._runeList.Length; i++)
+            {
+                EquipmentObject equipment = (EquipmentObject)droppedItem.item;
+                if (droppedItem._runeList[i] != null && !(i == 0 && equipment.baseRune != null))
+                {
+                    NewItem(new Item(droppedItem._runeList[i]));
+                    droppedItem._runeList[i] = null;
+                }
+            }
+        }
 
         GameObject groundItem = Instantiate(itemOnGround, pos, Quaternion.identity);
         groundItem.GetComponent<ItemOnGround>()._item = droppedItem;
@@ -1584,7 +1596,18 @@ public class Inventory : MonoBehaviour
     public void DropItem(Item droppedItem, Vector2 pos)
     {
         Debug.Log("Dropped item " + droppedItem.item.name);
-
+        if (droppedItem._runeList.Length > 0)
+        {
+            for (int i = 0; i < droppedItem._runeList.Length; i++)
+            {
+                EquipmentObject equipment = (EquipmentObject)droppedItem.item;
+                if (droppedItem._runeList[i] != null && !(i == 0 && equipment.baseRune != null))
+                {
+                    NewItem(new Item(droppedItem._runeList[i]));
+                    droppedItem._runeList[i] = null;
+                }
+            }
+        }
 
 
         GameObject groundItem = Instantiate(itemOnGround, pos, Quaternion.identity);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Gain more damage the longer the room goes on
-  iconSprite: {fileID: 21300000, guid: 0f3ed0dee29a8944b8361213ab2008a3, type: 3}
+  iconSprite: {fileID: 21300000, guid: 57e9cb945a5d78b40b8a4c912c685b6f, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:

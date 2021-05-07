@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: More damage, less health.
-  iconSprite: {fileID: 21300000, guid: 8cc31cae1812f7944afdb848f2b342c3, type: 3}
+  iconSprite: {fileID: 21300000, guid: 258092d0f2979fe419a58b0980f0aba2, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
@@ -22,3 +22,4 @@ MonoBehaviour:
     ResultType: 
   runeTier: 1
   runeType: 3
+  runeEffects: []
