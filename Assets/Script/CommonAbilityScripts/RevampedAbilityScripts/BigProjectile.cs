@@ -37,7 +37,6 @@ public class BigProjectile : MonoBehaviour, IAbility
 
     private void Cast(int slot)
     {
-        Debug.Log(playerAnimations);
         if (_weapon.currentCooldownAbility1 <= 0 && !playerAnimations.GetAttacking())
         {
             if (_spellSlot == slot)
@@ -101,7 +100,7 @@ public class BigProjectile : MonoBehaviour, IAbility
 
     private void CannotAffordCast(int slot)
     {
-        if (_spellSlot == slot) Debug.Log("BIG PROJECTILE ON CD");
+
     }
 
     public int GetCastValue()

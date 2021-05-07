@@ -205,34 +205,6 @@ public class RuneTierListObjects : MonoBehaviour
         }
         return 0;
     }
-    private void Update()
-    {
-        RuneObject rune = defaultRune;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RandomizeNewRunes();
-            rune = GetRandomRune();
-            Debug.Log(rune);
-        }
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            IncrementScore(Runes.spirit);
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            IncrementScore(Runes.vitality);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            IncrementScore(Runes.agility);
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            IncrementScore(Runes.power);
-        }
-
-
-    }
 
     public RuneObject GetRandomRune()
     {
@@ -630,9 +602,7 @@ public class RuneTierListObjects : MonoBehaviour
     }
 
     public void RandomizeNewRunes()
-    {
-        Debug.Log("Runes " + rune1 + " " + rune2 + " " + rune3);
-        
+    {        
         RuneObject rune1temp = GetRandomRune();
         rune1.GetComponent<SelectRuneButton>().SetNewRune(rune1temp);
         RuneObject rune2temp = GetRandomRune();

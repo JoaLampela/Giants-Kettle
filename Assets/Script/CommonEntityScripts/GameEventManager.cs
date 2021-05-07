@@ -186,7 +186,6 @@ public class GameEventManager : MonoBehaviour
     public void RunePicked(RuneObject rune)
     {
         OnRunePicked?.Invoke(rune);
-        Debug.Log("Rune picked event");
     }
 
     public void AllEntitiesRemove(GameObject entity)

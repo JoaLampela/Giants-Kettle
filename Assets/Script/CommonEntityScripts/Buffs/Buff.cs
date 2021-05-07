@@ -23,6 +23,7 @@ public class Buff : MonoBehaviour
     {
         Subscribe();
         buff = new BuffClass(_effectID, _value);
+
         buffManager.UpdateActiveBuffs(_sourceId, buff);
     }
 

@@ -9,7 +9,6 @@ public class DoorScript : MonoBehaviour
     public void MakeDoors(Room room)
     {
         DoorList = new List<GameObject>();
-        Debug.Log("Making doors");
         foreach (Coord doorCoord in room.hallWayTiles)
         {
             GameObject door = Instantiate(doorPrefab, GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<MapGeneration>().CoordToWorldPoint(doorCoord), Quaternion.identity);

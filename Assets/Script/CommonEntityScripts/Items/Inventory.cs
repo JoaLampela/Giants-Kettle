@@ -269,8 +269,6 @@ public class Inventory : MonoBehaviour
         Debug.Log("Unequipped item " + unequippedItem);
         if ((int)slot._type == 1)
         {
-            Debug.Log(slot);
-            Debug.Log(unequippedItem);
             if (slot == rightHand || unequippedItem.item.isTwoHander)
             {
                 weaponRightHandR1.GetComponent<UiButtonClick>().RemoveItemFromslot();
@@ -442,8 +440,6 @@ public class Inventory : MonoBehaviour
     [Obsolete]
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
-        Debug.Log("Equipped item " + equippedItem);
-
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
         if ((int)slot._type == 1)
         {
@@ -856,9 +852,6 @@ public class Inventory : MonoBehaviour
 
     public void AddNewRuneToItem(Item newItem, GameObject slot)
     {
-
-
-        Debug.Log("Addidng new rune to " + slot);
         RuneObject rune = (RuneObject)newItem.item;
         if (slot == weaponRightHandR1)
         {

@@ -35,22 +35,12 @@ public class GameStats : MonoBehaviour
     {
         if (collectedRunes.ContainsKey(rune)) collectedRunes[rune]++;
         else collectedRunes.Add(rune, 1);
-
-        foreach(RuneObject temp in collectedRunes.Keys)
-        {
-            Debug.Log("Rune: " + temp + " count: " + collectedRunes[temp]);
-        }
     }
 
     public void AddEquipment(EquipmentObject equipment)
     {
         if (collectedEquipments.ContainsKey(equipment)) collectedEquipments[equipment]++;
         else collectedEquipments.Add(equipment, 1);
-
-        foreach (EquipmentObject temp in collectedEquipments.Keys)
-        {
-            Debug.Log("Equipment: " + temp + " count: " + collectedEquipments[temp]);
-        }
     }
 
     public void AddKilledEnemy(GameObject entity)
@@ -85,7 +75,7 @@ public class GameStats : MonoBehaviour
     }
     private void Unsubscribe()
     {
-        player.GetComponent<EntityEvents>().OnKillEnemy -= AddKilledEnemy;
+        //player.GetComponent<EntityEvents>().OnKillEnemy -= AddKilledEnemy;
         //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnRunePicked -= AddRune;
         //GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnEquipmentDropepd -= AddEquipment;
     }

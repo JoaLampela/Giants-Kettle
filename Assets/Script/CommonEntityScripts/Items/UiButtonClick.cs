@@ -286,11 +286,8 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             }
             else if (eventData.button == PointerEventData.InputButton.Left)
             {
-                Debug.Log("Left click inv");
                 if (_item != null)
                 {
-                    Debug.Log("item not null " + _type + " " + (this == playerInventory.rightHand));
-
                     if (this == playerInventory.rightHand && _item.item.isTwoHander)
                     {
                         playerInventory.leftHand.RemoveItemFromslot();

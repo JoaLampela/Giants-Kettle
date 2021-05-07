@@ -62,9 +62,6 @@ public class BuffManager : MonoBehaviour
     //removes the buff from the dictionary
     public void RemoveBuff(string sourceId, BuffClass buff)
     {
-        Debug.Log("Removing buff (duration 0)");
-        Debug.Log("activeBuffs " + activeBuffs.Keys);
-
         if(activeBuffs.ContainsKey(sourceId))
         {
             if (activeBuffs[sourceId]._value == buff._value)

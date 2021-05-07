@@ -160,7 +160,9 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
     {
         if(duplicateCountArmor + duplicateCountWeapon < 20)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowWeapon", EntityStats.BuffType.Slow, 30, 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
+            Debug.Log("activating broken rune duration " + (1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f));
+
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowWeaponSlow", EntityStats.BuffType.Slow, 30, 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
         }
     }
 
