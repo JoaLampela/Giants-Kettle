@@ -97,7 +97,7 @@ public class Block : MonoBehaviour, IAbility
         block.GetComponent<AbilityEvents>().SetSource(gameObject);
         block.GetComponent<AbilityEvents>().UseAbility();
         playerAnimations.SetAttacking(false);
-        SoundManager.PlaySound(SoundManager.Sound.Block);
+        SoundManager.PlaySound(SoundManager.Sound.Block, transform.position);
     }
 
     private void CannotAffordCast(int slot)

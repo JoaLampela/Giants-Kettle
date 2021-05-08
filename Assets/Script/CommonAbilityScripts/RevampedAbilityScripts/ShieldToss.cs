@@ -96,7 +96,7 @@ public class ShieldToss : MonoBehaviour, IAbility
         shieldToss.GetComponent<AbilityEvents>().SetSource(gameObject);
         shieldToss.GetComponent<AbilityEvents>().UseAbility();
         playerAnimations.SetAttacking(false);
-        SoundManager.PlaySound(SoundManager.Sound.ShieldToss);
+        SoundManager.PlaySound(SoundManager.Sound.ShieldToss, transform.position);
     }
 
     private void CannotAffordCast(int slot)

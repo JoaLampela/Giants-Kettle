@@ -91,7 +91,7 @@ public class ShieldSlam : MonoBehaviour, IAbility
         basicAttack.GetComponent<AbilityEvents>().SetSource(gameObject);
         basicAttack.GetComponent<AbilityEvents>().UseAbility();
         playerAnimations.SetAttacking(false);
-        SoundManager.PlaySound(SoundManager.Sound.ShieldSlam);
+        SoundManager.PlaySound(SoundManager.Sound.ShieldSlam, transform.position);
     }
 
     private void CannotAffordCast(int slot)
