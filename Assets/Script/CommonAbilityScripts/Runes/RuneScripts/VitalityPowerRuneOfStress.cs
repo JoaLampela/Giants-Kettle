@@ -110,12 +110,12 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("VitalityPowerRuneOfStressArmor", EntityStats.BuffType.Health, duplicateCountArmor * 20);
+            _entityEvents.NewBuff("VitalityPowerRuneOfStressArmor", EntityStats.BuffType.Health, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityPowerRuneOfStressWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("VitalityPowerRuneOfStressWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
         }
     }
 
@@ -161,7 +161,7 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage)
     {
-        if(_entity.GetComponent<EntityHealth>().health / _entity.GetComponent<EntityHealth>().health < 0.50f)
+        if(_entity.GetComponent<EntityHealth>().health / (float)_entity.GetComponent<EntityHealth>().health < 0.50f)
         {
             _entityEvents.NewBuff("VitalityPowerRuneOfStressBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }

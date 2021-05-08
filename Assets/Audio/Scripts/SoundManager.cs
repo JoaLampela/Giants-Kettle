@@ -44,6 +44,7 @@ public static class SoundManager
         CriticalHit,
         Splat,
         InventoryOpen,
+        PickUp,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
