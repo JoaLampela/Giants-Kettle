@@ -158,16 +158,22 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
 
     public void ActivateWeapon(Damage damage, GameObject target)
     {
-        GameObject thunder = RuneAssets.i.RuneThunder;
-        thunder = Instantiate(thunder, target.transform.position, Quaternion.identity, target.transform);
+        if(duplicateCountWeapon != 0)
+        {
+            GameObject thunder = RuneAssets.i.RuneThunder;
+            thunder = Instantiate(thunder, target.transform.position, Quaternion.identity, target.transform);
+        }
     }
 
     public void ActivateArmor(GameObject target, Damage damage)
     {
-        target.GetComponent<EntityEvents>().HitThis(new Damage(_entity, false, 0, (duplicateCountArmor + duplicateCountWeapon) * 5), false);
+        if(duplicateCountArmor != 0)
+        {
+            target.GetComponent<EntityEvents>().HitThis(new Damage(_entity, false, 0, duplicateCountArmor * 5), false);
 
-        GameObject thunder = RuneAssets.i.RuneThunder;
-        thunder = Instantiate(thunder, target.transform.position, Quaternion.identity, target.transform);
+            GameObject thunder = RuneAssets.i.RuneThunder;
+            thunder = Instantiate(thunder, target.transform.position, Quaternion.identity, target.transform);
+        }
     }
 
     //Subs and Unsubs
