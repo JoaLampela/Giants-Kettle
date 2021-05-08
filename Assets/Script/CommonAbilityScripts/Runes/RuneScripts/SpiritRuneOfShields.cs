@@ -110,12 +110,12 @@ public class SpiritRuneOfShields : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfShieldsArmor", EntityStats.BuffType.Health, duplicateCountArmor * 25);
+            _entityEvents.NewBuff("SpiritRuneOfShieldsArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfShieldsWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritRuneOfShieldsWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
         }
     }
 

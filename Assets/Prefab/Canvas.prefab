@@ -68793,6 +68793,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f55b2c2a9ea3274c8301a623ef560f4, type: 2}
   - {fileID: 11400000, guid: 280140d6437053845980ef2a0ef0f4aa, type: 2}
   - {fileID: 11400000, guid: ab3a2e980f61a0541b6e63d0b0291746, type: 2}
+  - {fileID: 11400000, guid: 6b358980d897da8448e9ee3c53624d3e, type: 2}
   spiritRunesTier3:
   - {fileID: 11400000, guid: 19d7f3cda96bdb84da78ed393ed956b8, type: 2}
   - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}

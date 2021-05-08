@@ -115,7 +115,7 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfThunderWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritRuneOfThunderWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
         }
     }
 
@@ -156,8 +156,16 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Damage damage, GameObject target)
+    public void ActivateWeapon(Damage damage, GameObject target)
     {
+        GameObject thunder = RuneAssets.i.RuneThunder;
+        thunder = Instantiate(thunder, target.transform.position, Quaternion.identity, target.transform);
+    }
+
+    public void ActivateArmor(GameObject target, Damage damage)
+    {
+        target.GetComponent<EntityEvents>().HitThis(new Damage(_entity, false, 0, (duplicateCountArmor + duplicateCountWeapon) * 5), false);
+
         GameObject thunder = RuneAssets.i.RuneThunder;
         thunder = Instantiate(thunder, target.transform.position, Quaternion.identity, target.transform);
     }
@@ -166,18 +174,18 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onDealDamage += Activate;
+        _abilityEvents._onDealDamage += ActivateWeapon;
     }
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnBasicAttackHit += ActivateArmor;
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onDealDamage -= Activate;
+        _abilityEvents._onDealDamage -= ActivateWeapon;
     }
 
     public void UnsubscribeEntity()
