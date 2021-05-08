@@ -131,7 +131,7 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
         {
             SubscribeAbility();
 
-            _abilityEvents.bonusFlatTrueDamage += (duplicateCountWeapon + duplicateCountArmor) * 5;
+            _abilityEvents.bonusFlatTrueDamage += (int)((_abilityEvents.damageMultiplier * _abilityEvents.damageParentMultiplier)/10000f * _entity.GetComponent<EntityStats>().currentPhysicalDamage * 0.2f * duplicateCountWeapon);
         }
     }
 
@@ -158,6 +158,12 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
         }
     }
 
+    public void Activate(GameObject target, Damage damage)
+    {
+        Damage dmg = new Damage(gameObject, false, 0, (int)((damage._damage + damage._trueDamage) * 0.10f));
+        target.GetComponent<EntityEvents>().HitThis(dmg);
+    }
+
     //Subs and Unsubs
     public void SubscribeAbility()
     {
@@ -166,7 +172,7 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnBasicAttackHit += Activate;
     }
 
     public void UnsubscribeAbility()
@@ -176,7 +182,7 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnBasicAttackHit -= Activate;
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
