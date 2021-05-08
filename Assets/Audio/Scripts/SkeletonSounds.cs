@@ -16,7 +16,7 @@ public class SkeletonSounds : MonoBehaviour
     }
     private void PlayDeathSound(GameObject spaghetti, GameObject bolognese)
     {
-        SoundManager.PlaySound(SoundManager.Sound.SkeletonDie);
+        SoundManager.PlaySound(SoundManager.Sound.SkeletonDie,transform.position);
     }
 
     private void Subscribe()

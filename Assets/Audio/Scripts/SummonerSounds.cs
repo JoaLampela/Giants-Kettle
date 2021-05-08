@@ -16,7 +16,7 @@ public class SummonerSounds : MonoBehaviour
     }
     private void PlayDeathSound(GameObject spaghetti, GameObject bolognese)
     {
-        SoundManager.PlaySound(SoundManager.Sound.SummonerDie);
+        SoundManager.PlaySound(SoundManager.Sound.SummonerDie, transform.position);
     }
 
     private void Subscribe()

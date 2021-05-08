@@ -16,7 +16,7 @@ public class HoglonSounds : MonoBehaviour
     }
     private void PlayDeathSound(GameObject spaghetti, GameObject bolognese)
     {
-        SoundManager.PlaySound(SoundManager.Sound.BossDie);
+        SoundManager.PlaySound(SoundManager.Sound.BossDie, transform.position);
     }
 
     private void Subscribe()
