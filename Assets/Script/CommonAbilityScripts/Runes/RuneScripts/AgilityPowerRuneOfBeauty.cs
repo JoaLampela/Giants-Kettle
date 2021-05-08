@@ -107,17 +107,13 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyArmor");
-        _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyWeapon");
+        _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyPhysicalDamage");
+        _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyCrit");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyCrit", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
         }
     }
 
@@ -151,8 +147,8 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyPhysicalDamage");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyCrit");
         if(_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyBonus");
 
         if (gameObject.GetComponent<EntityEvents>())
@@ -168,7 +164,7 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     private void Update()
     {
-        if(health.health / health.maxHealth >= 1.00f - (duplicateCountArmor + duplicateCountWeapon) * 0.05f)
+        if(health.health / (float)health.maxHealth >= 1.00f - (duplicateCountArmor + duplicateCountWeapon) * 0.05f)
         {
             if(redundancyCheck)
             {
