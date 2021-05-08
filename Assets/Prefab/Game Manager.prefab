@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalLight: {fileID: 0}
+  floorsPassed: 0
   globalLevel: 0
   player: {fileID: 0}
   time: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   tier1Items:
   - {fileID: 11400000, guid: 12e1390e64f293547a345111651f732e, type: 2}
   - {fileID: 11400000, guid: 2f811c93a5fdb6143b3bedcc5d2edbd2, type: 2}
+  - {fileID: 11400000, guid: 7b3ef01db09392a4bb07a726b5168ccc, type: 2}
   tier2Items:
   - {fileID: 11400000, guid: b8d5e9e269dcf1046b549915db94f911, type: 2}
   - {fileID: 11400000, guid: bf431f2f555cd394298c121b774f7087, type: 2}
@@ -118,6 +120,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be4528b3210a95a4990bc64edbea9d91, type: 2}
   - {fileID: 11400000, guid: ec61dceab11bbce4c913ba7991b1346f, type: 2}
   - {fileID: 11400000, guid: 33d8cad878e91be4d81bc8eda6a5be62, type: 2}
+  - {fileID: 11400000, guid: d29ac80be2d909f4293fecf7ff1fbc8f, type: 2}
   tier3Items:
   - {fileID: 11400000, guid: c888d16c2d135194aa3141345d19ddfd, type: 2}
   - {fileID: 11400000, guid: dd9db2f22012148458becb033fd5af92, type: 2}
@@ -125,6 +128,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 529a0624e96160248b14e73159995407, type: 2}
   - {fileID: 11400000, guid: 4c3033dc665c8594281121589474ff26, type: 2}
   - {fileID: 11400000, guid: ff461ed98fbc6654d8ea71cab2d46b1e, type: 2}
+  - {fileID: 11400000, guid: c5bfb859fbd2e2741b7acff6b96f0608, type: 2}
   tier4Items:
   - {fileID: 11400000, guid: 6ce1a432d07992f46a785edb883fe596, type: 2}
   - {fileID: 11400000, guid: 323e215ba9148f44ea29baece309284b, type: 2}
@@ -132,6 +136,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e08b55e10729121439f55b21ad19d995, type: 2}
   - {fileID: 11400000, guid: 4491e483b7a570e438ff422a78ffbf78, type: 2}
   - {fileID: 11400000, guid: 4a60ebbedd5d1664fbbc7d4117f472b5, type: 2}
+  - {fileID: 11400000, guid: d7f5cf12faa06fe47b849084c4db5a87, type: 2}
   tier5Items:
   - {fileID: 11400000, guid: 955841c2cb9b89640b7c8598ebb6d821, type: 2}
   - {fileID: 11400000, guid: 30c8194ad71e76b478a60035cf44d522, type: 2}
@@ -139,6 +144,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6e02c4eabdabdb489c62e534da6b7ec, type: 2}
   - {fileID: 11400000, guid: d2b8f9e098ad89a42b95f65397cc2435, type: 2}
   - {fileID: 11400000, guid: 636747516c78c804aaaf9a9432bb7911, type: 2}
+  - {fileID: 11400000, guid: bbb595ddc2b37a344aae34a9485dc2d2, type: 2}
   tier6Items:
   - {fileID: 11400000, guid: 29bdd99c487a4fd42961abb42525de0f, type: 2}
   - {fileID: 11400000, guid: 8abc04dc1ea93cd48bdba192def05f66, type: 2}
@@ -146,6 +152,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: abaa287d6d7ffef4085a3f53ed170c0b, type: 2}
   - {fileID: 11400000, guid: cd3211d776369ec4ca18908bac69800a, type: 2}
   - {fileID: 11400000, guid: cd97da032df69f243a056588f370a5e0, type: 2}
+  - {fileID: 11400000, guid: 4ee178cca46761940b1baf4ee745e410, type: 2}
   tier100Items: []
 --- !u!114 &1699011340505777110
 MonoBehaviour:

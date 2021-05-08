@@ -10,6 +10,8 @@ public class GameEventManager : MonoBehaviour
 
     public Light2D globalLight;
 
+    public int floorsPassed = 0;
+
     public int globalLevel = 0;
     public GameObject player;
     public float time;
@@ -250,6 +252,7 @@ public class GameEventManager : MonoBehaviour
     }
     public void ExitLevel()
     {
+        floorsPassed++;
         gameStats.AddClearedFloor();
         OnExitLevel?.Invoke();
 
