@@ -122,11 +122,11 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
 
                 if(weapon.weaponType == WeaponObject.WeaponType.OneHandedSword || weapon.weaponType == WeaponObject.WeaponType.TwoHandedSword || weapon.weaponType == WeaponObject.WeaponType.Shield)
                 {
-                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 25);
+                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 10);
                 }
                 else
                 {
-                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 10);
+                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 5);
                 }
             }
         }
@@ -170,11 +170,11 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Collider2D collider)
+    public void Activate(Damage damage, GameObject target)
     {
-        if(Vector2.Distance(startingPosition, gameObject.transform.position) >= 15)
+        if(Vector2.Distance(startingPosition, target.transform.position) >= 10)
         {
-            _abilityEvents.damageMultiplier = (int)(Vector2.Distance(startingPosition, gameObject.transform.position) / 15.0f);
+            _abilityEvents.bonusFlatTrueDamage = (int)(Vector2.Distance(startingPosition, gameObject.transform.position));
         }
     }
 
@@ -182,23 +182,21 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onHit += Activate;
     }
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnHitEnemy += Activate;
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onHit -= Activate;
     }
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnHitEnemy -= Activate;
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {

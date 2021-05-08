@@ -155,6 +155,7 @@ public class SpiritAgilityRuneOfElectricity : MonoBehaviour, IRuneScript
     public void Activate()
     {
         GameObject electricityEffect = RuneAssets.i.RuneShockDashEffect;
+        electricityEffect.GetComponent<AbilityEvents>().SetSource(gameObject);
         electricityEffect = Instantiate(electricityEffect, gameObject.transform.position, Quaternion.identity, gameObject.transform);
     }
 

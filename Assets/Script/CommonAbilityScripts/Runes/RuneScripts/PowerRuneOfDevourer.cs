@@ -105,17 +105,11 @@ public class PowerRuneOfDevourer : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("StrengthRuneOfDevourerArmor");
-        _entityEvents.RemoveBuff("StrengthRuneOfDevourerWeapon");
+        _entityEvents.RemoveBuff("StrengthRuneOfDevourer");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("StrengthRuneOfDevourerArmor", EntityStats.BuffType.Health, duplicateCountArmor * 25);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("StrengthRuneOfDevourerWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("StrengthRuneOfDevourer", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -142,8 +136,7 @@ public class PowerRuneOfDevourer : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("StrengthRuneOfDevourerArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("StrengthRuneOfDevourerWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("StrengthRuneOfDevourer");
 
         foreach (GameObject projectile in projectiles)
         {
@@ -162,42 +155,30 @@ public class PowerRuneOfDevourer : MonoBehaviour, IRuneScript
         }
     }
 
-    public void ActivateArmorEffect(GameObject target)
+    public void Activate(GameObject target)
     {
-        _entityEvents.RecoverHealth((int)(duplicateCountArmor * target.GetComponent<EntityStats>().currentMaxHealth * 0.10f));
-    }
-
-    public void ActivateWeaponEffect(Damage damage, GameObject target)
-    {
-        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)(duplicateCountWeapon * 0.05f * (damage._damage + damage._trueDamage)));
+        _entityEvents.RecoverHealth((int)((duplicateCountArmor + duplicateCountWeapon) * target.GetComponent<EntityHealth>().maxHealth * 0.05f));
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
-        _abilityEvents._onDealDamage += ActivateWeaponEffect;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnKillEnemy += ActivateArmorEffect;
+        _entityEvents.OnKillEnemy += Activate;
     }
 
     public void UnsubscribeAbility()
     {
-        _abilityEvents._onDealDamage -= ActivateWeaponEffect;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnKillEnemy -= ActivateArmorEffect;
-    }
-
-    public void SetContainerItem(Item item)
-    {
-        
+        _entityEvents.OnKillEnemy -= Activate;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
