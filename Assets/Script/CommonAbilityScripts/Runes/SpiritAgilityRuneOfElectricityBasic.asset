@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a7dda59761bda409507b8fe81d2682, type: 3}
-  m_Name: AgilityRuneOfSwiftnessBasic
+  m_Name: SpiritAgilityRuneOfElectricityBasic
   m_EditorClassIdentifier: 
   type: 6
-  description: Attack faster.
-  iconSprite: {fileID: 21300000, guid: 36166ace27f50a9489fbe51873df06dc, type: 3}
+  description: Create a static field of electricity upon Dashing
+  iconSprite: {fileID: 21300000, guid: ac948536677503049881468740a43e04, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: -4554495259725578579, guid: f58412825f612404e88d62f73f57b31c, type: 3}
+    ObjectField: {fileID: 7972284256589290821, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
   runeTier: 0
-  runeType: 2
+  runeType: 5
   runeEffects: []

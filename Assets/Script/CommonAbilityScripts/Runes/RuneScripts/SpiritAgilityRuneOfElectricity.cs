@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
+public class SpiritAgilityRuneOfElectricity : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -105,11 +105,13 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("PowerRuneOfExecution");
+        _entityEvents.RemoveBuff("SpiritAgilityRuneOfElectricityHaste");
+        _entityEvents.RemoveBuff("SpiritAgilityRuneOfElectricityCrit");
 
         if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfExecution", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SpiritAgilityRuneOfElectricityHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SpiritAgilityRuneOfElectricityCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -136,7 +138,8 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfExecution");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfElectricityHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfElectricityCrit");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -149,15 +152,10 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Damage damage, GameObject target)
+    public void Activate()
     {
-        if ((float)(target.GetComponent<EntityHealth>().health / target.GetComponent<EntityHealth>().maxHealth) <= 1.10f - Mathf.Pow(0.98f, (duplicateCountArmor + duplicateCountWeapon)))
-        {
-            target.GetComponent<EntityEvents>().Execute(gameObject);
-
-            GameObject executeEffect = RuneAssets.i.RuneExecutionEffect;
-            executeEffect = Instantiate(executeEffect, target.transform.position, Quaternion.identity);
-        }
+        GameObject electricityEffect = RuneAssets.i.RuneShockDashEffect;
+        electricityEffect = Instantiate(electricityEffect, gameObject.transform.position, Quaternion.identity, gameObject.transform);
     }
 
     //Subs and Unsubs
@@ -168,7 +166,7 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnHitEnemy += Activate;
+        _entityEvents.OnDash += Activate;
     }
 
     public void UnsubscribeAbility()
@@ -178,17 +176,20 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnHitEnemy -= Activate;
+        _entityEvents.OnDash -= Activate;
     }
+
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
         containerItem = item;
         _hand = hand;
     }
+
     public int GetDuplicateCountWeaponRight()
     {
         return duplicateCountWeaponRight;
     }
+
     public int GetDuplicateCountWeaponLeft()
     {
         return duplicateCountWeaponLeft;
