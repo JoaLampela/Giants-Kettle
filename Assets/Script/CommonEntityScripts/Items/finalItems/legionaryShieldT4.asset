@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22727b0861fb16940a1c1fbb83720440, type: 3}
-  m_Name: rustyShieldT6
+  m_Name: legionaryShieldT4
   m_EditorClassIdentifier: 
   type: 1
-  description: 
-  iconSprite: {fileID: 21300000, guid: eeaca39b913b4024d92126bc4f3da4f4, type: 3}
-  inGameObject: {fileID: 2660832286476357239, guid: 1f47f08f20c8f38499fee080e6d0d2ea, type: 3}
+  description: All roads lead home.
+  iconSprite: {fileID: 21300000, guid: e4b9187c5c12112469e30860dafbf78c, type: 3}
+  inGameObject: {fileID: 8139719806649954417, guid: 4bd4edf53ebaa8340b9a238c20420f3e, type: 3}
   isTwoHander: 0
-  runeSlots: 6
+  runeSlots: 4
   baseRune: {fileID: 0}
   weaponType: 2
   maxCooldownAbility1: 3
