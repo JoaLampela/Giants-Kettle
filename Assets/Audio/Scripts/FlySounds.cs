@@ -25,6 +25,6 @@ public class FlySounds : MonoBehaviour
     }
     private void Unsubscribe()
     {
-        events.OnDie -= PlayDeathSound;
+        //events.OnDie -= PlayDeathSound;
     }
 }

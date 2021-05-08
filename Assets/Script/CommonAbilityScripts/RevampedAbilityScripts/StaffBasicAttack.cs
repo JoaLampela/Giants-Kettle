@@ -42,7 +42,7 @@ public class StaffBasicAttack : MonoBehaviour, IAbility
     private void Cast(int slot)
     {
 
-        if (basicAttackOffCooldown && !playerAnimations.GetAttacking())
+        if (basicAttackOffCooldown && !playerAnimations.GetAttacking() && !GetComponent<EntityStats>().isStunned)
         {
             if (_spellSlot == slot)
             {

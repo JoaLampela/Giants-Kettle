@@ -428,7 +428,6 @@ public class GameStats : MonoBehaviour
 
         
         totalHits++;
-        Debug.Log("Total damage of the run is now: " + damageDealt + " and hits: " + totalHits);
     }
 
     private void OnDisable()
