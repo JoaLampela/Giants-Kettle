@@ -173,7 +173,7 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
     {
         if(Vector2.Distance(gameObject.transform.position, target.transform.position) >= 5)
         {
-            target.GetComponent<EntityEvents>().HitThis(new Damage(gameObject, false, 0, (int)(Vector2.Distance(gameObject.transform.position, target.transform.position))), false);
+            target.GetComponent<EntityEvents>().HitThis(new Damage(gameObject, false, 0, (int)(Vector2.Distance(gameObject.transform.position, target.transform.position) - 3) * 3 * (duplicateCountArmor + duplicateCountWeapon)), false);
         }
     }
 

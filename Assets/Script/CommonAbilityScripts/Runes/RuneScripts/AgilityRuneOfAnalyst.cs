@@ -159,7 +159,7 @@ public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
     public void Activate(GameObject target, Damage damage)
     {
         damage._damage *= (int)(0.10f * (duplicateCountArmor + duplicateCountWeapon));
-        target.GetComponent<EntityEvents>().HitThis(damage);
+        target.GetComponent<EntityEvents>().HitThis(damage, false);
     }
 
     //Subs and Unsubs
