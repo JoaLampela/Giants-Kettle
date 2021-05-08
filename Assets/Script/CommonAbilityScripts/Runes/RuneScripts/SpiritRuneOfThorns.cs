@@ -158,7 +158,7 @@ public class SpiritRuneOfThorns : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage)
     {
-        Damage reflectDamage = new Damage(gameObject, false, 0, (damage._damage + damage._trueDamage) * duplicateCountArmor + (damage._damage + damage._trueDamage) * duplicateCountWeapon);
+        Damage reflectDamage = new Damage(gameObject, false, 0, (damage._damage + damage._trueDamage) * (duplicateCountArmor + duplicateCountWeapon));
         damage.source.GetComponent<EntityEvents>().HitThis(reflectDamage);
     }
 
