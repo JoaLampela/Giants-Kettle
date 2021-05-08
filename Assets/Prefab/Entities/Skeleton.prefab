@@ -614,7 +614,6 @@ MonoBehaviour:
   maxAllyRange: 0.5
   maxPlayerRange: 1
   reachedEndOfPath: 0
-  entitySpeed: 5
   useSpeedBuff: 1
   speedBuffAmount: 1.5
   speedBuffDistance: 10
@@ -811,7 +810,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 60
   baseSpiritRegen: 0
-  baseSpeed: 1
+  baseSpeed: 6
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 3
@@ -883,7 +882,8 @@ MonoBehaviour:
   leftHandWeapon: {fileID: 0}
   dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons:
-  - {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
+  - {fileID: 11400000, guid: e08b55e10729121439f55b21ad19d995, type: 2}
+  - {fileID: 11400000, guid: be4528b3210a95a4990bc64edbea9d91, type: 2}
   - {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
   armorRunes:
   - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}

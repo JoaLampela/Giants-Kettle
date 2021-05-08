@@ -431,7 +431,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
-  baseSpeed: 4
+  baseSpeed: 8
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 30
@@ -498,10 +498,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 100
-  healthRegenPerLevel: 10
-  physicalDamagePerLevel: 10
-  armorPerLevel: 10
+  healthPerLevel: 600
+  healthRegenPerLevel: 20
+  physicalDamagePerLevel: 15
+  armorPerLevel: 15
 --- !u!114 &2145335451551312345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +606,6 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 3
   reachedEndOfPath: 0
-  entitySpeed: 8
   useSpeedBuff: 1
   speedBuffAmount: 1.5
   speedBuffDistance: 15

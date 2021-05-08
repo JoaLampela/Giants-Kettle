@@ -65,7 +65,7 @@ public class GameEventManager : MonoBehaviour
             ToggleRuneSelectionView();
             StopTime();
         }
-        else if((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible && !pauseMenuOpen)
+        else if ((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible && !pauseMenuOpen)
         {
             ToggleRuneSelectionView();
             ContinueTime();
@@ -75,7 +75,7 @@ public class GameEventManager : MonoBehaviour
 
         UpdateGameTimer();
 
-        if(Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen && !pauseMenuOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen && !pauseMenuOpen)
         {
             inventoryOpen = true;
             inventory.GetComponent<CanvasGroup>().alpha = 1;
@@ -83,7 +83,7 @@ public class GameEventManager : MonoBehaviour
             inventory.GetComponent<CanvasGroup>().interactable = true;
             SoundManager.PlayUISound(SoundManager.Sound.InventoryOpen);
         }
-        else if(Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen)
+        else if (Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen)
         {
             inventoryOpen = false;
             inventory.GetComponent<CanvasGroup>().alpha = 0;
@@ -101,7 +101,7 @@ public class GameEventManager : MonoBehaviour
         {
             playerLevelUpScreenVisible = true;
             LevelUpScreen.SetActive(true);
-            if(!runesRandomized) LevelUpScreen.GetComponent<RuneTierListObjects>().RandomizeNewRunes();
+            if (!runesRandomized) LevelUpScreen.GetComponent<RuneTierListObjects>().RandomizeNewRunes();
             runesRandomized = true;
         }
         else
@@ -117,12 +117,12 @@ public class GameEventManager : MonoBehaviour
         int mins;
         int seconds;
 
-        
+
         mins = (int)(((int)time / 60f));
-        seconds = (int)time - mins*60;
+        seconds = (int)time - mins * 60;
         hours = (int)(mins / 60f);
         mins -= hours * 60;
-        if(hours > 99)
+        if (hours > 99)
         {
             mins = 42;
             hours = 69;
@@ -173,10 +173,10 @@ public class GameEventManager : MonoBehaviour
     {
         if (combatOn)
         {
-            OnCombatEnd();
+            OnCombatEnd?.Invoke();
             combatOn = false;
         }
-        
+
 
     }
 
