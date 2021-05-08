@@ -119,7 +119,7 @@ public class EntityEvents : MonoBehaviour
 
     public event Action<GameObject, Damage> OnBasicAttackHit;
 
-    public event Action<Damage> OnPreDamageCalculation;
+    public event Action<Damage, GameObject> OnPreDamageCalculation;
 
 
     public void BasicAttackHit(GameObject enemy, Damage damage)
@@ -233,9 +233,13 @@ public class EntityEvents : MonoBehaviour
     {
         OnCanNotAffordAbility?.Invoke(spellSlot);
     }
+    public void PreDamageCalculation(Damage damage, GameObject target)
+    {
+        OnPreDamageCalculation?.Invoke(damage, target);
+    }
     public void HitThis(Damage damage, bool chainable = true)
     {
-        OnPreDamageCalculation?.Invoke(damage);
+        if (chainable) damage.source.GetComponent<EntityEvents>().PreDamageCalculation(damage, gameObject);
         OnHitThis?.Invoke(damage);
         if(chainable) damage.source.GetComponent<EntityEvents>().HitEnemy(damage, gameObject);
     }
