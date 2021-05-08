@@ -169,7 +169,7 @@ public class AgilityRuneOfHunting : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnHitEnemy += Activate;
+        _entityEvents.OnPreDamageCalculation += Activate;
     }
 
     public void UnsubscribeAbility()
@@ -179,7 +179,7 @@ public class AgilityRuneOfHunting : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnHitEnemy -= Activate;
+        _entityEvents.OnPreDamageCalculation -= Activate;
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
