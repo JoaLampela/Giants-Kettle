@@ -168,7 +168,7 @@ public class VitalityAgilityRuneOfRage : MonoBehaviour, IRuneScript
 
     private void Update()
     {
-        if (health.health / (float)health.maxHealth <= 1.00f - Mathf.Pow(0.90f, duplicateCountArmor + duplicateCountWeapon) / 100)
+        if (health.health / (float)health.maxHealth <= 1.00f - Mathf.Pow(0.90f, duplicateCountArmor + duplicateCountWeapon))
         {
             if (redundancyCheck)
             {
