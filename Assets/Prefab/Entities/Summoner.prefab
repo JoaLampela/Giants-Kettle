@@ -694,7 +694,7 @@ MonoBehaviour:
   leftHandWeapon: {fileID: 0}
   dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons:
-  - {fileID: 11400000, guid: 7c3afe4d68d27f84e82eebaf92d242cf, type: 2}
+  - {fileID: 11400000, guid: 323e215ba9148f44ea29baece309284b, type: 2}
   armorRunes:
   - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
   - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
@@ -733,6 +733,11 @@ MonoBehaviour:
   healthRegenPerLevel: 20
   physicalDamagePerLevel: 20
   armorPerLevel: 5
+  healthPerFloor: 0
+  healthRegenPerFloor: 0
+  physicalDamagePerFloor: 0
+  armorPerFloor: 0
+  movementsSpeedPerFloor: 0
 --- !u!96 &1432059182678377561
 TrailRenderer:
   serializedVersion: 2

@@ -921,8 +921,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPerLevel: 20
   healthRegenPerLevel: 30
-  physicalDamagePerLevel: 2
+  physicalDamagePerLevel: 8
   armorPerLevel: 2
+  healthPerFloor: 0
+  healthRegenPerFloor: 0
+  physicalDamagePerFloor: 0
+  armorPerFloor: 0
+  movementsSpeedPerFloor: 0
 --- !u!96 &2503689601135937888
 TrailRenderer:
   serializedVersion: 2

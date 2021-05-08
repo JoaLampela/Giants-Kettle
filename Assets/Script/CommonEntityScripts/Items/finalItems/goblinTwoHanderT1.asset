@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
-  m_Name: rustyTwoHanderT1
+  m_Name: goblinTwoHanderT1
   m_EditorClassIdentifier: 
   type: 1
   description: 
-  iconSprite: {fileID: 21300000, guid: b1122cb24353ba24d8fba136d13cfcd6, type: 3}
-  inGameObject: {fileID: 6513725237535493746, guid: 75b5d2c2c00f0d249a6ae6c9e3f5f1d0, type: 3}
+  iconSprite: {fileID: 21300000, guid: 915736dbc9b70d742bd0ec95406d5c0c, type: 3}
+  inGameObject: {fileID: 5207619835741202949, guid: e11796dae128ff943845facceae9b43f, type: 3}
   isTwoHander: 1
   runeSlots: 1
   baseRune: {fileID: 0}

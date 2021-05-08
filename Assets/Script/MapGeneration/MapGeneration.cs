@@ -194,6 +194,9 @@ public class MapGeneration : MonoBehaviour
             }
         }
         ConnectClosestRooms(allRooms);
+
+        if (allRooms.Count != 1)
+            ConnectExtraRooms(allRooms, 6);
         foreach (Room room in allRooms)
             room.SetEdgeTilesNewType(map, 2);
         AddRoomsToMapNodes(allRooms);
@@ -327,6 +330,75 @@ public class MapGeneration : MonoBehaviour
             ConnectClosestRooms(allRooms, true);
         }
     }
+
+
+    void ConnectExtraRooms(List<Room> allRooms, int amountOfNewConnections)
+    {
+        List<Room> roomListA = new List<Room>();
+        List<Room> roomListB = new List<Room>();
+        foreach (Room room in allRooms)
+        {
+            roomListB.Add(room);
+        }
+
+        List<int> connectableRoomIntergerList = new List<int>();
+        for (int i = 0; i < amountOfNewConnections; i++)
+        {
+
+            int randomInt = Random.Range(0, allRooms.Count);
+            while (connectableRoomIntergerList.Contains(randomInt))
+                randomInt = Random.Range(0, allRooms.Count);
+            connectableRoomIntergerList.Add(randomInt);
+            roomListA.Add(allRooms[randomInt]);
+            roomListB.Remove(allRooms[randomInt]);
+
+        }
+
+        int bestDistance = 0;
+        Coord bestTileA = new Coord();
+        Coord bestTileB = new Coord();
+        Room bestRoomA = new Room();
+        Room bestRoomB = new Room();
+        bool possibleConnectionFound = false;
+
+
+        foreach (Room roomA in roomListA)
+        {
+            foreach (Room roomB in roomListB)
+            {
+                if (roomA == roomB || roomA.IsConnected(roomB))
+                {
+                    continue;
+                }
+
+                for (int tileIndexA = 0; tileIndexA < roomA.edgeTiles.Count; tileIndexA++)
+                {
+
+                    for (int tileIndexB = 0; tileIndexB < roomB.edgeTiles.Count; tileIndexB++)
+                    {
+                        Coord tileA = roomA.edgeTiles[tileIndexA];
+                        Coord tileB = roomB.edgeTiles[tileIndexB];
+                        int distanceBetweenRooms = (int)(Mathf.Pow(tileA.tileX - tileB.tileX, 2) + Mathf.Pow(tileA.tileY - tileB.tileY, 2));
+                        if (distanceBetweenRooms < bestDistance || !possibleConnectionFound)
+                        {
+                            bestDistance = distanceBetweenRooms;
+                            possibleConnectionFound = true;
+                            bestTileA = tileA;
+                            bestTileB = tileB;
+                            bestRoomA = roomA;
+                            bestRoomB = roomB;
+                        }
+                    }
+                }
+            }
+            if (possibleConnectionFound)
+            {
+                CreatePassage(bestRoomA, bestRoomB, bestTileA, bestTileB);
+            }
+        }
+
+    }
+
 
     void CreatePassage(Room roomA, Room roomB, Coord tileA, Coord tileB)
     {
