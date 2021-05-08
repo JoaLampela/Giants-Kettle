@@ -174,7 +174,7 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
     {
         if(Vector2.Distance(startingPosition, target.transform.position) >= 10)
         {
-            _abilityEvents.bonusFlatTrueDamage = (int)(Vector2.Distance(startingPosition, gameObject.transform.position));
+            target.GetComponent<EntityEvents>().HitThis(new Damage(gameObject, false, 0, (int)(Vector2.Distance(startingPosition, gameObject.transform.position))));
         }
     }
 
