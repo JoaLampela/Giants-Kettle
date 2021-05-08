@@ -109,10 +109,11 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
     {
         _entityEvents.RemoveBuff("SpiritRuneOfRushPlus");
         _entityEvents.RemoveBuff("PowerRuneOfBladeMinus");
+        _entityEvents.RemoveBuff("PowerRuneOfBladeHaste");
 
         if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            Debug.Log("Power");
+            _entityEvents.NewBuff("SpiritRuneOfRushPlus", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
             _entityEvents.NewBuff("SpiritRuneOfRushPlus", EntityStats.BuffType.SpellHasteMultiplier, (int)(Mathf.Pow(2, (duplicateCountArmor + duplicateCountWeapon) / 3) * 50));
             _entityEvents.NewBuff("SpiritRuneOfRushMinus", EntityStats.BuffType.PhysicalDamageMultiplier, (int)((-1 + Mathf.Pow(0.5f, (duplicateCountArmor + duplicateCountWeapon) / 3)) * 100));
         }
