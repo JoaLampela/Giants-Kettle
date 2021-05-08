@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 949ac30fd5ef64544ad7d4516dee16d5, type: 3}
-  m_Name: oldStaffT2
+  m_Name: blueStaffT3
   m_EditorClassIdentifier: 
   type: 1
-  description: 
-  iconSprite: {fileID: 21300000, guid: 6bd169d410e44814394bff727bfe0e5e, type: 3}
-  inGameObject: {fileID: 5490470622769133208, guid: a5e1cc5be7f552b4b943fcc9a4643a7e, type: 3}
+  description: Feeling blue~
+  iconSprite: {fileID: 21300000, guid: 40f7273df7bbc9349809f3bbdddc5f70, type: 3}
+  inGameObject: {fileID: 484752265570653670, guid: 896e9e8e77aaaf04f8bc17a1a9500dc5, type: 3}
   isTwoHander: 1
-  runeSlots: 2
+  runeSlots: 3
   baseRune: {fileID: 0}
   weaponType: 4
   maxCooldownAbility1: 4
