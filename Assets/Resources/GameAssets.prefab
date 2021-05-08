@@ -94,11 +94,11 @@ MonoBehaviour:
   - sound: 22
     audioClip: {fileID: 8300000, guid: 8c3d59592cc31d74c948a1ba4cda8bac, type: 3}
   - sound: 23
-    audioClip: {fileID: 8300000, guid: 42529b3bef6770946ad26a6d00926861, type: 3}
+    audioClip: {fileID: 8300000, guid: 6970375d2575219409ea62963ccc3638, type: 3}
   - sound: 24
-    audioClip: {fileID: 8300000, guid: b2ccf5523f8e0a4468b91cbbcab9e408, type: 3}
+    audioClip: {fileID: 8300000, guid: 9aa67ac91fea62e4f94bff4ae059c088, type: 3}
   - sound: 25
-    audioClip: {fileID: 8300000, guid: 9ac39c1c18b8a6140814b25a3e9799ec, type: 3}
+    audioClip: {fileID: 8300000, guid: 4073b00a7a4450c418e7757dd7639014, type: 3}
   - sound: 26
     audioClip: {fileID: 8300000, guid: 42529b3bef6770946ad26a6d00926861, type: 3}
   - sound: 27
