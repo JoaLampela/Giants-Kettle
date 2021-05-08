@@ -119,6 +119,12 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: e9e6c01a93a1572498b2b099bdf13fbd, type: 3}
   - sound: 35
     audioClip: {fileID: 8300000, guid: 33c1296dc3160394397d053f5f531b6f, type: 3}
+  - sound: 37
+    audioClip: {fileID: 8300000, guid: a6511bbb1f60c2b4d9e0171b8279a358, type: 3}
+  - sound: 38
+    audioClip: {fileID: 8300000, guid: 7444c2ffc0820ec4b83b34f03d95d24f, type: 3}
+  - sound: 39
+    audioClip: {fileID: 8300000, guid: e99294316f46511458885c22fe300e12, type: 3}
   MusicAudioClipArray:
   - music: 0
     musicClip: {fileID: 8300000, guid: e6800ace59cc9554f944cc5801108092, type: 3}

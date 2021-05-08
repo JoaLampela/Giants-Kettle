@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7661322300877212487}
   - component: {fileID: 5526199453019339493}
+  - component: {fileID: 772636828812361110}
   m_Layer: 0
   m_Name: ThunderDashEffect
   m_TagString: Untagged
@@ -46,6 +47,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 4
+--- !u!114 &772636828812361110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214047499546527812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2d64e17adca764cbda058fa4f9955b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7090767694972322334
 GameObject:
   m_ObjectHideFlags: 0

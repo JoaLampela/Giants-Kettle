@@ -45,6 +45,10 @@ public static class SoundManager
         Splat,
         InventoryOpen,
         PickUp,
+        Ignite,
+        Zap,
+        ArcadeExplosion,
+        Summon,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;

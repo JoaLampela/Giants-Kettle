@@ -54,6 +54,7 @@ public class AbilityOnActivateSummonEntity : MonoBehaviour
             }
 
         }
+        StartCoroutine(SummonEnemySound());
 
     }
     private IEnumerator SummonEnemy(Vector2 pos)
@@ -61,6 +62,12 @@ public class AbilityOnActivateSummonEntity : MonoBehaviour
         yield return new WaitForSeconds(2);
         GameObject summon = possibleSummons[Random.Range(0, possibleSummons.Length)];
         Instantiate(summon, pos, Quaternion.identity);
+    }
+
+    private IEnumerator SummonEnemySound()
+    {
+        yield return new WaitForSeconds(2);
+        SoundManager.PlaySound(SoundManager.Sound.Summon, transform.position);
     }
 
 

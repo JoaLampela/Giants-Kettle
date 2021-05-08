@@ -279,6 +279,7 @@ public class EntityStats : MonoBehaviour
                 if (value == 1)
                 {
                     isOnFire = true;
+                    SoundManager.PlaySound(SoundManager.Sound.Ignite, transform.position);
                 }
                 else
                 {
