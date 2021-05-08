@@ -158,6 +158,9 @@ public class AgilityRuneOfHunting : MonoBehaviour, IRuneScript
         {
             Damage dmg = new Damage(gameObject, false, 0, (int)((damage._damage + damage._trueDamage) * (duplicateCountArmor + duplicateCountWeapon) * 0.20f));
             target.GetComponent<EntityEvents>().HitThis(dmg, false);
+
+            GameObject crowbar = RuneAssets.i.RuneHunterFinalEffect;
+            crowbar = Instantiate(crowbar, target.transform.position, Quaternion.identity, target.transform);
         }
     }
 

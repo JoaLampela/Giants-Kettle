@@ -422,11 +422,14 @@ public class GameStats : MonoBehaviour
     }
     private void DealDamage(Damage damage, GameObject target)
     {
-        if (topDmg < damage._damage + damage._trueDamage) topDmg = damage._trueDamage + damage._damage;
+        int temp = damage._damage + damage._trueDamage;
+        if (damage._isCriticalHit) temp *= 2;
+        if (topDmg < temp) topDmg = damage._trueDamage + damage._damage;
         damageDealt += damage._damage;
+        if (damage._isCriticalHit) damageDealt += damage._damage;
         damageDealt += damage._trueDamage;
+        if (damage._isCriticalHit) damageDealt += damage._trueDamage;
 
-        
         totalHits++;
     }
 

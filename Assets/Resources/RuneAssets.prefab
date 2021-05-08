@@ -54,3 +54,6 @@ MonoBehaviour:
   RuneEscapistEffect: {fileID: 265621522561986656, guid: e1dd11cbea86da9488ec02bef59e93e5, type: 3}
   RuneExecutionEffect: {fileID: 245452824320367789, guid: 728277d2c2aee3d42922e13b8a2d02c9, type: 3}
   RuneShockDashEffect: {fileID: 8687299350629157545, guid: b99ee6eede90fcd44868ba1d47d99942, type: 3}
+  RuneDevourerEffect: {fileID: 790950613734426930, guid: f31c15bd2ec036f479356a0e3a2e53ef, type: 3}
+  RuneRegenEffect: {fileID: 2599149259822572493, guid: 58c999dde693bef4c8d747398dd7fa5c, type: 3}
+  RuneHunterFinalEffect: {fileID: 4598398911242452329, guid: 0d0d80c1fdcc4ec4388dfb53ff28e238, type: 3}
