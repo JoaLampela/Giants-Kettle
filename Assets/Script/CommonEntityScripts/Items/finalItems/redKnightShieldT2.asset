@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22727b0861fb16940a1c1fbb83720440, type: 3}
-  m_Name: rustyShieldT2
+  m_Name: redKnightShieldT2
   m_EditorClassIdentifier: 
   type: 1
-  description: 
-  iconSprite: {fileID: 21300000, guid: eeaca39b913b4024d92126bc4f3da4f4, type: 3}
-  inGameObject: {fileID: 2660832286476357239, guid: 1f47f08f20c8f38499fee080e6d0d2ea, type: 3}
+  description: An old shield left by a warrior from the past
+  iconSprite: {fileID: 21300000, guid: 266c4165f8bf8ac499a39a4060dc13bb, type: 3}
+  inGameObject: {fileID: 7536830640286818156, guid: 43545c7db61c49041b155e8a75dfc039, type: 3}
   isTwoHander: 0
   runeSlots: 2
   baseRune: {fileID: 0}
