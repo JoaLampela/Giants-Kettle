@@ -157,7 +157,7 @@ public class AgilityRuneOfHunting : MonoBehaviour, IRuneScript
         if (target.GetComponent<EntityHealth>().health == target.GetComponent<EntityHealth>().maxHealth)
         {
             Damage dmg = new Damage(gameObject, false, 0, (int)(damage._damage * (duplicateCountArmor + duplicateCountWeapon) * 0.10f));
-            target.GetComponent<EntityEvents>().HitThis(dmg);
+            target.GetComponent<EntityEvents>().HitThis(dmg, false);
         }
     }
 
