@@ -1313,7 +1313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
-  dropChance: 25
+  dropChance: 15
 --- !u!114 &6425927436679375116
 MonoBehaviour:
   m_ObjectHideFlags: 0
