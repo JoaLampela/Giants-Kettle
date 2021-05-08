@@ -22,6 +22,7 @@ public class DoorScript : MonoBehaviour
         foreach (GameObject door in DoorList)
         {
             door.SetActive(true);
+            SoundManager.PlayUISound(SoundManager.Sound.RoomEnter);
         }
     }
     public void OpenDoors()
