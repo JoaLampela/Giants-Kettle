@@ -143,7 +143,6 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-            startingPosition = gameObject.transform.position;
         }
     }
 
@@ -172,9 +171,9 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage, GameObject target)
     {
-        if(Vector2.Distance(startingPosition, target.transform.position) >= 10)
+        if(Vector2.Distance(gameObject.transform.position, target.transform.position) >= 10)
         {
-            target.GetComponent<EntityEvents>().HitThis(new Damage(gameObject, false, 0, (int)(Vector2.Distance(startingPosition, gameObject.transform.position))));
+            target.GetComponent<EntityEvents>().HitThis(new Damage(gameObject, false, 0, (int)(Vector2.Distance(gameObject.transform.position, target.transform.position))));
         }
     }
 
