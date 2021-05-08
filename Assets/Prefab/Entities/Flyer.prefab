@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 2854217595779573670}
   - component: {fileID: 2227358727020279601}
   - component: {fileID: 7552396429364814031}
+  - component: {fileID: 3017103793074326161}
   m_Layer: 0
   m_Name: Flyer
   m_TagString: Untagged
@@ -532,6 +533,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
   dropChance: 15
+--- !u!114 &3017103793074326161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681881871295265569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b7c82be38cb4c43ba95837702111d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5013314282194355379
 GameObject:
   m_ObjectHideFlags: 0
