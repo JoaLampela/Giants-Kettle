@@ -52,3 +52,4 @@ MonoBehaviour:
   RuneHealOrb: {fileID: 790950613734426930, guid: e9aeb9675a6748d4fbe3711afdd4bf3c, type: 3}
   RunePredatorEffect: {fileID: 8607891512907972249, guid: beb8191b419016f4ea740f4ae002bdac, type: 3}
   RuneEscapistEffect: {fileID: 265621522561986656, guid: e1dd11cbea86da9488ec02bef59e93e5, type: 3}
+  RuneExecutionEffect: {fileID: 245452824320367789, guid: 728277d2c2aee3d42922e13b8a2d02c9, type: 3}

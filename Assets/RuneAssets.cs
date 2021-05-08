@@ -25,4 +25,6 @@ public class RuneAssets: MonoBehaviour
     public GameObject RuneHealOrb;
     public GameObject RunePredatorEffect;
     public GameObject RuneEscapistEffect;
+    public GameObject RuneExecutionEffect;
+    public GameObject RuneShockDashEffect;
 }

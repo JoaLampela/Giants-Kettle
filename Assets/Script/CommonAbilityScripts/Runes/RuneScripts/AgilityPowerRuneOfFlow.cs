@@ -110,12 +110,12 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowArmor", EntityStats.BuffType.Speed, duplicateCountArmor * 40);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowWeapon", EntityStats.BuffType.Speed, duplicateCountWeapon * 40);
         }
     }
 
@@ -160,9 +160,7 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
     {
         if(duplicateCountArmor + duplicateCountWeapon < 20)
         {
-            Debug.Log("activating broken rune duration " + (1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f));
-
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowWeaponSlow", EntityStats.BuffType.Slow, 30, 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, 30, 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
         }
     }
 
