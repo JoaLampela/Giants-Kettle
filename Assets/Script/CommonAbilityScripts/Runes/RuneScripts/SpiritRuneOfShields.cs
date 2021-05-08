@@ -164,7 +164,7 @@ public class SpiritRuneOfShields : MonoBehaviour, IRuneScript
 
     public void Activate(GameObject target)
     {
-        _entityEvents.GainShield((int)((duplicateCountArmor + duplicateCountWeapon) * target.GetComponent<EntityStats>().currentMaxHealth * 0.05f));
+        _entityEvents.GainShield((int)((duplicateCountArmor + duplicateCountWeapon) * target.GetComponent<EntityStats>().currentMaxHealth * 0.02f));
     }
 
     //Subs and Unsubs
