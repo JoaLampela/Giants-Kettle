@@ -108,14 +108,14 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
     public void SetUpPermanentEffects()
     {
         _entityEvents.RemoveBuff("SpiritRuneOfRushPlus");
-        _entityEvents.RemoveBuff("PowerRuneOfBladeMinus");
-        _entityEvents.RemoveBuff("PowerRuneOfBladeHaste");
+        _entityEvents.RemoveBuff("SpiritRuneOfRushMinus");
+        _entityEvents.RemoveBuff("SpiritRuneOfRushHaste");
 
         if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfRushHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
             _entityEvents.NewBuff("SpiritRuneOfRushPlus", EntityStats.BuffType.SpellHasteMultiplier, (int)(Mathf.Pow(2, (duplicateCountArmor + duplicateCountWeapon) / 3) * 50));
             _entityEvents.NewBuff("SpiritRuneOfRushMinus", EntityStats.BuffType.PhysicalDamageMultiplier, (int)((-1 + Mathf.Pow(0.5f, (duplicateCountArmor + duplicateCountWeapon) / 3)) * 100));
+            _entityEvents.NewBuff("SpiritRuneOfRushHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -147,7 +147,7 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfRushPlus");
         if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfRushMinus");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfBladeHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOFRushHaste");
 
         foreach (GameObject projectile in projectiles)
         {
