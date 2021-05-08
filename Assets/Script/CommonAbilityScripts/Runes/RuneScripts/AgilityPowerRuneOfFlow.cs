@@ -113,7 +113,7 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
         {
             _entityEvents.NewBuff("AgilityPowerRuneOfFlowPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
             _entityEvents.NewBuff("AgilityPowerRuneOfFlowAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSpeed", EntityStats.BuffType.Speed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSpeed", EntityStats.BuffType.Speed, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 

@@ -155,42 +155,57 @@ public class SpiritPowerRuneOfExplosion : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Damage damage, GameObject target)
+    public void ActivateWeapon(Damage damage, GameObject target)
     {
         GameObject explosion = RuneAssets.i.RuneExplosion;
         explosion.GetComponent<AbilityEvents>().SetSource(gameObject.GetComponent<AbilityEvents>()._abilityCastSource);
 
         explosion = Instantiate(explosion, target.transform.position, Quaternion.identity);
-        StartCoroutine(SetExplosionStats(explosion));
+        StartCoroutine(SetExplosionStatsWeapon(explosion));
     }
 
-    private IEnumerator SetExplosionStats(GameObject projectile)
+    public void ActivateArmor(GameObject target, Damage damage)
+    {
+        GameObject explosion = RuneAssets.i.RuneExplosion;
+        explosion.GetComponent<AbilityEvents>().SetSource(gameObject);
+
+        explosion = Instantiate(explosion, target.transform.position, Quaternion.identity);
+        StartCoroutine(SetExplosionStatsArmor(explosion));
+    }
+
+    private IEnumerator SetExplosionStatsWeapon(GameObject projectile)
     {
         yield return new WaitForEndOfFrame();
         projectile.GetComponent<AbilityEvents>().damageParentMultiplier = gameObject.GetComponent<AbilityEvents>().damageMultiplier;
+    }
+
+    private IEnumerator SetExplosionStatsArmor(GameObject projectile)
+    {
+        yield return new WaitForEndOfFrame();
+        projectile.GetComponent<AbilityEvents>().damageParentMultiplier = 50;
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
-        _abilityEvents._onDealDamage += Activate;
+        _abilityEvents._onDealDamage += ActivateWeapon;
     }
 
     public void SubscribeEntity()
     {
-
+        _entityEvents.OnBasicAttackHit += ActivateArmor;
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
-        _abilityEvents._onDealDamage -= Activate;
+        _abilityEvents._onDealDamage -= ActivateWeapon;
     }
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnBasicAttackHit -= ActivateArmor;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)

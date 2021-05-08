@@ -110,12 +110,12 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderArmor", EntityStats.BuffType.Health, duplicateCountArmor * 20);
+            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderArmor", EntityStats.BuffType.Health, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
         }
     }
 
@@ -185,7 +185,6 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     public void UnsubscribeAbility()
     {
-
         _abilityEvents._onDealDamage -= ActivateWeaponEffect;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }

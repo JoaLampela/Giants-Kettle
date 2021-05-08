@@ -118,7 +118,7 @@ public class AgilityRuneOfSpeed : MonoBehaviour, IRuneScript
             _entityEvents.NewBuff("AgilityRuneOfSpeedWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 10);
         }
 
-        _entityEvents.NewBuff("AgilityRuneOfSpeedBonus", EntityStats.BuffType.SpeedMultiplier, (duplicateCountArmor + duplicateCountWeapon) * 5);
+        _entityEvents.NewBuff("AgilityRuneOfSpeedBonus", EntityStats.BuffType.SpeedMultiplier, (duplicateCountArmor + duplicateCountWeapon) * 3);
     }
 
     //Subs & Unsub -related Unity functions

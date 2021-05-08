@@ -161,7 +161,7 @@ public class SpiritVitalityRuneOfExpenditure : MonoBehaviour, IRuneScript
         if(_entity.GetComponent<EntityStats>().currentShield > 0)
         {
             Damage dmg = new Damage(gameObject, false, 0, (int)(_entity.GetComponent<EntityStats>().currentShield * (1.9f - Mathf.Pow(0.90f, (duplicateCountArmor + duplicateCountWeapon)))));
-            target.GetComponent<EntityEvents>().HitThis(dmg);
+            target.GetComponent<EntityEvents>().HitThis(dmg, false);
             _entity.GetComponent<EntityStats>().currentShield = 0;
         }
     }
