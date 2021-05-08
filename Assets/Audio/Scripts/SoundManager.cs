@@ -40,6 +40,8 @@ public static class SoundManager
         ItemUnequip,
         RuneEquip,
         RuneUnequip,
+        NormalHit,
+        CriticalHit,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
