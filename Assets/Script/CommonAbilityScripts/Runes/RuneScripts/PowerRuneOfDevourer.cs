@@ -157,10 +157,11 @@ public class PowerRuneOfDevourer : MonoBehaviour, IRuneScript
 
     public void Activate(GameObject target)
     {
-        _entityEvents.RecoverHealth((int)((duplicateCountArmor + duplicateCountWeapon) * target.GetComponent<EntityHealth>().maxHealth * 0.02f));
-
         GameObject soulOrb = RuneAssets.i.RuneDevourerEffect;
+        soulOrb.GetComponent<AbilityEvents>().SetSource(_entity);
         soulOrb = Instantiate(soulOrb, target.transform.position, Quaternion.identity);
+
+        _entityEvents.RecoverHealth((int)((duplicateCountArmor + duplicateCountWeapon) * target.GetComponent<EntityHealth>().maxHealth * 0.02f));
     }
 
     //Subs and Unsubs
