@@ -163,12 +163,18 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     public void ActivateArmorEffect(Damage damage)
     {
-        damage.source.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
+        if(duplicateCountArmor != 0)
+        {
+            damage.source.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
+        }
     }
 
     public void ActivateWeaponEffect(Damage damage, GameObject target)
     {
-        target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
+        if(duplicateCountWeapon != 0)
+        {
+            target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 5);
+        }
     }
 
     //Subs and Unsubs
