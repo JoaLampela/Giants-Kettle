@@ -36,6 +36,10 @@ public static class SoundManager
         ShieldSlam,
         Block,
         TripleShot,
+        ItemEquip,
+        ItemUnequip,
+        RuneEquip,
+        RuneUnequip,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;

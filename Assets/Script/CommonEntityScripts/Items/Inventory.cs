@@ -267,6 +267,7 @@ public class Inventory : MonoBehaviour
     [Obsolete]
     public void Unequip(Item unequippedItem, UiButtonClick slot)
     {
+        SoundManager.PlaySound(SoundManager.Sound.ItemUnequip, transform.position);
         Debug.Log("Unequipped item " + unequippedItem);
         if ((int)slot._type == 1)
         {
@@ -445,6 +446,7 @@ public class Inventory : MonoBehaviour
     [Obsolete]
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
+        SoundManager.PlaySound(SoundManager.Sound.ItemEquip, transform.position);
         Debug.Log("Equipped "+ equippedItem + " to slot " + slot);
 
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
@@ -1112,6 +1114,7 @@ public class Inventory : MonoBehaviour
 
     public void AddNewRuneToItem(Item newItem, GameObject slot)
     {
+        SoundManager.PlaySound(SoundManager.Sound.RuneEquip, transform.position);
         RuneObject rune = (RuneObject)newItem.item;
         if (slot == weaponRightHandR1)
         {
@@ -1535,6 +1538,7 @@ public class Inventory : MonoBehaviour
 
     public void RemoveRuneFromItem(GameObject slot)
     {
+        SoundManager.PlaySound(SoundManager.Sound.RuneUnequip, transform.position);
         if (slot == weaponRightHandR1)
         {
             rightHand._item._runeList[0] = null;
