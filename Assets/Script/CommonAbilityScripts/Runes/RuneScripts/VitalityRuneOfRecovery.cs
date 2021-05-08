@@ -110,12 +110,12 @@ public class VitalityRuneOfRecovery : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("VitalityRuneOfRecoveryArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
+            _entityEvents.NewBuff("VitalityRuneOfRecoveryArmor", EntityStats.BuffType.Health, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityRuneOfRecoveryWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("VitalityRuneOfRecoveryWeapon", EntityStats.BuffType.Health, duplicateCountWeapon * 10);
         }
     }
 
@@ -157,7 +157,7 @@ public class VitalityRuneOfRecovery : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage)
     {
-        _entityEvents.NewBuff("VitalityRuneOfRecoveryBonus", EntityStats.BuffType.HealthRegen, (duplicateCountArmor + duplicateCountWeapon) * 30, 3);
+        _entityEvents.NewBuff("VitalityRuneOfRecoveryBonus", EntityStats.BuffType.HealthRegen, (duplicateCountArmor + duplicateCountWeapon) * 60, 3);
     }
 
     //Subs and Unsubs

@@ -105,17 +105,13 @@ public class VitalityRuneOfGrowth : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("VitalityRuneOfGrowthArmor");
-        _entityEvents.RemoveBuff("VitalityRuneOfGrowthWeapon");
+        _entityEvents.RemoveBuff("VitalityRuneOfGrowthRegen");
+        _entityEvents.RemoveBuff("VitalityRuneOfGrowthHealth");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityRuneOfGrowthArmor", EntityStats.BuffType.HealthRegen, duplicateCountArmor * 30);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("VitalityRuneOfGrowthWeapon", EntityStats.BuffType.HealthRegen, duplicateCountWeapon * 30);
+            _entityEvents.NewBuff("VitalityRuneOfGrowthRegen", EntityStats.BuffType.HealthRegen, (duplicateCountArmor + duplicateCountWeapon) * 30);
+            _entityEvents.NewBuff("VitalityRuneOfGrowthHealth", EntityStats.BuffType.Health, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -142,8 +138,8 @@ public class VitalityRuneOfGrowth : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfGrowthArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfGrowthWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfGrowthRegen");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfGrowthHealth");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

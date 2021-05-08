@@ -106,16 +106,12 @@ public class VitalityRuneOfStagger : MonoBehaviour, IRuneScript
     public void SetUpPermanentEffects()
     {
         _entityEvents.RemoveBuff("VitalityRuneOfStaggerArmor");
-        _entityEvents.RemoveBuff("VitalityRuneOfStaggerWeapon");
+        _entityEvents.RemoveBuff("VitalityRuneOfStaggerHealth");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityRuneOfStaggerArmor", EntityStats.BuffType.Health, duplicateCountArmor * 25);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("VitalityRuneOfStaggerWeapon", EntityStats.BuffType.Health, duplicateCountWeapon * 25);
+            _entityEvents.NewBuff("VitalityRuneOfStaggerArmor", EntityStats.BuffType.Armor, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("VitalityRuneOfStaggerHealth", EntityStats.BuffType.Health, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -143,7 +139,7 @@ public class VitalityRuneOfStagger : MonoBehaviour, IRuneScript
     private void OnDisable()
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfStaggerArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfStaggerWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfStaggerHealth");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -158,7 +154,8 @@ public class VitalityRuneOfStagger : MonoBehaviour, IRuneScript
 
     public void ActivateArmorEffect(Damage damage)
     {
-        damage.source.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerArmorBonus", EntityStats.BuffType.Stunned, 1, 0.5f);
+        damage.source.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerArmorStun", EntityStats.BuffType.Stunned, 1, 0.5f);
+        damage.source.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerArmorStunMovementImpair", EntityStats.BuffType.Slow, 999999, 0.5f);
 
         GameObject stunEffect = RuneAssets.i.RuneStun;
         stunEffect = Instantiate(stunEffect, damage.source.transform.position, Quaternion.identity, damage.source.transform);
@@ -169,8 +166,9 @@ public class VitalityRuneOfStagger : MonoBehaviour, IRuneScript
     {
         if(UnityEngine.Random.Range(0, 100) <= 100 - Mathf.Pow(0.95f, duplicateCountWeapon) * 100)
         {
-            target.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerWeaponBonus", EntityStats.BuffType.Stunned, 1, 1.0f);
-            
+            target.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerWeaponStun", EntityStats.BuffType.Stunned, 1, 1.0f);
+            target.GetComponent<EntityEvents>().NewBuff("VitalityRuneOfStaggerWeaponStunMovementImpair", EntityStats.BuffType.Slow, 999999, 1.0f);
+
             GameObject stunEffect = RuneAssets.i.RuneStun;
             stunEffect = Instantiate(stunEffect, target.transform.position, Quaternion.identity, target.transform);
             Destroy(stunEffect, 1.0f);

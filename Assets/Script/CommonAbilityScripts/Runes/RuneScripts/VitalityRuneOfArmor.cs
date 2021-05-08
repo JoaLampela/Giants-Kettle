@@ -106,16 +106,12 @@ public class VitalityRuneOfArmor : MonoBehaviour, IRuneScript
     public void SetUpPermanentEffects()
     {
         _entityEvents.RemoveBuff("VitalityRuneOfArmorArmor");
-        _entityEvents.RemoveBuff("VitalityRuneOfArmorWeapon");
+        _entityEvents.RemoveBuff("VitalityRuneOfArmorHealth");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
             _entityEvents.NewBuff("VitalityRuneOfArmorArmor", EntityStats.BuffType.Armor, duplicateCountArmor * 20);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("VitalityRuneOfArmorWeapon", EntityStats.BuffType.Armor, duplicateCountWeapon * 20);
+            _entityEvents.NewBuff("VitalityRuneOfArmorHealth", EntityStats.BuffType.Health, duplicateCountArmor * 5);
         }
     }
 
@@ -143,7 +139,7 @@ public class VitalityRuneOfArmor : MonoBehaviour, IRuneScript
     private void OnDisable()
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfArmorArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfArmorWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityRuneOfArmorHealth");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
