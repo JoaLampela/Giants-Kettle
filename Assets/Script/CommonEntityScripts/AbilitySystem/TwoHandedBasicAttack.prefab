@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3112012253366288703}
   - component: {fileID: 7887653994381302156}
   - component: {fileID: 4216827065402115720}
+  - component: {fileID: 177429018979435883}
   m_Layer: 8
   m_Name: TwoHandedBasicAttack
   m_TagString: Untagged
@@ -143,6 +144,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockBackAmount: 5000
+--- !u!114 &177429018979435883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795277162228328749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80bb1e494869a35499d03a4c7a2cc370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8912518092565903331
 PrefabInstance:
   m_ObjectHideFlags: 0

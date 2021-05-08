@@ -84,27 +84,32 @@ public class AbilityEvents : MonoBehaviour
     {
         if(target.GetComponent<EntityStats>())
         {
-            if (target.GetComponent<EntityStats>().team != _abilityCastSource.GetComponent<EntityStats>().team)
+            if(_abilityCastSource != null)
             {
-                if (target.GetComponent<EntityEvents>())
+                if (target.GetComponent<EntityStats>().team != _abilityCastSource.GetComponent<EntityStats>().team)
                 {
-                    bool isCrit = CalculateIfIsCriticalHit();
-                    int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * (damageMultiplier / 100f) * (damageParentMultiplier / 100f));
-                    int totaltrueDmg = trueDamage + bonusFlatTrueDamage;
-                    if (isCrit) {
-                        totalBasicDmg *= 2;
-                        totaltrueDmg *= 2;
-                    }
-                    Damage damage = new Damage(_abilityCastSource, isCrit, totalBasicDmg, totaltrueDmg);
-                    Debug.Log("ability: " + gameObject + " damage: " + damage._damage);
-                    target.GetComponent<EntityEvents>().HitThis(damage);
-                    DealDamageEvent(damage, target);
-                    if(parentProjectile != null)
+                    if (target.GetComponent<EntityEvents>())
                     {
-                        parentProjectile.GetComponent<AbilityEvents>().DealDamageEvent(damage, target);
+                        bool isCrit = CalculateIfIsCriticalHit();
+                        int totalBasicDmg = (int)((baseDamage + bonusFlatDamage + _abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage) * (damageMultiplier / 100f) * (damageParentMultiplier / 100f));
+                        int totaltrueDmg = trueDamage + bonusFlatTrueDamage;
+                        if (isCrit)
+                        {
+                            totalBasicDmg *= 2;
+                            totaltrueDmg *= 2;
+                        }
+                        Damage damage = new Damage(_abilityCastSource, isCrit, totalBasicDmg, totaltrueDmg);
+                        Debug.Log("ability: " + gameObject + " damage: " + damage._damage);
+                        target.GetComponent<EntityEvents>().HitThis(damage);
+                        DealDamageEvent(damage, target);
+                        if (parentProjectile != null)
+                        {
+                            parentProjectile.GetComponent<AbilityEvents>().DealDamageEvent(damage, target);
+                        }
                     }
                 }
             }
+            
         }
     }
     private bool CalculateIfIsCriticalHit()
