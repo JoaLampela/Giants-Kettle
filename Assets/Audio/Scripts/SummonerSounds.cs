@@ -5,7 +5,7 @@ using UnityEngine;
 public class SummonerSounds : MonoBehaviour
 {
     private EntityEvents events;
-    private void Start()
+    private void Awake()
     {
         events = gameObject.GetComponent<EntityEvents>();
         Subscribe();

@@ -7,9 +7,11 @@ public class entityDropItemOnDeath : MonoBehaviour
     public ItemOnGround itemOnGround;
     [SerializeField] private int dropChance;
     private EntityEvents events;
+    private GameEventManager gameEventManager;
 
     private void Awake()
     {
+        gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
         events = GetComponent<EntityEvents>();
     }
 
@@ -33,15 +35,11 @@ public class entityDropItemOnDeath : MonoBehaviour
     }
     private void DropItem(GameObject killer, GameObject killed)
     {
-        int enemyLevel = GetComponent<EntityStats>().level + 1;
-        
-
-
-        if (Random.Range(0,100) <= dropChance)
-        {            
+        if (Random.Range(0, 100) <= dropChance)
+        {
             ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
             ItemTierListScript tierList = GameObject.Find("Game Manager").GetComponent<ItemTierListScript>();
-            Item item = new Item(tierList.GiveRandomItem(enemyLevel));
+            Item item = new Item(tierList.GiveRandomItem(gameEventManager.globalLevel + 1));
             Debug.Log(item);
             groundItem.SetItem(item);
 

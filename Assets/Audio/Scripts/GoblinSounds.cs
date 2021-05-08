@@ -5,7 +5,7 @@ using UnityEngine;
 public class GoblinSounds : MonoBehaviour
 {
     private EntityEvents events;
-    private void Start()
+    private void Awake()
     {
         events = gameObject.GetComponent<EntityEvents>();
         Subscribe();

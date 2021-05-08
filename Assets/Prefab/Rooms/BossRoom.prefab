@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveEnemyAmount: 0
-  additionalEnemiesInWavePerMins: 0.25
-  additionalWavesPerMins: 0.25
+  additionalEnemiesInWavePerMins: 0
+  additionalWavesPerMins: 0
   wavesLeft: 0
   roomEnemies:
   - {fileID: 6759122003657263831}
