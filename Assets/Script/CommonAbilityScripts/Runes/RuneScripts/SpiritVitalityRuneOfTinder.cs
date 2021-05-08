@@ -169,6 +169,14 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
         }
     }
 
+    public void ActivateArmorBasicEffect(GameObject target, Damage damage)
+    {
+        if (duplicateCountArmor != 0)
+        {
+            target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1, 2);
+        }
+    }
+
     public void ActivateWeaponEffect(Damage damage, GameObject target)
     {
         if(duplicateCountWeapon != 0)
@@ -187,6 +195,7 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
     public void SubscribeEntity()
     {
         _entityEvents.OnHitThis += ActivateArmorEffect;
+        _entityEvents.OnBasicAttackHit += ActivateArmorBasicEffect;
     }
 
     public void UnsubscribeAbility()
@@ -198,6 +207,7 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
     public void UnsubscribeEntity()
     {
         _entityEvents.OnHitThis -= ActivateArmorEffect;
+        _entityEvents.OnBasicAttackHit -= ActivateArmorBasicEffect;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
