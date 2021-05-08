@@ -14,6 +14,15 @@ public class SummonerSounds : MonoBehaviour
     {
         Unsubscribe();
     }
+
+    private void PlayNormalHitSound(GameObject spaghetti, GameObject bolognese)
+    {
+        SoundManager.PlaySound(SoundManager.Sound.NormalHit, transform.position);
+    }
+    private void PlayCriticalHitSound(GameObject spaghetti, GameObject bolognese)
+    {
+        SoundManager.PlaySound(SoundManager.Sound.CriticalHit, transform.position);
+    }
     private void PlayDeathSound(GameObject spaghetti, GameObject bolognese)
     {
         SoundManager.PlaySound(SoundManager.Sound.SummonerDie, transform.position);
