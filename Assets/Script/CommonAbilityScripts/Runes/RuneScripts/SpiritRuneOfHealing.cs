@@ -110,12 +110,12 @@ public class SpiritRuneOfHealing : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfHealingArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
+            _entityEvents.NewBuff("SpiritRuneOfHealingArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 5);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfHealingWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritRuneOfHealingWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 5);
         }
     }
 
@@ -161,7 +161,7 @@ public class SpiritRuneOfHealing : MonoBehaviour, IRuneScript
         GameObject healing = RuneAssets.i.RuneHealing;
 
         healing = Instantiate(healing, gameObject.transform.position, Quaternion.identity);
-        _entity.GetComponent<EntityEvents>().RecoverHealth((duplicateCountArmor + duplicateCountWeapon) * 5);
+        _entity.GetComponent<EntityEvents>().RecoverHealth((duplicateCountArmor + duplicateCountWeapon) * 2);
     }
 
     //Subs and Unsubs

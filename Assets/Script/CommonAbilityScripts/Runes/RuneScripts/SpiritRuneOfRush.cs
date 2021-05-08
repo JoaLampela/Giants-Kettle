@@ -36,7 +36,7 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
 
     public void IncrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
     {
-        if(hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
+        if (hand == IRuneScript.Hand.right || hand == IRuneScript.Hand.dual)
         {
             duplicateCountWeaponRight += amount;
         }
@@ -47,28 +47,6 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
 
         duplicateCountWeapon += amount;
         if (_entityEvents != null) SetUpPermanentEffects();
-        Debug.Log("HAND " + _hand);
-        if (_hand == IRuneScript.Hand.right || _hand == IRuneScript.Hand.dual)
-        {
-            float oldCdReduction;
-            if (2 * (duplicateCountWeapon - amount) == 0) oldCdReduction = 0;
-            else oldCdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1 / ((2f / 3f) * (duplicateCountWeapon - amount));
-            Debug.Log((float)containerItem.baseMaxCooldownAbility1 + " / " + "(1.26f * " + duplicateCountWeapon);
-            float cdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1/((2f/3f) * duplicateCountWeapon);
-            cdReduction -= oldCdReduction;
-            Debug.Log("CD reduction right by " + cdReduction);
-            containerItem.maxCooldownAbility1 -= cdReduction;
-        }
-        if (_hand == IRuneScript.Hand.left || _hand == IRuneScript.Hand.dual)
-        {
-            float oldCdReduction;
-            if (2 * (duplicateCountWeapon - amount) == 0) oldCdReduction = 0;
-            else oldCdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * (duplicateCountWeapon - amount));
-            float cdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * (duplicateCountWeapon));
-            cdReduction -= oldCdReduction;
-            Debug.Log("CD reduction left by " + cdReduction);
-            containerItem.maxCooldownAbility2 -= cdReduction;
-        }
     }
 
     public void DecrementDuplicateCountWeapon(int amount, IRuneScript.Hand hand)
@@ -83,36 +61,6 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
         }
 
         duplicateCountWeapon -= amount;
-        Debug.Log(duplicateCountWeapon);
-        if (_hand == IRuneScript.Hand.right || _hand == IRuneScript.Hand.dual)
-        {
-
-            float oldCdReduction;
-            Debug.Log(duplicateCountWeapon);
-            
-            oldCdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1 / ((2f / 3f) * (duplicateCountWeapon + amount));
-            float cdReduction;
-            if (2 * duplicateCountWeapon == 0) cdReduction = 0;
-            else cdReduction = containerItem.baseMaxCooldownAbility1 - (float)containerItem.baseMaxCooldownAbility1 / ((2f / 3f) * duplicateCountWeapon);
-            
-            oldCdReduction -= cdReduction;
-            Debug.Log("CD increased right by " + oldCdReduction);
-            containerItem.maxCooldownAbility1 += oldCdReduction;
-        }
-        if (_hand == IRuneScript.Hand.left || _hand == IRuneScript.Hand.dual)
-        {
-            float oldCdReduction;
-            
-            oldCdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * (duplicateCountWeapon + amount));
-            float cdReduction;
-            if (2 * duplicateCountWeapon == 0) cdReduction = 0;
-            else cdReduction = containerItem.baseMaxCooldownAbility2 - (float)containerItem.baseMaxCooldownAbility2 / ((2f / 3f) * duplicateCountWeapon);
-            oldCdReduction -= cdReduction;
-            Debug.Log("CD increased left by " + oldCdReduction);
-            containerItem.maxCooldownAbility2 += oldCdReduction;
-        }
-
-        
     }
 
     public void IncrementDuplicateCountArmor(int amount)
@@ -159,17 +107,14 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritRuneOfRushArmor");
-        _entityEvents.RemoveBuff("SpiritRuneOfRushWeapon");
+        _entityEvents.RemoveBuff("SpiritRuneOfRushPlus");
+        _entityEvents.RemoveBuff("PowerRuneOfBladeMinus");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfRushArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 20);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritRuneOfRushWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            Debug.Log("Power");
+            _entityEvents.NewBuff("SpiritRuneOfRushPlus", EntityStats.BuffType.SpellHasteMultiplier, (int)(Mathf.Pow(2, (duplicateCountArmor + duplicateCountWeapon) / 3) * 50));
+            _entityEvents.NewBuff("SpiritRuneOfRushMinus", EntityStats.BuffType.PhysicalDamage, (int)((-1 + Mathf.Pow(0.5f, (duplicateCountArmor + duplicateCountWeapon) / 3)) * 100));
         }
     }
 
@@ -199,8 +144,8 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfRushArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfRushWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfRushPlus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfRushMinus");
 
         foreach (GameObject projectile in projectiles)
         {
@@ -219,20 +164,9 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
         }
     }
 
-    public void ActivateArmorEffect(Damage damage)
-    {
-        //TODO: OnEnemyDeath heal %enemyHealth
-    }
-
-    public void ActivateWeaponEffect(Damage damage, GameObject target)
-    {
-
-    }
-
     //Subs and Unsubs
     public void SubscribeAbility()
     {
-        _abilityEvents._onDealDamage += ActivateWeaponEffect;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
 
@@ -243,7 +177,6 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
 
     public void UnsubscribeAbility()
     {
-        _abilityEvents._onDealDamage -= ActivateWeaponEffect;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }
 

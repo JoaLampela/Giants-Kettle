@@ -68784,14 +68784,12 @@ MonoBehaviour:
   defaultRune: {fileID: 0}
   spiritRunesTier1:
   - {fileID: 11400000, guid: 3b8272e75f2a52b48a6e1b2299bf1694, type: 2}
-  - {fileID: 11400000, guid: dadb93e9d95805349a2a253f79912010, type: 2}
   - {fileID: 11400000, guid: f47a9a76b10306a42be5f2f7e1e5f6d7, type: 2}
   - {fileID: 11400000, guid: fe4cc996a8241994ba0a34b61653f2b8, type: 2}
   - {fileID: 11400000, guid: 17501cb6f0d0b3249b925ab10303e3b8, type: 2}
   spiritRunesTier2:
   - {fileID: 11400000, guid: e52074d244c287f428a27559027c3536, type: 2}
   - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
-  - {fileID: 11400000, guid: 7bb1add3c58b3d648ad52e65ece2032e, type: 2}
   - {fileID: 11400000, guid: 7f55b2c2a9ea3274c8301a623ef560f4, type: 2}
   - {fileID: 11400000, guid: 280140d6437053845980ef2a0ef0f4aa, type: 2}
   - {fileID: 11400000, guid: ab3a2e980f61a0541b6e63d0b0291746, type: 2}
@@ -68807,19 +68805,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2c2de05fdc240041a57df551a5948bb, type: 2}
   - {fileID: 11400000, guid: 95d41d2662e07c948b34bd149d729420, type: 2}
   - {fileID: 11400000, guid: 25fcd1965dbc8d847be769ec4b24a31a, type: 2}
-  - {fileID: 11400000, guid: 17209eb3eb4ba36438ab3741560cc280, type: 2}
   - {fileID: 11400000, guid: 7fa277e78a667b349b24c73f1e610a9a, type: 2}
   vitalityRunesTier2:
   - {fileID: 11400000, guid: e4b07de0dd5a1f046a78ddf17aa30090, type: 2}
   - {fileID: 11400000, guid: 66e5c9729925d98458b4c4a1783ecdfa, type: 2}
   - {fileID: 11400000, guid: 7100d541d3cfbbf458e912acbb569021, type: 2}
-  - {fileID: 11400000, guid: 12ad31f506a430f46a88b1cd4def72cf, type: 2}
   - {fileID: 11400000, guid: 44142459a72ca7547b390333783c9964, type: 2}
   vitalityRunesTier3:
   - {fileID: 11400000, guid: 5d158fdea5556644ab22338d858faff1, type: 2}
   - {fileID: 11400000, guid: d0a315c2610891c45898a38aa56dca3d, type: 2}
   - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}
-  - {fileID: 11400000, guid: 66fcaec3876bee54cab32ff94cd41656, type: 2}
   - {fileID: 11400000, guid: 4f2a1ab063c43b744a9709ece3158322, type: 2}
   - {fileID: 11400000, guid: 8346053abb54707408a14d61fc52f7c3, type: 2}
   agilityRunesTier1:

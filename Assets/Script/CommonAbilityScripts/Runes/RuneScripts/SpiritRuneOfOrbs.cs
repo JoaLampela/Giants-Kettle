@@ -117,7 +117,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         if(duplicateCountArmor != 0)
         {
             GameObject projectile = RuneAssets.i.RuneOrbArmorProjectile;
-            _entityEvents.NewBuff("SpiritRuneOfOrbsArmor", EntityStats.BuffType.Health, duplicateCountArmor * 100); //TODO: Spell Haste
+            _entityEvents.NewBuff("SpiritRuneOfOrbsArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
             projectile.GetComponent<AbilityEvents>().SetSource(gameObject);
 
             for(int i = 0; i < 2 + duplicateCountArmor; i++)
@@ -130,7 +130,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
         
         if(duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfOrbsWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5); //TODO: Decide on a better stat buff
+            _entityEvents.NewBuff("SpiritRuneOfOrbsWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
         }
     }
 

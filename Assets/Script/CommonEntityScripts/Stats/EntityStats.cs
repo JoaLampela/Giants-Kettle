@@ -170,7 +170,7 @@ public class EntityStats : MonoBehaviour
         TenacityMultiplier,
         PhysicalDamageMultiplier,
         CriticalStrikeChanceMultiplier,
-        SpellHasteMultiplayer,
+        SpellHasteMultiplier,
         ArmorMultiplier,
         AttackSpeedMultiplier,
         Health,
@@ -221,7 +221,7 @@ public class EntityStats : MonoBehaviour
                 totalCriticalStrikeChanceMultiplier += value;
                 UpdateCriticalStrikeChance();
                 break;
-            case BuffType.SpellHasteMultiplayer:
+            case BuffType.SpellHasteMultiplier:
                 totalSpellHasteMultiplayer += value;
                 UpdateSpellHaste();
                 break;

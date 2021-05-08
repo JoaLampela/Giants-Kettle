@@ -110,12 +110,12 @@ public class SpiritRuneOfHaste : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfHasteArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 30);
+            _entityEvents.NewBuff("SpiritRuneOfHasteArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 20);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfHasteWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 30);
+            _entityEvents.NewBuff("SpiritRuneOfHasteWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 20);
         }
     }
 
