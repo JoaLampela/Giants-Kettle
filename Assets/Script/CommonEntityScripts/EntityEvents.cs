@@ -117,6 +117,13 @@ public class EntityEvents : MonoBehaviour
 
     public event Action<GameObject> OnExecute;
 
+    public event Action<GameObject, Damage> OnBasicAttackHit;
+
+    public void BasicAttackHit(GameObject enemy, Damage damage)
+    {
+        OnBasicAttackHit?.Invoke(enemy, damage);
+    }
+
     public void StatChange()
     {
         OnStatChange?.Invoke();

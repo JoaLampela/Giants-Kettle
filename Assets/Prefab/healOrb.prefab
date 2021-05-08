@@ -185,9 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocityStart: 3
-  _velocityMax: 8
+  _velocityMax: 30
   _acceleration: 8
-  _exponentialAcceleration: 10
+  _exponentialAcceleration: 20
   _travelType: 2
 --- !u!114 &5356652704703208971
 MonoBehaviour:

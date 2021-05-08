@@ -4852,6 +4852,7 @@ GameObject:
   - component: {fileID: 7429331819374787295}
   - component: {fileID: 9095001523838377519}
   - component: {fileID: 5898332919351360805}
+  - component: {fileID: 5912380317316025386}
   m_Layer: 8
   m_Name: StaffBasicAttack
   m_TagString: Projectile
@@ -5045,6 +5046,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockBackAmount: 500
+--- !u!114 &5912380317316025386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096043296272375333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80bb1e494869a35499d03a4c7a2cc370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6338361908451532792
 GameObject:
   m_ObjectHideFlags: 0

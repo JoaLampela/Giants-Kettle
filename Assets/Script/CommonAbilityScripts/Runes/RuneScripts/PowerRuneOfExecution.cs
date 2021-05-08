@@ -151,12 +151,11 @@ public class PowerRuneOfExecution : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage, GameObject target)
     {
-        if ((float)(target.GetComponent<EntityHealth>().health / target.GetComponent<EntityHealth>().maxHealth) <= 1.10f - Mathf.Pow(0.98f, (duplicateCountArmor + duplicateCountWeapon)))
+        if ((target.GetComponent<EntityHealth>().health /(float)target.GetComponent<EntityHealth>().maxHealth) <= 1.10f - Mathf.Pow(0.98f, (duplicateCountArmor + duplicateCountWeapon)))
         {
             target.GetComponent<EntityEvents>().Execute(gameObject);
 
-            GameObject executeEffect = RuneAssets.i.RuneExecutionEffect;
-            executeEffect = Instantiate(executeEffect, target.transform.position, Quaternion.identity);
+            Instantiate(RuneAssets.i.RuneExecutionEffect, target.transform.position, Quaternion.identity);
         }
     }
 
