@@ -158,6 +158,9 @@ public class VitalityRuneOfRecovery : MonoBehaviour, IRuneScript
     public void Activate(Damage damage)
     {
         _entityEvents.NewBuff("VitalityRuneOfRecoveryBonus", EntityStats.BuffType.HealthRegen, (duplicateCountArmor + duplicateCountWeapon) * 60, 3);
+
+        GameObject regenEffect = RuneAssets.i.RuneRegenEffect;
+        regenEffect = Instantiate(regenEffect, gameObject.transform.position, Quaternion.identity, gameObject.transform);
     }
 
     //Subs and Unsubs

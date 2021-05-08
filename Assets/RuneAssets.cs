@@ -27,4 +27,7 @@ public class RuneAssets: MonoBehaviour
     public GameObject RuneEscapistEffect;
     public GameObject RuneExecutionEffect;
     public GameObject RuneShockDashEffect;
+    public GameObject RuneDevourerEffect;
+    public GameObject RuneRegenEffect;
+    public GameObject RuneHunterFinalEffect;
 }
