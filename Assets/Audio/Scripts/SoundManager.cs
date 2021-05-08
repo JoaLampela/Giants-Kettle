@@ -49,6 +49,7 @@ public static class SoundManager
         Zap,
         ArcadeExplosion,
         Summon,
+        SummonStart,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;

@@ -30,6 +30,7 @@ public class AbilityOnActivateSummonEntity : MonoBehaviour
 
     private void Activate()
     {
+        SoundManager.PlaySound(SoundManager.Sound.SummonStart, transform.position);
         int sumNum = Random.Range(1, summonCount);
         Debug.Log("in activate " + sumNum);
         for (int i = 0; i < sumNum; i++)
