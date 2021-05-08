@@ -81,6 +81,7 @@ public class GameEventManager : MonoBehaviour
             inventory.GetComponent<CanvasGroup>().alpha = 1;
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = true;
             inventory.GetComponent<CanvasGroup>().interactable = true;
+            SoundManager.PlayUISound(SoundManager.Sound.InventoryOpen);
         }
         else if(Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen)
         {
@@ -88,6 +89,7 @@ public class GameEventManager : MonoBehaviour
             inventory.GetComponent<CanvasGroup>().alpha = 0;
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = false;
             inventory.GetComponent<CanvasGroup>().interactable = false;
+            SoundManager.PlayUISound(SoundManager.Sound.InventoryOpen);
         }
         if (playerLevelUpPoints > 0) levelPointReminderText.enabled = true;
         else levelPointReminderText.enabled = false;
