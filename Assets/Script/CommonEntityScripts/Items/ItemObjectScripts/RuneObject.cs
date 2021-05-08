@@ -15,7 +15,8 @@ public class RuneObject : ItemObject
     {
         basic,
         refined,
-        perfected
+        perfected,
+        superb
     }
 
     public enum RuneType
@@ -29,7 +30,8 @@ public class RuneObject : ItemObject
         spiritPower,
         vitalityAgility,
         vitalityPower,
-        agilitypower
+        agilitypower,
+        super
     }
 
     public void Awake()

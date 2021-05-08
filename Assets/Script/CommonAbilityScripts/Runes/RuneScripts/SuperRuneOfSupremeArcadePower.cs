@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
+public class SuperRuneOfSupremeArcadePower : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -10,12 +10,9 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
-    private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
-    private EntityHealth health;
-    private bool redundancyCheck;
-    GameEventManager _gameEventManager;
+    private GameObject explosion;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -108,18 +105,13 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceArmor");
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceWeapon");
+        _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerSpellHaste");
+        _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage");
+        _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerAttackSpeed");
 
-        if (duplicateCountArmor != 0)
-        {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
-        }
+        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
     }
 
     //Subs & Unsub -related Unity functions
@@ -128,35 +120,25 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();
-            health = _entity.GetComponent<EntityHealth>();
-            redundancyCheck = true;
         }
 
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-
-            if (_entity.GetComponent<EntityHealth>().health >= _entity.GetComponent<EntityStats>().currentMaxHealth)
-            {
-                _abilityEvents.damageMultiplier *= (int)((duplicateCountArmor + duplicateCountWeapon) * 1.5f);
-            }
         }
-
-        SubscribeGameEvents();
     }
 
     private void Awake()
     {
         _entityEvents = gameObject.GetComponent<EntityEvents>();
         _abilityEvents = gameObject.GetComponent<AbilityEvents>();
-        _gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
     }
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceWeapon");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerSpellHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerAttackSpeed");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -167,71 +149,35 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         {
             UnsubscribeAbility();
         }
-
-        UnsubscribeGameEvents();
     }
 
-    int stackCounter = 0;
-
-    private void Update()
+    public void Activate(Damage damage, GameObject target)
     {
-        if (_gameEventManager.combatOn)
-        {
-            if (redundancyCheck)
-            {
-                stackCounter++;
-                Activate();
-                redundancyCheck = false;
-            }
-        }
-        else
-        {
-            stackCounter = 0;
-            _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
-            redundancyCheck = true;
-        }
-    }
+        GameObject rainbow = RuneAssets.i.RuneRainbow;
+        rainbow = Instantiate(rainbow, target.transform.position, Quaternion.identity);
 
-    public void Activate()
-    {
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
-        _entityEvents.NewBuff("SpiritPowerRuneOfPatienceBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * stackCounter * 5);
-        StartCoroutine(RedundancyDelayTimer());
-    }
-
-    public IEnumerator RedundancyDelayTimer()
-    {
-        yield return new WaitForSeconds(1.0f);
-        redundancyCheck = true;
+        target.GetComponent<EntityEvents>().NewBuff("Arcade", EntityStats.BuffType.ArcadeBurn, 1, 5);
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
         _abilityEvents._onDestroy += UnsubscribeAbility;
+        _abilityEvents._onDealDamage += Activate;
     }
 
     public void SubscribeEntity()
     {
-
-    }
-
-    public void SubscribeGameEvents()
-    {
-
+        
     }
 
     public void UnsubscribeAbility()
     {
         _abilityEvents._onDestroy -= UnsubscribeAbility;
+        _abilityEvents._onDealDamage -= Activate;
     }
 
     public void UnsubscribeEntity()
-    {
-
-    }
-
-    public void UnsubscribeGameEvents()
     {
 
     }
@@ -241,10 +187,12 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         containerItem = item;
         _hand = hand;
     }
+
     public int GetDuplicateCountWeaponRight()
     {
         return duplicateCountWeaponRight;
     }
+
     public int GetDuplicateCountWeaponLeft()
     {
         return duplicateCountWeaponLeft;

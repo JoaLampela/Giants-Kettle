@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: ArcadeSword
   m_EditorClassIdentifier: 
   type: 1
-  description: 
+  description: RAINBOWS!
   iconSprite: {fileID: 21300000, guid: be7fa6f054063a143978d5810a218e6e, type: 3}
   inGameObject: {fileID: 4868806116673755764, guid: ae00e553f255f33449dd7a44373d8d05, type: 3}
   isTwoHander: 1
   runeSlots: 6
-  baseRune: {fileID: 0}
+  baseRune: {fileID: 11400000, guid: 09d4568b82041a341a0a6b27c8aabcd7, type: 2}
   weaponType: 1
   maxCooldownAbility1: 3
   currentCooldownAbility1: 0

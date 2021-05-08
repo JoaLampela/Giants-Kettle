@@ -196,7 +196,7 @@ public class SpiritRuneOfThunder : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-
+        _entityEvents.OnBasicAttackHit -= ActivateArmor;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
