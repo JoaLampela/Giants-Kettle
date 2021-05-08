@@ -25,6 +25,6 @@ public class GoblinSounds : MonoBehaviour
     }
     private void Unsubscribe()
     {
-        events.OnDie -= PlayDeathSound;
+        //events.OnDie -= PlayDeathSound;
     }
 }

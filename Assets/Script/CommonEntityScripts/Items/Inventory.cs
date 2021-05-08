@@ -243,8 +243,9 @@ public class Inventory : MonoBehaviour
                             Item temp = inventorySlot._item;
                             inventorySlot._item = usedItem;
                             inventorySlot.icon.sprite = usedItem.item.iconSprite;
-
+                            Unequip(temp, inventorySlot);
                             NewItem(temp);
+                            Equip(usedItem, inventorySlot);
                             
                         }
 
@@ -306,6 +307,7 @@ public class Inventory : MonoBehaviour
         }
         else if ((int)slot._type == 2)
         {
+            
             armorHeadR1.SetActive(false);
             armorHeadR2.SetActive(false);
             armorHeadR3.SetActive(false);
@@ -429,6 +431,9 @@ public class Inventory : MonoBehaviour
         if (unequippedItem.item.isTwoHander) RemoveAffectingRune(unequippedItem, tempList, IRuneScript.Hand.dual);
         else if (slot == rightHand) RemoveAffectingRune(unequippedItem, tempList, IRuneScript.Hand.right);
         else if (slot == leftHand) RemoveAffectingRune(unequippedItem, tempList, IRuneScript.Hand.left);
+        else if (slot == armorHead) RemoveAffectingRune(unequippedItem, tempList, IRuneScript.Hand.indeterminate);
+        else if (slot == armorChest) RemoveAffectingRune(unequippedItem, tempList, IRuneScript.Hand.indeterminate);
+        else if (slot == armorLegs) RemoveAffectingRune(unequippedItem, tempList, IRuneScript.Hand.indeterminate);
     }
 
     public enum Hand
@@ -440,6 +445,8 @@ public class Inventory : MonoBehaviour
     [Obsolete]
     public void Equip(Item equippedItem, UiButtonClick slot)
     {
+        Debug.Log("Equipped "+ equippedItem + " to slot " + slot);
+
         EquipmentObject equipmentObject = (EquipmentObject)equippedItem.item;
         if ((int)slot._type == 1)
         {
@@ -485,17 +492,65 @@ public class Inventory : MonoBehaviour
                 }
 
                 if (equippedItem._runeList.Length >= 1)
+                {
+                    UiButtonClick uiButtonClick = weaponRightHandR1.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[0] != null) weaponRightHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length >= 2)
+                {
+                    UiButtonClick uiButtonClick = weaponRightHandR2.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[1] != null) weaponRightHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length >= 3)
+                {
+                    UiButtonClick uiButtonClick = weaponRightHandR3.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[2] != null) weaponRightHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length >= 4)
+                {
+                    UiButtonClick uiButtonClick = weaponRightHandR4.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[3] != null) weaponRightHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length >= 5)
+                {
+                    UiButtonClick uiButtonClick = weaponRightHandR5.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[4] != null) weaponRightHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length == 6)
+                {
+                    UiButtonClick uiButtonClick = weaponRightHandR6.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[5] != null) weaponRightHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
 
                 EquipmentObject equipment = (EquipmentObject)equippedItem.item;
                 if (equipment.baseRune != null)
@@ -545,21 +600,71 @@ public class Inventory : MonoBehaviour
                         break;
                 }
                 if (equippedItem._runeList.Length >= 1)
+                {
+                    UiButtonClick uiButtonClick = weaponLeftHandR1.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[0] != null) weaponLeftHandR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
+                    
                 if (equippedItem._runeList.Length >= 2)
+                {
+                    UiButtonClick uiButtonClick = weaponLeftHandR2.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[1] != null) weaponLeftHandR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length >= 3)
+                {
+                    UiButtonClick uiButtonClick = weaponLeftHandR3.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[2] != null) weaponLeftHandR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length >= 4)
+                {
+                    UiButtonClick uiButtonClick = weaponLeftHandR4.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[3] != null) weaponLeftHandR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length >= 5)
+                {
+                    UiButtonClick uiButtonClick = weaponLeftHandR5.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[4] != null) weaponLeftHandR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
                 if (equippedItem._runeList.Length == 6)
+                {
+                    UiButtonClick uiButtonClick = weaponLeftHandR6.GetComponent<UiButtonClick>();
                     if (equippedItem._runeList[5] != null) weaponLeftHandR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+                    else
+                    {
+                        uiButtonClick._item = null;
+                        uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                    }
+                }
 
                 EquipmentObject equipment = (EquipmentObject)equippedItem.item;
                 if (equipment.baseRune != null)
                 {
+
                     weaponLeftHandR1.GetComponent<UiButtonClick>().SetLockOn();
                 }
             }
@@ -605,17 +710,67 @@ public class Inventory : MonoBehaviour
                     break;
             }
             if (equippedItem._runeList.Length >= 1)
+            {
+                UiButtonClick uiButtonClick = armorHeadR1.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[0] != null) armorHeadR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
             if (equippedItem._runeList.Length >= 2)
+            {
+                UiButtonClick uiButtonClick = armorHeadR2.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[1] != null) armorHeadR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
             if (equippedItem._runeList.Length >= 3)
+            {
+                UiButtonClick uiButtonClick = armorHeadR3.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[2] != null) armorHeadR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length >= 4)
+            {
+                UiButtonClick uiButtonClick = armorHeadR4.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[3] != null) armorHeadR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length >= 5)
+            {
+                UiButtonClick uiButtonClick = armorHeadR5.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[4] != null) armorHeadR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length == 6)
+            {
+                UiButtonClick uiButtonClick = armorHeadR6.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[5] != null) armorHeadR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
 
             EquipmentObject equipment = (EquipmentObject)equippedItem.item;
             if (equipment.baseRune != null)
@@ -664,17 +819,71 @@ public class Inventory : MonoBehaviour
                     break;
             }
             if (equippedItem._runeList.Length >= 1)
-                if (equippedItem._runeList[0] != null) armorChestR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+            {
+                UiButtonClick uiButtonClick = armorChestR1.GetComponent<UiButtonClick>();
+                if (equippedItem._runeList[0] != null) uiButtonClick.SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
             if (equippedItem._runeList.Length >= 2)
+            {
+                UiButtonClick uiButtonClick = armorChestR2.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[1] != null) armorChestR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
             if (equippedItem._runeList.Length >= 3)
+            {
+                UiButtonClick uiButtonClick = armorChestR3.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[2] != null) armorChestR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
             if (equippedItem._runeList.Length >= 4)
+            {
+                UiButtonClick uiButtonClick = armorChestR4.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[3] != null) armorChestR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
             if (equippedItem._runeList.Length >= 5)
+            {
+                UiButtonClick uiButtonClick = armorChestR5.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[4] != null) armorChestR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
             if (equippedItem._runeList.Length == 6)
+            {
+                UiButtonClick uiButtonClick = armorChestR6.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[5] != null) armorChestR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
+                
 
             EquipmentObject equipment = (EquipmentObject)equippedItem.item;
             if (equipment.baseRune != null)
@@ -723,17 +932,65 @@ public class Inventory : MonoBehaviour
                     break;
             }
             if (equippedItem._runeList.Length >= 1)
+            {
+                UiButtonClick uiButtonClick = armorLegsR1.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[0] != null) armorLegsR1.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[0]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length >= 2)
+            {
+                UiButtonClick uiButtonClick = armorLegsR2.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[1] != null) armorLegsR2.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[1]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length >= 3)
+            {
+                UiButtonClick uiButtonClick = armorLegsR3.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[2] != null) armorLegsR3.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[2]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length >= 4)
+            {
+                UiButtonClick uiButtonClick = armorLegsR4.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[3] != null) armorLegsR4.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[3]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length >= 5)
+            {
+                UiButtonClick uiButtonClick = armorLegsR5.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[4] != null) armorLegsR5.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[4]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
             if (equippedItem._runeList.Length == 6)
+            {
+                UiButtonClick uiButtonClick = armorLegsR6.GetComponent<UiButtonClick>();
                 if (equippedItem._runeList[5] != null) armorLegsR6.GetComponent<UiButtonClick>().SetNewItemToslot(new Item(equippedItem._runeList[5]));
+                else
+                {
+                    uiButtonClick._item = null;
+                    uiButtonClick.icon.sprite = uiButtonClick.defaultIcon;
+                }
+            }
 
             EquipmentObject equipment = (EquipmentObject)equippedItem.item;
             if (equipment.baseRune != null)
@@ -832,6 +1089,9 @@ public class Inventory : MonoBehaviour
         if(equippedItem.item.isTwoHander) StartCoroutine(NewAffectingRune(equippedItem, tempList, IRuneScript.Hand.dual));
         else if (slot == rightHand) StartCoroutine(NewAffectingRune(equippedItem, tempList, IRuneScript.Hand.right));
         else if (slot == leftHand) StartCoroutine(NewAffectingRune(equippedItem, tempList, IRuneScript.Hand.left));
+        else if (slot == armorHead) StartCoroutine(NewAffectingRune(equippedItem, tempList, IRuneScript.Hand.indeterminate));
+        else if (slot == armorChest) StartCoroutine(NewAffectingRune(equippedItem, tempList, IRuneScript.Hand.indeterminate));
+        else if (slot == armorLegs) StartCoroutine(NewAffectingRune(equippedItem, tempList, IRuneScript.Hand.indeterminate));
 
     }
 
@@ -1156,6 +1416,8 @@ public class Inventory : MonoBehaviour
 
     public IEnumerator NewAffectingRune(Item newItem, List<ItemObject> newRunes, IRuneScript.Hand hand)
     {
+        Debug.Log("New effecting rune");
+
         yield return 0;
         if(leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
         {
@@ -1235,12 +1497,14 @@ public class Inventory : MonoBehaviour
     }
     public void RemoveAffectingRune(Item newItem, List<ItemObject> removedRunes, IRuneScript.Hand hand)
     {
-        if (leftHand._item == newItem || rightHand._item == newItem || armorHead._item == newItem || armorChest._item == newItem || armorLegs._item == newItem)
+        Debug.Log("Removing rune");
+        if (true)
         {
             foreach(ItemObject item in removedRunes)
             {
                 RuneObject rune = (RuneObject)item;
                 IRuneScript runeScript = (IRuneScript)gameObject.GetComponent(rune._IruneContainer.Result.GetType());
+
 
                 if (!(newItem == leftHand._item || newItem == rightHand._item))
                 {
