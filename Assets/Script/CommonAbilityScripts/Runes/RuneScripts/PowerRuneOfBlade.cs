@@ -112,7 +112,7 @@ public class PowerRuneOfBlade : MonoBehaviour, IRuneScript
         {
             Debug.Log("Power");
             _entityEvents.NewBuff("PowerRuneOfBladePlus", EntityStats.BuffType.PhysicalDamageMultiplier, (int)(Mathf.Pow(1.25f, (duplicateCountArmor + duplicateCountWeapon)) * 100));
-            _entityEvents.NewBuff("PowerRuneOfBladeMinus", EntityStats.BuffType.HealthMultiplier, (int)(-Mathf.Pow(1.25f, (duplicateCountArmor + duplicateCountWeapon)) * 100));
+            _entityEvents.NewBuff("PowerRuneOfBladeMinus", EntityStats.BuffType.HealthMultiplier, (int)(-1/Mathf.Pow(1.25f, (duplicateCountArmor + duplicateCountWeapon)) * 100));
         }
     }
 

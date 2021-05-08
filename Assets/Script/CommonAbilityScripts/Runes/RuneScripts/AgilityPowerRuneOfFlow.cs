@@ -113,7 +113,7 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
         {
             _entityEvents.NewBuff("AgilityPowerRuneOfFlowPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
             _entityEvents.NewBuff("AgilityPowerRuneOfFlowAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSpeed", EntityStats.BuffType.Speed, (duplicateCountArmor + duplicateCountWeapon) * 40);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSpeed", EntityStats.BuffType.Speed, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -159,11 +159,11 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
     {
         if(duplicateCountArmor + duplicateCountWeapon < 20)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, 30, 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, (duplicateCountArmor + duplicateCountWeapon) * 50, 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
         }
         else
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, 30, 0.05f);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, (duplicateCountArmor + duplicateCountWeapon) * 50, 0.05f);
         }
     }
 
