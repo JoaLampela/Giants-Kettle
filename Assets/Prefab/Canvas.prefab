@@ -68872,10 +68872,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f820a30674a26cd499280b5b000e58a8, type: 2}
   spiritAgilityRunesTier1:
   - {fileID: 11400000, guid: 59de74431e2c7004a9fd6190a0ae8377, type: 2}
+  - {fileID: 11400000, guid: 50f02b0af02b32f43bc38a84e3497f50, type: 2}
   spiritAgilityRunesTier2:
   - {fileID: 11400000, guid: 671bbc53c8d3ed742b321d332cefcaae, type: 2}
+  - {fileID: 11400000, guid: 984e7bdd39b7dd94c8166044b3e03dda, type: 2}
   spiritAgilityRunesTier3:
   - {fileID: 11400000, guid: bcce443b0dea4e94b96ca5e1afc0884e, type: 2}
+  - {fileID: 11400000, guid: 8a797373fd2246046ad0152dfb810241, type: 2}
   spiritPowerRunesTier1:
   - {fileID: 11400000, guid: c6a7d2791a8d70d479e2dedc1eec359a, type: 2}
   spiritPowerRunesTier2:

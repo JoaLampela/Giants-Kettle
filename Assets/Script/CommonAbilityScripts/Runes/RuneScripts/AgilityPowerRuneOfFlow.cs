@@ -105,17 +105,15 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowArmor");
-        _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowWeapon");
+        _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowPhysicalDamage");
+        _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowAttackSpeed");
+        _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowSpeed");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowArmor", EntityStats.BuffType.Speed, duplicateCountArmor * 40);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityPowerRuneOfFlowWeapon", EntityStats.BuffType.Speed, duplicateCountWeapon * 40);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSpeed", EntityStats.BuffType.Speed, (duplicateCountArmor + duplicateCountWeapon) * 40);
         }
     }
 
@@ -142,8 +140,9 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowPhysicalDamage");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfFlowSpeed");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -161,6 +160,10 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
         if(duplicateCountArmor + duplicateCountWeapon < 20)
         {
             _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, 30, 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
+        }
+        else
+        {
+            _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, 30, 0.05f);
         }
     }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Lifesteal.
-  iconSprite: {fileID: 21300000, guid: f50b911589470a744a3cfa08631fddbc, type: 3}
+  iconSprite: {fileID: 21300000, guid: 20f28e96c944a694ebe9239b3db355cb, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
@@ -22,3 +22,4 @@ MonoBehaviour:
     ResultType: 
   runeTier: 2
   runeType: 3
+  runeEffects: []

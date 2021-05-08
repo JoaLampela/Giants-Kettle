@@ -105,17 +105,13 @@ public class SpiritAgilityRuneOfKinesis : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisArmor");
-        _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisWeapon");
+        _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisHaste");
+        _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisSpeed");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritAgilityRuneOfKinesisArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritAgilityRuneOfKinesisWeapon", EntityStats.BuffType.SpeedMultiplier, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritAgilityRuneOfKinesisHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SpiritAgilityRuneOfKinesisSpeed", EntityStats.BuffType.Speed, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -142,8 +138,8 @@ public class SpiritAgilityRuneOfKinesis : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritAgilityRuneOfKinesisSpeed");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
