@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22727b0861fb16940a1c1fbb83720440, type: 3}
-  m_Name: rustyShieldT1
+  m_Name: woodenShieldT1
   m_EditorClassIdentifier: 
   type: 1
-  description: 
-  iconSprite: {fileID: 21300000, guid: eeaca39b913b4024d92126bc4f3da4f4, type: 3}
-  inGameObject: {fileID: 2660832286476357239, guid: 1f47f08f20c8f38499fee080e6d0d2ea, type: 3}
+  description: An old trusty wooden shield that will protect you.
+  iconSprite: {fileID: 21300000, guid: 389f4f6c01d1ebf4a8d87955fe54062f, type: 3}
+  inGameObject: {fileID: 753090773906107688, guid: bc8854502944ef143be09ad50f7fdc29, type: 3}
   isTwoHander: 0
   runeSlots: 1
   baseRune: {fileID: 0}
