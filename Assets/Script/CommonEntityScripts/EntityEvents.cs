@@ -230,10 +230,10 @@ public class EntityEvents : MonoBehaviour
     {
         OnCanNotAffordAbility?.Invoke(spellSlot);
     }
-    public void HitThis(Damage damage)
+    public void HitThis(Damage damage, bool chainable = true)
     {
         OnHitThis?.Invoke(damage);
-        damage.source.GetComponent<EntityEvents>().HitEnemy(damage, gameObject);
+        if(chainable) damage.source.GetComponent<EntityEvents>().HitEnemy(damage, gameObject);
     }
     public void RecoverHealth(int amount)
     {
