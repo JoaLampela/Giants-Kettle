@@ -50,7 +50,7 @@ public class HealthBar : MonoBehaviour
 
         healthBar.fillAmount = (float)hp / (float)maxHealth;
         shieldBar.fillAmount = shield / (float)maxHealth;
-        healthText.text = hp+(int)shield + " / " + maxHealth;
+        healthText.text = (hp+(int)shield).ToString();
     }
 
     private void Subscribe()

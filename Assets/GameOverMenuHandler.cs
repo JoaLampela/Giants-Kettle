@@ -14,6 +14,8 @@ public class GameOverMenuHandler : MonoBehaviour
 
     [SerializeField] private int BonepilePosYStart = 0;
     [SerializeField] private int BonepilePosYEnd = 0;
+
+    [SerializeField] private CanvasGroup inventoryCanvasGroup;
     
 
     // Update is called once per frame
@@ -24,6 +26,10 @@ public class GameOverMenuHandler : MonoBehaviour
 
     public IEnumerator BeginningOfTheEndKills()
     {
+        inventoryCanvasGroup.interactable = false;
+        inventoryCanvasGroup.alpha = 0;
+        inventoryCanvasGroup.blocksRaycasts = false;
+
         float waitTimeStart = 2f;
         int startKills = 0;
         

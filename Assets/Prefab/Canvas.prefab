@@ -17373,6 +17373,7 @@ RectTransform:
   - {fileID: 2354137219956021967}
   - {fileID: 6546160157210426756}
   - {fileID: 522429038319296410}
+  - {fileID: 4387291194514615184}
   m_Father: {fileID: 5312409103721829010}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19984,16 +19985,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2462925298991089491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
-  m_Father: {fileID: 5312409103721829010}
-  m_RootOrder: 5
+  m_Father: {fileID: 4251389364677300087}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -462}
+  m_AnchoredPosition: {x: -5.355835, y: -101.70569}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7299946819927627857
@@ -22184,7 +22185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+  m_Color: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -24420,7 +24421,6 @@ RectTransform:
   - {fileID: 2573451188016322793}
   - {fileID: 8218748105342891655}
   - {fileID: 4251389364677300087}
-  - {fileID: 4387291194514615184}
   m_Father: {fileID: 8525123745454795545}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38186,7 +38186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+  m_Color: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -47857,7 +47857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6909594393803538681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68362,7 +68362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+  m_Color: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -68610,6 +68610,7 @@ MonoBehaviour:
   floorText: {fileID: 2224575341788071071}
   BonepilePosYStart: -537
   BonepilePosYEnd: 532
+  inventoryCanvasGroup: {fileID: 0}
 --- !u!1 &8476107599830768518
 GameObject:
   m_ObjectHideFlags: 0

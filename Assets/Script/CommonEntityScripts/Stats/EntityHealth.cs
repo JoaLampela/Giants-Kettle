@@ -73,7 +73,10 @@ public class EntityHealth : MonoBehaviour
 
     private IEnumerator RireTick()
     {
-        events.HitThis(new Damage(GameObject.Find("FireDispenser"), false, (int)(stats.currentMaxHealth * 0.02f)));
+        int dmg = (int)(stats.currentMaxHealth * 0.02f);
+        if (dmg > 50) dmg = 50;
+        if (dmg < 3) dmg = 3;
+        events.HitThis(new Damage(GameObject.Find("FireDispenser"), false, dmg));
         yield return new WaitForSeconds(timeBetweenFireTicks);
         fireTickOnCD = false;
     }
