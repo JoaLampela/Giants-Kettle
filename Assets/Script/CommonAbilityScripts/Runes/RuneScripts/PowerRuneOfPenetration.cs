@@ -131,7 +131,7 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
         {
             SubscribeAbility();
 
-            _abilityEvents.bonusFlatTrueDamage += (int)((_abilityEvents.damageMultiplier * _abilityEvents.damageParentMultiplier)/10000f * _entity.GetComponent<EntityStats>().currentPhysicalDamage * 0.2f * duplicateCountWeapon);
+            _abilityEvents.bonusFlatTrueDamage += (int)((_abilityEvents.damageMultiplier * _abilityEvents.damageParentMultiplier)/10000f * _abilityEvents._abilityCastSource.GetComponent<EntityStats>().currentPhysicalDamage * 0.2f * duplicateCountWeapon);
         }
     }
 
@@ -160,7 +160,7 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
 
     public void Activate(GameObject target, Damage damage)
     {
-        Damage dmg = new Damage(gameObject, false, 0, (int)((damage._damage + damage._trueDamage) * 0.10f));
+        Damage dmg = new Damage(gameObject, false, 0, (int)((damage._damage + damage._trueDamage) * 0.10f * duplicateCountArmor));
         target.GetComponent<EntityEvents>().HitThis(dmg);
     }
 

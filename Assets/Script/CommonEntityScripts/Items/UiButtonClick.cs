@@ -21,7 +21,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     private Inventory playerInventory;
     private PlayerHoverUi playerHoverUi;
 
-    [SerializeField] private Sprite defaultIcon;
+    public Sprite defaultIcon;
     public ItemType _type;
     public Item _item;
     public Image icon;
@@ -234,12 +234,12 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             if (runeTooltipController != null) runeTooltipController.HideToolTip();
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                Debug.Log("Right Click");
                 if ((int)_type != 0 && _item != null && _type != ItemType.Rune)
                 {
                     playerInventory.Unequip(_item, this);
                     if (_item.item.isTwoHander)
                     {
+
                         if (this == playerInventory.rightHand)
                         {
                             Item temp = playerInventory.leftHand._item;
@@ -269,9 +269,11 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 else if (_item != null && (int)_item.item.type != (int)ItemType.Rune)
                 {
                     Item temp = _item;
-                    RemoveItemFromslot();
+                    
                     if (Input.GetKey(KeyCode.LeftShift)) playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
                     else playerInventory.UseItem(temp);
+
+                    RemoveItemFromslot();
                 }
                 else
                 {
