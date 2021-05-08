@@ -119,6 +119,9 @@ public class EntityEvents : MonoBehaviour
 
     public event Action<GameObject, Damage> OnBasicAttackHit;
 
+    public event Action<Damage> OnPreDamageCalculation;
+
+
     public void BasicAttackHit(GameObject enemy, Damage damage)
     {
         OnBasicAttackHit?.Invoke(enemy, damage);
@@ -232,6 +235,7 @@ public class EntityEvents : MonoBehaviour
     }
     public void HitThis(Damage damage, bool chainable = true)
     {
+        OnPreDamageCalculation?.Invoke(damage);
         OnHitThis?.Invoke(damage);
         if(chainable) damage.source.GetComponent<EntityEvents>().HitEnemy(damage, gameObject);
     }
