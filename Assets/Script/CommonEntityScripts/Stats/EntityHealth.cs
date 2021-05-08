@@ -9,10 +9,12 @@ public class EntityHealth : MonoBehaviour
     public int maxHealth = 0;
     private float oneHealth;
     private bool fireTickOnCD = false;
+    private bool arcadeTickOnCD = false;
     private float timeBetweenFireTicks = 1f;
 
 
     private GameObject flame;
+    private GameObject arcade;
 
 
     private void Awake()
@@ -35,7 +37,7 @@ public class EntityHealth : MonoBehaviour
             if(!fireTickOnCD)
             {
                 fireTickOnCD = true;
-                StartCoroutine(RireTick());
+                StartCoroutine(FireTick());
                 if(flame == null)
                 {
                     flame = Instantiate(GameAssets.i.flameEffect, transform.position, transform.rotation);
@@ -56,6 +58,33 @@ public class EntityHealth : MonoBehaviour
                 
             }
         }
+
+        if (stats.isInArcade)
+        {
+            if (!arcadeTickOnCD)
+            {
+                arcadeTickOnCD = true;
+                StartCoroutine(Arcade());
+                if (arcade == null)
+                {
+                    arcade = Instantiate(GameAssets.i.flameEffect, transform.position, transform.rotation);
+                    arcade.transform.parent = transform;
+                }
+                else
+                {
+                    arcade.GetComponent<ParticleSystem>().Play();
+                    arcade.GetComponentInChildren<ParticleSystem>().Play();
+                }
+            }
+        }
+        else
+        {
+            if (arcade != null)
+            {
+                StartCoroutine(TurnOffArcade());
+
+            }
+        }
     }
     private IEnumerator TurnOffFlame()
     {
@@ -71,7 +100,21 @@ public class EntityHealth : MonoBehaviour
 
     }
 
-    private IEnumerator RireTick()
+    private IEnumerator TurnOffArcade()
+    {
+        GameObject temp = arcade;
+        arcade = null;
+        temp.GetComponent<ParticleSystem>().Stop();
+        temp.GetComponentInChildren<ParticleSystem>().Stop();
+
+        yield return new WaitForSeconds(2);
+        temp.GetComponentInChildren<LightOverTimeChange>().falloutPerSecond = 1;
+        if (arcade == null) Destroy(temp);
+
+
+    }
+
+    private IEnumerator FireTick()
     {
         int dmg = (int)(stats.currentMaxHealth * 0.02f);
         if (dmg > 50) dmg = 50;
@@ -79,6 +122,16 @@ public class EntityHealth : MonoBehaviour
         events.HitThis(new Damage(GameObject.Find("FireDispenser"), false, dmg));
         yield return new WaitForSeconds(timeBetweenFireTicks);
         fireTickOnCD = false;
+    }
+
+    private IEnumerator Arcade()
+    {
+        int dmg = (int)(stats.currentMaxHealth * 0.02f);
+        if (dmg > 100) dmg = 100;
+        if (dmg < 10) dmg = 10;
+        events.HitThis(new Damage(GameObject.Find("FireDispenser"), false,0, dmg));
+        yield return new WaitForSeconds(timeBetweenFireTicks);
+        arcadeTickOnCD = false;
     }
 
     private void GainShield(int amount)

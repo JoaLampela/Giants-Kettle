@@ -85,6 +85,7 @@ public class EntityStats : MonoBehaviour
     [HideInInspector] public bool isTakingDamage = false;
     [HideInInspector] public bool isStunned = false;
     [HideInInspector] public bool onHealthRegen = false;
+    [HideInInspector] public bool isInArcade = false;
     public bool isOnFire = false;
 
     private void Awake()
@@ -186,7 +187,8 @@ public class EntityStats : MonoBehaviour
         Invisibility,
         Burning,
         Stunned,
-        Invulnurable
+        Invulnurable,
+        ArcadeBurn
 
 
     }
@@ -317,6 +319,16 @@ public class EntityStats : MonoBehaviour
                 else
                 {
                     isInvulnurable = false;
+                }
+                break;
+            case BuffType.ArcadeBurn:
+                if (value == 1)
+                {
+                    isInArcade = true;
+                }
+                else
+                {
+                    isInArcade = false;
                 }
                 break;
         }
