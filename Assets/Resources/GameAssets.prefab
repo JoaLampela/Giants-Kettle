@@ -50,7 +50,7 @@ MonoBehaviour:
   - sound: 0
     audioClip: {fileID: 8300000, guid: a51341ffb22e2d345900ca80489010b1, type: 3}
   - sound: 1
-    audioClip: {fileID: 8300000, guid: a0ab991e7a1a7f343b21b6a26123d57a, type: 3}
+    audioClip: {fileID: 8300000, guid: e73eeb9a3d2156f40b4c2a78185a4f32, type: 3}
   - sound: 2
     audioClip: {fileID: 8300000, guid: 42529b3bef6770946ad26a6d00926861, type: 3}
   - sound: 3
@@ -64,9 +64,9 @@ MonoBehaviour:
   - sound: 7
     audioClip: {fileID: 8300000, guid: 7a5bee2080da18e4da07828008da1c81, type: 3}
   - sound: 8
-    audioClip: {fileID: 8300000, guid: a0ab991e7a1a7f343b21b6a26123d57a, type: 3}
+    audioClip: {fileID: 8300000, guid: edc32663121a5464d870931899c6bdb3, type: 3}
   - sound: 9
-    audioClip: {fileID: 8300000, guid: a0ab991e7a1a7f343b21b6a26123d57a, type: 3}
+    audioClip: {fileID: 8300000, guid: edc32663121a5464d870931899c6bdb3, type: 3}
   - sound: 10
     audioClip: {fileID: 8300000, guid: 7bf7bf6aec0b85949b152625b53e0cad, type: 3}
   - sound: 11
@@ -74,7 +74,7 @@ MonoBehaviour:
   - sound: 12
     audioClip: {fileID: 8300000, guid: 479bec6721f917540b83681d8ae171eb, type: 3}
   - sound: 13
-    audioClip: {fileID: 8300000, guid: ade4ce6fdb0bb1642ab856c53acc7104, type: 3}
+    audioClip: {fileID: 8300000, guid: 19e293195c027be4abe133f424a9aff3, type: 3}
   - sound: 14
     audioClip: {fileID: 8300000, guid: b02b72f6a23d43c41be3235edfa8250c, type: 3}
   - sound: 15
@@ -114,7 +114,7 @@ MonoBehaviour:
   - sound: 32
     audioClip: {fileID: 8300000, guid: 622039c214c8859488b025139cfbc890, type: 3}
   - sound: 33
-    audioClip: {fileID: 8300000, guid: 4991c1d719f6ae94bac945e7eac736b5, type: 3}
+    audioClip: {fileID: 8300000, guid: 9290e14ef5526c54cac478035cbd1d35, type: 3}
   MusicAudioClipArray:
   - music: 0
     musicClip: {fileID: 8300000, guid: e6800ace59cc9554f944cc5801108092, type: 3}
