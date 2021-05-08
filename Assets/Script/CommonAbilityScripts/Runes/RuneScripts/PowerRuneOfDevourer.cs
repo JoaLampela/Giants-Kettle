@@ -157,7 +157,7 @@ public class PowerRuneOfDevourer : MonoBehaviour, IRuneScript
 
     public void Activate(GameObject target)
     {
-        _entityEvents.RecoverHealth((int)((duplicateCountArmor + duplicateCountWeapon) * target.GetComponent<EntityHealth>().maxHealth * 0.05f));
+        _entityEvents.RecoverHealth((int)((duplicateCountArmor + duplicateCountWeapon) * target.GetComponent<EntityHealth>().maxHealth * 0.02f));
     }
 
     //Subs and Unsubs

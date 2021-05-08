@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 949ac30fd5ef64544ad7d4516dee16d5, type: 3}
-  m_Name: oldStaffT3
+  m_Name: redStaffT6
   m_EditorClassIdentifier: 
   type: 1
-  description: 
-  iconSprite: {fileID: 21300000, guid: 6bd169d410e44814394bff727bfe0e5e, type: 3}
-  inGameObject: {fileID: 5490470622769133208, guid: a5e1cc5be7f552b4b943fcc9a4643a7e, type: 3}
+  description: The color red makes it go faster
+  iconSprite: {fileID: 21300000, guid: de55679b8d9e96245b3cb44ef1d16656, type: 3}
+  inGameObject: {fileID: 3893399705478499758, guid: 886d41229239659479d1de6fef133d15, type: 3}
   isTwoHander: 1
-  runeSlots: 3
+  runeSlots: 6
   baseRune: {fileID: 0}
   weaponType: 4
-  maxCooldownAbility1: 4
+  maxCooldownAbility1: 3
   currentCooldownAbility1: 0
-  maxCooldownAbility2: 6
+  maxCooldownAbility2: 5
   currentCooldownAbility2: 0

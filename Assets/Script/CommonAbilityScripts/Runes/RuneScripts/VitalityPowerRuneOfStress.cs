@@ -13,6 +13,8 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
     private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
+    private EntityHealth health;
+    private bool redundancyCheck;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -110,12 +112,12 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("VitalityPowerRuneOfStressArmor", EntityStats.BuffType.Health, duplicateCountArmor * 20);
+            _entityEvents.NewBuff("VitalityPowerRuneOfStressArmor", EntityStats.BuffType.Health, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityPowerRuneOfStressWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("VitalityPowerRuneOfStressWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
         }
     }
 
@@ -126,8 +128,8 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
         {
             SubscribeEntity();
 
-            Damage damage = new Damage(gameObject, false);
-            Activate(damage);
+            health = _entity.GetComponent<EntityHealth>();
+            redundancyCheck = true;
         }
 
         if (gameObject.GetComponent<AbilityEvents>())
@@ -147,6 +149,7 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressArmor");
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressBonus");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -159,12 +162,27 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Damage damage)
+    private void Update()
     {
-        if(_entity.GetComponent<EntityHealth>().health / _entity.GetComponent<EntityHealth>().health < 0.50f)
+        if (health.health / (float)health.maxHealth <= 0.50f)
         {
-            _entityEvents.NewBuff("VitalityPowerRuneOfStressBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            if (redundancyCheck)
+            {
+                Activate();
+            }
         }
+        else
+        {
+            _entityEvents.RemoveBuff("VitalityPowerRuneOfStressBonus");
+            redundancyCheck = true;
+        }
+    }
+
+    public void Activate()
+    {
+        _entityEvents.RemoveBuff("VitalityPowerRuneOfStressBonus");
+        _entityEvents.NewBuff("VitalityPowerRuneOfStressBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 15);
+        redundancyCheck = false;
     }
 
     //Subs and Unsubs
@@ -175,7 +193,7 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnHitThis += Activate;
+
     }
 
     public void UnsubscribeAbility()
@@ -185,7 +203,7 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnHitThis -= Activate;
+
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
