@@ -13,7 +13,7 @@ public class EnemyMovementController : MonoBehaviour
     public float maxAllyRange = 2;
     public float maxPlayerRange = 3f;
     public bool reachedEndOfPath = false;
-    public float entitySpeed = 15;
+    private float entitySpeed = 1;
     public bool useSpeedBuff = false;
     public float speedBuffAmount = 1.5f;
     public float speedBuffDistance = 10f;
@@ -33,22 +33,30 @@ public class EnemyMovementController : MonoBehaviour
     private int currentWaypoint = 0;
     private Seeker seeker;
     private Rigidbody2D rb;
+    private EntityStats entityStats;
     private Vector2 AstarDirection;
     private VectorNode lastDirection;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        useScript = true;
-        slowed = false;
+
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         targetingSystem = GetComponent<EntityTargetingSystem>();
+        objectCollider = GetComponent<CircleCollider2D>();
+        entityStats = GetComponent<EntityStats>();
+    }
+
+    void Start()
+    {
+
+        useScript = true;
+        slowed = false;
 
         InvokeRepeating("UpdatePath", 0, 0.1f);
 
 
 
-        objectCollider = GetComponent<CircleCollider2D>();
         vectorNodes = new List<VectorNode>();
         //Instansiate dir vector to point north;
         Vector2 dir = new Vector2(0, 1);
@@ -69,12 +77,14 @@ public class EnemyMovementController : MonoBehaviour
         vectorNodes[vectorNodes.Count - 1].rightVector = vectorNodes[0];
         vectorNodes[0].leftVector = vectorNodes[vectorNodes.Count - 1];
 
-
+        entitySpeed = entityStats.currentSpeed / 10f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!slowed)
+            entitySpeed = entityStats.currentSpeed / 10f;
         if (useScript)
         {
             if (reachedEndOfPath == false)

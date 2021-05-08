@@ -109,6 +109,7 @@ public class Inventory : MonoBehaviour
 
     public void NewItem(Item item)
     {
+        SoundManager.PlayUISound(SoundManager.Sound.PickUp);
         bool slotFound = false;
         foreach (UiButtonClick inventorySlot in inventorySlots)
         {
@@ -1841,6 +1842,7 @@ public class Inventory : MonoBehaviour
     }
     public void DropItem(Item droppedItem)
     {
+        SoundManager.PlayUISound(SoundManager.Sound.PickUp);
         Debug.Log("Dropped item " + droppedItem.item.name + droppedItem._runeList.Length);
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

@@ -131,7 +131,7 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
         {
             SubscribeAbility();
 
-            if(_entity.GetComponent<EntityHealth>().health >= _entity.GetComponent<EntityStats>().currentMaxHealth)
+            if (_entity != null && _entity.GetComponent<EntityHealth>().health >= _entity.GetComponent<EntityStats>().currentMaxHealth)
             {
                 _abilityEvents.damageMultiplier *= (int)((duplicateCountArmor + duplicateCountWeapon) * 1.5f);
             }
@@ -149,7 +149,7 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyPhysicalDamage");
         if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyCrit");
-        if(_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyBonus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityPowerRuneOfBeautyBonus");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -164,9 +164,9 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
 
     private void Update()
     {
-        if(health.health / (float)health.maxHealth >= 1.00f - (duplicateCountArmor + duplicateCountWeapon) * 0.05f)
+        if (health.health / (float)health.maxHealth >= 1.00f - (duplicateCountArmor + duplicateCountWeapon) * 0.05f)
         {
-            if(redundancyCheck)
+            if (redundancyCheck)
             {
                 Activate();
             }

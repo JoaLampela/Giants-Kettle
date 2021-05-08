@@ -25,7 +25,7 @@ public class AbilityActivateOnHit : MonoBehaviour
     {
         if (collider.gameObject.GetComponent<EntityStats>())
         {
-            if(_events._abilityCastSource != null)
+            if (_events._abilityCastSource != null && _events._abilityCastSource.GetComponent<EntityStats>().team != collider.gameObject.GetComponent<EntityStats>().team)
             {
                 if (_events._abilityCastSource.GetComponent<EntityStats>().team != collider.gameObject.GetComponent<EntityStats>().team)
                 {

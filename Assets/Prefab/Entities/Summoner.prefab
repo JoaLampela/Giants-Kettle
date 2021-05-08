@@ -441,7 +441,6 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 10
   reachedEndOfPath: 0
-  entitySpeed: 4
   useSpeedBuff: 0
   speedBuffAmount: 1.5
   speedBuffDistance: 10
@@ -623,7 +622,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
-  baseSpeed: 1
+  baseSpeed: 4
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 26

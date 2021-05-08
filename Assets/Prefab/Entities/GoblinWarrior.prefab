@@ -884,7 +884,6 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 3.5
   reachedEndOfPath: 0
-  entitySpeed: 5
   useSpeedBuff: 1
   speedBuffAmount: 1.5
   speedBuffDistance: 12
@@ -1081,10 +1080,10 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 0
   baseSpiritRegen: 0
-  baseSpeed: 1
+  baseSpeed: 4
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 10
+  basePhysicalDamage: 6
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
   baseArmor: 30
@@ -1153,7 +1152,7 @@ MonoBehaviour:
   leftHandWeapon: {fileID: 0}
   dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons:
-  - {fileID: 11400000, guid: 358f9fd72164d6449aefbc1807a2b7d9, type: 2}
+  - {fileID: 11400000, guid: 909b09911fb1e8945b10ee2d8ba81ba4, type: 2}
   - {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
   armorRunes:
   - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
@@ -1191,7 +1190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPerLevel: 70
   healthRegenPerLevel: 15
-  physicalDamagePerLevel: 8
+  physicalDamagePerLevel: 12
   armorPerLevel: 6
 --- !u!96 &9009737797232915889
 TrailRenderer:

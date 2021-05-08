@@ -112,12 +112,12 @@ public class VitalityAgilityRuneOfRage : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("VitalityAgilityRuneOfRageArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
+            _entityEvents.NewBuff("VitalityAgilityRuneOfRageArmor", EntityStats.BuffType.AttackSpeed, duplicateCountArmor * 10);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityAgilityRuneOfRageWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("VitalityAgilityRuneOfRageWeapon", EntityStats.BuffType.SpeedMultiplier, duplicateCountWeapon * 5);
         }
     }
 
@@ -168,7 +168,7 @@ public class VitalityAgilityRuneOfRage : MonoBehaviour, IRuneScript
 
     private void Update()
     {
-        if (health.health / health.maxHealth <= 1.00f - Mathf.Pow(0.90f, duplicateCountArmor + duplicateCountWeapon) / 100)
+        if (health.health / (float)health.maxHealth <= 1.00f - Mathf.Pow(0.90f, duplicateCountArmor + duplicateCountWeapon) / 100)
         {
             if (redundancyCheck)
             {
