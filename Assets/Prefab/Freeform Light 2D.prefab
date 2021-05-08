@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &633069298320128724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2940095118823088862}
+  - component: {fileID: 3111744238820485197}
+  - component: {fileID: 4668828581810585998}
+  m_Layer: 0
+  m_Name: Freeform Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2940095118823088862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633069298320128724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3111744238820485197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633069298320128724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.882
+  m_Color: {r: 0.8118621, g: 1, b: 0, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: 0.017554283, y: 0.33313632, z: 0}
+  - {x: 0.102366924, y: 0.4368837, z: 0}
+  - {x: 0.14803505, y: 1.3996828, z: 0}
+  - {x: 0.07229543, y: 2.0687163, z: 0}
+  - {x: 0.12278843, y: 2.1886375, z: 0}
+  - {x: 0.14803505, y: 2.579959, z: 0}
+  - {x: 0.09754205, y: 2.6746335, z: 0}
+  - {x: 0.1038537, y: 2.9902153, z: 0}
+  - {x: 0.14803505, y: 3.2553043, z: 0}
+  - {x: 0.01549077, y: 3.5519514, z: 0}
+  - {x: -0.14230013, y: 3.2489924, z: 0}
+  - {x: -0.09180713, y: 2.983904, z: 0}
+  - {x: -0.08549547, y: 2.668322, z: 0}
+  - {x: -0.15492344, y: 2.5610242, z: 0}
+  - {x: -0.1233654, y: 2.1949492, z: 0}
+  - {x: -0.053937435, y: 2.0624046, z: 0}
+  - {x: -0.15285993, y: 1.4088758, z: 0}
+  - {x: -0.09180713, y: 0.42137897, z: 0}
+--- !u!114 &4668828581810585998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633069298320128724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88093133cf4ad554a82593dc4f240242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decreaseIntensity: 0
+  thislight: {fileID: 3111744238820485197}
+  colorEnd: {r: 0.8843126, g: 0.21226418, b: 1, a: 0}
+  pulsingColor: 1
+  falloutDelay: 0
+  falloutPerSecond: 0
+  lerpTimeColor: 5
+  pulsingSize: 0
+  lerpTimeSize: 0
+  newSize: 0
