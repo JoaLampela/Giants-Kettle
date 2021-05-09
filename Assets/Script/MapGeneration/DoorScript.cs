@@ -31,5 +31,6 @@ public class DoorScript : MonoBehaviour
         {
             door.SetActive(false);
         }
+        SoundManager.PlayUISound(SoundManager.Sound.RoomClear);
     }
 }

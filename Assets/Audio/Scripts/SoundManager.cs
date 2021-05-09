@@ -52,6 +52,7 @@ public static class SoundManager
         Summon,
         SummonStart,
         RoomEnter,
+        RoomClear,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
