@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
-  m_Name: rustyTwoHanderT4
+  m_Name: waterTwoHanderT3
   m_EditorClassIdentifier: 
   type: 1
-  description: A fallen blade from a corrupt king.
-  iconSprite: {fileID: 21300000, guid: 5d16e7a1303a7114e96ad5a303c82135, type: 3}
-  inGameObject: {fileID: 5799111713433376631, guid: 34023473e7de22d49ac737f0559eed6d, type: 3}
+  description: 
+  iconSprite: {fileID: 21300000, guid: 6b3afe895a590864d8ffd233f34e9ab5, type: 3}
+  inGameObject: {fileID: 4475092703463676724, guid: 5e5960a0fdf8ebe4485b7fb4bdd5a1fe, type: 3}
   isTwoHander: 1
-  runeSlots: 4
+  runeSlots: 3
   baseRune: {fileID: 0}
   weaponType: 1
   maxCooldownAbility1: 3

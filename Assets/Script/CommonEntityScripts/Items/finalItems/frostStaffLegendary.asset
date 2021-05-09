@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
-  m_Name: rustyTwoHanderT3
+  m_Script: {fileID: 11500000, guid: 949ac30fd5ef64544ad7d4516dee16d5, type: 3}
+  m_Name: frostStaffLegendary
   m_EditorClassIdentifier: 
   type: 1
   description: 
-  iconSprite: {fileID: 21300000, guid: b1122cb24353ba24d8fba136d13cfcd6, type: 3}
-  inGameObject: {fileID: 6513725237535493746, guid: 75b5d2c2c00f0d249a6ae6c9e3f5f1d0, type: 3}
+  iconSprite: {fileID: 21300000, guid: 3930107c426ef6d4499b352d8d0049d6, type: 3}
+  inGameObject: {fileID: 8328262822029063764, guid: b5ab61c1c81886446a58c0eeb75a9bb0, type: 3}
   isTwoHander: 1
-  runeSlots: 3
+  runeSlots: 6
   baseRune: {fileID: 0}
-  weaponType: 1
-  maxCooldownAbility1: 3
+  weaponType: 4
+  maxCooldownAbility1: 4
   currentCooldownAbility1: 0
-  maxCooldownAbility2: 5
+  maxCooldownAbility2: 6
   currentCooldownAbility2: 0
