@@ -135,11 +135,6 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-
-            if (_entity.GetComponent<EntityHealth>().health >= _entity.GetComponent<EntityStats>().currentMaxHealth)
-            {
-                _abilityEvents.damageMultiplier *= (int)((duplicateCountArmor + duplicateCountWeapon) * 1.5f);
-            }
         }
 
         SubscribeGameEvents();
@@ -177,21 +172,25 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
     private void Update()
     {
-        if (inCombat)
+        if (gameObject.GetComponent<EntityEvents>())
         {
-            if (redundancyCheck)
+            if (inCombat)
             {
-                stackCounter++;
-                Activate();
-                redundancyCheck = false;
+                if (redundancyCheck)
+                {
+                    stackCounter++;
+                    Activate();
+                    redundancyCheck = false;
+                }
+            }
+            else
+            {
+                stackCounter = 0;
+                _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
+                redundancyCheck = true;
             }
         }
-        else
-        {
-            stackCounter = 0;
-            _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
-            redundancyCheck = true;
-        }
+            
     }
 
     public void Activate()

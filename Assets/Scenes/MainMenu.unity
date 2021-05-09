@@ -6200,7 +6200,6 @@ MonoBehaviour:
   mainMenuButtons: {fileID: 175848761}
   selectLevel: {fileID: 1570541180}
   loadingScreen: {fileID: 1049157537}
-  gameDifficultyManagerScript: {fileID: 2017558170}
 --- !u!1 &447664800
 GameObject:
   m_ObjectHideFlags: 0

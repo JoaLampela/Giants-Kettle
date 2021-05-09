@@ -95,11 +95,19 @@ public class EntityLevelScaling : MonoBehaviour
 
             case GameDifficultyManagerScript.Difficulty.Lunatic:
 
-                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * normalScaler);
+                stats.baseHealth = (int)(stats.baseHealth * lunaticScaler);
+                stats.baseHealthRegen = (int)(stats.baseHealthRegen * lunaticScaler);
+                stats.baseArmor = (int)(stats.baseArmor * lunaticScaler);
+                stats.basePhysicalDamage = (int)(stats.basePhysicalDamage * lunaticScaler);
+
+
+                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
+                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
+                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
+                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * lunaticScaler);
+                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
+
+                Debug.Log(gameObject + " " + stats.baseHealth);
                 break;
         }
     }

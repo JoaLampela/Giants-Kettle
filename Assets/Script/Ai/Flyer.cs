@@ -21,7 +21,7 @@ public class Flyer : MonoBehaviour, IEntityAnimations
         canAttack = true;
         animator = GetComponent<Animator>();
         targetingSystem = GetComponent<EntityTargetingSystem>();
-        GetComponent<EntityAbilityManager>().ability1 = GetComponent<StaffBasicAttack>();
+        GetComponent<EntityAbilityManager>().ability4 = GetComponent<StaffBasicAttack>();
     }
 
     // Update is called once per frame
@@ -32,7 +32,8 @@ public class Flyer : MonoBehaviour, IEntityAnimations
             LookToTarget();
             if (canAttack)
             {
-                GetComponent<EntityAbilityManager>().CastAbility(1);
+                Debug.Log("Flyer cast ability");
+                GetComponent<EntityAbilityManager>().CastAbility(4);
             }
         }
 
