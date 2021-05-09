@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CombatRoomScript : MonoBehaviour
 {
 
@@ -30,7 +29,6 @@ public class CombatRoomScript : MonoBehaviour
     {
         if (!inCombat)
         {
-            
             if (roomEnemies.Count != 0)
             {
                 foreach (GameObject enemy in roomEnemies)
