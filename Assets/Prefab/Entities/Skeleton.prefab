@@ -838,6 +838,7 @@ MonoBehaviour:
   isTakingDamage: 0
   isStunned: 0
   onHealthRegen: 0
+  isInArcade: 0
   isOnFire: 0
 --- !u!114 &7843475326662548913
 MonoBehaviour:
@@ -928,6 +929,10 @@ MonoBehaviour:
   physicalDamagePerFloor: 0
   armorPerFloor: 0
   movementsSpeedPerFloor: 0
+  easyScaler: 1
+  normalScaler: 1
+  hardScaler: 2
+  lunaticScaler: 0
 --- !u!96 &2503689601135937888
 TrailRenderer:
   serializedVersion: 2

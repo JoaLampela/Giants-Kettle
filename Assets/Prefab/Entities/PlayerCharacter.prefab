@@ -527,6 +527,7 @@ MonoBehaviour:
   isTakingDamage: 0
   isStunned: 0
   onHealthRegen: 0
+  isInArcade: 0
   isOnFire: 0
 --- !u!114 &9137825765271769930
 MonoBehaviour:
@@ -877,6 +878,15 @@ MonoBehaviour:
   healthRegenPerLevel: 5
   physicalDamagePerLevel: 5
   armorPerLevel: 1
+  healthPerFloor: 0
+  healthRegenPerFloor: 0
+  physicalDamagePerFloor: 0
+  armorPerFloor: 0
+  movementsSpeedPerFloor: 0
+  easyScaler: 2
+  normalScaler: 1
+  hardScaler: 0.75
+  lunaticScaler: 0
 --- !u!1 &7051720969780881987
 GameObject:
   m_ObjectHideFlags: 0
