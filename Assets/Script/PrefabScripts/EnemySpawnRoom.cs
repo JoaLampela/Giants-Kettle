@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawnRoom : MonoBehaviour
 {
 
-    [Range(1, 100)]
+    [Range(1, 1000)]
     public int[] spawnWeight;
     public GameObject[] spawnEnemiesList;
     private int maxSpawnWeight = 0;
