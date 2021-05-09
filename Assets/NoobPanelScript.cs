@@ -11,10 +11,18 @@ public class NoobPanelScript : MonoBehaviour
     public CanvasGroup inventoryInsideTip;
     public CanvasGroup hotBarTip;
     public CanvasGroup runePointTip;
+    private bool tipsOn = true;
     // Start is called before the first frame update
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        if (PlayerPrefs.GetInt("TipsOn", 1) == 0) 
+        {
+            tipsOn = false;
+            TogglePanelCanvas(canvasGroup);
+            TogglePanelCanvas(inventoryInsideTip);
+            TogglePanelCanvas(hotBarTip);
+        }
     }
 
     // Update is called once per frame
@@ -22,9 +30,18 @@ public class NoobPanelScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F1))
         {
+            if (tipsOn) {
+                PlayerPrefs.SetInt("TipsOn", 0);
+                tipsOn = false;
+            }
+            else {
+                tipsOn = true;
+                PlayerPrefs.SetInt("TipsOn", 1);
+                }
             TogglePanelCanvas(canvasGroup);
             TogglePanelCanvas(inventoryInsideTip);
             TogglePanelCanvas(hotBarTip);
+            
         }
     }
 
