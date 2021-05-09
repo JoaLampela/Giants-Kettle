@@ -151,6 +151,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorHeadR1);
+                                break;
                             }
                             else if (i == 1)
                             {
@@ -158,6 +159,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorHeadR2);
+                                break;
                             }
                             else if (i == 2)
                             {
@@ -165,6 +167,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorHeadR3);
+                                break;
                             }
                             else if (i == 3)
                             {
@@ -172,6 +175,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorHeadR4);
+                                break;
                             }
                             else if (i == 4)
                             {
@@ -179,6 +183,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorHeadR5);
+                                break;
                             }
                             else if (i == 5)
                             {
@@ -186,6 +191,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorHeadR6);
+                                break;
                             }
                         }
                     }
@@ -255,6 +261,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorLegsR1);
+                                break;
                             }
                             else if (i == 1)
                             {
@@ -262,6 +269,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorLegsR2);
+                                break;
                             }
                             else if (i == 2)
                             {
@@ -269,6 +277,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorLegsR3);
+                                break;
                             }
                             else if (i == 3)
                             {
@@ -276,6 +285,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorLegsR4);
+                                break;
                             }
                             else if (i == 4)
                             {
@@ -283,6 +293,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorLegsR5);
+                                break;
                             }
                             else if (i == 5)
                             {
@@ -290,6 +301,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorLegsR6);
+                                break;
                             }
                         }
                     }
@@ -307,6 +319,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponRightHandR1);
+                                break;
                             }
                             else if (i == 1)
                             {
@@ -314,6 +327,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponRightHandR2);
+                                break;
                             }
                             else if (i == 2)
                             {
@@ -321,6 +335,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponRightHandR3);
+                                break;
                             }
                             else if (i == 3)
                             {
@@ -328,6 +343,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponRightHandR4);
+                                break;
                             }
                             else if (i == 4)
                             {
@@ -335,13 +351,15 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponRightHandR5);
+                                break;
                             }
                             else if (i == 5)
                             {
-                                UiButtonClick slot = weaponRightHandR1.GetComponent<UiButtonClick>();
+                                UiButtonClick slot = weaponRightHandR6.GetComponent<UiButtonClick>();
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponRightHandR6);
+                                break;
                             }
                         }
                     }
@@ -359,6 +377,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponLeftHandR1);
+                                break;
                             }
                             else if (i == 1)
                             {
@@ -366,6 +385,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponLeftHandR2);
+                                break;
                             }
                             else if (i == 2)
                             {
@@ -373,6 +393,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponLeftHandR3);
+                                break;
                             }
                             else if (i == 3)
                             {
@@ -380,6 +401,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponLeftHandR4);
+                                break;
                             }
                             else if (i == 4)
                             {
@@ -387,6 +409,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponLeftHandR5);
+                                break;
                             }
                             else if (i == 5) 
                             {
@@ -394,6 +417,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, weaponLeftHandR6);
+                                break;
                             }
                         }
                     }
@@ -1728,6 +1752,10 @@ public class Inventory : MonoBehaviour
                     {
                         runeScript.IncrementDuplicateCountArmor(3);
                     }
+                    else if (rune.runeTier == RuneObject.RuneTier.superb)
+                    {
+                        runeScript.IncrementDuplicateCountArmor(4);
+                    }
                 }
                 else
                 {
@@ -1742,6 +1770,10 @@ public class Inventory : MonoBehaviour
                     else if (rune.runeTier == RuneObject.RuneTier.perfected)
                     {
                         runeScript.IncrementDuplicateCountWeapon(3, hand);
+                    }
+                    else if (rune.runeTier == RuneObject.RuneTier.superb)
+                    {
+                        runeScript.IncrementDuplicateCountWeapon(4, hand);
                     }
                 }
             }
@@ -1785,12 +1817,14 @@ public class Inventory : MonoBehaviour
                     if (rune.runeTier == RuneObject.RuneTier.basic) runeScript.DecrementDuplicateCountArmor(1);
                     else if (rune.runeTier == RuneObject.RuneTier.refined) runeScript.DecrementDuplicateCountArmor(2);
                     else if (rune.runeTier == RuneObject.RuneTier.perfected) runeScript.DecrementDuplicateCountArmor(3);
+                    else if (rune.runeTier == RuneObject.RuneTier.superb) runeScript.DecrementDuplicateCountArmor(4);
                 }
                 else
                 {
                     if (rune.runeTier == RuneObject.RuneTier.basic) runeScript.DecrementDuplicateCountWeapon(1, hand);
                     else if (rune.runeTier == RuneObject.RuneTier.refined) runeScript.DecrementDuplicateCountWeapon(2, hand);
                     else if (rune.runeTier == RuneObject.RuneTier.perfected) runeScript.DecrementDuplicateCountWeapon(3, hand);
+                    else if (rune.runeTier == RuneObject.RuneTier.superb) runeScript.DecrementDuplicateCountWeapon(4, hand);
                 }
 
                 if ((runeScript.GetDuplicateCountArmor() == 0 && runeScript.GetDuplicateCountWeapon() == 0)) runeScript.RemoveRune();

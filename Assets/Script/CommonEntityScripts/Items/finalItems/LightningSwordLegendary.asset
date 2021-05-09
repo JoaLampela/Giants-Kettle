@@ -20,7 +20,7 @@ MonoBehaviour:
   runeSlots: 6
   baseRune: {fileID: 11400000, guid: 50feb59d7a93b9b4f91fe297fdd02919, type: 2}
   weaponType: 0
-  maxCooldownAbility1: 0
+  maxCooldownAbility1: 3
   currentCooldownAbility1: 0
-  maxCooldownAbility2: 0
+  maxCooldownAbility2: 3
   currentCooldownAbility2: 0
