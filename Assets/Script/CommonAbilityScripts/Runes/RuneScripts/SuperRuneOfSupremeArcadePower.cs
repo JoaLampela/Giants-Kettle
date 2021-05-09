@@ -109,9 +109,12 @@ public class SuperRuneOfSupremeArcadePower : MonoBehaviour, IRuneScript
         _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage");
         _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerAttackSpeed");
 
-        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
-        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
-        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        {
+            _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        }
     }
 
     //Subs & Unsub -related Unity functions
