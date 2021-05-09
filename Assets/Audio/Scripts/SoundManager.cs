@@ -54,6 +54,7 @@ public static class SoundManager
         RoomEnter,
         RoomClear,
         YouDied,
+        Clang,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
