@@ -114,7 +114,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 0
   baseSpiritRegen: 0
-  baseSpeed: 0
+  baseSpeed: 8
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
   isTakingDamage: 0
   isStunned: 0
   onHealthRegen: 0
+  isInArcade: 0
   isOnFire: 0
 --- !u!114 &265745227025303280
 MonoBehaviour:
@@ -340,7 +341,6 @@ MonoBehaviour:
   maxAllyRange: 2
   maxPlayerRange: 5
   reachedEndOfPath: 0
-  entitySpeed: 10
   useSpeedBuff: 1
   speedBuffAmount: 1.5
   speedBuffDistance: 10
