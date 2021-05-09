@@ -11411,7 +11411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Open Inventory(TAB)
+  m_text: You can open the player inventory using (TAB)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
   m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
@@ -26789,7 +26789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select rune. Your choises effect your future rune selection
+  m_text: Select a rune. Your chosen runes affect your future rune offers
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
   m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
@@ -40867,7 +40867,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click the ston or press (R) to open rune window
+  m_text: Click the stone on the top left or press (R) to open the Rune Selection
+    window
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
   m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
@@ -53169,7 +53170,7 @@ GameObject:
   - component: {fileID: 6611731465858266522}
   - component: {fileID: 1693641389027530487}
   m_Layer: 5
-  m_Name: NoobPanelIjnventory
+  m_Name: NoobPanelInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63452,23 +63453,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mouse 1 = grap
+  m_text: 'Mouse 1 (hold) = drag item
 
-    Mouse 2 = quick use
+    Mouse 2 = quick equip item or rune
 
-    Mouse 2 + shif =
-
-    Quick
-    Discard item
+    Mouse
+    2 + shift = quick drop item
 
 
-    You can equip runes by dragging them on top of items in your
-    inventory or by dragging them to the rune slots on the right side of equipped
-    items.
+    You can equip runes by dragging them on top
+    of items in your inventory or by dragging them to the rune slots on the right
+    side of equipped items.
 
 
-    You can drag and drop items out from your inventory to unequip all
-    its runes.'
+    You can drag and drop items out from your inventory
+    to unequip all of their runes.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
   m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
@@ -69355,7 +69354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select your starting gear!
+  m_text: Select your starting gear
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
   m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
@@ -76192,7 +76191,9 @@ MonoBehaviour:
   loadingScreen: {fileID: 6034827283658513943}
   gameOverScreen: {fileID: 8471077672208607712}
   gameOverMenuHandler: {fileID: 2484018982511286734}
-  audioPlayer: {fileID: 0}
+  deathAudioPlayer: {fileID: 0}
+  inCombat: 0
+  lunaticMode: 0
 --- !u!114 &2435606666821459288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76209,6 +76210,7 @@ MonoBehaviour:
   masterSlider: {fileID: 1560245754469889659}
   musicSlider: {fileID: 3068681499714790710}
   sfxSlider: {fileID: 4075965070859780562}
+  inCombat: 0
 --- !u!1 &8525123744732201298
 GameObject:
   m_ObjectHideFlags: 0
@@ -80743,7 +80745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Toggle tips of by pressing (F1)
+  m_text: 'You can toggle beginner tips by pressing (F1)
 
 '
   m_isRightToLeft: 0
