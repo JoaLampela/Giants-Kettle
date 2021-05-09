@@ -505,6 +505,10 @@ public class GameStats : MonoBehaviour
         PlayerPrefs.SetInt("TotalSummonersKilled", PlayerPrefs.GetInt("TotalSummonersKilled", 0) + killedSummoners);
         PlayerPrefs.SetInt("TotalKilledHoglins", PlayerPrefs.GetInt("TotalKilledHoglins", 0) + killedHoglins);
         PlayerPrefs.SetInt("TotalClearedFloors", PlayerPrefs.GetInt("TotalClearedFloors", 0) + clearedFloors);
+        Debug.Log("Cleared floors this time = " + clearedFloors + " all time = " + PlayerPrefs.GetInt("BestClearedFloors", 0));
+        if (clearedFloors > PlayerPrefs.GetInt("BestClearedFloors", 0)) PlayerPrefs.SetInt("BestClearedFloors",  clearedFloors);
+        Debug.Log("Enemies killed  = " + killedEnemiesTotal + " all time = " + PlayerPrefs.GetInt("BestEnemiesKilled", 0));
+        if (killedEnemiesTotal > PlayerPrefs.GetInt("BestEnemiesKilled", 0)) PlayerPrefs.SetInt("BestEnemiesKilled", killedEnemiesTotal);
         PlayerPrefs.SetInt("TotalClearedRooms", PlayerPrefs.GetInt("TotalClearedRooms", 0) + clearedRooms);
         PlayerPrefs.SetInt("TotalGameTime", PlayerPrefs.GetInt("TotalGameTime", 0) + (int)GameObject.Find("Game Manager").GetComponent<GameEventManager>().time);
         PlayerPrefs.SetInt("TotalRunesPicked", PlayerPrefs.GetInt("TotalRunesPicked", 0) + runesPicked);

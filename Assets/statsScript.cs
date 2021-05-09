@@ -20,6 +20,10 @@ public class statsScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalhurtEnemiesText;
     [SerializeField] private TextMeshProUGUI totalBossesKilledText;
     [SerializeField] private TextMeshProUGUI causeOfNightmaresText;
+    [SerializeField] private TextMeshProUGUI highestKillCountText;
+    [SerializeField] private TextMeshProUGUI deepestFloorText;
+
+
 
     private void Start()
     {
@@ -35,6 +39,8 @@ public class statsScript : MonoBehaviour
         totalDeathCountText.text = totalGameStats.totalDeathCount.ToString();
         totalhurtEnemiesText.text = totalGameStats.totalHits.ToString();
         totalBossesKilledText.text = totalGameStats.totalBossesKilled.ToString();
+        highestKillCountText.text = totalGameStats.bestKilledEnemies.ToString();
+        deepestFloorText.text = totalGameStats.deepestFloor.ToString();
 
         int temp = 0;
         string killer = " ";

@@ -10,13 +10,14 @@ public class GameOverMenuHandler : MonoBehaviour
     [SerializeField] private GameStats gameStats;
     [SerializeField] private TextMeshProUGUI killsText;
     [SerializeField] private TextMeshProUGUI floorText;
+    [SerializeField] private TextMeshProUGUI newBestKills;
+    [SerializeField] private TextMeshProUGUI newBestFloor;
 
 
     [SerializeField] private int BonepilePosYStart = 0;
     [SerializeField] private int BonepilePosYEnd = 0;
 
     [SerializeField] private CanvasGroup inventoryCanvasGroup;
-    
 
     // Update is called once per frame
     void Update()
@@ -48,6 +49,7 @@ public class GameOverMenuHandler : MonoBehaviour
             }
             yield return new WaitForSeconds(0);
         }
+        if (gameStats.killedEnemiesTotal > PlayerPrefs.GetInt("TotalEnemiesKilled", 0)) newBestKills.gameObject.SetActive(true);
     }
 
     public IEnumerator BeginningOFTheEndFloors()
@@ -59,5 +61,6 @@ public class GameOverMenuHandler : MonoBehaviour
             floorText.text = "Reached\nfloor\n" + startFloors;
             yield return new WaitForSeconds(0);
         }
+        if (gameStats.clearedFloors > PlayerPrefs.GetInt("BestClearedFloors", 0)) newBestFloor.gameObject.SetActive(true);
     }
 }

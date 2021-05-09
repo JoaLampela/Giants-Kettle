@@ -50002,7 +50002,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Reached Floor
 
-    100'
+    1
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
   m_sharedMaterial: {fileID: -351183037919578058, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
@@ -61522,7 +61524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2632949603575945256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -66598,7 +66600,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Kills 100
+  m_text: 'Kills 0
 
 '
   m_isRightToLeft: 0
@@ -68531,7 +68533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4166272657060091457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68608,9 +68610,11 @@ MonoBehaviour:
   gameStats: {fileID: 0}
   killsText: {fileID: 2339300665490165187}
   floorText: {fileID: 2224575341788071071}
+  newBestKills: {fileID: 1363029081147776727}
+  newBestFloor: {fileID: 9127646840307273632}
   BonepilePosYStart: -537
   BonepilePosYEnd: 532
-  inventoryCanvasGroup: {fileID: 0}
+  inventoryCanvasGroup: {fileID: 2197225338720723362}
 --- !u!1 &8476107599830768518
 GameObject:
   m_ObjectHideFlags: 0
@@ -70105,6 +70109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8525123744524478070}
   - component: {fileID: 8525123744524478071}
+  - component: {fileID: 2197225338720723362}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -70140,6 +70145,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8525123744524478073}
   m_CullTransparentMesh: 1
+--- !u!225 &2197225338720723362
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525123744524478073}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &8525123744526087731
 GameObject:
   m_ObjectHideFlags: 0
@@ -78245,7 +78262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7756652494669343518
 RectTransform:
   m_ObjectHideFlags: 0

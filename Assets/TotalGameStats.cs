@@ -52,6 +52,8 @@ public class TotalGameStats : MonoBehaviour
     public int vitalityPowerRuneOfBash = 0;
     public int vitalityPowerRuneOfStress = 0;
 
+    public int deepestFloor = 0;
+    public int bestKilledEnemies = 0;
     public int killedEnemiesTotal = 0;
     public int killedGoblins = 0;
     public int killedFlyers = 0;
@@ -254,5 +256,8 @@ public class TotalGameStats : MonoBehaviour
         killedBySummoner = PlayerPrefs.GetInt("TotalKilledBySummoner", 0);
         killedByHoglon = PlayerPrefs.GetInt("TotalKilledByHoglon", 0);
         killedByFlyer = PlayerPrefs.GetInt("TotalKilledByFlyer", 0);
+
+        bestKilledEnemies = PlayerPrefs.GetInt("BestEnemiesKilled", 0);
+        deepestFloor = PlayerPrefs.GetInt("BestClearedFloors", 0);
     }
 }
