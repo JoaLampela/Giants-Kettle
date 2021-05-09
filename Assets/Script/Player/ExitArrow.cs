@@ -7,6 +7,7 @@ public class ExitArrow : MonoBehaviour
     GameEventManager gameEventManager;
     public float showTimeAfterLevelEnter;
     private bool showing;
+    private bool inCombat;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class ExitArrow : MonoBehaviour
             Vector2 difference = GameObject.FindGameObjectWithTag("Exit").transform.position - transform.position;
             if (difference.magnitude < 10)
                 GetComponentInChildren<SpriteRenderer>().enabled = false;
-            else
+            else if (!inCombat)
                 GetComponentInChildren<SpriteRenderer>().enabled = true;
 
             difference.Normalize();
@@ -48,23 +49,28 @@ public class ExitArrow : MonoBehaviour
     {
         showing = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
+        StopAllCoroutines();
         StartCoroutine(ShowInTime());
     }
     private void StartCombat()
     {
-        showing = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
+        inCombat = true;
+
     }
     private void EndCombat()
     {
-        showing = true;
-        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        if (showing)
+            GetComponentInChildren<SpriteRenderer>().enabled = true;
+        inCombat = false;
+
     }
 
     IEnumerator ShowInTime()
     {
         yield return new WaitForSeconds(showTimeAfterLevelEnter);
-        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        if (gameEventManager.combatOn == false)
+            GetComponentInChildren<SpriteRenderer>().enabled = true;
         showing = true;
     }
 
