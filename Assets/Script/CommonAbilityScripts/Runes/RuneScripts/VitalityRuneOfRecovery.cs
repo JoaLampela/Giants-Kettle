@@ -107,7 +107,7 @@ public class VitalityRuneOfRecovery : MonoBehaviour, IRuneScript
     {
         _entityEvents.RemoveBuff("VitalityRuneOfRecovery");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
             _entityEvents.NewBuff("VitalityRuneOfRecovery", EntityStats.BuffType.Health, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }

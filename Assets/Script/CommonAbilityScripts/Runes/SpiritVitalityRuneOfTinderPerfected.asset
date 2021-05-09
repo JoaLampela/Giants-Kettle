@@ -22,4 +22,6 @@ MonoBehaviour:
     ResultType: 
   runeTier: 2
   runeType: 4
-  runeEffects: []
+  runeEffects:
+  - {fileID: 21300000, guid: 73b7d9badacb0144186cfec6aecea9b2, type: 3}
+  - {fileID: 21300000, guid: f11174fed29b2f94eaeb5bc14ed2f131, type: 3}

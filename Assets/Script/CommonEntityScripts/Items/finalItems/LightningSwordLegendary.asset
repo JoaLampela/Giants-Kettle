@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: LightningSwordLegendary
   m_EditorClassIdentifier: 
   type: 1
-  description: You are speed.
+  description: You've been... THUNDERSTRUCK!
   iconSprite: {fileID: 21300000, guid: bd2ecfc0e1db59b42b0832f5aad2688e, type: 3}
   inGameObject: {fileID: 8696264066126278792, guid: ded3f287b83bcc143b05f430b51b85e9, type: 3}
   isTwoHander: 0
   runeSlots: 6
-  baseRune: {fileID: 0}
+  baseRune: {fileID: 11400000, guid: 50feb59d7a93b9b4f91fe297fdd02919, type: 2}
   weaponType: 0
   maxCooldownAbility1: 0
   currentCooldownAbility1: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
+public class SuperRuneOfLightningTaming : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -10,7 +10,6 @@ public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
-    private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
 
@@ -105,11 +104,15 @@ public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfAnalyst");
+        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingAttackSpeed");
+        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingCrit");
+        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingPhysicalDamage");
 
         if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfAnalyst", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SuperRuneOfLightningTamingAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfLightningTamingCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfLightningTamingPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -131,12 +134,13 @@ public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
     {
         _entityEvents = gameObject.GetComponent<EntityEvents>();
         _abilityEvents = gameObject.GetComponent<AbilityEvents>();
-        projectiles = new List<GameObject>();
     }
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalyst");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingCrit");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingPhysicalDamage");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -151,8 +155,13 @@ public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
 
     public void Activate(GameObject target, Damage damage)
     {
-        damage._damage *= (int)(0.10f * (duplicateCountArmor + duplicateCountWeapon));
-        target.GetComponent<EntityEvents>().HitThis(damage, false);
+        if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        {
+            target.GetComponent<EntityEvents>().HitThis(new Damage(_entity, false, 0, (int)((damage._damage + damage._trueDamage) * 0.50f)), false);
+
+            GameObject lightning = RuneAssets.i.RuneLightning;
+            lightning = Instantiate(lightning, target.transform.position, Quaternion.identity);
+        }
     }
 
     //Subs and Unsubs

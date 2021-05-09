@@ -32,4 +32,6 @@ public class RuneAssets: MonoBehaviour
     public GameObject RuneHunterFinalEffect;
     public GameObject RuneRainbow;
     public GameObject RuneFreeze;
+    public GameObject RuneLightning;
+    public GameObject RuneStar;
 }
