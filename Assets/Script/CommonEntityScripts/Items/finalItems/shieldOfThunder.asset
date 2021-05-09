@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22727b0861fb16940a1c1fbb83720440, type: 3}
+  m_Name: shieldOfThunder
+  m_EditorClassIdentifier: 
+  type: 1
+  description: 
+  iconSprite: {fileID: 21300000, guid: 9868815d695d4354da8a4f73a68927ec, type: 3}
+  inGameObject: {fileID: 7989905625563838003, guid: 7f0cea9e1a3cea348b7deb6f8cb5092c, type: 3}
+  isTwoHander: 0
+  runeSlots: 0
+  baseRune: {fileID: 11400000, guid: 6b358980d897da8448e9ee3c53624d3e, type: 2}
+  weaponType: 2
+  maxCooldownAbility1: 3
+  currentCooldownAbility1: 0
+  maxCooldownAbility2: 4
+  currentCooldownAbility2: 0
