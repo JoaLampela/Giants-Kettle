@@ -1148,6 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11eda1d9a1661414887703c1b97ef8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultItem: {fileID: 11400000, guid: 149387a7ac7663c44a02eec07e74530a, type: 2}
   equippedArmorRunes: []
   rightHandWeapon: {fileID: 0}
   leftHandWeapon: {fileID: 0}
@@ -1155,12 +1156,36 @@ MonoBehaviour:
   possibleWeapons:
   - {fileID: 11400000, guid: 909b09911fb1e8945b10ee2d8ba81ba4, type: 2}
   - {fileID: 11400000, guid: 5a8a2f663a0f9b542a1263f236f9346f, type: 2}
+  lunaticWeapons:
+  - {fileID: 11400000, guid: a4cfc8df83a6f7a4b88f433c7ac6a9ab, type: 2}
+  - {fileID: 11400000, guid: 156f0e5331da321419575e63f168569c, type: 2}
   armorRunes:
   - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
   - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
   - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
+  lunaticRunes:
+  - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}
+  - {fileID: 11400000, guid: 4f2a1ab063c43b744a9709ece3158322, type: 2}
+  - {fileID: 11400000, guid: 8346053abb54707408a14d61fc52f7c3, type: 2}
+  - {fileID: 11400000, guid: 6ba83248884c5a7448863e7da4ec2cfd, type: 2}
+  - {fileID: 11400000, guid: 782335014ed931b41a6bc2228698de74, type: 2}
+  - {fileID: 11400000, guid: 9c197480f0e944f42a1d09382de9dead, type: 2}
+  - {fileID: 11400000, guid: 45466d03f02f8cf42b8880353b14f56b, type: 2}
+  - {fileID: 11400000, guid: b216035e637aff242a5826292517cb29, type: 2}
+  - {fileID: 11400000, guid: 88d4fc9686949a44281a7eb2c2fab0e0, type: 2}
+  - {fileID: 11400000, guid: c4fc3ddefc5d2cf4082adfa582d007b1, type: 2}
+  - {fileID: 11400000, guid: 49c1c02d52874d24abd03d5fbe00ef4e, type: 2}
+  - {fileID: 11400000, guid: 0b470e9b541daeb4fb279838d9bfc105, type: 2}
+  - {fileID: 11400000, guid: ce904c23bd946ef45a235aea8adaff17, type: 2}
+  - {fileID: 11400000, guid: a0e63c2dd9b30af4a932a1be2d4db3ff, type: 2}
+  - {fileID: 11400000, guid: cd8f700789fc5684290b4fd3d3690151, type: 2}
+  - {fileID: 11400000, guid: 53d1b4bc3aed8ac46af9bcc44082d482, type: 2}
+  - {fileID: 11400000, guid: 0f61bcdb0d5a03a4a9cdf560b0d6ed52, type: 2}
+  - {fileID: 11400000, guid: c9a5f3044db943049b12297f3d88caca, type: 2}
   minRuneCount: 1
   maxRuneCount: 3
+  minLunaticRuneCount: 1
+  maxLunaticRuneCount: 3
   canDualWield: 1
   humanoid_Animations: {fileID: 0}
 --- !u!114 &5965364300633923012

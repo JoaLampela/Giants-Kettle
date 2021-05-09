@@ -89,6 +89,7 @@ public class VitalityRuneOfHealth : MonoBehaviour, IRuneScript
 
     public void SetEntity(GameObject entity)
     {
+        Debug.Log("Setting entity " + gameObject);
         _entity = entity;
         _entityEvents = entity.GetComponent<EntityEvents>();
         if (_entityEvents != null) SetUpPermanentEffects();
@@ -105,6 +106,8 @@ public class VitalityRuneOfHealth : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
+        Debug.Log("Setting up permanent effects" + gameObject);
+
         _entityEvents.RemoveBuff("VitalityRuneOfHealthArmor");
         _entityEvents.RemoveBuff("VitalityRuneOfHealthWeapon");
 

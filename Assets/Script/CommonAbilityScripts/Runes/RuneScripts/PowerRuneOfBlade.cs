@@ -89,6 +89,8 @@ public class PowerRuneOfBlade : MonoBehaviour, IRuneScript
 
     public void SetEntity(GameObject entity)
     {
+        Debug.Log("Setting entity " + gameObject);
+
         _entity = entity;
         _entityEvents = entity.GetComponent<EntityEvents>();
         if (_entityEvents != null) SetUpPermanentEffects();

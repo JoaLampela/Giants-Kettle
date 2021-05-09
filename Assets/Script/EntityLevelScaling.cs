@@ -94,6 +94,7 @@ public class EntityLevelScaling : MonoBehaviour
                 break;
 
             case GameDifficultyManagerScript.Difficulty.Lunatic:
+
                 stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * normalScaler);
                 stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * normalScaler);
                 stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * normalScaler);

@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 2227358727020279601}
   - component: {fileID: 7552396429364814031}
   - component: {fileID: 3017103793074326161}
+  - component: {fileID: 6917765442921896923}
   m_Layer: 0
   m_Name: Flyer
   m_TagString: Untagged
@@ -480,14 +481,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11eda1d9a1661414887703c1b97ef8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultItem: {fileID: 11400000, guid: 149387a7ac7663c44a02eec07e74530a, type: 2}
   equippedArmorRunes: []
   rightHandWeapon: {fileID: 11400000, guid: 7c3afe4d68d27f84e82eebaf92d242cf, type: 2}
   leftHandWeapon: {fileID: 11400000, guid: 7c3afe4d68d27f84e82eebaf92d242cf, type: 2}
   dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons: []
+  lunaticWeapons: []
   armorRunes: []
+  lunaticRunes:
+  - {fileID: 11400000, guid: bb20c3fbb22b08f42aa147e115e9f226, type: 2}
+  - {fileID: 11400000, guid: bd2f31e8ab8caa84c9624bec5593d481, type: 2}
+  - {fileID: 11400000, guid: c9a5f3044db943049b12297f3d88caca, type: 2}
+  - {fileID: 11400000, guid: 53d1b4bc3aed8ac46af9bcc44082d482, type: 2}
+  - {fileID: 11400000, guid: 4fe3bb910e1fada4c9b63ab95d72a5fd, type: 2}
+  - {fileID: 11400000, guid: cd8f700789fc5684290b4fd3d3690151, type: 2}
+  - {fileID: 11400000, guid: a0e63c2dd9b30af4a932a1be2d4db3ff, type: 2}
+  - {fileID: 11400000, guid: 088b57a309cd6a945854d8bf770c6d1c, type: 2}
+  - {fileID: 11400000, guid: ce904c23bd946ef45a235aea8adaff17, type: 2}
+  - {fileID: 11400000, guid: 0b470e9b541daeb4fb279838d9bfc105, type: 2}
+  - {fileID: 11400000, guid: 49c1c02d52874d24abd03d5fbe00ef4e, type: 2}
+  - {fileID: 11400000, guid: b634da6d59890fb43b2b17c31f06b044, type: 2}
+  - {fileID: 11400000, guid: c4fc3ddefc5d2cf4082adfa582d007b1, type: 2}
+  - {fileID: 11400000, guid: 88d4fc9686949a44281a7eb2c2fab0e0, type: 2}
+  - {fileID: 11400000, guid: 45466d03f02f8cf42b8880353b14f56b, type: 2}
+  - {fileID: 11400000, guid: 09d4568b82041a341a0a6b27c8aabcd7, type: 2}
+  - {fileID: 11400000, guid: 835b84e1d3b8d904a9502797e6742c66, type: 2}
+  - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}
+  - {fileID: 11400000, guid: 5d158fdea5556644ab22338d858faff1, type: 2}
+  - {fileID: 11400000, guid: 66e5c9729925d98458b4c4a1783ecdfa, type: 2}
+  - {fileID: 11400000, guid: 4f2a1ab063c43b744a9709ece3158322, type: 2}
   minRuneCount: 0
   maxRuneCount: 0
+  minLunaticRuneCount: 1
+  maxLunaticRuneCount: 3
   canDualWield: 0
   humanoid_Animations: {fileID: 0}
 --- !u!114 &2854217595779573670
@@ -552,6 +579,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b7c82be38cb4c43ba95837702111d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6917765442921896923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681881871295265569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d03b6035388f543a306720d2d7c35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5013314282194355379

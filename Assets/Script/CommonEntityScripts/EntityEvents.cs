@@ -124,6 +124,7 @@ public class EntityEvents : MonoBehaviour
 
     public void BasicAttackHit(GameObject enemy, Damage damage)
     {
+        Debug.Log(gameObject + "'s basic attack hit");
         OnBasicAttackHit?.Invoke(enemy, damage);
     }
 
