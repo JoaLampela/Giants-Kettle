@@ -27,10 +27,16 @@ public class GameDifficultyManagerScript : MonoBehaviour
     }
 
 
-    public Difficulty difficulty = Difficulty.Easy;
+    public Difficulty difficulty = Difficulty.Normal;
 
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void SetDifficulty(Difficulty difficulty2)
+    {
+        difficulty = difficulty2;
+        Debug.Log("DIF "+ difficulty);
     }
 }

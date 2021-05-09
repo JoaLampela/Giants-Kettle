@@ -58,6 +58,8 @@ public class GameEventManager : MonoBehaviour
 
     [SerializeField] private GameStats gameStats;
 
+    [SerializeField] private NoobPanelScript noobPanelScript;
+
     private void Start()
     {
         if (GameObject.Find("GameDifficultyManager")) difficulty = GameObject.Find("GameDifficultyManager").GetComponent<GameDifficultyManagerScript>().difficulty;
@@ -73,6 +75,7 @@ public class GameEventManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible && !pauseMenuOpen)
         {
+           
             ToggleRuneSelectionView();
             StopTime();
         }
@@ -88,6 +91,7 @@ public class GameEventManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen && !pauseMenuOpen)
         {
+            noobPanelScript.ToggleInventory();
             inventoryOpen = true;
             inventory.GetComponent<CanvasGroup>().alpha = 1;
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -96,18 +100,28 @@ public class GameEventManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen)
         {
+            noobPanelScript.ToggleInventory();
             inventoryOpen = false;
             inventory.GetComponent<CanvasGroup>().alpha = 0;
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = false;
             inventory.GetComponent<CanvasGroup>().interactable = false;
             SoundManager.PlayUISound(SoundManager.Sound.InventoryOpen);
         }
-        if (playerLevelUpPoints > 0) levelPointReminderText.enabled = true;
-        else levelPointReminderText.enabled = false;
+        if (playerLevelUpPoints > 0)
+        {
+            levelPointReminderText.enabled = true;
+            noobPanelScript.ToggleRunePointTip(true);
+        }
+        else
+        {
+            noobPanelScript.ToggleRunePointTip(false);
+            levelPointReminderText.enabled = false;
+        }
     }
 
     public void ToggleRuneSelectionView()
     {
+        noobPanelScript.ToggleRuneSelection();
         if (!playerLevelUpScreenVisible)
         {
             playerLevelUpScreenVisible = true;

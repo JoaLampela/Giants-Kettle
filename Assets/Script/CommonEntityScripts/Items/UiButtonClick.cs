@@ -279,10 +279,23 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 {
                     Item temp = _item;
 
-                    if (Input.GetKey(KeyCode.LeftShift) && !frameLocked && _type != ItemType.Rune)
+                    if (Input.GetKey(KeyCode.LeftShift) && !frameLocked && _type != ItemType.Rune && _item != null)
                     {
                         RemoveItemFromslot();
                         playerInventory.DropItem(temp, playerInventory.gameObject.transform.position);
+                    }
+                    else if(!Input.GetKey(KeyCode.LeftShift) && !frameLocked && _type == ItemType.Rune && _item != null)
+                    {
+                        playerInventory.NewItem(_item);
+                        playerInventory.RemoveRuneFromItem(gameObject);
+                        _item = null;
+                        icon.sprite = defaultIcon;
+                    }
+                    else if (!Input.GetKey(KeyCode.LeftShift) && !frameLocked && _type != ItemType.Rune && _item != null)
+                    {
+                        playerInventory.UseItem(_item);
+                        _item = null;
+                        icon.sprite = defaultIcon;
                     }
                 }
             }
