@@ -18,10 +18,15 @@ public class HoglonSounds : MonoBehaviour
     {
         SoundManager.PlaySound(SoundManager.Sound.BossDie, transform.position);
     }
+    private void Hitmarker(Damage pasta)
+    {
+        SoundManager.PlaySound(SoundManager.Sound.NormalHit, transform.position);
+    }
 
     private void Subscribe()
     {
         events.OnDie += PlayDeathSound;
+        events.OnHitThis += Hitmarker;
     }
     private void Unsubscribe()
     {
