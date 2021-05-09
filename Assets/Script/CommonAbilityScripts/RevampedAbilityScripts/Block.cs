@@ -38,7 +38,7 @@ public class Block : MonoBehaviour, IAbility
     private void Cast(int slot)
     {
         
-        if (_weapon.currentCooldownAbility2 <= 0 && !playerAnimations.GetAttacking())
+        if (_weapon.currentCooldownAbility2 <= 0)
         {
             if (_spellSlot == slot)
             {
