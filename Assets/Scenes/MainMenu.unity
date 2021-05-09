@@ -158,7 +158,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.00076485, y: 0.00024414}
-  m_SizeDelta: {x: 419.68, y: 508.5}
+  m_SizeDelta: {x: 391.94, y: 459.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &472735
 MonoBehaviour:
@@ -31842,10 +31842,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 472735}
-  easyModeDescription: easy
-  normalModeDescription: normal
-  hardModeDescription: hard
-  lunaticModeDescription: lunatic
+  easyModeDescription: 'Learn the ropes or go for a crazy build with this high survivability
+    difficulty!  '
+  normalModeDescription: "The intended play experience. Giant\u2019s kettle is built
+    to be difficult by nature so don\u2019t get too discouraged if you fail or want
+    to switch to an easier option!"
+  hardModeDescription: 'The kettle is boiling, an option for players looking to really
+    try out their skills. '
+  lunaticModeDescription: "Welcome to the mad carnival! Enemies hit hard, have special
+    abilities and tank like a\u2026 tank. Beat this gimmick and the devs will buy
+    you a lollipop. "
   canvas: {fileID: 2054685577}
 --- !u!114 &2054685579
 MonoBehaviour:
