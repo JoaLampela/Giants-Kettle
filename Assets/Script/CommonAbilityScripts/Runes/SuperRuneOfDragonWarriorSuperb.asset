@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   description: Can I light your fire?
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: 16ba1dc9e0a3eac419f176487710ffa6, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
   _IruneContainer:
-    ObjectField: {fileID: 0}
+    ObjectField: {fileID: 854721191409950689, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
   runeTier: 3
   runeType: 10
-  runeEffects: []
+  runeEffects:
+  - {fileID: 21300000, guid: 4746fa8603e8b80498d40c820a5e2a5c, type: 3}
+  - {fileID: 21300000, guid: 6ef82e398ada89a4db3f4ae8f73e8397, type: 3}
+  - {fileID: 21300000, guid: 350a60f98cf9d1442a27586876e60293, type: 3}

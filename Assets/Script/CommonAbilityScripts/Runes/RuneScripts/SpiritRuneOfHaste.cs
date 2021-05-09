@@ -105,17 +105,11 @@ public class SpiritRuneOfHaste : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritRuneOfHasteArmor");
-        _entityEvents.RemoveBuff("SpiritRuneOfHasteWeapon");
+        _entityEvents.RemoveBuff("SpiritRuneOfHasteHaste");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfHasteArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 20);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritRuneOfHasteWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 20);
+            _entityEvents.NewBuff("SpiritRuneOfHasteHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 25);
         }
     }
 
@@ -142,8 +136,7 @@ public class SpiritRuneOfHaste : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfHasteArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfHasteWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfHasteHaste");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

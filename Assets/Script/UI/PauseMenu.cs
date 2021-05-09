@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,13 +14,17 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameOverMenuHandler gameOverMenuHandler;
-    [SerializeField] private GameObject audioPlayer;
+    [SerializeField] private GameObject deathAudioPlayer;
+    private AudioMixer masterMixer;
+    public bool inCombat = false;
+    public bool lunaticMode = false;
 
 
     private void Awake()
     {
         gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
         events = GameObject.FindGameObjectWithTag("Player").GetComponent<EntityEvents>();
+        masterMixer = Resources.Load("MasterMixer") as AudioMixer;
     }
 
     private void Start()
@@ -98,9 +103,13 @@ public class PauseMenu : MonoBehaviour
         GameObject.FindGameObjectWithTag("PlayerUI").SetActive(false);
         gameOverScreen.SetActive(true);
 
-        AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
+
+        masterMixer.SetFloat("combatMusicVol", Mathf.Log10(0.0001f) * 20);
+        masterMixer.SetFloat("musicVol", Mathf.Log10(0.0001f) * 20);
+        AudioSource audioSource = deathAudioPlayer.GetComponent<AudioSource>();
         audioSource.loop = false;
         audioSource.clip = SoundManager.GetAudioClip(SoundManager.Sound.YouDied);
+        audioSource.outputAudioMixerGroup = masterMixer.FindMatchingGroups("SFX")[0];
         audioSource.Play();
     }
     void Subscribe()

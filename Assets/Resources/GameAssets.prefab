@@ -140,6 +140,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: b5005e47d328b124f90ebb4f147c2da0, type: 3}
   - sound: 45
     audioClip: {fileID: 8300000, guid: c757c53f796cce0418a4fe95f15fb1fa, type: 3}
+  - sound: 46
+    audioClip: {fileID: 8300000, guid: ca311d2e52a2b2f49ba8f2487abe9aeb, type: 3}
   MusicAudioClipArray:
   - music: 0
     musicClip: {fileID: 8300000, guid: e6800ace59cc9554f944cc5801108092, type: 3}

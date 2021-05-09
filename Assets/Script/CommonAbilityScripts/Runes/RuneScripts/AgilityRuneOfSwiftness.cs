@@ -105,17 +105,11 @@ public class AgilityRuneOfSwiftness : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfSwiftnessArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfSwiftnessWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfSwiftness");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfSwiftnessArmor", EntityStats.BuffType.AttackSpeed, duplicateCountArmor * 25);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfSwiftnessWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 25);
+            _entityEvents.NewBuff("AgilityRuneOfSwiftness", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 25);
         }
     }
 
@@ -142,8 +136,7 @@ public class AgilityRuneOfSwiftness : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSwiftnessArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSwiftnessWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSwiftness");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

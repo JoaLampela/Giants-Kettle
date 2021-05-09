@@ -22,6 +22,8 @@ TagManager:
   - LoadingScreen
   - UI
   - Exit
+  - MusicPlayer
+  - CombatMusicPlayer
   layers:
   - Default
   - TransparentFX

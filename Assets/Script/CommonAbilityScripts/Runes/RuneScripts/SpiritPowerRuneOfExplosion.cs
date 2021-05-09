@@ -105,17 +105,13 @@ public class SpiritPowerRuneOfExplosion : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionArmor");
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionWeapon");
+        _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionHaste");
+        _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionPhysicalDamage");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritPowerRuneOfExplosionArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritPowerRuneOfExplosionWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritPowerRuneOfExplosionHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SpiritPowerRuneOfExplosionPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -141,8 +137,8 @@ public class SpiritPowerRuneOfExplosion : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfExplosionPhysicalDamage");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

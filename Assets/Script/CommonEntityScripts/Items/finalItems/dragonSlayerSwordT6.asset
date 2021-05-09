@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: dragonSlayerSwordT6
   m_EditorClassIdentifier: 
   type: 1
-  description: 
+  description: BURN, BABY, BURN!
   iconSprite: {fileID: 21300000, guid: 8714bbad1bacd0348b05e098898c8a94, type: 3}
   inGameObject: {fileID: 7165789264511225479, guid: 39c442cf633eaf948855f918973e3d6c, type: 3}
   isTwoHander: 1
   runeSlots: 6
-  baseRune: {fileID: 11400000, guid: 45466d03f02f8cf42b8880353b14f56b, type: 2}
+  baseRune: {fileID: 11400000, guid: 9325b914d7210e3409b22bc873a146b6, type: 2}
   weaponType: 1
   maxCooldownAbility1: 2
   currentCooldownAbility1: 0

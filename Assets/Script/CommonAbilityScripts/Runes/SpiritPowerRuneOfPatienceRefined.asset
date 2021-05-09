@@ -20,6 +20,8 @@ MonoBehaviour:
   _IruneContainer:
     ObjectField: {fileID: -7031609109326448776, guid: f58412825f612404e88d62f73f57b31c, type: 3}
     ResultType: 
-  runeTier: 0
+  runeTier: 1
   runeType: 6
-  runeEffects: []
+  runeEffects:
+  - {fileID: 21300000, guid: 350a60f98cf9d1442a27586876e60293, type: 3}
+  - {fileID: 21300000, guid: f11174fed29b2f94eaeb5bc14ed2f131, type: 3}

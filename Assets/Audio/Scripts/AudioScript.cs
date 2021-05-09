@@ -12,6 +12,7 @@ public class AudioScript : MonoBehaviour
     public Slider masterSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
+    public bool inCombat = false;
 
     void Start()
     {
@@ -27,7 +28,15 @@ public class AudioScript : MonoBehaviour
     }
     public void SetMusicVolume(float sliderValue)
     {
-        masterMixer.SetFloat("musicVol", Mathf.Log10(sliderValue) * 20);
+        if (inCombat)
+        {
+            masterMixer.SetFloat("combatMusicVol", Mathf.Log10(sliderValue) * 20);
+        }
+        else
+        {
+            masterMixer.SetFloat("musicVol", Mathf.Log10(sliderValue) * 20);
+            masterMixer.SetFloat("combatMusicVol", Mathf.Log10(0.0001f) * 20);
+        }
         PlayerPrefs.SetFloat("MusicVolume", sliderValue);
     }
     public void SetSFXVolume(float sliderValue)

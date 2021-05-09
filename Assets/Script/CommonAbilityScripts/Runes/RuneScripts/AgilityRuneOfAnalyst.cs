@@ -105,17 +105,11 @@ public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfAnalystArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfAnalystWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfAnalyst");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfAnalystArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfAnalystWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("AgilityRuneOfAnalyst", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -142,8 +136,7 @@ public class AgilityRuneOfAnalyst : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalystArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalystWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfAnalyst");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

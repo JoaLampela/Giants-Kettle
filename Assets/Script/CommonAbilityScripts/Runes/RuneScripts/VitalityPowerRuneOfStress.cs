@@ -107,17 +107,13 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("VitalityPowerRuneOfStressArmor");
-        _entityEvents.RemoveBuff("VitalityPowerRuneOfStressWeapon");
+        _entityEvents.RemoveBuff("VitalityPowerRuneOfStressHealth");
+        _entityEvents.RemoveBuff("VitalityPowerRuneOfStressPhysicalDamage");
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("VitalityPowerRuneOfStressArmor", EntityStats.BuffType.Health, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("VitalityPowerRuneOfStressWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("VitalityPowerRuneOfStressHealth", EntityStats.BuffType.Health, duplicateCountArmor * 5);
+            _entityEvents.NewBuff("VitalityPowerRuneOfStressPhysicalDamage", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
         }
     }
 
@@ -147,8 +143,8 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressHealth");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressPhysicalDamage");
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfStressBonus");
 
         if (gameObject.GetComponent<EntityEvents>())

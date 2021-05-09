@@ -13,6 +13,7 @@ public class VitalityPowerRuneOfBash : MonoBehaviour, IRuneScript
     private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
+    private EntityStats stats;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -106,19 +107,14 @@ public class VitalityPowerRuneOfBash : MonoBehaviour, IRuneScript
     public void SetUpPermanentEffects()
     {
         _entityEvents.RemoveBuff("VitalityPowerRuneOfBashArmor");
-        _entityEvents.RemoveBuff("VitalityPowerRuneOfBashWeapon");
+        _entityEvents.RemoveBuff("VitalityPowerRuneOfBashBonus");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityPowerRuneOfBashArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
+            _entityEvents.NewBuff("VitalityPowerRuneOfBashArmor", EntityStats.BuffType.Armor, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("VitalityPowerRuneOfBashBonus", EntityStats.BuffType.PhysicalDamage, (int)((duplicateCountArmor + duplicateCountWeapon) * stats.currentArmor * 0.2f));
         }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("VitalityPowerRuneOfBashWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
-        }
-
-        _entityEvents.NewBuff("VitalityPowerRuneOfBashBonus", EntityStats.BuffType.PhysicalDamage, (int)((duplicateCountArmor + duplicateCountWeapon) * _entity.GetComponent<EntityStats>().currentArmor * 0.1f));
+        armorComparison = stats.currentArmor;
     }
 
     //Subs & Unsub -related Unity functions
@@ -133,6 +129,11 @@ public class VitalityPowerRuneOfBash : MonoBehaviour, IRuneScript
         {
             SubscribeAbility();
         }
+
+        if(gameObject.GetComponent<EntityStats>())
+        {
+            stats = _entity.GetComponent<EntityStats>();
+        }
     }
 
     private void Awake()
@@ -145,7 +146,6 @@ public class VitalityPowerRuneOfBash : MonoBehaviour, IRuneScript
     private void OnDisable()
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfBashArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfBashWeapon");
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityPowerRuneOfBashBonus");
 
         if (gameObject.GetComponent<EntityEvents>())
@@ -156,6 +156,19 @@ public class VitalityPowerRuneOfBash : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<AbilityEvents>())
         {
             UnsubscribeAbility();
+        }
+    }
+
+    private int armorComparison;
+
+    private void Update()
+    {
+        if(gameObject.GetComponent<EntityEvents>())
+        {
+            if(armorComparison != stats.currentArmor)
+            {
+                SetUpPermanentEffects();
+            }
         }
     }
 

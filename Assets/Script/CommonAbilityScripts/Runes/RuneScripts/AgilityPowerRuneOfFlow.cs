@@ -157,7 +157,7 @@ public class AgilityPowerRuneOfFlow : MonoBehaviour, IRuneScript
 
     public void Activate(Damage damage)
     {
-        if(duplicateCountArmor + duplicateCountWeapon < 20)
+        if(duplicateCountArmor + duplicateCountWeapon < 20 && ((duplicateCountArmor + duplicateCountWeapon) != 0))
         {
             _entityEvents.NewBuff("AgilityPowerRuneOfFlowSlow", EntityStats.BuffType.Slow, (int)((1 - Mathf.Pow(0.5f, (duplicateCountArmor + duplicateCountWeapon)/3)) * 100), 1 - (duplicateCountArmor + duplicateCountWeapon) * 0.05f);
         }
