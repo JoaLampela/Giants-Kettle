@@ -697,7 +697,8 @@ MonoBehaviour:
   dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons:
   - {fileID: 11400000, guid: 323e215ba9148f44ea29baece309284b, type: 2}
-  lunaticWeapons: []
+  lunaticWeapons:
+  - {fileID: 11400000, guid: 5447cbf6a92d26240839fc9c0a78ff3d, type: 2}
   armorRunes: []
   lunaticRunes: []
   minRuneCount: 0
@@ -732,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 200
+  healthPerLevel: 100
   healthRegenPerLevel: 20
   physicalDamagePerLevel: 20
   armorPerLevel: 5
