@@ -7,6 +7,8 @@ using UnityEngine.Audio;
 
 public class GameEventManager : MonoBehaviour
 {
+    public Color lunaticColor;
+
     public static GameEventManager Instance { get; private set; }
 
     public Light2D globalLight;
@@ -78,6 +80,7 @@ public class GameEventManager : MonoBehaviour
 
         if(difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
         {
+            globalLight.color = lunaticColor;
             canvas.GetComponent<PauseMenu>().lunaticMode = true;
         }
     }
