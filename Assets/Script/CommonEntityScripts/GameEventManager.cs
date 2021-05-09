@@ -215,6 +215,7 @@ public class GameEventManager : MonoBehaviour
                 StartCoroutine(FadeMixerGroup.StartFade(masterMixer, "combatMusicVol", musicFade, musicVolume));
                 AudioSource audioSource = combatMusicPlayer.GetComponent<AudioSource>();
                 audioSource.clip = SoundManager.GetAudioClip(SoundManager.Sound.CombatMusic);
+                audioSource.outputAudioMixerGroup = masterMixer.FindMatchingGroups("CombatMusic")[0];
                 audioSource.loop = true;
                 audioSource.Play();
             }

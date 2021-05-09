@@ -109,6 +109,7 @@ public class PauseMenu : MonoBehaviour
         AudioSource audioSource = deathAudioPlayer.GetComponent<AudioSource>();
         audioSource.loop = false;
         audioSource.clip = SoundManager.GetAudioClip(SoundManager.Sound.YouDied);
+        audioSource.outputAudioMixerGroup = masterMixer.FindMatchingGroups("SFX")[0];
         audioSource.Play();
     }
     void Subscribe()

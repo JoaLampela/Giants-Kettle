@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7117400945368101476}
   - component: {fileID: 520076274111084330}
+  - component: {fileID: -7080702664297546006}
   m_Layer: 0
   m_Name: ShieldImpact
   m_TagString: Untagged
@@ -44,3 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 6
+--- !u!114 &-7080702664297546006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562002034778089585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e976335d72197346b0e9ce319822f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
