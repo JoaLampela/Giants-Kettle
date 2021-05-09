@@ -9,6 +9,7 @@ public class StartItemSelectScript : MonoBehaviour
     public ItemObject shield;
     public ItemObject twoHandedSword;
     public ItemObject staff;
+    [SerializeField] private NoobPanelScript noobPanelScript;
 
     public void SelectSwordSword()
     {
@@ -21,6 +22,8 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
+
+        noobPanelScript.ToggleStartItemTip();
     }
 
     public void SelectShieldShield()
@@ -34,6 +37,7 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
+        noobPanelScript.ToggleStartItemTip();
     }
 
     public void SelectShieldSword()
@@ -47,6 +51,7 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
+        noobPanelScript.ToggleStartItemTip();
     }
 
     public void SelectStaff()
@@ -56,6 +61,7 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
+        noobPanelScript.ToggleStartItemTip();
     }
     public void Select2HSword()
     {
@@ -64,5 +70,6 @@ public class StartItemSelectScript : MonoBehaviour
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
+        noobPanelScript.ToggleStartItemTip();
     }
 }
