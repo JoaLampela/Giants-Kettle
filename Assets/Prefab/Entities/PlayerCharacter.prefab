@@ -502,7 +502,7 @@ MonoBehaviour:
   baseSpeed: 80
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 50
+  basePhysicalDamage: 40
   baseCriticalStrikeChance: 0
   baseSpellHaste: 0
   baseArmor: 0
