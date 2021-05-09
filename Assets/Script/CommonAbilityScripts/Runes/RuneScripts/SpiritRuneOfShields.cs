@@ -10,7 +10,6 @@ public class SpiritRuneOfShields : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
-    private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
 
@@ -105,17 +104,11 @@ public class SpiritRuneOfShields : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritRuneOfShieldsArmor");
-        _entityEvents.RemoveBuff("SpiritRuneOfShieldsWeapon");
+        _entityEvents.RemoveBuff("SpiritRuneOfShields");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfShieldsArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritRuneOfShieldsWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritRuneOfShields", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -137,19 +130,11 @@ public class SpiritRuneOfShields : MonoBehaviour, IRuneScript
     {
         _entityEvents = gameObject.GetComponent<EntityEvents>();
         _abilityEvents = gameObject.GetComponent<AbilityEvents>();
-        projectiles = new List<GameObject>();
     }
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfShieldsArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfShieldsWeapon");
-
-        foreach (GameObject projectile in projectiles)
-        {
-            Destroy(projectile);
-        }
-        projectiles.Clear();
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfShields");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

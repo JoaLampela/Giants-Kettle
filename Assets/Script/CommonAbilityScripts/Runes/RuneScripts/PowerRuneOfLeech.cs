@@ -105,17 +105,11 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("PowerRuneOfLeechArmor");
-        _entityEvents.RemoveBuff("PowerRuneOfLeechWeapon");
+        _entityEvents.RemoveBuff("PowerRuneOfLeech");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfLeechArmor", EntityStats.BuffType.PhysicalDamage, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("PowerRuneOfLeechWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("PowerRuneOfLeech", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -142,8 +136,7 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfLeechArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfLeechWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfLeech");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -162,7 +155,7 @@ public class PowerRuneOfLeech : MonoBehaviour, IRuneScript
         healOrb.GetComponent<AbilityEvents>().SetSource(damage.source);
         healOrb = Instantiate(healOrb, target.transform.position, Quaternion.identity);
 
-        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)((duplicateCountWeapon + duplicateCountArmor) * (damage._damage + damage._trueDamage) * 0.03f));
+        damage.source.GetComponent<EntityEvents>().RecoverHealth((int)((duplicateCountWeapon + duplicateCountArmor) * (damage._damage + damage._trueDamage) * 0.015f));
     }
 
     //Subs and Unsubs

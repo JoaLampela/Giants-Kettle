@@ -108,8 +108,11 @@ public class SuperRuneOfFrozenGale : MonoBehaviour, IRuneScript
         _entityEvents.RemoveBuff("SuperRuneOfFrozenGaleSpellHaste");
         _entityEvents.RemoveBuff("SuperRuneOfFrozenGalePhysicalDamage");
 
-        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
-        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        {
+            _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        }
     }
 
     //Subs & Unsub -related Unity functions

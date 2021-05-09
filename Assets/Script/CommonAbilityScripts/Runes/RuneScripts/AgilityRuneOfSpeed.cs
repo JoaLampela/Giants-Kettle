@@ -104,21 +104,15 @@ public class AgilityRuneOfSpeed : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfSpeedArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfSpeedWeapon");
-        _entityEvents.RemoveBuff("AgilityRuneOfSpeedBonus");
+        _entityEvents.RemoveBuff("AgilityRuneOfSpeedAttackSpeed");
+        _entityEvents.RemoveBuff("AgilityRuneOfSpeedSpeed");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfSpeedArmor", EntityStats.BuffType.CriticalStrikeChance, duplicateCountArmor * 5);
+            _entityEvents.NewBuff("AgilityRuneOfSpeedAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
 
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfSpeedWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 10);
-        }
-
-        _entityEvents.NewBuff("AgilityRuneOfSpeedBonus", EntityStats.BuffType.SpeedMultiplier, (duplicateCountArmor + duplicateCountWeapon) * 3);
+        _entityEvents.NewBuff("AgilityRuneOfSpeedSpeed", EntityStats.BuffType.SpeedMultiplier, (duplicateCountArmor + duplicateCountWeapon) * 3);
     }
 
     //Subs & Unsub -related Unity functions
@@ -143,9 +137,8 @@ public class AgilityRuneOfSpeed : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedWeapon");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedBonus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfSpeedSpeed");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

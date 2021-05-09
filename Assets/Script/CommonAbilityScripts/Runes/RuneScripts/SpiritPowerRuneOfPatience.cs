@@ -108,17 +108,13 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceArmor");
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceWeapon");
+        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceHaste");
+        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatiencePhysicalDamage");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceArmor", EntityStats.BuffType.SpeedMultiplier, duplicateCountArmor * 5);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SpiritPowerRuneOfPatiencePhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -150,8 +146,8 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatiencePhysicalDamage");
         if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
 
         if (gameObject.GetComponent<EntityEvents>())
@@ -196,13 +192,13 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
     public void Activate()
     {
         _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
-        _entityEvents.NewBuff("SpiritPowerRuneOfPatienceBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * stackCounter * 1);
+        _entityEvents.NewBuff("SpiritPowerRuneOfPatienceBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * stackCounter);
         StartCoroutine(RedundancyDelayTimer());
     }
 
     public IEnumerator RedundancyDelayTimer()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         redundancyCheck = true;
     }
 

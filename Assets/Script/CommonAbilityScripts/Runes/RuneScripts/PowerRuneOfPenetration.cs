@@ -105,17 +105,11 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("PowerRuneOfPenetrationArmor");
-        _entityEvents.RemoveBuff("PowerRuneOfPenetrationWeapon");
+        _entityEvents.RemoveBuff("PowerRuneOfPenetration");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfPenetrationArmor", EntityStats.BuffType.PhysicalDamage, duplicateCountArmor * 5);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("PowerRuneOfPenetrationWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("PowerRuneOfPenetration", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -143,8 +137,7 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfPenetrationArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfPenetrationWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("PowerRuneOfPenetration");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

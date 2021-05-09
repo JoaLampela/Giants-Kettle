@@ -57,6 +57,9 @@ MonoBehaviour:
   spawnPoints: []
   gameEventManager: {fileID: 0}
   spawnRandomSpawnPoints: 0
+  musicFade: 3
+  musicPlayer: {fileID: 0}
+  combatMusicPlayer: {fileID: 0}
 --- !u!114 &-7571100880241937390
 MonoBehaviour:
   m_ObjectHideFlags: 0

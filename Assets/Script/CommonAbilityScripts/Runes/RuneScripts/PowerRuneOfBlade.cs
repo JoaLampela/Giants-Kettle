@@ -89,8 +89,6 @@ public class PowerRuneOfBlade : MonoBehaviour, IRuneScript
 
     public void SetEntity(GameObject entity)
     {
-        Debug.Log("Setting entity " + gameObject);
-
         _entity = entity;
         _entityEvents = entity.GetComponent<EntityEvents>();
         if (_entityEvents != null) SetUpPermanentEffects();
@@ -112,7 +110,6 @@ public class PowerRuneOfBlade : MonoBehaviour, IRuneScript
 
         if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            Debug.Log("Power");
             _entityEvents.NewBuff("PowerRuneOfBladePlus", EntityStats.BuffType.PhysicalDamageMultiplier, (int)(Mathf.Pow(2, (duplicateCountArmor + duplicateCountWeapon)/3) * 50));
             _entityEvents.NewBuff("PowerRuneOfBladeMinus", EntityStats.BuffType.HealthMultiplier, (int)((-1+Mathf.Pow(0.5f, (duplicateCountArmor + duplicateCountWeapon)/3)) * 100));
         }

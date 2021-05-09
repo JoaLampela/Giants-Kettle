@@ -105,17 +105,11 @@ public class AgilityRuneOfCrit : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfCritArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfCritWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfCrit");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("AgilityRuneOfCritArmor", EntityStats.BuffType.CriticalStrikeChance, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfCritWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("AgilityRuneOfCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -142,8 +136,7 @@ public class AgilityRuneOfCrit : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfCritArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfCritWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfCrit");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

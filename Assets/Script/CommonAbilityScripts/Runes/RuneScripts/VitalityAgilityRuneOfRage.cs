@@ -107,17 +107,13 @@ public class VitalityAgilityRuneOfRage : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageArmor");
-        _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageWeapon");
+        _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageAttackSpeed");
+        _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageRegen");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityAgilityRuneOfRageArmor", EntityStats.BuffType.AttackSpeed, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("VitalityAgilityRuneOfRageWeapon", EntityStats.BuffType.SpeedMultiplier, duplicateCountWeapon * 3);
+            _entityEvents.NewBuff("VitalityAgilityRuneOfRageAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("VitalityAgilityRuneOfRageRegen", EntityStats.BuffType.HealthRegen, (duplicateCountArmor + duplicateCountWeapon) * 15);
         }
     }
 
@@ -151,8 +147,8 @@ public class VitalityAgilityRuneOfRage : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageRegen");
         if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfRageBonus");
 
         if (gameObject.GetComponent<EntityEvents>())

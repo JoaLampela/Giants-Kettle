@@ -113,7 +113,7 @@ public class AgilityPowerRuneOfBeauty : MonoBehaviour, IRuneScript
         if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
             _entityEvents.NewBuff("AgilityPowerRuneOfBeautyPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
-            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyCrit", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("AgilityPowerRuneOfBeautyCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 

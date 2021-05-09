@@ -105,17 +105,11 @@ public class SpiritRuneOfThorns : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritRuneOfThornsArmor");
-        _entityEvents.RemoveBuff("SpiritRuneOfThornsWeapon");
+        _entityEvents.RemoveBuff("SpiritRuneOfThorns");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritRuneOfThornsArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritRuneOfThornsWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritRuneOfThorns", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -142,8 +136,7 @@ public class SpiritRuneOfThorns : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfThornsArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfThornsWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritRuneOfThorns");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

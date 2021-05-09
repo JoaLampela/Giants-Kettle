@@ -810,7 +810,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 60
   baseSpiritRegen: 0
-  baseSpeed: 6
+  baseSpeed: 60
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 3

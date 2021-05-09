@@ -77,14 +77,14 @@ public class EnemyMovementController : MonoBehaviour
         vectorNodes[vectorNodes.Count - 1].rightVector = vectorNodes[0];
         vectorNodes[0].leftVector = vectorNodes[vectorNodes.Count - 1];
 
-        entitySpeed = entityStats.currentSpeed / 10f;
+        entitySpeed = entityStats.currentSpeed / 100f;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!slowed)
-            entitySpeed = entityStats.currentSpeed / 10f;
+            entitySpeed = entityStats.currentSpeed / 100f;
         if (useScript)
         {
             if (reachedEndOfPath == false)

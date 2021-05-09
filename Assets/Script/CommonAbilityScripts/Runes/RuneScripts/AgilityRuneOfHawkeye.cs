@@ -106,15 +106,10 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeArmor");
-        _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeWeapon");
+        _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeAttackSpeed");
+        _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeCrit");
 
-        if (duplicateCountArmor != 0)
-        {
-            _entityEvents.NewBuff("AgilityRuneOfHawkeyeArmor", EntityStats.BuffType.SpeedMultiplier, duplicateCountArmor * 5);
-        }
-
-        if (duplicateCountWeapon != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
             if(containerItem.item.type == ItemType.Weapon)
             {
@@ -122,13 +117,18 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
 
                 if(weapon.weaponType == WeaponObject.WeaponType.OneHandedSword || weapon.weaponType == WeaponObject.WeaponType.TwoHandedSword || weapon.weaponType == WeaponObject.WeaponType.Shield)
                 {
-                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 10);
+                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
                 }
                 else
                 {
-                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeWeapon", EntityStats.BuffType.AttackSpeed, duplicateCountWeapon * 5);
+                    _entityEvents.NewBuff("AgilityRuneOfHawkeyeAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
                 }
             }
+            else
+            {
+                _entityEvents.NewBuff("AgilityRuneOfHawkeyeAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            }
+            _entityEvents.NewBuff("AgilityRuneOfHawkeyeCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 3);
         }
     }
 
@@ -155,8 +155,8 @@ public class AgilityRuneOfHawkeye : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("AgilityRuneOfHawkeyeCrit");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

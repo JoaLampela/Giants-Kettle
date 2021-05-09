@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Audio;
 
 public class GameEventManager : MonoBehaviour
 {
@@ -58,6 +59,12 @@ public class GameEventManager : MonoBehaviour
 
     [SerializeField] private GameStats gameStats;
 
+    private AudioMixer masterMixer;
+    private float musicVolume;
+    [SerializeField] private float musicFade = 7f;
+    [SerializeField] private GameObject combatMusicPlayer;
+    [SerializeField] private GameObject canvas;
+
     [SerializeField] private NoobPanelScript noobPanelScript;
 
     private void Start()
@@ -65,6 +72,14 @@ public class GameEventManager : MonoBehaviour
         if (GameObject.Find("GameDifficultyManager")) difficulty = GameObject.Find("GameDifficultyManager").GetComponent<GameDifficultyManagerScript>().difficulty;
         else difficulty = GameDifficultyManagerScript.Difficulty.Normal;
 
+        combatMusicPlayer = GameObject.FindGameObjectWithTag("CombatMusicPlayer");
+        masterMixer = Resources.Load("MasterMixer") as AudioMixer;
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+
+        if(difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+        {
+            canvas.GetComponent<PauseMenu>().lunaticMode = true;
+        }
     }
 
     private void Update()
@@ -191,6 +206,18 @@ public class GameEventManager : MonoBehaviour
             OnCombatStart?.Invoke();
             combatOn = true;
             combatDuration = 0;
+
+            if(difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+            {
+                canvas.GetComponent<AudioScript>().inCombat = true;
+                canvas.GetComponent<PauseMenu>().inCombat = true;
+                StartCoroutine(FadeMixerGroup.StartFade(masterMixer, "musicVol", musicFade, 0.0001f));
+                StartCoroutine(FadeMixerGroup.StartFade(masterMixer, "combatMusicVol", musicFade, musicVolume));
+                AudioSource audioSource = combatMusicPlayer.GetComponent<AudioSource>();
+                audioSource.clip = SoundManager.GetAudioClip(SoundManager.Sound.CombatMusic);
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
     }
 
@@ -201,9 +228,16 @@ public class GameEventManager : MonoBehaviour
             OnCombatEnd?.Invoke();
             combatOn = false;
             combatDuration = 0;
+
+            if (difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+            {
+                canvas.GetComponent<AudioScript>().inCombat = false;
+                canvas.GetComponent<PauseMenu>().inCombat = false;
+                StartCoroutine(FadeMixerGroup.StartFade(masterMixer, "combatMusicVol", musicFade, 0.0001f));
+                StartCoroutine(FadeMixerGroup.StartFade(masterMixer, "musicVol", musicFade, musicVolume));
+                StartCoroutine(FadeMixerGroup.StopMusic(combatMusicPlayer, musicFade));
+            }
         }
-
-
     }
 
     public void EquipmentDropped(EquipmentObject equipment)
