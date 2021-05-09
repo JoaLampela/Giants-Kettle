@@ -1159,10 +1159,7 @@ MonoBehaviour:
   lunaticWeapons:
   - {fileID: 11400000, guid: a4cfc8df83a6f7a4b88f433c7ac6a9ab, type: 2}
   - {fileID: 11400000, guid: 156f0e5331da321419575e63f168569c, type: 2}
-  armorRunes:
-  - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
-  - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
-  - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
+  armorRunes: []
   lunaticRunes:
   - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}
   - {fileID: 11400000, guid: 4f2a1ab063c43b744a9709ece3158322, type: 2}
@@ -1182,8 +1179,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53d1b4bc3aed8ac46af9bcc44082d482, type: 2}
   - {fileID: 11400000, guid: 0f61bcdb0d5a03a4a9cdf560b0d6ed52, type: 2}
   - {fileID: 11400000, guid: c9a5f3044db943049b12297f3d88caca, type: 2}
-  minRuneCount: 1
-  maxRuneCount: 3
+  minRuneCount: 0
+  maxRuneCount: 0
   minLunaticRuneCount: 1
   maxLunaticRuneCount: 3
   canDualWield: 1
