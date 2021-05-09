@@ -48,6 +48,7 @@ public static class SoundManager
         Ignite,
         Zap,
         ArcadeExplosion,
+        FrostExplosion,
         Summon,
         SummonStart,
         RoomEnter,

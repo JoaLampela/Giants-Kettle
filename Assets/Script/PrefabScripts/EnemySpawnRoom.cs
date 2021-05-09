@@ -45,6 +45,7 @@ public class EnemySpawnRoom : MonoBehaviour
     {
         yield return new WaitForSeconds(enemyActivationTime);
         enemy.SetActive(true);
+        SoundManager.PlaySound(SoundManager.Sound.Summon, transform.position);
     }
     IEnumerator MakeAggro(GameObject enemy)
     {
