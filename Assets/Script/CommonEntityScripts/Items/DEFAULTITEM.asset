@@ -17,10 +17,10 @@ MonoBehaviour:
   iconSprite: {fileID: 0}
   inGameObject: {fileID: 0}
   isTwoHander: 1
-  runeSlots: 0
+  runeSlots: 6
   baseRune: {fileID: 0}
   weaponType: 1
-  maxCooldownAbility1: 0
+  maxCooldownAbility1: 3
   currentCooldownAbility1: 0
-  maxCooldownAbility2: 0
+  maxCooldownAbility2: 3
   currentCooldownAbility2: 0

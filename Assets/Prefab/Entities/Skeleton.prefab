@@ -878,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11eda1d9a1661414887703c1b97ef8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultItem: {fileID: 0}
   equippedArmorRunes: []
   rightHandWeapon: {fileID: 0}
   leftHandWeapon: {fileID: 0}
@@ -886,12 +887,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e08b55e10729121439f55b21ad19d995, type: 2}
   - {fileID: 11400000, guid: be4528b3210a95a4990bc64edbea9d91, type: 2}
   - {fileID: 11400000, guid: 32d4a438168af834083d9a11188f81c4, type: 2}
+  lunaticWeapons: []
   armorRunes:
   - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
   - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
   - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
+  lunaticRunes: []
   minRuneCount: 1
   maxRuneCount: 3
+  minLunaticRuneCount: 0
+  maxLunaticRuneCount: 0
   canDualWield: 0
   humanoid_Animations: {fileID: 0}
 --- !u!114 &972456043691024661
@@ -931,8 +936,8 @@ MonoBehaviour:
   movementsSpeedPerFloor: 0
   easyScaler: 1
   normalScaler: 1
-  hardScaler: 2
-  lunaticScaler: 0
+  hardScaler: 1.5
+  lunaticScaler: 2
 --- !u!96 &2503689601135937888
 TrailRenderer:
   serializedVersion: 2

@@ -1225,8 +1225,8 @@ MonoBehaviour:
   movementsSpeedPerFloor: 0
   easyScaler: 1
   normalScaler: 1
-  hardScaler: 2
-  lunaticScaler: 0
+  hardScaler: 1.5
+  lunaticScaler: 2
 --- !u!96 &9009737797232915889
 TrailRenderer:
   serializedVersion: 2

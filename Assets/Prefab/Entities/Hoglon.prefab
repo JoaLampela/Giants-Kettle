@@ -510,8 +510,8 @@ MonoBehaviour:
   movementsSpeedPerFloor: 0
   easyScaler: 1
   normalScaler: 1
-  hardScaler: 2
-  lunaticScaler: 0
+  hardScaler: 1.5
+  lunaticScaler: 2
 --- !u!114 &2145335451551312345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,14 +590,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11eda1d9a1661414887703c1b97ef8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultItem: {fileID: 0}
   equippedArmorRunes: []
   rightHandWeapon: {fileID: 11400000, guid: 342ec59308d62264bac3df2f9d545065, type: 2}
   leftHandWeapon: {fileID: 11400000, guid: 342ec59308d62264bac3df2f9d545065, type: 2}
   dashItemObject: {fileID: 11400000, guid: 1b0c51642fc915144ab4989290e7a14b, type: 2}
   possibleWeapons: []
+  lunaticWeapons: []
   armorRunes: []
+  lunaticRunes: []
   minRuneCount: 0
   maxRuneCount: 0
+  minLunaticRuneCount: 0
+  maxLunaticRuneCount: 0
   canDualWield: 0
   humanoid_Animations: {fileID: 0}
 --- !u!114 &8628242431214022170
