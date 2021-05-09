@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
+public class SuperRuneOfDragonWarrior : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -10,12 +10,8 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
-    private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
-    private EntityHealth health;
-    private bool redundancyCheck;
-    GameEventManager _gameEventManager;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -108,18 +104,13 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceArmor");
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceWeapon");
+        _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorCrit");
+        _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorPhysicalDamage");
+        _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorAttackSpeed");
 
-        if (duplicateCountArmor != 0)
-        {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceArmor", EntityStats.BuffType.SpeedMultiplier, duplicateCountArmor * 5);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
-        }
+        _entityEvents.NewBuff("SpiritVitalityRuneOfTinderCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
+        _entityEvents.NewBuff("SpiritVitalityRuneOfTinderPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        _entityEvents.NewBuff("SpiritVitalityRuneOfTinderAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
     }
 
     //Subs & Unsub -related Unity functions
@@ -128,36 +119,25 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         if (gameObject.GetComponent<EntityEvents>())
         {
             SubscribeEntity();
-            health = _entity.GetComponent<EntityHealth>();
-            redundancyCheck = true;
         }
 
         if (gameObject.GetComponent<AbilityEvents>())
         {
             SubscribeAbility();
-
-            if (_entity.GetComponent<EntityHealth>().health >= _entity.GetComponent<EntityStats>().currentMaxHealth)
-            {
-                _abilityEvents.damageMultiplier *= (int)((duplicateCountArmor + duplicateCountWeapon) * 1.5f);
-            }
         }
-
-        SubscribeGameEvents();
-        inCombat = _gameEventManager.combatOn;
     }
 
     private void Awake()
     {
         _entityEvents = gameObject.GetComponent<EntityEvents>();
         _abilityEvents = gameObject.GetComponent<AbilityEvents>();
-        _gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
     }
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceWeapon");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorCrit");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorPhysicalDamage");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorAttackSpeed");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -168,86 +148,55 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         {
             UnsubscribeAbility();
         }
-
-        UnsubscribeGameEvents();
     }
 
-    int stackCounter = 0;
-    bool inCombat;
-
-    private void Update()
+    public void ActivateArmorEffect(Damage damage)
     {
-        if (inCombat)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            if (redundancyCheck)
-            {
-                stackCounter++;
-                Activate();
-                redundancyCheck = false;
-            }
-        }
-        else
-        {
-            stackCounter = 0;
-            _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
-            redundancyCheck = true;
+            damage.source.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1);
         }
     }
 
-    public void Activate()
+    public void ActivateArmorBasicEffect(GameObject target, Damage damage)
     {
-        _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
-        _entityEvents.NewBuff("SpiritPowerRuneOfPatienceBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * stackCounter * 1);
-        StartCoroutine(RedundancyDelayTimer());
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        {
+            target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1);
+        }
     }
 
-    public IEnumerator RedundancyDelayTimer()
+    public void ActivateWeaponEffect(Damage damage, GameObject target)
     {
-        yield return new WaitForSeconds(1.0f);
-        redundancyCheck = true;
-    }
-
-    public void SetActive()
-    {
-        inCombat = true;
-    }
-
-    public void SetInactive()
-    {
-        inCombat = false;
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        {
+            target.GetComponent<EntityEvents>().NewBuff("Burning", EntityStats.BuffType.Burning, 1);
+        }
     }
 
     //Subs and Unsubs
     public void SubscribeAbility()
     {
+        _abilityEvents._onDealDamage += ActivateWeaponEffect;
         _abilityEvents._onDestroy += UnsubscribeAbility;
     }
 
     public void SubscribeEntity()
     {
-
-    }
-
-    public void SubscribeGameEvents()
-    {
-        _gameEventManager.OnCombatStart += SetActive;
-        _gameEventManager.OnCombatEnd += SetInactive;
+        _entityEvents.OnHitThis += ActivateArmorEffect;
+        _entityEvents.OnBasicAttackHit += ActivateArmorBasicEffect;
     }
 
     public void UnsubscribeAbility()
     {
+        _abilityEvents._onDealDamage -= ActivateWeaponEffect;
         _abilityEvents._onDestroy -= UnsubscribeAbility;
     }
 
     public void UnsubscribeEntity()
     {
-
-    }
-
-    public void UnsubscribeGameEvents()
-    {
-        _gameEventManager.OnCombatStart -= SetActive;
-        _gameEventManager.OnCombatEnd -= SetInactive;
+        _entityEvents.OnHitThis -= ActivateArmorEffect;
+        _entityEvents.OnBasicAttackHit -= ActivateArmorBasicEffect;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
@@ -255,10 +204,12 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         containerItem = item;
         _hand = hand;
     }
+
     public int GetDuplicateCountWeaponRight()
     {
         return duplicateCountWeaponRight;
     }
+
     public int GetDuplicateCountWeaponLeft()
     {
         return duplicateCountWeaponLeft;
