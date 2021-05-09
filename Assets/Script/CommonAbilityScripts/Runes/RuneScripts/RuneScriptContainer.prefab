@@ -49,6 +49,8 @@ GameObject:
   - component: {fileID: 7972284256589290821}
   - component: {fileID: -6066629398723607270}
   - component: {fileID: 7182185291712698648}
+  - component: {fileID: 854721191409950689}
+  - component: {fileID: -3541157168271492177}
   m_Layer: 0
   m_Name: RuneScriptContainer
   m_TagString: Untagged
@@ -704,6 +706,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e717a7a992b098348a7ed79915c92a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &854721191409950689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c03e02328c6df64aacd251ebf29977a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicateCountWeapon: 0
+  duplicateCountArmor: 0
+  duplicateCountWeaponRight: 0
+  duplicateCountWeaponLeft: 0
+--- !u!114 &-3541157168271492177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014448224700399142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d931c62170b5d45888cd8d371a3223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duplicateCountWeapon: 0

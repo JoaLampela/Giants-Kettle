@@ -59,3 +59,5 @@ MonoBehaviour:
   RuneHunterFinalEffect: {fileID: 4598398911242452329, guid: 0d0d80c1fdcc4ec4388dfb53ff28e238, type: 3}
   RuneRainbow: {fileID: 1776547199172812673, guid: 406d5dc5dc1776f4689aa6925587c5bf, type: 3}
   RuneFreeze: {fileID: 4718739796153810321, guid: 3d4ebfc7e169d634a880f24f16d7820e, type: 3}
+  RuneLightning: {fileID: 4772449251737579263, guid: 60fa5973bcefdae49b5140116e583aa0, type: 3}
+  RuneStar: {fileID: 0}
