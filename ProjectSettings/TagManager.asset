@@ -21,6 +21,7 @@ TagManager:
   - Walls
   - LoadingScreen
   - UI
+  - Exit
   layers:
   - Default
   - TransparentFX

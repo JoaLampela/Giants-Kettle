@@ -113,12 +113,12 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0)
         {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceArmor", EntityStats.BuffType.SpeedMultiplier, (int)(duplicateCountArmor * 0.05f));
+            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceArmor", EntityStats.BuffType.SpeedMultiplier, duplicateCountArmor * 5);
         }
 
         if (duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceWeapon", EntityStats.BuffType.CriticalStrikeChance, duplicateCountWeapon * 5);
+            _entityEvents.NewBuff("SpiritPowerRuneOfPatienceWeapon", EntityStats.BuffType.PhysicalDamage, duplicateCountWeapon * 10);
         }
     }
 
@@ -143,6 +143,7 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
         }
 
         SubscribeGameEvents();
+        inCombat = _gameEventManager.combatOn;
     }
 
     private void Awake()
@@ -172,10 +173,11 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
     }
 
     int stackCounter = 0;
+    bool inCombat;
 
     private void Update()
     {
-        if (_gameEventManager.combatOn)
+        if (inCombat)
         {
             if (redundancyCheck)
             {
@@ -195,7 +197,7 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
     public void Activate()
     {
         _entityEvents.RemoveBuff("SpiritPowerRuneOfPatienceBonus");
-        _entityEvents.NewBuff("SpiritPowerRuneOfPatienceBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * stackCounter * 5);
+        _entityEvents.NewBuff("SpiritPowerRuneOfPatienceBonus", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * stackCounter * 1);
         StartCoroutine(RedundancyDelayTimer());
     }
 
@@ -203,6 +205,16 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
     {
         yield return new WaitForSeconds(1.0f);
         redundancyCheck = true;
+    }
+
+    public void SetActive()
+    {
+        inCombat = true;
+    }
+
+    public void SetInactive()
+    {
+        inCombat = false;
     }
 
     //Subs and Unsubs
@@ -218,7 +230,8 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
     public void SubscribeGameEvents()
     {
-
+        _gameEventManager.OnCombatStart += SetActive;
+        _gameEventManager.OnCombatEnd += SetInactive;
     }
 
     public void UnsubscribeAbility()
@@ -233,7 +246,8 @@ public class SpiritPowerRuneOfPatience : MonoBehaviour, IRuneScript
 
     public void UnsubscribeGameEvents()
     {
-
+        _gameEventManager.OnCombatStart -= SetActive;
+        _gameEventManager.OnCombatEnd -= SetInactive;
     }
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
