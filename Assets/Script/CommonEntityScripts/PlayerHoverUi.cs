@@ -49,6 +49,7 @@ public class PlayerHoverUi : MonoBehaviour, IPointerExitHandler
                 inspector.SetPreviewImage(hoveredSlot._item.item.iconSprite);
                 inspector.EnableInspector();
                 inspector.InspectorSetRuneSlots(hoveredSlot._item);
+                Debug.Log("Hovered item" + hoveredSlot._item);
                 inspector.InspectorSetRuneEffects(hoveredSlot._item);
             }
             else inspector.DisapleInspector();

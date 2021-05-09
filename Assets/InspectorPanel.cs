@@ -163,7 +163,7 @@ public class InspectorPanel : MonoBehaviour
 
     public void InspectorSetRuneEffects(Item item)
     {
-        if(item.runeEffects.Length != 0)
+        if(item.runeEffects != null && item.runeEffects.Length != 0)
         {
             if(item.runeEffects.Length == 1)
             {
