@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameOverMenuHandler gameOverMenuHandler;
+    [SerializeField] private GameObject audioPlayer;
 
 
     private void Awake()
@@ -24,7 +25,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         GamePaused = false;
-
+        
         Subscribe();
 
 
@@ -96,6 +97,11 @@ public class PauseMenu : MonoBehaviour
         gameEventManager.StopTime();
         GameObject.FindGameObjectWithTag("PlayerUI").SetActive(false);
         gameOverScreen.SetActive(true);
+
+        AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
+        audioSource.loop = false;
+        audioSource.clip = SoundManager.GetAudioClip(SoundManager.Sound.YouDied);
+        audioSource.Play();
     }
     void Subscribe()
     {

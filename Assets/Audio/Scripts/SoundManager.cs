@@ -53,6 +53,7 @@ public static class SoundManager
         SummonStart,
         RoomEnter,
         RoomClear,
+        YouDied,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -161,7 +162,7 @@ public static class SoundManager
         }
     }
 
-    private static AudioClip GetAudioClip(Sound sound)
+    public static AudioClip GetAudioClip(Sound sound)
     {
         foreach(GameAssets.SoundAudioClip soundAudioClip in GameAssets.i.SoundAudioClipArray)
         {
