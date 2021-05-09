@@ -5,9 +5,12 @@ using UnityEngine;
 public class AbilityOnHitApplyEffect : MonoBehaviour
 {
     [SerializeField] private GameObject effect;
+    AbilityEvents abilityEvents;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Instantiate(effect, collision.transform.position, collision.transform.rotation);
+        abilityEvents = GetComponent<AbilityEvents>();
+        if(collision.gameObject != abilityEvents._abilityCastSource)
+            Instantiate(effect, collision.transform.position, collision.transform.rotation);
     }
 }
