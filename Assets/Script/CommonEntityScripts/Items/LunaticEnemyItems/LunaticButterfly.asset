@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
-  m_Name: New TwoHandedSword Object
+  m_Name: LunaticButterfly
   m_EditorClassIdentifier: 
   type: 1
   description: 
   iconSprite: {fileID: 0}
-  inGameObject: {fileID: 0}
+  inGameObject: {fileID: 84307434721843549, guid: 9a6f01dea1c5e2341b533c985c0e32ac, type: 3}
   isTwoHander: 1
-  runeSlots: 0
-  baseRune: {fileID: 0}
+  runeSlots: 1
+  baseRune: {fileID: 11400000, guid: 6ba83248884c5a7448863e7da4ec2cfd, type: 2}
   weaponType: 1
   maxCooldownAbility1: 0
-  currentCooldownAbility1: 0
+  currentCooldownAbility1: 4
   maxCooldownAbility2: 0
-  currentCooldownAbility2: 0
+  currentCooldownAbility2: 3

@@ -89,7 +89,6 @@ public class VitalityRuneOfHealth : MonoBehaviour, IRuneScript
 
     public void SetEntity(GameObject entity)
     {
-        Debug.Log("Setting entity " + gameObject);
         _entity = entity;
         _entityEvents = entity.GetComponent<EntityEvents>();
         if (_entityEvents != null) SetUpPermanentEffects();
@@ -108,7 +107,7 @@ public class VitalityRuneOfHealth : MonoBehaviour, IRuneScript
     {
         _entityEvents.RemoveBuff("VitalityRuneOfHealth");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
             _entityEvents.NewBuff("VitalityRuneOfHealth", EntityStats.BuffType.Health, (duplicateCountArmor + duplicateCountWeapon) * 25);
         }

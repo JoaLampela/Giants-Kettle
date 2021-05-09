@@ -45797,6 +45797,10 @@ MonoBehaviour:
   shield: {fileID: 11400000, guid: 949cecd3a048a5c43a64269201f01ae1, type: 2}
   twoHandedSword: {fileID: 11400000, guid: 5a8a2f663a0f9b542a1263f236f9346f, type: 2}
   staff: {fileID: 11400000, guid: afa0b9f6e27e5f342a81612a54cad446, type: 2}
+  swordL: {fileID: 11400000, guid: c95bd8d58965c994d9aeaaeb8e89a9ee, type: 2}
+  shieldL: {fileID: 11400000, guid: cd3211d776369ec4ca18908bac69800a, type: 2}
+  twoHandedSwordL: {fileID: 11400000, guid: adba07e6d6bd21f4d89402ba00f7ce7a, type: 2}
+  staffL: {fileID: 11400000, guid: 12deb22cb61d8de46b903c2378b875b1, type: 2}
   noobPanelScript: {fileID: 3669116740603448622}
 --- !u!1 &5330811525201719281
 GameObject:

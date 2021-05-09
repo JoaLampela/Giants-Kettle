@@ -9,16 +9,25 @@ public class StartItemSelectScript : MonoBehaviour
     public ItemObject shield;
     public ItemObject twoHandedSword;
     public ItemObject staff;
+
+
+    public ItemObject swordL;
+    public ItemObject shieldL;
+    public ItemObject twoHandedSwordL;
+    public ItemObject staffL;
+
     [SerializeField] private NoobPanelScript noobPanelScript;
 
     public void SelectSwordSword()
     {
         ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position , Quaternion.identity);
         groundItem.SetItem(new Item(sword));
+        if(GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
         groundItem.pickedUp = true;
 
         groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(sword));
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
@@ -30,10 +39,12 @@ public class StartItemSelectScript : MonoBehaviour
     {
         ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(shield));
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
         groundItem.pickedUp = true;
 
         groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(shield));
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(shieldL));
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
@@ -44,10 +55,12 @@ public class StartItemSelectScript : MonoBehaviour
     {
         ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(shield));
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(shieldL));
         groundItem.pickedUp = true;
 
         groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(sword));
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
@@ -58,6 +71,7 @@ public class StartItemSelectScript : MonoBehaviour
     {
         ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(staff));
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(staffL));
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
@@ -67,6 +81,7 @@ public class StartItemSelectScript : MonoBehaviour
     {
         ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         groundItem.SetItem(new Item(twoHandedSword));
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(twoHandedSwordL));
         groundItem.pickedUp = true;
 
         gameObject.SetActive(false);
