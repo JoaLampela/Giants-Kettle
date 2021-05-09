@@ -251,7 +251,7 @@ MonoBehaviour:
   entityName: Flyer
   level: 0
   team: 1
-  baseHealth: 40
+  baseHealth: 47
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   basePhysicalDamage: 13
   baseCriticalStrikeChance: 1
   baseSpellHaste: 0
-  baseArmor: 0
+  baseArmor: 2
   baseAttackSpeed: 1
   currentShield: 0
   currentMaxHealth: 0
