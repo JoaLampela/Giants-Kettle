@@ -120,6 +120,7 @@ public class MeshGenerator : MonoBehaviour
 
         caveTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
+        groundTilemap.ClearAllTiles();
         wallBorderTilemap.ClearAllTiles();
         DestroyChildren(instanceTargetTrans);
 
