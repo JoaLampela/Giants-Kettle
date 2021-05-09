@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Prefab/FrostExplosion!.prefab.meta
-guid: 955a79df963e9b64e8cbab4077d78cdc
-=======
-guid: 094bcc96b8095c3498db7fd07d12e729
->>>>>>> 769dd81b5f45ea56c3aa577a83423da37ec551e2:Assets/Script/CommonEntityScripts/InGameObjects/YellowTwoHandedSword.prefab.meta
+guid: 3d4ebfc7e169d634a880f24f16d7820e
 PrefabImporter:
   externalObjects: {}
   userData: 

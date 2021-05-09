@@ -82,6 +82,7 @@ public class AbilityEvents : MonoBehaviour
 
     public void DealDamage(GameObject target, int baseDamage, int trueDamage = 0)
     {
+        Debug.Log("target " + target + " casterr " + _abilityCastSource);
         if(target.GetComponent<EntityStats>())
         {
             if(_abilityCastSource != null)

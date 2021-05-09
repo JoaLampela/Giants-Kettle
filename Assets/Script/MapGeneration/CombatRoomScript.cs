@@ -30,7 +30,7 @@ public class CombatRoomScript : MonoBehaviour
     {
         if (!inCombat)
         {
-            gameEventManager.CombatStart();
+            
             if (roomEnemies.Count != 0)
             {
                 foreach (GameObject enemy in roomEnemies)
@@ -46,6 +46,7 @@ public class CombatRoomScript : MonoBehaviour
                 inCombat = true;
                 activated = true;
                 Debug.Log("Starting combat");
+                gameEventManager.CombatStart();
                 GetComponent<DoorScript>().CloseDoors();
                 for (int i = 0; i < waveEnemyAmount + (int)(additionalEnemiesInWavePerMins * gameEventManager.globalLevel); i++)
                 {

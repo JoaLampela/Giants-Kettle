@@ -58,4 +58,4 @@ MonoBehaviour:
   RuneRegenEffect: {fileID: 2599149259822572493, guid: 58c999dde693bef4c8d747398dd7fa5c, type: 3}
   RuneHunterFinalEffect: {fileID: 4598398911242452329, guid: 0d0d80c1fdcc4ec4388dfb53ff28e238, type: 3}
   RuneRainbow: {fileID: 1776547199172812673, guid: 406d5dc5dc1776f4689aa6925587c5bf, type: 3}
-  RuneFreeze: {fileID: 1486150823876944340, guid: 9f0a3b982265ed44296002b633b4a878, type: 3}
+  RuneFreeze: {fileID: 4718739796153810321, guid: 3d4ebfc7e169d634a880f24f16d7820e, type: 3}

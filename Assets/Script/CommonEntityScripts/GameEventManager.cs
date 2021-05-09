@@ -177,6 +177,7 @@ public class GameEventManager : MonoBehaviour
         {
             OnCombatEnd?.Invoke();
             combatOn = false;
+            combatDuration = 0;
         }
 
 
