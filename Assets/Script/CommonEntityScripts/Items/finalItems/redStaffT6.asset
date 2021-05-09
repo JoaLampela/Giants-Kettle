@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   description: The color red makes it go faster
-  iconSprite: {fileID: 21300000, guid: de55679b8d9e96245b3cb44ef1d16656, type: 3}
+  iconSprite: {fileID: 21300000, guid: 98b83c5c7666ff541b441399283c04db, type: 3}
   inGameObject: {fileID: 3893399705478499758, guid: 886d41229239659479d1de6fef133d15, type: 3}
   isTwoHander: 1
   runeSlots: 6
