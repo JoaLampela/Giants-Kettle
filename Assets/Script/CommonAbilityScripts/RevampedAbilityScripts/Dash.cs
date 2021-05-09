@@ -40,7 +40,13 @@ public class Dash : MonoBehaviour, IAbility
     {
         Debug.Log("Dash courutine");
         yield return new WaitForSeconds(DashTime);
-        rb.AddForce(rb.velocity.normalized * 10000f);
+        if (rb.velocity.magnitude != 0)
+            rb.AddForce(rb.velocity.normalized * 10000f);
+        else
+        {
+            Vector2 mouseDirection = Input.mousePosition;
+            rb.AddForce((Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized * 20000f);
+        }
 
     }
 
