@@ -80,8 +80,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3938578041699925576, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
-      propertyPath: baseSpeed
-      value: 50
+      propertyPath: basePhysicalDamage
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2999592407995462465, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
       propertyPath: m_Sprite
