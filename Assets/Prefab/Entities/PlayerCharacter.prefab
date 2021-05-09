@@ -497,13 +497,13 @@ MonoBehaviour:
   team: 2
   baseHealth: 100
   baseSpirit: 0
-  baseHealthRegen: 0
+  baseHealthRegen: 30
   baseSpiritRegen: 0
-  baseSpeed: 0
+  baseSpeed: 80
   baseSlow: 0
   baseTenacity: 0
-  basePhysicalDamage: 5
-  baseCriticalStrikeChance: 1
+  basePhysicalDamage: 50
+  baseCriticalStrikeChance: 0
   baseSpellHaste: 0
   baseArmor: 0
   baseAttackSpeed: 0
@@ -874,10 +874,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 20
-  healthRegenPerLevel: 5
-  physicalDamagePerLevel: 5
-  armorPerLevel: 1
+  healthPerLevel: 10
+  healthRegenPerLevel: 3
+  physicalDamagePerLevel: 3
+  armorPerLevel: 0
   healthPerFloor: 0
   healthRegenPerFloor: 0
   physicalDamagePerFloor: 0
