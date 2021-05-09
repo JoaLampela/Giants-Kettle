@@ -67,7 +67,7 @@ public class EntityHealth : MonoBehaviour
                 StartCoroutine(Arcade());
                 if (arcade == null)
                 {
-                    arcade = Instantiate(GameAssets.i.flameEffect, transform.position, transform.rotation);
+                    arcade = Instantiate(GameAssets.i.arcadeEffect, transform.position, transform.rotation);
                     arcade.transform.parent = transform;
                 }
                 else

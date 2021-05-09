@@ -50,6 +50,7 @@ public static class SoundManager
         ArcadeExplosion,
         Summon,
         SummonStart,
+        RoomEnter,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -120,7 +121,7 @@ public static class SoundManager
             {
                 oneShotGameObject = new GameObject("One Shot Sound");
                 oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
-                oneShotAudioSource.outputAudioMixerGroup = masterGroup;
+                oneShotAudioSource.outputAudioMixerGroup = sfxGroup;
             }
             oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
         }

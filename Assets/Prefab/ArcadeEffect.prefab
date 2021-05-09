@@ -4964,7 +4964,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.2
+    scalar: 0.4
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -9868,7 +9868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decreaseIntensity: 1
   thislight: {fileID: 8660828603382227207}
-  colorEnd: {r: 0.9384004, g: 1, b: 0, a: 0}
+  colorEnd: {r: 1, g: 0.9292453, b: 0.99844605, a: 0}
   pulsingColor: 1
   falloutDelay: 0
   falloutPerSecond: 0.93
