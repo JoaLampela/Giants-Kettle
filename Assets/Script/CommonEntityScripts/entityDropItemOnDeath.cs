@@ -5,6 +5,9 @@ using UnityEngine;
 public class entityDropItemOnDeath : MonoBehaviour
 {
     public ItemOnGround itemOnGround;
+    public bool dropLegendaryItem = false;
+    public bool dropEasterEggItem = false;
+    public ItemObject easterEggItem;
     [SerializeField] private int dropChance;
     private EntityEvents events;
     private GameEventManager gameEventManager;
@@ -37,14 +40,38 @@ public class entityDropItemOnDeath : MonoBehaviour
     {
         if (Random.Range(0, 100) <= dropChance)
         {
-            ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
-            ItemTierListScript tierList = GameObject.Find("Game Manager").GetComponent<ItemTierListScript>();
-            Item item = new Item(tierList.GiveRandomItem(gameEventManager.globalLevel + 1));
-            Debug.Log(item);
-            groundItem.SetItem(item);
+            if (dropEasterEggItem)
+            {
+                ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
+                Debug.Log(easterEggItem);
+                Item easterEgg = new Item(easterEggItem);
+                groundItem.SetItem(easterEgg);
 
-            EquipmentObject equipment = (EquipmentObject)item.item;
-            GameObject.Find("Game Manager").GetComponent<GameEventManager>().EquipmentDropped(equipment);
+                EquipmentObject equipment = (EquipmentObject)easterEgg.item;
+                GameObject.Find("Game Manager").GetComponent<GameEventManager>().EquipmentDropped(equipment);
+            }
+            else if (dropLegendaryItem)
+            {
+                ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
+                ItemTierListScript tierList = GameObject.Find("Game Manager").GetComponent<ItemTierListScript>();
+                Item item = new Item(tierList.GiveRandomLegendaryItem());
+                Debug.Log(item);
+                groundItem.SetItem(item);
+
+                EquipmentObject equipment = (EquipmentObject)item.item;
+                GameObject.Find("Game Manager").GetComponent<GameEventManager>().EquipmentDropped(equipment);
+            }
+            else
+            {
+                ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
+                ItemTierListScript tierList = GameObject.Find("Game Manager").GetComponent<ItemTierListScript>();
+                Item item = new Item(tierList.GiveRandomItem(gameEventManager.globalLevel + 1));
+                Debug.Log(item);
+                groundItem.SetItem(item);
+
+                EquipmentObject equipment = (EquipmentObject)item.item;
+                GameObject.Find("Game Manager").GetComponent<GameEventManager>().EquipmentDropped(equipment);
+            }
         }
     }
 }

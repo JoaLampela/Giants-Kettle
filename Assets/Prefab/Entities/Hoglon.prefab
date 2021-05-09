@@ -525,6 +525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
+  dropLegendaryItem: 1
+  dropEasterEggItem: 0
+  easterEggItem: {fileID: 0}
   dropChance: 100
 --- !u!114 &-2124982420516278193
 MonoBehaviour:

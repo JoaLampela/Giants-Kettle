@@ -698,13 +698,10 @@ MonoBehaviour:
   possibleWeapons:
   - {fileID: 11400000, guid: 323e215ba9148f44ea29baece309284b, type: 2}
   lunaticWeapons: []
-  armorRunes:
-  - {fileID: 11400000, guid: 69c09ffe3ef72bb40a8a70eeffec67b1, type: 2}
-  - {fileID: 11400000, guid: 18ab256a78389e84ebe18b7fe3b8b9cb, type: 2}
-  - {fileID: 11400000, guid: f893ad6035802344e89feb8e451d12fe, type: 2}
+  armorRunes: []
   lunaticRunes: []
-  minRuneCount: 1
-  maxRuneCount: 3
+  minRuneCount: 0
+  maxRuneCount: 0
   minLunaticRuneCount: 0
   maxLunaticRuneCount: 0
   canDualWield: 1
@@ -868,6 +865,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
+  dropLegendaryItem: 0
+  dropEasterEggItem: 0
+  easterEggItem: {fileID: 0}
   dropChance: 100
 --- !u!114 &890335395465772257
 MonoBehaviour:

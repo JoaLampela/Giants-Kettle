@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8271034211688280110, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
+      propertyPath: dropChance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271034211688280110, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
+      propertyPath: easterEggItem
+      value: 
+      objectReference: {fileID: 11400000, guid: a4cfc8df83a6f7a4b88f433c7ac6a9ab, type: 2}
+    - target: {fileID: 8271034211688280110, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
+      propertyPath: dropEasterEggItem
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8925861802706303326, guid: b5a63e7ceaa181648843e51aa0909f09, type: 3}
       propertyPath: m_IsActive
       value: 0

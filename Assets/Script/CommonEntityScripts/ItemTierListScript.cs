@@ -14,6 +14,7 @@ public class ItemTierListScript : MonoBehaviour
     public ItemObject[] tier5Items; //items with 5 runeSlots
     public ItemObject[] tier6Items; //items with 6 runeSlots
     public ItemObject[] tier100Items; //mythic items
+    public ItemObject[] easterEggItems; //mythic items
 
     public ItemObject GiveRandomItem(int tempTier)
     {
@@ -34,4 +35,10 @@ public class ItemTierListScript : MonoBehaviour
         else if (tier > 0) return tier1Items[Random.Range(0, tier1Items.Length)];
         else return tier1Items[Random.Range(0, tier1Items.Length)];
     }
+
+    public ItemObject GiveRandomLegendaryItem()
+    {
+        return tier100Items[Random.Range(0, tier100Items.Length)];
+    }
+
 }
