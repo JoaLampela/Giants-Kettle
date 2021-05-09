@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: frostStaffLegendary
   m_EditorClassIdentifier: 
   type: 1
-  description: 
+  description: ICE TO MEET YOU.
   iconSprite: {fileID: 21300000, guid: 3930107c426ef6d4499b352d8d0049d6, type: 3}
   inGameObject: {fileID: 8328262822029063764, guid: b5ab61c1c81886446a58c0eeb75a9bb0, type: 3}
   isTwoHander: 1
   runeSlots: 6
-  baseRune: {fileID: 0}
+  baseRune: {fileID: 11400000, guid: bd2f31e8ab8caa84c9624bec5593d481, type: 2}
   weaponType: 4
   maxCooldownAbility1: 4
   currentCooldownAbility1: 0

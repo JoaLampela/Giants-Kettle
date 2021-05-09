@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuperRuneOfSupremeArcadePower : MonoBehaviour, IRuneScript
+public class SuperRuneOfFrozenGale : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -105,13 +105,11 @@ public class SuperRuneOfSupremeArcadePower : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerSpellHaste");
-        _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage");
-        _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerAttackSpeed");
+        _entityEvents.RemoveBuff("SuperRuneOfFrozenGaleSpellHaste");
+        _entityEvents.RemoveBuff("SuperRuneOfFrozenGalePhysicalDamage");
 
         _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
         _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
-        _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
     }
 
     //Subs & Unsub -related Unity functions
@@ -136,9 +134,8 @@ public class SuperRuneOfSupremeArcadePower : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerSpellHaste");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfSupremeArcadePowerAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfFrozenGaleSpellHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfFrozenGalePhysicalDamage");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -153,15 +150,32 @@ public class SuperRuneOfSupremeArcadePower : MonoBehaviour, IRuneScript
 
     public void ActivateAbility(Damage damage, GameObject target)
     {
-        GameObject rainbow = RuneAssets.i.RuneRainbow;
-        rainbow = Instantiate(rainbow, target.transform.position, Quaternion.identity);
+        GameObject freeze = RuneAssets.i.RuneFreeze;
+        freeze.GetComponent<AbilityEvents>().SetSource(gameObject);
 
-        target.GetComponent<EntityEvents>().NewBuff("Arcade", EntityStats.BuffType.ArcadeBurn, 1, 5);
+        freeze = Instantiate(freeze, target.transform.position, Quaternion.identity);
+        StartCoroutine(SetExplosionStatsAbility(freeze));
     }
 
     public void ActivateBasic(GameObject target, Damage damage)
     {
-        target.GetComponent<EntityEvents>().NewBuff("Arcade", EntityStats.BuffType.ArcadeBurn, 1, 3);
+        GameObject freeze = RuneAssets.i.RuneFreeze;
+        freeze.GetComponent<AbilityEvents>().SetSource(gameObject);
+
+        freeze = Instantiate(freeze, target.transform.position, Quaternion.identity);
+        StartCoroutine(SetExplosionStatsBasic(freeze));
+    }
+
+    private IEnumerator SetExplosionStatsAbility(GameObject projectile)
+    {
+        yield return new WaitForEndOfFrame();
+        projectile.GetComponent<AbilityEvents>().damageParentMultiplier = 100;
+    }
+
+    private IEnumerator SetExplosionStatsBasic(GameObject projectile)
+    {
+        yield return new WaitForEndOfFrame();
+        projectile.GetComponent<AbilityEvents>().damageParentMultiplier = 50;
     }
 
     //Subs and Unsubs
