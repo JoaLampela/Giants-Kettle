@@ -12,6 +12,8 @@ public class GameEventManager : MonoBehaviour
 
     public int floorsPassed = 0;
 
+    public GameDifficultyManagerScript.Difficulty difficulty;
+
     public int globalLevel = 0;
     public GameObject player;
     public float time;
@@ -55,6 +57,11 @@ public class GameEventManager : MonoBehaviour
     private bool runesRandomized = false;
 
     [SerializeField] private GameStats gameStats;
+
+    private void Start()
+    {
+        difficulty = GameObject.Find("GameDifficultyManager").GetComponent<GameDifficultyManagerScript>().difficulty;
+    }
 
     private void Update()
     {

@@ -107,6 +107,13 @@ public class PauseMenu : MonoBehaviour
         events.OnDie -= GameOver;
     }
 
+    public void PlayLevel2()
+    {
+        GameObject.Find("Game Manager").GetComponent<GameEventManager>().ContinueTime();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
     private void OnDisable()
     {
         Unsubscribe();

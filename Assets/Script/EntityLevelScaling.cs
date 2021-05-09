@@ -16,6 +16,11 @@ public class EntityLevelScaling : MonoBehaviour
     [SerializeField] private int armorPerFloor;
     [SerializeField] private int movementsSpeedPerFloor;
 
+    [SerializeField] private float easyScaleHealth;
+
+
+
+
     private int currentLevel;
     GameEventManager gameEventManager;
 
@@ -40,6 +45,23 @@ public class EntityLevelScaling : MonoBehaviour
         stats.UpdateArmor();
         stats.UpdatePhysicalDamage();
         stats.UpdateSpeed();
+
+
+        switch(gameEventManager.difficulty)
+        {
+            case GameDifficultyManagerScript.Difficulty.Easy:
+
+                break;
+
+            case GameDifficultyManagerScript.Difficulty.Normal:
+                break;
+
+            case GameDifficultyManagerScript.Difficulty.Hard:
+                break;
+
+            case GameDifficultyManagerScript.Difficulty.Lunatic:
+                break;
+        }
     }
 
     private void Update()
