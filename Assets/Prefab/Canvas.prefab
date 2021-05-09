@@ -8872,7 +8872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 228, y: 88}
+  m_AnchoredPosition: {x: 228, y: 100}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7596806013597853046
@@ -11705,7 +11705,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7627085621703234218
 CanvasRenderer:
@@ -11737,8 +11737,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You can open the player inventory using (TAB)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
-  m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
+  m_sharedMaterial: {fileID: -351183037919578058, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11769,7 +11769,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -11778,7 +11778,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -43988,8 +43988,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -206, y: 73}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -275, y: 100}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5548011906341326514
 CanvasRenderer:
@@ -71776,8 +71776,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select your starting gear
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
-  m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
+  m_sharedMaterial: {fileID: -351183037919578058, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -71807,7 +71807,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -83901,8 +83901,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
-  m_sharedMaterial: {fileID: 5752815369489374403, guid: 7e73decad818d1541b8c2b9abc6b81f2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
+  m_sharedMaterial: {fileID: -351183037919578058, guid: b6f20a77dd729ae4998ec21ac2581b5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
