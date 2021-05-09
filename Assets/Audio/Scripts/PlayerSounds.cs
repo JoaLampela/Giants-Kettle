@@ -5,7 +5,13 @@ using UnityEngine;
 public class PlayerSounds : MonoBehaviour
 {
     int prevRoll = 3;
+    private EntityEvents events;
 
+    private void Start()
+    {
+        events = gameObject.GetComponent<EntityEvents>();
+        Subscribe();
+    }
     public void StepEvent()
     {
         int step;
@@ -53,6 +59,15 @@ public class PlayerSounds : MonoBehaviour
             case 3:
                 SoundManager.PlaySound(SoundManager.Sound.Footstep4, transform.position);
                 break;
-        }
+        } 
+    }
+    private void Hitmarker(Damage pasta)
+    {
+        SoundManager.PlaySound(SoundManager.Sound.NormalHit, transform.position);
+    }
+
+    private void Subscribe()
+    {
+        events.OnHitThis += Hitmarker;
     }
 }
