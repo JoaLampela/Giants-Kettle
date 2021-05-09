@@ -810,7 +810,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 60
   baseSpiritRegen: 0
-  baseSpeed: 60
+  baseSpeed: 110
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 3
@@ -1056,7 +1056,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnGround: {fileID: 8353424727236240834, guid: 30e51376a753af24a9a4e32d31b1467e, type: 3}
   dropLegendaryItem: 0
-  dropEasterEggItem: 0
   easterEggItem: {fileID: 0}
   dropChance: 100
 --- !u!114 &246012140412064830

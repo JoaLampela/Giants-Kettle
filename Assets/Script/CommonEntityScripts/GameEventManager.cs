@@ -82,6 +82,19 @@ public class GameEventManager : MonoBehaviour
         {
             globalLight.color = lunaticColor;
             canvas.GetComponent<PauseMenu>().lunaticMode = true;
+            playerLevelUpPoints = 3;
+        }
+        if (difficulty == GameDifficultyManagerScript.Difficulty.Hard)
+        {
+            playerLevelUpPoints = 0;
+        }
+        if (difficulty == GameDifficultyManagerScript.Difficulty.Normal)
+        {
+            playerLevelUpPoints = 0;
+        }
+        if (difficulty == GameDifficultyManagerScript.Difficulty.Easy)
+        {
+            playerLevelUpPoints = 2;
         }
     }
 
