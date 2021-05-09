@@ -12,6 +12,8 @@ public class SelectRuneButton : MonoBehaviour
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private RuneTierListObjects runeList;
     private GameEventManager gameEventManager;
+    [SerializeField] private NoobPanelScript noobPanelScript;
+
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class SelectRuneButton : MonoBehaviour
         _rune = null;
         gameEventManager.ReducePlayerLevelUpPoints();
         runeList.RandomizeNewRunes();
+
+        
     }
 
     public void SetNewRune(RuneObject rune)
