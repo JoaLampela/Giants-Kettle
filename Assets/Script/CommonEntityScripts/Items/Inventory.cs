@@ -134,134 +134,404 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            foreach (UiButtonClick inventorySlot in equipmentSlots)
+            if((int)usedItem.item.type == (int)ItemType.Rune)
             {
-                if ((int)inventorySlot._type == (int)usedItem.item.type)
+                bool slotFound = false;
+
+                if(armorHead._item != null && armorHead._item._runeList.Length > 0 && !slotFound)
                 {
-                    if (usedItem.item.isTwoHander)
+                    for (int i = 0; i < armorHead._item._runeList.Length; i++)
                     {
-                        if (rightHand._item != null)
+                        if (armorHead._item._runeList[i] == null)
                         {
-                            if (rightHand._item.item.isTwoHander)
+                            slotFound = true;
+                            if (i == 0)
                             {
-                                leftHand.RemoveItemFromslot();
+                                UiButtonClick slot = armorHeadR1.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorHeadR1);
                             }
-                            Unequip(rightHand._item, rightHand);
-                            NewItem(rightHand._item);
-                            rightHand.RemoveItemFromslot();
-                        }
-                        if (leftHand._item != null)
-                        {
-                            if (leftHand._item.item.isTwoHander)
+                            else if (i == 1)
                             {
-                                rightHand._item = null;
-                                rightHand.icon.sprite = null;
+                                UiButtonClick slot = armorHeadR2.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorHeadR2);
                             }
-                            Unequip(leftHand._item, leftHand);
-                            NewItem(leftHand._item);
-                            leftHand.RemoveItemFromslot();
+                            else if (i == 2)
+                            {
+                                UiButtonClick slot = armorHeadR3.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorHeadR3);
+                            }
+                            else if (i == 3)
+                            {
+                                UiButtonClick slot = armorHeadR4.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorHeadR4);
+                            }
+                            else if (i == 4)
+                            {
+                                UiButtonClick slot = armorHeadR5.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorHeadR5);
+                            }
+                            else if (i == 5)
+                            {
+                                UiButtonClick slot = armorHeadR6.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorHeadR6);
+                            }
                         }
-                        
-                        rightHand._item = usedItem;
-                        leftHand._item = usedItem;
-                        rightHand.icon.sprite = usedItem.item.iconSprite;
-                        leftHand.icon.sprite = usedItem.item.iconSprite;
-                        Equip(usedItem, inventorySlot);
                     }
-                    else if (inventorySlot._item != null)
+                }
+                if (armorChest._item != null && armorChest._item._runeList.Length > 0 && !slotFound)
+                {
+                    for (int i = 0; i < armorChest._item._runeList.Length; i++)
                     {
-                        if (inventorySlot._item.item.isTwoHander)
+                        if (armorChest._item._runeList[i] == null)
                         {
-                            Item temp = leftHand._item;
-                            leftHand.RemoveItemFromslot();
-                            Unequip(temp, inventorySlot);
-
-
-                            rightHand._item = usedItem;
-                            rightHand.icon.sprite = usedItem.item.iconSprite;
-                            Equip(usedItem, inventorySlot);
-                            Debug.Log(usedItem + " to slot " + inventorySlot);
-                            
-
-                            
-                            NewItem(temp);
-                        }
-
-
-                        else if (inventorySlot == rightHand)
-                        {
-                            Item temp = rightHand._item;
-                            Unequip(temp, rightHand);
-                            rightHand.SetNewItemToslot(usedItem);
-                            Equip(usedItem, rightHand);
-                            
-                            usedItem = temp;
-                            if (leftHand._item != null)
+                            slotFound = true;
+                            if (i == 0)
                             {
-                                temp = leftHand._item;
-                                leftHand.SetNewItemToslot(usedItem);
-                                Unequip(temp, leftHand);
-                                Equip(usedItem, leftHand);
-                                NewItem(temp);
+                                UiButtonClick slot = armorChestR1.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorHeadR1);
                             }
-                            else
+                            else if (i == 1)
                             {
-                                leftHand._item = usedItem;
-                                Equip(usedItem, leftHand);
-                                leftHand.icon.sprite = usedItem.item.iconSprite;
-                         
+                                UiButtonClick slot = armorChestR2.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorChestR2);
                             }
-
+                            else if (i == 2)
+                            {
+                                UiButtonClick slot = armorChestR3.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorChestR3);
+                            }
+                            else if (i == 3)
+                            {
+                                UiButtonClick slot = armorChestR4.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorChestR4);
+                            }
+                            else if (i == 4)
+                            {
+                                UiButtonClick slot = armorChestR5.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorChestR5);
+                            }
+                            else if (i == 5)
+                            {
+                                UiButtonClick slot = armorChestR6.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorChestR6);
+                            }
                         }
-
-                        else if (inventorySlot == leftHand)
+                    }
+                }
+                if (armorLegs._item != null && armorLegs._item._runeList.Length > 0 && !slotFound)
+                {
+                    for (int i = 0; i < armorLegs._item._runeList.Length; i++)
+                    {
+                        if (armorLegs._item._runeList[i] == null)
                         {
-                            Item temp = leftHand._item;
-                            Unequip(temp, leftHand);
-                            Equip(usedItem, leftHand);
-                            leftHand.SetNewItemToslot(usedItem);
-                            usedItem = temp;
+                            slotFound = true;
+                            if (i == 0)
+                            {
+                                UiButtonClick slot = armorLegsR1.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorLegsR1);
+                            }
+                            else if (i == 1)
+                            {
+                                UiButtonClick slot = armorLegsR2.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorLegsR2);
+                            }
+                            else if (i == 2)
+                            {
+                                UiButtonClick slot = armorLegsR3.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorLegsR3);
+                            }
+                            else if (i == 3)
+                            {
+                                UiButtonClick slot = armorLegsR4.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorLegsR4);
+                            }
+                            else if (i == 4)
+                            {
+                                UiButtonClick slot = armorLegsR5.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorLegsR5);
+                            }
+                            else if (i == 5)
+                            {
+                                UiButtonClick slot = armorLegsR6.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, armorLegsR6);
+                            }
+                        }
+                    }
+                }
+                if (rightHand._item != null && rightHand._item._runeList.Length > 0 && !slotFound)
+                {
+                    for (int i = 0; i < rightHand._item._runeList.Length; i++)
+                    {
+                        if (rightHand._item._runeList[i] == null)
+                        {
+                            slotFound = true;
+                            if (i == 0)
+                            {
+                                UiButtonClick slot = weaponRightHandR1.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponRightHandR1);
+                            }
+                            else if (i == 1)
+                            {
+                                UiButtonClick slot = weaponRightHandR2.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponRightHandR2);
+                            }
+                            else if (i == 2)
+                            {
+                                UiButtonClick slot = weaponRightHandR3.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponRightHandR3);
+                            }
+                            else if (i == 3)
+                            {
+                                UiButtonClick slot = weaponRightHandR4.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponRightHandR4);
+                            }
+                            else if (i == 4)
+                            {
+                                UiButtonClick slot = weaponRightHandR5.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponRightHandR5);
+                            }
+                            else if (i == 5)
+                            {
+                                UiButtonClick slot = weaponRightHandR1.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponRightHandR6);
+                            }
+                        }
+                    }
+                }
+                if (leftHand._item != null && leftHand._item._runeList.Length > 0 && !slotFound)
+                {
+                    for (int i = 0; i < leftHand._item._runeList.Length; i++)
+                    {
+                        if (leftHand._item._runeList[i] == null)
+                        {
+                            slotFound = true;
+                            if (i == 0)
+                            {
+                                UiButtonClick slot = weaponLeftHandR1.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponLeftHandR1);
+                            }
+                            else if (i == 1)
+                            {
+                                UiButtonClick slot = weaponLeftHandR2.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponLeftHandR2);
+                            }
+                            else if (i == 2)
+                            {
+                                UiButtonClick slot = weaponLeftHandR3.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponLeftHandR3);
+                            }
+                            else if (i == 3)
+                            {
+                                UiButtonClick slot = weaponLeftHandR4.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponLeftHandR4);
+                            }
+                            else if (i == 4)
+                            {
+                                UiButtonClick slot = weaponLeftHandR5.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponLeftHandR5);
+                            }
+                            else if (i == 5) 
+                            {
+                                UiButtonClick slot = weaponLeftHandR6.GetComponent<UiButtonClick>();
+                                slot._item = usedItem;
+                                slot.icon.sprite = usedItem.item.iconSprite;
+                                AddNewRuneToItem(usedItem, weaponLeftHandR6);
+                            }
+                        }
+                    }
+                }
+                if (!slotFound) NewItem(usedItem);
+            }
+            else
+            {
+                foreach (UiButtonClick inventorySlot in equipmentSlots)
+                {
+                    if ((int)inventorySlot._type == (int)usedItem.item.type)
+                    {
+                        if (usedItem.item.isTwoHander)
+                        {
                             if (rightHand._item != null)
                             {
-                                temp = rightHand._item;
-                                rightHand.SetNewItemToslot(usedItem);
-                                Unequip(temp, rightHand);
-                                Equip(usedItem, rightHand);
+                                if (rightHand._item.item.isTwoHander)
+                                {
+                                    leftHand.RemoveItemFromslot();
+                                }
+                                Unequip(rightHand._item, rightHand);
+                                NewItem(rightHand._item);
+                                rightHand.RemoveItemFromslot();
+                            }
+                            if (leftHand._item != null)
+                            {
+                                if (leftHand._item.item.isTwoHander)
+                                {
+                                    rightHand._item = null;
+                                    rightHand.icon.sprite = null;
+                                }
+                                Unequip(leftHand._item, leftHand);
+                                NewItem(leftHand._item);
+                                leftHand.RemoveItemFromslot();
+                            }
+
+                            rightHand._item = usedItem;
+                            leftHand._item = usedItem;
+                            rightHand.icon.sprite = usedItem.item.iconSprite;
+                            leftHand.icon.sprite = usedItem.item.iconSprite;
+                            Equip(usedItem, inventorySlot);
+                        }
+                        else if (inventorySlot._item != null)
+                        {
+                            if (inventorySlot._item.item.isTwoHander)
+                            {
+                                Item temp = leftHand._item;
+                                leftHand.RemoveItemFromslot();
+                                Unequip(temp, inventorySlot);
+
+
+                                rightHand._item = usedItem;
+                                rightHand.icon.sprite = usedItem.item.iconSprite;
+                                Equip(usedItem, inventorySlot);
+                                Debug.Log(usedItem + " to slot " + inventorySlot);
+
+
+
                                 NewItem(temp);
                             }
+
+
+                            else if (inventorySlot == rightHand)
+                            {
+                                Item temp = rightHand._item;
+                                Unequip(temp, rightHand);
+                                rightHand.SetNewItemToslot(usedItem);
+                                Equip(usedItem, rightHand);
+
+                                usedItem = temp;
+                                if (leftHand._item != null)
+                                {
+                                    temp = leftHand._item;
+                                    leftHand.SetNewItemToslot(usedItem);
+                                    Unequip(temp, leftHand);
+                                    Equip(usedItem, leftHand);
+                                    NewItem(temp);
+                                }
+                                else
+                                {
+                                    leftHand._item = usedItem;
+                                    Equip(usedItem, leftHand);
+                                    leftHand.icon.sprite = usedItem.item.iconSprite;
+
+                                }
+
+                            }
+
+                            else if (inventorySlot == leftHand)
+                            {
+                                Item temp = leftHand._item;
+                                Unequip(temp, leftHand);
+                                Equip(usedItem, leftHand);
+                                leftHand.SetNewItemToslot(usedItem);
+                                usedItem = temp;
+                                if (rightHand._item != null)
+                                {
+                                    temp = rightHand._item;
+                                    rightHand.SetNewItemToslot(usedItem);
+                                    Unequip(temp, rightHand);
+                                    Equip(usedItem, rightHand);
+                                    NewItem(temp);
+                                }
+                                else
+                                {
+                                    rightHand._item = usedItem;
+                                    Equip(usedItem, rightHand);
+                                    rightHand.icon.sprite = usedItem.item.iconSprite;
+
+                                }
+
+                            }
+
                             else
                             {
-                                rightHand._item = usedItem;
-                                Equip(usedItem, rightHand);
-                                rightHand.icon.sprite = usedItem.item.iconSprite;
+                                Item temp = inventorySlot._item;
+                                inventorySlot._item = usedItem;
+                                inventorySlot.icon.sprite = usedItem.item.iconSprite;
+                                Unequip(temp, inventorySlot);
+                                NewItem(temp);
+                                Equip(usedItem, inventorySlot);
 
                             }
 
                         }
-
                         else
                         {
-                            Item temp = inventorySlot._item;
+
                             inventorySlot._item = usedItem;
                             inventorySlot.icon.sprite = usedItem.item.iconSprite;
-                            Unequip(temp, inventorySlot);
-                            NewItem(temp);
                             Equip(usedItem, inventorySlot);
-                            
+
                         }
-
+                        break;
                     }
-                    else
-                    {
-                        
-                        inventorySlot._item = usedItem;
-                        inventorySlot.icon.sprite = usedItem.item.iconSprite;
-                        Equip(usedItem, inventorySlot);
-
-                    }
-                    break;
                 }
             }
+            
         }
     }
 
