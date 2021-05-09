@@ -151,7 +151,7 @@ public class SuperRuneOfFrozenGale : MonoBehaviour, IRuneScript
     public void ActivateAbility(Damage damage, GameObject target)
     {
         GameObject freeze = RuneAssets.i.RuneFreeze;
-        freeze.GetComponent<AbilityEvents>().SetSource(gameObject);
+        freeze.GetComponent<AbilityEvents>().SetSource(_entity);
 
         freeze = Instantiate(freeze, target.transform.position, Quaternion.identity);
         StartCoroutine(SetExplosionStatsAbility(freeze));
@@ -160,7 +160,7 @@ public class SuperRuneOfFrozenGale : MonoBehaviour, IRuneScript
     public void ActivateBasic(GameObject target, Damage damage)
     {
         GameObject freeze = RuneAssets.i.RuneFreeze;
-        freeze.GetComponent<AbilityEvents>().SetSource(gameObject);
+        freeze.GetComponent<AbilityEvents>().SetSource(_entity);
 
         freeze = Instantiate(freeze, target.transform.position, Quaternion.identity);
         StartCoroutine(SetExplosionStatsBasic(freeze));
