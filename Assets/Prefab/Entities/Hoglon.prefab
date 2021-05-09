@@ -600,11 +600,19 @@ MonoBehaviour:
   possibleWeapons: []
   lunaticWeapons: []
   armorRunes: []
-  lunaticRunes: []
+  lunaticRunes:
+  - {fileID: 11400000, guid: 4f2a1ab063c43b744a9709ece3158322, type: 2}
+  - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}
+  - {fileID: 11400000, guid: d0a315c2610891c45898a38aa56dca3d, type: 2}
+  - {fileID: 11400000, guid: 5d158fdea5556644ab22338d858faff1, type: 2}
+  - {fileID: 11400000, guid: 9c197480f0e944f42a1d09382de9dead, type: 2}
+  - {fileID: 11400000, guid: 6ba83248884c5a7448863e7da4ec2cfd, type: 2}
+  - {fileID: 11400000, guid: 2c680c20c9a78394daccee1e0bd2ed1a, type: 2}
+  - {fileID: 11400000, guid: bb20c3fbb22b08f42aa147e115e9f226, type: 2}
   minRuneCount: 0
   maxRuneCount: 0
-  minLunaticRuneCount: 0
-  maxLunaticRuneCount: 0
+  minLunaticRuneCount: 2
+  maxLunaticRuneCount: 4
   canDualWield: 0
   humanoid_Animations: {fileID: 0}
 --- !u!114 &8628242431214022170
