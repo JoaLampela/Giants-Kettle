@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameDifficultyManagerScript : MonoBehaviour
 {
+    public static GameDifficultyManagerScript instance;
+
     public enum Difficulty
     {
         Easy,
@@ -11,6 +13,19 @@ public class GameDifficultyManagerScript : MonoBehaviour
         Hard,
         Lunatic
     }
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     public Difficulty difficulty = Difficulty.Easy;
 

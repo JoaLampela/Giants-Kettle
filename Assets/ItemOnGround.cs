@@ -33,7 +33,9 @@ public class ItemOnGround : MonoBehaviour
 
     private void OnDisable()
     {
-        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnExitLevel -= DestroyGameObject;
+        if(GameObject.Find("Game Manager") && GameObject.Find("Game Manager").GetComponent<GameEventManager>())
+            GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnExitLevel -= DestroyGameObject;
+
     }
 
     private void Subscribe()

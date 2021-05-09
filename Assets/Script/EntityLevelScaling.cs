@@ -105,20 +105,57 @@ public class EntityLevelScaling : MonoBehaviour
 
     private void Update()
     {
-        if(currentLevel != stats.level)
+        if (currentLevel != stats.level)
         {
             currentLevel = stats.level;
 
 
-            stats.baseHealth += healthPerLevel;
-            stats.baseHealthRegen += healthRegenPerLevel;
-            stats.baseArmor += armorPerLevel;
-            stats.basePhysicalDamage += physicalDamagePerLevel;
+            
+
+            
+            switch (gameEventManager.difficulty)
+            {
+
+                case GameDifficultyManagerScript.Difficulty.Easy:
+
+                    stats.baseHealth += (int)(healthPerLevel *easyScaler);
+                    stats.baseHealthRegen += (int)(healthRegenPerLevel * easyScaler);
+                    stats.baseArmor += (int)(armorPerLevel * easyScaler);
+                    stats.basePhysicalDamage += (int)(physicalDamagePerLevel * easyScaler);
+
+                    break;
+                case GameDifficultyManagerScript.Difficulty.Normal:
+
+                    stats.baseHealth += (int)(healthPerLevel *normalScaler);
+                    stats.baseHealthRegen += (int)(healthRegenPerLevel * normalScaler);
+                    stats.baseArmor += (int)(armorPerLevel * normalScaler);
+                    stats.basePhysicalDamage += (int)(physicalDamagePerLevel * normalScaler);
+
+                    break;
+                case GameDifficultyManagerScript.Difficulty.Hard:
+
+                    stats.baseHealth += (int)(healthPerLevel *hardScaler);
+                    stats.baseHealthRegen += (int)(healthRegenPerLevel * hardScaler);
+                    stats.baseArmor += (int)(armorPerLevel * hardScaler);
+                    stats.basePhysicalDamage += (int)(physicalDamagePerLevel * hardScaler);
+
+                    break;
+                case GameDifficultyManagerScript.Difficulty.Lunatic:
+
+                    stats.baseHealth += (int)(healthPerLevel * lunaticScaler);
+                    stats.baseHealthRegen += (int)(healthRegenPerLevel * lunaticScaler);
+                    stats.baseArmor += (int)(armorPerLevel * lunaticScaler);
+                    stats.basePhysicalDamage += (int)(physicalDamagePerLevel * lunaticScaler);
+
+                    break;
+            }
 
             stats.UpdateMaxHealth();
             stats.UpdateHealthRegen();
             stats.UpdateArmor();
             stats.UpdatePhysicalDamage();
+
         }
+            
     }
 }
