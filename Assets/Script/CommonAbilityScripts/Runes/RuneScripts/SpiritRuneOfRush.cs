@@ -189,7 +189,6 @@ public class SpiritRuneOfRush : MonoBehaviour, IRuneScript
 
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
-        Debug.Log("Setting container item");
         containerItem = item;
         _hand = hand;
     }

@@ -206,7 +206,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-        //_entityEvents.OnCastAbility += DoStuffOnCastAbility;
+
     }
 
     public void UnsubscribeAbility()
@@ -216,7 +216,7 @@ public class SpiritRuneOfOrbs : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-        //_entityEvents.OnCastAbility -= DoStuffOnCastAbility;
+
     }
 
     public void SetContainerItem(Item item)

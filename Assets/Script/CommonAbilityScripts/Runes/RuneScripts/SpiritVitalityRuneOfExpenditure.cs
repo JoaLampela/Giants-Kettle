@@ -105,17 +105,13 @@ public class SpiritVitalityRuneOfExpenditure : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureArmor");
-        _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureWeapon");
+        _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureHealth");
+        _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureHaste");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfExpenditureArmor", EntityStats.BuffType.SpellHaste, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfExpenditureWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritVitalityRuneOfExpenditureHealth", EntityStats.BuffType.Health, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SpiritVitalityRuneOfExpenditureHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -142,8 +138,8 @@ public class SpiritVitalityRuneOfExpenditure : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureHealth");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfExpenditureHaste");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

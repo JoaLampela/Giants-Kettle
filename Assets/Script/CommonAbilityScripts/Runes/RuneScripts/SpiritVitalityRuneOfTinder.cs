@@ -105,17 +105,13 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderArmor");
-        _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderWeapon");
+        _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderHealth");
+        _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderHaste");
 
-        if (duplicateCountArmor != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderArmor", EntityStats.BuffType.Health, duplicateCountArmor * 10);
-        }
-
-        if (duplicateCountWeapon != 0)
-        {
-            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderWeapon", EntityStats.BuffType.SpellHaste, duplicateCountWeapon * 10);
+            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderHealth", EntityStats.BuffType.Health, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SpiritVitalityRuneOfTinderHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 5);
         }
     }
 
@@ -142,8 +138,8 @@ public class SpiritVitalityRuneOfTinder : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderArmor");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderWeapon");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderHealth");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SpiritVitalityRuneOfTinderHaste");
 
         foreach (GameObject projectile in projectiles)
         {
