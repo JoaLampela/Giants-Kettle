@@ -690,7 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11eda1d9a1661414887703c1b97ef8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultItem: {fileID: 0}
+  defaultItem: {fileID: 11400000, guid: 149387a7ac7663c44a02eec07e74530a, type: 2}
   equippedArmorRunes: []
   rightHandWeapon: {fileID: 0}
   leftHandWeapon: {fileID: 0}

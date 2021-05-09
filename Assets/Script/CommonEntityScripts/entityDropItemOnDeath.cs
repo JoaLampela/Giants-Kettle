@@ -6,7 +6,6 @@ public class entityDropItemOnDeath : MonoBehaviour
 {
     public ItemOnGround itemOnGround;
     public bool dropLegendaryItem = false;
-    public bool dropEasterEggItem = false;
     public ItemObject easterEggItem;
     [SerializeField] private int dropChance;
     private EntityEvents events;
@@ -40,7 +39,7 @@ public class entityDropItemOnDeath : MonoBehaviour
     {
         if (Random.Range(0, 100) <= dropChance)
         {
-            if (dropEasterEggItem)
+            if (easterEggItem != null)
             {
                 ItemOnGround groundItem = Instantiate(itemOnGround, gameObject.transform.position, Quaternion.identity);
                 Debug.Log(easterEggItem);
