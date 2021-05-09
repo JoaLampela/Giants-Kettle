@@ -19,6 +19,7 @@ public class GameAssets : MonoBehaviour
     public Transform pfDamagePopup;
     public Transform pfXpPopup;
     public GameObject flameEffect;
+    public GameObject arcadeEffect;
 
 
     public SoundAudioClip[] SoundAudioClipArray;
