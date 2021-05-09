@@ -250,8 +250,8 @@ public class RuneTierListObjects : MonoBehaviour
         }
         else if(runeScore < 11)
         {
-            tier1Propability = 75 - runeScore * 5;
-            tier2Propability = 25 + runeScore * 5;
+            tier1Propability = 50 - runeScore * 5;
+            tier2Propability = 50 + runeScore * 5;
             tier3Propability = 0;
         }
         else 
