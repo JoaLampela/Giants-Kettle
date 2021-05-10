@@ -130,6 +130,11 @@ public class GameEventManager : MonoBehaviour
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = true;
             inventory.GetComponent<CanvasGroup>().interactable = true;
             SoundManager.PlayUISound(SoundManager.Sound.InventoryOpen);
+            InventoryGamePauseToggle.inventoryOpen = true;
+            if (InventoryGamePauseToggle.pauseWhenOpen)
+            {
+                StopTime();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen)
         {
@@ -139,6 +144,11 @@ public class GameEventManager : MonoBehaviour
             inventory.GetComponent<CanvasGroup>().blocksRaycasts = false;
             inventory.GetComponent<CanvasGroup>().interactable = false;
             SoundManager.PlayUISound(SoundManager.Sound.InventoryOpen);
+            InventoryGamePauseToggle.inventoryOpen = false;
+            if (InventoryGamePauseToggle.pauseWhenOpen)
+            {
+                ContinueTime();
+            }
         }
         if (playerLevelUpPoints > 0)
         {

@@ -49,6 +49,10 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
+            else if(GamePaused && InventoryGamePauseToggle.inventoryOpen)
+            {
+                Pause();
+            }
             else
             {
                 Pause();
@@ -62,6 +66,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         gameEventManager.ContinueTime();
         GamePaused = false;
+        if(InventoryGamePauseToggle.pauseWhenOpen && InventoryGamePauseToggle.inventoryOpen)
+        {
+            gameEventManager.StopTime();
+        }
     }
 
 
