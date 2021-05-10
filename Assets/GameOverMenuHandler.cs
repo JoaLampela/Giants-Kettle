@@ -55,7 +55,7 @@ public class GameOverMenuHandler : MonoBehaviour
     public IEnumerator BeginningOFTheEndFloors()
     {
         int startFloors = 0;
-        while(startFloors < gameStats.clearedFloors)
+        while(startFloors <= gameStats.clearedFloors)
         {
             startFloors++;
             floorText.text = "Reached\nfloor\n" + startFloors;
