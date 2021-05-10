@@ -753,10 +753,10 @@ MonoBehaviour:
   healthRegenPerLevel: 20
   physicalDamagePerLevel: 20
   armorPerLevel: 5
-  healthPerFloor: 0
+  healthPerFloor: 200
   healthRegenPerFloor: 0
   physicalDamagePerFloor: 0
-  armorPerFloor: 0
+  armorPerFloor: 5
   movementsSpeedPerFloor: 0
   easyScaler: 1
   normalScaler: 1

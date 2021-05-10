@@ -50,6 +50,7 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     }
     private void Start()
     {
+        Debug.Log("name " + gameObject);
         if (!isEquipmentSlot) playerInventory.inventorySlots[slotNuber] = this;
         else playerInventory.equipmentSlots[slotNuber] = this;
         if(playerHoverUi != null) //Debug.Log("found");

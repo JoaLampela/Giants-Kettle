@@ -78,6 +78,8 @@ public class TotalGameStats : MonoBehaviour
     public int killedByHoglon = 0;
     public int killedByFlyer = 0;
 
+    private bool statsReset = false;
+    private float count = 0;
 
 
     [SerializeField] private RuneObject vitalityRuneOfTenacityRune;
@@ -259,5 +261,99 @@ public class TotalGameStats : MonoBehaviour
 
         bestKilledEnemies = PlayerPrefs.GetInt("BestEnemiesKilled", 0);
         deepestFloor = PlayerPrefs.GetInt("BestClearedFloors", 0);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.P))
+        {
+            count += Time.deltaTime;
+        }
+        else count = 0;
+
+        if(count > 5 && !statsReset)
+        {
+            statsReset = true;
+            ResetStats();
+        }
+    }
+
+    private void ResetStats()
+    {
+
+        PlayerPrefs.SetInt("Tenacity", 0);
+        PlayerPrefs.SetInt("Stagger", 0);
+        PlayerPrefs.SetInt("Recovery", 0);
+        PlayerPrefs.SetInt("Health", 0);
+        PlayerPrefs.SetInt("Growth", 0);
+        PlayerPrefs.SetInt("Armor", 0);
+
+        PlayerPrefs.SetInt("Haste", 0);
+        PlayerPrefs.SetInt("Healing", 0);
+        PlayerPrefs.SetInt("Orbs", 0);
+        PlayerPrefs.SetInt("Rush", 0);
+        PlayerPrefs.SetInt("Shield", 0);
+        PlayerPrefs.SetInt("Thorns", 0);
+        PlayerPrefs.SetInt("Thunder", 0);
+
+        PlayerPrefs.SetInt("Blade", 0);
+        PlayerPrefs.SetInt("Devourer", 0);
+        PlayerPrefs.SetInt("Execution", 0);
+        PlayerPrefs.SetInt("Leech", 0);
+        PlayerPrefs.SetInt("Penetration", 0);
+        PlayerPrefs.SetInt("Strength", 0);
+
+        PlayerPrefs.SetInt("Analyst", 0);
+        PlayerPrefs.SetInt("Crit", 0);
+        PlayerPrefs.SetInt("HawkEye", 0);
+        PlayerPrefs.SetInt("Hunting", 0);
+        PlayerPrefs.SetInt("Predator", 0);
+        PlayerPrefs.SetInt("Speed", 0);
+        PlayerPrefs.SetInt("Swiftness", 0);
+
+        PlayerPrefs.SetInt("Beauty", 0);
+        PlayerPrefs.SetInt("Flow", 0);
+
+        PlayerPrefs.SetInt("Kinesis", 0);
+        PlayerPrefs.SetInt("ThunderDash", 0);
+
+        PlayerPrefs.SetInt("Explosion", 0);
+        PlayerPrefs.SetInt("Patience", 0);
+
+        PlayerPrefs.SetInt("Expenditure", 0);
+        PlayerPrefs.SetInt("Tinder", 0);
+
+        PlayerPrefs.SetInt("Escapism", 0);
+        PlayerPrefs.SetInt("Rage", 0);
+
+        PlayerPrefs.SetInt("Bash", 0);
+        PlayerPrefs.SetInt("Stress", 0);
+
+        PlayerPrefs.SetInt("TotalEnemiesKilled", 0);
+        PlayerPrefs.SetInt("TotalGoblinsKilled", 0);
+        PlayerPrefs.SetInt("TotalKilledFlyers", 0);
+        PlayerPrefs.SetInt("TotalSkeletonsKilled", 0);
+        PlayerPrefs.SetInt("TotalSummonersKilled", 0);
+        PlayerPrefs.SetInt("TotalKilledHoglins", 0);
+        PlayerPrefs.SetInt("TotalClearedFloors", 0);
+        PlayerPrefs.SetInt("TotalClearedRooms", 0);
+
+        PlayerPrefs.SetInt("TotalGameTime", 0);
+        PlayerPrefs.SetInt("TotalRunesPicked", 0);
+        PlayerPrefs.SetInt("TotalItemsFound", 0);
+        PlayerPrefs.SetInt("TotalDamageDealt", 0);
+        PlayerPrefs.SetInt("HighestDamageInGame", 0);
+        PlayerPrefs.SetInt("HighestDamageAttack", 0);
+        PlayerPrefs.SetInt("TotalDeathCount", 0);
+        PlayerPrefs.SetInt("TotalHits", 0);
+        PlayerPrefs.SetInt("TotalBossesKilled", 0);
+        PlayerPrefs.SetInt("TotalKilledByGoblin", 0);
+        PlayerPrefs.SetInt("TotalKilledBySkeleton", 0);
+        PlayerPrefs.SetInt("TotalKilledBySummoner", 0);
+        PlayerPrefs.SetInt("TotalKilledByHoglon", 0);
+        PlayerPrefs.SetInt("TotalKilledByFlyer", 0);
+
+        PlayerPrefs.SetInt("BestEnemiesKilled", 0);
+        PlayerPrefs.SetInt("BestClearedFloors", 0);
     }
 }

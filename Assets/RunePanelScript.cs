@@ -23,6 +23,7 @@ public class RunePanelScript : MonoBehaviour, IPointerExitHandler, IPointerEnter
         Debug.Log("ENter");
         if (score >= 3) 
             toolTip.GetComponent<menuToolTip>().DisplayText(rune.description);
+        else toolTip.GetComponent<menuToolTip>().DisplayText("Collect more copies of this rune to discover the effect!");
 
     }
 

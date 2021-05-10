@@ -20,6 +20,8 @@ public class PauseMenu : MonoBehaviour
     public bool inCombat = false;
     public bool lunaticMode = false;
 
+    [SerializeField] private GameStats gameStats;
+
 
     private void Awake()
     {
@@ -95,6 +97,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        gameStats.SaveGameData();
+
         gameEventManager.ContinueTime();
         GamePaused = false;
         SceneManager.LoadScene(0);
@@ -108,6 +112,8 @@ public class PauseMenu : MonoBehaviour
 
     public void GameOver(GameObject source, GameObject player)
     {
+        gameEventManager.playerDead = true;
+
         StartCoroutine(gameOverMenuHandler.BeginningOfTheEndKills());
 
         StartCoroutine(gameOverMenuHandler.BeginningOFTheEndFloors());

@@ -526,4 +526,68 @@ public class GameStats : MonoBehaviour
         if (killer.GetComponent<EntityStats>().entityName == "Hoglon") PlayerPrefs.SetInt("TotalKilledByHoglon", PlayerPrefs.GetInt("TotalKilledByHoglon", 0) + 1);
         if (killer.GetComponent<EntityStats>().entityName == "Flyer") PlayerPrefs.SetInt("TotalKilledByFlyer", PlayerPrefs.GetInt("TotalKilledByFlyer", 0) + 1);
     }
+
+    public void SaveGameData()
+    {
+        PlayerPrefs.SetInt("Tenacity", PlayerPrefs.GetInt("Tenacity", 0) + vitalityRuneOfTenacity);
+        PlayerPrefs.SetInt("Stagger", PlayerPrefs.GetInt("Stagger", 0) + vitalityRuneOfStagger);
+        PlayerPrefs.SetInt("Recovery", PlayerPrefs.GetInt("Recovery", 0) + vitalityRuneOfRecovery);
+        PlayerPrefs.SetInt("Health", PlayerPrefs.GetInt("Health", 0) + vitalityRuneOfHealth);
+        PlayerPrefs.SetInt("Growth", PlayerPrefs.GetInt("Growth", 0) + vitalityRuneOfGrowth);
+        PlayerPrefs.SetInt("Armor", PlayerPrefs.GetInt("Armor", 0) + vitalityRuneOfArmor);
+        PlayerPrefs.SetInt("Haste", PlayerPrefs.GetInt("Haste", 0) + spiritRuneOfHaste);
+        PlayerPrefs.SetInt("Healing", PlayerPrefs.GetInt("Healing", 0) + spiritRuneOfHealing);
+        PlayerPrefs.SetInt("Orbs", PlayerPrefs.GetInt("Orbs", 0) + spiritRuneOfOrbs);
+        PlayerPrefs.SetInt("Rush", PlayerPrefs.GetInt("Rush", 0) + spiritRuneOfRush);
+        PlayerPrefs.SetInt("Shield", PlayerPrefs.GetInt("Shield", 0) + spiritRuneOfShield);
+        PlayerPrefs.SetInt("Thorns", PlayerPrefs.GetInt("Thorns", 0) + spiritRuneOfThorns);
+        PlayerPrefs.SetInt("Thunder", PlayerPrefs.GetInt("Thunder", 0) + spiritRuneOfThunder);
+        PlayerPrefs.SetInt("Blade", PlayerPrefs.GetInt("Blade", 0) + powerRuneOfBlade);
+        PlayerPrefs.SetInt("Devourer", PlayerPrefs.GetInt("Devourer", 0) + powerRuneOfDevourer);
+        PlayerPrefs.SetInt("Execution", PlayerPrefs.GetInt("Execution", 0) + powerRuneOfExecution);
+        PlayerPrefs.SetInt("Leech", PlayerPrefs.GetInt("Leech", 0) + powerRuneOfLeech);
+        PlayerPrefs.SetInt("Penetration", PlayerPrefs.GetInt("Penetration", 0) + powerRuneOfPenetration);
+        PlayerPrefs.SetInt("Strength", PlayerPrefs.GetInt("Strength", 0) + powerRuneOfStrength);
+        PlayerPrefs.SetInt("Analyst", PlayerPrefs.GetInt("Analyst", 0) + agilityRuneOfAnalyst);
+        PlayerPrefs.SetInt("Crit", PlayerPrefs.GetInt("Crit", 0) + agilityRuneOfCrit);
+        PlayerPrefs.SetInt("HawkEye", PlayerPrefs.GetInt("HawkEye", 0) + agilityRuneOfHawkEye);
+        PlayerPrefs.SetInt("Hunting", PlayerPrefs.GetInt("Hunting", 0) + agilityRuneOfHunting);
+        PlayerPrefs.SetInt("Predator", PlayerPrefs.GetInt("Predator", 0) + agilityRuneOfPredator);
+        PlayerPrefs.SetInt("Speed", PlayerPrefs.GetInt("Speed", 0) + agilityRuneOfSpeed);
+        PlayerPrefs.SetInt("Swiftness", PlayerPrefs.GetInt("Swiftness", 0) + agilityRuneOfSwiftness);
+        PlayerPrefs.SetInt("Beauty", PlayerPrefs.GetInt("Beauty", 0) + agilityPowerRuneOfBeauty);
+        PlayerPrefs.SetInt("Flow", PlayerPrefs.GetInt("Flow", 0) + agilityPowerRuneOfFlow);
+        PlayerPrefs.SetInt("Kinesis", PlayerPrefs.GetInt("Kinesis", 0) + spiritAgilityRuneOfKinesis);
+        PlayerPrefs.SetInt("ThunderDash", PlayerPrefs.GetInt("ThunderDash", 0) + spiritAgilityRuneOfThunderDash);
+        PlayerPrefs.SetInt("Explosion", PlayerPrefs.GetInt("Explosion", 0) + spiritPowerRuneOfExplosion);
+        PlayerPrefs.SetInt("Patience", PlayerPrefs.GetInt("Patience", 0) + spiritPowerRuneOfPatience);
+        PlayerPrefs.SetInt("Expenditure", PlayerPrefs.GetInt("Expenditure", 0) + spiritVitalityRuneOfExpenditure);
+        PlayerPrefs.SetInt("Tinder", PlayerPrefs.GetInt("Tinder", 0) + spiritVitalityRuneOfTinder);
+        PlayerPrefs.SetInt("Escapism", PlayerPrefs.GetInt("Escapism", 0) + vitalityAgilityRuneOfEscapism);
+        PlayerPrefs.SetInt("Rage", PlayerPrefs.GetInt("Rage", 0) + vitalityAgilityRuneOfRage);
+        PlayerPrefs.SetInt("Bash", PlayerPrefs.GetInt("Bash", 0) + vitalityPowerRuneOfBash);
+        PlayerPrefs.SetInt("Stress", PlayerPrefs.GetInt("Stress", 0) + vitalityPowerRuneOfStress);
+        PlayerPrefs.SetInt("TotalEnemiesKilled", PlayerPrefs.GetInt("TotalEnemiesKilled", 0) + killedEnemiesTotal);
+        PlayerPrefs.SetInt("TotalGoblinsKilled", PlayerPrefs.GetInt("TotalGoblinsKilled", 0) + killedGoblins);
+        PlayerPrefs.SetInt("TotalKilledFlyers", PlayerPrefs.GetInt("TotalKilledFlyers", 0) + killedFlyers);
+        PlayerPrefs.SetInt("TotalSkeletonsKilled", PlayerPrefs.GetInt("TotalSkeletonsKilled", 0) + killedSkeletons);
+        PlayerPrefs.SetInt("TotalSummonersKilled", PlayerPrefs.GetInt("TotalSummonersKilled", 0) + killedSummoners);
+        PlayerPrefs.SetInt("TotalKilledHoglins", PlayerPrefs.GetInt("TotalKilledHoglins", 0) + killedHoglins);
+        PlayerPrefs.SetInt("TotalClearedFloors", PlayerPrefs.GetInt("TotalClearedFloors", 0) + clearedFloors);
+        Debug.Log("Cleared floors this time = " + clearedFloors + " all time = " + PlayerPrefs.GetInt("BestClearedFloors", 0));
+        if (clearedFloors + 1 > PlayerPrefs.GetInt("BestClearedFloors", 0)) PlayerPrefs.SetInt("BestClearedFloors", clearedFloors + 1);
+        Debug.Log("Enemies killed  = " + killedEnemiesTotal + " all time = " + PlayerPrefs.GetInt("BestEnemiesKilled", 0));
+        if (killedEnemiesTotal > PlayerPrefs.GetInt("BestEnemiesKilled", 0)) PlayerPrefs.SetInt("BestEnemiesKilled", killedEnemiesTotal);
+        PlayerPrefs.SetInt("TotalClearedRooms", PlayerPrefs.GetInt("TotalClearedRooms", 0) + clearedRooms);
+        PlayerPrefs.SetInt("TotalGameTime", PlayerPrefs.GetInt("TotalGameTime", 0) + (int)GameObject.Find("Game Manager").GetComponent<GameEventManager>().time);
+        PlayerPrefs.SetInt("TotalRunesPicked", PlayerPrefs.GetInt("TotalRunesPicked", 0) + runesPicked);
+        PlayerPrefs.SetInt("TotalItemsFound", PlayerPrefs.GetInt("TotalItemsFound", 0) + foundItems);
+        PlayerPrefs.SetInt("TotalDamageDealt", PlayerPrefs.GetInt("TotalDamageDealt", 0) + damageDealt);
+        if (topDmg > PlayerPrefs.GetInt("HighestDamageAttack", 0)) PlayerPrefs.SetInt("HighestDamageAttack", topDmg);
+        if (damageDealt > PlayerPrefs.GetInt("HighestDamageInGame", 0)) PlayerPrefs.SetInt("HighestDamageInGame", damageDealt);
+        PlayerPrefs.SetInt("TotalDeathCount", PlayerPrefs.GetInt("TotalDeathCount", 0) + 1);
+        PlayerPrefs.SetInt("TotalHits", PlayerPrefs.GetInt("TotalHits", 0) + totalHits);
+        PlayerPrefs.SetInt("TotalBossesKilled", PlayerPrefs.GetInt("TotalBossesKilled", 0) + killedHoglins + killedSummoners);
+    }
+
 }

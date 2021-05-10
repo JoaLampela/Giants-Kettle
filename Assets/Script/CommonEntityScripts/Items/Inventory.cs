@@ -91,7 +91,7 @@ public class Inventory : MonoBehaviour
     {
         dashItem = new Item(dashItemObject);
         inventorySlots = new UiButtonClick[24];
-        equipmentSlots = new UiButtonClick[36];
+        equipmentSlots = new UiButtonClick[35];
     }
 
 

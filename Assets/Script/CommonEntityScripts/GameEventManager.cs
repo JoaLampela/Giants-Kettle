@@ -59,6 +59,8 @@ public class GameEventManager : MonoBehaviour
     public bool castingLocked = false;
     private bool runesRandomized = false;
 
+    public bool playerDead = false;
+
     [SerializeField] private GameStats gameStats;
 
     private AudioMixer masterMixer;
@@ -106,13 +108,13 @@ public class GameEventManager : MonoBehaviour
         globalLevel = (int)time / 120;
         if (combatOn) combatDuration += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible && !pauseMenuOpen)
+        if (Input.GetKeyDown(KeyCode.R) && playerLevelUpPoints > 0 && !playerLevelUpScreenVisible && !pauseMenuOpen && !playerDead)
         {
            
             ToggleRuneSelectionView();
             StopTime();
         }
-        else if ((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible && !pauseMenuOpen)
+        else if ((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible && !pauseMenuOpen && !playerDead)
         {
             ToggleRuneSelectionView();
             ContinueTime();
@@ -122,7 +124,7 @@ public class GameEventManager : MonoBehaviour
 
         UpdateGameTimer();
 
-        if (Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen && !pauseMenuOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !inventoryOpen && !pauseMenuOpen && !playerDead)
         {
             noobPanelScript.ToggleInventory();
             inventoryOpen = true;
@@ -136,7 +138,7 @@ public class GameEventManager : MonoBehaviour
                 StopTime();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen)
+        else if (Input.GetKeyDown(KeyCode.Tab) && inventoryOpen && !pauseMenuOpen && !playerDead)
         {
             noobPanelScript.ToggleInventory();
             inventoryOpen = false;
@@ -356,6 +358,6 @@ public class GameEventManager : MonoBehaviour
 
     public void ContinueTime()
     {
-        Time.timeScale = 1f;
+        if (!playerDead) Time.timeScale = 1f;
     }
 }

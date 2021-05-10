@@ -160,18 +160,22 @@ public class VitalityPowerRuneOfStress : MonoBehaviour, IRuneScript
 
     private void Update()
     {
-        if (health.health / (float)health.maxHealth <= 0.50f)
+        if (gameObject.GetComponent<EntityEvents>())
         {
-            if (redundancyCheck)
+            if (health.health / (float)health.maxHealth <= 0.50f)
             {
-                Activate();
+                if (redundancyCheck)
+                {
+                    Activate();
+                }
+            }
+            else
+            {
+                _entityEvents.RemoveBuff("VitalityPowerRuneOfStressBonus");
+                redundancyCheck = true;
             }
         }
-        else
-        {
-            _entityEvents.RemoveBuff("VitalityPowerRuneOfStressBonus");
-            redundancyCheck = true;
-        }
+            
     }
 
     public void Activate()
