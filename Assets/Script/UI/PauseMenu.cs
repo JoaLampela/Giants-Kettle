@@ -101,6 +101,7 @@ public class PauseMenu : MonoBehaviour
 
         gameEventManager.ContinueTime();
         GamePaused = false;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
