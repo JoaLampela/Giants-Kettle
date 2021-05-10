@@ -30,6 +30,7 @@ public class StartItemSelectScript : MonoBehaviour
         if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
         groundItem.pickedUp = true;
 
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
 
         noobPanelScript.ToggleStartItemTip();
@@ -47,6 +48,7 @@ public class StartItemSelectScript : MonoBehaviour
         if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(shieldL));
         groundItem.pickedUp = true;
 
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
     }
@@ -63,6 +65,7 @@ public class StartItemSelectScript : MonoBehaviour
         if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
         groundItem.pickedUp = true;
 
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
     }
@@ -74,6 +77,7 @@ public class StartItemSelectScript : MonoBehaviour
         if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(staffL));
         groundItem.pickedUp = true;
 
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
     }
@@ -84,6 +88,7 @@ public class StartItemSelectScript : MonoBehaviour
         if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(twoHandedSwordL));
         groundItem.pickedUp = true;
 
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
     }

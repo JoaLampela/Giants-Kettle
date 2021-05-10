@@ -48437,7 +48437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1619139133848604927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -80244,6 +80244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 2814619061889278407}
+  itemSelectionScreen: {fileID: 5316699895983289213}
   loadingScreen: {fileID: 6034827283658513943}
   gameOverScreen: {fileID: 8471077672208607712}
   gameOverMenuHandler: {fileID: 2484018982511286734}

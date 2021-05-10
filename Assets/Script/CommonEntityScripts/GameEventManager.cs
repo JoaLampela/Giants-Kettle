@@ -71,6 +71,8 @@ public class GameEventManager : MonoBehaviour
 
     private void Start()
     {
+        StopTime();
+
         if (GameObject.Find("GameDifficultyManager")) difficulty = GameObject.Find("GameDifficultyManager").GetComponent<GameDifficultyManagerScript>().difficulty;
         else difficulty = GameDifficultyManagerScript.Difficulty.Normal;
 
