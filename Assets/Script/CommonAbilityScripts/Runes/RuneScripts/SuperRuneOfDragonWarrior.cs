@@ -107,10 +107,12 @@ public class SuperRuneOfDragonWarrior : MonoBehaviour, IRuneScript
         _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorCrit");
         _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorPhysicalDamage");
         _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorAttackSpeed");
+        _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorArmor");
 
-        _entityEvents.NewBuff("SpiritVitalityRuneOfTinderCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
-        _entityEvents.NewBuff("SpiritVitalityRuneOfTinderPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
-        _entityEvents.NewBuff("SpiritVitalityRuneOfTinderAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        _entityEvents.NewBuff("SuperRuneOfDragonWarriorCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 5);
+        _entityEvents.NewBuff("SuperRuneOfDragonWarriorPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        _entityEvents.NewBuff("SuperRuneOfDragonWarriorAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+        _entityEvents.NewBuff("SuperRuneOfDragonWarriorArmor", EntityStats.BuffType.Armor, (duplicateCountArmor + duplicateCountWeapon) * 10);
     }
 
     //Subs & Unsub -related Unity functions
@@ -138,6 +140,8 @@ public class SuperRuneOfDragonWarrior : MonoBehaviour, IRuneScript
         if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorCrit");
         if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorPhysicalDamage");
         if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfDragonWarriorArmor");
+
 
         if (gameObject.GetComponent<EntityEvents>())
         {

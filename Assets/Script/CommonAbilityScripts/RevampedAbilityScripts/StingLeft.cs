@@ -74,6 +74,7 @@ public class StingLeft : MonoBehaviour, IAbility
         }
         else
         {
+            mouseDirection = Input.mousePosition;
             direction = (Camera.main.ScreenToWorldPoint(mouseDirection) - transform.position).normalized;
         }
         float angle = Vector2.Angle(Vector2.up, direction);
