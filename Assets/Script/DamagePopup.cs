@@ -22,8 +22,8 @@ public class DamagePopup : MonoBehaviour
     private Color textColor;
 
     private float maxDamageSizeDamage = 1000;
-    private int maxDamageSize = 15;
-    private int minDamageFontSize = 5;
+    private int maxDamageSize = 13;
+    private int minDamageFontSize = 4;
 
     private Vector3 moveVector;
 
@@ -48,6 +48,7 @@ public class DamagePopup : MonoBehaviour
     {
         
         textMesh.SetText(damageAmount.ToString());
+        if (damageAmount >= 99999) textMesh.SetText("EXECUTED!");
         if (!isCriticalHit)
         {
             textMesh.fontSize = CalculateDamagePopupFontSize(damageAmount, isCriticalHit); ;
