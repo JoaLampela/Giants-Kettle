@@ -42,10 +42,10 @@ public class GameOverMenuHandler : MonoBehaviour
             Debug.Log(startKills);
             waitTimeStart /= 2f;
             killsText.text = " Kills:  " + startKills.ToString();
-            if(bonePileLeft.transform.position.y < BonepilePosYEnd)
+            if(bonePileLeft.transform.position.y < BonepilePosYEnd-50)
             {
-                bonePileLeft.transform.position = new Vector2(bonePileLeft.transform.position.x, bonePileLeft.transform.position.y + 2);
-                bonePileRight.transform.position = new Vector2(bonePileRight.transform.position.x, bonePileRight.transform.position.y + 2);
+                bonePileLeft.transform.position = new Vector2(bonePileLeft.transform.position.x, bonePileLeft.transform.position.y + 7);
+                bonePileRight.transform.position = new Vector2(bonePileRight.transform.position.x, bonePileRight.transform.position.y + 7);
             }
             yield return new WaitForSeconds(0);
         }

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb7f1cb6940936478df5a813c098f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lunaticColor: {r: 0, g: 0, b: 0, a: 0}
   globalLight: {fileID: 0}
   floorsPassed: 0
   difficulty: 0
@@ -73,6 +74,10 @@ MonoBehaviour:
   pauseMenuOpen: 0
   castingLocked: 0
   gameStats: {fileID: 1699011340505777110}
+  musicFade: 7
+  combatMusicPlayer: {fileID: 0}
+  canvas: {fileID: 0}
+  noobPanelScript: {fileID: 0}
 --- !u!114 &4867781357504448721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +162,9 @@ MonoBehaviour:
   tier100Items:
   - {fileID: 11400000, guid: 12deb22cb61d8de46b903c2378b875b1, type: 2}
   - {fileID: 11400000, guid: adba07e6d6bd21f4d89402ba00f7ce7a, type: 2}
-  - {fileID: 11400000, guid: a4cfc8df83a6f7a4b88f433c7ac6a9ab, type: 2}
+  - {fileID: 11400000, guid: 92af97c5db9100a45bb2c62287ef48b7, type: 2}
+  - {fileID: 11400000, guid: c95bd8d58965c994d9aeaaeb8e89a9ee, type: 2}
+  easterEggItems: []
 --- !u!114 &1699011340505777110
 MonoBehaviour:
   m_ObjectHideFlags: 0

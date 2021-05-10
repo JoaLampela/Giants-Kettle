@@ -255,7 +255,7 @@ MonoBehaviour:
   baseSpirit: 0
   baseHealthRegen: 100
   baseSpiritRegen: 0
-  baseSpeed: 100
+  baseSpeed: 75
   baseSlow: 0
   baseTenacity: 0
   basePhysicalDamage: 13
@@ -529,9 +529,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782462f38d842cb4b99fc423f1a53ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPerLevel: 50
+  healthPerLevel: 40
   healthRegenPerLevel: 0
-  physicalDamagePerLevel: 12
+  physicalDamagePerLevel: 10
   armorPerLevel: 4
   healthPerFloor: 0
   healthRegenPerFloor: 0

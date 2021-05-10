@@ -700,11 +700,15 @@ MonoBehaviour:
   lunaticWeapons:
   - {fileID: 11400000, guid: 5447cbf6a92d26240839fc9c0a78ff3d, type: 2}
   armorRunes: []
-  lunaticRunes: []
+  lunaticRunes:
+  - {fileID: 11400000, guid: 19d7f3cda96bdb84da78ed393ed956b8, type: 2}
+  - {fileID: 11400000, guid: 7d6afafab01220545a828067927fd218, type: 2}
+  - {fileID: 11400000, guid: 8a797373fd2246046ad0152dfb810241, type: 2}
+  - {fileID: 11400000, guid: 53d1b4bc3aed8ac46af9bcc44082d482, type: 2}
   minRuneCount: 0
   maxRuneCount: 0
-  minLunaticRuneCount: 0
-  maxLunaticRuneCount: 0
+  minLunaticRuneCount: 1
+  maxLunaticRuneCount: 1
   canDualWield: 1
   humanoid_Animations: {fileID: 0}
 --- !u!114 &4332337284680461356
@@ -745,7 +749,7 @@ MonoBehaviour:
   easyScaler: 1
   normalScaler: 1
   hardScaler: 1.5
-  lunaticScaler: 2
+  lunaticScaler: 1.5
 --- !u!96 &1432059182678377561
 TrailRenderer:
   serializedVersion: 2

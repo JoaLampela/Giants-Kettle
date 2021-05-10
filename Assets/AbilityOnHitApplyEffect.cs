@@ -11,6 +11,6 @@ public class AbilityOnHitApplyEffect : MonoBehaviour
     {
         abilityEvents = GetComponent<AbilityEvents>();
         if(collision.gameObject != abilityEvents._abilityCastSource)
-            Instantiate(effect, collision.transform.position, collision.transform.rotation);
+            Instantiate(effect, abilityEvents._abilityCastSource.transform.position, abilityEvents._abilityCastSource.transform.rotation);
     }
 }

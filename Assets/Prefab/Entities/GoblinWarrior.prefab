@@ -1159,6 +1159,8 @@ MonoBehaviour:
   lunaticWeapons:
   - {fileID: 11400000, guid: a4cfc8df83a6f7a4b88f433c7ac6a9ab, type: 2}
   - {fileID: 11400000, guid: 156f0e5331da321419575e63f168569c, type: 2}
+  - {fileID: 11400000, guid: db6c7e5b9dbc1b14b83ce82fb30d25da, type: 2}
+  - {fileID: 11400000, guid: 717a0d0875af9af4e910b4c331d2fab8, type: 2}
   armorRunes: []
   lunaticRunes:
   - {fileID: 11400000, guid: 4260f6f1c4cd25b4f8462764b4956b73, type: 2}

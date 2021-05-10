@@ -892,11 +892,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bcab7942691f74644ae0976234a7952b, type: 2}
   - {fileID: 11400000, guid: 6bb97070d27373140be9e43aaf10fa3a, type: 2}
   armorRunes: []
-  lunaticRunes: []
+  lunaticRunes:
+  - {fileID: 11400000, guid: 6ba83248884c5a7448863e7da4ec2cfd, type: 2}
   minRuneCount: 0
   maxRuneCount: 0
-  minLunaticRuneCount: 0
-  maxLunaticRuneCount: 0
+  minLunaticRuneCount: 1
+  maxLunaticRuneCount: 1
   canDualWield: 0
   humanoid_Animations: {fileID: 0}
 --- !u!114 &972456043691024661

@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
-  m_Name: LunaticRustyTwoHander
+  m_Script: {fileID: 11500000, guid: 50f0c5d36d9a1f14da16314fb077a575, type: 3}
+  m_Name: Lunatic1Hander2
   m_EditorClassIdentifier: 
   type: 1
   description: 
   iconSprite: {fileID: 0}
-  inGameObject: {fileID: 5799111713433376631, guid: 34023473e7de22d49ac737f0559eed6d, type: 3}
-  isTwoHander: 1
+  inGameObject: {fileID: 0}
+  isTwoHander: 0
   runeSlots: 1
-  baseRune: {fileID: 11400000, guid: 2c680c20c9a78394daccee1e0bd2ed1a, type: 2}
-  weaponType: 1
+  baseRune: {fileID: 11400000, guid: b634da6d59890fb43b2b17c31f06b044, type: 2}
+  weaponType: 0
   maxCooldownAbility1: 3
   currentCooldownAbility1: 0
   maxCooldownAbility2: 3
