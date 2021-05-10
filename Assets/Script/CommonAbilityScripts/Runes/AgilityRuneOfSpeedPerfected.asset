@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'Rune of Speed
 
 
-    Gain movement speed.'
+    Gain speed.'
   iconSprite: {fileID: 21300000, guid: 6e2e2bf7855dc814bafd1d3c4bd8ff0d, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

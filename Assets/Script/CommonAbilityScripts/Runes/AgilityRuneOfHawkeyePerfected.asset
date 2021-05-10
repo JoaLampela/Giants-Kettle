@@ -16,8 +16,8 @@ MonoBehaviour:
   description: 'Rune of Hawkeye
 
 
-    Deal more damage at range. Melee gains additional
-    attack speed instead.'
+    Deal more damage at range. Melee weapons gain
+    additional attack speed instead.'
   iconSprite: {fileID: 21300000, guid: 0191ed773c982db4e99f63d00005b220, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
