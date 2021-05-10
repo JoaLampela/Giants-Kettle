@@ -340,7 +340,6 @@ public class GameEventManager : MonoBehaviour
     public void ExitLevel()
     {
         floorsPassed++;
-        gameStats.AddClearedFloor();
         OnExitLevel?.Invoke();
 
         foreach (GameObject enemy in enemies)

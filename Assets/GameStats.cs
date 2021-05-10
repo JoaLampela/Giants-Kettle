@@ -443,6 +443,7 @@ public class GameStats : MonoBehaviour
         player.GetComponent<EntityEvents>().OnKillEnemy += AddKilledEnemy;
         GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnRunePicked += AddRune;
         GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnEquipmentDropepd += AddEquipment;
+        GameObject.Find("Game Manager").GetComponent<GameEventManager>().OnExitLevel += AddClearedFloor;
         player.GetComponent<EntityEvents>().OnHitEnemy += DealDamage;
         player.GetComponent<EntityEvents>().OnDie += SaveGameData; 
     }
@@ -506,7 +507,7 @@ public class GameStats : MonoBehaviour
         PlayerPrefs.SetInt("TotalKilledHoglins", PlayerPrefs.GetInt("TotalKilledHoglins", 0) + killedHoglins);
         PlayerPrefs.SetInt("TotalClearedFloors", PlayerPrefs.GetInt("TotalClearedFloors", 0) + clearedFloors);
         Debug.Log("Cleared floors this time = " + clearedFloors + " all time = " + PlayerPrefs.GetInt("BestClearedFloors", 0));
-        if (clearedFloors > PlayerPrefs.GetInt("BestClearedFloors", 0)) PlayerPrefs.SetInt("BestClearedFloors",  clearedFloors);
+        if (clearedFloors + 1 > PlayerPrefs.GetInt("BestClearedFloors", 0)) PlayerPrefs.SetInt("BestClearedFloors",  clearedFloors +1);
         Debug.Log("Enemies killed  = " + killedEnemiesTotal + " all time = " + PlayerPrefs.GetInt("BestEnemiesKilled", 0));
         if (killedEnemiesTotal > PlayerPrefs.GetInt("BestEnemiesKilled", 0)) PlayerPrefs.SetInt("BestEnemiesKilled", killedEnemiesTotal);
         PlayerPrefs.SetInt("TotalClearedRooms", PlayerPrefs.GetInt("TotalClearedRooms", 0) + clearedRooms);

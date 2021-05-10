@@ -831,6 +831,18 @@ MonoBehaviour:
   currentSpellHaste: 0
   currentArmor: 0
   currentAttackSpeed: 0
+  totalHealthMultiplier: 100
+  totalSpiritMultiplier: 100
+  totalHealthRegenMultiplier: 100
+  totalSpiritRegenMultiplier: 100
+  totalSpeedMultiplier: 100
+  totalTenacityMultiplier: 100
+  totalPhysicalDamageMultiplier: 100
+  totalSpiritDamageMultiplier: 100
+  totalCriticalStrikeChanceMultiplier: 100
+  totalSpellHasteMultiplayer: 100
+  totalArmorMultiplier: 100
+  totalAttackSpeedMultiplier: 100
   isInvisible: 0
   isInvulnurable: 0
   isInCombat: 0
@@ -939,6 +951,7 @@ MonoBehaviour:
   normalScaler: 1
   hardScaler: 1.5
   lunaticScaler: 2
+  scalingIncrementPerFloor: 0.2
 --- !u!96 &2503689601135937888
 TrailRenderer:
   serializedVersion: 2

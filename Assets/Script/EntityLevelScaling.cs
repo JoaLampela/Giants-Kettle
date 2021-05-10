@@ -21,7 +21,9 @@ public class EntityLevelScaling : MonoBehaviour
     [SerializeField] private float hardScaler;
     [SerializeField] private float lunaticScaler;
 
+    [SerializeField] float scalingIncrementPerFloor = 0;
 
+    
 
 
     private int currentLevel;
@@ -35,8 +37,8 @@ public class EntityLevelScaling : MonoBehaviour
 
     private void Start()
     {
-        currentLevel = stats.level;
-
+        currentLevel = gameEventManager.globalLevel;
+        int floors = gameEventManager.floorsPassed;
         
 
         stats.UpdateMaxHealth();
@@ -55,28 +57,27 @@ public class EntityLevelScaling : MonoBehaviour
                 stats.baseArmor = (int)(stats.baseArmor * easyScaler);
                 stats.basePhysicalDamage = (int)(stats.basePhysicalDamage * easyScaler);
 
-                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * easyScaler);
-                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * easyScaler);
-                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * easyScaler);
-                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * easyScaler);
-                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * easyScaler);
+                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * (easyScaler +floors*scalingIncrementPerFloor));
+                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * (easyScaler  + floors * scalingIncrementPerFloor));
+                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * (easyScaler + floors * scalingIncrementPerFloor));
+                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * (easyScaler  + floors * scalingIncrementPerFloor));
+                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * (easyScaler + floors * scalingIncrementPerFloor));
 
                 
 
                 break;
 
             case GameDifficultyManagerScript.Difficulty.Normal:
-
                 stats.baseHealth = (int)(stats.baseHealth * normalScaler);
                 stats.baseHealthRegen = (int)(stats.baseHealthRegen * normalScaler);
                 stats.baseArmor = (int)(stats.baseArmor * normalScaler);
                 stats.basePhysicalDamage = (int)(stats.basePhysicalDamage * normalScaler);
 
-                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * normalScaler);
-                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * normalScaler);
+                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * (normalScaler  + floors * scalingIncrementPerFloor));
+                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * (normalScaler  + floors * scalingIncrementPerFloor));
+                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * (normalScaler  + floors * scalingIncrementPerFloor));
+                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * (normalScaler + floors * scalingIncrementPerFloor));
+                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * (normalScaler + floors * scalingIncrementPerFloor));
                 break;
 
             case GameDifficultyManagerScript.Difficulty.Hard:
@@ -86,11 +87,11 @@ public class EntityLevelScaling : MonoBehaviour
                 stats.baseArmor = (int)(stats.baseArmor * hardScaler);
                 stats.basePhysicalDamage = (int)(stats.basePhysicalDamage * hardScaler);
 
-                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * hardScaler);
-                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * hardScaler);
-                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * hardScaler);
-                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * hardScaler);
-                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * hardScaler);
+                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * (hardScaler + floors * scalingIncrementPerFloor));
+                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * (hardScaler + floors * scalingIncrementPerFloor));
+                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * (hardScaler + floors * scalingIncrementPerFloor));
+                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * (hardScaler + floors * scalingIncrementPerFloor));
+                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * (hardScaler + floors * scalingIncrementPerFloor));
                 break;
 
             case GameDifficultyManagerScript.Difficulty.Lunatic:
@@ -101,13 +102,11 @@ public class EntityLevelScaling : MonoBehaviour
                 stats.basePhysicalDamage = (int)(stats.basePhysicalDamage * lunaticScaler);
 
 
-                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
-                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
-                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
-                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * lunaticScaler);
-                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * lunaticScaler);
-
-                Debug.Log(gameObject + " " + stats.baseHealth);
+                stats.baseHealth += (int)((healthPerLevel * currentLevel + healthPerFloor * gameEventManager.floorsPassed) * (lunaticScaler + floors * scalingIncrementPerFloor));
+                stats.baseHealthRegen += (int)((healthRegenPerLevel * currentLevel + healthRegenPerFloor * gameEventManager.floorsPassed) * (lunaticScaler + floors * scalingIncrementPerFloor));
+                stats.baseArmor += (int)((armorPerLevel * currentLevel + armorPerFloor * gameEventManager.floorsPassed) * (lunaticScaler + floors * scalingIncrementPerFloor));
+                stats.basePhysicalDamage += (int)((physicalDamagePerLevel * currentLevel + physicalDamagePerFloor * gameEventManager.floorsPassed) * (lunaticScaler + floors * scalingIncrementPerFloor));
+                stats.baseSpeed += (int)((movementsSpeedPerFloor * gameEventManager.floorsPassed) * (lunaticScaler + floors * scalingIncrementPerFloor));
                 break;
         }
     }

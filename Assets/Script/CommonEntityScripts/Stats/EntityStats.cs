@@ -56,22 +56,22 @@ public class EntityStats : MonoBehaviour
 
 
     //Total Stat Multipliers
-    private int totalHealthMultiplier = 100;
-    private int totalSpiritMultiplier = 100;
+    [SerializeField] private int totalHealthMultiplier = 100;
+    [SerializeField] private int totalSpiritMultiplier = 100;
 
-    private int totalHealthRegenMultiplier = 100;
-    private int totalSpiritRegenMultiplier = 100;
+    [SerializeField] private int totalHealthRegenMultiplier = 100;
+    [SerializeField] private int totalSpiritRegenMultiplier = 100;
 
-    private int totalSpeedMultiplier = 100;
-    private int totalTenacityMultiplier = 100;
+    [SerializeField] private int totalSpeedMultiplier = 100;
+    [SerializeField] private int totalTenacityMultiplier = 100;
 
-    private int totalPhysicalDamageMultiplier = 100;
-    private int totalSpiritDamageMultiplier = 100;
-    private int totalCriticalStrikeChanceMultiplier = 100;
+    [SerializeField] private int totalPhysicalDamageMultiplier = 100;
+    [SerializeField] private int totalSpiritDamageMultiplier = 100;
+    [SerializeField] private int totalCriticalStrikeChanceMultiplier = 100;
 
-    private int totalSpellHasteMultiplayer = 100;
-    private int totalArmorMultiplier = 100;
-    private int totalAttackSpeedMultiplier = 100;
+    [SerializeField] private int totalSpellHasteMultiplayer = 100;
+    [SerializeField] private int totalArmorMultiplier = 100;
+    [SerializeField] private int totalAttackSpeedMultiplier = 100;
 
 
 

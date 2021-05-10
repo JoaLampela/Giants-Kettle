@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2419180666205015773}
   - component: {fileID: 1167742621000887457}
   - component: {fileID: 2724286602386357305}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VoidShieldEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 8017232239141809691}
   - component: {fileID: 4143192196474834626}
   - component: {fileID: 1965468860240474438}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,6 +315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ef_23_purple
       objectReference: {fileID: 0}
+    - target: {fileID: 4648430835908993951, guid: 4074375c9912be640adcddbfe855cf4d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4074375c9912be640adcddbfe855cf4d, type: 3}
 --- !u!4 &6115559832923538322 stripped
@@ -332,6 +336,10 @@ PrefabInstance:
     - target: {fileID: 3389122499625005953, guid: 75fd454ef8ef10f43bc7c1dcf54b9d2b, type: 3}
       propertyPath: m_Name
       value: ef_22_purple
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389122499625005953, guid: 75fd454ef8ef10f43bc7c1dcf54b9d2b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3389122499625005980, guid: 75fd454ef8ef10f43bc7c1dcf54b9d2b, type: 3}
       propertyPath: m_RootOrder

@@ -27,7 +27,8 @@ public class SelectRuneButton : MonoBehaviour
     {
         Debug.Log("Button clicked");
         runeList.IncrementScore(_rune);
-        playerInventory.NewItem(new Item(_rune));
+        playerInventory.UseItem(new Item(_rune));
+        Debug.Log("Button clicked2");
         gameEventManager.RunePicked(_rune);
         _rune = null;
         gameEventManager.ReducePlayerLevelUpPoints();

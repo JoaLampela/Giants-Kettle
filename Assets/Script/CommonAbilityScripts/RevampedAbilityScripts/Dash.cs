@@ -110,7 +110,7 @@ public class Dash : MonoBehaviour, IAbility
     {
         if (_spellSlot == slot)
         {
-            Debug.Log("CANNOT AFFORD TO STING");
+
         }
     }
 

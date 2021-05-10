@@ -156,8 +156,8 @@ public class SpiritAgilityRuneOfElectricity : MonoBehaviour, IRuneScript
     {
         GameObject electricityEffect = RuneAssets.i.RuneShockDashEffect;
         electricityEffect.GetComponent<AbilityEvents>().SetSource(gameObject);
-        electricityEffect.GetComponent<AbilityEvents>().bonusFlatTrueDamage += 1 + (duplicateCountArmor + duplicateCountWeapon) * _entity.GetComponent<EntityStats>().currentAttackSpeed / 2;
-        electricityEffect = Instantiate(electricityEffect, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+        GameObject electricityEffectThis = Instantiate(electricityEffect, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+        electricityEffectThis.GetComponent<AbilityEvents>().bonusFlatTrueDamage += 1 + (duplicateCountArmor + duplicateCountWeapon) * _entity.GetComponent<EntityStats>().currentAttackSpeed / 50;
     }
 
     //Subs and Unsubs

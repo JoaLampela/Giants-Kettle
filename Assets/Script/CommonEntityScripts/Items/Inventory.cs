@@ -125,9 +125,11 @@ public class Inventory : MonoBehaviour
         if (!slotFound) DropItem(item);
     }
 
-    [Obsolete]
     public void UseItem(Item usedItem)
     {
+        Debug.Log(" used item");
+
+
         if ((int)usedItem.item.type == (int)ItemType.Consumable)
         {
             UseConsumable(usedItem);
