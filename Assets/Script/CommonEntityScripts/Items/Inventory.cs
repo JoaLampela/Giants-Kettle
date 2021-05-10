@@ -208,7 +208,8 @@ public class Inventory : MonoBehaviour
                                 UiButtonClick slot = armorChestR1.GetComponent<UiButtonClick>();
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
-                                AddNewRuneToItem(usedItem, armorHeadR1);
+                                AddNewRuneToItem(usedItem, armorChestR1);
+                                break;
                             }
                             else if (i == 1)
                             {
@@ -216,6 +217,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorChestR2);
+                                break;
                             }
                             else if (i == 2)
                             {
@@ -223,6 +225,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorChestR3);
+                                break;
                             }
                             else if (i == 3)
                             {
@@ -230,6 +233,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorChestR4);
+                                break;
                             }
                             else if (i == 4)
                             {
@@ -237,6 +241,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorChestR5);
+                                break;
                             }
                             else if (i == 5)
                             {
@@ -244,6 +249,7 @@ public class Inventory : MonoBehaviour
                                 slot._item = usedItem;
                                 slot.icon.sprite = usedItem.item.iconSprite;
                                 AddNewRuneToItem(usedItem, armorChestR6);
+                                break;
                             }
                         }
                     }

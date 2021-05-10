@@ -59,6 +59,7 @@ public class TwoHandedBasicAttack : MonoBehaviour, IAbility
     private IEnumerator basicAttackCooldownFunction()
     {
         float trueCooldown = basicAttackCooldown * 100f / (100f + GetComponent<EntityStats>().currentAttackSpeed);
+        if (trueCooldown < 0.1f) trueCooldown = 0.1f;
         Debug.Log("Attack Cooldown " + trueCooldown);
         yield return new WaitForSeconds(trueCooldown);
         Debug.Log("Attack off cooldown");

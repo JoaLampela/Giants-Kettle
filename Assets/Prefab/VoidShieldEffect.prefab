@@ -73,7 +73,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decreaseIntensity: 1
-  thislight: {fileID: 0}
+  thislight: {fileID: 4143192196474834626}
   colorEnd: {r: 0, g: 0, b: 0, a: 0}
   pulsingColor: 0
   falloutDelay: 0

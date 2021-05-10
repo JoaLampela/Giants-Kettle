@@ -153,6 +153,7 @@ public class EntityStats : MonoBehaviour
     public void UpdateAttackSpeed()
     {
         currentAttackSpeed = (int)((baseAttackSpeed * totalAttackSpeedMultiplier / 100f));
+        if (currentAttackSpeed > 1000) currentAttackSpeed = 1000;
     }
     public void UpdateSpellHaste()
     {

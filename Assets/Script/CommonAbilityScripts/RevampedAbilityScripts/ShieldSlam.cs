@@ -60,6 +60,7 @@ public class ShieldSlam : MonoBehaviour, IAbility
     private IEnumerator basicAttackCooldownFunction()
     {
         float trueCooldown = basicAttackCooldown * 100f / (100f + GetComponent<EntityStats>().currentAttackSpeed);
+        if (trueCooldown < 0.1f) trueCooldown = 0.1f;
         yield return new WaitForSeconds(trueCooldown);
         basicAttackOffCooldown = true;
     }

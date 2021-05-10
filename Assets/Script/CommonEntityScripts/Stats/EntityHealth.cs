@@ -194,6 +194,7 @@ public class EntityHealth : MonoBehaviour
         {
             Debug.Log("Damage immune");
             SoundManager.PlaySound(SoundManager.Sound.Block, transform.position);
+            events.Block(damage, gameObject);
         }
         
     }
