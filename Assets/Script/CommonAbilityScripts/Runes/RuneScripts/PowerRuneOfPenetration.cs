@@ -109,7 +109,7 @@ public class PowerRuneOfPenetration : MonoBehaviour, IRuneScript
 
         if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("PowerRuneOfPenetration", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("PowerRuneOfPenetration", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 

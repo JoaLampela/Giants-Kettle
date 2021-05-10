@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: VitalityPowerRuneOfBashPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Gain damage from armor
+  description: 'Rune of Bashing
+
+
+    Gain attack damage from armor.'
   iconSprite: {fileID: 21300000, guid: d93c992829920764081b17457f79844d, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

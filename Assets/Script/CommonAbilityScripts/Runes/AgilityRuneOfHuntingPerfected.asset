@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: AgilityRuneOfHuntingPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Deal bonus true damage to full health enemies
+  description: 'Rune of Hunting
+
+
+    Deal bonus magic damage to full health enemies.'
   iconSprite: {fileID: 21300000, guid: de0230ea13521a94183b68ab39499c6c, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

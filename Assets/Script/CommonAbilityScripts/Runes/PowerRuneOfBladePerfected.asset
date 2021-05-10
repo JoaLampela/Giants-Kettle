@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PowerRuneOfBladePerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: More damage, less health.
+  description: 'Rune of Blade
+
+
+    Double the damage, half the health.'
   iconSprite: {fileID: 21300000, guid: 1e8e375b4bc010d4d98423fb774eff0f, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

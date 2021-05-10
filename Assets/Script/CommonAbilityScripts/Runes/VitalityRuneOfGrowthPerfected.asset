@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: VitalityRuneOfGrowthPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Health regeneration.
+  description: 'Rune of Growth
+
+
+    Gain health regeneration.'
   iconSprite: {fileID: 21300000, guid: 5f050345ec614bf40a2424852e7a268b, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

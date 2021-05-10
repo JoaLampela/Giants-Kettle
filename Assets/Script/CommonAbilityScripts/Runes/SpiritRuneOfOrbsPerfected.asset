@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: SpiritRuneOfOrbsPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: 
+  description: 'Rune of Orbs
+
+
+    Summon damaging orbs.'
   iconSprite: {fileID: 21300000, guid: 3e2a4da63288042468ab3d65f7318b68, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

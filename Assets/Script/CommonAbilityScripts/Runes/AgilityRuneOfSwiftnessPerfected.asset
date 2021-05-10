@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: AgilityRuneOfSwiftnessPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Attack faster.
+  description: 'Rune of Swiftness
+
+
+    Gain attack speed.'
   iconSprite: {fileID: 21300000, guid: 27a21af25f3fe8742a620fba849a1087, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

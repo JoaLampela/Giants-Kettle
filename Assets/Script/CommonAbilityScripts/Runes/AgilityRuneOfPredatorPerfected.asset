@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: AgilityRuneOfPredatorPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Crits grant attack speed
+  description: 'Rune of Predator
+
+
+    Critical strikes grant stacking attack speed.'
   iconSprite: {fileID: 21300000, guid: 23ef034f9e4d4db4a91219eab8cb837b, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

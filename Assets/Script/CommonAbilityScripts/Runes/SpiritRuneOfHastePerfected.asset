@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: SpiritRuneOfHastePerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Spell haste.
+  description: 'Rune of Haste
+
+
+    Gain spell haste.'
   iconSprite: {fileID: 21300000, guid: 6e5ef67a558f3a646814892a0a1557a3, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

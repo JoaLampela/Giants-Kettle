@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: AgilityPowerRuneOfFlowPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Passive speed but get slowed when hit
+  description: 'Rune of Flow
+
+
+    Passively gain speed, but get slowed when hit.'
   iconSprite: {fileID: 21300000, guid: 1b214ed420fab5e4eb1fcb869677ba4f, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

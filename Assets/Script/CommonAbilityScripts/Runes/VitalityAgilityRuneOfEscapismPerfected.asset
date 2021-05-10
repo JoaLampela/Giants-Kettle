@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: VitalityAgilityRuneOfEscapismPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Gain movement speed on getting hit
+  description: 'Rune of Escapism
+
+
+    Gain a burst of speed upon getting hit.'
   iconSprite: {fileID: 21300000, guid: 1345d27b32c57984ebe97464e82f6a74, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

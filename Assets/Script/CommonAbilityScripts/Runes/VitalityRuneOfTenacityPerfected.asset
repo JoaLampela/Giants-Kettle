@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: VitalityRuneOfTenacityPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Tenacity.
+  description: 'Rune of Tenacity
+
+
+    Gain tenacity.'
   iconSprite: {fileID: 21300000, guid: 85003767da5d3b644a20debaefd44cee, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

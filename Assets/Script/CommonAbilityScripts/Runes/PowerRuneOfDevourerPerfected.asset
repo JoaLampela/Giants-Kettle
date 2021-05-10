@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PowerRuneOfDevourerPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: AHAHAHAHAHA! CARNAGE!
+  description: 'Rune of Devouring
+
+
+    Heal after killing enemies.'
   iconSprite: {fileID: 21300000, guid: ae65a56733742a3419822fe073722271, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

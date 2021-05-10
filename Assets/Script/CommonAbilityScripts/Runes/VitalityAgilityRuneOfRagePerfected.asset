@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: VitalityAgilityRuneOfRagePerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Gain 100% critical strike chance when low on health
+  description: 'Rune of Rage
+
+
+    Guaranteed critical strikes when low on health.'
   iconSprite: {fileID: 21300000, guid: 17e4929fe275e89469b023392dc150df, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0

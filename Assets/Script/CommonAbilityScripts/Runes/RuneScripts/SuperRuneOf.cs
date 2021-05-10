@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
+public class SuperRuneOf : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -10,7 +10,6 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
     private WeaponType _weaponType;
     [SerializeField] private int duplicateCountWeapon = 0;
     [SerializeField] private int duplicateCountArmor = 0;
-    private List<GameObject> projectiles;
     private Item containerItem;
     private IRuneScript.Hand _hand;
 
@@ -105,13 +104,15 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismRegen");
-        _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismSpeed");
+        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingAttackSpeed");
+        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingCrit");
+        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingPhysicalDamage");
 
-        if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismRegen", EntityStats.BuffType.HealthRegen, (duplicateCountArmor + duplicateCountWeapon) * 15);
-            _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismSpeed", EntityStats.BuffType.Speed, (duplicateCountArmor + duplicateCountWeapon) * 5);
+            _entityEvents.NewBuff("SuperRuneOfLightningTamingAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfLightningTamingCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfLightningTamingPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -133,13 +134,13 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
     {
         _entityEvents = gameObject.GetComponent<EntityEvents>();
         _abilityEvents = gameObject.GetComponent<AbilityEvents>();
-        projectiles = new List<GameObject>();
     }
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismRegen");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("VitalityAgilityRuneOfEscapismSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingAttackSpeed");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingCrit");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingPhysicalDamage");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -152,12 +153,15 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(Damage damage)
+    public void Activate(GameObject target, Damage damage)
     {
-        _entityEvents.NewBuff("VitalityAgilityRuneOfEscapismBonus", EntityStats.BuffType.SpeedMultiplier, 50, duplicateCountArmor + duplicateCountWeapon);
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        {
+            target.GetComponent<EntityEvents>().HitThis(new Damage(_entity, false, 0, (int)((damage._damage + damage._trueDamage) * 0.50f)), false);
 
-        GameObject whoosh = RuneAssets.i.RuneEscapistEffect;
-        whoosh = Instantiate(whoosh, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+            GameObject lightning = RuneAssets.i.RuneLightning;
+            lightning = Instantiate(lightning, target.transform.position, Quaternion.identity);
+        }
     }
 
     //Subs and Unsubs
@@ -168,7 +172,7 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnHitThis += Activate;
+        _entityEvents.OnDealCritDamage += Activate;
     }
 
     public void UnsubscribeAbility()
@@ -178,7 +182,7 @@ public class VitalityAgilityRuneOfEscapism : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnHitThis -= Activate;
+        _entityEvents.OnDealCritDamage -= Activate;
     }
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {

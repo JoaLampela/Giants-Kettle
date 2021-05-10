@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: SpiritRuneOfShieldsPerfected
   m_EditorClassIdentifier: 
   type: 6
-  description: Gain shield on kill.
+  description: 'Rune of Shielding
+
+
+    Gain a shield on kill.'
   iconSprite: {fileID: 21300000, guid: 38408bd62e6dde442b971b26157008ff, type: 3}
   inGameObject: {fileID: 0}
   isTwoHander: 0
