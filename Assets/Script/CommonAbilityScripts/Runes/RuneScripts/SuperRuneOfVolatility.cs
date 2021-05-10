@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuperRuneOf : MonoBehaviour, IRuneScript
+public class SuperRuneOfVolatility : MonoBehaviour, IRuneScript
 {
     private AbilityEvents _abilityEvents;
     private GameObject _entity = null;
@@ -12,6 +12,7 @@ public class SuperRuneOf : MonoBehaviour, IRuneScript
     [SerializeField] private int duplicateCountArmor = 0;
     private Item containerItem;
     private IRuneScript.Hand _hand;
+    private GameObject explosion;
 
     [SerializeField] private int duplicateCountWeaponRight = 0;
     [SerializeField] private int duplicateCountWeaponLeft = 0;
@@ -104,15 +105,15 @@ public class SuperRuneOf : MonoBehaviour, IRuneScript
 
     public void SetUpPermanentEffects()
     {
-        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingAttackSpeed");
-        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingCrit");
-        _entityEvents.RemoveBuff("SuperRuneOfLightningTamingPhysicalDamage");
+        _entityEvents.RemoveBuff("SuperRuneOfVolatilityHaste");
+        _entityEvents.RemoveBuff("SuperRuneOfVolatilityArmor");
+        _entityEvents.RemoveBuff("SuperRuneOfVolatilityHealth");
 
         if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SuperRuneOfLightningTamingAttackSpeed", EntityStats.BuffType.AttackSpeed, (duplicateCountArmor + duplicateCountWeapon) * 10);
-            _entityEvents.NewBuff("SuperRuneOfLightningTamingCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 10);
-            _entityEvents.NewBuff("SuperRuneOfLightningTamingPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfVolatilityHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfVolatilityArmor", EntityStats.BuffType.Armor, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfVolatilityHealth", EntityStats.BuffType.Health, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -138,9 +139,9 @@ public class SuperRuneOf : MonoBehaviour, IRuneScript
 
     private void OnDisable()
     {
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingAttackSpeed");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingCrit");
-        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfLightningTamingPhysicalDamage");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfVolatilityHaste");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfVolatilityArmor");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfVolatilityHealth");
 
         if (gameObject.GetComponent<EntityEvents>())
         {
@@ -153,15 +154,19 @@ public class SuperRuneOf : MonoBehaviour, IRuneScript
         }
     }
 
-    public void Activate(GameObject target, Damage damage)
+    public void Activate(Damage damage, GameObject target)
     {
-        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
-        {
-            target.GetComponent<EntityEvents>().HitThis(new Damage(_entity, false, 0, (int)((damage._damage + damage._trueDamage) * 0.50f)), false);
+        GameObject supernova = RuneAssets.i.RuneStar;
+        supernova.GetComponent<AbilityEvents>().SetSource(_entity);
 
-            GameObject lightning = RuneAssets.i.RuneLightning;
-            lightning = Instantiate(lightning, target.transform.position, Quaternion.identity);
-        }
+        supernova = Instantiate(supernova, gameObject.transform.position, Quaternion.identity);
+        StartCoroutine(SetExplosionStats(supernova, damage));
+    }
+
+    private IEnumerator SetExplosionStats(GameObject projectile, Damage damage)
+    {
+        yield return new WaitForEndOfFrame();
+        projectile.GetComponent<AbilityEvents>().bonusFlatTrueDamage = (int)((damage._damage + damage._trueDamage) * 0.9f);
     }
 
     //Subs and Unsubs
@@ -172,7 +177,7 @@ public class SuperRuneOf : MonoBehaviour, IRuneScript
 
     public void SubscribeEntity()
     {
-        _entityEvents.OnDealCritDamage += Activate;
+        _entityEvents.OnBlock += Activate;
     }
 
     public void UnsubscribeAbility()
@@ -182,17 +187,20 @@ public class SuperRuneOf : MonoBehaviour, IRuneScript
 
     public void UnsubscribeEntity()
     {
-        _entityEvents.OnDealCritDamage -= Activate;
+        _entityEvents.OnBlock -= Activate;
     }
+
     public void SetContainerItem(Item item, IRuneScript.Hand hand)
     {
         containerItem = item;
         _hand = hand;
     }
+
     public int GetDuplicateCountWeaponRight()
     {
         return duplicateCountWeaponRight;
     }
+
     public int GetDuplicateCountWeaponLeft()
     {
         return duplicateCountWeaponLeft;

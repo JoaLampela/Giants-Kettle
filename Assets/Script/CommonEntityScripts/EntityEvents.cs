@@ -121,6 +121,13 @@ public class EntityEvents : MonoBehaviour
 
     public event Action<Damage, GameObject> OnPreDamageCalculation;
 
+    public event Action<Damage, GameObject> OnBlock;
+
+
+    public void Block(Damage damage, GameObject target)
+    {
+        OnBlock?.Invoke(damage, target);
+    }
 
     public void BasicAttackHit(GameObject enemy, Damage damage)
     {

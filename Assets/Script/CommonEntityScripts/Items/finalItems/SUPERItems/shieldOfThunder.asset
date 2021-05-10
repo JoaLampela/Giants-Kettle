@@ -18,7 +18,7 @@ MonoBehaviour:
   inGameObject: {fileID: 7989905625563838003, guid: 7f0cea9e1a3cea348b7deb6f8cb5092c, type: 3}
   isTwoHander: 0
   runeSlots: 6
-  baseRune: {fileID: 11400000, guid: 6b358980d897da8448e9ee3c53624d3e, type: 2}
+  baseRune: {fileID: 11400000, guid: 8383c0d459eaa6948953f957a8d90558, type: 2}
   weaponType: 2
   maxCooldownAbility1: 3
   currentCooldownAbility1: 0
