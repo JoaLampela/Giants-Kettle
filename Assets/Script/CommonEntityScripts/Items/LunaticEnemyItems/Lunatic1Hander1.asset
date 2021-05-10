@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 1
   description: 
   iconSprite: {fileID: 0}
-  inGameObject: {fileID: 0}
+  inGameObject: {fileID: 7142531296485678816, guid: 081648b36b6d71544b3cb2a392c175c8, type: 3}
   isTwoHander: 0
   runeSlots: 1
   baseRune: {fileID: 11400000, guid: 45466d03f02f8cf42b8880353b14f56b, type: 2}

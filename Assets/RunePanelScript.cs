@@ -10,6 +10,7 @@ public class RunePanelScript : MonoBehaviour, IPointerExitHandler, IPointerEnter
     [SerializeField] RuneObject rune;
     [SerializeField] private Image runeImage;
     GameObject toolTip;
+    int score;
 
 
     private void Awake()
@@ -20,7 +21,8 @@ public class RunePanelScript : MonoBehaviour, IPointerExitHandler, IPointerEnter
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("ENter");
-        toolTip.GetComponent<menuToolTip>().DisplayText(rune.description);
+        if (score >= 3) 
+            toolTip.GetComponent<menuToolTip>().DisplayText(rune.description);
 
     }
 
@@ -33,9 +35,9 @@ public class RunePanelScript : MonoBehaviour, IPointerExitHandler, IPointerEnter
     void Start()
     {
         runeImage.sprite = rune.iconSprite;
-        int score = GameObject.Find("TotalGameStats").GetComponent<TotalGameStats>().GetRuneScore(rune);
+        score = GameObject.Find("TotalGameStats").GetComponent<TotalGameStats>().GetRuneScore(rune);
         count.text = score.ToString();
 
-        if (score == 0) runeImage.color = Color.black;
+        if (score < 3) runeImage.color = Color.black;
     }
 }
