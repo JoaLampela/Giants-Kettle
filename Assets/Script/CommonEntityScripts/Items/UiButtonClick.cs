@@ -381,6 +381,12 @@ public class UiButtonClick : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
                 RemoveItemFromslot();
                 playerInventory.UseItem(temp);
             }
+            else if (_item != null && (int)_item.item.type == (int)ItemType.Rune)
+            {
+                Item temp = _item;
+                RemoveItemFromslot();
+                playerInventory.UseItem(temp);
+            }
         }
     }
 
