@@ -27,7 +27,7 @@ public class statsScript : MonoBehaviour
 
     private void Start()
     {
-        totalPlayTimeText.text = totalGameStats.totalGameTime.ToString();
+        totalPlayTimeText.text = CalculateGameTime(totalGameStats.totalGameTime);
         totalenemiesKilledText.text = totalGameStats.killedEnemiesTotal.ToString();
         totalfloorsClearedText.text = totalGameStats.clearedFloors.ToString();
         totalRoomsClearedText.text = totalGameStats.clearedRooms.ToString();
@@ -69,5 +69,15 @@ public class statsScript : MonoBehaviour
         }
 
         causeOfNightmaresText.text = killer;
+    }
+
+    private string CalculateGameTime(int seconds)
+    {
+        int minutes =(int) (seconds / 60f);
+        seconds = seconds - minutes * 60;
+        int hours = (int)(minutes / 60f);
+        minutes = minutes - hours * 60;
+
+        return hours + "h " + minutes + "min " + seconds + "s";
     }
 }
