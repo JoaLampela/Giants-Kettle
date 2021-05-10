@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2fa4855b86a874895850dba83c454c, type: 3}
+  m_Name: ArcadeSword
+  m_EditorClassIdentifier: 
+  type: 1
+  description: RAINBOWS!
+  iconSprite: {fileID: 21300000, guid: be7fa6f054063a143978d5810a218e6e, type: 3}
+  inGameObject: {fileID: 4868806116673755764, guid: ae00e553f255f33449dd7a44373d8d05, type: 3}
+  isTwoHander: 1
+  runeSlots: 6
+  baseRune: {fileID: 11400000, guid: 09d4568b82041a341a0a6b27c8aabcd7, type: 2}
+  weaponType: 1
+  maxCooldownAbility1: 3
+  currentCooldownAbility1: 0
+  maxCooldownAbility2: 5
+  currentCooldownAbility2: 0
