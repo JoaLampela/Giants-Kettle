@@ -24,9 +24,16 @@ public class CameraScript : MonoBehaviour
     void MoveCamera()
     {
         Vector3 position = transform.position;
-        
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         position.x = playerTransform.position.x;
         position.y = playerTransform.position.y;
+
+        float cameraMoveAmount = 0.15f;
+        Vector3 bonusPos = (mousePos - position) * cameraMoveAmount;
+
+        position = position + bonusPos;
+        
         //smoothly transforms from the cameras position to the players position
         position = Vector3.Lerp(transform.position, position, smoothSpeed * Time.fixedDeltaTime);
 

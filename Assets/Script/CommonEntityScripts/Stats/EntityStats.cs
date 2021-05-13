@@ -195,6 +195,7 @@ public class EntityStats : MonoBehaviour
     }
     public void UpdateBuff(BuffType buffType, int value)
     {
+        Debug.Log(gameObject + " updating buff from stats " + value);
         int temp;
         switch (buffType)
         {

@@ -337,6 +337,7 @@ public class EntityEvents : MonoBehaviour
     }
     public void NewBuff(string SourceId, EntityStats.BuffType id, int value, float duration = -1)
     {
+        Debug.Log(gameObject + " new buff event");
         OnNewBuff?.Invoke(SourceId, id, value, duration);
     }
     public void RemoveBuff(string sourceId)

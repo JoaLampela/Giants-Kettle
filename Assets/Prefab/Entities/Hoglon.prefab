@@ -524,7 +524,7 @@ MonoBehaviour:
   normalScaler: 1
   hardScaler: 1.5
   lunaticScaler: 2
-  scalingIncrementPerFloor: 0.2
+  scalingIncrementPerFloor: 0.1
 --- !u!114 &2145335451551312345
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -107,11 +107,13 @@ public class SuperRuneOfFrozenGale : MonoBehaviour, IRuneScript
     {
         _entityEvents.RemoveBuff("SuperRuneOfFrozenGaleSpellHaste");
         _entityEvents.RemoveBuff("SuperRuneOfFrozenGalePhysicalDamage");
+        _entityEvents.RemoveBuff("SuperRuneOfFrozenGaleCrit");
 
-        if(duplicateCountArmor != 0 || duplicateCountWeapon != 0)
+        if (duplicateCountArmor != 0 || duplicateCountWeapon != 0)
         {
-            _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
-            _entityEvents.NewBuff("SuperRuneOfSupremeArcadePowerPhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfFrozenGaleSpellHaste", EntityStats.BuffType.SpellHaste, (duplicateCountArmor + duplicateCountWeapon) * 10);
+            _entityEvents.NewBuff("SuperRuneOfFrozenGalePhysicalDamage", EntityStats.BuffType.PhysicalDamage, (duplicateCountArmor + duplicateCountWeapon) * 15);
+            _entityEvents.NewBuff("SuperRuneOfFrozenGaleCrit", EntityStats.BuffType.CriticalStrikeChance, (duplicateCountArmor + duplicateCountWeapon) * 10);
         }
     }
 
@@ -139,6 +141,7 @@ public class SuperRuneOfFrozenGale : MonoBehaviour, IRuneScript
     {
         if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfFrozenGaleSpellHaste");
         if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfFrozenGalePhysicalDamage");
+        if (_entityEvents != null) _entityEvents.RemoveBuff("SuperRuneOfFrozenGaleCrit");
 
         if (gameObject.GetComponent<EntityEvents>())
         {

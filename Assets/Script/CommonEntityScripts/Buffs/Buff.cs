@@ -21,6 +21,7 @@ public class Buff : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(gameObject + " buff start");
         Subscribe();
         buff = new BuffClass(_effectID, _value);
 

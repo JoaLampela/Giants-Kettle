@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StartItemSelectScript : MonoBehaviour
 {
-    public ItemOnGround itemOnGround;
     public ItemObject sword;
     public ItemObject shield;
     public ItemObject twoHandedSword;
@@ -17,79 +16,148 @@ public class StartItemSelectScript : MonoBehaviour
     public ItemObject staffL;
 
     [SerializeField] private NoobPanelScript noobPanelScript;
+    private GameEventManager gameEventManager;
+
+    private Inventory inventory;
+
+    private void Awake()
+    {
+        gameEventManager = GameObject.Find("Game Manager").GetComponent<GameEventManager>();
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+    }
 
     public void SelectSwordSword()
     {
-        ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position , Quaternion.identity);
-        groundItem.SetItem(new Item(sword));
-        if(GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
-        groundItem.pickedUp = true;
 
-        groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-        groundItem.SetItem(new Item(sword));
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
-        groundItem.pickedUp = true;
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+        {
+            Item item = new Item(swordL);
+            inventory.rightHand.icon.sprite = item.item.iconSprite;
+            inventory.rightHand._item = item;
+            inventory.Equip(item, inventory.rightHand);
+        }
+        else
+        {
+            Item item = new Item(sword);
+            inventory.rightHand.icon.sprite = item.item.iconSprite;
+            inventory.rightHand._item = item;
+            inventory.Equip(item, inventory.rightHand);
+        }
 
-        Time.timeScale = 1f;
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+        {
+            Item item = new Item(swordL);
+            inventory.leftHand.icon.sprite = item.item.iconSprite;
+            inventory.leftHand._item = item;
+            inventory.Equip(item, inventory.leftHand);
+        }
+        else 
+        {
+            Item item = new Item(sword);
+            inventory.leftHand.icon.sprite = item.item.iconSprite;
+            inventory.leftHand._item = item;
+            inventory.Equip(item, inventory.leftHand);
+        }
         gameObject.SetActive(false);
 
         noobPanelScript.ToggleStartItemTip();
+        gameEventManager.ToggleRuneSelectionView();
     }
 
     public void SelectShieldShield()
     {
-        ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-        groundItem.SetItem(new Item(shield));
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
-        groundItem.pickedUp = true;
 
-        groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-        groundItem.SetItem(new Item(shield));
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(shieldL));
-        groundItem.pickedUp = true;
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+        {
+            Item item = new Item(shieldL);
+            inventory.rightHand.icon.sprite = item.item.iconSprite;
+            inventory.rightHand._item = item;
+            inventory.Equip(item, inventory.rightHand);
+        }
+        else
+        {
+            Item item = new Item(shield);
+            inventory.rightHand.icon.sprite = item.item.iconSprite;
+            inventory.rightHand._item = item;
+            inventory.Equip(item, inventory.rightHand);
+        }
 
-        Time.timeScale = 1f;
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+        {
+            Item item = new Item(shieldL);
+            inventory.leftHand.icon.sprite = item.item.iconSprite;
+            inventory.leftHand._item = item;
+            inventory.Equip(item, inventory.leftHand);
+        }
+        else
+        {
+            Item item = new Item(shield);
+            inventory.leftHand.icon.sprite = item.item.iconSprite;
+            inventory.leftHand._item = item;
+            inventory.Equip(item, inventory.leftHand);
+        }
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
+        gameEventManager.ToggleRuneSelectionView();
     }
 
     public void SelectShieldSword()
     {
-        ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-        groundItem.SetItem(new Item(shield));
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(shieldL));
-        groundItem.pickedUp = true;
 
-        groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-        groundItem.SetItem(new Item(sword));
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(swordL));
-        groundItem.pickedUp = true;
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+        {
+            Item item = new Item(swordL);
+            inventory.rightHand.icon.sprite = item.item.iconSprite;
+            inventory.rightHand._item = item;
+            inventory.Equip(item, inventory.rightHand);
+        }
+        else
+        {
+            Item item = new Item(sword);
+            inventory.rightHand.icon.sprite = item.item.iconSprite;
+            inventory.rightHand._item = item;
+            inventory.Equip(item, inventory.rightHand);
+        }
 
-        Time.timeScale = 1f;
+
+
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic)
+        {
+            Item item = new Item(shieldL);
+            inventory.leftHand.icon.sprite = item.item.iconSprite;
+            inventory.leftHand._item = item;
+            inventory.Equip(item, inventory.leftHand);
+        }
+
+        else 
+        {
+            Item item = new Item(shield);
+            inventory.leftHand.icon.sprite = item.item.iconSprite;
+            inventory.leftHand._item = item;
+            inventory.Equip(item, inventory.leftHand);
+        }
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
+        gameEventManager.ToggleRuneSelectionView();
     }
 
     public void SelectStaff()
     {
-        ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-        groundItem.SetItem(new Item(staff));
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(staffL));
-        groundItem.pickedUp = true;
-
-        Time.timeScale = 1f;
+        
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) inventory.UseItem(new Item(staffL));
+        else inventory.UseItem(new Item(staff));
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
+        gameEventManager.ToggleRuneSelectionView();
+
     }
     public void Select2HSword()
     {
-        ItemOnGround groundItem = Instantiate(itemOnGround, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-        groundItem.SetItem(new Item(twoHandedSword));
-        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) groundItem.SetItem(new Item(twoHandedSwordL));
-        groundItem.pickedUp = true;
-
-        Time.timeScale = 1f;
+        
+        if (GameObject.Find("Game Manager").GetComponent<GameEventManager>().difficulty == GameDifficultyManagerScript.Difficulty.Lunatic) inventory.UseItem(new Item(twoHandedSwordL));
+        else inventory.UseItem(new Item(twoHandedSword)); 
         gameObject.SetActive(false);
         noobPanelScript.ToggleStartItemTip();
+        gameEventManager.ToggleRuneSelectionView();
     }
 }

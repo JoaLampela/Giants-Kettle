@@ -116,6 +116,7 @@ public class GameEventManager : MonoBehaviour
         }
         else if ((playerLevelUpPoints <= 0 || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Escape)) && playerLevelUpScreenVisible && !pauseMenuOpen && !playerDead)
         {
+            Debug.Log("TOGGLE runes");
             ToggleRuneSelectionView();
             ContinueTime();
         }
