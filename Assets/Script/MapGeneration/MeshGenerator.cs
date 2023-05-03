@@ -255,18 +255,6 @@ public class MeshGenerator : MonoBehaviour
                         //set the borders for this tile
                         caveTilemap.SetTile(cellVector, tileList[23]);
 
-                        ////if the tile to the upper left is the same as this, or if it is a bottom left triangle, or if tile to the bottom left is a top right triangle
-                        //if ((squareGrid.squares[x + 1, y + 1]._configuration == 1) || (squareGrid.squares[x + 1, y + 1]._configuration == 5) || (squareGrid.squares[x + 1, y + 1]._configuration == 4))
-                        //{
-                        //    //if the tile to the right is not a top wall
-                        //    if (squareGrid.squares[x + 1, y]._configuration != 12)
-                        //    {
-                        //        wallVector = caveTilemap.WorldToCell(squareGrid.squares[x + 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
-                        //        wallTilemap.SetTile(wallVector, tileList[21]);
-                                
-                        //    }
-                        //}
-
                         //if the tile to the right is not a top wall
                         if (squareGrid.squares[x + 1, y]._configuration != 12)
                         {
@@ -282,18 +270,6 @@ public class MeshGenerator : MonoBehaviour
                         wallBorderTilemap.SetTile(cellVector, tileList[configuration]);
                         //set the borders for this tile
                         caveTilemap.SetTile(cellVector, tileList[23]);
-
-                        //does this fix?
-                        ////if the tile to the upper left is the same as this, or if it is a bottom right triangle, or if the tile to the bottom right is a top left triangle
-                        //if ((squareGrid.squares[x - 1, y + 1]._configuration == 2) || (squareGrid.squares[x - 1, y + 1]._configuration == 10) || (squareGrid.squares[x + 1, y - 1]._configuration == 8))
-                        //{
-                        //    //if the tile to the left is not a top wall
-                        //    if (!(squareGrid.squares[x - 1, y]._configuration == 12))
-                        //    {
-                        //        wallVector = caveTilemap.WorldToCell(squareGrid.squares[x - 1, y - 1]._centerBottom._position + new Vector2(0, 0.5f));
-                        //        wallTilemap.SetTile(wallVector, tileList[22]);
-                        //    }
-                        //}
 
                          //if the tile to the left is not a top wall
                         if (!(squareGrid.squares[x - 1, y]._configuration == 12))
